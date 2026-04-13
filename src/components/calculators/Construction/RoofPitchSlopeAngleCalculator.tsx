@@ -130,40 +130,41 @@ export default function RoofPitchSlopeAngleCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is roof pitch and why is it important?",
-      answer:
-        "Roof pitch is the ratio of the vertical rise to the horizontal run of a roof, expressed as a fraction or ratio (e.g., 4:12). It determines the steepness of the roof and affects water drainage, material selection, and structural design. Accurate pitch measurement ensures proper installation and longevity of roofing materials.",
+      question: "What is the difference between roof pitch and roof slope?",
+      answer: "Roof pitch and roof slope are often used interchangeably but have a technical distinction. Pitch is expressed as a ratio (e.g., 4:12, meaning 4 inches of rise per 12 inches of run), while slope is expressed as an angle in degrees (e.g., 18.43°). This calculator converts between both formats, allowing builders to work with either measurement depending on their blueprints or regional standards.",
     },
     {
-      question:
-        "How do I convert between roof pitch and slope angle in degrees?",
-      answer:
-        "To convert roof pitch (rise/run) to slope angle in degrees, use the formula: angle = arctangent(rise/run) × (180/π). This converts the ratio into an angle measurement, which is useful for cutting materials and understanding roof geometry.",
+      question: "How do I measure my roof pitch manually if I don't have blueprints?",
+      answer: "You can measure roof pitch using a level and measuring tape. Place a 12-inch level on the roof surface horizontally, then measure the vertical distance from the end of the level to the roof surface. This vertical measurement is your rise for every 12 inches of run, giving you the pitch ratio directly. For example, if the rise is 6 inches, your pitch is 6:12 or a 26.57° slope.",
     },
     {
-      question:
-        "Why should I include a waste margin when ordering roofing materials?",
-      answer:
-        "Including a waste margin (usually 5-15%) accounts for material loss due to cutting, mistakes, overlaps, and damage during installation. This ensures you have enough materials to complete the job without costly delays or additional orders.",
+      question: "What roof pitch is most common in residential construction?",
+      answer: "The most common residential roof pitch in North America is 4:12 (4 inches of rise per 12 inches of run), which equals an 18.43° angle. This pitch balances water drainage, snow load capacity, and ease of installation. However, modern homes often use pitches ranging from 3:12 (14.04°) to 8:12 (33.69°), depending on climate, aesthetics, and local building codes.",
     },
     {
-      question:
-        "What types of roofing materials are affected by roof pitch calculations?",
-      answer:
-        "Materials like shingles, metal panels, tiles, and membranes require accurate pitch and slope calculations to determine quantities and installation methods. Steeper roofs may require different fastening techniques or material types to ensure durability and safety.",
+      question: "How does roof pitch affect water drainage and snow load?",
+      answer: "Steeper roof pitches (above 6:12 or 26.57°) shed water and snow more efficiently, reducing buildup and structural strain. Flatter pitches (below 4:12 or 18.43°) drain slower and accumulate more snow, requiring stronger support structures. In areas with heavy snowfall, pitches of 8:12 (33.69°) or higher are recommended, while dry climates may use flatter 2:12 (9.46°) or 3:12 pitches.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, this calculator supports metric (meters) and imperial (feet) units. Make sure to input all dimensions consistently in the selected unit system to get accurate results.",
+      question: "What is the minimum roof pitch required by building code?",
+      answer: "Most U.S. building codes require a minimum pitch of 2:12 (9.46°) for asphalt shingles, though some jurisdictions allow 2:12 with proper underlayment. Metal roofing can go as low as 1:12 (4.76°), and standing seam metal allows even lower pitches. Flat roofs (0:12 or 0°) require special membranes and are only permitted in specific climates; always consult local building codes.",
     },
     {
-      question:
-        "How does material size selection affect the quantity calculation?",
-      answer:
-        "Material size affects coverage per unit. For example, larger roofing panels cover more area per piece, reducing the total number of units needed. Selecting the correct material size in the calculator adjusts the coverage factor accordingly.",
+      question: "How do I convert a roof angle in degrees to pitch ratio?",
+      answer: "To convert degrees to pitch, use the formula: Pitch = tan(angle in degrees) × 12. For example, a 30° roof angle converts to tan(30°) × 12 = 6.93:12 or approximately 7:12. This calculator automates this calculation, allowing you to input any angle and instantly see the equivalent pitch ratio used in construction documents.",
     },
+    {
+      question: "What roof pitch should I use for a metal roof installation?",
+      answer: "Metal roofing is flexible and can accommodate pitches from 1:12 (4.76°) for standing seam systems to 12:12 (45°) or steeper for architectural standing seam. Most metal roof manufacturers recommend a minimum of 3:12 (14.04°) for standard corrugated or ribbed metal, with 4:12 (18.43°) being optimal for longevity and drainage. Check the specific manufacturer's guidelines for your chosen metal roofing profile.",
+    },
+    {
+      question: "How does roof pitch impact material costs and labor?",
+      answer: "Steeper pitches (above 8:12 or 33.69°) require more materials due to increased surface area and typically cost 10-20% more per square foot than standard 4:12 pitches. Labor costs also increase significantly for steep roofs due to safety requirements, specialized equipment, and slower installation rates. Conversely, flat or low-pitch roofs (below 2:12 or 9.46°) may require additional waterproofing and membrane systems, offsetting any labor savings.",
+    },
+    {
+      question: "What pitch should I use in areas with high wind or hurricane conditions?",
+      answer: "In high-wind zones, steeper pitches (6:12 to 8:12 or 26.57° to 33.69°) perform better than shallow pitches because they reduce wind uplift pressure on the roof deck. However, extremely steep pitches (above 10:12 or 39.81°) can paradoxically increase lateral wind forces. Consult local wind speed requirements and building codes; most hurricane-prone areas specify minimum pitches of 4:12 (18.43°) with enhanced fastening systems.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -334,170 +335,314 @@ export default function RoofPitchSlopeAngleCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Roof Pitch & Slope Angle Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The roof pitch and slope angle are fundamental measurements in
-            construction and roofing projects. Roof pitch is the ratio of the
-            vertical rise to the horizontal run of a roof, often expressed as a
-            fraction or ratio (e.g., 4:12). The slope angle is the corresponding
-            angle in degrees, which helps contractors understand the steepness
-            of the roof. This calculator helps you determine both values and
-            estimate the amount of material needed based on your roof's
-            dimensions.
-          </p>
-          <p>
-            Precision in measuring and calculating roof pitch and slope angle is
-            critical. An inaccurate pitch can lead to improper material orders,
-            poor water drainage, and structural issues. Using this calculator,
-            you can input your roof's run, rise, and slope length to get exact
-            pitch ratios, slope angles, and material quantities, helping you
-            avoid costly mistakes.
-          </p>
-          <p>
-            Different roofing materials require different handling based on the
-            roof pitch. For example, asphalt shingles are suitable for moderate
-            pitches, while metal panels or tiles may be preferred for steeper
-            slopes. This calculator also allows you to select material sizes and
-            add waste margins to ensure you order the right amount of materials
-            for your project.
-          </p>
-          <p>
-            Whether you are a contractor, builder, or DIY enthusiast, this tool
-            streamlines your planning process by combining geometry with
-            practical material estimation, saving time and reducing errors on
-            site.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Roof Pitch & Slope Angle Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Roof Pitch & Slope Angle Calculator is an essential tool for homeowners, contractors, and architects who need to quickly convert between pitch ratios and degree angles. Understanding your roof's pitch or slope is critical for selecting appropriate roofing materials, calculating structural requirements, ensuring code compliance, and estimating costs. Whether you're reviewing blueprints, planning a roof replacement, or designing a new structure, this calculator eliminates manual conversions and ensures accuracy.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator accepts two primary input formats: pitch ratio (expressed as X:12, such as 4:12) or slope angle (expressed in degrees, such as 18.43°). Simply enter your known measurement in either field—the calculator will instantly compute the equivalent value in the other format. You can also input the rise and run as separate values, and the calculator will determine both the pitch ratio and slope angle automatically. Understanding these inputs helps you bridge the gap between traditional construction documentation and modern digital tools.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results provide you with exact pitch-to-angle conversions that you can use for material selection, contractor communication, and compliance verification. The calculator also displays the rise and run values in inches, helping you visualize the roof's slope. Use these results to cross-reference building codes for your region, confirm material manufacturer specifications, and ensure your roofing project meets all safety and performance standards. Bookmark this calculator for future reference during renovations or new construction planning.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always double-check your run and rise
-            measurements on-site before ordering materials. Small errors can
-            lead to significant material waste or shortages.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Roof pitch affects not only material
-            quantity but also the type of underlayment and flashing required for
-            proper waterproofing.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> When ordering large size panels,
-            you can reduce installation time but must ensure your roof framing
-            supports the increased panel weight.
-          </li>
-          <li>
-            <strong>Tip:</strong> Use the slope angle output to help cut rafters
-            and trim materials accurately, improving fit and finish.
-          </li>
+      {/* TABLE: Common Roof Pitch to Angle Conversion Chart */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Roof Pitch to Angle Conversion Chart</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the most frequently used roof pitches in residential and commercial construction with their corresponding angle measurements in degrees.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pitch Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Angle (Degrees)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Rise per 12 inches Run</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Application</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.46°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-slope residential, minimal snow climates</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.04°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Transitional, moderate snow areas</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.43°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard residential, most common pitch</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.62°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Modern residential, improved drainage</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26.57°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Steep residential, heavy snow regions</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33.69°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mountain climates, steep roofs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">39.81°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very steep architectural, alpine zones</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45.00°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extreme pitch, specialized applications</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Pitches below 2:12 (9.46°) are considered low-slope and typically require special membranes rather than traditional shingles.</p>
+      </section>
+
+      {/* TABLE: Roof Pitch Requirements by Climate and Roofing Material */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Roof Pitch Requirements by Climate and Roofing Material</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different climates and roofing materials have specific pitch requirements to ensure proper drainage, durability, and code compliance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Climate Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Snow Load Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Pitch</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Roofing Material Suitability</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dry/Arid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light (&lt;50 lbs/sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2:12–4:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Asphalt shingles, clay tiles, metal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Temperate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate (50–100 lbs/sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4:12–6:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Asphalt shingles, metal, wood shake</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cold/Snowy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy (100–200 lbs/sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6:12–10:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Metal, standing seam, architectural shingles</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High Alpine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Heavy (&gt;200 lbs/sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8:12–12:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standing seam metal, slate, specialty systems</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Coastal/Windy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High wind (100+ mph)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4:12–6:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Metal, impact-resistant asphalt, tile</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tropical/Humid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light–Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4:12–8:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Metal, tile, impact-resistant shingles</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always verify local building codes and insurance requirements, as some areas have specific minimum or maximum pitch mandates based on wind speed and snow load calculations.</p>
+      </section>
+
+      {/* TABLE: Roof Surface Area Increase by Pitch */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Roof Surface Area Increase by Pitch</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">As roof pitch increases, the actual surface area of the roof grows significantly, directly impacting material and labor costs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Roof Pitch</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Angle (Degrees)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Surface Area Multiplier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Impact vs. 4:12 Base</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.46°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.032</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-3% (smallest area)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.04°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.049</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-1%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.43°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.073</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Base (100%)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.62°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.103</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+3%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26.57°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+6%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33.69°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.227</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+14%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">39.81°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.327</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+23%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45.00°</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.414</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+31% (largest area)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The surface area multiplier is calculated as 1 ÷ cos(pitch angle). A 12:12 pitch roof requires approximately 41% more material than a 2:12 pitch roof covering the same footprint.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify your local building codes before selecting a roof pitch—some jurisdictions have minimum pitch requirements based on climate, roofing material, and snow load calculations. A pitch that works in Arizona may not meet code requirements in Colorado.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If measuring an existing roof, use a 2-foot level for greater accuracy than a 1-foot level, as small measurement errors are magnified over shorter distances. Measure at multiple locations along the roof to account for any irregularities or sagging.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When replacing a roof, maintain the original pitch even if it seems shallow—changing the pitch requires structural modifications to rafters and trusses, significantly increasing costs. The existing pitch was engineered for your home's load-bearing capacity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for surface area increases when budgeting materials—a 6:12 pitch roof requires about 6% more shingles, underlayment, and flashing than a 4:12 pitch roof with the same footprint. Factor this into your material estimates and labor quotes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this calculator to validate contractor estimates and material specifications—discrepancies between stated pitch and angle can indicate errors in blueprints or misunderstandings about the scope of work.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Unit Mixing:</strong> Mixing metric and imperial
-            units in measurements leads to inaccurate calculations. Always
-            ensure all inputs are in the same unit system.
-          </p>
-          <p>
-            <strong>2. Ignoring Waste Margin:</strong> Not accounting for waste
-            can cause material shortages, project delays, and increased costs.
-            Always include a reasonable waste percentage.
-          </p>
-          <p>
-            <strong>3. Using Roof Height Instead of Rise:</strong> The rise is
-            the vertical height over the horizontal run, not the total roof
-            height. Confusing these can skew pitch and angle results.
-          </p>
-          <p>
-            <strong>4. Overlooking Material Size Impact:</strong> Different
-            material sizes cover different areas. Using the wrong coverage per
-            unit will miscalculate quantities.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Pitch with Slope</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pitch and slope are not identical—pitch is a ratio (4:12) while slope is an angle (18.43°). Using the wrong format when ordering materials or communicating with contractors can lead to supply errors and miscommunication. Always clarify which measurement your supplier or contractor uses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Local Building Codes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Selecting a roof pitch without consulting local building codes can result in code violations, failed inspections, or insurance denial of claims. Different regions have different minimum pitch requirements based on climate, snow load, and wind speed; always verify requirements before finalizing design decisions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Material Costs for Steep Pitches</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many homeowners are surprised by the increased material quantities required for steeper pitches—an 8:12 pitch roof requires approximately 14% more material than a 4:12 pitch roof covering the same footprint. Factor this additional cost into your budget when considering aesthetically steeper roof designs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Miscalculating Rise and Run Values</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The 12-inch run in pitch ratios (e.g., 4:12) is a standardized unit, not variable—a 4:12 pitch always means 4 inches of rise per 12 inches of horizontal run. Incorrectly scaling these values (e.g., thinking 8:24 is different from 4:12) leads to pitch errors and material miscalculations.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between roof pitch and roof slope?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Roof pitch and roof slope are often used interchangeably but have a technical distinction. Pitch is expressed as a ratio (e.g., 4:12, meaning 4 inches of rise per 12 inches of run), while slope is expressed as an angle in degrees (e.g., 18.43°). This calculator converts between both formats, allowing builders to work with either measurement depending on their blueprints or regional standards.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I measure my roof pitch manually if I don't have blueprints?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You can measure roof pitch using a level and measuring tape. Place a 12-inch level on the roof surface horizontally, then measure the vertical distance from the end of the level to the roof surface. This vertical measurement is your rise for every 12 inches of run, giving you the pitch ratio directly. For example, if the rise is 6 inches, your pitch is 6:12 or a 26.57° slope.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What roof pitch is most common in residential construction?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The most common residential roof pitch in North America is 4:12 (4 inches of rise per 12 inches of run), which equals an 18.43° angle. This pitch balances water drainage, snow load capacity, and ease of installation. However, modern homes often use pitches ranging from 3:12 (14.04°) to 8:12 (33.69°), depending on climate, aesthetics, and local building codes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does roof pitch affect water drainage and snow load?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Steeper roof pitches (above 6:12 or 26.57°) shed water and snow more efficiently, reducing buildup and structural strain. Flatter pitches (below 4:12 or 18.43°) drain slower and accumulate more snow, requiring stronger support structures. In areas with heavy snowfall, pitches of 8:12 (33.69°) or higher are recommended, while dry climates may use flatter 2:12 (9.46°) or 3:12 pitches.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the minimum roof pitch required by building code?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most U.S. building codes require a minimum pitch of 2:12 (9.46°) for asphalt shingles, though some jurisdictions allow 2:12 with proper underlayment. Metal roofing can go as low as 1:12 (4.76°), and standing seam metal allows even lower pitches. Flat roofs (0:12 or 0°) require special membranes and are only permitted in specific climates; always consult local building codes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I convert a roof angle in degrees to pitch ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To convert degrees to pitch, use the formula: Pitch = tan(angle in degrees) × 12. For example, a 30° roof angle converts to tan(30°) × 12 = 6.93:12 or approximately 7:12. This calculator automates this calculation, allowing you to input any angle and instantly see the equivalent pitch ratio used in construction documents.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What roof pitch should I use for a metal roof installation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Metal roofing is flexible and can accommodate pitches from 1:12 (4.76°) for standing seam systems to 12:12 (45°) or steeper for architectural standing seam. Most metal roof manufacturers recommend a minimum of 3:12 (14.04°) for standard corrugated or ribbed metal, with 4:12 (18.43°) being optimal for longevity and drainage. Check the specific manufacturer's guidelines for your chosen metal roofing profile.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does roof pitch impact material costs and labor?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Steeper pitches (above 8:12 or 33.69°) require more materials due to increased surface area and typically cost 10-20% more per square foot than standard 4:12 pitches. Labor costs also increase significantly for steep roofs due to safety requirements, specialized equipment, and slower installation rates. Conversely, flat or low-pitch roofs (below 2:12 or 9.46°) may require additional waterproofing and membrane systems, offsetting any labor savings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What pitch should I use in areas with high wind or hurricane conditions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">In high-wind zones, steeper pitches (6:12 to 8:12 or 26.57° to 33.69°) perform better than shallow pitches because they reduce wind uplift pressure on the roof deck. However, extremely steep pitches (above 10:12 or 39.81°) can paradoxically increase lateral wind forces. Consult local wind speed requirements and building codes; most hurricane-prone areas specify minimum pitches of 4:12 (18.43°) with enhanced fastening systems.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Roof%20Pitch" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Roof Pitch - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Roof Pitch from the trusted team at This Old House.
-            </p>
+            <a href="https://www.iccsafe.org/products-and-services/icc-evaluation-service/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) Roof Assembly Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official ICC standards for roof design, pitch requirements, and slope limitations across different climate zones and roofing materials.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Roof%20Pitch" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Roof Pitch - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Roof Pitch, helping you get the job done right.
-            </p>
+            <a href="https://www.nrca.net/resources/technical-documents" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Roofing Contractors Association (NRCA) Technical Guides</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive technical guidance on roof pitch selection, installation standards, and material-specific slope requirements for residential and commercial applications.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Roof%20Pitch" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Roof Pitch - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Roof Pitch from professional builders and craftsmen.
-            </p>
+            <a href="https://www.asphaltroofing.org/residential-roofing/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Asphalt Roofing Manufacturers Association (ARMA) Installation Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards for asphalt shingle installation including minimum pitch requirements and slope recommendations for optimal performance and longevity.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Roof%20Pitch" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Roof Pitch - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Roof Pitch.
-            </p>
+            <a href="https://www.fema.gov/disaster/hurricane/after/insurance" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FEMA Building Science Guidelines for Roof Design</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal guidance on roof pitch and slope considerations for wind resistance, hurricane preparation, and structural engineering in high-hazard zones.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

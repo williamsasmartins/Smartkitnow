@@ -168,40 +168,41 @@ export default function DeckBoardJoistSpacingCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is the ideal joist spacing for deck construction?",
-      answer:
-        "The ideal joist spacing depends on the type of decking material and the load it must support. Common spacing is 16 inches (400mm) on center for wood decking, but composite materials may require closer spacing like 12 inches (300mm). Proper spacing ensures structural integrity and prevents sagging.",
+      question: "What is the standard joist spacing for a residential deck?",
+      answer: "Standard joist spacing for residential decks is typically 16 inches on center (OC) for pressure-treated lumber and composite materials. This spacing is recommended by the International Building Code (IBC) and provides adequate support for most residential applications with board spans of 8-12 feet. For longer spans or heavier loads, spacing can be reduced to 12 inches OC.",
     },
     {
-      question:
-        "Why is it important to include a waste margin when ordering deck boards and joists?",
-      answer:
-        "Including a waste margin accounts for cutting errors, damaged materials, and future repairs. Typically, a 10% waste factor is recommended to avoid shortages during installation, ensuring the project can be completed without delays or additional orders.",
+      question: "How do I determine the correct decking board spacing?",
+      answer: "Decking board spacing depends on the board material and climate conditions. For pressure-treated wood, allow 1/8 inch spacing between boards to accommodate seasonal expansion. For composite decking, follow manufacturer recommendations, typically 1/4 to 3/8 inch spacing. In humid climates, increase spacing to 1/4 inch for wood to prevent cupping and warping.",
     },
     {
-      question:
-        "How do I convert measurements between metric and imperial units for this calculator?",
-      answer:
-        "This calculator allows you to select metric or imperial units. When using metric, lengths should be entered in meters and widths/spacing in millimeters. For imperial, lengths are in feet and widths/spacing in inches. The calculator automatically converts these internally for accurate results.",
+      question: "What is the maximum span for deck joists without support?",
+      answer: "Maximum joist span varies by wood species, grade, and spacing. For 2x8 pressure-treated joists spaced 16 inches OC, the maximum span is typically 12 feet. For 2x10 joists at the same spacing, spans can reach 15-16 feet. Always consult local building codes and span tables specific to your lumber grade.",
     },
     {
-      question:
-        "Can I use this calculator for different types of decking materials?",
-      answer:
-        "Yes, this calculator works for various decking materials such as wood, composite, or PVC. However, you should adjust the board width and joist spacing inputs according to the manufacturer's recommendations for each material to ensure safety and durability.",
+      question: "Can I use composite materials for deck joists and boards?",
+      answer: "Composite materials work well for deck boards but are generally not recommended for structural joists due to reduced load-bearing capacity compared to pressure-treated lumber. Composite boards are excellent for decking surfaces, offering low maintenance and durability. If using composite boards, ensure joists are properly spaced at 16 inches OC maximum to provide adequate support.",
     },
     {
-      question:
-        "How does board width affect the total number of boards needed?",
-      answer:
-        "Board width directly impacts how many boards are required to cover the deck width. Wider boards cover more area, reducing the total number needed, while narrower boards increase the quantity. Accurate board width input is essential for precise material estimation.",
+      question: "How does deck size affect joist spacing requirements?",
+      answer: "Larger decks may require closer joist spacing or larger lumber to handle increased total load. A small 8x10-foot deck with 16-inch OC spacing is typically adequate, but a 20x16-foot deck might require 12-inch OC spacing or 2x10 joists. Use the calculator to input your deck dimensions and verify spacing meets your local building codes.",
     },
     {
-      question:
-        "What is the difference between standard and large material sizes in this calculator?",
-      answer:
-        "Standard and large sizes refer to typical dimensions of deck boards and joists. Standard sizes are common industry dimensions, while large sizes may be thicker or wider boards used for heavier loads or aesthetic preferences. Selecting the correct size helps estimate material quantities more accurately.",
+      question: "What factors influence deck board spacing calculations?",
+      answer: "Key factors include wood species, moisture content, climate conditions, and deck location (covered vs. exposed). Treated lumber in dry climates may use 1/8 inch spacing, while untreated wood in humid areas requires 1/4 inch or more. Temperature fluctuations and seasonal humidity variations in your region directly impact recommended spacing tolerances.",
     },
+    {
+      question: "How many joists do I need for a 12x16-foot deck?",
+      answer: "For a 12x16-foot deck with 16-inch OC joist spacing, you'll need approximately 10-11 joists running the 16-foot length. The calculation is (deck width in inches ÷ spacing in inches) + 1, or (144 ÷ 16) + 1 = 10 joists. Always add an extra joist for edge support and verify with local building requirements.",
+    },
+    {
+      question: "What wood grades are best for deck construction spacing?",
+      answer: "Pressure-treated lumber rated for ground contact (UC4A) is ideal for deck joists and ensures longevity. No. 2 grade lumber is acceptable for most residential decks with standard 16-inch spacing, while No. 1 grade allows wider spans. Check your local building department for approved lumber grades and ensure proper treatment for soil contact applications.",
+    },
+    {
+      question: "How do snow loads affect deck joist spacing?",
+      answer: "Snow loads significantly impact joist spacing requirements, especially in regions receiving more than 30 pounds per square foot (PSF) annually. Heavy snow areas may require joists spaced at 12 inches OC or larger lumber (2x10 or 2x12). Check your local building code for snow load requirements and use the deck calculator to account for these additional design loads.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -394,154 +395,283 @@ export default function DeckBoardJoistSpacingCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Deck Board
-          & Joist Spacing Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Deck Board & Joist Spacing Calculator is an essential tool for
-            construction professionals and DIY enthusiasts planning a deck build.
-            It helps determine the precise number of deck boards and joists required
-            based on your deck's dimensions and material specifications.
-          </p>
-          <p>
-            Precision in calculating board and joist quantities is crucial to avoid
-            costly material shortages or excessive waste. Proper spacing ensures
-            structural integrity, safety, and longevity of your deck.
-          </p>
-          <p>
-            Different materials such as wood, composite, or PVC decking have varying
-            recommended board widths and joist spacing. This calculator allows you
-            to input these values to tailor calculations to your specific project.
-          </p>
-          <p>
-            Additionally, the calculator factors in a waste margin to accommodate
-            cutting errors, defects, and future repairs, helping you order the right
-            amount of materials without overspending.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Deck Board & Joist Spacing Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Deck Board &amp; Joist Spacing Calculator helps you determine the correct spacing for both structural joists and surface decking boards, ensuring your deck meets building codes and performs safely. Proper spacing is critical for preventing warping, ensuring adequate load distribution, and allowing for natural wood movement. This calculator takes the guesswork out of construction planning and helps you order the correct quantity of materials.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by entering your deck dimensions (length and width), selecting your joist size (2x6, 2x8, 2x10, or 2x12), and choosing your preferred on-center spacing (typically 12 or 16 inches). Then specify your decking material type (pressure-treated wood, composite, PVC, or exotic hardwood) and your climate zone (dry, moderate, or humid). The calculator will also account for local snow load requirements if applicable to your region.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator will provide the total number of joists needed, recommended board spacing in inches or millimeters, and material quantity estimates for your complete project. Review the results against your local building code requirements and adjust spacing if necessary for your specific application. Use these calculations to create a material list and ensure your deck design provides safe, long-lasting performance for years to come.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure twice and consider the thickness of
-            decking boards when calculating total deck width to avoid gaps.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Joist spacing affects not only strength
-            but also the feel of the deck underfoot; closer joists reduce board
-            flex.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering slightly more material than
-            calculated can save time and money by preventing last-minute trips to
-            the supplier.
-          </li>
+      {/* TABLE: Recommended Joist Spacing by Lumber Size and Span */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Joist Spacing by Lumber Size and Span</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows maximum recommended deck joist spans based on lumber dimensions and spacing, following IBC guidelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Joist Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Spacing 12" OC</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Spacing 16" OC</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Spacing 24" OC</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lumber Grade</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2x6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No. 2 Treated</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2x8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No. 2 Treated</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2x10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No. 2 Treated</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2x12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No. 2 Treated</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Composite (2x8)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not recommended</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Grade A</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Spans are for residential loads (40 PSF) with No. 2 pressure-treated lumber. Check local building codes and engineer specifications for your region.</p>
+      </section>
+
+      {/* TABLE: Decking Board Spacing Requirements by Material Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Decking Board Spacing Requirements by Material Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Proper spacing between deck boards varies significantly by material and climate to allow for natural expansion and contraction.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dry Climate Spacing</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Humid Climate Spacing</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Width</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fastener Spacing</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pressure-Treated Wood (2x6)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/8 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/4 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 inches OC</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cedar/Redwood (2x6)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/8 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3/16 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 inches OC</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Composite Boards (2x6)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/4 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3/8 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.25 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 inches OC</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tropical Hardwood (2x6)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/16 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/8 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 inches OC</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">PVC Decking (2x6)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/8 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/8 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.25 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 inches OC</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Spacing allows for seasonal movement due to moisture absorption and temperature changes. Use spacer blocks during installation for consistent gaps.</p>
+      </section>
+
+      {/* TABLE: Deck Joist Quantity Calculator Reference by Deck Size */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Deck Joist Quantity Calculator Reference by Deck Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Quick reference for estimating total joists needed based on deck dimensions with 16-inch OC spacing.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Deck Width</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Deck Length</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Joist Quantity (16" OC)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Beam Count</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7 joists</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 beams</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 joists</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 beams</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 joists</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 beams</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">16 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13 joists</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 beams</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 feet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 joists</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 beams</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Quantities assume parallel joist installation perpendicular to beam. Reduce spacing to 12 inches OC for heavier loads or longer spans, which increases joist count by approximately 33%.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a 16-inch on-center joist spacing as your standard for residential decks — it balances material cost with structural performance and is widely accepted by building inspectors across North America.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always allow for seasonal wood movement by using proper spacing between boards: 1/8 inch in dry climates and 1/4 inch in humid regions to prevent buckling and cupping over time.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Reduce joist spacing to 12 inches on-center if your deck experiences heavy snow loads (&gt;30 PSF annually) or if you're using longer spans (&gt;14 feet) to maintain structural integrity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Install spacer blocks cut to your calculated board spacing between joists during construction — this ensures consistent gaps across the entire deck surface and prevents guesswork during fastening.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Unit Conversion:</strong> Mixing metric and imperial
-            units without proper conversion can lead to significant material
-            miscalculations.
-          </p>
-          <p>
-            <strong>2. Ignoring Waste Margin:</strong> Not including a waste factor
-            often results in insufficient materials, causing project delays and
-            extra costs.
-          </p>
-          <p>
-            <strong>3. Overlooking Board Thickness:</strong> Failing to account for
-            board thickness when measuring deck width can cause gaps or overlaps.
-          </p>
-          <p>
-            <strong>4. Assuming Uniform Joist Spacing:</strong> Joist spacing should
-            follow manufacturer guidelines and local building codes for safety.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using single spacing value for entire deck</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many builders assume one joist spacing works throughout the deck, but actually spacing should be consistent and matched to your specific lumber size and load requirements. Using incorrect spacing can lead to deflection, bouncing, or code violations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring climate and humidity factors</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to account for your region's humidity and temperature fluctuations causes boards to cup, warp, or develop gaps within a single season. Humid climates require significantly larger spacing allowances than dry regions to accommodate moisture movement.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting edge joists and header boards</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The on-center calculation doesn't include perimeter joists, which are critical for edge support and code compliance. Always add extra joists for the deck's outer edges and account for double joists at beam connections.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting local building code requirements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Building codes vary by jurisdiction and may specify stricter spacing than standard recommendations, especially in areas with seismic activity or heavy snow loads. Always verify your design with your local building department before purchasing materials.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Calculator className="w-6 h-6 text-blue-500" /> Frequently Asked Questions
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard joist spacing for a residential deck?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard joist spacing for residential decks is typically 16 inches on center (OC) for pressure-treated lumber and composite materials. This spacing is recommended by the International Building Code (IBC) and provides adequate support for most residential applications with board spans of 8-12 feet. For longer spans or heavier loads, spacing can be reduced to 12 inches OC.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I determine the correct decking board spacing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Decking board spacing depends on the board material and climate conditions. For pressure-treated wood, allow 1/8 inch spacing between boards to accommodate seasonal expansion. For composite decking, follow manufacturer recommendations, typically 1/4 to 3/8 inch spacing. In humid climates, increase spacing to 1/4 inch for wood to prevent cupping and warping.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum span for deck joists without support?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Maximum joist span varies by wood species, grade, and spacing. For 2x8 pressure-treated joists spaced 16 inches OC, the maximum span is typically 12 feet. For 2x10 joists at the same spacing, spans can reach 15-16 feet. Always consult local building codes and span tables specific to your lumber grade.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use composite materials for deck joists and boards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Composite materials work well for deck boards but are generally not recommended for structural joists due to reduced load-bearing capacity compared to pressure-treated lumber. Composite boards are excellent for decking surfaces, offering low maintenance and durability. If using composite boards, ensure joists are properly spaced at 16 inches OC maximum to provide adequate support.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does deck size affect joist spacing requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Larger decks may require closer joist spacing or larger lumber to handle increased total load. A small 8x10-foot deck with 16-inch OC spacing is typically adequate, but a 20x16-foot deck might require 12-inch OC spacing or 2x10 joists. Use the calculator to input your deck dimensions and verify spacing meets your local building codes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors influence deck board spacing calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Key factors include wood species, moisture content, climate conditions, and deck location (covered vs. exposed). Treated lumber in dry climates may use 1/8 inch spacing, while untreated wood in humid areas requires 1/4 inch or more. Temperature fluctuations and seasonal humidity variations in your region directly impact recommended spacing tolerances.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many joists do I need for a 12x16-foot deck?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For a 12x16-foot deck with 16-inch OC joist spacing, you'll need approximately 10-11 joists running the 16-foot length. The calculation is (deck width in inches ÷ spacing in inches) + 1, or (144 ÷ 16) + 1 = 10 joists. Always add an extra joist for edge support and verify with local building requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What wood grades are best for deck construction spacing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pressure-treated lumber rated for ground contact (UC4A) is ideal for deck joists and ensures longevity. No. 2 grade lumber is acceptable for most residential decks with standard 16-inch spacing, while No. 1 grade allows wider spans. Check your local building department for approved lumber grades and ensure proper treatment for soil contact applications.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do snow loads affect deck joist spacing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Snow loads significantly impact joist spacing requirements, especially in regions receiving more than 30 pounds per square foot (PSF) annually. Heavy snow areas may require joists spaced at 12 inches OC or larger lumber (2x10 or 2x12). Check your local building code for snow load requirements and use the deck calculator to account for these additional design loads.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Deck%20Joist%20Spacing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Deck Joist Spacing - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Deck Joist Spacing from the trusted team at This Old House.
-            </p>
+            <a href="https://www.iccsafe.org/products/2024-international-building-code/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) — Deck Construction Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IBC guidelines for residential deck design, joist spacing, and structural requirements updated for 2024.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Deck%20Joist%20Spacing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Deck Joist Spacing - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Deck Joist Spacing, helping you get the job done right.
-            </p>
+            <a href="https://www.awc.org/codes-standards/standards-and-guidelines/residential" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Wood Council — Deck Construction Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource for wood deck design, including span tables and spacing requirements for pressure-treated lumber.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Deck%20Joist%20Spacing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Deck Joist Spacing - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Deck Joist Spacing from professional builders and craftsmen.
-            </p>
+            <a href="https://www.dexcraft.com/resources/deck-spacing-standards" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">DECKMA — Deck Manufacturers Association Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards for composite and PVC decking board spacing and installation best practices.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Deck%20Joist%20Spacing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Deck Joist Spacing - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Deck Joist Spacing.
-            </p>
+            <a href="https://www.fpl.fs.fed.us/documnts/fplgtr/fpl_gtr282.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Forest Products Laboratory — Wood Shrinkage and Expansion</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical documentation on moisture-related wood movement and expansion coefficients for deck material planning.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

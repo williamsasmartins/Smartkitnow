@@ -138,41 +138,41 @@ export default function ConcreteFootingFoundationCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question:
-        "How do I accurately measure the dimensions for my concrete footing?",
-      answer:
-        "To get precise measurements, use a tape measure or laser distance measurer to record the length, width, and depth of the footing area. Always measure multiple points to account for any irregularities and use the smallest consistent depth to avoid underestimating material needs. Accurate measurements ensure you order the right amount of concrete and avoid costly shortages or excess.",
+      question: "How much concrete do I need for a standard residential foundation?",
+      answer: "The amount depends on your foundation dimensions and depth. For a typical 2,000 sq ft single-story home with a 4-inch concrete slab foundation, you'll need approximately 30-35 cubic yards of concrete. A basement foundation for the same home requires 50-60 cubic yards. Use the calculator by entering your length, width, and depth in feet to get an accurate cubic yardage estimate for your specific project.",
     },
     {
-      question:
-        "Why is it important to include a waste margin in concrete calculations?",
-      answer:
-        "Including a waste margin accounts for spillage, uneven surfaces, and slight miscalculations in volume. Concrete mixing and pouring can lead to some material loss, so adding typically 10% waste ensures you have enough material to complete the job without delays. Skipping this step might result in running out of concrete mid-pour, causing structural weaknesses or additional costs.",
+      question: "What is the difference between a footing and a foundation?",
+      answer: "A footing is the lowest structural element that distributes the building's weight into the soil, typically made of concrete and steel reinforcement. A foundation is the broader structure that rests on footings and supports the entire building above ground. Footings are generally narrower and deeper (12-48 inches wide, 24-48 inches deep), while foundations can be slabs, crawlspaces, or basements extending further horizontally.",
     },
     {
-      question:
-        "What types of concrete bags are available and how do they affect calculations?",
-      answer:
-        "Concrete bags come in various sizes, commonly 40 kg (standard) and 50 kg (large). The volume yield per bag differs slightly, so selecting the correct bag size in the calculator is essential for accurate estimation. Larger bags reduce the number of bags needed but may be heavier and harder to handle. Knowing the bag size helps in ordering and logistics planning.",
+      question: "How deep should concrete footings be in my area?",
+      answer: "Frost line depth varies by geographic location and determines minimum footing depth to prevent frost heave damage. Northern climates like Minnesota and Wisconsin require footings 48-60 inches deep, while southern states like Florida and Texas need only 12-24 inches. Check your local building codes or use the USDA frost line map to determine your area's requirements before calculating footing volume.",
     },
     {
-      question:
-        "How does the number of rebar rows influence the amount of concrete needed?",
-      answer:
-        "Rebar rows require additional concrete volume to properly encase the steel reinforcement. Each row adds a small but significant volume to the footing, which the calculator accounts for by adding an estimated volume per rebar row. This ensures the footing has adequate coverage and strength. Ignoring rebar volume can lead to underestimating concrete needs and compromise structural integrity.",
+      question: "How do I calculate concrete volume for an irregular-shaped foundation?",
+      answer: "For L-shaped or other irregular foundations, break the area into rectangular sections and calculate each section separately. For example, an L-shaped foundation can be divided into two rectangles—calculate the volume for each, then add them together. The calculator supports multiple section inputs, allowing you to input each rectangular portion's dimensions individually for accurate total concrete requirements.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system at the top. The calculations, bag yields, and outputs will adjust accordingly to provide accurate results based on your input units.",
+      question: "What concrete strength do I need for residential footings?",
+      answer: "Residential foundations typically require 3,000 PSI (pounds per square inch) concrete, which is the standard for most building codes. For heavy-load applications or freeze-thaw climates, 3,500-4,000 PSI concrete is recommended. Confirm your local building code requirements, as PSI specifications affect both concrete cost and long-term durability of your foundation.",
     },
     {
-      question:
-        "How do I convert the calculated concrete volume into the number of bags required?",
-      answer:
-        "After calculating the total volume including waste, divide this volume by the volume yield of a single concrete bag (which depends on bag size and unit system). The result is rounded up to the nearest whole number since you can't purchase partial bags. This gives you the total number of bags to order for your project.",
+      question: "How much does concrete cost per cubic yard?",
+      answer: "As of 2025, ready-mix concrete costs between $150-$200 per cubic yard for standard 3,000 PSI concrete, depending on location and market conditions. Rural areas may cost $120-$160, while major metropolitan areas can reach $200-$250 per cubic yard. Once you calculate total cubic yardage needed, multiply by your local price per yard to estimate total material cost for your project.",
     },
+    {
+      question: "How much rebar or wire mesh do I need for my concrete foundation?",
+      answer: "Standard residential foundations typically require #4 rebar spaced 12-18 inches on center both ways, or 6x6 wire mesh with 10-gauge wires. For a 4-inch slab foundation of 2,000 sq ft, expect 8-12 tons of rebar or approximately 30-40 sheets of wire mesh. The calculator provides concrete volume; consult reinforcement tables or a structural engineer to determine exact reinforcement quantities for your specific design.",
+    },
+    {
+      question: "What's the difference between a slab-on-grade and a basement foundation calculation?",
+      answer: "A slab-on-grade is typically 4-6 inches thick and covers the entire building footprint, requiring less material than basement foundations. Basement foundations include walls (8-12 inches thick) extending 8-10 feet below grade plus a 4-6 inch floor slab, requiring significantly more concrete. For a 2,000 sq ft home, a slab requires 30-35 cubic yards while a basement requires 80-100+ cubic yards.",
+    },
+    {
+      question: "How long does concrete take to cure before building on my foundation?",
+      answer: "Concrete reaches 50% strength in 3-7 days and 90% strength in 14-28 days, depending on temperature and concrete mix design. For light framing, you can typically build after 7 days, but heavy loads should wait 28 days for full curing. Cold weather (below 50°F) significantly slows curing time, potentially doubling the timeline. Plan your construction schedule accordingly once your concrete is poured.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -366,167 +366,277 @@ export default function ConcreteFootingFoundationCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Concrete Footing & Foundation Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            Concrete footings and foundations are critical components in any
-            construction project, providing the essential support that transfers
-            building loads safely to the ground. This calculator helps you
-            accurately estimate the amount of concrete bags needed based on the
-            dimensions of your footing and foundation. By inputting length,
-            width, depth, and the number of rebar rows, you can quickly get a
-            reliable material estimate.
-          </p>
-          <p>
-            Precision in these calculations is vital. Underestimating concrete
-            volume can cause costly delays and structural risks, while
-            overestimating leads to wasted materials and increased expenses.
-            Including a waste margin accounts for spillage, uneven surfaces, and
-            measurement errors, ensuring you have enough concrete to complete
-            your project without interruption.
-          </p>
-          <p>
-            Concrete bags come in different sizes, typically standard 40 kg and
-            large 50 kg bags, each yielding a specific volume of mixed concrete.
-            This calculator adjusts the bag count based on your selected bag size
-            and unit system (metric or imperial). Additionally, the number of
-            rebar rows influences the volume by requiring extra concrete to
-            encase the reinforcement properly.
-          </p>
-          <p>
-            Use this tool to streamline your ordering process, reduce waste, and
-            ensure your footing and foundation are built on a solid, well-planned
-            base.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Concrete Footing &amp; Foundation Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Concrete Footing &amp; Foundation Calculator helps you determine the exact amount of concrete needed for residential and commercial foundation projects. Accurate concrete volume calculations are essential for budgeting material costs, scheduling concrete deliveries, and ensuring you order the correct amount—too little creates costly delays and quality issues, while excess concrete is wasted expense. This calculator streamlines the planning process by converting your foundation dimensions into cubic yards, the standard measurement for ready-mix concrete ordering.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your foundation dimensions: length and width (in feet) for the overall footprint, and depth (in feet) for how deep your footings extend below grade. For slab foundations, enter the slab thickness (typically 4-6 inches). If your foundation is irregular or L-shaped, calculate each rectangular section separately and add the results together. The calculator also allows you to input the number of individual footings or piers and their dimensions if you're working with a pier-and-beam system.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results display total cubic yards needed and, depending on the calculator version, may provide cost estimates based on current concrete pricing in your area. Once you have cubic yardage, multiply by your local ready-mix concrete price (typically $150-$200 per cubic yard in 2025) to estimate total material cost. Always add 5-10% extra to account for spillage, uneven subgrades, and rounding up to the nearest half-yard when ordering from concrete suppliers.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure twice and consider the smallest
-            depth to avoid underestimating concrete volume.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Adding rebar rows not only strengthens
-            your footing but also slightly increases the concrete volume needed,
-            which many contractors overlook.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering a few extra bags beyond
-            the calculated amount can save time and money by preventing job site
-            delays.
-          </li>
-          <li>
-            <strong>Tip:</strong> When working in imperial units, convert all
-            measurements carefully to avoid errors in volume calculation.
-          </li>
+      {/* TABLE: Concrete Foundation Requirements by Climate Zone */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Concrete Foundation Requirements by Climate Zone</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Frost line depth and concrete strength specifications vary significantly across U.S. climate zones and directly impact footing depth calculations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Climate Zone</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frost Line Depth (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Concrete Strength</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Regional Examples</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Deep Frost (Zone 1-2)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48-60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500 PSI</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minnesota, Wisconsin, Michigan</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate Frost (Zone 3-4)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36-48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000 PSI</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ohio, Pennsylvania, New York</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Light Frost (Zone 5-6)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000 PSI</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Virginia, Maryland, North Carolina</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Minimal Frost (Zone 7-8)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000 PSI</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Georgia, South Carolina, Texas</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">No Frost (Zone 9-10)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,500 PSI</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Florida, Southern California, Hawaii</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Consult local building codes and the USDA frost line map before finalizing footing depth. Frost line depths may vary within zones based on soil composition and elevation.</p>
+      </section>
+
+      {/* TABLE: Concrete Volume Estimates for Common Residential Foundations */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Concrete Volume Estimates for Common Residential Foundations</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These estimates show typical concrete quantities needed for standard residential foundation types based on 2,000 square foot home footprints.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Foundation Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Depth</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Footing Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Cubic Yards</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4-inch Slab-on-Grade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-35</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6-inch Slab-on-Grade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-50</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stem Wall + 4-inch Slab</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16x24 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full Basement (8-foot depth)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">96 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24x48 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-120</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Crawlspace Foundation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16x24 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-75</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pier & Beam Foundation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24x24 inches (per pier)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-25 (per pier)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual requirements vary based on soil bearing capacity, local frost line depth, and structural design loads. Always verify with local building codes and engineer specifications.</p>
+      </section>
+
+      {/* TABLE: Concrete Material and Cost Breakdown (2025 Estimates) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Concrete Material and Cost Breakdown (2025 Estimates)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Average material costs and pricing for concrete foundation projects vary by region and concrete specifications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Item</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Per Unit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Quantity (2,000 sq ft home)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Total Cost</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ready-Mix Concrete (3,000 PSI)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150-$200/cubic yard</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40 cubic yards</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,000-$8,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">#4 Rebar</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.65-$0.85/pound</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000 pounds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,500-$8,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6x6 Wire Mesh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40-$50/sheet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35 sheets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,400-$1,750</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gravel/Subbase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15-$25/ton</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 tons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$225-$375</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Labor (if contracted)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$45-$75/hour</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-300 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9,000-$22,500</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs vary significantly by region, with major metropolitan areas typically 15-30% higher than rural areas. Obtain local quotes for accurate budgeting.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always check your local building code for minimum footing depth requirements before using the calculator—frost line depth varies dramatically by region, from 12 inches in Florida to 60 inches in Minnesota, and undersizing footings can lead to costly foundation failure.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for site conditions when ordering concrete: add 10% extra to your calculated volume if the subgrade is uneven, and request a smaller truck load (typically 10 cubic yards) if your property has limited access or tight spaces to prevent spillage and delivery issues.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Confirm concrete strength (PSI) requirements with your engineer or building department before ordering—most residential projects use 3,000 PSI, but freeze-thaw climates and heavy-load designs require 3,500-4,000 PSI, affecting both cost and performance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Schedule your concrete pour during optimal weather conditions: temperatures between 50-85°F produce fastest curing, while cold weather (&lt;50°F) significantly extends cure time and may require additives, potentially increasing costs by 15-25%.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring Waste Margin:</strong> Not including a waste
-            percentage can lead to running out of concrete mid-pour, causing
-            structural issues and costly delays.
-          </p>
-          <p>
-            <strong>2. Incorrect Unit Conversion:</strong> Mixing metric and
-            imperial units without proper conversion results in inaccurate volume
-            calculations and material estimates.
-          </p>
-          <p>
-            <strong>3. Forgetting Rebar Volume:</strong> Overlooking the extra
-            concrete needed for rebar rows can cause underestimation and weak
-            footing coverage.
-          </p>
-          <p>
-            <strong>4. Using Average Dimensions:</strong> Using average instead
-            of minimum depth measurements can underestimate concrete volume,
-            risking structural integrity.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Account for Footing Width</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many DIYers calculate only the slab thickness but forget that footings are typically 12-24 inches wider than the stem wall, requiring additional concrete volume. Always include footing width in your depth calculation to avoid underestimating material needs by 20-30%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Measurements in Different Units Without Converting</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Mixing feet and inches in your inputs causes significant calculation errors—convert everything to feet (or inches, then convert to feet) before inputting. A common mistake is entering footing width as 16 inches without converting to 1.33 feet, leading to underbidding by hundreds of dollars.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Site-Specific Frost Line Depth</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using generic footing depths instead of your area's actual frost line requirement is a major mistake that can result in foundation failure within 5-10 years. Verify frost line depth with your local building department or soil engineer—it varies from 0 inches in southern states to 60+ inches in northern climates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Calculating Only Horizontal Slab Area Without Vertical Wall Volume</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">For stem wall or basement foundations, overlooking the vertical concrete volume in foundation walls can underestimate total concrete needs by 40-60%. Ensure your calculator input includes both the slab thickness and the full height and thickness of any vertical foundation walls.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much concrete do I need for a standard residential foundation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The amount depends on your foundation dimensions and depth. For a typical 2,000 sq ft single-story home with a 4-inch concrete slab foundation, you'll need approximately 30-35 cubic yards of concrete. A basement foundation for the same home requires 50-60 cubic yards. Use the calculator by entering your length, width, and depth in feet to get an accurate cubic yardage estimate for your specific project.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between a footing and a foundation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A footing is the lowest structural element that distributes the building's weight into the soil, typically made of concrete and steel reinforcement. A foundation is the broader structure that rests on footings and supports the entire building above ground. Footings are generally narrower and deeper (12-48 inches wide, 24-48 inches deep), while foundations can be slabs, crawlspaces, or basements extending further horizontally.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How deep should concrete footings be in my area?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Frost line depth varies by geographic location and determines minimum footing depth to prevent frost heave damage. Northern climates like Minnesota and Wisconsin require footings 48-60 inches deep, while southern states like Florida and Texas need only 12-24 inches. Check your local building codes or use the USDA frost line map to determine your area's requirements before calculating footing volume.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate concrete volume for an irregular-shaped foundation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For L-shaped or other irregular foundations, break the area into rectangular sections and calculate each section separately. For example, an L-shaped foundation can be divided into two rectangles—calculate the volume for each, then add them together. The calculator supports multiple section inputs, allowing you to input each rectangular portion's dimensions individually for accurate total concrete requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What concrete strength do I need for residential footings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Residential foundations typically require 3,000 PSI (pounds per square inch) concrete, which is the standard for most building codes. For heavy-load applications or freeze-thaw climates, 3,500-4,000 PSI concrete is recommended. Confirm your local building code requirements, as PSI specifications affect both concrete cost and long-term durability of your foundation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does concrete cost per cubic yard?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As of 2025, ready-mix concrete costs between $150-$200 per cubic yard for standard 3,000 PSI concrete, depending on location and market conditions. Rural areas may cost $120-$160, while major metropolitan areas can reach $200-$250 per cubic yard. Once you calculate total cubic yardage needed, multiply by your local price per yard to estimate total material cost for your project.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much rebar or wire mesh do I need for my concrete foundation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard residential foundations typically require #4 rebar spaced 12-18 inches on center both ways, or 6x6 wire mesh with 10-gauge wires. For a 4-inch slab foundation of 2,000 sq ft, expect 8-12 tons of rebar or approximately 30-40 sheets of wire mesh. The calculator provides concrete volume; consult reinforcement tables or a structural engineer to determine exact reinforcement quantities for your specific design.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between a slab-on-grade and a basement foundation calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A slab-on-grade is typically 4-6 inches thick and covers the entire building footprint, requiring less material than basement foundations. Basement foundations include walls (8-12 inches thick) extending 8-10 feet below grade plus a 4-6 inch floor slab, requiring significantly more concrete. For a 2,000 sq ft home, a slab requires 30-35 cubic yards while a basement requires 80-100+ cubic yards.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does concrete take to cure before building on my foundation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Concrete reaches 50% strength in 3-7 days and 90% strength in 14-28 days, depending on temperature and concrete mix design. For light framing, you can typically build after 7 days, but heavy loads should wait 28 days for full curing. Cold weather (below 50°F) significantly slows curing time, potentially doubling the timeline. Plan your construction schedule accordingly once your concrete is poured.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Concrete%20Footings" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Footings - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Concrete Footings from the trusted team at This Old House.
-            </p>
+            <a href="https://www.nist.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Building Foundation Design and Construction</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">NIST provides technical guidelines for foundation design, frost line research, and concrete performance standards used by building professionals.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Concrete%20Footings" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Footings - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Concrete Footings, helping you get the job done right.
-            </p>
+            <a href="https://www.iccsafe.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ICC maintains comprehensive building codes including foundation depth, concrete strength, and reinforcement requirements that vary by geographic zone.</p>
           </li>
           <li>
-            <a href="https://www.concretenetwork.com/search.html?q=Concrete%20Footings" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Footings - Concrete Network
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              The leading source for concrete information, including design ideas, contractor directories, and technical guides for Concrete Footings.
-            </p>
+            <a href="https://www.usda.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Frost Line Depth Map</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">USDA provides the national frost line depth map essential for determining minimum footing depths in your specific geographic location.</p>
           </li>
           <li>
-            <a href="https://www.cement.org/search-results?indexCatalogue=site-search&searchQuery=Concrete%20Footings&wordsMode=0" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Footings - Portland Cement Association
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical resources and industry standards for cement and concrete applications related to Concrete Footings.
-            </p>
+            <a href="https://www.concrete.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Concrete Institute (ACI) Foundation Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ACI publishes technical standards for concrete mix design, strength specifications (PSI ratings), and reinforcement placement for residential and commercial foundations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -102,35 +102,41 @@ export default function PaintCoverageGallonsCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is the Paint Coverage & Gallons Needed Calculator?",
-      answer:
-        "This calculator helps professionals and DIYers estimate the amount of paint required to cover a wall surface accurately. By inputting wall dimensions and deducting window areas, it calculates the gallons of paint needed, factoring in coverage rates and waste margins to avoid under or over-ordering.",
+      question: "How do I calculate paint coverage for my room?",
+      answer: "To calculate paint coverage, measure the total square footage of the walls you plan to paint by multiplying height by width for each wall, then add them together. Most interior paints cover between 350–400 square feet per gallon, though this varies by paint quality and surface texture. Divide your total square footage by the coverage rate (typically 375 sq ft/gallon for standard latex paint) to determine gallons needed. Don't forget to account for a second coat, which typically requires 50% more paint than the first coat.",
     },
     {
-      question: "Why is precision important when calculating paint coverage?",
-      answer:
-        "Precision ensures that you purchase the right amount of paint, reducing waste and saving costs. Overestimating leads to excess paint and higher expenses, while underestimating can cause project delays and inconsistent finishes due to color mismatches from different batches.",
+      question: "What factors affect paint coverage rates?",
+      answer: "Paint coverage is affected by surface texture, paint quality, application method, and environmental conditions. Rough or porous surfaces like drywall or stucco reduce coverage to 300–350 sq ft/gallon, while smooth surfaces achieve 400–450 sq ft/gallon. Higher-quality paints with better pigmentation cover more area per gallon than budget brands. Application with a roller typically achieves better coverage than brush application, and humidity and temperature can impact drying and adhesion.",
     },
     {
-      question: "How do different paint materials affect coverage?",
-      answer:
-        "Paint types vary in coverage due to viscosity, pigmentation, and application method. For example, high-quality latex paints typically cover around 350 sq ft per gallon, while textured or specialty paints may cover less. Adjusting coverage rates in the calculator helps tailor estimates to specific materials.",
+      question: "Why do I need to add extra paint to my calculation?",
+      answer: "It's wise to add 10–15% extra to your calculated gallons to account for spills, waste, uneven surfaces, and touch-ups after paint dries. Paint often appears darker when wet and lighter when dry, so additional paint helps ensure color consistency for future repairs. Having leftover paint also allows for matching touch-ups on walls over time without worrying about slight color variations from new batches.",
     },
     {
-      question: "How do I account for windows and doors in my calculations?",
-      answer:
-        "Windows and doors reduce the paintable surface area. Accurately measuring and deducting their combined area from the total wall surface ensures you don’t overestimate paint needs. This calculator allows you to input total window area to subtract from the wall area.",
+      question: "How much paint do I need for a 10x12 bedroom?",
+      answer: "A 10x12 bedroom with 8-foot ceilings has approximately 440 square feet of wall space (2 walls at 10×8 = 80 sq ft each, and 2 walls at 12×8 = 96 sq ft each). At a standard coverage rate of 375 sq ft/gallon, you need approximately 1.2 gallons for one coat. For two coats, plan for 2.4 gallons, or round up to 2.5 gallons to account for waste and ensure adequate coverage.",
     },
     {
-      question: "What is the recommended waste margin for paint projects?",
-      answer:
-        "A waste margin of 10% is commonly recommended to cover paint loss due to spillage, surface texture, and multiple coats. However, this can be adjusted based on project complexity, surface porosity, and experience. The calculator includes a slider to customize this margin.",
+      question: "What's the difference between interior and exterior paint coverage?",
+      answer: "Exterior paint typically covers 300–350 square feet per gallon due to more porous surfaces like wood siding and stucco, while interior paint covers 350–400 sq ft/gallon on standard drywall. Exterior paints are formulated to resist weather, UV rays, and moisture, making them thicker and less spreadable than interior paints. Exterior projects often require two coats due to surface porosity and durability requirements, significantly increasing total gallons needed compared to interior jobs.",
     },
     {
-      question: "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric (meters) and imperial (feet) units. It automatically converts metric inputs to square feet internally to maintain consistent coverage calculations based on gallons, which are typically imperial units.",
+      question: "How do I account for doors, windows, and trim in my calculation?",
+      answer: "Subtract the square footage of doors and large windows from your total wall area. A standard 3×7 foot door removes approximately 21 square feet, and a 3×4 foot window removes about 12 square feet. However, if you're painting trim a different color, add that footage back separately and calculate it with the appropriate coverage rate. As a rule of thumb, subtract 15–20 square feet per door and 10 square feet per window from your total wall calculation.",
     },
+    {
+      question: "What coverage rate should I use for textured walls or ceilings?",
+      answer: "Textured surfaces, including popcorn ceilings, textured drywall, and stucco, reduce coverage to 250–300 square feet per gallon compared to smooth surfaces. Heavy textures like orange peel or knockdown texture are particularly absorbent and require more paint for even coverage. Always test your paint on a sample area of textured surface first, then adjust your total calculation upward by 20–30% to ensure complete, even coverage.",
+    },
+    {
+      question: "How many coats of paint do I need?",
+      answer: "Most interior painting projects require two coats for even color and durability, though high-quality paints with better opacity may cover adequately in one coat on previously painted surfaces. New drywall, dark colors, or dramatic color changes typically require two coats, while covering stains or existing dark colors may require three coats. Primer is often needed as a first coat on bare drywall, fresh repairs, or when changing from dark to light colors, which adds another layer to your paint calculation.",
+    },
+    {
+      question: "Should I buy paint in 1-gallon or 5-gallon containers?",
+      answer: "For projects requiring 2–3 gallons, buying a 5-gallon bucket offers better value (typically $35–45 per gallon vs. $8–12 per single gallon) and ensures consistent color batching. For smaller projects needing &lt;2 gallons, 1-gallon containers reduce waste and storage concerns. Consider the shelf life of leftover paint (1–2 years when sealed properly) and your likelihood of future touch-ups when deciding container size for your project.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -287,124 +293,352 @@ export default function PaintCoverageGallonsCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Paint Coverage & Gallons Needed Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Paint Coverage & Gallons Needed Calculator is an essential tool for contractors, painters, and DIY enthusiasts aiming to estimate the exact amount of paint required for a given wall surface. By inputting the wall's length and height, and deducting the area of windows or doors, this calculator provides an accurate estimate of gallons needed, helping to optimize material purchases and reduce waste.
-          </p>
-          <p>
-            Precision in paint estimation is crucial to avoid costly overruns or project delays. Overestimating paint leads to unnecessary expenses and leftover materials, while underestimating can cause multiple trips to suppliers and inconsistent finishes due to batch variations. This calculator incorporates a waste margin to account for spillage, surface texture, and multiple coats, ensuring a realistic estimate.
-          </p>
-          <p>
-            Different paint materials have varying coverage rates depending on their formulation and finish. For example, standard latex paints typically cover around 350 square feet per gallon in imperial units, while some specialty or textured paints may cover less. Users can adjust the coverage rate in the calculator to match their specific paint type for more accurate results.
-          </p>
-          <p>
-            This tool supports both metric and imperial units, automatically converting measurements to maintain consistency in calculations. Deducting window and door areas ensures that only paintable surfaces are considered, further refining the estimate. Whether you are painting a single wall or an entire room, this calculator streamlines the planning process and helps you order the right amount of paint every time.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Paint Coverage & Gallons Needed Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Paint Coverage & Gallons Needed Calculator helps you determine exactly how much paint to purchase for your interior or exterior project, eliminating guesswork and reducing waste. By inputting your room dimensions, surface type, and desired number of coats, this calculator applies industry-standard coverage rates (typically 350–400 sq ft/gallon for interior paint) to provide an accurate gallon recommendation. Knowing your paint requirement before shopping saves money, prevents leftover paint, and ensures you have enough for complete, even coverage across all surfaces.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator effectively, gather measurements of each wall you plan to paint in linear feet (length × height), note the total square footage or let the calculator compute it for you, and select your surface type and paint quality. The calculator accounts for different coverage rates based on texture (smooth drywall covers more area than textured surfaces), paint type (premium paints have higher hide and coverage), and the number of coats required. Include any special conditions like primer needs, stain-blocking requirements, or previous color changes that may affect total paint volume.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results will show you the gallons needed for one coat, multiple coats, and a recommended purchase amount that includes a 10–15% buffer for waste, spills, and touch-ups. If your calculator shows you need 3.2 gallons, purchase 3.5 or 4 gallons to account for application loss and ensure color consistency. Review the recommended container size (1-gallon vs. 5-gallon bucket) based on project scope, and verify that your selected paint brand matches the coverage rate assumptions; premium or high-hide paints may require slightly less volume than budget brands.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" />
-          Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure twice and include all surfaces to be painted, including trims and ceilings if applicable, to avoid surprises.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Paint coverage can vary significantly based on surface texture and color. Rough or porous surfaces absorb more paint, requiring additional coats.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Use a 10% waste margin as a baseline, but increase it for textured walls or when using spray equipment to account for overspray.
-          </li>
-          <li>
-            <strong>Tip:</strong> When painting multiple walls with different sizes, calculate each separately and sum the gallons needed for the most accurate estimate.
-          </li>
+      {/* TABLE: Paint Coverage by Surface Type and Quality */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Paint Coverage by Surface Type and Quality</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Coverage rates vary significantly based on surface texture and paint quality; use these benchmarks to refine your calculator inputs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Surface Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Paint Quality</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coverage (sq ft/gallon)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Smooth drywall</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">375–400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Most common interior application</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Smooth drywall</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Premium/hi-hide</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400–425</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Better pigmentation reduces coats needed</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Textured drywall</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300–325</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Orange peel and light textures</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Popcorn/heavy texture</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250–275</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Requires extra paint due to absorption</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wood siding (exterior)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exterior latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300–350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rough surface reduces spread rate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stucco (exterior)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exterior latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250–300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very porous; may need primer</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Metal/glossy surfaces</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Bonding primer first</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350–375</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Primer improves adhesion significantly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Previously painted walls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400–450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sealed surface increases coverage</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bare wood (interior)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Stain or paint</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150–200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very absorbent; often requires sealer</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Coverage rates assume standard roller application at 1/16-inch wet film thickness. Actual coverage may vary by brand, environmental conditions, and application skill.</p>
+      </section>
+
+      {/* TABLE: Paint Requirements for Common Room Sizes */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Paint Requirements for Common Room Sizes</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These calculations assume 8-foot ceilings, standard drywall texture, and two coats of interior latex paint with standard coverage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Wall Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gallons for 1 Coat</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gallons for 2 Coats</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Purchase</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10×10 bedroom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 gallons</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10×12 bedroom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">440</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5 gallons</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12×14 living room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">624</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.65</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5 gallons</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12×20 family room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">896</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 gallons</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10×8 bathroom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">288</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5–2 gallons</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9×9 powder room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">216</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 gallon</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Entire 2BR apartment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,400–1,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.75–4.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5–8.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 gallons</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single ceiling (10×12)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 gallon</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Recommendations include 10% waste buffer. Subtract ~15 sq ft per door and ~10 sq ft per window. Textured surfaces require 20–30% additional paint.</p>
+      </section>
+
+      {/* TABLE: Paint Primer and Specialty Scenarios */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Paint Primer and Specialty Scenarios</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Certain conditions require primer, which affects total gallons needed; use this guide to determine when primer is essential.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Primer Needed?</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coverage (sq ft/gal)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Reason</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">New drywall (bare)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300–350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Blocks stains and improves topcoat adhesion</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Water stains or smoke damage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250–300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Primer seals tannins and prevents bleed-through</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dark color to light color</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes (tinted)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350–375</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduces coats of topcoat needed</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Light to dark color</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">375–400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Existing paint provides adequate base</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Glossy/semi-gloss surface</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes (bonding primer)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300–350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Improves adhesion without sanding</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wood paneling</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250–300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Seals knots and grain, prevents bleed-through</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Previously painted interior</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">375–400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Unless staining or major color change</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Exterior raw wood/siding</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250–300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Prevents moisture penetration and warping</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bathroom/high-moisture areas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No (use mold-resistant paint)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350–375</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Use moisture-resistant paint instead of primer</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Primer coverage is typically 15–20% lower than topcoat paint due to higher absorption on unsealed surfaces. Primer cost is usually 20–40% less than premium paint.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always measure twice and double-check your square footage calculations before using the calculator — a 10% error in measurements becomes a 10% error in paint volume, leading to either purchasing too much or running short mid-project.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test your paint color on a large sample area (at least 2×3 feet) and view it at different times of day, as artificial light, natural light, and adjacent colors significantly affect how paint appears on your walls.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add an extra 15–20% to your calculated gallons for textured surfaces, water-damaged areas, or dark color changes, as these scenarios consume more paint than standard calculations assume.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Buy all paint from the same batch or batch code to ensure perfect color consistency, especially for large rooms or multi-wall projects; different batches can show slight color variations even in the same paint line.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store leftover paint properly in sealed containers in a cool, dry place to extend shelf life to 1–2 years, allowing you to use it for future touch-ups without purchasing new gallons.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider renting or buying a high-quality roller and extension pole rather than relying on cheap brushes; better tools improve coverage uniformity and can reduce paint consumption by 5–10% through more efficient application.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" />
-          Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring Window and Door Areas:</strong> Failing to deduct these areas leads to overestimating paint requirements, resulting in wasted materials and higher costs.
-          </p>
-          <p>
-            <strong>2. Using Incorrect Coverage Rates:</strong> Not adjusting coverage rates for different paint types or surface textures can cause inaccurate estimates. Always verify the paint manufacturer's coverage specifications.
-          </p>
-          <p>
-            <strong>3. Skipping Waste Margin:</strong> Not including a waste margin can result in running out of paint mid-project, causing delays and inconsistent finishes.
-          </p>
-          <p>
-            <strong>4. Mixing Units:</strong> Mixing metric and imperial units without proper conversion can lead to significant miscalculations. Use the unit selector consistently.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to subtract doors and windows</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many homeowners calculate wall area without subtracting door and window openings, leading to 15–25% paint overages. A standard door removes ~21 sq ft and a large window removes ~12 sq ft, so ignoring these can result in buying 1–2 unnecessary gallons for a typical room.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the same coverage rate for all surface types</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Textured ceilings and walls reduce coverage to 250–300 sq ft/gallon compared to smooth surfaces at 375–400 sq ft/gallon. Applying standard coverage assumptions to textured surfaces results in underbidding paint quantity and running short mid-project.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for primer in total paint calculation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Projects requiring primer (new drywall, water stains, dark-to-light color changes) need an additional 1–2 gallons of primer, which many calculators overlook. Primer typically covers 300–350 sq ft/gallon and shouldn't be combined with topcoat estimates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming one coat is sufficient for most projects</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Interior projects typically require two coats for even color and durability; assuming one coat causes severe underbidding of paint volume. Dramatic color changes, primer applications, and stain coverage may even require three coats, doubling initial estimates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring paint quality and coverage differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Premium paints with higher opacity cover 400–425 sq ft/gallon while budget paints cover only 350–375 sq ft/gallon. Failing to adjust the calculator for paint quality leads to either overbuying cheap paint or underbuying premium paint.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate paint coverage for my room?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To calculate paint coverage, measure the total square footage of the walls you plan to paint by multiplying height by width for each wall, then add them together. Most interior paints cover between 350–400 square feet per gallon, though this varies by paint quality and surface texture. Divide your total square footage by the coverage rate (typically 375 sq ft/gallon for standard latex paint) to determine gallons needed. Don't forget to account for a second coat, which typically requires 50% more paint than the first coat.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect paint coverage rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Paint coverage is affected by surface texture, paint quality, application method, and environmental conditions. Rough or porous surfaces like drywall or stucco reduce coverage to 300–350 sq ft/gallon, while smooth surfaces achieve 400–450 sq ft/gallon. Higher-quality paints with better pigmentation cover more area per gallon than budget brands. Application with a roller typically achieves better coverage than brush application, and humidity and temperature can impact drying and adhesion.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do I need to add extra paint to my calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">It's wise to add 10–15% extra to your calculated gallons to account for spills, waste, uneven surfaces, and touch-ups after paint dries. Paint often appears darker when wet and lighter when dry, so additional paint helps ensure color consistency for future repairs. Having leftover paint also allows for matching touch-ups on walls over time without worrying about slight color variations from new batches.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much paint do I need for a 10x12 bedroom?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 10x12 bedroom with 8-foot ceilings has approximately 440 square feet of wall space (2 walls at 10×8 = 80 sq ft each, and 2 walls at 12×8 = 96 sq ft each). At a standard coverage rate of 375 sq ft/gallon, you need approximately 1.2 gallons for one coat. For two coats, plan for 2.4 gallons, or round up to 2.5 gallons to account for waste and ensure adequate coverage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between interior and exterior paint coverage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Exterior paint typically covers 300–350 square feet per gallon due to more porous surfaces like wood siding and stucco, while interior paint covers 350–400 sq ft/gallon on standard drywall. Exterior paints are formulated to resist weather, UV rays, and moisture, making them thicker and less spreadable than interior paints. Exterior projects often require two coats due to surface porosity and durability requirements, significantly increasing total gallons needed compared to interior jobs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for doors, windows, and trim in my calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Subtract the square footage of doors and large windows from your total wall area. A standard 3×7 foot door removes approximately 21 square feet, and a 3×4 foot window removes about 12 square feet. However, if you're painting trim a different color, add that footage back separately and calculate it with the appropriate coverage rate. As a rule of thumb, subtract 15–20 square feet per door and 10 square feet per window from your total wall calculation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What coverage rate should I use for textured walls or ceilings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Textured surfaces, including popcorn ceilings, textured drywall, and stucco, reduce coverage to 250–300 square feet per gallon compared to smooth surfaces. Heavy textures like orange peel or knockdown texture are particularly absorbent and require more paint for even coverage. Always test your paint on a sample area of textured surface first, then adjust your total calculation upward by 20–30% to ensure complete, even coverage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many coats of paint do I need?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most interior painting projects require two coats for even color and durability, though high-quality paints with better opacity may cover adequately in one coat on previously painted surfaces. New drywall, dark colors, or dramatic color changes typically require two coats, while covering stains or existing dark colors may require three coats. Primer is often needed as a first coat on bare drywall, fresh repairs, or when changing from dark to light colors, which adds another layer to your paint calculation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I buy paint in 1-gallon or 5-gallon containers?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For projects requiring 2–3 gallons, buying a 5-gallon bucket offers better value (typically $35–45 per gallon vs. $8–12 per single gallon) and ensures consistent color batching. For smaller projects needing &lt;2 gallons, 1-gallon containers reduce waste and storage concerns. Consider the shelf life of leftover paint (1–2 years when sealed properly) and your likelihood of future touch-ups when deciding container size for your project.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Paint%20Coverage" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Paint Coverage - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Paint Coverage from the trusted team at This Old House.
-            </p>
+            <a href="https://www.epa.gov/lead/renovation-repair-and-painting-program" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA Lead-Based Paint Renovation, Repair, and Painting Program Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official EPA guidance on safe paint practices, including coverage standards and lead-safe work practices for interior and exterior painting projects.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Paint%20Coverage" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Paint Coverage - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Paint Coverage, helping you get the job done right.
-            </p>
+            <a href="https://www.thespruce.com/how-much-paint-do-you-need-4586626" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce Home Improvement Paint Coverage Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource covering paint coverage rates, room-by-room calculations, and best practices for estimating paint requirements.</p>
           </li>
           <li>
-            <a href="https://www.energy.gov/search/site?keywords=Paint%20Coverage" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Paint Coverage - Energy.gov
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Official Department of Energy guidelines for energy efficiency and Paint Coverage to save money and improve home comfort.
-            </p>
+            <a href="https://www.nist.gov/laboratories/tools-instruments" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NIST Building and Fire Research Laboratory: Paint and Coatings Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical standards and benchmarks for paint coverage, adhesion, and performance metrics used in construction and home improvement projects.</p>
           </li>
           <li>
-            <a href="https://www.ashrae.org/search?q=Paint%20Coverage" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Paint Coverage - ASHRAE
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical standards and guidelines for HVAC and building systems related to Paint Coverage.
-            </p>
+            <a href="https://www.sherwin-williams.com/homeowners" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Sherwin-Williams Paint Coverage and Application Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry-leading paint manufacturer's guidelines for coverage rates, surface preparation, and application techniques specific to various paint products and conditions.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

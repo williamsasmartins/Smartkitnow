@@ -132,40 +132,41 @@ export default function SidingPanelCoverageCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is a siding panel coverage calculator and how does it work?",
-      answer:
-        "A siding panel coverage calculator helps contractors and homeowners estimate the number of siding panels required to cover a given wall or surface area. By inputting the dimensions of the wall and the size of the siding panels, the calculator computes the total area and divides it by the panel coverage area. It also factors in a waste margin to account for cutting, mistakes, and overlaps, ensuring you order enough material without excessive surplus.",
+      question: "How many siding panels do I need to cover a 2,000 square foot house?",
+      answer: "For a 2,000 square foot house, you'll typically need between 40 to 50 panels depending on your siding type. Standard vinyl siding panels measure 10 feet long by 12.5 inches wide, covering approximately 10.4 square feet per panel. However, accounting for 10-15% waste due to cuts, corners, and overlaps, you should purchase 44 to 58 panels for complete coverage.",
     },
     {
-      question:
-        "Why is it important to include a waste margin in siding calculations?",
-      answer:
-        "Including a waste margin is crucial because siding installation often involves cutting panels to fit around windows, doors, corners, and other architectural features. Additionally, panels can be damaged during transport or installation. A typical waste margin ranges from 5% to 15%, depending on the complexity of the project. This buffer helps prevent costly delays caused by running out of materials mid-project.",
+      question: "What is the standard size of a siding panel?",
+      answer: "Most residential siding panels are 10 feet long and 12.5 inches wide, providing 10.4 square feet of coverage per panel. Some manufacturers offer 12-foot panels at 12 inches wide (10 square feet), while fiber cement panels may vary from 8 to 12 feet in length. Always check your specific product specifications, as European and specialty sidings may have different dimensions.",
     },
     {
-      question:
-        "How do different siding materials affect panel coverage and ordering?",
-      answer:
-        "Different siding materials come in various panel sizes and thicknesses, which directly impact coverage calculations. For example, vinyl siding panels are often larger and lighter, while fiber cement panels may be smaller but heavier. Some materials require overlapping or special installation techniques that reduce effective coverage area. Knowing the exact panel dimensions and material type ensures accurate quantity estimates and cost calculations.",
+      question: "Should I add extra panels for waste and mistakes?",
+      answer: "Yes, industry standard practice recommends adding 10-15% to your total siding requirement for waste, cuts, and future repairs. For a 2,000 square foot project requiring 48 panels, you should order 53 to 55 panels total. This buffer accounts for measurement errors, damaged panels during installation, and having materials available for repairs within 2-3 years before color discontinuation.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, this calculator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system, and input all dimensions accordingly. The calculator internally converts measurements as needed to ensure accurate calculations regardless of the unit system chosen.",
+      question: "How do I calculate siding coverage for irregular shaped homes?",
+      answer: "Break your home into simple geometric shapes: rectangles for walls, triangles for gable ends, and trapezoids for sloped sections. Measure each section's height and width, calculate the square footage, then sum all sections. Subtract window and door openings (typically 10-20% of total wall area), then divide your total by the square feet per panel.",
     },
     {
-      question:
-        "What are common mistakes to avoid when estimating siding panel coverage?",
-      answer:
-        "Common mistakes include not measuring the wall dimensions accurately, forgetting to account for windows and doors, neglecting to add a waste margin, and using incorrect panel sizes. Additionally, mixing units or failing to convert between metric and imperial can lead to significant errors. Always double-check measurements and inputs before ordering materials.",
+      question: "What percentage of wall area is typically taken up by windows and doors?",
+      answer: "Windows and doors typically consume 15-25% of total wall area on residential homes, though this varies by architectural style. Modern energy-efficient homes often have 20% window coverage, while older homes may have only 10-15%. When calculating siding panels, measure each opening individually and subtract the total square footage from your gross wall area before calculating panel requirements.",
     },
     {
-      question:
-        "How can I estimate the total cost of siding panels using this calculator?",
-      answer:
-        "To estimate total cost, enter the price per siding panel in the calculator. After calculating the number of panels needed (including waste), the calculator multiplies this quantity by the unit price to provide an estimated total cost. This helps with budgeting and comparing different material options.",
+      question: "How much siding do I need for a gable end roof?",
+      answer: "For gable ends, calculate the area as a triangle: multiply the width by the height from the wall plate to the peak, then divide by 2. A 30-foot wide gable with an 8-foot peak height equals 120 square feet (30 × 8 ÷ 2). Using standard 10.4 square foot panels, you'd need approximately 12 panels for one gable end, accounting for the triangular shape and waste.",
     },
+    {
+      question: "Are there different coverage calculations for different siding materials?",
+      answer: "Coverage calculations remain consistent across vinyl, fiber cement, wood, and composite sidings—all measure by panel square footage. However, installation waste percentages may vary: vinyl typically requires 10% waste, fiber cement 12-15%, and wood 15-20% due to grain variations and potential splitting. Metal sidings can be custom-cut to minimize waste, potentially requiring only 5-8% additional material.",
+    },
+    {
+      question: "How do I account for soffit and fascia in my siding coverage calculation?",
+      answer: "Soffit and fascia require separate calculations from wall siding. Measure the linear feet of your roofline's perimeter and multiply by the soffit width (typically 16 or 24 inches) to get soffit square footage. Fascia is calculated by linear feet—measure your roofline perimeter and multiply by fascia width (usually 8-12 inches), then divide by 144 to convert to square feet.",
+    },
+    {
+      question: "What happens if I underestimate my siding panel needs?",
+      answer: "Underestimating can create significant delays and cost increases, as siding colors may be discontinued or discontinued within 6-12 months of production runs. Reordering panels 6+ months later may cost 15-25% more per unit due to rush fees and color-matching charges. Additionally, you'll incur extra labor costs to restart installation and may face weather-related scheduling conflicts, potentially adding $500-$2,000 to your project.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -365,166 +366,331 @@ export default function SidingPanelCoverageCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Siding Panel Coverage Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            A siding panel coverage calculator is an essential tool for anyone
-            involved in exterior construction or renovation projects. It helps
-            you accurately estimate the number of siding panels required to
-            cover a wall or surface area based on your measurements and panel
-            sizes. This ensures you order the right amount of material,
-            minimizing waste and saving money.
-          </p>
-          <p>
-            Precision matters because siding installation often involves
-            cutting panels to fit around windows, doors, corners, and other
-            architectural features. Without an accurate estimate, you risk
-            ordering too few panels, causing delays, or too many, resulting in
-            unnecessary expense.
-          </p>
-          <p>
-            Different siding materials such as vinyl, fiber cement, wood, and
-            metal come in various panel sizes and thicknesses. Each material
-            type has unique installation requirements and coverage areas. This
-            calculator lets you input your specific panel dimensions and
-            material type to provide tailored estimates.
-          </p>
-          <p>
-            By including a waste margin, the calculator accounts for cutting
-            losses, mistakes, and damaged panels. Typically, a 5-15% waste
-            factor is recommended depending on project complexity.
-          </p>
-          <p>
-            Using this tool will help you plan your siding project more
-            efficiently, reduce material costs, and avoid common pitfalls in
-            ordering siding panels.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Siding Panel Coverage Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Siding Panel Coverage Calculator determines the exact number of siding panels needed for your exterior renovation or new construction project. This tool accounts for your home's dimensions, architectural features like gables and dormers, and material-specific coverage rates. Using accurate measurements prevents costly reorders and ensures sufficient inventory for cuts, waste, and future repairs.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your home's perimeter length (in feet) and wall height, then specify the total square footage of windows and doors. Select your siding panel type and dimensions—most standard vinyl panels are 10 feet long by 12.5 inches wide (10.4 sq ft per panel), though fiber cement and premium options vary. The calculator will automatically adjust coverage rates based on material type and add your selected waste percentage (10-15% is recommended).</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your results will display the total panels needed, estimated material cost range, and a detailed breakdown by section (main walls, gables, soffit, fascia). Compare these figures against your budget and supplier inventory before placing orders. If your project has unusual features like wraparound porches, curved sections, or extensive trim, add an additional 5-10% to accommodate complexity.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure your wall dimensions at
-            multiple points and use the largest measurements to avoid
-            underestimating.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Vinyl siding panels typically overlap
-            during installation, which slightly reduces effective coverage per
-            panel. Make sure to use the net coverage size when available.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering an extra 10% of panels
-            upfront can save time and money by preventing multiple small orders
-            and shipping fees.
-          </li>
-          <li>
-            <strong>Tip:</strong> When working with irregularly shaped walls,
-            break the area into rectangles, calculate coverage for each, then
-            sum totals.
-          </li>
+      {/* TABLE: Standard Siding Panel Dimensions and Coverage */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard Siding Panel Dimensions and Coverage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common residential siding panel sizes and their corresponding square foot coverage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Panel Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Length (feet)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Width (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Square Feet per Panel</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Panels per 1,000 sq ft</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vinyl Standard</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">96</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vinyl Premium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fiber Cement</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fiber Cement</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">125</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wood Shingle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">114</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Metal Horizontal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Composite</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">96</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Coverage assumes full panel installation without cutting or overlaps. Actual coverage decreases 10-15% when accounting for waste and installation cuts.</p>
+      </section>
+
+      {/* TABLE: Siding Material Waste Factors by Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Siding Material Waste Factors by Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended waste percentages for common siding materials to ensure adequate coverage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Waste %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Standard Waste %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Complex Design Waste %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Reason for Variance</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vinyl Siding</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Clean cuts, minimal splitting</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fiber Cement</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Prone to cracking, requires careful handling</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wood Shake/Shingle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Grain variation, splitting, grain-matched runs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Metal Siding</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Custom-cut capability, minimal waste</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Composite</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate cutting needs, color consistency</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Brick Veneer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Modular units, minimal cutting</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stone Veneer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Irregular shapes require significant trimming</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Complex designs include extensive gables, dormers, multiple roof lines, and detailed trim work. Always purchase high-end estimate for first-time installations.</p>
+      </section>
+
+      {/* TABLE: Wall Area Coverage: Common Home Sizes and Siding Requirements */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Wall Area Coverage: Common Home Sizes and Siding Requirements</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated siding panel requirements for typical residential homes at various square footages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Home Size (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Wall Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Waste Factor (12%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vinyl Panels Needed (10.4 sq ft)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">144</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,344</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">129</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">216</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,016</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">194</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">288</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,688</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">258</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">323</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">432</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,032</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">388</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">504</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,704</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">452</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">576</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,376</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">517</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Wall area estimates assume single-story foundations equal to 1.2× home square footage (30% perimeter wall coefficient). Subtract 15-20% for windows and doors. Add 5-10% for gable ends on two-story homes.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure twice, order once—verify all wall lengths, heights, and opening dimensions with a laser measuring tool or professional surveyor to ensure accuracy within ±2 inches. Errors in foundation measurements compound across your entire project, potentially requiring expensive reorders.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Request samples from manufacturers in your chosen color before calculating final quantities, as color variations between production batches can be noticeable over large areas. Compare samples in natural daylight, afternoon sun, and shade to confirm consistency across your home's elevation.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Contact local contractors or your material supplier for waste percentage guidance specific to your installation complexity; complex designs with multiple gables, dormers, or architectural details may require 15-20% waste instead of the standard 10-12%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Build in a 5-10% reserve beyond your calculated waste factor for future repairs—siding colors discontinue every 18-24 months, making replacements difficult to match after 2-3 years. Store extra panels in a climate-controlled space to maintain color consistency and prevent warping.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Measurements:</strong> Failing to measure wall
-            length and height accurately or mixing units can lead to ordering
-            too few or too many panels.
-          </p>
-          <p>
-            <strong>2. Ignoring Waste Margin:</strong> Not including a waste
-            factor can cause shortages during installation, leading to delays
-            and extra costs.
-          </p>
-          <p>
-            <strong>3. Using Nominal Panel Sizes:</strong> Some siding panels
-            have nominal sizes that differ from actual coverage due to
-            overlapping edges. Always use net coverage dimensions.
-          </p>
-          <p>
-            <strong>4. Forgetting Openings:</strong> Not subtracting areas for
-            windows, doors, or vents can result in over-ordering.
-          </p>
-          <p>
-            <strong>5. Not Rounding Up:</strong> Always round up to the next
-            whole panel to ensure you have enough material.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring Perimeter Instead of Wall Area</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many homeowners measure only the perimeter and multiply by height without accounting for the actual exterior surface area covered by siding. Gables, roof overhangs, and architectural offsets can add 10-20% to your actual wall area, causing significant underestimation if ignored.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Subtract Window and Door Openings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Windows and doors typically represent 15-25% of wall area but require no siding coverage. Failing to subtract these openings from your calculation can result in ordering 15-20% excess material, wasting $500-$1,500 on a typical home project.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Insufficient Waste Factor</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying only 5% waste to complex installations with multiple gable ends and dormers leaves no buffer for cutting errors, damaged panels, or future repairs. Industry standards recommend 10-15% waste; using lower percentages creates project delays when panels must be reordered.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Soffit and Fascia</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many calculators focus solely on wall siding and overlook soffit and fascia requirements, which can add 100-200 linear feet of material. Soffit and fascia use different coverage calculations and may require separate material orders, representing 10-15% of your total siding budget if forgotten.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many siding panels do I need to cover a 2,000 square foot house?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For a 2,000 square foot house, you'll typically need between 40 to 50 panels depending on your siding type. Standard vinyl siding panels measure 10 feet long by 12.5 inches wide, covering approximately 10.4 square feet per panel. However, accounting for 10-15% waste due to cuts, corners, and overlaps, you should purchase 44 to 58 panels for complete coverage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard size of a siding panel?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most residential siding panels are 10 feet long and 12.5 inches wide, providing 10.4 square feet of coverage per panel. Some manufacturers offer 12-foot panels at 12 inches wide (10 square feet), while fiber cement panels may vary from 8 to 12 feet in length. Always check your specific product specifications, as European and specialty sidings may have different dimensions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I add extra panels for waste and mistakes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, industry standard practice recommends adding 10-15% to your total siding requirement for waste, cuts, and future repairs. For a 2,000 square foot project requiring 48 panels, you should order 53 to 55 panels total. This buffer accounts for measurement errors, damaged panels during installation, and having materials available for repairs within 2-3 years before color discontinuation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate siding coverage for irregular shaped homes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Break your home into simple geometric shapes: rectangles for walls, triangles for gable ends, and trapezoids for sloped sections. Measure each section's height and width, calculate the square footage, then sum all sections. Subtract window and door openings (typically 10-20% of total wall area), then divide your total by the square feet per panel.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What percentage of wall area is typically taken up by windows and doors?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Windows and doors typically consume 15-25% of total wall area on residential homes, though this varies by architectural style. Modern energy-efficient homes often have 20% window coverage, while older homes may have only 10-15%. When calculating siding panels, measure each opening individually and subtract the total square footage from your gross wall area before calculating panel requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much siding do I need for a gable end roof?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For gable ends, calculate the area as a triangle: multiply the width by the height from the wall plate to the peak, then divide by 2. A 30-foot wide gable with an 8-foot peak height equals 120 square feet (30 × 8 ÷ 2). Using standard 10.4 square foot panels, you'd need approximately 12 panels for one gable end, accounting for the triangular shape and waste.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there different coverage calculations for different siding materials?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Coverage calculations remain consistent across vinyl, fiber cement, wood, and composite sidings—all measure by panel square footage. However, installation waste percentages may vary: vinyl typically requires 10% waste, fiber cement 12-15%, and wood 15-20% due to grain variations and potential splitting. Metal sidings can be custom-cut to minimize waste, potentially requiring only 5-8% additional material.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for soffit and fascia in my siding coverage calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Soffit and fascia require separate calculations from wall siding. Measure the linear feet of your roofline's perimeter and multiply by the soffit width (typically 16 or 24 inches) to get soffit square footage. Fascia is calculated by linear feet—measure your roofline perimeter and multiply by fascia width (usually 8-12 inches), then divide by 144 to convert to square feet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I underestimate my siding panel needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Underestimating can create significant delays and cost increases, as siding colors may be discontinued or discontinued within 6-12 months of production runs. Reordering panels 6+ months later may cost 15-25% more per unit due to rush fees and color-matching charges. Additionally, you'll incur extra labor costs to restart installation and may face weather-related scheduling conflicts, potentially adding $500-$2,000 to your project.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Siding%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Siding Installation - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Siding Installation from the trusted team at This Old House.
-            </p>
+            <a href="https://www.nahb.org/research-and-economics/housing-research/research-base" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Home Improvement Research — National Association of Home Builders</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards and data on residential siding materials, installation practices, and material specifications for exterior cladding projects.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Siding%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Siding Installation - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Siding Installation, helping you get the job done right.
-            </p>
+            <a href="https://www.vinylsiding.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Vinyl Siding Institute — Technical Standards and Specifications</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official technical guidelines for vinyl siding panel dimensions, coverage rates, and installation requirements from the primary industry trade association.</p>
           </li>
           <li>
-            <a href="https://www.constructiondive.com/search/?q=Siding%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Siding Installation - Construction Dive
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Latest news and trends in the construction industry regarding Siding Installation.
-            </p>
+            <a href="https://www.iccsafe.org/products-and-services/icc-codes-standards/icc-codes/international-residential-code/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Residential Code (IRC) — Exterior Walls and Cladding</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Building code requirements and standards for siding installation, material durability, and exterior finish specifications across North American jurisdictions.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerreports.org/home/materials/siding/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Reports — Home Siding Reviews and Comparisons</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Independent testing and consumer ratings for residential siding materials, comparing coverage efficiency, durability, and long-term cost performance.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -164,40 +164,41 @@ export default function TileAreaGroutCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is the Tile Area & Grout Calculator used for?",
-      answer:
-        "The Tile Area & Grout Calculator helps professionals and DIYers estimate the amount of grout material needed to fill the joints between tiles for a given tiled surface. By inputting the dimensions of the tiled area and grout joint sizes, users can accurately calculate grout volume, account for waste, and estimate costs, ensuring efficient material ordering and reducing project delays.",
+      question: "How much grout do I need for a 100 square foot tile floor?",
+      answer: "The amount of grout needed depends on your tile size and grout joint width. For a 100 sq ft area with 12x12 inch tiles and a standard 1/8 inch grout joint, you'll need approximately 25-30 pounds of unsanded grout. If using larger 18x18 inch tiles with the same joint width, you'll need only 15-20 pounds. Always add 10-15% extra to account for waste and mixing inefficiencies.",
     },
     {
-      question:
-        "Why is it important to include a waste margin when calculating grout quantities?",
-      answer:
-        "Including a waste margin accounts for material lost due to spillage, mixing errors, surface absorption, and cutting irregularities. Typically, a 10% waste factor is recommended to ensure you have enough grout to complete the job without running short. Skipping this step can lead to ordering insufficient grout, causing delays and additional costs.",
+      question: "What is the difference between unsanded and sanded grout?",
+      answer: "Unsanded grout is used for grout joints &lt;1/8 inch wide and is smoother, making it ideal for polished stone and glass tiles. Sanded grout is used for joints 1/8 inch to 1/2 inch wide and contains silica sand for added strength and is more economical. Sanded grout is 20-30% cheaper than unsanded and covers larger areas more efficiently.",
     },
     {
-      question:
-        "How do tile size and grout joint dimensions affect grout quantity calculations?",
-      answer:
-        "Tile size determines the number of grout joints per unit area, while grout joint width and depth define the volume of grout needed per joint. Larger tiles mean fewer joints and less grout, whereas wider or deeper grout joints increase the grout volume required. Accurate input of these parameters is essential for precise grout quantity estimation.",
+      question: "How do I calculate the number of tiles needed for my project?",
+      answer: "Multiply your room length by width to get total square footage, then divide by the square footage of one tile. For example, a 120 sq ft room with 12x12 inch tiles (which equal 1 sq ft each) requires 120 tiles. Always add 10% waste factor for cutting, breakage, and future repairs, bringing the total to 132 tiles for this example.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric (meters, millimeters) and imperial (feet, inches) units. It automatically converts inputs to consistent units internally to provide accurate results regardless of the measurement system you use.",
+      question: "What grout joint width should I use?",
+      answer: "Standard grout joint widths range from 1/16 inch to 1/2 inch depending on tile type and aesthetic preference. Porcelain and ceramic tiles typically use 1/8 to 1/4 inch joints, while natural stone can require 1/4 to 1/2 inch joints for uneven edges. Wider joints (&gt;1/4 inch) use significantly more grout and should use sanded varieties for structural integrity.",
     },
     {
-      question:
-        "How do I estimate the cost of grout using this calculator?",
-      answer:
-        "After calculating the number of grout bags needed, enter the price per bag in the calculator. It will multiply the quantity by the unit price to provide an estimated total cost. This helps with budgeting and procurement planning.",
+      question: "How much does tile and grout cost per square foot?",
+      answer: "Ceramic tiles average $3-10 per sq ft, porcelain tiles range $5-15 per sq ft, and natural stone costs $10-50+ per sq ft. Grout costs approximately $0.50-$2.00 per sq ft installed, with unsanded grout at the higher end and sanded grout at the lower end. Labor typically adds another $5-15 per sq ft depending on complexity and regional rates.",
     },
     {
-      question:
-        "What types of grout materials can this calculator help estimate?",
-      answer:
-        "This calculator is generic and can be used for cementitious grout, epoxy grout, or other grout types. However, grout yield per bag may vary by product, so adjust the price and yield parameters accordingly for the most accurate estimates.",
+      question: "Why is my calculator showing different grout amounts than the bag instructions?",
+      answer: "Grout coverage varies based on actual joint spacing, substrate porosity, and application technique. Manufacturer estimates assume standard conditions; your calculator accounts for your specific tile size and joint width. Actual coverage can vary by ±20% depending on trowel angle, substrate absorbency, and grouting skill level.",
     },
+    {
+      question: "How do I account for irregular tile layouts and cuts?",
+      answer: "Add 15-20% waste factor for straight layouts and 20-30% for diagonal or complex patterns requiring more cuts. Odd-shaped rooms, corners, and doorways increase the percentage of unusable tile pieces, so err on the side of ordering extra. It's more cost-effective to have leftover tiles than to stop mid-project to reorder.",
+    },
+    {
+      question: "What is the coverage rate for 50 pounds of grout?",
+      answer: "A 50-pound bag of unsanded grout covers approximately 50-75 sq ft with 1/8 inch joints, while sanded grout covers 75-100 sq ft under the same conditions. Coverage decreases to 30-40 sq ft for 1/4 inch joints and increases to 100-150 sq ft for joints smaller than 1/16 inch. Always consult your specific product data sheet, as formulations vary by manufacturer.",
+    },
+    {
+      question: "Should I recalculate grout needs if I change my tile size mid-project?",
+      answer: "Yes, absolutely—grout requirements change significantly with tile size because smaller tiles create more linear feet of grout lines. Switching from 12x12 tiles to 6x6 tiles roughly doubles the grout needed for the same square footage. Use the calculator to update your material list before purchasing additional supplies.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -394,176 +395,283 @@ export default function TileAreaGroutCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Tile
-          Area & Grout Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Tile Area & Grout Calculator is an essential tool for anyone
-            involved in tiling projects, whether you're a professional
-            contractor or a DIY enthusiast. It helps you accurately estimate the
-            amount of grout material required to fill the joints between tiles
-            over a given area. By inputting the dimensions of your tiled surface
-            and the size of the grout joints, you can avoid costly overordering
-            or frustrating shortages.
-          </p>
-          <p>
-            Precision in grout estimation matters because grout is not only a
-            finishing material but also critical for the durability and
-            waterproofing of tiled surfaces. Using too little grout can lead to
-            weak joints and water damage, while ordering too much results in
-            wasted materials and increased costs.
-          </p>
-          <p>
-            This calculator supports both metric and imperial units, allowing
-            you to work in meters and millimeters or feet and inches,
-            depending on your preference or project requirements. It also
-            factors in a waste margin to cover spillage, mixing losses, and
-            cutting waste.
-          </p>
-          <p>
-            Different tile sizes affect grout quantity because larger tiles have
-            fewer grout joints per area, reducing grout volume. The calculator
-            lets you select between standard and large tile sizes to adjust the
-            grout joint count accordingly.
-          </p>
-          <p>
-            Whether you are working with cementitious grout, epoxy grout, or
-            other types, this calculator provides a reliable estimate of the
-            grout volume and number of bags needed, helping you plan your
-            material purchases efficiently.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Tile Area & Grout Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Tile Area & Grout Calculator is an essential tool for planning renovation projects, estimating material costs, and preventing costly mid-project supply shortages. By inputting your room dimensions, tile size, and grout joint width, the calculator provides accurate quantities of tiles, grout, and related materials needed to complete your project. This eliminates guesswork and ensures you purchase the correct amount of supplies before construction begins.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your room length and width in feet to determine total square footage, then specify your tile dimensions (length and width in inches). Next, input your desired grout joint width in inches—typically ranging from 1/16 inch for precision layouts to 1/2 inch for rustic or natural stone applications. The calculator uses these inputs to determine the linear footage of grout lines and material quantities required.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results provide the total number of tiles needed (including 10-15% waste factor), pounds of grout required, estimated material costs, and application time. These calculations account for substrate conditions and standard mixing ratios, but actual usage may vary by ±15% depending on installation technique, substrate absorbency, and whether you're working with glazed, unglazed, or natural stone products. Always round up quantities when ordering to avoid running short during installation.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure your tiled area twice to ensure
-            accuracy before ordering grout. Small errors in length or width can
-            significantly affect material estimates.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> The typical grout bag yields about 5
-            liters of grout volume, but this can vary by product. Check your
-            grout packaging for exact yield information.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Adding a 10% waste margin is a
-            standard practice to avoid running out of grout mid-project, but
-            experienced installers sometimes increase this margin for complex
-            layouts or textured tiles.
-          </li>
-          <li>
-            <strong>Tip:</strong> When working with large format tiles, grout
-            joints are often wider and deeper, so adjust your grout joint
-            dimensions accordingly for accurate calculations.
-          </li>
+      {/* TABLE: Grout Coverage by Joint Width and Tile Size */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Grout Coverage by Joint Width and Tile Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows approximate grout coverage rates based on standard tile dimensions and joint widths using 50-pound bags.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tile Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1/16 in. Joint</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1/8 in. Joint</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1/4 in. Joint</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1/2 in. Joint</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4x4 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120-140 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-100 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-50 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25 sq ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6x6 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-120 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70-85 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-45 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22 sq ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12x12 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-100 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-75 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-35 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18 sq ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">18x18 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-90 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-60 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-30 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-15 sq ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24x24 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70-85 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-55 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-28 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-13 sq ft</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Coverage rates assume standard mixing ratios and uniform substrate. Actual coverage may vary by ±15% based on application technique and substrate absorbency.</p>
+      </section>
+
+      {/* TABLE: Material Cost Estimates for 100 Square Foot Installation */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Material Cost Estimates for 100 Square Foot Installation</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">A breakdown of typical material costs for a 100 sq ft tile project with standard 1/8 inch grout joints.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mid-Range Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Premium Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total per 100 sq ft</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ceramic Tiles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300-$1,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Porcelain Tiles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500-$1,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Natural Stone</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000-$5,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Unsanded Grout</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.50/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.80/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.00/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150-$200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sanded Grout</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.80/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.20/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.50/sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$80-$150</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Prices reflect 2024-2025 market rates and vary by region, supplier, and product quality. Labor costs ($500-$1,500 for 100 sq ft) not included.</p>
+      </section>
+
+      {/* TABLE: Grout Joint Linear Footage by Tile Configuration */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Grout Joint Linear Footage by Tile Configuration</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Linear feet of grout lines present in 100 square feet using different tile sizes, helping determine total grout volume needed.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tile Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Number of Tiles (100 sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Approx. Linear Feet of Grout Lines</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Grout Type</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4x4 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900 tiles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,350-1,400 linear ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Unsanded or Sanded</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6x6 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400 tiles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800-850 linear ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sanded</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12x12 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 tiles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-350 linear ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sanded</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">18x18 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">44-45 tiles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-175 linear ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sanded</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24x24 in.</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 tiles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-125 linear ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sanded</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Smaller tiles generate exponentially more grout lines; 4x4 tiles require 10x more grout than 24x24 tiles for the same square footage.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Order 10-15% extra tiles beyond the calculated amount to account for breakage, cutting waste, and future repairs—this buffer is cheaper than stopping mid-project to reorder.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test your grout color on sample tiles in your actual lighting before committing to full installation, as grout appearance changes dramatically under different light conditions and when wet versus dry.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For bathrooms and kitchens, consider epoxy grout instead of standard cement-based grout—it costs 2-3x more but resists moisture, staining, and mildew far better than traditional options.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your subfloor carefully before calculating tile needs; uneven floors may require additional shims or self-leveling compounds that aren't included in basic grout calculations but affect project scope and timeline.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Underestimating grout joint dimensions:</strong> Many
-            users forget to measure the actual width and depth of grout joints,
-            leading to underordering grout. Always measure grout joints on
-            sample tiles or consult manufacturer specs.
-          </p>
-          <p>
-            <strong>2. Ignoring waste margin:</strong> Skipping the waste factor
-            can cause you to run out of grout mid-job, causing delays and
-            additional costs.
-          </p>
-          <p>
-            <strong>3. Mixing unit systems:</strong> Inputting length in feet but
-            grout joint in millimeters without switching units will produce
-            incorrect results. Always select the correct unit system.
-          </p>
-          <p>
-            <strong>4. Not rounding up material units:</strong> Grout is sold in
-            whole bags, so always round up your calculated quantity to the next
-            whole number.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting the Waste Factor</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating exact tile quantities without adding 10-15% for waste results in insufficient materials when tiles break or require cutting. This forces costly emergency orders and schedule delays; always build in buffer quantities from the start.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Unsanded and Sanded Grout</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using unsanded grout for joints wider than 1/8 inch causes cracking and poor adhesion, while sanded grout in ultra-narrow joints creates a rough, unprofessional appearance. Match grout type to joint width according to manufacturer specifications.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Substrate Absorbency</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Highly porous substrates (unsealed concrete, certain stone) absorb more grout water, requiring additional product and affecting cure time. The calculator assumes standard absorbency; test patch areas if working with unusual substrates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Pattern Complexity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Diagonal layouts, herringbone patterns, and mosaic designs generate 25-40% more waste than straight grid installations. Complex patterns require additional waste factor beyond the standard 10-15% calculation.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much grout do I need for a 100 square foot tile floor?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The amount of grout needed depends on your tile size and grout joint width. For a 100 sq ft area with 12x12 inch tiles and a standard 1/8 inch grout joint, you'll need approximately 25-30 pounds of unsanded grout. If using larger 18x18 inch tiles with the same joint width, you'll need only 15-20 pounds. Always add 10-15% extra to account for waste and mixing inefficiencies.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between unsanded and sanded grout?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Unsanded grout is used for grout joints &lt;1/8 inch wide and is smoother, making it ideal for polished stone and glass tiles. Sanded grout is used for joints 1/8 inch to 1/2 inch wide and contains silica sand for added strength and is more economical. Sanded grout is 20-30% cheaper than unsanded and covers larger areas more efficiently.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the number of tiles needed for my project?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiply your room length by width to get total square footage, then divide by the square footage of one tile. For example, a 120 sq ft room with 12x12 inch tiles (which equal 1 sq ft each) requires 120 tiles. Always add 10% waste factor for cutting, breakage, and future repairs, bringing the total to 132 tiles for this example.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What grout joint width should I use?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard grout joint widths range from 1/16 inch to 1/2 inch depending on tile type and aesthetic preference. Porcelain and ceramic tiles typically use 1/8 to 1/4 inch joints, while natural stone can require 1/4 to 1/2 inch joints for uneven edges. Wider joints (&gt;1/4 inch) use significantly more grout and should use sanded varieties for structural integrity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does tile and grout cost per square foot?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Ceramic tiles average $3-10 per sq ft, porcelain tiles range $5-15 per sq ft, and natural stone costs $10-50+ per sq ft. Grout costs approximately $0.50-$2.00 per sq ft installed, with unsanded grout at the higher end and sanded grout at the lower end. Labor typically adds another $5-15 per sq ft depending on complexity and regional rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is my calculator showing different grout amounts than the bag instructions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Grout coverage varies based on actual joint spacing, substrate porosity, and application technique. Manufacturer estimates assume standard conditions; your calculator accounts for your specific tile size and joint width. Actual coverage can vary by ±20% depending on trowel angle, substrate absorbency, and grouting skill level.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for irregular tile layouts and cuts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Add 15-20% waste factor for straight layouts and 20-30% for diagonal or complex patterns requiring more cuts. Odd-shaped rooms, corners, and doorways increase the percentage of unusable tile pieces, so err on the side of ordering extra. It's more cost-effective to have leftover tiles than to stop mid-project to reorder.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the coverage rate for 50 pounds of grout?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 50-pound bag of unsanded grout covers approximately 50-75 sq ft with 1/8 inch joints, while sanded grout covers 75-100 sq ft under the same conditions. Coverage decreases to 30-40 sq ft for 1/4 inch joints and increases to 100-150 sq ft for joints smaller than 1/16 inch. Always consult your specific product data sheet, as formulations vary by manufacturer.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I recalculate grout needs if I change my tile size mid-project?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, absolutely—grout requirements change significantly with tile size because smaller tiles create more linear feet of grout lines. Switching from 12x12 tiles to 6x6 tiles roughly doubles the grout needed for the same square footage. Use the calculator to update your material list before purchasing additional supplies.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Tile%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Tile Installation - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Tile Installation from the trusted team at This Old House.
-            </p>
+            <a href="https://www.tcnatile.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Tile Council of North America — Installation Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards for tile installation, grout specifications, and joint width recommendations for residential and commercial applications.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Tile%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Tile Installation - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Tile Installation, helping you get the job done right.
-            </p>
+            <a href="https://www.iccsafe.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Code Council — Building Code Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official building codes and standards for tile installation in bathrooms, kitchens, and commercial spaces across the United States.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Tile%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Tile Installation - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Tile Installation from professional builders and craftsmen.
-            </p>
+            <a href="https://www.nahb.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of Home Builders — Tile Installation Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive residential tile installation best practices, material selection, and cost estimation guidelines for homeowners and contractors.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Tile%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Tile Installation - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Tile Installation.
-            </p>
+            <a href="https://www.astm.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Society for Testing and Materials — Grout Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ASTM standards for grout composition, coverage rates, and performance requirements for various tile and substrate combinations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

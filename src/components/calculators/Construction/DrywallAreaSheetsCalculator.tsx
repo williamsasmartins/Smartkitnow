@@ -378,24 +378,40 @@ export default function DrywallAreaSheetsCalculator() {
   // --- CONTENT & SEO ---
   const faqs = [
     {
-      question: "Should I hang drywall horizontally or vertically?",
-      answer: "For most residential walls (up to 9ft high), horizontal hanging is generally preferred. It reduces the total linear footage of joints by about 25%, making finishing easier and keeping joints at a convenient height. However, for walls taller than 9ft or commercial metal stud framing, vertical installation is often required to maintain fire ratings and structural rigidity."
+      question: "How many sheets of drywall do I need for a 12x12 foot room?",
+      answer: "For a 12x12 foot room with 8-foot ceilings, you'll have approximately 576 square feet of wall area (accounting for door and window openings). Standard 4x8 drywall sheets cover 32 square feet each, so you'd need roughly 18 sheets for the walls alone, plus additional sheets for the ceiling. Adding 10-15% for waste and cuts, plan for approximately 23-25 sheets total for a complete room.",
     },
     {
-      question: "How do I calculate how much joint compound (mud) I need?",
-      answer: "A general rule of thumb for standard finishing is approximately 0.053 pounds of ready-mixed compound per square foot of drywall. Alternatively, plan for roughly 1 gallon of mud for every 100-150 square feet of drywall. This covers embedding tape, filling screws, and two finishing coats."
+      question: "What is the standard size of a drywall sheet?",
+      answer: "The most common drywall sheet size is 4 feet wide by 8 feet long (4x8), which covers 32 square feet and weighs approximately 57 pounds. Other standard sizes include 4x10 (40 sq ft, 71 lbs), 4x12 (48 sq ft, 85 lbs), and 4x16 (64 sq ft, 113 lbs). Residential projects typically use 4x8 sheets for their ease of handling and installation, while larger commercial projects may use 4x12 or 4x16 for faster coverage.",
     },
     {
-      question: "What is the best drywall thickness for my project?",
-      answer: "Standard residential walls use 1/2-inch (12.7mm) drywall. For ceilings, 5/8-inch (15.9mm) 'Type X' is recommended to prevent sagging and improve fire resistance. 1/4-inch drywall is used primarily for covering existing walls or for curved surfaces."
+      question: "How do I calculate drywall area for an irregularly shaped room?",
+      answer: "Break the room into rectangular sections and calculate the area of each section separately using length × height, then add all sections together. For example, an L-shaped room can be divided into two rectangles—calculate wall area for each rectangle, then sum them. Don't forget to subtract window and door openings (standard doors are ~20 sq ft, windows vary from 5–20 sq ft depending on size).",
     },
     {
-      question: "Do I need to account for openings like windows and doors?",
-      answer: "Yes, but with a caveat. While you technically don't cover openings, you often cannot use the cutout pieces elsewhere efficiently. Professional estimators calculate the full wall area (ignoring small openings) to ensure they have enough full sheets to span across headers and minimize joints around stress points like door corners."
+      question: "Should I add extra drywall sheets for waste?",
+      answer: "Yes, industry standards recommend adding 10-15% extra material to account for cuts, mistakes, and damage during installation and transport. For a project requiring 20 sheets, add 2-3 extra sheets (10-15%) to your order, bringing the total to 22-23 sheets. This buffer prevents costly job delays and reduces the need for additional trips to the supplier.",
     },
     {
-      question: "Why should I avoid lining up joints with door jambs?",
-      answer: "Aligning a drywall joint perfectly with the vertical edge of a door or window frame creates a continuous stress line. Vibrations from closing the door will almost certainly cause this joint to crack over time. Instead, 'flag' the sheet by cutting an L-shape so the joint lands above the middle of the header, distributing the stress."
+      question: "What thickness of drywall should I use?",
+      answer: "Standard residential drywall is 5/8 inch thick, which provides good fire resistance and sound dampening for most applications. For ceilings, 5/8 inch is recommended to prevent sagging, while 1/2 inch can be used on walls in non-critical areas. Check local building codes, as some require 5/8 inch for fire-rated assemblies, and commercial applications may have specific requirements.",
+    },
+    {
+      question: "How do I account for doors and windows in my drywall calculation?",
+      answer: "Measure the height and width of each opening and subtract its area from your total wall area. A standard 36-inch wide by 80-inch tall door opening equals 20 square feet; a typical window might be 3x4 feet (12 sq ft). For example, a 200 sq ft wall with one door and two windows would reduce to approximately 156 sq ft of actual drywall needed.",
+    },
+    {
+      question: "How much does a sheet of drywall cost?",
+      answer: "As of 2024-2025, standard 4x8 drywall sheets typically cost $12–$18 per sheet depending on location and supplier, with specialty types (fire-rated, moisture-resistant) running $18–$25 per sheet. A typical 1,000 sq ft project requiring 31 sheets might cost $370–$560 in materials alone, not including labor or fasteners. Bulk purchases and seasonal sales can reduce unit costs by 10-20%.",
+    },
+    {
+      question: "What fasteners and supplies do I need per sheet of drywall?",
+      answer: "A standard 4x8 drywall sheet requires approximately 40-50 drywall screws (if using screws) or 200-250 drywall nails (if using nails), spaced 12-16 inches apart on studs and joists. You'll also need drywall joint compound (mud), joint tape, primer, and paint—plan for approximately 1.5 gallons of joint compound and 1 roll of 250-foot tape per 100 sq ft. Budget roughly $100–$200 in supplies for a 1,000 sq ft project.",
+    },
+    {
+      question: "How do I calculate drywall for ceiling installation?",
+      answer: "Ceiling drywall calculation is straightforward: multiply room length by width to get the ceiling area. For a 12x15 foot ceiling, that's 180 square feet; divide by 32 (for 4x8 sheets) to get 5.625, so order 6 sheets minimum. Add 10-15% for waste, bringing the ceiling total to 7 sheets, and remember that 5/8-inch drywall is recommended for ceilings to prevent sagging over time.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -924,84 +940,277 @@ export default function DrywallAreaSheetsCalculator() {
 
   const editorial = (
     <div className="space-y-12">
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-            <BookOpen className="w-6 h-6 text-blue-500"/> Ultimate Drywall Guide
-         </h2>
-         <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-            <p>
-               Drywall installation (often called "hanging rock") is a skill that blends precision measurement with physical endurance. The goal is to cover the framing with as few sheets as possible to minimize the number of joints that need finishing. Fewer joints mean less taping, less mudding, and a flatter, better-looking wall.
-            </p>
-            <p>
-               Selecting the right drywall type is critical. <strong>Regular</strong> 1/2-inch board is standard for walls. <strong>Green Board</strong> or mold-resistant drywall is essential for bathrooms and kitchens. For garages or furnace rooms, local codes often require 5/8-inch <strong>Type X</strong> fire-resistant drywall. Always check your local building codes before purchasing materials.
-            </p>
-         </div>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Drywall Area & Sheets Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Drywall Area & Sheets Calculator is designed to help contractors, DIYers, and project managers accurately estimate the quantity of drywall sheets needed for walls, ceilings, and other surfaces. By inputting room dimensions and accounting for openings, this tool eliminates guesswork and prevents over-ordering or under-ordering materials, saving both time and money on construction projects.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator requires key measurements: the length and height of each wall section, ceiling dimensions, and the size of door and window openings. Most users input measurements in feet, and the calculator automatically converts these to total square footage, then determines how many standard 4x8 sheets (or alternative sizes) are needed based on the coverage area of 32 square feet per sheet.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results provide the total drywall sheets required plus a built-in waste factor (typically 10-15%) to account for cuts, breakage, and installation irregularities. Review the output sheet count, cross-reference it with your material budget and project timeline, and add fasteners, joint compound, and finishing supplies based on the coverage estimates provided.</p>
+        </div>
       </section>
 
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-         <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-            <AlertTriangle className="w-5 h-5"/> Costly Mistakes to Avoid
-         </h3>
-         <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-            <p><strong>1. Lining up joints with door jambs:</strong> This creates a weak point that will almost certainly crack due to door vibrations. Always cut the sheet around the opening ("flagging") so the joint lands above the middle of the header.</p>
-            <p><strong>2. Ignoring screw depth:</strong> Breaking the paper face with the screw head reduces holding power significantly. The screw head should sit just below the surface in a dimple, without tearing the paper.</p>
-            <p><strong>3. Not staggering joints:</strong> Never allow four corners of drywall sheets to meet at one point. Always stagger butt joints (the short ends) to create a stronger wall and hide seams better.</p>
-         </div>
+      {/* TABLE: Standard Drywall Sheet Sizes & Coverage */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard Drywall Sheet Sizes & Coverage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common drywall sheet dimensions used in residential and commercial construction with their respective coverage areas and approximate weights.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sheet Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coverage Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best Use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4x8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">57</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Residential walls and ceilings</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4x10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">71</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Faster coverage on tall walls</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4x12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Commercial projects, large walls</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4x16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">64</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">113</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Industrial and large-scale projects</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3x8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Soffits and narrow spaces</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Weights are for standard 5/8-inch fire-rated drywall; lightweight and specialty types may vary.</p>
       </section>
 
-      <section id="faq">
-         <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-         <div className="space-y-6">
-            {faqs.map((faq, i) => (
-               <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-                  <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                     {faq.answer}
-                  </p>
-               </div>
-            ))}
-         </div>
+      {/* TABLE: Drywall Requirements by Room Size (with 10% Waste) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Drywall Requirements by Room Size (with 10% Waste)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated sheets needed for complete room coverage including walls and ceiling at standard 8-foot ceiling height.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Dimensions</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Wall Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ceiling Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Sheets Needed (4x8)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10x10 ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12x12 ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">384</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">144</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12x15 ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">432</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15x20 ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">560</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20x20 ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">640</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume 8-foot ceiling height and account for one standard door (20 sq ft) and two windows (24 sq ft total). Actual requirements may vary based on openings and architectural features.</p>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* TABLE: Drywall Material Pricing & Fastener Estimates (2024-2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Drywall Material Pricing & Fastener Estimates (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical costs for drywall sheets, fasteners, and finishing supplies per 1,000 square feet of coverage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Quantity per 1,000 sq ft</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Unit Price</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Cost</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4x8 Drywall Sheets (standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31 sheets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14–$18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$434–$558</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Drywall Screws (boxes)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 boxes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$24–$36</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Joint Compound (buckets)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–5 buckets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12–$18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$48–$90</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Joint Tape (rolls)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$24–$32</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Primer & Paint (gallons)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–4 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20–$35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60–$140</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Total Estimated Materials</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$590–$856</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs vary by region, supplier, and specialty drywall types (fire-rated, moisture-resistant). Labor costs typically add $1.50–$3.50 per square foot to total project cost.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always measure twice and account for all wall sections, including closets, alcoves, and half-walls—missing even one wall can result in material shortages and project delays.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When calculating ceiling drywall, use 5/8-inch thickness instead of 1/2-inch to prevent sagging over time; this thickness is also recommended for fire-rated assemblies in most building codes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Order 10-15% extra material beyond your calculated needs; the buffer covers mistakes, damage during transport and installation, and future repairs without requiring additional supplier trips.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Group openings (doors and windows) by wall section for easier subtraction; a single large opening is easier to account for than multiple small ones scattered across different walls.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to subtract door and window openings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many DIYers calculate total wall area without subtracting openings, leading to over-ordering by 5-15 sheets on larger projects. Always measure and subtract each door (typically 20 sq ft), window (5–20 sq ft), and alcove opening from your total wall area before dividing by sheet coverage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using wrong sheet size calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming all projects use 4x8 sheets when 4x12 or 4x10 sheets might be more efficient can result in unnecessary waste and extra fastener expenses. Check project requirements and ceiling height; taller walls or commercial projects may benefit from larger sheet sizes that reduce seams and labor time.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting to add waste factor</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating exact drywall needs without a 10-15% buffer for cuts and mistakes often results in running short mid-project, forcing costly expedited orders and schedule delays. Always add extra sheets upfront—the material is cheaper than the labor and time lost waiting for resupply.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for architectural features</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Vaulted ceilings, sloped walls, soffits, and accent walls require additional drywall beyond standard rectangular calculations, and skipping these can leave sections unfinished. Measure and calculate non-standard features separately, or request professional estimates if the room layout is complex.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many sheets of drywall do I need for a 12x12 foot room?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For a 12x12 foot room with 8-foot ceilings, you'll have approximately 576 square feet of wall area (accounting for door and window openings). Standard 4x8 drywall sheets cover 32 square feet each, so you'd need roughly 18 sheets for the walls alone, plus additional sheets for the ceiling. Adding 10-15% for waste and cuts, plan for approximately 23-25 sheets total for a complete room.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard size of a drywall sheet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The most common drywall sheet size is 4 feet wide by 8 feet long (4x8), which covers 32 square feet and weighs approximately 57 pounds. Other standard sizes include 4x10 (40 sq ft, 71 lbs), 4x12 (48 sq ft, 85 lbs), and 4x16 (64 sq ft, 113 lbs). Residential projects typically use 4x8 sheets for their ease of handling and installation, while larger commercial projects may use 4x12 or 4x16 for faster coverage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate drywall area for an irregularly shaped room?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Break the room into rectangular sections and calculate the area of each section separately using length × height, then add all sections together. For example, an L-shaped room can be divided into two rectangles—calculate wall area for each rectangle, then sum them. Don't forget to subtract window and door openings (standard doors are ~20 sq ft, windows vary from 5–20 sq ft depending on size).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I add extra drywall sheets for waste?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, industry standards recommend adding 10-15% extra material to account for cuts, mistakes, and damage during installation and transport. For a project requiring 20 sheets, add 2-3 extra sheets (10-15%) to your order, bringing the total to 22-23 sheets. This buffer prevents costly job delays and reduces the need for additional trips to the supplier.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What thickness of drywall should I use?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard residential drywall is 5/8 inch thick, which provides good fire resistance and sound dampening for most applications. For ceilings, 5/8 inch is recommended to prevent sagging, while 1/2 inch can be used on walls in non-critical areas. Check local building codes, as some require 5/8 inch for fire-rated assemblies, and commercial applications may have specific requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for doors and windows in my drywall calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Measure the height and width of each opening and subtract its area from your total wall area. A standard 36-inch wide by 80-inch tall door opening equals 20 square feet; a typical window might be 3x4 feet (12 sq ft). For example, a 200 sq ft wall with one door and two windows would reduce to approximately 156 sq ft of actual drywall needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does a sheet of drywall cost?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As of 2024-2025, standard 4x8 drywall sheets typically cost $12–$18 per sheet depending on location and supplier, with specialty types (fire-rated, moisture-resistant) running $18–$25 per sheet. A typical 1,000 sq ft project requiring 31 sheets might cost $370–$560 in materials alone, not including labor or fasteners. Bulk purchases and seasonal sales can reduce unit costs by 10-20%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What fasteners and supplies do I need per sheet of drywall?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A standard 4x8 drywall sheet requires approximately 40-50 drywall screws (if using screws) or 200-250 drywall nails (if using nails), spaced 12-16 inches apart on studs and joists. You'll also need drywall joint compound (mud), joint tape, primer, and paint—plan for approximately 1.5 gallons of joint compound and 1 roll of 250-foot tape per 100 sq ft. Budget roughly $100–$200 in supplies for a 1,000 sq ft project.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate drywall for ceiling installation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Ceiling drywall calculation is straightforward: multiply room length by width to get the ceiling area. For a 12x15 foot ceiling, that's 180 square feet; divide by 32 (for 4x8 sheets) to get 5.625, so order 6 sheets minimum. Add 10-15% for waste, bringing the ceiling total to 7 sheets, and remember that 5/8-inch drywall is recommended for ceilings to prevent sagging over time.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Drywall%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Drywall Installation - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Drywall Installation from the trusted team at This Old House.
-            </p>
+            <a href="https://www.gypsum.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Gypsum Association: Drywall Installation Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official industry guidance on drywall sizing, spacing, fastening, and installation best practices for residential and commercial applications.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Drywall%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Drywall Installation - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Drywall Installation, helping you get the job done right.
-            </p>
+            <a href="https://www.iccsafe.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) - Gypsum Board Assemblies</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Building code requirements for drywall thickness, fire ratings, and structural assembly specifications that vary by region and building type.</p>
           </li>
           <li>
-            <a href="https://www.energy.gov/search/site?keywords=Drywall%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Drywall Installation - Energy.gov
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Official Department of Energy guidelines for energy efficiency and Drywall Installation to save money and improve home comfort.
-            </p>
+            <a href="https://www.nahb.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NAHB (National Association of Home Builders) - Construction Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Guidelines for residential construction material specifications, including drywall grades, moisture-resistant types, and installation methods.</p>
           </li>
           <li>
-            <a href="https://www.ashrae.org/search?q=Drywall%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Drywall Installation - ASHRAE
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical standards and guidelines for HVAC and building systems related to Drywall Installation.
-            </p>
+            <a href="https://www.udaca.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">United States Drywall & Acoustical Contractors Association (UDACA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional standards and technical resources for drywall contractors covering measurement, estimation, and quality control procedures.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

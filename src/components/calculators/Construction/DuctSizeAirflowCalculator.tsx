@@ -130,39 +130,41 @@ export default function DuctSizeAirflowCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is a duct size and airflow calculator used for?",
-      answer:
-        "A duct size and airflow calculator helps HVAC professionals and contractors determine the appropriate duct dimensions and the amount of material needed for duct fabrication. It ensures that ducts are sized correctly to handle the required airflow efficiently, minimizing energy loss and noise while maintaining indoor air quality. This calculator also estimates material quantities and costs, aiding in project planning and budgeting.",
+      question: "What airflow velocity should I use for residential ductwork?",
+      answer: "For residential HVAC systems, recommended airflow velocity typically ranges from 600 to 900 feet per minute (FPM) in main ducts and 400 to 600 FPM in branch ducts. Velocities above 1,000 FPM can cause excessive noise and friction losses, while velocities below 400 FPM may result in inadequate air distribution and potential dust settling. Most residential systems operate optimally at 700-800 FPM in the main trunk.",
     },
     {
-      question:
-        "Why is precision important when calculating duct size and material requirements?",
-      answer:
-        "Precision in duct sizing and material estimation is critical to avoid costly mistakes such as ordering excess material or fabricating ducts that do not meet airflow requirements. Incorrect duct sizes can lead to inefficient HVAC system performance, increased energy consumption, and uncomfortable indoor environments. Accurate calculations help optimize material usage, reduce waste, and ensure compliance with design specifications and building codes.",
+      question: "How do I calculate the required duct diameter for a specific CFM requirement?",
+      answer: "Duct diameter can be calculated using the formula: Diameter = √(4 × CFM ÷ (π × Velocity)). For example, a 1,200 CFM system at 800 FPM velocity would require approximately a 4.2-inch diameter duct. Online calculators simplify this by accepting CFM and desired velocity, automatically computing the required round or rectangular duct dimensions to minimize pressure drop.",
     },
     {
-      question: "What types of materials are commonly used for duct fabrication?",
-      answer:
-        "Common duct materials include galvanized steel, aluminum, and flexible ducting materials like insulated fiberglass. Galvanized steel is widely used for its durability and corrosion resistance, while aluminum offers a lightweight alternative. Flexible ducts are often used for short runs or tight spaces. The choice of material affects cost, installation ease, and longevity, so selecting the right type is essential for project success.",
+      question: "What's the difference between round and rectangular ductwork?",
+      answer: "Round ducts are more efficient, offering lower friction loss and better airflow velocity distribution, making them ideal for main trunks where space permits. Rectangular ducts fit better in confined spaces like between joists or in attics but experience higher friction loss due to greater surface area per unit volume. For the same CFM, round ducts typically require smaller cross-sectional areas and deliver superior performance.",
     },
     {
-      question:
-        "How do waste margins affect the calculation of material quantities?",
-      answer:
-        "Waste margins account for material lost due to cutting, fitting, and errors during installation. Including a waste percentage in calculations ensures that enough material is ordered to complete the job without delays. Typically, a 5-15% waste margin is added depending on project complexity. Neglecting waste can result in material shortages, while overestimating waste can increase costs unnecessarily.",
+      question: "How does duct insulation affect airflow calculations?",
+      answer: "Duct insulation itself does not directly affect airflow velocity or CFM calculations, but it reduces thermal losses and improves system efficiency. However, improperly installed insulation can obstruct airflow if it bulges into the duct interior, effectively reducing the duct's cross-sectional area and increasing velocity. Insulation R-values typically range from R-4 to R-8 for residential applications.",
     },
     {
-      question:
-        "Can this calculator handle both metric and imperial units for duct sizing?",
-      answer:
-        "Yes, this calculator supports both metric (millimeters and meters) and imperial (inches and feet) units. It automatically converts inputs to a consistent unit system for accurate calculations. Users can select their preferred unit system to match project specifications or regional standards, ensuring flexibility and ease of use.",
+      question: "What CFM capacity do I need for a typical 2,000 sq ft home?",
+      answer: "A standard residential rule of thumb is 1 CFM per conditioned square foot, meaning a 2,000 sq ft home requires approximately 2,000 CFM capacity. However, this varies based on climate zone, insulation levels, and occupancy. High-performance or tight homes may require only 1,200-1,500 CFM, while older or warmer climates might need 2,200-2,500 CFM.",
     },
     {
-      question:
-        "How does the material size selection impact the number of units calculated?",
-      answer:
-        "Material size refers to the dimensions of the duct sheet or panel used for fabrication. Selecting a larger sheet size means each unit covers more surface area, potentially reducing the total number of units needed. Conversely, smaller sheet sizes may increase the number of units required. This selection helps tailor the calculation to available materials and optimize ordering quantities.",
+      question: "How do friction losses impact duct sizing?",
+      answer: "Friction loss increases as airflow velocity increases and as duct surface area increases, typically measured in inches of water column (IWC) per 100 feet of duct. A well-designed residential system should not exceed 0.10 IWC per 100 feet in main ducts. Undersizing ducts dramatically increases friction loss; a 3-inch duct carrying 1,000 CFM experiences roughly 3-4 times more friction loss than a properly sized 4.5-inch duct.",
     },
+    {
+      question: "What are minimum and maximum duct sizes for residential HVAC systems?",
+      answer: "Residential ductwork typically ranges from 3 inches (minimum for branch runs) to 14 inches (maximum for main supply trunks) in diameter for round ducts. Rectangular equivalents might range from 3×6 inches to 10×20 inches. Ducts smaller than 3 inches create excessive velocity and noise, while oversizing beyond system requirements wastes materials and installation costs without performance benefits.",
+    },
+    {
+      question: "How do I account for multiple branch ducts in my airflow calculations?",
+      answer: "When designing a system with multiple branch ducts, the total CFM must be divided among branches proportionally based on their intended coverage area. For example, if three branch ducts serve equal zones in a 2,000 CFM system, each branch should ideally receive approximately 650-700 CFM. Use a duct calculator to size each branch individually, ensuring all branches maintain velocity within the 400-600 FPM range to prevent uneven distribution.",
+    },
+    {
+      question: "What external factors should I consider when sizing ductwork?",
+      answer: "Key factors include total duct length (longer runs require larger ducts to offset friction losses), number of elbows and fittings (each adds equivalent length), elevation changes, filter restrictions, and equipment specifications. A 50-foot duct run with four 90-degree elbows may require 15-20% larger sizing than a straight 50-foot run. Always consult your HVAC equipment's technical specifications for static pressure limits, typically 0.5-1.0 IWC for residential systems.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -338,170 +340,317 @@ export default function DuctSizeAirflowCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Duct
-          Size & Airflow Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Duct Size & Airflow Calculator is an essential tool for HVAC
-            professionals, contractors, and engineers involved in designing and
-            fabricating ductwork systems. It helps determine the precise amount of
-            material needed to construct ducts based on their dimensions and
-            airflow requirements. Accurate duct sizing ensures optimal airflow,
-            energy efficiency, and system performance.
-          </p>
-          <p>
-            Precision in duct sizing is crucial because undersized ducts can cause
-            excessive noise, increased energy consumption, and poor air
-            distribution, while oversized ducts lead to unnecessary material costs
-            and installation difficulties. This calculator incorporates waste
-            margins to account for cutting losses and fitting adjustments,
-            minimizing project delays and cost overruns.
-          </p>
-          <p>
-            Various materials are used for duct fabrication, including galvanized
-            steel, aluminum, and flexible ducting. Each material type has unique
-            properties affecting durability, cost, and installation methods. This
-            calculator allows you to select standard or large sheet sizes to match
-            your material supply, helping optimize ordering quantities and reduce
-            waste.
-          </p>
-          <p>
-            By using this calculator, you can quickly estimate the number of duct
-            material units required, incorporate waste factors, and calculate
-            approximate costs based on your pricing inputs. This streamlines
-            project planning and budgeting, ensuring efficient and cost-effective
-            ductwork installation.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Duct Size & Airflow Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Duct Size & Airflow Calculator helps HVAC professionals, contractors, and homeowners determine the correct duct dimensions needed to deliver the required airflow volume (measured in CFM—cubic feet per minute) throughout a residential or commercial space. Properly sized ductwork is critical to system efficiency, comfort, and noise control; undersized ducts create excessive pressure drop and noise, while oversized ducts waste money and may result in poor air distribution.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator requires three key inputs: the desired airflow volume in CFM (based on the building's square footage and climate), the type of ductwork (round or rectangular), and the target airflow velocity in feet per minute (FPM). Velocity determines how fast air travels through the duct; residential main trunks typically operate at 700–900 FPM, while branch ducts should stay between 400–600 FPM to minimize noise. You may also input duct length and the number of fittings to account for friction losses.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs the required duct dimensions (diameter for round, width and height for rectangular), the resulting velocity, and the estimated friction loss in inches of water column per 100 feet. Compare these results against your HVAC equipment's static pressure rating (usually 0.5–1.0 IWC for residential units) to ensure your system can handle the calculated losses. If friction loss is excessive, the calculator suggests increasing duct size; if velocity is too high, reducing CFM or increasing duct size will help.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure duct dimensions at multiple points
-            to account for any irregularities or bends that may affect material
-            requirements.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Adding a waste margin of 10% to 15% is
-            standard practice in duct fabrication to cover cutting errors and
-            fitting adjustments.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering slightly larger sheet sizes
-            can reduce the number of joints and seams, improving airflow and
-            reducing installation time.
-          </li>
-          <li>
-            <strong>Tip:</strong> Use this calculator early in the project to help
-            negotiate better pricing with suppliers by knowing your exact material
-            needs.
-          </li>
+      {/* TABLE: Standard Round Duct Sizing by CFM and Velocity */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard Round Duct Sizing by CFM and Velocity</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the required round duct diameter in inches for various CFM flows at recommended residential velocities.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">CFM</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">600 FPM (Branch)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">700 FPM (Branch)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">800 FPM (Main)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">900 FPM (Main)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.6</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.6</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.9</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.4</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.7</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Diameters rounded to nearest 0.1 inch. Select velocity based on duct location: branch ducts typically use lower velocities to minimize noise; main trunks tolerate higher velocities.</p>
+      </section>
+
+      {/* TABLE: Friction Loss Reference for Round Ductwork */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Friction Loss Reference for Round Ductwork</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Friction loss in inches of water column per 100 feet of straight duct at various CFM levels and common duct sizes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Duct Diameter (in.)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1,000 CFM Loss</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1,500 CFM Loss</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2,000 CFM Loss</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2,500 CFM Loss</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.82 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.84 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.26 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.06 IWC</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.48 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.08 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.92 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.98 IWC</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.30 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.67 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.20 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.86 IWC</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.20 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.44 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.79 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.22 IWC</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.14 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.31 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.55 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.85 IWC</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.07 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.16 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.29 IWC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.45 IWC</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values assume smooth sheet metal ducts with minimal fittings. Flexible ducts typically increase friction loss by 20-40%. Total system static pressure limit for residential systems should not exceed 1.0 IWC.</p>
+      </section>
+
+      {/* TABLE: CFM Requirements by Home Size and Climate Zone */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">CFM Requirements by Home Size and Climate Zone</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended total HVAC system capacity based on conditioned square footage and climate severity.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Home Size (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mild Climate (CFM)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Climate (CFM)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severe Climate (CFM)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000-1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,100-1,300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,200-1,500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500-1,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,650-1,950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800-2,250</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000-2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,200-2,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,400-3,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,500-3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,750-3,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000-3,750</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000-3,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,300-3,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,600-4,500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500-4,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,850-4,550</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,200-5,250</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Mild climates: average temps 55-75°F; Moderate: 45-85°F; Severe: &lt;45°F or &gt;85°F. These are baseline estimates; high-performance homes may use 10-20% less, while older homes may require 10-20% more.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify your home's total CFM requirement before designing ductwork—use the 1 CFM per square foot rule as a baseline, then adjust up or down based on climate severity, insulation quality, and equipment specifications to avoid over- or under-sizing.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Design main trunk ducts for 700–800 FPM and branch ducts for 400–600 FPM; this balance minimizes friction losses and noise while ensuring adequate velocity for proper air distribution to all rooms.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for all ductwork components when calculating friction loss, not just straight runs—each 90-degree elbow adds roughly 20–30 feet of equivalent length, and dampers, filters, and coil restrictions also increase static pressure demand.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use smooth sheet metal ducts instead of flexible ducts in main trunks whenever possible; flexible ducts increase friction loss by 20–40% and should be reserved for short, final branch runs to minimize pressure drop and energy waste.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring Unit Consistency:</strong> Mixing metric and imperial
-            units without proper conversion leads to inaccurate calculations and
-            costly errors. Always double-check your units before inputting values.
-          </p>
-          <p>
-            <strong>2. Underestimating Waste Margin:</strong> Failing to include an
-            adequate waste percentage can cause material shortages, project delays,
-            and increased labor costs.
-          </p>
-          <p>
-            <strong>3. Overlooking Material Size Impact:</strong> Not selecting the
-            correct material sheet size can result in ordering too many or too few
-            units, affecting budget and installation efficiency.
-          </p>
-          <p>
-            <strong>4. Neglecting Duct Shape Variations:</strong> This calculator
-            assumes rectangular ducts. For round or oval ducts, specialized
-            calculations are necessary.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Friction Loss and Static Pressure</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many installers size ducts based on CFM alone without calculating friction losses, resulting in systems that cannot deliver the designed airflow. Your blower motor has a maximum static pressure limit (typically 0.5–1.0 IWC for residential); exceeding this reduces CFM output and strains the equipment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Excessive Duct Velocity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Duct velocities above 1,000 FPM cause severe noise, dramatically increase friction loss, and waste blower energy. Branch ducts running at 800+ FPM will generate whistling and rushing sounds that homeowners find unacceptable.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Oversizing the Entire System</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Designing ductwork for 1.5× the calculated CFM requirement does not improve comfort and wastes installation cost, materials, and energy. Oversized systems short-cycle and fail to properly dehumidify, particularly in cooling applications.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Failing to Balance Multiple Branch Ducts</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">When a main trunk splits into multiple branch runs without proper balancing dampers, high-velocity branches will steal airflow from lower-velocity branches, causing uneven temperature and comfort across the home.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What airflow velocity should I use for residential ductwork?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For residential HVAC systems, recommended airflow velocity typically ranges from 600 to 900 feet per minute (FPM) in main ducts and 400 to 600 FPM in branch ducts. Velocities above 1,000 FPM can cause excessive noise and friction losses, while velocities below 400 FPM may result in inadequate air distribution and potential dust settling. Most residential systems operate optimally at 700-800 FPM in the main trunk.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the required duct diameter for a specific CFM requirement?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Duct diameter can be calculated using the formula: Diameter = √(4 × CFM ÷ (π × Velocity)). For example, a 1,200 CFM system at 800 FPM velocity would require approximately a 4.2-inch diameter duct. Online calculators simplify this by accepting CFM and desired velocity, automatically computing the required round or rectangular duct dimensions to minimize pressure drop.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between round and rectangular ductwork?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Round ducts are more efficient, offering lower friction loss and better airflow velocity distribution, making them ideal for main trunks where space permits. Rectangular ducts fit better in confined spaces like between joists or in attics but experience higher friction loss due to greater surface area per unit volume. For the same CFM, round ducts typically require smaller cross-sectional areas and deliver superior performance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does duct insulation affect airflow calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Duct insulation itself does not directly affect airflow velocity or CFM calculations, but it reduces thermal losses and improves system efficiency. However, improperly installed insulation can obstruct airflow if it bulges into the duct interior, effectively reducing the duct's cross-sectional area and increasing velocity. Insulation R-values typically range from R-4 to R-8 for residential applications.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What CFM capacity do I need for a typical 2,000 sq ft home?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A standard residential rule of thumb is 1 CFM per conditioned square foot, meaning a 2,000 sq ft home requires approximately 2,000 CFM capacity. However, this varies based on climate zone, insulation levels, and occupancy. High-performance or tight homes may require only 1,200-1,500 CFM, while older or warmer climates might need 2,200-2,500 CFM.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do friction losses impact duct sizing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Friction loss increases as airflow velocity increases and as duct surface area increases, typically measured in inches of water column (IWC) per 100 feet of duct. A well-designed residential system should not exceed 0.10 IWC per 100 feet in main ducts. Undersizing ducts dramatically increases friction loss; a 3-inch duct carrying 1,000 CFM experiences roughly 3-4 times more friction loss than a properly sized 4.5-inch duct.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are minimum and maximum duct sizes for residential HVAC systems?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Residential ductwork typically ranges from 3 inches (minimum for branch runs) to 14 inches (maximum for main supply trunks) in diameter for round ducts. Rectangular equivalents might range from 3×6 inches to 10×20 inches. Ducts smaller than 3 inches create excessive velocity and noise, while oversizing beyond system requirements wastes materials and installation costs without performance benefits.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for multiple branch ducts in my airflow calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">When designing a system with multiple branch ducts, the total CFM must be divided among branches proportionally based on their intended coverage area. For example, if three branch ducts serve equal zones in a 2,000 CFM system, each branch should ideally receive approximately 650-700 CFM. Use a duct calculator to size each branch individually, ensuring all branches maintain velocity within the 400-600 FPM range to prevent uneven distribution.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What external factors should I consider when sizing ductwork?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Key factors include total duct length (longer runs require larger ducts to offset friction losses), number of elbows and fittings (each adds equivalent length), elevation changes, filter restrictions, and equipment specifications. A 50-foot duct run with four 90-degree elbows may require 15-20% larger sizing than a straight 50-foot run. Always consult your HVAC equipment's technical specifications for static pressure limits, typically 0.5-1.0 IWC for residential systems.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Ductwork%20Sizing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Ductwork Sizing - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Ductwork Sizing from the trusted team at This Old House.
-            </p>
+            <a href="https://www.ashrae.org/technical-resources/standards-and-guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASHRAE Standard 62.1 – Ventilation and Indoor Air Quality</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standard for minimum ventilation and airflow requirements in residential and commercial buildings.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Ductwork%20Sizing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Ductwork Sizing - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Ductwork Sizing, helping you get the job done right.
-            </p>
+            <a href="https://www.epa.gov/indoor-air-quality" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Environmental Protection Agency – Indoor Air Quality Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal guidance on maintaining proper HVAC airflow and ductwork maintenance for indoor air quality.</p>
           </li>
           <li>
-            <a href="https://www.energy.gov/search/site?keywords=Ductwork%20Sizing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Ductwork Sizing - Energy.gov
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Official Department of Energy guidelines for energy efficiency and Ductwork Sizing to save money and improve home comfort.
-            </p>
+            <a href="https://www.smacna.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Sheet Metal and Air Conditioning Contractors' National Association (SMACNA) Duct Design Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional standards for duct sizing, installation, and friction loss calculations used by HVAC contractors nationwide.</p>
           </li>
           <li>
-            <a href="https://www.ashrae.org/search?q=Ductwork%20Sizing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Ductwork Sizing - ASHRAE
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical standards and guidelines for HVAC and building systems related to Ductwork Sizing.
-            </p>
+            <a href="https://www.iccsafe.org/products-and-services/iecc/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Energy Conservation Code (IECC) – Mechanical Systems Chapter</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Building code requirements for HVAC system design, ductwork sizing, and energy efficiency standards applicable to most U.S. jurisdictions.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

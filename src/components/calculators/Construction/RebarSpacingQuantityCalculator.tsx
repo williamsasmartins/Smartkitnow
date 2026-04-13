@@ -134,35 +134,41 @@ export default function RebarSpacingQuantityCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is the importance of rebar spacing in concrete structures?",
-      answer:
-        "Rebar spacing is critical to ensure the structural integrity and load distribution of concrete elements. Proper spacing prevents cracking, controls shrinkage, and ensures the concrete can bear the intended loads safely. Incorrect spacing can lead to weak points and premature failure.",
+      question: "What is the standard rebar spacing requirement for concrete slabs?",
+      answer: "The standard rebar spacing for most concrete slabs is 12 inches on center (OC) in both directions, which provides adequate reinforcement for typical residential and light commercial applications. However, spacing can range from 6 inches OC for high-stress areas to 18 inches OC for lower-stress applications. Always consult local building codes and structural engineer specifications, as requirements vary based on slab thickness, concrete strength, and load conditions.",
     },
     {
-      question: "How do I convert imperial measurements to metric for this calculator?",
-      answer:
-        "This calculator automatically converts imperial inputs (feet for length/width, inches for spacing) into metric units internally for accurate calculations. Simply select 'Imperial' as your unit system and input your dimensions accordingly.",
+      question: "How do I calculate the number of rebar pieces needed for my project?",
+      answer: "To calculate rebar quantity, divide your total length (in the same direction) by the center-to-center spacing, then add 1 for the starting piece. For example, a 20-foot slab with 12-inch spacing requires (20 × 12 ÷ 12) + 1 = 21 pieces of rebar. Repeat this calculation for the perpendicular direction and multiply the two results to get the total number of intersecting rebar pieces needed.",
     },
     {
-      question: "Why is it necessary to include a waste margin in rebar quantity calculations?",
-      answer:
-        "Including a waste margin accounts for cutting losses, overlaps, bends, and potential errors during installation. Typically, a 5-10% waste factor is added to ensure you order enough material without costly shortages.",
+      question: "What spacing should I use for rebar in foundation walls?",
+      answer: "Foundation walls typically use 12 inches OC vertical and 12-18 inches OC horizontal rebar spacing, depending on wall height and soil pressure. For walls taller than 8 feet or in high-pressure soil conditions, engineers often specify tighter spacing of 8-10 inches OC to improve strength and crack resistance. The calculator can adjust for these variables when you input your wall dimensions and local code requirements.",
     },
     {
-      question: "How does rebar diameter affect quantity calculations?",
-      answer:
-        "While diameter does not directly affect the number of bars needed, it influences the strength and spacing requirements per design codes. Larger diameters may require greater spacing and affect the total weight and cost of the rebar used.",
+      question: "How much weight does one piece of rebar add to my project estimate?",
+      answer: "A standard #4 rebar (½-inch diameter) weighs approximately 0.668 pounds per linear foot, while #5 rebar weighs 1.043 pounds per foot, and #6 rebar weighs 1.502 pounds per foot. For a 20-foot-long #4 rebar piece, total weight is roughly 13.36 pounds. Knowing the total rebar quantity and diameter allows you to calculate material weight, which affects shipping costs and labor requirements.",
     },
     {
-      question: "Can this calculator be used for different types of concrete elements?",
-      answer:
-        "Yes, this calculator is suitable for slabs, beams, columns, and walls where rebar is placed in a grid pattern. For complex shapes or irregular spacing, additional engineering calculations may be necessary.",
+      question: "Can I use 18-inch spacing instead of 12-inch to save money?",
+      answer: "While 18-inch spacing reduces material costs by approximately 33% compared to 12-inch spacing, it may violate building codes or compromise structural integrity for your specific application. Wider spacing is only acceptable for lower-load applications like non-structural slabs or light residential work, and must be approved by a structural engineer and local building department. Always prioritize code compliance and safety over material savings.",
     },
     {
-      question: "What are the standard lengths of rebar bars used in construction?",
-      answer:
-        "Standard rebar lengths vary by region but commonly are 12 meters (about 40 feet) for standard bars and up to 16 meters for larger sizes. This calculator allows you to select between standard and large sizes to match your supplier's offerings.",
+      question: "What is the difference between #4, #5, and #6 rebar sizes?",
+      answer: "Rebar sizes are designated by eighths of an inch: #4 rebar is ½-inch in diameter, #5 is ⅝-inch, and #6 is ¾-inch. Larger rebar provides greater load capacity and requires wider spacing, while smaller rebar accommodates tighter spacing and is better for congested concrete areas. Your structural plans will specify which size is required based on the stresses and spans in your project.",
     },
+    {
+      question: "How does concrete strength (PSI) affect rebar spacing requirements?",
+      answer: "Higher concrete strength (PSI) allows for wider rebar spacing because the concrete itself can distribute loads more effectively. For example, 3,000 PSI concrete may allow 12-inch spacing, while 4,000 PSI concrete might permit 15-18 inch spacing for the same application. Conversely, lower-strength concrete (&lt;3,000 PSI) typically requires tighter spacing of 8-10 inches OC to ensure adequate reinforcement and crack control.",
+    },
+    {
+      question: "What happens if I don't space rebar correctly?",
+      answer: "Inadequate rebar spacing (&gt;18 inches OC for standard slabs) can result in wider cracks, reduced load capacity, and potential structural failure under stress. Overly tight spacing (&lt;6 inches OC) wastes material and may create congestion that prevents proper concrete consolidation, leading to voids and weak spots. The calculator ensures you meet code minimums while optimizing material efficiency.",
+    },
+    {
+      question: "Do I need to account for lap lengths when calculating total rebar needed?",
+      answer: "Yes, lap lengths (typically 40-50 times the bar diameter, or 20-25 inches for #4 rebar) must be added to your total rebar length requirement when pieces need to overlap for strength. If your slab is 30 feet long and requires a lap every 20 feet, you need to account for additional material beyond the base length. Advanced calculators include lap length fields to automatically adjust material quantities for overlapping pieces.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -374,124 +380,309 @@ export default function RebarSpacingQuantityCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Rebar Spacing & Quantity Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            Rebar spacing and quantity calculation is a fundamental step in the planning and execution of reinforced concrete structures. It involves determining the number and length of steel reinforcement bars (rebars) required to provide adequate strength and durability to concrete elements such as slabs, beams, columns, and walls. Accurate calculations ensure structural safety, cost efficiency, and compliance with engineering standards.
-          </p>
-          <p>
-            Precision in rebar spacing is crucial because it affects the load distribution and crack control within the concrete. Too wide spacing can lead to weak points and structural failure, while overly dense spacing increases material costs unnecessarily. This calculator helps you find the optimal number of rebars based on your project dimensions and spacing requirements.
-          </p>
-          <p>
-            The calculator supports both metric and imperial units, allowing you to input dimensions in meters or feet and spacing in centimeters or inches. It also considers the diameter of the rebar, which influences spacing requirements and overall strength. By including a waste margin, it accounts for cutting losses and installation adjustments.
-          </p>
-          <p>
-            Different types of rebar materials and sizes are available, typically ranging from standard 12-meter bars to larger 16-meter bars. Selecting the correct size and quantity helps streamline ordering and reduce waste. This tool also estimates the cost based on your input price per meter, assisting in budgeting and procurement.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Rebar Spacing & Quantity Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Rebar Spacing & Quantity Calculator is an essential tool for construction professionals, engineers, and DIY builders who need to determine how much reinforcement steel is required for concrete projects. This calculator saves time, reduces material waste, and ensures compliance with building codes by automatically computing the number of rebar pieces needed based on your project dimensions and spacing requirements. Whether you're pouring a residential foundation, driveway, or commercial floor slab, accurate rebar calculations are critical for structural integrity and cost control.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll input your slab or structure length and width (in feet), select your preferred rebar size (#4, #5, #6, etc.), and specify the center-to-center spacing in inches. The calculator also allows you to account for lap lengths if your rebar pieces will overlap for added strength. These inputs directly determine how many individual rebar pieces you'll need and the total linear footage of material required for your project.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator will output the total number of rebar pieces in each direction, the total linear feet of rebar needed, and often an estimated material weight and cost. Use these results to order materials from suppliers, estimate labor requirements, and verify that your spacing meets local building codes and structural engineer specifications. Always cross-reference the output with your project blueprints and local codes before purchasing or installing rebar.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always double-check your rebar spacing against local building codes and engineering specifications to ensure compliance and safety.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Rebar is often coated with epoxy or galvanized to prevent corrosion, especially in environments exposed to moisture or chemicals.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering slightly more rebar than calculated (5-10% waste) can save costly delays caused by shortages on site.
-          </li>
-          <li>
-            <strong>Tip:</strong> When working with imperial units, converting spacing to metric internally ensures more precise calculations and reduces rounding errors.
-          </li>
+      {/* TABLE: Standard Rebar Sizes and Properties */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard Rebar Sizes and Properties</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the common rebar sizes used in construction with their diameters, weights, and typical applications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Rebar Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Nominal Diameter (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight per Linear Foot (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Applications</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">#3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.375</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.376</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Smaller slabs, lightweight applications</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">#4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.668</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard slabs, most residential work</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">#5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.043</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Thicker slabs, higher-load applications</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">#6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.502</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Foundations, heavy-duty slabs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">#7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.044</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Bridge decks, heavy commercial work</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">#8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.670</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Major structural elements, massive loads</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Weights are for Grade 60 rebar in standard conditions. Consult supplier specifications for exact weights.</p>
+      </section>
+
+      {/* TABLE: Recommended Rebar Spacing by Application */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Rebar Spacing by Application</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table provides standard spacing recommendations for different concrete applications according to common building codes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Application</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Standard Spacing (inches OC)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Spacing</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Spacing</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Code Reference</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential floor slabs (4-6 inches)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">ACI 318</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Foundation walls (8 feet tall)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">ACI 318</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Concrete beams</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">ACI 318</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Driveway slabs (4 inches)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Local Code</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Basement slabs-on-grade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">ACI 318</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Elevated slabs (&gt;6 inches)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Structural Plans</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Spacing requirements vary by jurisdiction and soil conditions. Always verify with local building codes and structural engineer specifications before construction.</p>
+      </section>
+
+      {/* TABLE: Material Cost and Quantity Comparison by Spacing */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Material Cost and Quantity Comparison by Spacing</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares total rebar quantity and estimated material costs for a 20×20-foot slab at different spacing intervals.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Spacing (inches OC)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Number of Bars Each Direction</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Intersections</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated #4 Rebar Length (feet)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Est. Material Cost (12"-spacing baseline)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">41</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1681</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">820</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">961</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">620</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">121%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">441</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">420</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">289</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">340</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">81%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">196</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">67%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cost percentages are relative to 12-inch spacing baseline. Actual costs vary by region, rebar grade, and supplier pricing. This assumes 20-foot pieces and does not include lap lengths.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify spacing requirements with your local building department and structural engineer before using the calculator results—codes vary significantly by region, soil type, and application.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for lap lengths (typically 40-50 bar diameters) when overlapping rebar pieces; the calculator can add these automatically if you specify lap requirements.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use #4 rebar for most standard residential slabs; upgrading to #5 or #6 is only necessary for thicker slabs, heavier loads, or when structural plans specify.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Double-check your input dimensions (length × width in feet) before calculating—small errors in measurements result in significant material quantity discrepancies and cost overruns.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider tighter spacing (8-10 inches OC) for high-stress areas like support points, load-bearing walls, or locations near openings to improve structural performance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Round up your calculator results when ordering materials to account for breakage, waste, and field adjustments—typically add 5-10% to the computed quantity.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Unit Conversion:</strong> Mixing metric and imperial units without proper conversion can lead to significant miscalculations in rebar quantity.
-          </p>
-          <p>
-            <strong>2. Ignoring Waste Margin:</strong> Failing to include a waste factor often results in ordering insufficient material, causing project delays and increased costs.
-          </p>
-          <p>
-            <strong>3. Overlooking Rebar Diameter Impact:</strong> Using the wrong diameter can affect spacing requirements and structural integrity.
-          </p>
-          <p>
-            <strong>4. Not Rounding Up Bars:</strong> Always round up the number of bars to whole units since partial bars cannot be ordered.
-          </p>
-          <p>
-            <strong>5. Neglecting Local Codes:</strong> Rebar spacing and sizing must comply with local building regulations and engineering designs.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing inches and feet in measurements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering dimensions inconsistently (some in feet, some in inches) causes the calculator to produce wildly inaccurate results. Always convert all measurements to the same unit (typically feet) before entering them into the calculator.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring lap length requirements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Forgetting to account for lap lengths when rebar pieces overlap results in ordering insufficient material and creating weak joints. Standard lap lengths are 40-50 bar diameters (approximately 20-25 inches for #4 rebar), which must be added to your total rebar length.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using spacing wider than code allows</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Selecting 18-inch spacing without verifying it meets local codes can violate building regulations and create structural deficiencies. Always confirm maximum allowable spacing with your building department and structural engineer before finalizing quantities.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for existing obstacles or openings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to adjust rebar quantity for large openings (windows, doors, mechanical penetrations) results in ordering excess material that cannot be used. Subtract the dimensions of significant openings from your total slab area before calculating rebar needs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Selecting the wrong rebar grade or size</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using #3 rebar when #4 is required, or vice versa, compromises structural integrity or wastes material cost. Always reference structural plans or engineer specifications to confirm the correct rebar size before calculation.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard rebar spacing requirement for concrete slabs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The standard rebar spacing for most concrete slabs is 12 inches on center (OC) in both directions, which provides adequate reinforcement for typical residential and light commercial applications. However, spacing can range from 6 inches OC for high-stress areas to 18 inches OC for lower-stress applications. Always consult local building codes and structural engineer specifications, as requirements vary based on slab thickness, concrete strength, and load conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the number of rebar pieces needed for my project?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To calculate rebar quantity, divide your total length (in the same direction) by the center-to-center spacing, then add 1 for the starting piece. For example, a 20-foot slab with 12-inch spacing requires (20 × 12 ÷ 12) + 1 = 21 pieces of rebar. Repeat this calculation for the perpendicular direction and multiply the two results to get the total number of intersecting rebar pieces needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What spacing should I use for rebar in foundation walls?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Foundation walls typically use 12 inches OC vertical and 12-18 inches OC horizontal rebar spacing, depending on wall height and soil pressure. For walls taller than 8 feet or in high-pressure soil conditions, engineers often specify tighter spacing of 8-10 inches OC to improve strength and crack resistance. The calculator can adjust for these variables when you input your wall dimensions and local code requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much weight does one piece of rebar add to my project estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A standard #4 rebar (½-inch diameter) weighs approximately 0.668 pounds per linear foot, while #5 rebar weighs 1.043 pounds per foot, and #6 rebar weighs 1.502 pounds per foot. For a 20-foot-long #4 rebar piece, total weight is roughly 13.36 pounds. Knowing the total rebar quantity and diameter allows you to calculate material weight, which affects shipping costs and labor requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use 18-inch spacing instead of 12-inch to save money?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While 18-inch spacing reduces material costs by approximately 33% compared to 12-inch spacing, it may violate building codes or compromise structural integrity for your specific application. Wider spacing is only acceptable for lower-load applications like non-structural slabs or light residential work, and must be approved by a structural engineer and local building department. Always prioritize code compliance and safety over material savings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between #4, #5, and #6 rebar sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rebar sizes are designated by eighths of an inch: #4 rebar is ½-inch in diameter, #5 is ⅝-inch, and #6 is ¾-inch. Larger rebar provides greater load capacity and requires wider spacing, while smaller rebar accommodates tighter spacing and is better for congested concrete areas. Your structural plans will specify which size is required based on the stresses and spans in your project.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does concrete strength (PSI) affect rebar spacing requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Higher concrete strength (PSI) allows for wider rebar spacing because the concrete itself can distribute loads more effectively. For example, 3,000 PSI concrete may allow 12-inch spacing, while 4,000 PSI concrete might permit 15-18 inch spacing for the same application. Conversely, lower-strength concrete (&lt;3,000 PSI) typically requires tighter spacing of 8-10 inches OC to ensure adequate reinforcement and crack control.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I don't space rebar correctly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Inadequate rebar spacing (&gt;18 inches OC for standard slabs) can result in wider cracks, reduced load capacity, and potential structural failure under stress. Overly tight spacing (&lt;6 inches OC) wastes material and may create congestion that prevents proper concrete consolidation, leading to voids and weak spots. The calculator ensures you meet code minimums while optimizing material efficiency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do I need to account for lap lengths when calculating total rebar needed?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, lap lengths (typically 40-50 times the bar diameter, or 20-25 inches for #4 rebar) must be added to your total rebar length requirement when pieces need to overlap for strength. If your slab is 30 feet long and requires a lap every 20 feet, you need to account for additional material beyond the base length. Advanced calculators include lap length fields to automatically adjust material quantities for overlapping pieces.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Rebar%20Reinforcement" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Rebar Reinforcement - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Rebar Reinforcement from the trusted team at This Old House.
-            </p>
+            <a href="https://www.concrete.org/standards/concrete-standards.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ACI 318: Building Code Requirements for Structural Concrete</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The authoritative standard for reinforced concrete design and construction, including rebar spacing and placement requirements.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Rebar%20Reinforcement" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Rebar Reinforcement - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Rebar Reinforcement, helping you get the job done right.
-            </p>
+            <a href="https://www.iccsafe.org/products-and-services/standards/icc-model-codes/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Code Council (ICC) – Building Codes</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Model building codes adopted by most U.S. jurisdictions that specify minimum rebar spacing and reinforcement requirements for concrete structures.</p>
           </li>
           <li>
-            <a href="https://www.concretenetwork.com/search.html?q=Rebar%20Reinforcement" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Rebar Reinforcement - Concrete Network
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              The leading source for concrete information, including design ideas, contractor directories, and technical guides for Rebar Reinforcement.
-            </p>
+            <a href="https://www.crsi.org/resources/publications-tools" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Concrete Reinforcing Steel Institute (CRSI) – Design Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry guidelines and technical resources for reinforcement steel selection, spacing, and installation in concrete construction.</p>
           </li>
           <li>
-            <a href="https://www.cement.org/search-results?indexCatalogue=site-search&searchQuery=Rebar%20Reinforcement&wordsMode=0" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Rebar Reinforcement - Portland Cement Association
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical resources and industry standards for cement and concrete applications related to Rebar Reinforcement.
-            </p>
+            <a href="https://www.osha.gov/construction" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">OSHA – Concrete and Rebar Safety Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Occupational safety and health requirements for handling, spacing, and installing rebar to prevent worker injuries on construction sites.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -115,41 +115,41 @@ export default function FencePostMaterialLinearFeetCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question:
-        "How do I determine the correct post spacing for my fence project?",
-      answer:
-        "Post spacing depends on the type of fence and materials used. Common spacing ranges from 6 to 8 feet for wood fences and 8 to 10 feet for chain link fences. Closer spacing increases stability but also material costs. Always check local building codes and manufacturer recommendations for best results.",
+      question: "How many fence posts do I need for a 100-foot fence?",
+      answer: "For a 100-foot fence with standard 6-foot spacing between posts, you will need approximately 17-18 posts. This calculation assumes posts at the start and end of the fence line, plus intermediate posts every 6 feet. If you're building a gate opening, you may need fewer posts depending on gate width.",
     },
     {
-      question:
-        "Why is it important to include a waste margin when ordering fence posts?",
-      answer:
-        "Including a waste margin accounts for posts that may be damaged, cut incorrectly, or lost during installation. Typically, a 10% waste margin is recommended to ensure you have enough materials without costly delays. This safety buffer helps avoid multiple orders and keeps your project on schedule.",
+      question: "What is the standard spacing between fence posts?",
+      answer: "The most common spacing for residential fence posts is 6 feet apart, which provides good structural support and material efficiency. However, spacing can range from 4 to 8 feet depending on fence height, wind exposure, and local building codes. Taller fences (8 feet or higher) typically require closer spacing of 4-5 feet for stability.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system at the top. Ensure all inputs are consistent in the chosen unit to get accurate results.",
+      question: "How deep should I dig fence post holes?",
+      answer: "As a general rule, dig post holes to a depth of one-third the above-ground height of your fence. For a 6-foot tall fence, dig 2 feet deep; for an 8-foot fence, dig approximately 2.5-3 feet deep. In frost-prone climates, the frost line depth (typically 3-4 feet in northern regions) may require deeper holes to prevent frost heave.",
     },
     {
-      question:
-        "How does the material size option affect the calculation?",
-      answer:
-        "The material size option adjusts the post height used in calculations. Standard size uses the height you input directly, while large size assumes posts are 1.5 times taller. This helps estimate material quantities and costs more accurately based on the post dimensions you plan to use.",
+      question: "How much concrete do I need per fence post?",
+      answer: "A typical 4x4 fence post in a 10-inch diameter hole requires about 0.5 to 0.6 cubic yards (approximately 50-60 pounds) of concrete mix. For posts in smaller 8-inch holes, use 0.3-0.4 cubic yards. Always pour concrete at least 6 inches above ground level and slope away from the post for water drainage.",
     },
     {
-      question:
-        "What factors can affect the price per post in the calculator?",
-      answer:
-        "Price per post varies based on material type (wood, metal, vinyl), post size, treatment (pressure-treated, galvanized), and local market rates. Always use current supplier pricing for the most accurate cost estimation. The calculator multiplies the total posts by your input price per post to estimate total cost.",
+      question: "What size fence posts do I need for different fence heights?",
+      answer: "For fences up to 4 feet tall, use 4x4 posts; for 5-6 foot fences, 4x4 posts are standard; for 7-8 foot fences, use 4x4 posts set 3+ feet deep or upgrade to 6x6 posts for added strength. Wind exposure and soil conditions may require larger posts; sandy or clay soils benefit from larger diameter posts for better anchoring.",
     },
     {
-      question:
-        "How do I convert my measurements if I only have partial data?",
-      answer:
-        "If you only know the total fence length but not the post spacing, consider typical spacing values for your fence type or consult a professional. For height, measure the tallest post needed or use standard heights (e.g., 6 feet for privacy fences). Consistent and accurate measurements ensure reliable calculations.",
+      question: "How do I calculate the amount of fencing material needed?",
+      answer: "Multiply your total fence length by the fence height to get square footage, then account for material overlap and waste (typically 10-15%). For example, a 150-foot fence that is 6 feet tall equals 900 square feet of material needed. Add 10-15% for cuts, errors, and waste, bringing the total to approximately 990-1,035 square feet of material.",
     },
+    {
+      question: "What is the cost difference between wood and vinyl fencing?",
+      answer: "Wood fencing typically costs $15-$30 per linear foot installed, while vinyl fencing ranges from $25-$40 per linear foot. A 150-foot wood fence costs approximately $2,250-$4,500 installed, whereas the same vinyl fence costs $3,750-$6,000. Vinyl requires less maintenance but has higher upfront costs; wood is cheaper initially but needs staining or sealing every 2-3 years.",
+    },
+    {
+      question: "How many linear feet can I build with one bundle of fencing boards?",
+      answer: "A standard bundle of wooden fence boards (typically 50 pieces, 6 inches wide) covers about 25 linear feet at 6-foot height. If using 8-inch wide boards, one bundle covers approximately 33 linear feet. The coverage varies based on board width, thickness, and spacing; always check your specific product specifications.",
+    },
+    {
+      question: "Should I account for gate openings when calculating fence materials?",
+      answer: "Yes, absolutely. For each gate opening, subtract the gate width from your total linear footage before calculating materials and posts. A standard 4-foot gate opening reduces material needs by 4 linear feet but typically requires 2 additional posts (one on each side) for gate hinges and support. Larger gates (6+ feet) may need reinforced posts or additional structural support.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -327,152 +327,288 @@ export default function FencePostMaterialLinearFeetCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Fence Post & Material Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Fence Post & Material Calculator is a specialized tool designed to help contractors,
-            builders, and DIY enthusiasts accurately estimate the number of fence posts and related
-            materials needed for a fencing project. By inputting key dimensions such as fence length,
-            post spacing, and post height, users can quickly determine the quantity of posts required,
-            including a waste margin to account for errors or damages.
-          </p>
-          <p>
-            Precision in these calculations is crucial. Ordering too few posts can cause project delays,
-            while ordering too many leads to unnecessary expenses and material waste. This calculator
-            ensures you strike the right balance, optimizing both cost and efficiency.
-          </p>
-          <p>
-            Fence posts come in various materials including wood, metal, vinyl, and composite. Each
-            material type has different sizing standards, durability, and price points. This calculator
-            allows you to select standard or large post sizes, adjusting the calculations accordingly
-            to fit your material choice and project requirements.
-          </p>
-          <p>
-            Additionally, the calculator supports both metric and imperial units, making it versatile
-            for projects worldwide. Including a waste margin is a best practice in construction to
-            accommodate unforeseen issues such as damaged posts or measurement inaccuracies.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Fence Post & Material Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Fence Post & Material Calculator helps you accurately estimate the number of posts, amount of fencing material, and concrete needed for your residential or commercial fence project. By inputting your fence dimensions and material preferences, you'll receive a detailed breakdown of quantities and estimated costs, saving time and money on material ordering. This tool works for wood, vinyl, composite, chain link, and aluminum fences of any height.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator effectively, you'll need four key measurements: the total linear footage of your fence, the desired fence height, the post spacing preference (typically 6 feet is standard), and any gate openings you plan to include. The calculator uses these inputs to determine post quantity, material square footage, concrete volume, and hardware requirements. Be sure to measure your property boundaries accurately and account for terrain changes, as slopes may require additional posts or taller sections.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results will show you the exact number of posts needed, total linear feet of fencing material, cubic yards of concrete required, hardware quantities (nails, screws, brackets), and a cost estimate based on current material pricing. Use these figures to create your material shopping list and obtain accurate quotes from suppliers. Remember that the calculator provides estimates; always add 10-15% for waste, cuts, and unforeseen adjustments on-site.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure your fence line twice and consider terrain
-            variations that might affect post spacing.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Using larger posts can increase fence stability but also
-            increases material costs and installation effort.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering an extra 10% of posts upfront can save you
-            from costly delays caused by damaged or misplaced materials.
-          </li>
-          <li>
-            <strong>Tip:</strong> When working in metric, converting post spacing from feet to meters
-            (1 ft = 0.3048 m) helps maintain accuracy.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Some fence types, like vinyl, require posts with specific
-            dimensions and spacing for warranty compliance.
-          </li>
+      {/* TABLE: Fence Post Spacing and Quantity Requirements by Total Length */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Fence Post Spacing and Quantity Requirements by Total Length</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how many posts you'll need based on fence length and standard 6-foot post spacing.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fence Length (feet)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Posts at 6-ft Spacing</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Posts at 5-ft Spacing</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Posts at 4-ft Spacing</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">39</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">41</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">51</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">51</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">61</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">76</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">84</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">101</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">126</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Post quantities include posts at both start and end of fence line. Closer spacing provides additional strength for taller fences or windy locations.</p>
+      </section>
+
+      {/* TABLE: Post Hole Depth and Concrete Requirements by Fence Height */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Post Hole Depth and Concrete Requirements by Fence Height</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard recommendations for post hole depth and concrete volume based on above-ground fence height.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fence Height (feet)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Hole Depth (feet)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Concrete per Post (cubic yards)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Concrete per Post (pounds)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Frost-prone climates may require deeper holes (3-4 feet) to prevent frost heave. Always check local building codes for minimum requirements.</p>
+      </section>
+
+      {/* TABLE: Estimated Fencing Material and Labor Costs by Material Type */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Estimated Fencing Material and Labor Costs by Material Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">2024-2025 average costs for different fence materials per linear foot, including basic labor installation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fence Material</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material Cost (per linear foot)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Labor Cost (per linear foot)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Installed Cost (per linear foot)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wood Pressure-Treated</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8-$15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8-$15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16-$30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cedar Wood</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12-$20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10-$18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22-$38</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vinyl</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15-$25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10-$15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25-$40</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Composite</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18-$28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12-$18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$30-$46</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chain Link</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6-$10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5-$10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11-$20</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aluminum</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15-$25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12-$20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$27-$45</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs vary by region, labor availability, and site conditions. Gate openings add $300-$800 per gate for materials and installation.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure twice, order once — use a measuring wheel or GPS device to verify total fence length before calculating, as even small errors compound over long distances and lead to material shortages or overages.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for terrain variations — if your property slopes, you may need additional posts or varying fence heights to maintain an even appearance; measure at multiple points along the fence line.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Include a contingency buffer — order 10-15% extra materials for waste, cuts, and mistakes; it's better to have leftover boards than to run short mid-project.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check local building codes — setback requirements, height restrictions, and easements vary by municipality; verify permit requirements and neighbor notifications before purchasing materials.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Plan for gate locations early — identify gate openings before ordering materials to avoid cutting expensive fencing sections; gates typically require two reinforced posts and additional hardware.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Post Spacing:</strong> Using inconsistent or incorrect post spacing
-            leads to ordering too many or too few posts, affecting fence stability and budget.
-          </p>
-          <p>
-            <strong>2. Forgetting Waste Margin:</strong> Not including a waste margin can cause
-            project delays if posts are damaged or cut incorrectly during installation.
-          </p>
-          <p>
-            <strong>3. Mixing Units:</strong> Mixing metric and imperial units in inputs causes
-            inaccurate calculations. Always select and use one unit system consistently.
-          </p>
-          <p>
-            <strong>4. Ignoring Material Size Differences:</strong> Assuming all posts are the same
-            size can lead to ordering insufficient material or miscalculating costs.
-          </p>
-          <p>
-            <strong>5. Not Updating Prices:</strong> Using outdated price per post values results in
-            inaccurate cost estimates. Always verify current supplier pricing.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to add posts for gate openings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Each gate opening requires two additional structural posts (one on each side) for hinges and support, plus hardware. Failing to account for these adds significant cost and delays once you realize the shortage on-site.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using incorrect post depth for climate conditions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">In frost-prone regions, posts must extend below the frost line (typically 3-4 feet deep) to prevent heave and shifting. Using standard 2-foot depths in cold climates leads to post movement and fence failure within 2-3 years.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing post spacing standards</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Inconsistent spacing between posts (switching from 6-foot to 8-foot gaps) weakens the fence and creates uneven appearance. Choose one standard spacing and maintain it throughout unless slope or obstacles require adjustment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating concrete volume needed</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 4x4 post in a standard hole requires 50-60 pounds of concrete, not 25 pounds. Insufficient concrete weakens the post base and reduces fence lifespan; always follow manufacturer recommendations for your post size.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring wind exposure and soil type</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Sandy or clay soils provide poor anchoring and may require larger posts or closer spacing than standard recommendations. High-wind areas also need reinforced posts; failing to assess these conditions results in structural failure.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many fence posts do I need for a 100-foot fence?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For a 100-foot fence with standard 6-foot spacing between posts, you will need approximately 17-18 posts. This calculation assumes posts at the start and end of the fence line, plus intermediate posts every 6 feet. If you're building a gate opening, you may need fewer posts depending on gate width.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard spacing between fence posts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The most common spacing for residential fence posts is 6 feet apart, which provides good structural support and material efficiency. However, spacing can range from 4 to 8 feet depending on fence height, wind exposure, and local building codes. Taller fences (8 feet or higher) typically require closer spacing of 4-5 feet for stability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How deep should I dig fence post holes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As a general rule, dig post holes to a depth of one-third the above-ground height of your fence. For a 6-foot tall fence, dig 2 feet deep; for an 8-foot fence, dig approximately 2.5-3 feet deep. In frost-prone climates, the frost line depth (typically 3-4 feet in northern regions) may require deeper holes to prevent frost heave.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much concrete do I need per fence post?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A typical 4x4 fence post in a 10-inch diameter hole requires about 0.5 to 0.6 cubic yards (approximately 50-60 pounds) of concrete mix. For posts in smaller 8-inch holes, use 0.3-0.4 cubic yards. Always pour concrete at least 6 inches above ground level and slope away from the post for water drainage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What size fence posts do I need for different fence heights?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For fences up to 4 feet tall, use 4x4 posts; for 5-6 foot fences, 4x4 posts are standard; for 7-8 foot fences, use 4x4 posts set 3+ feet deep or upgrade to 6x6 posts for added strength. Wind exposure and soil conditions may require larger posts; sandy or clay soils benefit from larger diameter posts for better anchoring.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the amount of fencing material needed?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiply your total fence length by the fence height to get square footage, then account for material overlap and waste (typically 10-15%). For example, a 150-foot fence that is 6 feet tall equals 900 square feet of material needed. Add 10-15% for cuts, errors, and waste, bringing the total to approximately 990-1,035 square feet of material.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the cost difference between wood and vinyl fencing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Wood fencing typically costs $15-$30 per linear foot installed, while vinyl fencing ranges from $25-$40 per linear foot. A 150-foot wood fence costs approximately $2,250-$4,500 installed, whereas the same vinyl fence costs $3,750-$6,000. Vinyl requires less maintenance but has higher upfront costs; wood is cheaper initially but needs staining or sealing every 2-3 years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many linear feet can I build with one bundle of fencing boards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A standard bundle of wooden fence boards (typically 50 pieces, 6 inches wide) covers about 25 linear feet at 6-foot height. If using 8-inch wide boards, one bundle covers approximately 33 linear feet. The coverage varies based on board width, thickness, and spacing; always check your specific product specifications.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I account for gate openings when calculating fence materials?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, absolutely. For each gate opening, subtract the gate width from your total linear footage before calculating materials and posts. A standard 4-foot gate opening reduces material needs by 4 linear feet but typically requires 2 additional posts (one on each side) for gate hinges and support. Larger gates (6+ feet) may need reinforced posts or additional structural support.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Fence%20Construction" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Fence Construction - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Fence Construction from the trusted team at This Old House.
-            </p>
+            <a href="https://www.iccsafe.org/codes-standards/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) — Fence Height and Safety Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The IBC provides national standards for fence construction, including height limits, setback requirements, and structural safety specifications.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Fence%20Construction" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Fence Construction - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Fence Construction, helping you get the job done right.
-            </p>
+            <a href="https://www.usda.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA — Frost Line Depth Map by Region</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The USDA provides region-specific frost line depth data essential for determining proper post hole depth in different climates.</p>
           </li>
           <li>
-            <a href="https://www.constructiondive.com/search/?q=Fence%20Construction" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Fence Construction - Construction Dive
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Latest news and trends in the construction industry regarding Fence Construction.
-            </p>
+            <a href="https://www.concrete.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Concrete Reinforced Institute — Post Setting Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The Concrete Reinforced Institute offers technical guidance on proper concrete volume and setting techniques for fence posts.</p>
+          </li>
+          <li>
+            <a href="https://www.nahb.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of Home Builders — Residential Fence Construction Best Practices</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">NAHB provides industry-standard guidelines for residential fence materials, spacing, and installation best practices.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

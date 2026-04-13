@@ -132,41 +132,41 @@ export default function CarpetRollWasteCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question:
-        "How do I determine the correct carpet roll width for my project?",
-      answer:
-        "Carpet rolls come in standard widths, typically 4 meters (13 feet) or 5 meters (16 feet) in metric and imperial systems respectively. Measure the width of your room and select a roll width that minimizes seams. Using a wider roll reduces the number of seams and waste, but may cost more. Always confirm the roll width with your supplier before ordering.",
+      question: "What is waste factor and why does it matter in carpet installation?",
+      answer: "Waste factor is the percentage of carpet material lost during cutting, fitting, and seaming—typically ranging from 10% to 20% depending on room shape and layout. Underestimating waste can result in running short of material mid-installation, requiring costly rush orders or visible seams in finished areas. The calculator automatically accounts for this buffer to ensure you order sufficient yardage from the start.",
     },
     {
-      question:
-        "Why is it important to include a waste margin when calculating carpet rolls?",
-      answer:
-        "Including a waste margin accounts for cutting errors, pattern matching, seams, and future repairs. Typically, a 10% waste margin is recommended to ensure you have enough material. Underestimating waste can lead to ordering insufficient carpet, causing delays and additional costs.",
+      question: "How do I measure a room with irregular shapes for carpet ordering?",
+      answer: "Break irregular rooms into rectangular sections, measure each section separately (length × width), then add all sections together for total square footage. For angled walls or alcoves, measure the longest points and round up to the nearest foot to ensure adequate coverage. Input this total square footage into the calculator along with your waste factor percentage to get accurate roll requirements.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system, and input your dimensions accordingly. The calculations internally convert units to maintain accuracy and provide results consistent with your selection.",
+      question: "What's the standard carpet roll width and how does it affect my order?",
+      answer: "Standard carpet rolls come in widths of 12 feet and 15 feet, with 12-foot widths being most common in North America. Wider rolls (15 feet) reduce seaming requirements and waste in larger installations but may be less cost-effective for small rooms under 200 square feet. The calculator helps you determine the most efficient roll width for your project dimensions and layout.",
     },
     {
-      question:
-        "How do different carpet roll sizes affect the quantity I need to order?",
-      answer:
-        "Carpet rolls come in standard and large sizes, typically differing in length. Larger rolls reduce the number of joints and seams but may be more expensive or harder to handle. This calculator allows you to select the roll size, which affects the total number of rolls needed based on your project's dimensions.",
+      question: "How much waste should I budget for a room with multiple obstacles like pillars or built-ins?",
+      answer: "Rooms with multiple obstacles (pillars, fireplaces, built-in shelving) typically require 15% to 25% waste factor instead of the standard 10% to 15%. Each obstacle requires additional cuts and fitting, increasing scrap material. Use the higher waste percentage in the calculator when dealing with complex layouts to avoid material shortages.",
     },
     {
-      question:
-        "What should I do if my room has an irregular shape or multiple areas?",
-      answer:
-        "For irregular shapes or multiple rooms, break down the area into rectangular sections and calculate the carpet needed for each separately. Sum the total lengths and widths, then add waste margin accordingly. This ensures more precise ordering and reduces excess material.",
+      question: "Can I use the same waste factor percentage for basement and above-ground installations?",
+      answer: "Basement installations should use a slightly higher waste factor (15% to 20%) due to moisture considerations and potential subfloor unevenness requiring more fitting adjustments. Above-ground rooms with stable subfloors can use the standard 10% to 15% waste factor. The calculator allows you to adjust waste percentages based on installation location and subfloor conditions.",
     },
     {
-      question:
-        "How do I estimate the cost of carpet rolls using this calculator?",
-      answer:
-        "Enter the price per roll unit in the calculator along with your project dimensions and waste margin. The calculator multiplies the number of rolls needed by the price per roll to give you an estimated total cost. Remember to verify prices with your supplier as they can vary based on material and roll size.",
+      question: "What's the difference between linear yards and square yards when ordering carpet rolls?",
+      answer: "Square yards measure area (length × width ÷ 9), while linear yards measure length at a specific roll width—for a 12-foot roll, divide square footage by 12 to get linear feet, then divide by 3 for linear yards. Most carpet retailers quote pricing in linear or square yards, so understanding the conversion is critical for accurate cost estimation. The calculator converts square footage into both measurements to match your supplier's quotes.",
     },
+    {
+      question: "How does seaming location affect waste calculation in large installations?",
+      answer: "Professional installers plan seams to fall in low-traffic areas and align with room architecture, which may increase waste by 5% to 10% depending on seam placement strategy. Avoiding seams in high-traffic zones like doorways or main walkways requires more precise cutting and potentially longer roll lengths. Input your seam plan and layout preferences into the calculator to get accurate waste estimates for your specific installation design.",
+    },
+    {
+      question: "What waste percentage should I use for stairs when calculating total carpet needs?",
+      answer: "Staircase installations typically require an additional 15% to 30% waste due to complex cuts for each tread and riser, plus potential pattern matching on visible areas. A single flight of 12 stairs can consume 20 to 40 linear feet of carpet depending on tread width and pattern considerations. Calculate stairs separately from main floor areas and add the results together in the final order quantity.",
+    },
+    {
+      question: "How accurate is the calculator for commercial vs. residential carpet installations?",
+      answer: "The calculator works for both, but commercial installations with high-traffic patterns and specific seaming requirements may need 12% to 18% waste factor versus residential 10% to 15%. Commercial spaces often have stricter aesthetic standards requiring more precise seam placement, increasing material loss. Adjust your waste factor inputs based on project type to get the most accurate commercial or residential estimates.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -338,174 +338,326 @@ export default function CarpetRollWasteCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Carpet Roll & Waste Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Carpet Roll & Waste Calculator is a specialized tool designed to
-            help contractors, installers, and DIY enthusiasts accurately estimate
-            the amount of carpet material required for a given space. By inputting
-            the dimensions of the area and the width of the carpet roll, users can
-            determine how many rolls to order, factoring in an appropriate waste
-            margin to cover cutting, seams, and potential errors.
-          </p>
-          <p>
-            Precision in carpet estimation is crucial to avoid costly over-ordering
-            or under-ordering. Too little carpet can delay projects and increase
-            expenses due to rush orders, while excess material ties up capital and
-            storage space. This calculator ensures you get the right quantity the
-            first time.
-          </p>
-          <p>
-            Carpet rolls come in various widths and lengths, typically standardized
-            by manufacturers. Common roll widths include 4 meters (approximately 13
-            feet) and 5 meters (approximately 16 feet). Roll lengths vary, with
-            standard sizes around 25 meters (82 feet) and larger rolls up to 30
-            meters (98 feet). Selecting the correct roll size impacts the number of
-            rolls needed and the amount of waste generated.
-          </p>
-          <p>
-            This calculator supports both metric and imperial units, making it
-            versatile for projects worldwide. By adjusting the waste margin slider,
-            users can customize the safety buffer based on project complexity and
-            installation conditions.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Carpet Roll & Waste Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Carpet Roll & Waste Calculator helps construction professionals, installers, and homeowners determine the exact amount of carpet material needed for any flooring project. This tool eliminates guesswork by accounting for material waste during cutting, seaming, and fitting—factors that can add 10% to 25% to your base square footage. Accurate calculations prevent costly material shortages mid-installation and reduce excess waste that impacts project profitability.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your room dimensions (length and width in feet), select the carpet roll width available from your supplier (typically 12 or 15 feet), and enter your waste factor percentage based on room complexity. The waste factor accounts for seams, pattern matching, obstacles, and cutting losses; use 10-12% for simple rectangular rooms, 15-18% for rooms with multiple obstacles, and 20%+ for complex layouts with stairs or irregular shapes. You can also input seam locations and room obstacles to refine your waste estimate further.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs total square footage, linear footage needed, linear yards required (adjusted for roll width), and the final order quantity including waste allowance. Use this final quantity when contacting suppliers or placing material orders to ensure you have sufficient carpet for the complete installation. Round up to the nearest roll unit when ordering, and keep the waste-adjusted figure for budget estimation and cost per square foot calculations.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip 1:</strong> Always measure your room dimensions at multiple
-            points to account for irregularities or uneven walls.
-          </li>
-          <li>
-            <strong>Tip 2:</strong> When possible, choose a carpet roll width that
-            closely matches your room width to minimize seams and waste.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Carpet rolls are often sold by length,
-            but the width is fixed, so calculating strips needed is key to
-            accurate estimation.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Adding a 10-15% waste margin is
-            standard, but complex patterns or diagonal installations may require
-            more.
-          </li>
-          <li>
-            <strong>Tip 3:</strong> Keep leftover carpet rolls for future repairs
-            or patching to maintain color and texture consistency.
-          </li>
+      {/* TABLE: Standard Carpet Roll Widths and Waste Factors by Room Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard Carpet Roll Widths and Waste Factors by Room Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows recommended waste factor percentages based on room complexity and standard roll widths available in the market.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Complexity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Waste Factor</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Standard Roll Width</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Simple rectangular room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10% - 12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Room with 1-2 obstacles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13% - 15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 ft or 15 ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Room with 3+ obstacles, alcoves</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16% - 18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">L-shaped or irregular layout</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15% - 20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Open concept with multiple zones</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% - 22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Basement with moisture issues</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15% - 20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercial high-traffic space</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12% - 18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 ft or 15 ft</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Waste factors account for seaming, cutting, and fitting losses. Increase waste percentage for patterned carpets requiring alignment.</p>
+      </section>
+
+      {/* TABLE: Carpet Roll Coverage and Yardage Conversion Guide */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Carpet Roll Coverage and Yardage Conversion Guide</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference this table to convert square footage into linear yards for different roll widths and verify calculator output.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Size (Sq Ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">12 ft Roll Linear Feet</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">12 ft Roll Linear Yards</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15 ft Roll Linear Feet</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15 ft Roll Linear Yards</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.2</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.4</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.7</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">41.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">62.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.7</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">83.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">125.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">41.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33.3</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Add 10-20% waste factor to these base quantities before ordering. Multiply square footage by 1.1 to 1.2 for final order amount.</p>
+      </section>
+
+      {/* TABLE: Additional Waste Allowance for Special Installations */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Additional Waste Allowance for Special Installations</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These percentages represent additional waste beyond standard room waste factors for specialized carpet applications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Installation Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Additional Waste Allowance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Key Consideration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Recommended Waste</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Patterned carpet with matching</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5% - 8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pattern alignment at seams</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15% - 25%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stair installation (per flight)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15% - 30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Complex cuts per tread/riser</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25% - 35%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Curved walls or rounded corners</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8% - 12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Contoured cutting required</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% - 27%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Diagonal or border layout</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10% - 15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Angled cuts and seams</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20% - 30%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Seaming in traffic areas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5% - 10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Precision cutting for visibility</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15% - 25%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moisture mitigation underlayment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3% - 5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extra material for underlap</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13% - 20%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-pile or textured fiber</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5% - 8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increased cutting difficulty</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15% - 25%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Total recommended waste = base room waste + additional waste allowance. Always round final order UP to nearest roll or linear yard.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always measure twice and measure in multiple locations—walls are rarely perfectly straight, so take measurements at the top, middle, and bottom to identify variations that affect waste calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a waste factor of 15% minimum for any room with obstacles, and increase to 20% or higher if the room has irregular shapes, multiple seams required, or pattern-matched carpet that demands alignment.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When ordering patterned carpet, add an extra 5-8% to your waste allowance beyond the standard waste factor to account for pattern alignment at seams, which often creates additional scrap material.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For large commercial installations, break the space into sections (different zones may have different seam plans), calculate waste for each section separately in the calculator, then sum the totals for accuracy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Document your waste factor assumptions and calculator results—if the installation runs short or over budget, this documentation helps justify the quantities ordered and explains actual waste to the client.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider carpet roll width availability in your region—12-foot rolls are most common, but 15-foot rolls reduce seaming in larger spaces; verify supplier inventory before finalizing calculator inputs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for future repairs or future rooms—order an additional 5-10% beyond immediate project needs if client budget allows, since matching dye lots becomes difficult &gt;12 months after original purchase.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Underestimating Waste:</strong> Failing to include an
-            adequate waste margin can lead to insufficient carpet, causing delays
-            and additional costs.
-          </p>
-          <p>
-            <strong>2. Ignoring Roll Width:</strong> Not accounting for the carpet
-            roll width when calculating strips can result in ordering too little
-            material.
-          </p>
-          <p>
-            <strong>3. Mixing Units:</strong> Inputting dimensions in mixed units
-            (e.g., length in feet and width in meters) without converting leads to
-            incorrect calculations.
-          </p>
-          <p>
-            <strong>4. Not Confirming Roll Sizes:</strong> Carpet roll sizes can
-            vary by supplier; always verify roll dimensions before ordering.
-          </p>
-          <p>
-            <strong>5. Overlooking Room Shape:</strong> Complex or irregular room
-            shapes require breaking down the area into sections for accurate
-            estimation.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to include waste in the initial order</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Ordering only the base square footage without adding waste factor (typically 10-20%) results in running short mid-installation, requiring expensive rush orders or visible seams as patches. Always multiply your room square footage by 1.1 to 1.2 (or higher for complex layouts) before placing the order.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the same waste factor for all room types</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A simple rectangular bedroom may need only 10% waste, but a kitchen with multiple obstacles and seaming requirements needs 18-20%. Failing to adjust waste percentage for room complexity leads to either material shortages or excessive overage and wasted budget.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing linear yards with square yards</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Suppliers may quote pricing in either linear yards (length at roll width) or square yards (total area). Mixing these measurements when ordering results in incorrect quantities—a 12-foot roll requires dividing square footage by 12 for linear feet, not by 9 as you would for square yards.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for pattern matching in waste calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Patterned carpet requires additional waste for seam alignment, but many installers use standard waste percentages without adjusting for pattern repeat requirements. This typically costs an extra 5-8% in material waste, which should be factored into waste percentage inputs before calculating final order.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring only once or in one location</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Older homes or commercial spaces often have out-of-square rooms where walls vary by several inches in length. Measuring only once and missing these variations can cause the final installation to fall short or require excessive seaming adjustments and additional waste.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Rounding down instead of up on final order quantities</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If the calculator shows 47.3 linear yards needed, rounding down to 47 yards may create a shortage if there are any minor measurement errors or installation complications. Always round UP to the next full roll or standard order unit to maintain a safety buffer.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is waste factor and why does it matter in carpet installation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Waste factor is the percentage of carpet material lost during cutting, fitting, and seaming—typically ranging from 10% to 20% depending on room shape and layout. Underestimating waste can result in running short of material mid-installation, requiring costly rush orders or visible seams in finished areas. The calculator automatically accounts for this buffer to ensure you order sufficient yardage from the start.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I measure a room with irregular shapes for carpet ordering?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Break irregular rooms into rectangular sections, measure each section separately (length × width), then add all sections together for total square footage. For angled walls or alcoves, measure the longest points and round up to the nearest foot to ensure adequate coverage. Input this total square footage into the calculator along with your waste factor percentage to get accurate roll requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the standard carpet roll width and how does it affect my order?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard carpet rolls come in widths of 12 feet and 15 feet, with 12-foot widths being most common in North America. Wider rolls (15 feet) reduce seaming requirements and waste in larger installations but may be less cost-effective for small rooms under 200 square feet. The calculator helps you determine the most efficient roll width for your project dimensions and layout.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much waste should I budget for a room with multiple obstacles like pillars or built-ins?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rooms with multiple obstacles (pillars, fireplaces, built-in shelving) typically require 15% to 25% waste factor instead of the standard 10% to 15%. Each obstacle requires additional cuts and fitting, increasing scrap material. Use the higher waste percentage in the calculator when dealing with complex layouts to avoid material shortages.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the same waste factor percentage for basement and above-ground installations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Basement installations should use a slightly higher waste factor (15% to 20%) due to moisture considerations and potential subfloor unevenness requiring more fitting adjustments. Above-ground rooms with stable subfloors can use the standard 10% to 15% waste factor. The calculator allows you to adjust waste percentages based on installation location and subfloor conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between linear yards and square yards when ordering carpet rolls?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Square yards measure area (length × width ÷ 9), while linear yards measure length at a specific roll width—for a 12-foot roll, divide square footage by 12 to get linear feet, then divide by 3 for linear yards. Most carpet retailers quote pricing in linear or square yards, so understanding the conversion is critical for accurate cost estimation. The calculator converts square footage into both measurements to match your supplier's quotes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does seaming location affect waste calculation in large installations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Professional installers plan seams to fall in low-traffic areas and align with room architecture, which may increase waste by 5% to 10% depending on seam placement strategy. Avoiding seams in high-traffic zones like doorways or main walkways requires more precise cutting and potentially longer roll lengths. Input your seam plan and layout preferences into the calculator to get accurate waste estimates for your specific installation design.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What waste percentage should I use for stairs when calculating total carpet needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Staircase installations typically require an additional 15% to 30% waste due to complex cuts for each tread and riser, plus potential pattern matching on visible areas. A single flight of 12 stairs can consume 20 to 40 linear feet of carpet depending on tread width and pattern considerations. Calculate stairs separately from main floor areas and add the results together in the final order quantity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the calculator for commercial vs. residential carpet installations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator works for both, but commercial installations with high-traffic patterns and specific seaming requirements may need 12% to 18% waste factor versus residential 10% to 15%. Commercial spaces often have stricter aesthetic standards requiring more precise seam placement, increasing material loss. Adjust your waste factor inputs based on project type to get the most accurate commercial or residential estimates.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Carpet%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Carpet Installation - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Carpet Installation from the trusted team at This Old House.
-            </p>
+            <a href="https://www.carpet-rug.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Carpet and Rug Institute Installation Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards and best practices for carpet installation, including seaming, waste allowances, and professional installation guidelines.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Carpet%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Carpet Installation - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Carpet Installation, helping you get the job done right.
-            </p>
+            <a href="https://www.nahb.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of Home Builders Construction Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">NAHB guidelines for residential flooring installation specifications and material requirements including carpet waste factors.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Carpet%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Carpet Installation - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Carpet Installation from professional builders and craftsmen.
-            </p>
+            <a href="https://www.thespruce.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce Home Improvement: Carpet Installation Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Consumer-friendly guide covering carpet measurement, waste calculation, and installation planning for homeowners.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Carpet%20Installation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Carpet Installation - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Carpet Installation.
-            </p>
+            <a href="https://www.csinet.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Construction Specifications Institute (CSI) Flooring Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional construction specifications for commercial and residential carpet installation including materials, labor, and quality standards.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

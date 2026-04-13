@@ -183,41 +183,41 @@ export default function InsulationRValueRequirementCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question:
-        "How do I determine the correct R-Value requirement for my insulation project?",
-      answer:
-        "The R-Value requirement depends on your local climate zone, building codes, and the specific area you are insulating (walls, attic, floors). Consult local building regulations or energy efficiency guidelines to find the minimum R-Value needed. Higher R-Values provide better insulation but may cost more.",
+      question: "What is an R-value and why does it matter for insulation?",
+      answer: "R-value measures thermal resistance, indicating how effectively insulation slows heat transfer through building materials. Higher R-values provide better insulation performance; for example, R-19 fiberglass batts are commonly used in walls, while R-38 to R-60 is typical for attics depending on climate zone. The better your insulation's R-value, the less energy your HVAC system needs to maintain comfortable indoor temperatures.",
     },
     {
-      question:
-        "Why is it important to include a waste margin when ordering insulation materials?",
-      answer:
-        "Including a waste margin accounts for cutting losses, fitting around obstacles, and potential mistakes during installation. Typically, a 10% waste margin is recommended to ensure you have enough material without costly shortages or multiple orders.",
+      question: "How do I determine the R-value requirement for my attic?",
+      answer: "R-value requirements for attics range from R-30 in warm climates (zones 1-2) to R-60 in cold climates (zones 7-8), as defined by the 2021 International Energy Conservation Code (IECC). Your specific requirement depends on your geographic location and heating/cooling degree days. The calculator uses your zip code and climate zone to recommend the appropriate R-value for maximum energy efficiency.",
     },
     {
-      question:
-        "Can I use this calculator for different types of insulation materials?",
-      answer:
-        "Yes, but you need to select the appropriate material size and understand the R-Value per inch for your chosen insulation type. This calculator uses typical values for fiberglass batt and rigid foam board insulation. For other materials like spray foam, manual adjustments may be necessary.",
+      question: "What are the minimum R-value requirements for walls?",
+      answer: "Wall insulation requirements typically range from R-13 to R-21 for exterior walls across most U.S. climate zones. In colder climates (zones 6-8), R-21 cavity insulation plus continuous R-5 to R-7.5 exterior sheathing is often required. The 2021 IECC recommends these minimums to balance energy efficiency with construction costs.",
     },
     {
-      question:
-        "How do I convert between metric and imperial units in this calculator?",
-      answer:
-        "You can switch between metric (meters) and imperial (feet) units using the unit selector. The calculator automatically converts thickness and area measurements to ensure accurate calculations regardless of the unit system.",
+      question: "How does climate zone affect my insulation R-value needs?",
+      answer: "The U.S. is divided into 8 climate zones (1 being warmest, 8 being coldest), and each zone has different insulation requirements based on heating and cooling degree days. A home in Miami (Zone 1) might need R-13 attic insulation, while a home in Minneapolis (Zone 7) requires R-49 to R-60. The calculator automatically adjusts recommendations based on your climate zone.",
     },
     {
-      question:
-        "What happens if the insulation thickness I enter does not meet the target R-Value?",
-      answer:
-        "The calculator will notify you that the given thickness does not meet the target R-Value. You should increase the thickness or select a material with a higher R-Value per inch to meet your insulation requirements.",
+      question: "What's the difference between cavity insulation and continuous insulation?",
+      answer: "Cavity insulation (like batts or blown-in fiberglass) fills the space between wall studs and joists, while continuous insulation is a rigid layer applied to the exterior of framing that provides uninterrupted thermal protection. Building codes increasingly require both: R-13 cavity insulation plus R-5 to R-7.5 continuous insulation in colder zones to minimize thermal bridging through studs. Using only cavity insulation leaves gaps that reduce overall wall performance by 15-25%.",
     },
     {
-      question:
-        "How is the number of insulation units calculated in this tool?",
-      answer:
-        "The tool calculates the total surface area to be insulated, divides it by the coverage area of a single insulation sheet or roll, and then adds a waste margin. The result is rounded up to the nearest whole unit to ensure you order enough material.",
+      question: "How do basement and crawl space R-value requirements differ?",
+      answer: "Basement walls require R-10 continuous insulation in most climates, while crawl space walls require R-13 to R-19 depending on the zone and whether the space is vented or unvented. Unvented crawl spaces (increasingly recommended) should have R-13 to R-19 insulation on the walls plus a vapor barrier on the floor. The calculator helps distinguish between these different assembly types.",
     },
+    {
+      question: "Can I mix different types of insulation to meet R-value requirements?",
+      answer: "Yes, R-values are additive, so you can combine fiberglass batts (R-3.2 per inch), spray foam (R-3.5 to R-6.5 per inch), and rigid foam boards (R-4 to R-8 per inch) to reach the total requirement. For example, R-19 cavity insulation plus R-7.5 rigid foam sheathing totals R-26.5, which exceeds many wall requirements. However, ensure that vapor barriers and moisture management are properly coordinated when mixing materials.",
+    },
+    {
+      question: "What happens if my insulation falls short of required R-values?",
+      answer: "Undersized insulation increases energy consumption by 10-30% depending on how far below code you fall, leading to higher heating and cooling bills year-round. It may also fail building code inspections and potentially affect your home's resale value or insurability. Many jurisdictions require remediation if insulation is discovered to be below minimums during renovation or inspection.",
+    },
+    {
+      question: "How often should I update my insulation to meet current code requirements?",
+      answer: "The International Energy Conservation Code (IECC) updates every 3 years, with the latest version being 2021, and many states have adopted it for new construction and major renovations. While existing homes typically aren't required to retrofit immediately, upgrading insulation during renovations (roof replacement, siding work, etc.) is often mandated to meet current standards. It's recommended to review your current insulation R-value every 10-15 years and compare it against your local building code.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -409,169 +409,307 @@ export default function InsulationRValueRequirementCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Insulation R-Value Requirement Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Insulation R-Value Requirement Calculator is a vital tool for
-            contractors, builders, and homeowners aiming to achieve optimal
-            energy efficiency in their buildings. It helps determine the amount
-            of insulation material needed to meet a specified R-Value, which
-            measures thermal resistance. By inputting the dimensions of the
-            area and the desired R-Value, users can accurately estimate the
-            quantity of insulation units required.
-          </p>
-          <p>
-            Precision in calculating insulation requirements is crucial. Over-
-            or underestimating material needs can lead to increased costs,
-            wasted resources, or insufficient insulation performance. This
-            calculator incorporates waste margins to account for cutting,
-            fitting, and installation losses, ensuring you order the right
-            amount.
-          </p>
-          <p>
-            Various insulation materials offer different R-Values per inch of
-            thickness. Common types include fiberglass batts, rigid foam boards,
-            and spray foam. This tool primarily supports fiberglass and rigid
-            foam by allowing selection of material size and typical R-Value
-            ratings, helping you tailor calculations to your chosen product.
-          </p>
-          <p>
-            Whether you are insulating walls, attics, or floors, this calculator
-            simplifies the process of translating thermal resistance
-            requirements into practical material orders, saving time and money
-            on your construction or renovation project.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Insulation R-Value Requirement Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Insulation R-Value Requirement Calculator helps homeowners and builders determine the minimum insulation levels required by current building codes based on location and assembly type. This tool ensures compliance with the 2021 International Energy Conservation Code (IECC) and helps optimize energy efficiency for new construction or major renovations. By identifying correct R-value targets upfront, you avoid costly code violations, failed inspections, and energy waste.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your zip code or select your climate zone, then specify the building assembly you're insulating (attic, walls, basement, or crawl space). The calculator also asks whether you're adding cavity insulation, continuous insulation, or both, since many jurisdictions now require a combination of these methods. These inputs determine your exact heating and cooling degree days and corresponding code requirements.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results will display your minimum required R-value, recommended R-values for better performance, and practical guidance on material combinations to achieve these targets. Compare the output against your current insulation levels or planned specifications to confirm compliance before purchasing materials or scheduling installation. The calculator also identifies cost-effective ways to exceed minimums, which can reduce energy bills by 10–30% over time.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always verify local building codes for minimum
-            R-Value requirements before ordering insulation materials.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Fiberglass batts are one of the most
-            cost-effective insulation types but require precise installation to
-            avoid gaps that reduce effectiveness.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering slightly larger sheets
-            can reduce installation time and waste, especially in irregular
-            spaces.
-          </li>
-          <li>
-            <strong>Tip:</strong> Use the waste margin slider to adjust for your
-            project's complexity—higher waste for tricky layouts.
-          </li>
+      {/* TABLE: Recommended Attic Insulation R-Values by Climate Zone (2021 IECC) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Attic Insulation R-Values by Climate Zone (2021 IECC)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the minimum recommended R-values for attic insulation across all eight U.S. climate zones.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Climate Zone</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Zone Description</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Heating Degree Days</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Attic R-Value</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Warm/Tropical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Warm/Humid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500–1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-30</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Warm/Mixed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000–2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mixed/Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000–3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-38</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cool/Mixed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000–4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-38</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cold</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,000–5,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-49</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Cold</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,500–7,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Subarctic/Arctic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;7,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-60</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Heating degree days (HDD) are calculated as the sum of daily temperature differences below 65°F. These are minimum code requirements; higher R-values improve efficiency and reduce long-term energy costs.</p>
+      </section>
+
+      {/* TABLE: Exterior Wall Insulation Requirements by Climate Zone */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Exterior Wall Insulation Requirements by Climate Zone</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table displays cavity insulation and continuous insulation (sheathing) requirements for exterior walls across climate zones.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Climate Zone</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cavity Insulation (R-value)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Continuous Insulation Minimum</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Equivalent R-Value</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1–2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-0 (optional)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-13</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-0 to R-3.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-13–R-17</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-3.8 to R-5.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-17–R-19</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-5.6 to R-7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-19–R-21</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-7.5 to R-9.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-21–R-23</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-19</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-7.5 to R-11.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-26–R-30</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-11.3 to R-15.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-32–R-37</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Continuous insulation reduces thermal bridging through studs and framing, improving overall wall performance by 15–25% compared to cavity insulation alone.</p>
+      </section>
+
+      {/* TABLE: Common Insulation Materials and Their R-Values */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Insulation Materials and Their R-Values</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares R-value per inch for popular insulation materials used in residential construction.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">R-Value per Inch</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Cost per Sq. Ft.</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best Use Case</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fiberglass Batts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-3.2–R-3.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.30–$0.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Walls, attics, basements</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Blown-In Cellulose</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-3.2–R-3.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.40–$0.70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Attics, wall cavities</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Spray Foam (Open-Cell)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-3.5–R-3.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.80–$1.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Irregular cavities, air sealing</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Spray Foam (Closed-Cell)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-6.0–R-6.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.50–$2.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High-performance applications</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rigid Foam Board</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-4.0–R-8.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.60–$1.80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Continuous exterior insulation</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mineral Wool Batts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">R-3.8–R-4.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.50–$0.80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fire-rated applications, walls</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs vary by region and market conditions. Closed-cell spray foam provides the highest R-value per inch but carries higher labor costs. Blown-in materials work well for retrofits and irregular spaces.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Input your exact zip code rather than just your climate zone — this allows the calculator to account for local heating and cooling degree days, which may vary significantly within a single zone and affect your specific R-value requirement.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When combining cavity and continuous insulation, verify that your vapor barrier placement is correct; placing vapor barriers on the wrong side of the assembly can trap moisture and lead to mold growth, negating efficiency gains.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider exceeding minimum code requirements by 10–20% if you plan to stay in your home long-term — the extra insulation investment typically pays back in 5–7 years through reduced HVAC costs and increased comfort.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Don't assume old insulation still meets current code requirements; insulation settles over time and can lose 10–15% of its R-value effectiveness after 15–20 years, so recalculate when planning renovations.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Mistake:</strong> Neglecting to convert units properly when
-            switching between metric and imperial systems can cause major
-            miscalculations in material quantities.
-          </p>
-          <p>
-            <strong>2. Mistake:</strong> Using insulation thickness that does not
-            meet the target R-Value leads to poor energy efficiency and potential
-            code violations.
-          </p>
-          <p>
-            <strong>3. Mistake:</strong> Forgetting to include a waste margin
-            often results in insufficient materials, causing project delays and
-            additional costs.
-          </p>
-          <p>
-            <strong>4. Mistake:</strong> Assuming all insulation materials have
-            the same R-Value per inch can cause ordering incorrect quantities.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Vapor Barrier Placement</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Placing vapor barriers on the wrong side of the wall assembly (e.g., interior-facing in cold climates) can trap moisture in the wall cavity, causing mold and structural damage. Always follow the calculator's guidance and your local building code on vapor barrier orientation based on your climate zone and assembly type.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Only Cavity Insulation Without Continuous Insulation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Relying exclusively on cavity insulation in zones 5 and higher leaves significant thermal bridging through wood framing, reducing actual wall performance by 15–25% compared to code-recommended values. The calculator will show that zones 6–8 now require both cavity and continuous insulation for compliance.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing Incompatible Materials</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Combining spray foam with standard kraft-faced fiberglass batts can create vapor barrier conflicts and lead to condensation problems inside walls. Always ensure material selections are compatible; the calculator provides guidance, but consult your building inspector before mixing different insulation types.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Air Leakage Impact</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Achieving the required R-value alone doesn't guarantee energy efficiency if air leaks aren't sealed; uncontrolled air infiltration can reduce effective insulation performance by 20–40%. The calculator focuses on R-value compliance, so also implement proper air-sealing techniques around windows, doors, and mechanical penetrations for optimal results.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Calculator className="w-6 h-6 text-blue-500" />
-          Frequently Asked Questions
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is an R-value and why does it matter for insulation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">R-value measures thermal resistance, indicating how effectively insulation slows heat transfer through building materials. Higher R-values provide better insulation performance; for example, R-19 fiberglass batts are commonly used in walls, while R-38 to R-60 is typical for attics depending on climate zone. The better your insulation's R-value, the less energy your HVAC system needs to maintain comfortable indoor temperatures.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I determine the R-value requirement for my attic?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">R-value requirements for attics range from R-30 in warm climates (zones 1-2) to R-60 in cold climates (zones 7-8), as defined by the 2021 International Energy Conservation Code (IECC). Your specific requirement depends on your geographic location and heating/cooling degree days. The calculator uses your zip code and climate zone to recommend the appropriate R-value for maximum energy efficiency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the minimum R-value requirements for walls?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Wall insulation requirements typically range from R-13 to R-21 for exterior walls across most U.S. climate zones. In colder climates (zones 6-8), R-21 cavity insulation plus continuous R-5 to R-7.5 exterior sheathing is often required. The 2021 IECC recommends these minimums to balance energy efficiency with construction costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does climate zone affect my insulation R-value needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The U.S. is divided into 8 climate zones (1 being warmest, 8 being coldest), and each zone has different insulation requirements based on heating and cooling degree days. A home in Miami (Zone 1) might need R-13 attic insulation, while a home in Minneapolis (Zone 7) requires R-49 to R-60. The calculator automatically adjusts recommendations based on your climate zone.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between cavity insulation and continuous insulation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cavity insulation (like batts or blown-in fiberglass) fills the space between wall studs and joists, while continuous insulation is a rigid layer applied to the exterior of framing that provides uninterrupted thermal protection. Building codes increasingly require both: R-13 cavity insulation plus R-5 to R-7.5 continuous insulation in colder zones to minimize thermal bridging through studs. Using only cavity insulation leaves gaps that reduce overall wall performance by 15-25%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do basement and crawl space R-value requirements differ?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Basement walls require R-10 continuous insulation in most climates, while crawl space walls require R-13 to R-19 depending on the zone and whether the space is vented or unvented. Unvented crawl spaces (increasingly recommended) should have R-13 to R-19 insulation on the walls plus a vapor barrier on the floor. The calculator helps distinguish between these different assembly types.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I mix different types of insulation to meet R-value requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, R-values are additive, so you can combine fiberglass batts (R-3.2 per inch), spray foam (R-3.5 to R-6.5 per inch), and rigid foam boards (R-4 to R-8 per inch) to reach the total requirement. For example, R-19 cavity insulation plus R-7.5 rigid foam sheathing totals R-26.5, which exceeds many wall requirements. However, ensure that vapor barriers and moisture management are properly coordinated when mixing materials.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my insulation falls short of required R-values?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Undersized insulation increases energy consumption by 10-30% depending on how far below code you fall, leading to higher heating and cooling bills year-round. It may also fail building code inspections and potentially affect your home's resale value or insurability. Many jurisdictions require remediation if insulation is discovered to be below minimums during renovation or inspection.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I update my insulation to meet current code requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The International Energy Conservation Code (IECC) updates every 3 years, with the latest version being 2021, and many states have adopted it for new construction and major renovations. While existing homes typically aren't required to retrofit immediately, upgrading insulation during renovations (roof replacement, siding work, etc.) is often mandated to meet current standards. It's recommended to review your current insulation R-value every 10-15 years and compare it against your local building code.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Insulation%20R-Value" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Insulation R-Value - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Insulation R-Value from the trusted team at This Old House.
-            </p>
+            <a href="https://www.iccsafe.org/products-and-services/standards/i-codes/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">2021 International Energy Conservation Code (IECC)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The authoritative source for current U.S. building code requirements including insulation R-values and climate zone definitions.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Insulation%20R-Value" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Insulation R-Value - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Insulation R-Value, helping you get the job done right.
-            </p>
+            <a href="https://www.energy.gov/energysaver/insulation-and-air-sealing" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Energy — Insulation and Air Sealing</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government resource providing technical guidance on insulation materials, R-values, and energy efficiency best practices for residential buildings.</p>
           </li>
           <li>
-            <a href="https://www.energy.gov/search/site?keywords=Insulation%20R-Value" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Insulation R-Value - Energy.gov
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Official Department of Energy guidelines for energy efficiency and Insulation R-Value to save money and improve home comfort.
-            </p>
+            <a href="https://www.energystar.gov/about/origins-mission-governance/how-energy-star-works" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA ENERGY STAR — Home Insulation Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Environmental Protection Agency standards and recommendations for insulation performance and energy-efficient home construction across all climate zones.</p>
           </li>
           <li>
-            <a href="https://www.ashrae.org/search?q=Insulation%20R-Value" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Insulation R-Value - ASHRAE
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical standards and guidelines for HVAC and building systems related to Insulation R-Value.
-            </p>
+            <a href="https://www.insulation.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Insulation Association — R-Value Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry association providing technical standards, material specifications, and installation guidelines for insulation products and performance verification.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

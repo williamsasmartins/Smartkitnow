@@ -181,35 +181,41 @@ export default function CementSandAggregateRatioCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is the ideal cement, sand, and aggregate ratio for concrete?",
-      answer:
-        "The ideal ratio depends on the type of construction and required strength. A common general-purpose mix is 1:2:4 (cement:sand:aggregate), which provides good strength for slabs and foundations. Adjusting the ratio affects the concrete's strength, workability, and durability.",
+      question: "What is the standard cement to sand to aggregate ratio for concrete?",
+      answer: "The most common concrete mix ratio is 1:2:4 (cement:sand:aggregate), which is suitable for general-purpose concrete in residential construction. This ratio produces concrete with a compressive strength of approximately 3000 PSI after 28 days of curing. For stronger applications like structural elements, ratios like 1:1.5:3 are used, yielding 4000+ PSI strength.",
     },
     {
-      question: "Why is it important to include a waste margin in material calculations?",
-      answer:
-        "Including a waste margin accounts for material losses during mixing, spillage, uneven surfaces, and measurement inaccuracies. Typically, a 5-10% waste margin ensures you order enough materials to complete the job without costly delays or shortages.",
+      question: "How do I calculate the total quantity of materials needed for my project?",
+      answer: "First, determine your total concrete volume in cubic meters or cubic yards. Then apply your chosen ratio to calculate individual material quantities. For example, a 1:2:4 ratio means for every 1 part cement, you need 2 parts sand and 4 parts aggregate. Multiply these proportions by your total volume to get the exact amounts needed for purchasing.",
     },
     {
-      question: "How do I convert measurements between metric and imperial units for concrete calculations?",
-      answer:
-        "Metric measurements use meters and cubic meters, while imperial uses feet and cubic feet. To convert cubic feet to cubic meters, divide by 35.3147. For volume calculations, always convert all dimensions to the same unit system before calculating volume to ensure accuracy.",
+      question: "What ratio should I use for a concrete foundation or slab?",
+      answer: "For foundation slabs and footings, use a 1:2:4 ratio which provides adequate strength (around 3000 PSI) for residential loads. If your foundation experiences heavy loads or harsh weather, consider upgrading to 1:1.5:3 for increased durability and strength. Always verify local building codes for minimum strength requirements in your area.",
     },
     {
-      question: "How do bag sizes affect the quantity of cement needed?",
-      answer:
-        "Cement bags come in different sizes, commonly 50kg standard bags or larger bulk bags. The volume each bag covers differs, so knowing the bag size helps convert volume of cement required into the correct number of bags. Using incorrect bag volume can lead to ordering too much or too little cement.",
+      question: "Why does concrete strength vary with different cement to sand ratios?",
+      answer: "Cement is the binding agent that creates strength; higher cement content produces stronger concrete but also increases cost and may cause cracking. Sand fills small voids and improves workability, while aggregate provides volume and compressive strength. The optimal ratio balances strength, workability, cost, and durability based on your project requirements.",
     },
     {
-      question: "Can I use this calculator for different concrete mix ratios?",
-      answer:
-        "Yes, this calculator allows you to input custom ratios for cement, sand, and aggregate. Adjusting these ratios lets you tailor the mix for specific strength or workability requirements. Always ensure the ratios are positive numbers and reflect the intended mix design.",
+      question: "Can I adjust the ratio for different weather conditions or climates?",
+      answer: "Yes, climate significantly affects concrete performance. In high rainfall areas, use lower water-cement ratios (achieved by using stronger mixes like 1:1.5:3) to improve durability. In extreme heat, add extra fine materials to reduce segregation, while in cold climates, use higher cement content to improve freeze-thaw resistance. Always consult IS 456 (Indian Standard) or ACI guidelines for your specific climate zone.",
     },
     {
-      question: "How accurate are the volume-to-weight conversions for sand and aggregate?",
-      answer:
-        "The calculator uses average bulk densities (sand ~1600 kg/m³, aggregate ~1500 kg/m³) to convert volume to weight. Actual densities can vary based on moisture content, compaction, and material type. For critical projects, consult material suppliers or perform site-specific density tests.",
+      question: "What is the difference between nominal and design concrete mixes?",
+      answer: "Nominal mixes like 1:2:4 have fixed proportions and are suitable for small projects with non-critical applications. Design mixes are calculated based on laboratory testing to achieve specific compressive strength (e.g., M20, M25, M30) and are required for structural projects. This calculator helps with nominal mixes; for design mixes, consult an engineer or use specialized software.",
     },
+    {
+      question: "How much water should I add to the cement, sand, and aggregate mixture?",
+      answer: "The water-cement ratio typically ranges from 0.4 to 0.6, meaning 0.4 to 0.6 liters of water per kilogram of cement. For a 1:2:4 mix with 50 kg of cement, use approximately 20-30 liters of water. Avoid adding excess water as it reduces concrete strength; add water gradually until you achieve the desired workability and consistency.",
+    },
+    {
+      question: "What concrete ratio is best for plastering and mortar work?",
+      answer: "For plastering, use a 1:4 to 1:6 (cement:sand) ratio without coarse aggregate. For brick mortar, a 1:3 to 1:6 ratio is standard depending on the mortar grade required. These ratios differ from structural concrete because plastering and masonry don't require aggregate and need higher workability for application.",
+    },
+    {
+      question: "How do I convert concrete mix ratios from metric to imperial measurements?",
+      answer: "Standard metric ratios like 1:2:4 remain unchanged when converting units—the ratio itself is dimensionless. However, when calculating quantities: 1 cubic meter equals approximately 35.3 cubic feet or 1.3 cubic yards. If your calculator works in cubic yards, multiply cubic meter results by 1.3 to get the equivalent imperial volume.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -427,172 +433,307 @@ export default function CementSandAggregateRatioCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Cement, Sand & Aggregate Ratio Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Cement, Sand & Aggregate Ratio Calculator is an essential tool for
-            construction professionals and DIY enthusiasts alike. It helps you
-            accurately estimate the quantities of cement, sand, and aggregate needed
-            for your concrete mix based on your project dimensions and desired mix
-            ratio. Whether you are pouring a slab, building a foundation, or making
-            concrete blocks, this calculator ensures you order the right amount of
-            materials, saving time and money.
-          </p>
-          <p>
-            Precision in material estimation is crucial. Overestimating leads to
-            wasted materials and increased costs, while underestimating can cause
-            project delays and compromise structural integrity. This calculator
-            factors in a waste margin to accommodate spillage, uneven surfaces, and
-            measurement errors, giving you a buffer to work with.
-          </p>
-          <p>
-            Concrete is made by mixing cement, sand, and aggregate in specific
-            ratios. Common mix ratios like 1:2:4 (cement:sand:aggregate) provide a
-            balance of strength and workability suitable for many applications.
-            Adjusting these ratios changes the concrete’s properties, so it’s
-            important to choose the right mix for your project.
-          </p>
-          <p>
-            Different materials have different densities and packaging sizes. Cement
-            is typically sold in 50kg bags, but bulk bags are also available. Sand
-            and aggregate are usually measured by weight (tonnes) or volume (cubic
-            meters). This calculator converts volumes to practical units, helping
-            you order materials efficiently.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cement, Sand & Aggregate Ratio Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Cement, Sand &amp; Aggregate Ratio Calculator is designed to help construction professionals and DIY builders determine the exact quantities of materials needed for concrete mixes. By inputting your total concrete volume and selecting the desired mix ratio, the calculator instantly provides precise material requirements, eliminating guesswork and reducing material waste on job sites.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator requires two main inputs: your total concrete volume (in cubic meters or cubic yards) and your chosen cement-to-sand-to-aggregate ratio based on the project type. Common ratios include 1:2:4 for general construction, 1:1.5:3 for structural work, and 1:1:2 for high-strength applications. Understanding which ratio suits your project ensures optimal strength, durability, and cost-effectiveness.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once calculated, the results show exact quantities of cement (in bags or kilograms), sand (in kilograms or cubic meters), coarse aggregate, and recommended water content. Compare these results against your project budget and local material availability, then adjust volumes proportionally if your actual project size differs from the initial calculation. Always factor in a 5-10% waste margin when purchasing materials.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure your site dimensions carefully and
-            double-check before ordering materials. Small errors can lead to large
-            material shortages or excess.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> The bulk density of sand and aggregate
-            varies depending on moisture content and compaction. For more accurate
-            estimates, consider getting density values from your supplier.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering a slightly higher waste
-            margin (up to 15%) is common on uneven or complex jobs to avoid delays.
-          </li>
-          <li>
-            <strong>Tip:</strong> When working in imperial units, always convert
-            volumes to cubic meters internally for consistent calculations.
-          </li>
+      {/* TABLE: Common Concrete Mix Ratios and Their Applications */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Concrete Mix Ratios and Their Applications</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows standard cement-sand-aggregate ratios used in construction with their typical applications and resulting compressive strength.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mix Ratio (C:S:A)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mix Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Compressive Strength (28 days)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Applications</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Water-Cement Ratio</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:3:6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weak Concrete</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-10 MPa (1000-1450 PSI)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Non-structural work, leveling</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.65-0.75</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:2:4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Nominal Concrete (M15)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 MPa (2175 PSI)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">General residential, footings, slabs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.55-0.65</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:1.5:3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium Strength (M20)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 MPa (2900 PSI)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Structural columns, beams, RCC work</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.50-0.60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:1:2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High Strength (M25)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 MPa (3625 PSI)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy-duty structures, bridges</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.45-0.55</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:0.8:1.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High Strength (M30)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 MPa (4350 PSI)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pre-stressed concrete, critical structures</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.40-0.50</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Compressive strength values are approximate and depend on cement quality, curing conditions, and aggregate grading. Always conduct tests for critical projects.</p>
+      </section>
+
+      {/* TABLE: Material Quantities for 1 Cubic Meter of Concrete */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Material Quantities for 1 Cubic Meter of Concrete</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table provides exact material quantities required to produce 1 cubic meter of concrete for different standard mix ratios.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mix Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cement (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sand (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coarse Aggregate (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Water (liters)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Concrete Yield</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:3:6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">480</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">960</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">128</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.00 m³</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:2:4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.00 m³</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:1.5:3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">720</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.00 m³</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:1:2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.00 m³</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:0.8:1.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">560</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.00 m³</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These calculations assume nominal mixes with standard density. Actual quantities may vary based on moisture content of sand and aggregate, and local material specifications per IS 2386 standards.</p>
+      </section>
+
+      {/* TABLE: Concrete Grade Classification and Usage Standards */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Concrete Grade Classification and Usage Standards</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Indian concrete grades (M-series) and their equivalent strengths, standards compliance, and recommended uses in construction projects.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Concrete Grade</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Characteristic Strength (MPa)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mix Ratio (C:S:A)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">IS Code Compliance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">M10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 MPa</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:3.5:7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">IS 456:2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Leveling courses, unreinforced concrete</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">M15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 MPa</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:2:4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">IS 456:2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">PCC roads, light RCC work</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">M20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 MPa</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:1.5:3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">IS 456:2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Structural concrete, columns, beams</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">M25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 MPa</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:1:2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">IS 456:2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High-strength structures, bridges</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">M30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 MPa</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:0.8:1.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">IS 456:2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy-duty structures, dams</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">M40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40 MPa</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Design Mix</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">IS 456:2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical structures (Design Mix required)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Grades M10 through M30 can use nominal mixes; M35 and above require design mix calculations. Actual strength depends on workmanship, curing, and material quality.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify your local building codes and IS 456 standards before selecting a concrete mix ratio—minimum strength requirements vary by region and project type.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for material moisture content, especially in sand and aggregate, as this affects the water-cement ratio and final concrete strength; conduct material testing for critical projects.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Purchase cement in standard 50 kg bags to simplify calculations—if your calculator shows 245 kg of cement needed, order 5 bags (250 kg) with a small surplus for waste.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this calculator for nominal mixes only; for structural projects requiring specific compressive strength guarantees, consult a structural engineer to develop a design mix based on laboratory testing.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider seasonal factors when selecting ratios—high temperatures increase water demand and reduce concrete setting time, while cold weather may require higher cement content for proper hydration.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Unit Conversion:</strong> Mixing metric and imperial
-            units without proper conversion leads to inaccurate volume and material
-            estimates. Always ensure all dimensions are in the same unit system.
-          </p>
-          <p>
-            <strong>2. Ignoring Waste Margin:</strong> Not including a waste margin
-            can cause material shortages, forcing last-minute orders and project
-            delays.
-          </p>
-          <p>
-            <strong>3. Using Wrong Bag Volume:</strong> Cement bag sizes vary by
-            region and supplier. Using an incorrect bag volume for calculations can
-            result in ordering too many or too few bags.
-          </p>
-          <p>
-            <strong>4. Overlooking Material Density Variations:</strong> Bulk
-            densities of sand and aggregate can vary significantly. Using generic
-            densities without adjustment may affect accuracy.
-          </p>
-          <p>
-            <strong>5. Not Adjusting Mix Ratios:</strong> Using a default mix ratio
-            for all projects without considering structural requirements can lead to
-            weak or overly expensive concrete.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the Water-Cement Ratio</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adding excess water to improve workability weakens concrete and reduces its compressive strength significantly. Always maintain the prescribed water-cement ratio (typically 0.45-0.65) and achieve workability through proper mixing technique and aggregate grading instead.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Incorrect Volume Units</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Mixing cubic meters and cubic yards in calculations leads to major errors in material quantities. Verify your calculator uses consistent units throughout and convert all measurements to the same system before multiplying by the ratio.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Waste and Spillage</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Construction inevitably generates 5-10% material waste through spillage, measurement errors, and improper mixing. Always add this buffer to your calculated quantities when purchasing materials to avoid mid-project shortages.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Selecting Wrong Ratio for Project Type</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using a weak mix (1:3:6) for structural columns or a strong mix (1:1:2) for non-load-bearing walls wastes money and compromises performance. Always match your ratio to the project's load requirements and structural function.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Material Quality and Grading</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator assumes standard material specifications; using poor-quality cement, undersized sand, or irregular aggregate aggregates produces concrete weaker than calculated values. Always source materials meeting IS standards and conduct quality checks.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard cement to sand to aggregate ratio for concrete?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The most common concrete mix ratio is 1:2:4 (cement:sand:aggregate), which is suitable for general-purpose concrete in residential construction. This ratio produces concrete with a compressive strength of approximately 3000 PSI after 28 days of curing. For stronger applications like structural elements, ratios like 1:1.5:3 are used, yielding 4000+ PSI strength.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the total quantity of materials needed for my project?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">First, determine your total concrete volume in cubic meters or cubic yards. Then apply your chosen ratio to calculate individual material quantities. For example, a 1:2:4 ratio means for every 1 part cement, you need 2 parts sand and 4 parts aggregate. Multiply these proportions by your total volume to get the exact amounts needed for purchasing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What ratio should I use for a concrete foundation or slab?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For foundation slabs and footings, use a 1:2:4 ratio which provides adequate strength (around 3000 PSI) for residential loads. If your foundation experiences heavy loads or harsh weather, consider upgrading to 1:1.5:3 for increased durability and strength. Always verify local building codes for minimum strength requirements in your area.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does concrete strength vary with different cement to sand ratios?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cement is the binding agent that creates strength; higher cement content produces stronger concrete but also increases cost and may cause cracking. Sand fills small voids and improves workability, while aggregate provides volume and compressive strength. The optimal ratio balances strength, workability, cost, and durability based on your project requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I adjust the ratio for different weather conditions or climates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, climate significantly affects concrete performance. In high rainfall areas, use lower water-cement ratios (achieved by using stronger mixes like 1:1.5:3) to improve durability. In extreme heat, add extra fine materials to reduce segregation, while in cold climates, use higher cement content to improve freeze-thaw resistance. Always consult IS 456 (Indian Standard) or ACI guidelines for your specific climate zone.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between nominal and design concrete mixes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Nominal mixes like 1:2:4 have fixed proportions and are suitable for small projects with non-critical applications. Design mixes are calculated based on laboratory testing to achieve specific compressive strength (e.g., M20, M25, M30) and are required for structural projects. This calculator helps with nominal mixes; for design mixes, consult an engineer or use specialized software.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much water should I add to the cement, sand, and aggregate mixture?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The water-cement ratio typically ranges from 0.4 to 0.6, meaning 0.4 to 0.6 liters of water per kilogram of cement. For a 1:2:4 mix with 50 kg of cement, use approximately 20-30 liters of water. Avoid adding excess water as it reduces concrete strength; add water gradually until you achieve the desired workability and consistency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What concrete ratio is best for plastering and mortar work?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For plastering, use a 1:4 to 1:6 (cement:sand) ratio without coarse aggregate. For brick mortar, a 1:3 to 1:6 ratio is standard depending on the mortar grade required. These ratios differ from structural concrete because plastering and masonry don't require aggregate and need higher workability for application.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I convert concrete mix ratios from metric to imperial measurements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard metric ratios like 1:2:4 remain unchanged when converting units—the ratio itself is dimensionless. However, when calculating quantities: 1 cubic meter equals approximately 35.3 cubic feet or 1.3 cubic yards. If your calculator works in cubic yards, multiply cubic meter results by 1.3 to get the equivalent imperial volume.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Concrete%20Mix%20Ratios" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Mix Ratios - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Concrete Mix Ratios from the trusted team at This Old House.
-            </p>
+            <a href="https://www.bic.org.in/pages/indian-standards" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IS 456:2000 - Indian Standard Code of Practice for Plain and Reinforced Concrete</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official Indian standards for concrete mix design, material specifications, and compressive strength requirements.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Concrete%20Mix%20Ratios" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Mix Ratios - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Concrete Mix Ratios, helping you get the job done right.
-            </p>
+            <a href="https://www.concrete.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ACI 211.1-91 - Standard Practice for Selecting Proportions for Normal, Heavyweight, and Mass Concrete</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Concrete Institute guidelines for concrete mix design and material proportioning used in international projects.</p>
           </li>
           <li>
-            <a href="https://www.concretenetwork.com/search.html?q=Concrete%20Mix%20Ratios" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Mix Ratios - Concrete Network
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              The leading source for concrete information, including design ideas, contractor directories, and technical guides for Concrete Mix Ratios.
-            </p>
+            <a href="https://www.bis.gov.in/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bureau of Indian Standards - IS 2386 - Methods of Test for Aggregates for Concrete</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Indian standards for testing aggregate quality, grading, and suitability for concrete production.</p>
           </li>
           <li>
-            <a href="https://www.cement.org/search-results?indexCatalogue=site-search&searchQuery=Concrete%20Mix%20Ratios&wordsMode=0" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Mix Ratios - Portland Cement Association
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical resources and industry standards for cement and concrete applications related to Concrete Mix Ratios.
-            </p>
+            <a href="https://www.nrmca.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Ready Mixed Concrete Association (NRMCA) - Concrete Mix Design</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical resources and guidelines for concrete mix proportioning and quality control in ready-mix concrete production.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

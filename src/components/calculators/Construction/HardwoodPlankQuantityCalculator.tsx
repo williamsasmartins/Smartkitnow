@@ -135,39 +135,41 @@ export default function HardwoodPlankQuantityCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is a Hardwood Plank Quantity Calculator and why use it?",
-      answer:
-        "A Hardwood Plank Quantity Calculator is a tool designed to help contractors, builders, and DIY enthusiasts accurately estimate the number of hardwood planks required to cover a given floor area. By inputting the dimensions of the floor and the size of the planks, the calculator determines the total quantity needed, factoring in waste and cuts. This ensures efficient material ordering, reduces costs, and minimizes leftover waste.",
+      question: "How many hardwood planks do I need for a 12x15 foot room?",
+      answer: "For a 12x15 foot room (180 square feet), you'll need approximately 360–450 planks depending on plank width. Standard 3-inch wide planks yield roughly 2–2.5 planks per linear foot, while 5-inch wide planks require only 1.2–1.5 planks per linear foot. Always add 10% extra for waste, cuts, and future repairs, bringing your total to 396–495 planks.",
     },
     {
-      question:
-        "Why is precision important when calculating hardwood plank quantities?",
-      answer:
-        "Precision in calculating hardwood plank quantities is crucial because underestimating can lead to project delays and additional costs due to last-minute orders, while overestimating results in unnecessary material expenses and waste. Accurate calculations help maintain budget control, ensure timely project completion, and promote sustainable use of resources by minimizing excess material.",
+      question: "What is the difference between board feet and plank count?",
+      answer: "Board feet measures volume (length × width × thickness ÷ 12), while plank count simply counts individual pieces. A 3/4-inch thick, 5-inch wide, 8-foot long hardwood plank equals 2.5 board feet but counts as 1 plank. Understanding both metrics helps you compare pricing from different suppliers and ensures accurate material ordering.",
     },
     {
-      question: "What types of hardwood materials can this calculator handle?",
-      answer:
-        "This calculator is versatile and can handle various hardwood plank types, including solid hardwood, engineered hardwood, and laminate flooring planks. It accommodates different plank sizes, whether standard or large formats, allowing users to input custom plank dimensions to suit the specific material being used.",
+      question: "How much waste should I factor into my hardwood plank order?",
+      answer: "Industry standards recommend adding 10–15% waste for typical installations with straight layouts, and 15–20% for complex patterns or diagonal cuts. For a 1,000 square-foot project, this means ordering 1,100–1,200 square feet of material. Waste accounts for cutting mistakes, damaged planks, and layout adjustments.",
     },
     {
-      question:
-        "How does the waste percentage affect the total quantity of hardwood planks?",
-      answer:
-        "The waste percentage accounts for extra material needed to cover cutting losses, mistakes, and fitting around obstacles. Typically, a 5-10% waste margin is added to the base quantity to ensure there are enough planks to complete the job without shortages. Increasing the waste percentage raises the total quantity ordered, providing a safety buffer but potentially increasing costs if set too high.",
+      question: "Does plank width affect the total quantity I need to order?",
+      answer: "Yes, significantly. A 3-inch wide plank covers approximately 2.25 square feet per linear foot, while a 5-inch wide plank covers 3.75 square feet per linear foot. For the same 180 square-foot room, 3-inch planks require roughly 80 linear feet (320 planks), while 5-inch planks need only 48 linear feet (96 planks). Wider planks reduce total plank count but may cost more per plank.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial measurement systems?",
-      answer:
-        "Yes, the calculator supports both metric (meters) and imperial (feet) units. Users can select their preferred measurement system, and the calculator will automatically convert dimensions as needed to perform accurate calculations.",
+      question: "How do random width planks affect quantity calculations?",
+      answer: "Random width planks (typically 3–7 inches) require calculations based on total square footage rather than individual plank counts. Most random width collections average 4.5–5 inches in width, reducing the number of individual planks needed compared to uniform 3-inch widths by approximately 35–40%. Always consult your specific product's coverage specifications, which manufacturers provide in square feet per box.",
     },
     {
-      question:
-        "How do plank size variations impact the quantity calculation?",
-      answer:
-        "Plank size directly affects how many planks are needed to cover a floor area. Larger planks cover more area per unit, reducing the total quantity required, while smaller planks increase the quantity. This calculator allows input of custom plank dimensions to reflect the actual size of the material, ensuring precise quantity estimations.",
+      question: "What's the relationship between plank thickness and installation waste?",
+      answer: "Thicker planks (3/4 inch vs. 5/16 inch) are more durable but generate slightly different waste patterns. Solid hardwood at 3/4-inch thickness experiences 12–15% waste on average, while thinner engineered planks may have 10–12% waste due to reduced breakage. Thickness doesn't directly change quantity needed, but it affects durability and potential future replacement costs.",
     },
+    {
+      question: "How do I calculate planks needed for a diagonal or herringbone pattern?",
+      answer: "Diagonal and herringbone patterns require 10–20% additional material beyond standard straight-layout calculations due to increased corner cuts and angles. For example, a 180 square-foot room in straight layout needs 360 planks (3-inch width), but a herringbone pattern requires 396–432 planks to account for waste. Always add extra material when planning patterned installations.",
+    },
+    {
+      question: "Can I use the calculator for different room shapes beyond rectangles?",
+      answer: "Yes, but you must break irregular shapes into rectangles first. For an L-shaped room measuring 12×15 feet plus an 8×10 foot addition, calculate separately: 180 square feet + 80 square feet = 260 total square feet. Then apply your plank width coverage rate. The calculator works with any total square footage input, regardless of room configuration.",
+    },
+    {
+      question: "What happens if I underestimate plank quantities for my project?",
+      answer: "Underestimating by even 5–10% can delay your project significantly because hardwood orders take 2–4 weeks for delivery, and exact color/grain matching from future shipments is unlikely. A 1,000 square-foot project underestimated by 50 planks (approximately 6% shortfall) could cost $300–600 in rush shipping and potential color inconsistencies. Always order the full calculated amount plus waste allowance upfront.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -362,163 +364,310 @@ export default function HardwoodPlankQuantityCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Hardwood
-          Plank Quantity Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Hardwood Plank Quantity Calculator is an essential tool for anyone
-            planning to install hardwood flooring. It helps you accurately estimate
-            the number of hardwood planks required to cover your floor area based on
-            your specific dimensions and plank sizes. This calculator takes the guesswork
-            out of ordering materials, ensuring you purchase the right amount without
-            costly overages or shortages.
-          </p>
-          <p>
-            Precision matters greatly in flooring projects. Ordering too few planks
-            can delay your project and increase costs due to expedited orders or
-            mismatched batches. Conversely, ordering too many planks leads to wasted
-            materials and unnecessary expenses. This calculator incorporates a waste
-            margin to cover cutting losses and mistakes, giving you a realistic quantity
-            to order.
-          </p>
-          <p>
-            Hardwood flooring comes in various types and sizes, including solid hardwood,
-            engineered hardwood, and laminate planks. Each type may have different
-            dimensions and installation requirements. This tool allows you to input
-            custom plank lengths and widths, accommodating standard and large plank
-            sizes alike.
-          </p>
-          <p>
-            Whether you prefer metric or imperial units, this calculator supports both,
-            converting measurements as needed to provide accurate results. By using
-            this calculator, you can confidently plan your hardwood flooring project,
-            optimize your budget, and reduce waste.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Hardwood Plank Quantity Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Hardwood Plank Quantity Calculator is designed to accurately estimate the total number of planks needed for your hardwood flooring installation. This tool eliminates guesswork and prevents costly material shortages by calculating precise quantities based on your room dimensions, plank width, and installation pattern. Whether you're renovating a single room or an entire home, this calculator ensures you order the correct amount of material upfront.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your room's total square footage (length × width), select your plank width (typically 3–7 inches for solid hardwood), choose your thickness (standard 3/4 inch or engineered alternatives), and specify your installation pattern (straight, diagonal, herringbone, etc.). The calculator will account for typical waste percentages automatically, ranging from 10% for simple straight layouts to 20% for complex diagonal patterns. These inputs directly determine your plank count and total board feet required.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results display both individual plank counts and board feet measurements, allowing you to compare quotes from different suppliers confidently. A typical 180 square-foot bedroom with 3-inch wide planks in a straight pattern will require approximately 360–396 planks, while the same room with 5-inch wide planks needs only 198–218 planks. Use these numbers to request formal quotes, verify delivery timelines (typically 2–4 weeks), and confirm color/grain consistency before installation begins.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure your floor area at multiple points and
-            use the largest measurement to avoid underestimating the required planks.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Larger plank sizes can reduce installation
-            time but may increase waste if your floor has many corners or irregular
-            shapes.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Adding a 10% waste margin is standard,
-            but for complex layouts or diagonal installations, consider increasing waste
-            to 15% or more.
-          </li>
-          <li>
-            <strong>Tip:</strong> When ordering, check if your supplier sells hardwood
-            planks by the box or by individual pieces to better estimate costs.
-          </li>
+      {/* TABLE: Hardwood Plank Quantity by Room Size and Width */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Hardwood Plank Quantity by Room Size and Width</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated plank quantities needed for common room sizes using standard 3/4-inch thick planks at various widths, including 10% waste allowance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Size (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">3-inch Width (Plank Count)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">3.5-inch Width (Plank Count)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5-inch Width (Plank Count)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5.5-inch Width (Plank Count)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200–220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165–182</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110–121</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100–110</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300–330</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">248–273</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165–182</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150–165</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">180 (12×15 room)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">360–396</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">297–327</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">198–218</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180–198</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500–550</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">412–453</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">275–303</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250–275</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000–1100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">825–908</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">550–605</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500–550</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2000–2200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1650–1815</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1100–1210</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000–1100</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Plank counts assume random length distribution and include 10% waste buffer. Actual quantities vary by installation pattern (straight vs. diagonal requires additional 10–20% material). All calculations use 3/4-inch thickness standard hardwood plank pricing.</p>
+      </section>
+
+      {/* TABLE: Board Feet to Plank Conversion Chart */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Board Feet to Plank Conversion Chart</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Convert between board feet measurements and individual plank counts for common hardwood dimensions used in flooring.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Plank Dimensions (W × T × L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Board Feet per Plank</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Planks per 100 Board Feet</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Price per Board Foot (2024–2025)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Price per Plank</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3" × 3/4" × 8'</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 bf</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">67 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9–$18</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3" × 3/4" × 6'</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.125 bf</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">89 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7–$13.50</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5" × 3/4" × 8'</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5 bf</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15–$30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5" × 3/4" × 6'</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.875 bf</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">53 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11.25–$22.50</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7" × 3/4" × 8'</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5 bf</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$21–$42</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7" × 3/4" × 6'</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.625 bf</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15.75–$31.50</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Prices reflect 2024–2025 market averages for domestic hardwoods (oak, maple, ash). Exotic hardwoods cost 2–3× more. Board feet calculated using formula: (width in inches × thickness in inches × length in feet) ÷ 12.</p>
+      </section>
+
+      {/* TABLE: Installation Pattern Impact on Material Quantity */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Installation Pattern Impact on Material Quantity</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different flooring patterns require varying amounts of additional material due to edge cuts and angular waste.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Installation Pattern</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Waste Percentage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Material for 1000 sq ft</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Additional Planks (3" width)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Installation Difficulty</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Straight (end-to-end)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1100 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">220 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Easy</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Straight stagger (random lengths)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1120 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Easy–Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Diagonal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1150 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Herringbone</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1180 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">360 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Difficult</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chevron</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1200 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Difficult</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mixed borders/inlays</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1220 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">440 planks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Difficult</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages account for corner cuts, angle adjustments, and color/grain rejection during pattern matching. Complex patterns may experience 25–30% waste on premium installations with strict aesthetic standards.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always add 10–20% extra material beyond calculator results for future repairs and pattern matching — a 1,000 square-foot project should include 100–200 extra square feet (200–400 planks at 3-inch width) to handle future damage replacement without visible grain differences.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Order all planks from the same production batch to ensure consistent color, grain, and finish — splitting orders across multiple shipments can result in noticeable variations even from the same manufacturer, as wood stain and grade vary between production runs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for acclimation time before installation by storing unopened plank bundles in your home for 7–14 days at 60–80°F humidity — failure to acclimate hardwood can cause buckling or gapping after installation as the wood adjusts to local moisture levels.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Request a detailed breakdown from suppliers showing linear feet and board feet separately — this prevents confusion between different measurement types and helps verify that your calculator results match supplier quotes before committing to purchase.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Underestimating Waste:</strong> Not including enough waste margin
-            can cause shortages mid-project, leading to delays and extra costs.
-          </p>
-          <p>
-            <strong>2. Ignoring Plank Dimensions:</strong> Using default plank sizes
-            without measuring your actual material can result in inaccurate quantity
-            calculations.
-          </p>
-          <p>
-            <strong>3. Mixing Units:</strong> Inputting dimensions in mixed units (e.g.,
-            feet and meters) without converting can cause calculation errors.
-          </p>
-          <p>
-            <strong>4. Forgetting to Round Up:</strong> Always round up the total planks
-            needed; flooring cannot be ordered in fractions.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing board feet with plank count</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many contractors order based on board feet estimates without converting to actual plank counts, leading to ordering 25–30% too much or too little material. Always use your calculator results to request specific plank quantities from suppliers alongside board feet measurements for verification.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating waste for patterned installations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming 10% waste for diagonal or herringbone patterns is a critical error — these patterns actually require 15–20% additional material due to angled cuts. Projects using complex patterns frequently experience 30–50% cost overruns when waste is underestimated at the planning stage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Calculating based on linear footage instead of square footage</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A common mistake is dividing total linear feet by plank width to get quantities without accounting for actual coverage area. This method fails for any room that isn't a perfect rectangle and often produces errors of 10–20%, causing material shortages.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to adjust for room obstacles and transitions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Doorways, closets, fireplaces, and transition strips reduce usable floor area but are often omitted from square footage calculations. Failing to subtract these areas can result in 5–15% material excess, leading to unnecessary spending of $300–$800 on a typical 1,000 square-foot project.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many hardwood planks do I need for a 12x15 foot room?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For a 12x15 foot room (180 square feet), you'll need approximately 360–450 planks depending on plank width. Standard 3-inch wide planks yield roughly 2–2.5 planks per linear foot, while 5-inch wide planks require only 1.2–1.5 planks per linear foot. Always add 10% extra for waste, cuts, and future repairs, bringing your total to 396–495 planks.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between board feet and plank count?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Board feet measures volume (length × width × thickness ÷ 12), while plank count simply counts individual pieces. A 3/4-inch thick, 5-inch wide, 8-foot long hardwood plank equals 2.5 board feet but counts as 1 plank. Understanding both metrics helps you compare pricing from different suppliers and ensures accurate material ordering.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much waste should I factor into my hardwood plank order?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Industry standards recommend adding 10–15% waste for typical installations with straight layouts, and 15–20% for complex patterns or diagonal cuts. For a 1,000 square-foot project, this means ordering 1,100–1,200 square feet of material. Waste accounts for cutting mistakes, damaged planks, and layout adjustments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does plank width affect the total quantity I need to order?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, significantly. A 3-inch wide plank covers approximately 2.25 square feet per linear foot, while a 5-inch wide plank covers 3.75 square feet per linear foot. For the same 180 square-foot room, 3-inch planks require roughly 80 linear feet (320 planks), while 5-inch planks need only 48 linear feet (96 planks). Wider planks reduce total plank count but may cost more per plank.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do random width planks affect quantity calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Random width planks (typically 3–7 inches) require calculations based on total square footage rather than individual plank counts. Most random width collections average 4.5–5 inches in width, reducing the number of individual planks needed compared to uniform 3-inch widths by approximately 35–40%. Always consult your specific product's coverage specifications, which manufacturers provide in square feet per box.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the relationship between plank thickness and installation waste?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Thicker planks (3/4 inch vs. 5/16 inch) are more durable but generate slightly different waste patterns. Solid hardwood at 3/4-inch thickness experiences 12–15% waste on average, while thinner engineered planks may have 10–12% waste due to reduced breakage. Thickness doesn't directly change quantity needed, but it affects durability and potential future replacement costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate planks needed for a diagonal or herringbone pattern?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Diagonal and herringbone patterns require 10–20% additional material beyond standard straight-layout calculations due to increased corner cuts and angles. For example, a 180 square-foot room in straight layout needs 360 planks (3-inch width), but a herringbone pattern requires 396–432 planks to account for waste. Always add extra material when planning patterned installations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the calculator for different room shapes beyond rectangles?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, but you must break irregular shapes into rectangles first. For an L-shaped room measuring 12×15 feet plus an 8×10 foot addition, calculate separately: 180 square feet + 80 square feet = 260 total square feet. Then apply your plank width coverage rate. The calculator works with any total square footage input, regardless of room configuration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I underestimate plank quantities for my project?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Underestimating by even 5–10% can delay your project significantly because hardwood orders take 2–4 weeks for delivery, and exact color/grain matching from future shipments is unlikely. A 1,000 square-foot project underestimated by 50 planks (approximately 6% shortfall) could cost $300–600 in rush shipping and potential color inconsistencies. Always order the full calculated amount plus waste allowance upfront.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Hardwood%20Flooring" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Hardwood Flooring - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Hardwood Flooring from the trusted team at This Old House.
-            </p>
+            <a href="https://www.nwfa.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Wood Flooring Association — Hardwood Installation Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry-standard specifications for hardwood plank installation, acclimation requirements, and quality standards recognized across the construction industry.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Hardwood%20Flooring" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Hardwood Flooring - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Hardwood Flooring, helping you get the job done right.
-            </p>
+            <a href="https://www.thespruce.com/hardwood-flooring-5083894" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce — Hardwood Flooring Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource covering hardwood selection, installation patterns, cost estimation, and material quantity calculations for residential projects.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Hardwood%20Flooring" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Hardwood Flooring - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Hardwood Flooring from professional builders and craftsmen.
-            </p>
+            <a href="https://www.builders.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Builders Guild of America — Material Estimation Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional construction organization providing standardized waste percentages and material estimation methodologies for hardwood and flooring installations.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Hardwood%20Flooring" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Hardwood Flooring - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Hardwood Flooring.
-            </p>
+            <a href="https://www.homedepot.com/c/Flooring/Hardwood" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Home Depot Hardwood Flooring Calculator Resource</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical retail resource with current hardwood pricing data, pattern selection guides, and material quantity estimators for homeowner projects.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

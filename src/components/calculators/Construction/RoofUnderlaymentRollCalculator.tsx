@@ -118,39 +118,41 @@ export default function RoofUnderlaymentRollCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is roof underlayment and why is it important?",
-      answer:
-        "Roof underlayment is a protective layer installed beneath roofing materials such as shingles or tiles. It acts as a secondary barrier against water infiltration, wind-driven rain, and ice dams, protecting the roof deck and interior of the building. Proper underlayment installation extends roof life and prevents costly damage.",
+      question: "How many rolls of underlayment do I need for a 2,000 square foot roof?",
+      answer: "Most standard underlayment rolls cover 400-437 square feet per roll. For a 2,000 square foot roof, you would need approximately 5-6 rolls, assuming standard 36-inch wide rolls that are 3-feet wide. Always add 10% extra for waste, overlaps, and cutting around penetrations, bringing your total to 5-7 rolls for this size roof.",
     },
     {
-      question:
-        "How do I choose the right size and type of roof underlayment roll?",
-      answer:
-        "Underlayment rolls come in various sizes and materials, including synthetic and felt types. The choice depends on roof design, climate, and budget. Standard rolls typically cover around 50 square meters (540 square feet), while larger rolls cover more area and reduce seams. Synthetic underlayments offer better durability and moisture resistance compared to traditional felt.",
+      question: "What is the standard overlap requirement for roof underlayment?",
+      answer: "Building codes typically require a 4-6 inch horizontal overlap between underlayment rows and a 6-12 inch overlap at seams and valleys. This overlap is critical for proper water shedding and prevents water from running under the material during heavy rain or ice dams. Always consult your local building code, as requirements vary by region and roof pitch.",
     },
     {
-      question: "Why is it necessary to include waste in the estimation?",
-      answer:
-        "Including a waste factor accounts for material lost due to cutting, overlaps, mistakes, and fitting around roof features like vents and chimneys. Typically, a 10% waste margin is recommended to ensure you have enough material to complete the job without delays or additional orders.",
+      question: "How do I account for roof pitch in my underlayment calculation?",
+      answer: "Steeper roof pitches require more material due to increased waste from cutting and overlapping. A 4/12 to 6/12 pitch (moderate slope) typically needs 5-10% additional material, while pitches steeper than 8/12 may require 15-20% extra. Your calculator should adjust for slope angle, but when in doubt, add an extra roll to your estimate.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial measurement systems?",
-      answer:
-        "Yes, the calculator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system, and input the roof dimensions accordingly. The calculator will automatically adjust roll coverage values and output results in the selected system.",
+      question: "What types of underlayment require different roll calculations?",
+      answer: "Asphalt-saturated felt (15 lb or 30 lb) comes in rolls of approximately 400 square feet, while synthetic underlayment rolls often cover 437 or 500 square feet. Ice and water shield rolls are typically much smaller at 200-300 square feet per roll. Check your specific product's coverage rate before ordering, as dimensions vary significantly between manufacturers.",
     },
     {
-      question:
-        "How do different types of roof underlayment materials affect cost and installation?",
-      answer:
-        "Synthetic underlayments generally cost more upfront but offer superior durability, UV resistance, and lighter weight, making installation easier and faster. Felt underlayments are less expensive but can be heavier, less durable, and more prone to tearing. Choosing the right material impacts both initial cost and long-term roof performance.",
+      question: "How much underlayment waste should I budget for?",
+      answer: "Industry standards recommend budgeting 10-15% waste for typical roofs with simple designs. Complex roofs with multiple valleys, skylights, and chimneys may require 20-25% additional material. Accounting for waste in your estimate prevents mid-project shortages and is one of the most common reasons homeowners underestimate material needs.",
     },
     {
-      question:
-        "What are common mistakes contractors make when estimating roof underlayment rolls?",
-      answer:
-        "Common mistakes include underestimating waste, not accounting for roof complexity (valleys, hips, penetrations), mixing units incorrectly, and ignoring roll size variations. These errors can lead to ordering too little material, causing project delays and increased costs.",
+      question: "Do I need different underlayment for valleys and eaves?",
+      answer: "Yes, many building codes require ice and water shield (a self-adhering membrane) in valleys, along eaves, and at roof penetrations, while the rest of the roof may use standard asphalt-felt or synthetic underlayment. Ice and water shield costs 2-3 times more than standard underlayment but covers smaller areas (typically 200-300 sq ft per roll). Factor both materials separately in your estimate.",
     },
+    {
+      question: "What is the difference between felt and synthetic underlayment coverage?",
+      answer: "Traditional asphalt-saturated felt rolls cover approximately 400 square feet per 3-foot wide roll, while synthetic underlayment typically covers 437-500 square feet per roll depending on the manufacturer. Synthetic underlayment is lighter, more durable, and resists tearing during installation, making it the industry standard for modern roofing. Both require the same overlap calculations, but synthetic may reduce total rolls needed by 5-10%.",
+    },
+    {
+      question: "How do roof penetrations affect my underlayment estimate?",
+      answer: "Each roof penetration (chimney, vent, skylight) requires 4-8 additional linear feet of underlayment for proper wrapping and waterproofing. A roof with 5-6 penetrations typically needs an extra 0.5-1 full roll of material. The calculator should prompt you to enter penetration counts or add 10-15% to your base estimate if your roof has multiple features.",
+    },
+    {
+      question: "What's the cost difference between ordering 10% extra versus running short?",
+      answer: "A single roll of asphalt felt costs $40-60, while synthetic underlayment runs $60-100 per roll. Running short requires an emergency reorder costing 20-30% more due to expedited shipping and potential labor delays at $60-80 per hour. Budgeting an extra $50-150 upfront for waste is always more economical than project delays or partial installation completion.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -313,172 +315,289 @@ export default function RoofUnderlaymentRollCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Roof
-          Underlayment Roll Estimator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            Roof underlayment is a crucial protective layer installed beneath the
-            primary roofing material, such as shingles or tiles. It serves as a
-            secondary barrier against moisture, wind-driven rain, and ice dams,
-            helping to protect the roof deck and interior of the building from
-            water damage. Estimating the correct amount of underlayment material
-            is essential to ensure full coverage and avoid costly shortages or
-            excess waste.
-          </p>
-          <p>
-            Precision in estimating roof underlayment rolls matters because
-            underestimating can lead to project delays and additional costs,
-            while overestimating results in wasted materials and increased
-            expenses. Accurate calculations help contractors order the right
-            quantity, optimize budget, and maintain efficient workflow on site.
-          </p>
-          <p>
-            Roof underlayment materials typically come in rolls of various sizes
-            and types. Standard rolls cover approximately 50 square meters (or
-            540 square feet), while larger rolls cover more area, reducing seams
-            and installation time. Common materials include traditional felt and
-            modern synthetic underlayments, each with distinct performance and
-            cost characteristics.
-          </p>
-          <p>
-            This calculator allows you to input your roof dimensions, select your
-            preferred unit system (metric or imperial), choose roll size, and
-            specify a waste margin to get an accurate estimate of the number of
-            rolls needed and the total cost. Use this tool to streamline your
-            project planning and ensure you have the right materials on hand.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Roof Underlayment Roll Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Roof Underlayment Roll Estimator is a tool designed to calculate the precise number of underlayment rolls needed for your roofing project based on roof size, pitch, and configuration. Accurate estimation prevents costly material shortages mid-project and helps budget for labor efficiency. Whether you're using traditional asphalt felt or modern synthetic underlayment, this calculator ensures you order the right amount the first time.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your roof's total square footage, average pitch (slope angle), and the type of underlayment you've selected. You'll also need to specify the number of roof penetrations (chimneys, vents, skylights) and whether your roof includes valleys or other complex features. These inputs directly affect material requirements because steeper pitches and additional features create more cutting waste and require larger overlaps for proper water shedding.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs the number of rolls needed, plus a waste allowance (typically 10-15%) automatically applied to account for overlaps, cutting, and installation losses. Review the total roll count and multiply by the cost per roll to determine your material budget. If your roof has multiple valleys, ice dams are a concern, or you live in a high-snow climate, consider ordering extra ice and water shield rolls in addition to the base underlayment estimate.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure roof dimensions along the roof
-            plane, not just the building footprint, especially for sloped roofs.
-            This ensures accurate area calculation.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Synthetic underlayments are lighter,
-            more tear-resistant, and offer better UV protection than traditional
-            felt, making them increasingly popular among contractors.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering a slightly larger roll
-            size can reduce seams and installation time, often saving labor costs
-            on large projects.
-          </li>
-          <li>
-            <strong>Tip:</strong> Adjust your waste margin based on roof
-            complexity — roofs with many penetrations, hips, and valleys require
-            more waste allowance.
-          </li>
+      {/* TABLE: Underlayment Coverage and Specifications by Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Underlayment Coverage and Specifications by Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares standard underlayment products, their typical coverage rates, and cost ranges to help you estimate material needs accurately.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Underlayment Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coverage per Roll (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Roll Width</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost per Roll (2024)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Lifespan</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 lb Asphalt-Saturated Felt</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30 lb Asphalt-Saturated Felt</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$55-70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Synthetic Underlayment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">437-500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">39-40 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-50 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ice and Water Shield</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36-40 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$90-140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Non-Bitumen Synthetic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">437</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75-110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-40 years</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Prices vary by region and manufacturer; synthetic products offer longer lifespan but higher upfront cost.</p>
+      </section>
+
+      {/* TABLE: Estimated Underlayment Rolls by Roof Size and Pitch */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Estimated Underlayment Rolls by Roof Size and Pitch</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to estimate the number of rolls needed based on total roof square footage and roof pitch before applying waste factors.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Roof Size (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Pitch (4/12-6/12)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Steep Pitch (8/12-10/12)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Very Steep Pitch (&gt;12/12)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Add Waste Factor (%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-7 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-9 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-8 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-10 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-12 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-10 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-13 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-13 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17-20 rolls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Waste factors increase with roof complexity; add 5% for each major penetration or valley.</p>
+      </section>
+
+      {/* TABLE: Overlap Requirements and Installation Standards */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Overlap Requirements and Installation Standards</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Proper overlap is critical for roof performance; this table outlines standard overlap measurements required by building codes and manufacturer specifications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Installation Feature</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Overlap</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Overlap</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Building Code Reference</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Water Shedding Direction</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Horizontal Rows (Standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Most State Building Codes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Downslope</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">End Seams</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">ASTM D226 Standard</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Downslope</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Valleys and Ridge Lines</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 inches each side</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 inches each side</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">NFPA 241 and IBC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Bidirectional</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ice and Water Shield</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Manufacturer Spec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Downslope</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Around Roof Penetrations</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">State-Specific Codes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multidirectional wrap</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Steeper pitches may require larger overlaps; always follow local jurisdiction requirements and manufacturer guidelines.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your roof in sections rather than estimating total square footage — break it into rectangles, triangles, and account for overhangs separately for maximum accuracy in your calculator input.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Order underlayment from a single manufacturer batch whenever possible to ensure color consistency and identical overlap specifications across all rolls, reducing installation complications.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Install underlayment in cool weather (below 75°F) when possible; hot weather can cause synthetic materials to stretch, leading to wrinkles and improper overlap once temperatures cool.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep 2-3 extra rolls on hand after project completion for future repairs and maintenance; underlayment is perishable and becomes harder to match after 5+ years.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Underestimating Waste:</strong> Failing to include an
-            adequate waste margin can result in insufficient material, causing
-            costly delays and rush orders.
-          </p>
-          <p>
-            <strong>2. Ignoring Roof Complexity:</strong> Not accounting for
-            additional material needed around roof features like chimneys,
-            skylights, and valleys leads to shortages.
-          </p>
-          <p>
-            <strong>3. Mixing Units:</strong> Inputting dimensions in one unit
-            system but selecting another can cause major miscalculations.
-          </p>
-          <p>
-            <strong>4. Overlooking Roll Size Variations:</strong> Different
-            manufacturers offer rolls with varying coverage areas; always verify
-            roll coverage before ordering.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Account for Roof Pitch</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many DIYers calculate underlayment based on square footage alone, ignoring that steeper pitches require significantly more material due to waste and larger overlaps. A 12/12 pitch roof requires 15-20% more underlayment than a 4/12 pitch roof of the same square footage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Penetration Impact</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Each roof penetration requires 4-8 linear feet of additional underlayment for proper wrapping and waterproofing. Roofs with 6+ penetrations can require an extra full roll; many estimators overlook this entirely, leading to shortages.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Only Felt Under Ice and Water Shield Areas</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some contractors fail to budget ice and water shield separately from standard underlayment. Ice and water shield costs 2-3 times more and covers smaller areas (200-300 sq ft vs 400+ sq ft), requiring a distinct line-item calculation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adding Waste Buffer</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Estimating exactly the square footage needed without waste allowance virtually guarantees mid-project shortages. Industry standard is 10-15% waste; complex roofs may need 20%. Cutting corners on waste estimates costs far more in delays than the $50-100 extra roll.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Calculator className="w-6 h-6 text-blue-500" /> Frequently Asked
-          Questions
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many rolls of underlayment do I need for a 2,000 square foot roof?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most standard underlayment rolls cover 400-437 square feet per roll. For a 2,000 square foot roof, you would need approximately 5-6 rolls, assuming standard 36-inch wide rolls that are 3-feet wide. Always add 10% extra for waste, overlaps, and cutting around penetrations, bringing your total to 5-7 rolls for this size roof.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard overlap requirement for roof underlayment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Building codes typically require a 4-6 inch horizontal overlap between underlayment rows and a 6-12 inch overlap at seams and valleys. This overlap is critical for proper water shedding and prevents water from running under the material during heavy rain or ice dams. Always consult your local building code, as requirements vary by region and roof pitch.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for roof pitch in my underlayment calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Steeper roof pitches require more material due to increased waste from cutting and overlapping. A 4/12 to 6/12 pitch (moderate slope) typically needs 5-10% additional material, while pitches steeper than 8/12 may require 15-20% extra. Your calculator should adjust for slope angle, but when in doubt, add an extra roll to your estimate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What types of underlayment require different roll calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Asphalt-saturated felt (15 lb or 30 lb) comes in rolls of approximately 400 square feet, while synthetic underlayment rolls often cover 437 or 500 square feet. Ice and water shield rolls are typically much smaller at 200-300 square feet per roll. Check your specific product's coverage rate before ordering, as dimensions vary significantly between manufacturers.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much underlayment waste should I budget for?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Industry standards recommend budgeting 10-15% waste for typical roofs with simple designs. Complex roofs with multiple valleys, skylights, and chimneys may require 20-25% additional material. Accounting for waste in your estimate prevents mid-project shortages and is one of the most common reasons homeowners underestimate material needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do I need different underlayment for valleys and eaves?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, many building codes require ice and water shield (a self-adhering membrane) in valleys, along eaves, and at roof penetrations, while the rest of the roof may use standard asphalt-felt or synthetic underlayment. Ice and water shield costs 2-3 times more than standard underlayment but covers smaller areas (typically 200-300 sq ft per roll). Factor both materials separately in your estimate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between felt and synthetic underlayment coverage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Traditional asphalt-saturated felt rolls cover approximately 400 square feet per 3-foot wide roll, while synthetic underlayment typically covers 437-500 square feet per roll depending on the manufacturer. Synthetic underlayment is lighter, more durable, and resists tearing during installation, making it the industry standard for modern roofing. Both require the same overlap calculations, but synthetic may reduce total rolls needed by 5-10%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do roof penetrations affect my underlayment estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Each roof penetration (chimney, vent, skylight) requires 4-8 additional linear feet of underlayment for proper wrapping and waterproofing. A roof with 5-6 penetrations typically needs an extra 0.5-1 full roll of material. The calculator should prompt you to enter penetration counts or add 10-15% to your base estimate if your roof has multiple features.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the cost difference between ordering 10% extra versus running short?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A single roll of asphalt felt costs $40-60, while synthetic underlayment runs $60-100 per roll. Running short requires an emergency reorder costing 20-30% more due to expedited shipping and potential labor delays at $60-80 per hour. Budgeting an extra $50-150 upfront for waste is always more economical than project delays or partial installation completion.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Roof%20Underlayment" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Roof Underlayment - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Roof Underlayment from the trusted team at This Old House.
-            </p>
+            <a href="https://www.nfpa.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NFPA 241: Standard for Safeguarding Construction, Demolition and Maintenance Operations Against Fire and Explosion</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">National Fire Protection Association standards for roof underlayment installation and overlap requirements in construction.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Roof%20Underlayment" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Roof Underlayment - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Roof Underlayment, helping you get the job done right.
-            </p>
+            <a href="https://www.iccsafe.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) Roofing Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ICC provides model building codes adopted by most states; includes specific underlayment specifications, overlap minimums, and installation standards.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Roof%20Underlayment" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Roof Underlayment - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Roof Underlayment from professional builders and craftsmen.
-            </p>
+            <a href="https://www.astm.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASTM D226 - Standard Specification for Asphalt-Saturated Organic Felt</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ASTM International standards defining underlayment material specifications, coverage rates, and performance benchmarks for asphalt felt products.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Roof%20Underlayment" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Roof Underlayment - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Roof Underlayment.
-            </p>
+            <a href="https://www.gaf.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">GAF Roofing Underlayment Installation Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Leading roofing manufacturer guidance on underlayment types, coverage calculations, overlap requirements, and best practices for residential installations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

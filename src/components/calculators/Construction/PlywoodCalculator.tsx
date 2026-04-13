@@ -113,40 +113,41 @@ export default function PlywoodCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is a plywood calculator and how does it work?",
-      answer:
-        "A plywood calculator helps you estimate the number of plywood sheets required to cover a specific area based on your project's dimensions. By inputting the length and width of the area and selecting the plywood sheet size, the calculator computes the total sheets needed, including an optional waste margin to account for cutting and errors.",
+      question: "How do I calculate the number of plywood sheets I need?",
+      answer: "To calculate plywood sheets needed, measure your total square footage and divide by the area of one sheet. Standard 4'×8' plywood sheets cover 32 square feet each, so a 400 square foot project would require approximately 12.5 sheets (rounded to 13). Always round up to account for waste and cutting losses, which typically amount to 5-10% of your total material.",
     },
     {
-      question:
-        "Why is it important to include a waste margin when calculating plywood requirements?",
-      answer:
-        "Including a waste margin is crucial because during cutting, fitting, and installation, some material is inevitably lost or damaged. A typical waste margin ranges from 5% to 15%, depending on project complexity. This ensures you order enough plywood to complete your project without costly delays or shortages.",
+      question: "What is the standard size of a plywood sheet?",
+      answer: "The most common plywood sheet size is 4 feet wide by 8 feet long (4'×8'), which equals 32 square feet per sheet. Other available sizes include 4'×10' (40 sq ft) and 4'×6' (24 sq ft), though these are less commonly stocked. Half sheets measuring 2'×8' (16 sq ft) are also available at most building supply stores for smaller projects.",
     },
     {
-      question:
-        "How do I choose between standard and large plywood sheet sizes?",
-      answer:
-        "Standard plywood sheets typically measure 4 feet by 8 feet (1.22m x 2.44m), while large sheets can be 5 feet by 10 feet (1.52m x 3.05m). Your choice depends on project requirements, availability, and transportation constraints. Larger sheets cover more area but may be harder to handle and transport.",
+      question: "How much does a sheet of plywood weigh?",
+      answer: "A standard 4'×8' sheet of 3/4-inch plywood typically weighs between 48-55 pounds, while 1/2-inch plywood weighs 35-42 pounds. The exact weight varies based on the plywood grade and wood species used. For structural calculations or transportation planning, always check the manufacturer's specifications for the specific product you're purchasing.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system, and input your dimensions accordingly. The calculator automatically adjusts sheet sizes and calculations based on the selected unit.",
+      question: "What waste factor should I use when calculating plywood?",
+      answer: "Industry standard recommends adding 5-10% waste to your plywood calculations to account for cutting, mistakes, and damaged pieces. For complex layouts with many angles or detailed cuts, increase this to 10-15%. For simple rectangular projects with minimal cutting, 5% waste is typically sufficient to ensure you have enough material to complete the project.",
     },
     {
-      question:
-        "How accurate is the plywood calculator for complex shapes or irregular areas?",
-      answer:
-        "The calculator assumes rectangular or square areas for simplicity. For complex or irregular shapes, it's best to break down the area into smaller rectangles, calculate plywood needs for each, and sum them up. Always add a higher waste margin to accommodate irregular cuts and fitting challenges.",
+      question: "How do I measure my area for the plywood calculator?",
+      answer: "Measure the length and width of each section in feet, then multiply to get square footage. For example, a wall measuring 16 feet wide by 8 feet tall equals 128 square feet. Break complex shapes into rectangles, calculate each separately, then add all sections together for your total square footage before entering into the calculator.",
     },
     {
-      question:
-        "How do I estimate the cost of plywood using this calculator?",
-      answer:
-        "You can input the price per plywood sheet in the calculator. Once you enter your project dimensions and waste margin, the calculator will estimate the total number of sheets needed and multiply by the price per sheet to give you an estimated material cost.",
+      question: "What plywood thickness should I use for my project?",
+      answer: "Common plywood thicknesses are 1/4-inch (underlayment), 3/8-inch (walls), 1/2-inch (subfloors), and 3/4-inch (structural/heavy-duty applications). Building codes typically require 1/2-inch minimum for subfloors spanning 16-inch joist spacing and 3/4-inch for 24-inch spacing. Always verify local building codes and consult structural requirements for your specific application.",
     },
+    {
+      question: "Should I account for door and window openings in my calculation?",
+      answer: "Yes, subtract the square footage of large openings like doors and windows from your total area to avoid purchasing excess material. A standard 36-inch door opening is 3 feet wide by 6.75 feet tall (approximately 20 square feet), while a typical window is 3'×4' (12 square feet). However, if openings are smaller than one sheet, still purchase full sheets as you cannot use partial sheets elsewhere.",
+    },
+    {
+      question: "What is the cost difference between plywood grades?",
+      answer: "As of 2024-2025, CDX plywood (construction grade) costs approximately $35-45 per sheet, BC plywood runs $50-65 per sheet, and AC plywood (premium exterior) ranges from $70-95 per sheet depending on location and supplier. Prices fluctuate based on lumber market conditions, with typical variance of 15-20% seasonally. Always get current quotes from local suppliers as prices vary significantly by region.",
+    },
+    {
+      question: "How do I convert plywood coverage to linear feet?",
+      answer: "To convert square footage to linear feet of plywood coverage, divide your total square feet by the width of coverage you need. For example, if you need 128 square feet of coverage and each sheet is 4 feet wide, you'd need 32 linear feet of material (128 ÷ 4 = 32). This is useful when calculating materials for applications like siding or continuous wall coverage where linear measurement is more practical.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -313,167 +314,265 @@ export default function PlywoodCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Plywood
-          Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            A plywood calculator is an essential tool for contractors, builders,
-            and DIY enthusiasts to accurately estimate the number of plywood sheets
-            required for a project. Whether you are constructing floors, walls,
-            roofs, or furniture, knowing the exact quantity of plywood needed helps
-            avoid costly over-ordering or frustrating shortages.
-          </p>
-          <p>
-            Precision matters in plywood estimation because plywood sheets come in
-            fixed sizes, and cutting them to fit your project area often results in
-            waste. By calculating the total area to cover and factoring in a waste
-            margin, you can order the right amount of material, saving money and
-            time.
-          </p>
-          <p>
-            There are different types and sizes of plywood sheets available. The
-            most common standard size is 4 feet by 8 feet (1.22m x 2.44m), but
-            larger sheets such as 5 feet by 10 feet (1.52m x 3.05m) are also used
-            for bigger projects. The calculator allows you to select the sheet size
-            that best fits your needs.
-          </p>
-          <p>
-            Additionally, plywood comes in various grades and thicknesses depending
-            on the application, such as exterior-grade, interior-grade, or marine
-            plywood. While this calculator focuses on quantity and size, always
-            choose the appropriate plywood type for your project's structural and
-            environmental requirements.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Plywood Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Plywood Calculator helps you determine exactly how many sheets of plywood you need for your construction or renovation project. Whether you're building a subfloor, wall sheathing, roof deck, or other structural application, this tool eliminates guesswork and helps you purchase the right quantity of material. Accurate calculations prevent both material waste and costly project delays from running short.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your project's total square footage—measure the length and width of each section in feet and multiply them together. You'll also specify your desired plywood sheet size (the standard 4'×8' is most common), thickness (typically 1/2-inch to 3/4-inch for structural work), and your waste factor (industry standard is 5-10%). The calculator then divides your total square footage by the coverage per sheet and applies your waste percentage.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show the total number of sheets needed, total square footage of material, estimated weight, and cost projection based on current market pricing. Use the sheet count to purchase your materials and the weight estimate for transportation planning. The cost range provides a ballpark budget, but always confirm current prices with local suppliers since plywood prices fluctuate seasonally and by region, with typical variations of 10-20% throughout the year.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> When measuring your project area, always measure
-            twice and consider any cutouts or openings that won’t require plywood.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Standard plywood sheets are designed to
-            fit common framing dimensions, making installation easier and reducing
-            waste.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering a few extra sheets beyond
-            the calculated amount can save you from delays caused by unexpected
-            mistakes or damaged sheets.
-          </li>
-          <li>
-            <strong>Tip:</strong> For projects with irregular shapes, break down
-            the area into rectangles and calculate plywood needs for each section
-            separately.
-          </li>
+      {/* TABLE: Standard Plywood Sheet Sizes and Coverage */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard Plywood Sheet Sizes and Coverage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the most common plywood dimensions available and their corresponding square footage per sheet.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dimension</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Square Feet</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight (3/4" CDX)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Range (2024-2025)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4' × 6'</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$26–$34</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4' × 8'</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35–$45</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4' × 10'</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$44–$56</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2' × 8' (half sheet)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18–$23</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Prices vary by region, supplier, and market conditions. Weight shown is for standard CDX construction-grade plywood at 3/4-inch thickness.</p>
+      </section>
+
+      {/* TABLE: Plywood Thickness and Application Guide */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Plywood Thickness and Application Guide</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different thicknesses serve different purposes; this table matches thickness to common construction applications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Thickness</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Uses</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Joist Spacing</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Cost/Sheet</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1/4"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Underlayment, backing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18–$26</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3/8"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Walls, siding base</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12–16 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$24–$32</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1/2"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Subfloors, roofing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$28–$38</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5/8"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Structural subfloors</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$32–$42</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3/4"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy-duty structural</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35–$48</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Joist spacing requirements follow standard building codes for residential applications. Consult local codes for specific requirements.</p>
+      </section>
+
+      {/* TABLE: Plywood Grade Ratings and Characteristics */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Plywood Grade Ratings and Characteristics</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Plywood grades indicate surface quality and intended use; this table compares the most common grades available.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Grade</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Appearance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Durability</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">CDX</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rough, knots visible</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Construction, structural</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Interior/protected exterior</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">BC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">One smooth side</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Walls, subflooring</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Interior/protected exterior</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">AC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Both sides finished</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Shelving, cabinets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Interior use</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">ACX</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Both sides finished</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exterior siding, trim</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exterior/weather resistant</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Marine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High-quality veneer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Boats, wet environments</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maximum durability</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">CDX is the most economical choice for structural work; AC and ACX grades cost 50–100% more but offer better appearance.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always add at least 5-10% waste factor to your calculations to account for cutting mistakes, damaged pieces, and edge losses. For complex layouts with angled cuts or detailed designs, increase this to 10-15% to ensure you don't run short mid-project.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Purchase your plywood from the same supplier and as close to the project start date as possible, since prices can fluctuate 15-20% seasonally. Spring (March-May) typically sees higher prices due to increased building activity, while winter months often offer better deals.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Stack and store plywood flat on level ground with adequate air circulation underneath to prevent warping and moisture absorption. Never store plywood outdoors without protection, as weather exposure can degrade the material and increase swelling, making installation difficult.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For subfloor applications, verify local building codes for required thickness based on your joist spacing—most jurisdictions require minimum 1/2-inch for 16-inch spacing and 3/4-inch for 24-inch spacing. Undersized material can lead to squeaking floors, code violations, and structural issues.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Underestimating Waste:</strong> Not including a waste margin
-            can lead to ordering too little plywood, causing project delays and
-            additional trips to the supplier.
-          </p>
-          <p>
-            <strong>2. Ignoring Sheet Orientation:</strong> Plywood sheets have a
-            grain direction and standard sizes; failing to plan cuts according to
-            sheet orientation can increase waste.
-          </p>
-          <p>
-            <strong>3. Mixing Units:</strong> Inputting dimensions in mixed units
-            (e.g., length in feet and width in meters) will produce incorrect
-            results. Always select and use one unit system consistently.
-          </p>
-          <p>
-            <strong>4. Forgetting to Round Up:</strong> Always round up the number
-            of sheets to the next whole number since you cannot order partial sheets.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to subtract window and door openings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many DIYers calculate full wall area without deducting large openings, resulting in purchasing 10-20% more material than necessary. While small openings (&lt;4 sq ft) shouldn't be subtracted since you can't use the waste, large doors and windows should definitely be removed from your total area calculation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for waste and cutting losses</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating exact square footage without adding waste factor leads to running short, especially on complex projects with many angles or cuts. The industry standard 5-10% waste factor accounts for mistakes, damaged edges, and trim pieces that don't fit perfectly—skipping this is one of the most common reasons projects stall mid-construction.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Choosing the wrong plywood thickness</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using 1/2-inch plywood for 24-inch joist spacing violates building codes and causes floor squeaking and structural deflection over time. Always verify your local building code requirements—most jurisdictions require 3/4-inch minimum for 24-inch spacing, adding approximately $10-15 per sheet to your budget.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring plywood grade requirements for the application</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Purchasing exterior-grade (ACX) plywood for interior walls wastes $20-40 per sheet, while using interior CDX plywood outdoors causes rot and delamination within 2-3 years. Match your grade to your specific application: CDX for protected interior/structural work, and ACX/Marine grades only for exterior exposure.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Calculator className="w-6 h-6 text-blue-500" /> Frequently Asked Questions
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the number of plywood sheets I need?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To calculate plywood sheets needed, measure your total square footage and divide by the area of one sheet. Standard 4'×8' plywood sheets cover 32 square feet each, so a 400 square foot project would require approximately 12.5 sheets (rounded to 13). Always round up to account for waste and cutting losses, which typically amount to 5-10% of your total material.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard size of a plywood sheet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The most common plywood sheet size is 4 feet wide by 8 feet long (4'×8'), which equals 32 square feet per sheet. Other available sizes include 4'×10' (40 sq ft) and 4'×6' (24 sq ft), though these are less commonly stocked. Half sheets measuring 2'×8' (16 sq ft) are also available at most building supply stores for smaller projects.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does a sheet of plywood weigh?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A standard 4'×8' sheet of 3/4-inch plywood typically weighs between 48-55 pounds, while 1/2-inch plywood weighs 35-42 pounds. The exact weight varies based on the plywood grade and wood species used. For structural calculations or transportation planning, always check the manufacturer's specifications for the specific product you're purchasing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What waste factor should I use when calculating plywood?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Industry standard recommends adding 5-10% waste to your plywood calculations to account for cutting, mistakes, and damaged pieces. For complex layouts with many angles or detailed cuts, increase this to 10-15%. For simple rectangular projects with minimal cutting, 5% waste is typically sufficient to ensure you have enough material to complete the project.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I measure my area for the plywood calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Measure the length and width of each section in feet, then multiply to get square footage. For example, a wall measuring 16 feet wide by 8 feet tall equals 128 square feet. Break complex shapes into rectangles, calculate each separately, then add all sections together for your total square footage before entering into the calculator.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What plywood thickness should I use for my project?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common plywood thicknesses are 1/4-inch (underlayment), 3/8-inch (walls), 1/2-inch (subfloors), and 3/4-inch (structural/heavy-duty applications). Building codes typically require 1/2-inch minimum for subfloors spanning 16-inch joist spacing and 3/4-inch for 24-inch spacing. Always verify local building codes and consult structural requirements for your specific application.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I account for door and window openings in my calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, subtract the square footage of large openings like doors and windows from your total area to avoid purchasing excess material. A standard 36-inch door opening is 3 feet wide by 6.75 feet tall (approximately 20 square feet), while a typical window is 3'×4' (12 square feet). However, if openings are smaller than one sheet, still purchase full sheets as you cannot use partial sheets elsewhere.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the cost difference between plywood grades?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As of 2024-2025, CDX plywood (construction grade) costs approximately $35-45 per sheet, BC plywood runs $50-65 per sheet, and AC plywood (premium exterior) ranges from $70-95 per sheet depending on location and supplier. Prices fluctuate based on lumber market conditions, with typical variance of 15-20% seasonally. Always get current quotes from local suppliers as prices vary significantly by region.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I convert plywood coverage to linear feet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To convert square footage to linear feet of plywood coverage, divide your total square feet by the width of coverage you need. For example, if you need 128 square feet of coverage and each sheet is 4 feet wide, you'd need 32 linear feet of material (128 ÷ 4 = 32). This is useful when calculating materials for applications like siding or continuous wall coverage where linear measurement is more practical.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Plywood%20Sheathing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Plywood Sheathing - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Plywood Sheathing from the trusted team at This Old House.
-            </p>
+            <a href="https://www.apawood.org/plywood-standards" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">APA – The Engineered Wood Association Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards and specifications for plywood grades, sizes, and performance ratings used in construction.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Plywood%20Sheathing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Plywood Sheathing - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Plywood Sheathing, helping you get the job done right.
-            </p>
+            <a href="https://www.iccsafe.org/products-and-services/i-codes/2024-i-codes/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) Residential Section</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Current building code requirements for plywood thickness, spacing, and structural applications in residential construction.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Plywood%20Sheathing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Plywood Sheathing - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Plywood Sheathing from professional builders and craftsmen.
-            </p>
+            <a href="https://www.nahb.org/research-and-economics/housing-research/research-base/building-science" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of Home Builders Construction Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Best practices and recommendations for plywood selection, installation, and material specifications in home construction projects.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Plywood%20Sheathing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Plywood Sheathing - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Plywood Sheathing.
-            </p>
+            <a href="https://www.fs.usda.gov/research/pubs/psw_gtr249" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Lumber Price Index – Forest Service Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government lumber pricing data and historical trends for construction materials including plywood market analysis.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

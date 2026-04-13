@@ -127,41 +127,41 @@ export default function EnergyEfficiencySavingsCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question:
-        "What is the Energy Efficiency Savings Estimator and how does it help in construction projects?",
-      answer:
-        "The Energy Efficiency Savings Estimator is a tool designed to calculate the amount of insulation or energy-saving material units required based on the dimensions of the area to be covered. It helps contractors and builders estimate material quantities accurately, ensuring efficient budgeting and minimizing waste. By inputting length, width, and depth, users can determine how many units of insulation or energy-saving materials are needed, factoring in waste margins and material sizes.",
+      question: "What is the average annual energy savings from upgrading to ENERGY STAR certified HVAC systems?",
+      answer: "ENERGY STAR certified HVAC systems typically save homeowners between $150–$600 per year in heating and cooling costs, depending on climate zone and system age. For a 2,000 sq ft home in a moderate climate replacing a 15-year-old system, savings often reach $400–$500 annually. These savings come from 15–20% improved efficiency compared to standard systems.",
     },
     {
-      question:
-        "Why is precision important when estimating materials for energy efficiency?",
-      answer:
-        "Precision in estimating materials is crucial because underestimating can lead to project delays and additional costs due to last-minute orders, while overestimating results in unnecessary expenses and material waste. Accurate calculations ensure that the right amount of insulation or energy-saving materials are purchased, optimizing both cost and environmental impact. Precise estimates also help maintain project timelines and improve client satisfaction by avoiding surprises.",
+      question: "How much can LED lighting upgrades reduce my energy bills?",
+      answer: "Converting to LED lighting from incandescent bulbs can reduce lighting energy consumption by 75–80%, translating to $100–$200 in annual savings for a typical residential home. A commercial building with 100+ fixtures may save $1,000–$3,000 annually. LEDs also last 25,000–50,000 hours versus 1,000 hours for incandescent bulbs, reducing replacement costs.",
     },
     {
-      question:
-        "What types of materials can be estimated using this calculator?",
-      answer:
-        "This calculator is versatile and can be used for various energy efficiency materials such as insulation panels, rolls, spray foam, reflective barriers, and other thermal protection products. The key is that the materials are sold in units covering a specific surface area, which the calculator uses to determine the quantity needed. Users can select between standard and large material sizes to match the product specifications they plan to use.",
+      question: "What ROI can I expect from insulation improvements?",
+      answer: "Attic and wall insulation upgrades typically deliver 15–30% energy savings with payback periods of 2–8 years depending on local energy costs. A $3,000 insulation project in a cold climate may save $500–$800 annually, achieving full ROI in 4–6 years. Energy savings continue indefinitely after the payback period.",
     },
     {
-      question:
-        "How does the waste margin affect the total material quantity calculated?",
-      answer:
-        "The waste margin accounts for extra material needed to cover cutting losses, fitting adjustments, and unforeseen errors during installation. By adding a percentage (commonly 5-15%), the calculator increases the total material quantity to ensure there is enough supply to complete the project without shortages. This margin helps avoid costly delays and reorders, providing a buffer for practical job site conditions.",
+      question: "How does window replacement impact heating and cooling efficiency?",
+      answer: "Upgrading from single-pane to ENERGY STAR certified double or triple-pane windows reduces heat loss by 30–50%, saving $200–$600 annually depending on climate and home size. Installation costs range from $8,000–$15,000 for a whole home, resulting in payback periods of 12–20 years in moderate climates and 7–12 years in severe climates.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric (meters and square meters) and imperial (feet and square feet) units. Users can switch between unit systems easily, and the calculator adjusts the calculations accordingly. This flexibility makes it suitable for projects in different regions and ensures compatibility with local measurement standards.",
+      question: "What are typical water heater efficiency improvements and savings?",
+      answer: "Upgrading from a standard 40-gallon tank water heater to an ENERGY STAR heat pump or tankless model reduces water heating energy use by 24–50%, saving $100–$400 annually. A tankless system costs $1,500–$3,000 installed but can deliver payback in 7–10 years while lasting 20+ years versus 10–15 years for tank models.",
     },
     {
-      question:
-        "How do I determine the price per unit for accurate cost estimation?",
-      answer:
-        "To estimate costs accurately, obtain the price per unit from your supplier or product catalog. This price should correspond to the selected material size (standard or large). Entering this value into the calculator allows it to multiply the number of units needed by the unit price, giving you an estimated total cost. Keep in mind that prices may vary based on supplier, quantity discounts, and regional factors.",
+      question: "How much can weather sealing and air sealing save on energy costs?",
+      answer: "Air sealing gaps around doors, windows, and ducts can reduce heating and cooling costs by 10–20%, typically saving $150–$300 annually for modest homes. This work costs $400–$1,500 depending on home size and condition, making it one of the fastest-payback efficiency improvements available.",
     },
+    {
+      question: "What is the impact of installing a smart thermostat on energy consumption?",
+      answer: "Smart thermostats reduce heating and cooling energy use by 10–15% through automated scheduling and learning algorithms, saving $100–$200 annually for most households. Initial costs range from $150–$350, achieving payback in 1–2 years while also improving comfort and enabling remote temperature management.",
+    },
+    {
+      question: "How do building envelope improvements compare to HVAC upgrades in terms of ROI?",
+      answer: "Building envelope work (insulation, windows, air sealing) typically costs 30–50% less than HVAC replacement but delivers 40–60% of the energy savings benefit. For maximum efficiency, combining both improvements achieves 35–50% total energy reduction compared to 20–25% from HVAC alone.",
+    },
+    {
+      question: "What payback period should I expect from a comprehensive energy efficiency renovation?",
+      answer: "A full-home energy efficiency project combining insulation, windows, HVAC, and controls can cost $15,000–$40,000 but typically saves $1,500–$3,500 annually, delivering payback in 5–12 years. Tax credits and rebates can reduce net costs by 20–40%, accelerating payback to 3–8 years depending on incentive programs available in your region.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -345,177 +345,294 @@ export default function EnergyEfficiencySavingsCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Energy
-          Efficiency Savings Estimator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Energy Efficiency Savings Estimator is a specialized calculator designed
-            to help construction professionals accurately estimate the quantity of
-            energy-saving materials required for a project. Whether you are installing
-            insulation panels, reflective barriers, or other thermal protection
-            products, this tool simplifies the process by calculating the number of
-            material units based on your project's dimensions.
-          </p>
-          <p>
-            Precision matters in these calculations because energy efficiency materials
-            directly impact the thermal performance and cost-effectiveness of a building.
-            Overestimating materials leads to unnecessary expenses and waste, while
-            underestimating can cause project delays and insufficient insulation,
-            reducing energy savings.
-          </p>
-          <p>
-            This estimator supports both metric and imperial units, allowing you to
-            input length, width, and depth (thickness) of the area to be covered. While
-            the depth is primarily informational for volume-based materials, the core
-            calculation focuses on surface area coverage.
-          </p>
-          <p>
-            Material types vary widely, from standard size insulation panels covering
-            approximately 1 square meter or 10 square feet, to larger rolls or boards
-            that cover more area per unit. Selecting the correct material size in the
-            calculator ensures your estimates match the products you plan to order.
-          </p>
-          <p>
-            Additionally, the calculator includes a waste margin slider to add a safety
-            buffer for cutting losses and installation adjustments, helping you avoid
-            shortages and costly reorders.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Energy Efficiency Savings Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Energy Efficiency Savings Estimator is a tool designed to help homeowners and building managers calculate potential energy cost savings from implementing specific efficiency upgrades. By entering details about your current home or building characteristics, the calculator projects annual and lifetime savings while accounting for regional utility rates, climate conditions, and equipment age. This helps you prioritize which improvements offer the best financial return.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need to input key information: your current annual energy costs (or square footage and utility rates), your climate zone or location, the type of upgrades you're considering (HVAC, insulation, windows, lighting, etc.), and any equipment ages. The calculator uses these inputs to estimate baseline energy consumption and applies standard efficiency improvement percentages based on DOE and ENERGY STAR data. More detailed information will yield more accurate results.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator output shows estimated annual savings, total project cost, payback period, and lifetime savings over 25–30 years. Results also highlight available tax credits and rebates that can reduce net costs. Use these projections to compare different upgrade paths and determine which improvements make sense for your budget and timeline. Remember that actual savings depend on usage patterns, local energy prices, and installation quality.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure twice and verify dimensions on-site
-            before ordering materials to avoid costly mistakes.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Adding a 10% waste margin is standard
-            practice in insulation projects to cover cutting and fitting losses.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering slightly larger material sizes
-            can reduce installation time and waste, especially on irregular surfaces.
-          </li>
-          <li>
-            <strong>Tip:</strong> Use the calculator's unit toggle to switch between
-            metric and imperial depending on your project's location and supplier.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Properly installed insulation can reduce
-            heating and cooling costs by up to 30%, making accurate estimation vital.
-          </li>
+      {/* TABLE: Annual Energy Savings by Improvement Type (Typical Single-Family Home) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Annual Energy Savings by Improvement Type (Typical Single-Family Home)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated annual energy cost savings for common efficiency upgrades in a 2,000 sq ft home with average utility rates of $0.14/kWh electricity and $1.20/therm natural gas.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Improvement Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Installation Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Savings</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Payback Period</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">LED Lighting Upgrade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$800–$1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–8 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Attic Insulation (R-38 to R-60)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500–$3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300–$600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–7 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Air Sealing and Weather Stripping</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400–$1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150–$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–5 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Window Replacement (8 windows)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,000–$12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200–$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12–20 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">HVAC System Upgrade (ENERGY STAR)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000–$9,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400–$800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6–15 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tankless Water Heater</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500–$3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150–$350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6–12 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Smart Thermostat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200–$350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–3 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cool Roof Coating</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500–$3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200–$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–10 years</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Savings vary by climate zone, energy rates, and equipment age. Values based on 2024 ENERGY STAR and DOE benchmarks.</p>
+      </section>
+
+      {/* TABLE: Energy Efficiency Improvement Impact by Climate Zone */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Energy Efficiency Improvement Impact by Climate Zone</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how annual energy savings vary across four climate zones for a baseline HVAC upgrade on a 2,000 sq ft home.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Climate Zone</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Heating Degree Days</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cooling Degree Days</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">HVAC Savings Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">ROI Priority</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cold (Northern)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,000–9,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500–1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500–$900/year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heating upgrades first</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate (Central)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500–6,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500–3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300–$600/year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Balanced approach</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hot-Humid (Southern)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000–3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500–6,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400–$700/year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cooling upgrades first</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hot-Dry (Southwest)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500–4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,500–5,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$350–$650/year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Window + insulation priority</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Degree days measure heating/cooling demand. Savings are for replacing a 15-year-old HVAC system with ENERGY STAR model.</p>
+      </section>
+
+      {/* TABLE: Federal Tax Credits and Rebates for Energy Efficiency (2024–2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Federal Tax Credits and Rebates for Energy Efficiency (2024–2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table outlines current federal tax credits and typical state/utility rebates available for qualifying home energy improvements.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Improvement Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Federal Tax Credit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical State Rebate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Combined Benefit</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Heat Pump HVAC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $2,000 (IRA)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500–$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,500–$4,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Heat Pump Water Heater</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $2,000 (IRA)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300–$1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,300–$3,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Insulation/Air Sealing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $1,200 (IRA)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200–$800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,400–$2,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Window Replacement</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $600 (IRA)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700–$1,100</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Smart Thermostats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10% of cost, max $50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50–$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$250</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Home Energy Audit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10% of cost, max $150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50–$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200–$450</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">IRA = Inflation Reduction Act (2024–2025). Credits require ENERGY STAR certification or equivalent. Rebates vary by state and utility provider.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Start with a professional home energy audit ($300–$500) before investing in major upgrades—auditors identify the highest-impact improvements first and often pay for themselves through rebate information alone.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Prioritize air sealing and insulation before upgrading HVAC systems, as these building envelope improvements reduce the HVAC workload and allow you to downsize to a smaller, cheaper unit while achieving better comfort.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Stack federal IRA tax credits with state rebates and utility incentives to maximize net savings—many homeowners can recover 30–50% of upgrade costs through available programs, dramatically improving payback periods.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Install a smart meter or home energy monitor during your project to track actual savings and identify remaining high-consumption periods, which often reveals opportunities for behavioral changes that extend financial benefits.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring Waste Margins:</strong> Failing to include a waste
-            margin often results in material shortages and project delays. Always add
-            a reasonable percentage to your calculations.
-          </p>
-          <p>
-            <strong>2. Mixing Units:</strong> Inputting dimensions in one unit system
-            but selecting another can cause incorrect estimates. Double-check your
-            unit settings before calculating.
-          </p>
-          <p>
-            <strong>3. Overlooking Material Coverage:</strong> Different products cover
-            different areas per unit. Ensure you select the correct material size to
-            match your supplier's specifications.
-          </p>
-          <p>
-            <strong>4. Neglecting Thickness:</strong> While this calculator focuses on
-            surface area, ignoring the depth or thickness of insulation can affect
-            thermal performance and cost. Consider thickness in your overall project
-            planning.
-          </p>
-          <p>
-            <strong>5. Not Updating Prices:</strong> Using outdated or incorrect unit
-            prices will skew cost estimates. Always verify current prices with your
-            supplier.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Climate-Specific Priorities</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Upgrading windows heavily in a hot climate delivers minimal cooling savings compared to attic insulation and air sealing. Match improvement priorities to your region's heating or cooling dominance to maximize ROI.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Oversizing HVAC Equipment</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A system that's too large cycles on and off frequently, reducing efficiency and comfort while wasting energy. Calculate proper sizing based on post-upgrade building load (after insulation/sealing work) to hit the sweet spot for efficiency and cost.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Ductwork and Commissioning</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A new high-efficiency furnace or heat pump loses 15–25% of its performance to leaky ducts and improper installation. Always include duct sealing and professional commissioning in HVAC upgrade budgets for realistic savings claims.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Non-Energy Benefits</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Focusing solely on energy savings misses improved comfort, indoor air quality, and reduced maintenance costs that often add $500–$2,000 in annual value beyond energy bills.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the average annual energy savings from upgrading to ENERGY STAR certified HVAC systems?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">ENERGY STAR certified HVAC systems typically save homeowners between $150–$600 per year in heating and cooling costs, depending on climate zone and system age. For a 2,000 sq ft home in a moderate climate replacing a 15-year-old system, savings often reach $400–$500 annually. These savings come from 15–20% improved efficiency compared to standard systems.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much can LED lighting upgrades reduce my energy bills?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Converting to LED lighting from incandescent bulbs can reduce lighting energy consumption by 75–80%, translating to $100–$200 in annual savings for a typical residential home. A commercial building with 100+ fixtures may save $1,000–$3,000 annually. LEDs also last 25,000–50,000 hours versus 1,000 hours for incandescent bulbs, reducing replacement costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What ROI can I expect from insulation improvements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Attic and wall insulation upgrades typically deliver 15–30% energy savings with payback periods of 2–8 years depending on local energy costs. A $3,000 insulation project in a cold climate may save $500–$800 annually, achieving full ROI in 4–6 years. Energy savings continue indefinitely after the payback period.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does window replacement impact heating and cooling efficiency?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Upgrading from single-pane to ENERGY STAR certified double or triple-pane windows reduces heat loss by 30–50%, saving $200–$600 annually depending on climate and home size. Installation costs range from $8,000–$15,000 for a whole home, resulting in payback periods of 12–20 years in moderate climates and 7–12 years in severe climates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are typical water heater efficiency improvements and savings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Upgrading from a standard 40-gallon tank water heater to an ENERGY STAR heat pump or tankless model reduces water heating energy use by 24–50%, saving $100–$400 annually. A tankless system costs $1,500–$3,000 installed but can deliver payback in 7–10 years while lasting 20+ years versus 10–15 years for tank models.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much can weather sealing and air sealing save on energy costs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Air sealing gaps around doors, windows, and ducts can reduce heating and cooling costs by 10–20%, typically saving $150–$300 annually for modest homes. This work costs $400–$1,500 depending on home size and condition, making it one of the fastest-payback efficiency improvements available.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the impact of installing a smart thermostat on energy consumption?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Smart thermostats reduce heating and cooling energy use by 10–15% through automated scheduling and learning algorithms, saving $100–$200 annually for most households. Initial costs range from $150–$350, achieving payback in 1–2 years while also improving comfort and enabling remote temperature management.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do building envelope improvements compare to HVAC upgrades in terms of ROI?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Building envelope work (insulation, windows, air sealing) typically costs 30–50% less than HVAC replacement but delivers 40–60% of the energy savings benefit. For maximum efficiency, combining both improvements achieves 35–50% total energy reduction compared to 20–25% from HVAC alone.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What payback period should I expect from a comprehensive energy efficiency renovation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A full-home energy efficiency project combining insulation, windows, HVAC, and controls can cost $15,000–$40,000 but typically saves $1,500–$3,500 annually, delivering payback in 5–12 years. Tax credits and rebates can reduce net costs by 20–40%, accelerating payback to 3–8 years depending on incentive programs available in your region.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Home%20Energy%20Efficiency" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Home Energy Efficiency - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Home Energy Efficiency from the trusted team at This Old House.
-            </p>
+            <a href="https://www.energystar.gov/products/how-save-money-your-home-energy-bills" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ENERGY STAR Home Upgrade Savings Estimator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">EPA tool providing baseline energy consumption estimates and efficiency improvement benchmarks for residential homes across climate zones.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Home%20Energy%20Efficiency" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Home Energy Efficiency - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Home Energy Efficiency, helping you get the job done right.
-            </p>
+            <a href="https://www.dsireusa.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Database of State Incentives for Renewables & Efficiency (DSIRE)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource for federal, state, and utility rebates and tax credits available for residential energy efficiency projects.</p>
           </li>
           <li>
-            <a href="https://www.energy.gov/search/site?keywords=Home%20Energy%20Efficiency" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Home Energy Efficiency - Energy.gov
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Official Department of Energy guidelines for energy efficiency and Home Energy Efficiency to save money and improve home comfort.
-            </p>
+            <a href="https://www.energy.gov/energysaver/weatherization-and-energy-efficiency" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Department of Energy: Home Weatherization Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official DOE guidance on cost-effective energy efficiency improvements, equipment specifications, and payback period benchmarks.</p>
           </li>
           <li>
-            <a href="https://www.ashrae.org/search?q=Home%20Energy%20Efficiency" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Home Energy Efficiency - ASHRAE
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical standards and guidelines for HVAC and building systems related to Home Energy Efficiency.
-            </p>
+            <a href="https://www.irs.gov/credits-deductions/energy-efficient-home-improvement-credit-irc-25c-and-25d" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Clean Energy and Vehicle Credits (Form 5695)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">IRS rules and limits for residential clean energy tax credits including heat pumps, insulation, windows, and water heaters under current law.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

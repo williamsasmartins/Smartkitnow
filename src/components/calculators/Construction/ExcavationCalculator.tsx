@@ -110,35 +110,41 @@ export default function ExcavationCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is an excavation calculator and how does it work?",
-      answer:
-        "An excavation calculator helps estimate the volume of soil or material to be removed or filled in a construction project. By inputting the dimensions of the excavation area—length, width, and depth—the calculator computes the total volume. It also factors in a waste margin to account for soil compaction, spillage, or measurement inaccuracies, ensuring you order the right amount of material or equipment.",
+      question: "How do I calculate the volume of soil to be excavated?",
+      answer: "To calculate excavation volume, multiply the length, width, and depth of the area in feet, then divide by 27 to convert cubic feet to cubic yards. For example, a 50-foot long, 30-foot wide, and 4-foot deep excavation equals (50 × 30 × 4) ÷ 27 = 222.2 cubic yards. Most excavation calculators accept these three dimensions and automatically perform this conversion for you.",
     },
     {
-      question: "Why is precision important when calculating excavation volumes?",
-      answer:
-        "Precision in excavation calculations is crucial because underestimating volume can lead to material shortages, project delays, and increased costs due to last-minute orders. Overestimating results in excess material, waste, and unnecessary expenses. Accurate calculations help optimize resource allocation, reduce environmental impact, and maintain project timelines and budgets.",
+      question: "What is the difference between bank cubic yards and loose cubic yards?",
+      answer: "Bank cubic yards (BCY) refer to soil in its natural, undisturbed state, while loose cubic yards (LCY) refer to soil after excavation when it expands. Soil typically swells 10–25% after excavation depending on soil type, meaning 100 BCY may become 110–125 LCY. Your excavation calculator should account for this swell factor to estimate true removal and hauling costs.",
     },
     {
-      question: "What types of materials can I calculate with this excavation calculator?",
-      answer:
-        "This calculator is designed for generic excavation materials such as soil, gravel, sand, or crushed stone. Different materials have varying densities and packaging sizes, so while the calculator provides volume estimates, you should adjust unit sizes and prices according to the specific material you plan to use.",
+      question: "How much does excavation typically cost per cubic yard?",
+      answer: "Excavation costs range from $3–$12 per cubic yard for standard soil removal, depending on location, soil type, and site conditions. Rocky or contaminated soil can cost $15–$25+ per cubic yard due to specialized equipment needs. Using your excavation calculator with local pricing helps generate accurate project budgets.",
     },
     {
-      question: "How do I choose between metric and imperial units?",
-      answer:
-        "Select the unit system based on your project location or preference. Metric units use meters for dimensions and cubic meters for volume, while imperial units use feet and cubic feet. The calculator automatically converts imperial inputs to metric internally for consistent volume calculations.",
+      question: "What equipment costs should I factor into my excavation estimate?",
+      answer: "Standard excavation equipment includes backhoes ($75–$125/hour), excavators ($100–$150/hour), and dump trucks ($50–$100/hour). A typical residential excavation job may require 8–16 equipment hours, totaling $800–$2,400 in machinery costs alone. Your calculator should allow you to input hourly rates for different equipment types to get accurate totals.",
     },
     {
-      question: "What is the purpose of the waste margin in excavation calculations?",
-      answer:
-        "The waste margin accounts for extra material needed beyond the calculated volume to cover losses due to compaction, spillage, uneven terrain, or measurement errors. Typically, a 5-15% waste margin is recommended to ensure you have enough material without significant over-ordering.",
+      question: "How do I account for grading and site preparation in my calculation?",
+      answer: "Grading and site prep are separate from raw excavation volume and typically cost $0.50–$2.00 per square foot depending on slope and finish requirements. For a 2,000-square-foot site, expect $1,000–$4,000 in grading costs in addition to excavation removal. Enter both the excavation depth and the grading area separately in your calculator for a complete estimate.",
     },
     {
-      question: "How do material unit sizes affect the calculation?",
-      answer:
-        "Material unit size refers to the volume contained in one delivery unit, such as a bag, cubic yard, or truckload. Choosing the correct unit size helps convert the total volume into practical order quantities. For example, a standard unit might be 1 cubic meter, while a large unit could be 1.5 cubic meters, affecting how many units you need to order.",
+      question: "What soil types have different swell factors I should know about?",
+      answer: "Clay soils swell 20–25%, sand 10–15%, and rocky soil 50%+ due to breakage. Organic material like topsoil swells 15–20%, while gravel swells 10–12%. Knowing your specific soil type allows you to select the correct swell factor in your excavation calculator for more accurate cubic yard projections.",
     },
+    {
+      question: "How do I calculate disposal or hauling costs in my excavation project?",
+      answer: "Hauling costs depend on cubic yardage, distance to disposal site, and truck capacity (typically 10–15 cubic yards per load). A 200-cubic-yard excavation project 5 miles away costs approximately $1,200–$2,000 at standard rates of $30–$50 per load. Your excavation calculator should include fields for distance and haul rate to compute total transport costs.",
+    },
+    {
+      question: "What permits or regulations affect my excavation cost estimate?",
+      answer: "Most municipalities require excavation permits ($100–$500) and may mandate utility locating (often free via 811 call), environmental assessments, and erosion control measures ($500–$5,000+). These compliance costs should be added to your excavation calculator results for a realistic total project budget.",
+    },
+    {
+      question: "Can I use this calculator for basement or pond excavation?",
+      answer: "Yes, the excavation calculator works for any project requiring volume calculations: basements, ponds, pools, and foundations. For basement excavation on a 40×50-foot footprint 8 feet deep, you'd calculate (40 × 50 × 8) ÷ 27 = 592.6 cubic yards, then apply your local per-yard rates and swell factors to get final costs.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -297,121 +303,307 @@ export default function ExcavationCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Excavation Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            An excavation calculator is an essential tool for construction professionals and DIY enthusiasts alike. It helps determine the volume of earth or material that needs to be removed or filled for a project. By inputting the dimensions of the excavation area—length, width, and depth—you can quickly estimate the total volume, saving time and reducing errors in manual calculations.
-          </p>
-          <p>
-            Precision in excavation calculations is critical. Underestimating the volume can cause costly delays and material shortages, while overestimating leads to waste and unnecessary expenses. Including a waste margin accounts for soil compaction, spillage, and measurement inaccuracies, ensuring you order enough material without significant surplus.
-          </p>
-          <p>
-            Excavation materials vary widely, from soil and gravel to sand and crushed stone. Each material has different densities and packaging sizes. This calculator uses volume as the basis for estimation, allowing you to adjust unit sizes and prices according to the specific material you plan to use. Whether you are ordering bags, truckloads, or bulk deliveries, this tool helps convert volume into practical material units.
-          </p>
-          <p>
-            The calculator supports both metric and imperial units, automatically converting inputs to maintain accuracy. By selecting your preferred unit system and entering the excavation dimensions, waste margin, and material unit size, you can obtain a reliable estimate of the materials needed and the approximate cost.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Excavation Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Excavation Calculator helps construction professionals, contractors, and property owners estimate the volume of soil to be removed and the total project cost. By inputting site dimensions and local pricing data, you eliminate guesswork and create accurate budgets before equipment mobilization. This tool is essential for getting reliable quotes and managing excavation expenses on residential, commercial, and land development projects.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Begin by entering the length, width, and average depth of the excavation area in feet. Next, select or input your soil type to apply the correct swell factor (10–50% depending on material), then enter your local excavation rate per cubic yard and any equipment hourly rates. If you're hauling soil off-site, include the distance and per-load cost to capture total removal expenses.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator returns the total volume in both bank cubic yards (undisturbed) and loose cubic yards (post-excavation), along with itemized costs for removal, equipment, and hauling. Use these results to compare contractor bids, secure accurate financing, and identify cost-reduction opportunities such as on-site material reuse or scheduling optimization.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure excavation dimensions multiple times and from different points to account for irregularities in the terrain.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Soil expands when excavated, sometimes up to 30%, so adding a waste margin helps cover this volume increase.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> When ordering bulk materials, ask suppliers about their typical delivery unit volumes to better match your project needs.
-          </li>
-          <li>
-            <strong>Tip:</strong> Use the calculator's waste margin slider to adjust based on site conditions—higher waste margins for rocky or uneven sites.
-          </li>
+      {/* TABLE: Soil Types, Swell Factors, and Characteristics */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Soil Types, Swell Factors, and Characteristics</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different soil types expand at different rates after excavation, affecting volume calculations and equipment needs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Soil Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Swell Factor (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bank Density (lbs/yd³)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Applications</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Clay</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,400–2,700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Foundation excavation, retention ponds</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sand</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,600–2,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Beach projects, drainage layers</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Silt</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,300–2,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fill material, landscaping</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gravel</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,500–2,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Driveways, base courses</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rock/Bedrock</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50%+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000–3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Blasting required, specialized equipment</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Topsoil/Organic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800–2,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Landscaping, site restoration</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Loam (Mixed)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18–22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,200–2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">General earthwork, fill projects</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Swell factor percentages indicate volume expansion after excavation. Bank density helps estimate equipment load capacity.</p>
+      </section>
+
+      {/* TABLE: Excavation Equipment Hourly Rates and Capacity */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Excavation Equipment Hourly Rates and Capacity</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Equipment rental and operating costs vary by region and project duration; these figures reflect 2024–2025 market rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Equipment Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hourly Rate (USD)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Rate (USD)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Capacity</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mini Excavator (0.8 yd³)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50–$75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200–$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8 cubic yards per bucket</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Standard Excavator (1.5 yd³)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400–$600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 cubic yards per bucket</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Excavator (2.5+ yd³)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$130–$180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600–$900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5+ cubic yards per bucket</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Backhoe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75–$125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300–$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5–0.8 cubic yards per bucket</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dump Truck (10 yd³)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50–$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200–$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–15 cubic yards per load</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wheel Loader</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$85–$135</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$350–$600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–4 cubic yards per load</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Skid Steer Loader</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60–$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250–$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5–1.0 cubic yards per load</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates include equipment rental; operator costs and fuel are typically billed separately. Daily rates offer better value for &gt;8 hour projects.</p>
+      </section>
+
+      {/* TABLE: Excavation Cost Benchmarks by Project Type */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Excavation Cost Benchmarks by Project Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These 2024–2025 cost ranges help validate excavation calculator outputs for common construction projects.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Project Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Volume (yd³)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost per yd³ (USD)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Estimated Cost (USD)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential Foundation (1 story)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150–250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5–$10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750–$2,500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential Basement (40×50 ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500–700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4–$8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000–$5,600</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Pond (1/4 acre, 6 ft deep)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800–1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3–$7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,400–$8,400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Driveway Excavation (3000 sq ft, 1 ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110–150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4–$9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$440–$1,350</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercial Building (2-story)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000–3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3–$6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,000–$21,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Land Clearing &amp; Grading (1 acre)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300–600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2–$5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600–$3,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Swimming Pool (15×30 ft, 6 ft avg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250–350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500–$4,200</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs exclude permits, hauling &gt;5 miles, and contaminated soil remediation. Local market variations of ±20% are common.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always call 811 or use your local utility locating service before excavating to avoid hitting gas, electric, water, or sewer lines—this prevents costly emergency repairs and potential safety hazards.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Request soil testing and site surveys before finalizing excavation estimates; unexpected rock layers, contaminated soil, or high water tables can multiply costs by 50–100%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Negotiate volume discounts with excavation contractors if your project exceeds 500 cubic yards; many offer 10–20% reductions for larger jobs with longer equipment rental commitments.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Schedule excavation work during dry seasons when possible; wet conditions reduce equipment efficiency by 20–30% and increase swell factors due to moisture content, inflating your total cubic yardage and costs.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Unit Selection:</strong> Mixing metric and imperial units without proper conversion can lead to massive miscalculations. Always double-check your unit settings before entering dimensions.
-          </p>
-          <p>
-            <strong>2. Ignoring Waste Margin:</strong> Failing to include a waste margin often results in ordering insufficient material, causing project delays and additional costs.
-          </p>
-          <p>
-            <strong>3. Rounding Too Early:</strong> Rounding intermediate calculations can accumulate errors. Always perform calculations with full precision and round only the final order quantity.
-          </p>
-          <p>
-            <strong>4. Not Verifying Material Unit Sizes:</strong> Assuming standard unit sizes without confirming with suppliers can cause ordering too much or too little material.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Swell Factor</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Forgetting to account for soil expansion (10–25%) after excavation leads to underestimating haul volume and disposal costs. Always select your specific soil type in the calculator to apply the correct swell factor and avoid budget surprises.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Including Grading and Site Prep</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Excavation volume is just the removal component; grading, compacting, and finish work ($0.50–$2.00/sq ft) are separate costs often missed in initial estimates. Include these line items in your calculator or budget separately to avoid cost overruns.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Hauling Distances</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming nearby disposal or overlooking truck travel time inflates haul costs; every additional 5 miles adds $200–$500+ to the project. Verify disposal site location and include realistic round-trip distance in your excavation calculator.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Miscalculating Equipment Hours</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using hourly rates without accounting for mobilization, setup, and demobilization time results in 20–30% cost underruns on small projects. The calculator should include fixed equipment delivery charges in addition to running hours.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Calculator className="w-6 h-6 text-blue-500" /> Frequently Asked Questions
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the volume of soil to be excavated?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To calculate excavation volume, multiply the length, width, and depth of the area in feet, then divide by 27 to convert cubic feet to cubic yards. For example, a 50-foot long, 30-foot wide, and 4-foot deep excavation equals (50 × 30 × 4) ÷ 27 = 222.2 cubic yards. Most excavation calculators accept these three dimensions and automatically perform this conversion for you.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between bank cubic yards and loose cubic yards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Bank cubic yards (BCY) refer to soil in its natural, undisturbed state, while loose cubic yards (LCY) refer to soil after excavation when it expands. Soil typically swells 10–25% after excavation depending on soil type, meaning 100 BCY may become 110–125 LCY. Your excavation calculator should account for this swell factor to estimate true removal and hauling costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does excavation typically cost per cubic yard?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excavation costs range from $3–$12 per cubic yard for standard soil removal, depending on location, soil type, and site conditions. Rocky or contaminated soil can cost $15–$25+ per cubic yard due to specialized equipment needs. Using your excavation calculator with local pricing helps generate accurate project budgets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What equipment costs should I factor into my excavation estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard excavation equipment includes backhoes ($75–$125/hour), excavators ($100–$150/hour), and dump trucks ($50–$100/hour). A typical residential excavation job may require 8–16 equipment hours, totaling $800–$2,400 in machinery costs alone. Your calculator should allow you to input hourly rates for different equipment types to get accurate totals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for grading and site preparation in my calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Grading and site prep are separate from raw excavation volume and typically cost $0.50–$2.00 per square foot depending on slope and finish requirements. For a 2,000-square-foot site, expect $1,000–$4,000 in grading costs in addition to excavation removal. Enter both the excavation depth and the grading area separately in your calculator for a complete estimate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What soil types have different swell factors I should know about?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Clay soils swell 20–25%, sand 10–15%, and rocky soil 50%+ due to breakage. Organic material like topsoil swells 15–20%, while gravel swells 10–12%. Knowing your specific soil type allows you to select the correct swell factor in your excavation calculator for more accurate cubic yard projections.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate disposal or hauling costs in my excavation project?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Hauling costs depend on cubic yardage, distance to disposal site, and truck capacity (typically 10–15 cubic yards per load). A 200-cubic-yard excavation project 5 miles away costs approximately $1,200–$2,000 at standard rates of $30–$50 per load. Your excavation calculator should include fields for distance and haul rate to compute total transport costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What permits or regulations affect my excavation cost estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most municipalities require excavation permits ($100–$500) and may mandate utility locating (often free via 811 call), environmental assessments, and erosion control measures ($500–$5,000+). These compliance costs should be added to your excavation calculator results for a realistic total project budget.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for basement or pond excavation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the excavation calculator works for any project requiring volume calculations: basements, ponds, pools, and foundations. For basement excavation on a 40×50-foot footprint 8 feet deep, you'd calculate (40 × 50 × 8) ÷ 27 = 592.6 cubic yards, then apply your local per-yard rates and swell factors to get final costs.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Excavation%20Calculation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Excavation Calculation - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Excavation Calculation from the trusted team at This Old House.
-            </p>
+            <a href="https://www.osha.gov/construction/excavations" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">OSHA Excavation Safety Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on trench safety, protective systems, and competent person requirements for all excavation work.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Excavation%20Calculation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Excavation Calculation - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Excavation Calculation, helping you get the job done right.
-            </p>
+            <a href="https://www.callbeforeyoudig.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Common Ground Alliance — Call Before You Dig</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Resource for locating underground utilities before excavation to prevent damage and injuries.</p>
           </li>
           <li>
-            <a href="https://www.constructiondive.com/search/?q=Excavation%20Calculation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Excavation Calculation - Construction Dive
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Latest news and trends in the construction industry regarding Excavation Calculation.
-            </p>
+            <a href="https://www.rsmeans.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">RS Means Construction Cost Data — Excavation</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry-standard reference for excavation labor, equipment, and material pricing by region and project type.</p>
+          </li>
+          <li>
+            <a href="https://www.epa.gov/remedytech" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Environmental Protection Agency — Soil Remediation Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Guidelines for identifying and handling contaminated soil during excavation projects.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -138,41 +138,41 @@ export default function ConcreteSlabVolumeCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question:
-        "How do I accurately measure the dimensions for the concrete slab volume calculation?",
-      answer:
-        "To get precise volume calculations, measure the length, width, and depth (thickness) of the slab area carefully using a tape measure or laser distance measurer. Ensure measurements are in consistent units (meters or feet). Double-check measurements to avoid costly errors. For uneven surfaces, take average depths or divide the area into sections.",
+      question: "How do I calculate the volume of a concrete slab?",
+      answer: "Concrete slab volume is calculated by multiplying length × width × depth (thickness), all measured in the same units. For example, a slab that is 20 feet long, 15 feet wide, and 4 inches (0.33 feet) thick would have a volume of 20 × 15 × 0.33 = 99 cubic feet. This calculator automates the conversion and multiplication to give you results in cubic yards, cubic feet, or cubic meters.",
     },
     {
-      question:
-        "Why is it important to include a waste margin when ordering concrete bags?",
-      answer:
-        "Including a waste margin (commonly 10%) accounts for spillage, over-excavation, uneven subgrade, and slight miscalculations. This ensures you have enough concrete to complete the project without delays. Ordering too little can cause costly last-minute purchases and inconsistent slab quality.",
+      question: "Why should I convert my measurements to cubic yards?",
+      answer: "Concrete is typically sold by the cubic yard in North America, making cubic yards the standard unit for ordering ready-mix concrete. One cubic yard equals 27 cubic feet, so converting your slab dimensions to cubic yards helps you order the exact amount needed and avoid over- or under-ordering. A typical residential driveway slab (10 feet × 20 feet × 4 inches) requires approximately 2.5 cubic yards of concrete.",
     },
     {
-      question:
-        "What types of concrete bags are available and how do they affect the calculation?",
-      answer:
-        "Concrete bags typically come in standard sizes such as 40 lb and 60 lb bags, which correspond to different volumes per bag. Larger bags reduce the total number of bags needed but may be heavier to handle. Selecting the correct bag size in the calculator ensures accurate bag quantity and cost estimation.",
+      question: "What thickness should my concrete slab be?",
+      answer: "Concrete slab thickness depends on its intended use: residential driveways typically require 4 inches, garage floors need 4–6 inches, warehouse floors require 6–8 inches, and sidewalks are generally 4 inches thick. Thicker slabs provide better load-bearing capacity and durability, especially in areas with heavy traffic or freeze-thaw cycles. Always check local building codes for minimum thickness requirements in your area.",
     },
     {
-      question:
-        "How does the gravel base thickness affect the concrete volume calculation?",
-      answer:
-        "The gravel base thickness does not add to the concrete volume but is important for site preparation. It provides drainage and stability beneath the slab. This calculator allows you to input gravel base thickness for informational purposes, but concrete volume is calculated based on slab thickness only.",
+      question: "How much does concrete cost per cubic yard?",
+      answer: "As of 2024–2025, ready-mix concrete typically costs between $150–$200 per cubic yard for standard concrete, though prices vary by region and concrete grade. Premium finishes, air-entrained concrete for freeze-thaw protection, or reinforced concrete can cost $200–$250 per cubic yard. A 2.5 cubic yard driveway slab could therefore cost between $375–$625 in material alone.",
     },
     {
-      question:
-        "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system, and enter all dimensions accordingly. The results, including volume and bag quantities, will be displayed in the chosen units.",
+      question: "Should I add extra concrete for waste and spillage?",
+      answer: "Yes, it is standard practice to add 5–10% extra concrete to your calculated volume to account for spillage, uneven subgrades, and measurement errors. For example, if your slab requires 10 cubic yards, ordering 10.5–11 cubic yards ensures you have enough material to complete the job without stopping for additional deliveries. This small overage is more economical than running short during the pour.",
     },
     {
-      question:
-        "How do I estimate the total cost of the concrete needed for my slab?",
-      answer:
-        "Enter the price per bag of concrete in the calculator along with your slab dimensions and waste margin. The calculator will estimate the total number of bags required and multiply by the price per bag to give you an estimated total cost. This helps with budgeting and ordering.",
+      question: "What is the difference between cubic feet and cubic yards?",
+      answer: "One cubic yard contains 27 cubic feet. If your concrete slab volume is 99 cubic feet, that equals 99 ÷ 27 = 3.67 cubic yards. Understanding this conversion is essential because concrete contractors quote prices per cubic yard, while some homeowners measure their projects in cubic feet or linear dimensions.",
     },
+    {
+      question: "How do I account for sloped or uneven concrete slabs?",
+      answer: "For sloped slabs (such as driveways with pitch for drainage), calculate the average depth by measuring the thickness at the high end and low end, then use the average in your volume formula. For example, if one end is 4 inches and the other is 6 inches, use 5 inches as your average thickness. The calculator assumes uniform thickness, so manual adjustment is required for significantly sloped surfaces.",
+    },
+    {
+      question: "What are common errors when measuring for a concrete slab?",
+      answer: "Common errors include measuring in different units (feet vs. inches) without proper conversion, forgetting to account for slab thickness, rounding down when calculating volume, and not adding waste allowance. Many people also miscalculate the depth by confusing finished grade elevation with actual slab thickness. Always double-check measurements and perform a sanity check: a standard 10×20×4-inch slab should yield approximately 2.5 cubic yards.",
+    },
+    {
+      question: "How does concrete strength relate to slab thickness?",
+      answer: "Concrete strength is measured in PSI (pounds per square inch), typically ranging from 3,000 PSI for standard use to 4,000 PSI for driveways and 5,000+ PSI for industrial applications. Thicker slabs distribute loads over a larger area, reducing stress per square inch, but strength is primarily determined by concrete mix design rather than thickness alone. A 4-inch slab with 3,500 PSI concrete is generally adequate for residential driveways under normal conditions.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -351,167 +351,335 @@ export default function ConcreteSlabVolumeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Concrete
-          Slab Volume Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            A concrete slab volume calculator is an essential tool for contractors,
-            builders, and DIY enthusiasts to accurately estimate the amount of
-            concrete needed for slab projects. By inputting the length, width, and
-            depth of the slab, this calculator determines the total volume of
-            concrete required, helping you avoid costly overordering or shortages.
-          </p>
-          <p>
-            Precision in these calculations is critical because concrete is sold by
-            volume, and errors can lead to wasted materials or project delays. Even
-            small miscalculations in depth or area can significantly impact the
-            total volume and cost.
-          </p>
-          <p>
-            Different types of concrete bags are available, typically in standard
-            sizes such as 40 lb or 60 lb bags, each yielding a specific volume of
-            mixed concrete. Selecting the correct bag size in the calculator ensures
-            accurate bag counts and cost estimates.
-          </p>
-          <p>
-            Additionally, many projects require a gravel base beneath the slab for
-            drainage and stability. While the gravel base thickness does not affect
-            the concrete volume, including it in your planning ensures proper site
-            preparation.
-          </p>
-          <p>
-            This calculator also factors in a waste margin, typically around 10%,
-            to account for spillage, uneven surfaces, and other unforeseen
-            circumstances, ensuring you order enough material to complete your
-            project smoothly.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Concrete Slab Volume Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Concrete Slab Volume Calculator is designed to help homeowners, contractors, and DIY enthusiasts quickly determine how much concrete is needed for any slab project. Accurate volume calculations prevent costly over-ordering or frustrating supply shortages during a pour. Whether you're planning a small patio, a residential driveway, or a large warehouse floor, this tool converts your linear measurements into the cubic yards needed to order ready-mix concrete.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input three key measurements: the length and width of your slab in feet or meters, and the thickness (depth) in inches or centimeters. The calculator accepts decimal values, so you can enter precise measurements like 20.5 feet or 10.25 inches. Make sure all measurements are in the same unit system, and always measure thickness uniformly; if your slab slopes, use the average thickness between the high and low points.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator will display your result in cubic feet, cubic yards, and cubic meters. Cubic yards is the standard unit for ordering ready-mix concrete in North America, so pay special attention to that result. It's best practice to add 5–10% to your calculated volume to account for spillage, uneven subgrades, and measurement uncertainties. For example, if the calculator shows 10 cubic yards, order 10.5–11 cubic yards to ensure you don't run short during the pour.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure twice and consider site conditions
-            such as slope or uneven ground that may require adjusting slab depth.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Concrete bags vary in volume yield based
-            on brand and mix type; always check the bag label for exact coverage.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering slightly more concrete than
-            calculated can save time and money by avoiding multiple deliveries.
-          </li>
-          <li>
-            <strong>Tip:</strong> Use a gravel base thickness of at least 4 inches
-            (0.1 m) for proper drainage under slabs.
-          </li>
+      {/* TABLE: Recommended Concrete Slab Thickness by Application */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Concrete Slab Thickness by Application</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows standard slab thickness recommendations for different construction applications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Application</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Thickness</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical PSI</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Load Type</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sidewalks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000–3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pedestrian</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential Driveway</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500–4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light vehicle</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Garage Floor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–6 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500–4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vehicle &amp; storage</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Warehouse Floor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6–8 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,000–5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy equipment</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Parking Lot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–6 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,000–4,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Regular vehicle traffic</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Patio/Deck</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000–3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pedestrian</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Industrial Floor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8–12 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000–6,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very heavy loads</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Airport Runway</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12–18 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,500–5,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Aircraft landing</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Foundation Slab</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–6 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500–4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Structural support</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Thickness requirements may vary by local building codes, soil conditions, and climate. Always consult local regulations.</p>
+      </section>
+
+      {/* TABLE: Concrete Volume Conversion Reference Chart */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Concrete Volume Conversion Reference Chart</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table helps convert slab dimensions into volume measurements across different units.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Slab Dimensions (L × W × D)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cubic Feet</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cubic Yards</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cubic Meters</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Approximate Weight (lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 ft × 10 ft × 4 in</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.23</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,968</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 ft × 20 ft × 4 in</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.47</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,937</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 ft × 20 ft × 4 in</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">133.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.94</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15,873</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 ft × 30 ft × 4 in</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.41</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23,810</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 ft × 25 ft × 6 in</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">187.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.94</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22,313</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12 ft × 40 ft × 5 in</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.41</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23,810</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25 ft × 25 ft × 4 in</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">208.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.72</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.94</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24,790</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30 ft × 40 ft × 6 in</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.01</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">71,429</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Weight assumes standard concrete at 150 lbs per cubic foot. Reinforced or air-entrained concrete may vary slightly. Use cubic yards for ordering ready-mix concrete.</p>
+      </section>
+
+      {/* TABLE: Regional Concrete Pricing &amp; Volume Estimates (2024–2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Regional Concrete Pricing &amp; Volume Estimates (2024–2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical ready-mix concrete costs and estimated pricing for common residential slab projects by region.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Region</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Price per Cubic Yard</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">10×20 ft Driveway (2.47 CY) Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">20×20 ft Patio (4.94 CY) Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Delivery Fee</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Northeast (US)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$180–$220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$444–$544</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$889–$1,087</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75–$150</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Midwest (US)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$140–$180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$346–$446</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$692–$892</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50–$100</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">South (US)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$130–$170</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$321–$420</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$642–$840</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40–$80</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">West Coast (US)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$190–$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$469–$618</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$938–$1,235</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Canada (Alberta)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$160–$210</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$395–$519</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$790–$1,038</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75–$125</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Canada (Ontario)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$180–$230</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$444–$568</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$888–$1,136</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$150</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Prices are approximate and vary by local market conditions, concrete grade, reinforcement, and order size. Premium finishes add 10–20% to base costs.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always measure slab thickness at multiple points along the length and width, especially on sloped surfaces; use the average thickness in your calculation to account for uneven subgrades.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add 5–10% waste allowance to your calculated volume before ordering concrete; a small overage is far cheaper than stopping mid-pour to order additional material.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Double-check your unit conversions: 1 cubic yard = 27 cubic feet, and 4 inches = 0.33 feet; using a calculator for this step prevents costly errors.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Order your ready-mix concrete for a time when your subgrade is prepared, weather is favorable, and you have enough labor or equipment on-site to place and finish the concrete within the truck's delivery window (typically 90–120 minutes).</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Mistake:</strong> Forgetting to include a waste margin can lead
-            to running out of concrete mid-project, causing delays and extra costs.
-          </p>
-          <p>
-            <strong>2. Mistake:</strong> Mixing units (e.g., length in meters and
-            depth in feet) results in incorrect volume calculations and inaccurate
-            bag counts.
-          </p>
-          <p>
-            <strong>3. Mistake:</strong> Not accounting for the gravel base thickness
-            in site preparation plans can compromise slab stability, even though it
-            doesn't affect concrete volume.
-          </p>
-          <p>
-            <strong>4. Mistake:</strong> Using the wrong bag size in calculations
-            leads to ordering too many or too few bags, impacting budget and
-            workflow.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing slab thickness with subgrade depth</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people measure from the top of the soil to finished grade, then use that as slab thickness. Only measure the actual concrete slab thickness (typically 4–6 inches), not the excavation depth or soil preparation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to convert inches to feet before calculating</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A common error is calculating with mixed units, such as using feet for length/width but leaving thickness in inches. Always convert everything to the same unit (usually feet or meters) before multiplying to avoid off-by-order-of-magnitude errors.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Rounding down the volume to save money</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Underestimating concrete volume by rounding down leads to incomplete pours and costly delays. It's better to round up or add 5–10% waste allowance; unused concrete is far cheaper than a second truck delivery.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring slope or pitch when measuring thickness</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Sloped driveways and pitched floors have variable thickness. Measuring at only one end will give inaccurate results; measure at both the high and low points, then average them for a more realistic volume calculation.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Calculator className="w-6 h-6 text-blue-500" /> Frequently Asked Questions
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the volume of a concrete slab?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Concrete slab volume is calculated by multiplying length × width × depth (thickness), all measured in the same units. For example, a slab that is 20 feet long, 15 feet wide, and 4 inches (0.33 feet) thick would have a volume of 20 × 15 × 0.33 = 99 cubic feet. This calculator automates the conversion and multiplication to give you results in cubic yards, cubic feet, or cubic meters.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why should I convert my measurements to cubic yards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Concrete is typically sold by the cubic yard in North America, making cubic yards the standard unit for ordering ready-mix concrete. One cubic yard equals 27 cubic feet, so converting your slab dimensions to cubic yards helps you order the exact amount needed and avoid over- or under-ordering. A typical residential driveway slab (10 feet × 20 feet × 4 inches) requires approximately 2.5 cubic yards of concrete.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What thickness should my concrete slab be?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Concrete slab thickness depends on its intended use: residential driveways typically require 4 inches, garage floors need 4–6 inches, warehouse floors require 6–8 inches, and sidewalks are generally 4 inches thick. Thicker slabs provide better load-bearing capacity and durability, especially in areas with heavy traffic or freeze-thaw cycles. Always check local building codes for minimum thickness requirements in your area.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does concrete cost per cubic yard?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As of 2024–2025, ready-mix concrete typically costs between $150–$200 per cubic yard for standard concrete, though prices vary by region and concrete grade. Premium finishes, air-entrained concrete for freeze-thaw protection, or reinforced concrete can cost $200–$250 per cubic yard. A 2.5 cubic yard driveway slab could therefore cost between $375–$625 in material alone.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I add extra concrete for waste and spillage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, it is standard practice to add 5–10% extra concrete to your calculated volume to account for spillage, uneven subgrades, and measurement errors. For example, if your slab requires 10 cubic yards, ordering 10.5–11 cubic yards ensures you have enough material to complete the job without stopping for additional deliveries. This small overage is more economical than running short during the pour.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between cubic feet and cubic yards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">One cubic yard contains 27 cubic feet. If your concrete slab volume is 99 cubic feet, that equals 99 ÷ 27 = 3.67 cubic yards. Understanding this conversion is essential because concrete contractors quote prices per cubic yard, while some homeowners measure their projects in cubic feet or linear dimensions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for sloped or uneven concrete slabs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For sloped slabs (such as driveways with pitch for drainage), calculate the average depth by measuring the thickness at the high end and low end, then use the average in your volume formula. For example, if one end is 4 inches and the other is 6 inches, use 5 inches as your average thickness. The calculator assumes uniform thickness, so manual adjustment is required for significantly sloped surfaces.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are common errors when measuring for a concrete slab?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common errors include measuring in different units (feet vs. inches) without proper conversion, forgetting to account for slab thickness, rounding down when calculating volume, and not adding waste allowance. Many people also miscalculate the depth by confusing finished grade elevation with actual slab thickness. Always double-check measurements and perform a sanity check: a standard 10×20×4-inch slab should yield approximately 2.5 cubic yards.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does concrete strength relate to slab thickness?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Concrete strength is measured in PSI (pounds per square inch), typically ranging from 3,000 PSI for standard use to 4,000 PSI for driveways and 5,000+ PSI for industrial applications. Thicker slabs distribute loads over a larger area, reducing stress per square inch, but strength is primarily determined by concrete mix design rather than thickness alone. A 4-inch slab with 3,500 PSI concrete is generally adequate for residential driveways under normal conditions.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Concrete%20Slab%20Calculation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Slab Calculation - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Concrete Slab Calculation from the trusted team at This Old House.
-            </p>
+            <a href="https://www.concrete.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Concrete Institute (ACI) — Guide to Concrete Floor and Slab Construction</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards and best practices for concrete slab design, thickness requirements, and quality specifications.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Concrete%20Slab%20Calculation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Slab Calculation - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Concrete Slab Calculation, helping you get the job done right.
-            </p>
+            <a href="https://www.rmca.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Ready Mixed Concrete Association — Concrete Specifications and Pricing</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative source on ready-mix concrete standards, delivery procedures, and regional pricing trends.</p>
           </li>
           <li>
-            <a href="https://www.concretenetwork.com/search.html?q=Concrete%20Slab%20Calculation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Slab Calculation - Concrete Network
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              The leading source for concrete information, including design ideas, contractor directories, and technical guides for Concrete Slab Calculation.
-            </p>
+            <a href="https://www.gsa.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. General Services Administration — Concrete Slab Design Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal guidelines for concrete slab specifications, load requirements, and construction standards for public facilities.</p>
           </li>
           <li>
-            <a href="https://www.cement.org/search-results?indexCatalogue=site-search&searchQuery=Concrete%20Slab%20Calculation&wordsMode=0" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Concrete Slab Calculation - Portland Cement Association
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical resources and industry standards for cement and concrete applications related to Concrete Slab Calculation.
-            </p>
+            <a href="https://www.iccsafe.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) — Concrete and Reinforcement</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">National model building code requirements for concrete slab thickness, strength grades, and structural specifications by application type.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

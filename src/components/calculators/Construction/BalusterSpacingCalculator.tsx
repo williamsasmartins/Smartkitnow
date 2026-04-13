@@ -119,35 +119,41 @@ export default function BalusterSpacingCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is baluster spacing and why is it important?",
-      answer:
-        "Baluster spacing refers to the distance between individual balusters in a railing system. Proper spacing ensures safety by preventing small children or pets from slipping through gaps, complies with building codes, and maintains the structural integrity and aesthetic appeal of the railing. Incorrect spacing can lead to safety hazards and code violations.",
+      question: "What is the standard baluster spacing requirement?",
+      answer: "The International Building Code (IBC) and most local building codes require a maximum spacing of 4 inches between balusters on stairs, ramps, and guardrails. This spacing is measured at the widest point between balusters and is designed to prevent a 4-inch sphere from passing through, which protects children from becoming trapped. Some jurisdictions may have slightly different requirements, so always verify with your local building department before installation.",
     },
     {
-      question: "How do I measure the length for baluster spacing calculations?",
-      answer:
-        "Measure the total length of the railing run where balusters will be installed. This is typically the horizontal distance along the top rail or base where balusters will be mounted. Ensure you measure in a straight line and convert units appropriately if mixing metric and imperial measurements.",
+      question: "How do I calculate the number of balusters I need?",
+      answer: "To calculate the number of balusters needed, divide the total railing length by your desired spacing interval (typically 4-6 inches), then add 1 for the starting baluster. For example, on a 36-inch railing with 4-inch spacing: (36 ÷ 4) + 1 = 10 balusters. Always round up to ensure proper spacing and verify that your final spacing doesn't exceed code requirements.",
     },
     {
-      question: "What materials can balusters be made from and how does that affect spacing?",
-      answer:
-        "Balusters can be made from wood, metal, composite, or glass. Material choice affects baluster width, strength, and spacing requirements. For example, metal balusters can be thinner but still strong, allowing for tighter spacing, while wood balusters might need to be wider. Always check local building codes for minimum spacing requirements based on material.",
+      question: "What's the difference between baluster spacing and baluster width?",
+      answer: "Baluster spacing refers to the gap between the centerlines of two adjacent balusters, while baluster width is the actual thickness of each individual baluster. If spacing is 6 inches and your balusters are 2 inches wide, the gap between them would be approximately 4 inches. It's crucial to account for both dimensions when planning your layout to achieve even, code-compliant spacing.",
     },
     {
-      question: "Why should I include a waste margin in my baluster calculations?",
-      answer:
-        "Including a waste margin accounts for cutting errors, damaged pieces, and future repairs. It ensures you order enough material without running short during installation. Typically, a 10% waste margin is recommended, but this can vary based on project complexity and installer experience.",
+      question: "Can I use 6-inch spacing instead of 4-inch spacing?",
+      answer: "Using 6-inch spacing depends on your local building code and the application. While 4 inches is the maximum for most residential applications to protect children, some codes allow up to 6 inches for commercial railings or if balusters are curved or tapered. Always check your jurisdiction's specific requirements—exceeding the maximum spacing can result in code violations and failed inspections.",
     },
     {
-      question: "Can I use this calculator for curved or angled railings?",
-      answer:
-        "This calculator assumes a straight railing run. For curved or angled railings, measurements and spacing calculations become more complex due to varying lengths and angles. For such cases, consult a professional estimator or use specialized software that accounts for curves and angles.",
+      question: "How do I adjust spacing for uneven railing lengths?",
+      answer: "If your railing length doesn't divide evenly by your desired spacing, distribute the difference equally across all gaps rather than putting extra space at one end. For a 37-inch railing needing 10 balusters with 4-inch spacing, you'd have 4.1 inches per gap instead of exactly 4 inches. Most codes allow up to 0.25 inches of variance as long as no single gap exceeds the maximum allowed spacing.",
     },
     {
-      question: "How do building codes affect baluster spacing?",
-      answer:
-        "Building codes often specify maximum allowable spacing between balusters to ensure safety, commonly no more than 4 inches (100 mm) gap. These codes vary by region and type of building. Always verify local regulations before finalizing your baluster spacing and ordering materials.",
+      question: "What materials work best for balusters?",
+      answer: "Common baluster materials include wood, metal (aluminum and steel), composite, and vinyl, each with spacing considerations. Wood balusters must meet strength requirements and typically range from 1.5 to 2.5 inches wide, while metal balusters can be thinner (0.75–1.5 inches). Choose materials based on durability, maintenance requirements, and aesthetic goals while ensuring they meet local fire and safety codes.",
     },
+    {
+      question: "How do I account for rail newel posts in spacing calculations?",
+      answer: "When measuring for baluster spacing, measure from the inside face of one newel post to the inside face of the next newel post. Subtract the width of the first baluster, then divide the remaining distance by your target spacing interval. For example, if the distance between newels is 40 inches and your first baluster is 2 inches wide, you have 38 inches for spacing 9 balusters evenly (38 ÷ 8 gaps = 4.75 inches per gap).",
+    },
+    {
+      question: "Are there different spacing rules for exterior vs. interior railings?",
+      answer: "The 4-inch maximum spacing rule generally applies to both interior and exterior railings in residential applications under the IBC. However, exterior railings may have additional requirements for wind resistance and durability, which could affect baluster material and installation methods but not the spacing itself. Always consult your local building code, as some regions have stricter requirements for commercial or high-traffic exterior applications.",
+    },
+    {
+      question: "What happens if my spacing exceeds the maximum code requirement?",
+      answer: "If spacing exceeds 4 inches (or your local maximum), the installation will fail inspection and must be corrected before approval. You'll need to add additional balusters to bring spacing into compliance, which may require removing and reinstalling portions of the railing. This can be costly and time-consuming, so calculating correct spacing beforehand using a baluster spacing calculator can prevent rework and project delays.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -307,121 +313,308 @@ export default function BalusterSpacingCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Baluster Spacing Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            A baluster spacing calculator is a specialized tool designed to help contractors, builders, and DIY enthusiasts accurately determine the number of balusters required for a railing project. Balusters are the vertical posts that support the handrail, and their spacing is critical for both safety and aesthetics. This calculator takes into account the total length of the railing, the desired spacing between balusters, and the width of each baluster to provide a precise count of units needed.
-          </p>
-          <p>
-            Precision in baluster spacing is essential to comply with local building codes, which often specify maximum allowable gaps to prevent accidents, especially involving children. Incorrect spacing can lead to costly rework, safety hazards, and failed inspections. Using a calculator ensures you order the right amount of material, minimizing waste and saving money.
-          </p>
-          <p>
-            Balusters come in various materials including wood, metal, and composite. Each material type has different standard widths and installation considerations. For example, metal balusters can be thinner yet stronger, allowing for tighter spacing, while wood balusters are typically wider and may require different spacing to maintain structural integrity. This calculator allows you to select the material type to better tailor your estimates.
-          </p>
-          <p>
-            Additionally, the calculator includes a waste margin input to account for cutting errors, damaged pieces, and future repairs. This margin helps ensure you have enough balusters on hand without over-ordering. By combining accurate measurements, material considerations, and waste factors, this tool streamlines your project planning and budgeting.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Baluster Spacing Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Baluster Spacing Calculator is a construction tool designed to determine the optimal number and spacing of balusters for stairs, railings, and guardrails while ensuring compliance with building codes. Proper baluster spacing is critical for safety—most codes require a maximum 4-inch gap to prevent a sphere of that diameter from passing through, protecting children from entrapment hazards. Using this calculator eliminates manual calculations and helps prevent costly code violations and rework.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need to input three key measurements: the total railing length in inches (measured between newel posts or support points), your desired baluster spacing in inches, and the width of your balusters. The calculator then automatically computes the exact number of balusters needed and shows how spacing should be distributed to ensure even appearance and code compliance. You can adjust spacing incrementally to find the best balance between material cost, aesthetic symmetry, and regulatory requirements.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results will show the number of balusters required, the actual spacing between centerlines, and whether adjustments are needed to meet code. If your railing length doesn't divide evenly, the calculator distributes any extra space proportionally across all gaps, keeping every gap within the maximum allowable limit. Use these results as your shopping list for materials and as a reference guide during installation to ensure each baluster is positioned correctly.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure the railing length along the top rail where balusters will be installed, not along the floor or base, to ensure accuracy.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> The International Residential Code (IRC) typically requires baluster spacing to be less than 4 inches (100 mm) to prevent a 4-inch sphere from passing through.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering 10% extra balusters as waste can save you from costly delays caused by breakage or miscuts during installation.
-          </li>
-          <li>
-            <strong>Tip:</strong> When working with metal balusters, consider their thinner profile to maximize visibility while maintaining safety.
-          </li>
+      {/* TABLE: Standard Baluster Spacing Requirements by Application */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard Baluster Spacing Requirements by Application</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows maximum baluster spacing limits according to the International Building Code for common residential and commercial applications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Application Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Spacing (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Baluster Width (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Material</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential Stairs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5–2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wood or Metal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential Guardrails</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5–2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wood or Composite</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Deck Railings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wood or Metal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercial Railings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Aluminum or Steel</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Glass Balustrades</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Variable</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.375–0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Tempered Glass</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Curved/Tapered Balusters</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wood or Metal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Requirements vary by jurisdiction and specific building code. Always verify local codes before installation. Glass balustrades may have different spacing rules based on pane size and thickness.</p>
+      </section>
+
+      {/* TABLE: Baluster Calculation Examples for Common Railing Lengths */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Baluster Calculation Examples for Common Railing Lengths</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These examples demonstrate how to calculate the number of balusters and actual spacing for various typical railing lengths.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Railing Length (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Desired Spacing (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calculated Balusters</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Actual Spacing (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjustment Method</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Divides evenly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Distribute 0.1-inch difference</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increase to 5.5-inch spacing</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">72</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Distribute 0.1-inch difference</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Distribute 0.2-inch difference evenly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">84</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Distribute 0.1-inch difference</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All calculations include one starting baluster. Actual spacing may require rounding; ensure final spacing does not exceed code maximum. Newel post widths must be subtracted from total railing length before calculations.</p>
+      </section>
+
+      {/* TABLE: Baluster Material Properties and Spacing Considerations */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Baluster Material Properties and Spacing Considerations</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different materials have varying widths and structural properties that affect optimal spacing and installation methods.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Width (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Strength Grade</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost per Linear Foot (USD)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Solid Wood (4x4)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8–$15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wood Turned (2x2)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5–$12</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aluminum Round</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$18</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Steel Square Tube</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10–$25</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Composite Balusters</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12–$22</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vinyl Balusters</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.375</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4–$10</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs vary by region, quality grade, and supplier. Material choice affects both spacing calculations and installation labor. Verify weight and structural capacity with manufacturer specifications.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always measure your railing length from the inside face of one newel post to the inside face of the next—never measure the outside edges, as this will throw off your spacing calculations and material counts.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to test multiple spacing scenarios before purchasing materials; for example, compare 4-inch spacing versus 5-inch spacing to see which requires fewer balusters and balances cost savings with aesthetic preference.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When spacing doesn't divide evenly, use the calculator's recommendation to distribute extra inches equally across all gaps rather than bunching extra space at one end, which looks unprofessional and may fail inspection.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep a 0.25-inch tolerance buffer in mind—most codes allow this much variance in spacing, so if your calculator shows 4.1-inch spacing instead of exactly 4 inches, that's typically acceptable across the railing length.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Double-check your local building code requirements before starting, as some jurisdictions allow 6-inch spacing for commercial applications or specific baluster styles, which could significantly reduce your material count and project cost.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Unit Conversion:</strong> Mixing metric and imperial units without proper conversion can lead to ordering too many or too few balusters. Always double-check your units before calculating.
-          </p>
-          <p>
-            <strong>2. Ignoring Waste Margin:</strong> Failing to include a waste margin can result in running out of balusters mid-project, causing delays and additional shipping costs.
-          </p>
-          <p>
-            <strong>3. Not Accounting for Baluster Width:</strong> Only considering spacing without the actual width of the baluster will underestimate the number of units needed.
-          </p>
-          <p>
-            <strong>4. Overlooking Local Building Codes:</strong> Not verifying local code requirements for baluster spacing can lead to non-compliance, failed inspections, and costly rework.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring from the wrong reference points</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Measuring from the outside edges of newel posts instead of inside faces will result in spacing that's too large, causing you to purchase fewer balusters than needed. Always measure inside face to inside face to get accurate railing length for calculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for baluster width in spacing calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Baluster spacing refers to the gap between balusters, not the distance from centerline to centerline. Confusing these measurements can lead to spacing that exceeds code limits or material shortages during installation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not verifying local code requirements before calculating</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">While 4 inches is standard in most jurisdictions, some regions allow 6 inches for commercial applications or specific materials. Calculating spacing without checking local codes can result in wasted materials or failed inspections.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Placing all extra space in one location</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If your railing length creates uneven spacing, cramming all the extra distance into one gap creates an obvious visual flaw and may violate code. The calculator helps distribute variance equally, which is the professional approach.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming the same spacing works for all railing sections</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Different sections of railing (stairs, landings, deck edges) may have different lengths and thus require different spacing calculations. Calculate each section separately to ensure code compliance throughout the project.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard baluster spacing requirement?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The International Building Code (IBC) and most local building codes require a maximum spacing of 4 inches between balusters on stairs, ramps, and guardrails. This spacing is measured at the widest point between balusters and is designed to prevent a 4-inch sphere from passing through, which protects children from becoming trapped. Some jurisdictions may have slightly different requirements, so always verify with your local building department before installation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the number of balusters I need?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To calculate the number of balusters needed, divide the total railing length by your desired spacing interval (typically 4-6 inches), then add 1 for the starting baluster. For example, on a 36-inch railing with 4-inch spacing: (36 ÷ 4) + 1 = 10 balusters. Always round up to ensure proper spacing and verify that your final spacing doesn't exceed code requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between baluster spacing and baluster width?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Baluster spacing refers to the gap between the centerlines of two adjacent balusters, while baluster width is the actual thickness of each individual baluster. If spacing is 6 inches and your balusters are 2 inches wide, the gap between them would be approximately 4 inches. It's crucial to account for both dimensions when planning your layout to achieve even, code-compliant spacing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use 6-inch spacing instead of 4-inch spacing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Using 6-inch spacing depends on your local building code and the application. While 4 inches is the maximum for most residential applications to protect children, some codes allow up to 6 inches for commercial railings or if balusters are curved or tapered. Always check your jurisdiction's specific requirements—exceeding the maximum spacing can result in code violations and failed inspections.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I adjust spacing for uneven railing lengths?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If your railing length doesn't divide evenly by your desired spacing, distribute the difference equally across all gaps rather than putting extra space at one end. For a 37-inch railing needing 10 balusters with 4-inch spacing, you'd have 4.1 inches per gap instead of exactly 4 inches. Most codes allow up to 0.25 inches of variance as long as no single gap exceeds the maximum allowed spacing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What materials work best for balusters?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common baluster materials include wood, metal (aluminum and steel), composite, and vinyl, each with spacing considerations. Wood balusters must meet strength requirements and typically range from 1.5 to 2.5 inches wide, while metal balusters can be thinner (0.75–1.5 inches). Choose materials based on durability, maintenance requirements, and aesthetic goals while ensuring they meet local fire and safety codes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for rail newel posts in spacing calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">When measuring for baluster spacing, measure from the inside face of one newel post to the inside face of the next newel post. Subtract the width of the first baluster, then divide the remaining distance by your target spacing interval. For example, if the distance between newels is 40 inches and your first baluster is 2 inches wide, you have 38 inches for spacing 9 balusters evenly (38 ÷ 8 gaps = 4.75 inches per gap).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there different spacing rules for exterior vs. interior railings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The 4-inch maximum spacing rule generally applies to both interior and exterior railings in residential applications under the IBC. However, exterior railings may have additional requirements for wind resistance and durability, which could affect baluster material and installation methods but not the spacing itself. Always consult your local building code, as some regions have stricter requirements for commercial or high-traffic exterior applications.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my spacing exceeds the maximum code requirement?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If spacing exceeds 4 inches (or your local maximum), the installation will fail inspection and must be corrected before approval. You'll need to add additional balusters to bring spacing into compliance, which may require removing and reinstalling portions of the railing. This can be costly and time-consuming, so calculating correct spacing beforehand using a baluster spacing calculator can prevent rework and project delays.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Baluster%20Spacing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Baluster Spacing - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Baluster Spacing from the trusted team at This Old House.
-            </p>
+            <a href="https://www.iccsafe.org/products-plans/icc-product-lines/international-codes/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) — Chapter 3: Fire and Life Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The IBC provides the standard 4-inch maximum baluster spacing requirement for residential and commercial railings and guardrails.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Baluster%20Spacing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Baluster Spacing - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Baluster Spacing, helping you get the job done right.
-            </p>
+            <a href="https://www.nahb.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of Home Builders (NAHB) — Railing and Guardrail Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">NAHB offers comprehensive guidance on residential railing installation, spacing requirements, and material specifications aligned with current building codes.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Baluster%20Spacing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Baluster Spacing - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Baluster Spacing from professional builders and craftsmen.
-            </p>
+            <a href="https://www.cpsc.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Product Safety Commission (CPSC) — Stair Safety Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CPSC provides safety standards and testing requirements for balusters and railings to prevent child entrapment and fall injuries.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Baluster%20Spacing" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Baluster Spacing - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Baluster Spacing.
-            </p>
+            <a href="https://www.stairtec.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Stair Builders Association — Technical Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">This organization publishes technical standards and best practices for stair and railing construction, including baluster spacing and material specifications.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

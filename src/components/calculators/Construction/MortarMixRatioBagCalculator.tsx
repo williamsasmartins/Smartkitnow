@@ -141,40 +141,41 @@ export default function MortarMixRatioBagCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is the ideal mortar mix ratio for general construction?",
-      answer:
-        "The most common mortar mix ratio used in general construction is 1 part cement to 4 parts sand by volume. This ratio provides a good balance of strength, workability, and durability for most masonry and plastering applications. Adjustments may be made depending on specific project requirements or environmental conditions.",
+      question: "What is the standard mortar mix ratio for bricklaying?",
+      answer: "The most common mortar mix ratio for general bricklaying is 1:3 (1 part cement to 3 parts sand by volume). This ratio provides adequate strength for most residential applications while maintaining workability. For load-bearing walls, a stronger 1:2.5 ratio may be required, whereas decorative or non-structural work can use a weaker 1:4 ratio.",
     },
     {
-      question:
-        "Why is it important to include a waste margin when calculating mortar quantities?",
-      answer:
-        "Including a waste margin accounts for material losses during mixing, handling, and application. Mortar can spill, dry out, or be applied thicker than planned, so adding a typical waste percentage (usually 5-15%) ensures you order enough material to complete the job without costly delays or shortages.",
+      question: "How many bags of mortar do I need for 100 square feet of brick wall?",
+      answer: "For a standard brick wall, you typically need 5-7 bags of pre-mixed mortar per 100 square feet, depending on brick size and joint thickness. A standard 80-pound bag of pre-mixed mortar covers approximately 12-15 square feet when joints are 3/8 inch thick. Adjust upward for thicker joints (up to 1/2 inch) which may require 8-9 bags per 100 square feet.",
     },
     {
-      question:
-        "How do I convert mortar volume calculations between metric and imperial units?",
-      answer:
-        "When working with metric units, dimensions should be in meters to calculate volume in cubic meters (m³). For imperial units, dimensions are in feet to calculate cubic feet (ft³). To convert between units, use the conversion factor 1 m³ = 35.3147 ft³. This ensures accurate volume and bag quantity calculations regardless of the measurement system.",
+      question: "What is the difference between Type N, Type S, and Type M mortar?",
+      answer: "Type N (1:2.25:3.25 ratio) is the most common general-purpose mortar with moderate strength, suitable for most residential and interior walls. Type S (1:1.75:2.75 ratio) is stronger and better for exterior walls and areas with high moisture or wind exposure. Type M (1:1.25:2.75 ratio) is the strongest and used for below-grade work, heavy loads, or severe weather conditions.",
     },
     {
-      question:
-        "What factors affect the yield of a mortar bag and how can I estimate it accurately?",
-      answer:
-        "The yield of a mortar bag depends on the bag size, mix ratio, and moisture content. Standard 25 kg bags typically yield about 0.017 m³ of mortar, while larger 40 kg bags yield around 0.027 m³. Variations in sand grading, water content, and compaction can also affect yield. Always refer to manufacturer specifications and consider a waste margin for accuracy.",
+      question: "Can I adjust mortar mix ratios for different weather conditions?",
+      answer: "Yes, weather affects mortar performance significantly. In cold climates, use Type S or M mortars with air entrainment to resist freeze-thaw cycles; avoid mixing in temperatures below 40°F without heated water. In hot, dry conditions, increase water content slightly and consider adding a water retention agent to prevent premature drying, which can reduce bond strength by up to 25%.",
     },
     {
-      question:
-        "Can I use this calculator for specialized mortar mixes like refractory or waterproof mortar?",
-      answer:
-        "This calculator is designed for standard cement-sand mortar mixes. Specialized mortars such as refractory or waterproof mixes may have different densities, mix ratios, and yields. For these, consult product datasheets or manufacturers for precise mix ratios and yields, and adjust calculations accordingly.",
+      question: "How do I calculate cement and sand needed from a mix ratio?",
+      answer: "To calculate from a ratio like 1:3, divide the total volume by the sum of ratio parts (1+3=4). For 1 cubic yard of mortar at 1:3 ratio: cement = 1 cubic yard ÷ 4 = 0.25 cubic yards (or 94 pounds per cubic foot), and sand = 3 × 0.25 = 0.75 cubic yards. A typical 94-pound cement bag yields about 1 cubic foot, so you'd need about 24 bags of cement per cubic yard.",
     },
     {
-      question:
-        "How does mortar thickness (depth) influence the quantity of material needed?",
-      answer:
-        "Mortar thickness directly affects the volume of mortar required. Thicker layers increase the volume proportionally, leading to more material needed. Accurately measuring the depth or thickness of the mortar bed or joint is crucial for precise quantity estimation and cost control.",
+      question: "What coverage does a 60-pound bag of premixed mortar provide?",
+      answer: "A 60-pound bag of premixed mortar typically covers 8-10 square feet for brickwork with standard 3/8-inch joints. Coverage varies based on brick size, joint width, and application method—larger bricks with thinner joints require fewer bags per square foot. Always check the manufacturer's coverage chart, as different brands and mortar types may vary by 10-15% in coverage rates.",
     },
+    {
+      question: "Is water content important in mortar mix calculations?",
+      answer: "Yes, water content is critical and typically comprises 10-15% of the mortar mix by weight. Too little water reduces workability and bond strength; too much weakens the mortar and increases shrinkage cracking by 15-30%. For best results, add water gradually until the mortar reaches a thick, putty-like consistency that clings to a trowel without slumping.",
+    },
+    {
+      question: "How do I convert a mortar mix ratio to actual pounds needed?",
+      answer: "Convert volume ratios to weight using cement density (94 lbs/cubic foot) and sand density (approximately 100 lbs/cubic foot). For a 1:3 ratio yielding 1 cubic yard: cement = 0.25 cubic yards × 27 cubic feet/yard × 94 lbs = 635 pounds, and sand = 0.75 × 27 × 100 = 2,025 pounds. Add approximately 10-15% for water content and potential waste.",
+    },
+    {
+      question: "What factors affect mortar coverage estimates?",
+      answer: "Key factors include brick or stone size (larger units require less mortar), joint thickness (3/8-inch standard vs. 1/2-inch thick joints increases material by 20-30%), application method (troweled vs. raked joints), and material absorption. Porous bricks absorb more mortar than dense materials, and irregular surfaces increase coverage needs by 15-25%. Always add 10% extra for waste and spillage.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -351,175 +352,253 @@ export default function MortarMixRatioBagCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Mortar Mix Ratio & Bag Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            Mortar is a crucial binding material used in masonry, plastering, and
-            other construction applications. It is typically a mixture of cement,
-            sand, and water, designed to hold bricks, stones, or blocks together.
-            The mortar mix ratio defines the proportion of cement to sand, which
-            directly influences the strength, durability, and workability of the
-            mortar.
-          </p>
-          <p>
-            Precision in calculating the amount of mortar required is essential to
-            avoid material shortages or excess waste. Overestimating leads to
-            unnecessary costs and storage issues, while underestimating can cause
-            project delays and compromise structural integrity. This calculator
-            helps professionals and DIYers estimate the correct quantity of mortar
-            bags needed based on project dimensions, mix ratios, and waste margins.
-          </p>
-          <p>
-            Mortar materials come in various bag sizes and formulations. Standard
-            bags typically weigh 25 kg and yield about 0.017 cubic meters of mortar,
-            while larger 40 kg bags yield approximately 0.027 cubic meters. The
-            choice of bag size affects ordering, storage, and cost calculations.
-            Additionally, different mortar types (e.g., masonry, plaster, refractory)
-            may have unique mix ratios and yields.
-          </p>
-          <p>
-            This calculator supports both metric and imperial units, allowing you to
-            input project dimensions in meters or feet. It also factors in a waste
-            margin to ensure you have enough material to cover spillage, over-application,
-            and other losses common on construction sites.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Mortar Mix Ratio & Bag Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Mortar Mix Ratio & Bag Calculator simplifies the process of determining exact material quantities needed for masonry projects. Rather than manually converting volume ratios to pounds or estimating coverage, this tool calculates precise cement and sand requirements based on your project size, mortar type, and joint specifications. Accurate calculations prevent costly material overages or shortages that delay construction schedules.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your total wall area in square feet, select your mortar type (N, S, M, or O), and specify your joint thickness in inches. The calculator also accounts for brick size—standard modular bricks versus jumbo or thin units—since different sizes require different mortar volumes. If you have a specific cubic yardage or prefer to work with weight-based measurements, the tool provides conversions between volume and weight for both cement and sand.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs the total cubic yards of mortar needed, the number of 94-pound cement bags required, and the weight of sand in pounds or tons. Results also show how many 60-pound or 80-pound bags of premixed mortar will substitute if you prefer ready-mixed products over site-mixing. Always add 10-15% extra material to your final calculations to account for waste, spillage, and application variability on your project.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure your project dimensions accurately
-            and double-check before ordering materials. Small errors in thickness
-            or area can lead to significant material miscalculations.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> The typical mortar mix ratio of 1:4 (cement
-            to sand) was developed to balance compressive strength with workability,
-            making it suitable for most masonry applications.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Adding a 10% waste margin is a
-            standard practice on job sites to cover spillage, uneven application,
-            and minor miscalculations.
-          </li>
-          <li>
-            <strong>Tip:</strong> When switching between metric and imperial units,
-            always convert all dimensions consistently to avoid errors in volume
-            calculations.
-          </li>
+      {/* TABLE: Mortar Type Specifications & Mix Ratios */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Mortar Type Specifications & Mix Ratios</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares the four main mortar types with their cement-to-sand ratios, compressive strength, and recommended applications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mortar Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mix Ratio (Cement:Sand)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Compressive Strength (psi)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best Used For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Type M</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:2.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,500+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Masonry below grade, heavy loads, severe weather</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Type S</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:2.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exterior walls, above-grade masonry, high wind zones</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Type N</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:2.25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">750+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">General-purpose interior and exterior, most residential work</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Type O</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Interior non-structural walls, soft stone, repair work only</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Compressive strength values are standard industry benchmarks per ASTM C270. Type M is rarely used in modern residential construction due to its high strength causing cracking in walls.</p>
+      </section>
+
+      {/* TABLE: Mortar Bag Coverage by Joint Thickness */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Mortar Bag Coverage by Joint Thickness</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard coverage rates for 80-pound bags of premixed mortar vary based on joint thickness and brick size.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Joint Thickness</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coverage per 80 lb Bag (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bags per 100 sq ft</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bags per 1,000 Bricks</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3/8 inch (standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-40</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1/2 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-55</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5/8 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-70</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3/4 inch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13-17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-85</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Coverage assumes standard modular bricks (2.25 x 3.625 x 7.625 inches). Jumbo or thin bricks will have different coverage rates. Add 10-15% extra for waste, spillage, and application variability.</p>
+      </section>
+
+      {/* TABLE: Material Quantities for Common Wall Areas */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Material Quantities for Common Wall Areas</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Quick reference for cement and sand requirements using a standard 1:3 Type N mortar ratio.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Wall Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cubic Yards of Mortar</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bags of Cement (94 lb)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tons of Sand</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.38</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.0</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These calculations assume 3/8-inch joints and standard brick size. Add 10% additional material for waste. Sand density is estimated at 100 lbs/cubic foot; cement bags contain 94 pounds of material.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify the mortar type required by your building codes and project specifications before calculating material—Type N is standard for residential work, but exterior or below-grade applications may require Type S or M, which affects material costs and quantities by 15-25%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your actual wall area carefully by multiplying height × length for each wall section, then subtract door and window openings to avoid over-ordering materials that create storage and waste challenges on tight job sites.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Pre-wet your sand the day before mixing if it's very dry; sand moisture content can vary 5-10% depending on weather, which affects the actual volume and requires water content adjustments during mixing to maintain proper consistency.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Order premixed mortar bags if your project is under 500 square feet, since site-mixing requires specialized equipment, trained labor, and quality control that smaller projects cannot justify economically compared to bagged products.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring Waste Margin:</strong> Not accounting for waste can
-            lead to ordering insufficient mortar, causing delays and additional
-            costs.
-          </p>
-          <p>
-            <strong>2. Mixing Units:</strong> Mixing metric and imperial units
-            without proper conversion results in incorrect volume and bag quantity
-            calculations.
-          </p>
-          <p>
-            <strong>3. Incorrect Depth Measurement:</strong> Using inconsistent or
-            estimated mortar thickness without precise measurement can skew results.
-          </p>
-          <p>
-            <strong>4. Overlooking Bag Yield Differences:</strong> Different bag
-            sizes and manufacturers yield different mortar volumes. Always verify
-            bag yield before ordering.
-          </p>
-          <p>
-            <strong>5. Not Updating Price:</strong> Forgetting to input or update
-            the price per bag can lead to inaccurate cost estimations.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing volume ratios with weight ratios</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 1:3 cement-to-sand ratio by volume does not equal 1:3 by weight, since cement (94 lbs/cubic foot) and sand (100 lbs/cubic foot) have different densities. Using weight ratios directly without conversion can result in incorrect mortar strength and workability, compromising structural integrity by 20-30%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to add waste factor</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming exact theoretical coverage without adding 10-15% for waste, spillage, and application inefficiency typically results in running out of material mid-project. This forces expensive emergency orders or project delays—especially problematic for mortar since consistency between batches affects finished wall appearance and durability.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for joint thickness variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Estimating mortar needs using standard 3/8-inch joints when your specifications call for 1/2-inch or 5/8-inch joints can underestimate material by 25-50%. Joint thickness specifications significantly impact both material quantity and final wall aesthetics, making accurate measurements critical before ordering.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using old or incorrect mortar type designations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying outdated mortar type names or confusing Portland cement with masonry cement can lead to ordering wrong materials or weak mixes that fail premature cracking or weathering tests. Always verify current ASTM C270 specifications for your region, as mortar standards have been updated to address modern climate challenges and masonry performance requirements.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Calculator className="w-6 h-6 text-blue-500" />
-          Frequently Asked Questions
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard mortar mix ratio for bricklaying?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The most common mortar mix ratio for general bricklaying is 1:3 (1 part cement to 3 parts sand by volume). This ratio provides adequate strength for most residential applications while maintaining workability. For load-bearing walls, a stronger 1:2.5 ratio may be required, whereas decorative or non-structural work can use a weaker 1:4 ratio.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many bags of mortar do I need for 100 square feet of brick wall?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For a standard brick wall, you typically need 5-7 bags of pre-mixed mortar per 100 square feet, depending on brick size and joint thickness. A standard 80-pound bag of pre-mixed mortar covers approximately 12-15 square feet when joints are 3/8 inch thick. Adjust upward for thicker joints (up to 1/2 inch) which may require 8-9 bags per 100 square feet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between Type N, Type S, and Type M mortar?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Type N (1:2.25:3.25 ratio) is the most common general-purpose mortar with moderate strength, suitable for most residential and interior walls. Type S (1:1.75:2.75 ratio) is stronger and better for exterior walls and areas with high moisture or wind exposure. Type M (1:1.25:2.75 ratio) is the strongest and used for below-grade work, heavy loads, or severe weather conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I adjust mortar mix ratios for different weather conditions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, weather affects mortar performance significantly. In cold climates, use Type S or M mortars with air entrainment to resist freeze-thaw cycles; avoid mixing in temperatures below 40°F without heated water. In hot, dry conditions, increase water content slightly and consider adding a water retention agent to prevent premature drying, which can reduce bond strength by up to 25%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate cement and sand needed from a mix ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To calculate from a ratio like 1:3, divide the total volume by the sum of ratio parts (1+3=4). For 1 cubic yard of mortar at 1:3 ratio: cement = 1 cubic yard ÷ 4 = 0.25 cubic yards (or 94 pounds per cubic foot), and sand = 3 × 0.25 = 0.75 cubic yards. A typical 94-pound cement bag yields about 1 cubic foot, so you'd need about 24 bags of cement per cubic yard.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What coverage does a 60-pound bag of premixed mortar provide?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 60-pound bag of premixed mortar typically covers 8-10 square feet for brickwork with standard 3/8-inch joints. Coverage varies based on brick size, joint width, and application method—larger bricks with thinner joints require fewer bags per square foot. Always check the manufacturer's coverage chart, as different brands and mortar types may vary by 10-15% in coverage rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is water content important in mortar mix calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, water content is critical and typically comprises 10-15% of the mortar mix by weight. Too little water reduces workability and bond strength; too much weakens the mortar and increases shrinkage cracking by 15-30%. For best results, add water gradually until the mortar reaches a thick, putty-like consistency that clings to a trowel without slumping.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I convert a mortar mix ratio to actual pounds needed?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Convert volume ratios to weight using cement density (94 lbs/cubic foot) and sand density (approximately 100 lbs/cubic foot). For a 1:3 ratio yielding 1 cubic yard: cement = 0.25 cubic yards × 27 cubic feet/yard × 94 lbs = 635 pounds, and sand = 0.75 × 27 × 100 = 2,025 pounds. Add approximately 10-15% for water content and potential waste.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect mortar coverage estimates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Key factors include brick or stone size (larger units require less mortar), joint thickness (3/8-inch standard vs. 1/2-inch thick joints increases material by 20-30%), application method (troweled vs. raked joints), and material absorption. Porous bricks absorb more mortar than dense materials, and irregular surfaces increase coverage needs by 15-25%. Always add 10% extra for waste and spillage.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Mortar%20Mix" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Mortar Mix - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Mortar Mix from the trusted team at This Old House.
-            </p>
+            <a href="https://www.astm.org/c0270-21.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASTM C270 — Standard Specification for Mortar for Unit Masonry</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The authoritative standard defining mortar types, mix ratios, and performance specifications for all masonry construction projects in North America.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Mortar%20Mix" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Mortar Mix - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Mortar Mix, helping you get the job done right.
-            </p>
+            <a href="https://www.cement.org/learn/concrete-basics/concrete-materials/cementitious-materials" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PCA (Portland Cement Association) — Design and Control of Concrete Mixtures</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive technical guidance on cement properties, mortar composition, and best practices for achieving desired strength and durability in masonry work.</p>
           </li>
           <li>
-            <a href="https://www.concretenetwork.com/search.html?q=Mortar%20Mix" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Mortar Mix - Concrete Network
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              The leading source for concrete information, including design ideas, contractor directories, and technical guides for Mortar Mix.
-            </p>
+            <a href="https://www.bia.org/resources/technical-notes" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Brick Industry Association — Technical Notes on Brick Construction</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry-standard technical references covering mortar selection, application methods, and troubleshooting for brick masonry projects of all sizes.</p>
           </li>
           <li>
-            <a href="https://www.cement.org/search-results?indexCatalogue=site-search&searchQuery=Mortar%20Mix&wordsMode=0" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Mortar Mix - Portland Cement Association
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical resources and industry standards for cement and concrete applications related to Mortar Mix.
-            </p>
+            <a href="https://www.ncma.org/about-ncma/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Concrete Masonry Association (NCMA) — Mortar Specifications and Properties</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical resources on mortar performance, mix design for various applications, and quality assurance standards for concrete masonry units.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

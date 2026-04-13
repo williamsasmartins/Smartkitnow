@@ -112,40 +112,41 @@ export default function LaminateFlooringWasteAllowanceCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question:
-        "What is a laminate flooring waste allowance and why is it important to include it in calculations?",
-      answer:
-        "Laminate flooring waste allowance is an extra percentage of material added to the calculated floor area to account for cutting, fitting, and potential damage during installation. Including this allowance ensures you purchase enough material to complete the job without costly delays or shortages. Typically, waste allowances range from 5% to 15%, depending on room complexity and installer experience.",
+      question: "What waste allowance percentage should I use for laminate flooring installation?",
+      answer: "Industry standard waste allowance for laminate flooring ranges from 10% to 15% for straightforward layouts, and 15% to 20% for complex designs with numerous cuts and angles. Most professional installers recommend a 10% baseline waste allowance for simple rectangular rooms, increasing to 15% for rooms with obstacles, doorways, and irregular shapes. If your layout includes diagonal patterns or multiple cut-outs, budget 20% waste to account for unusable material scraps.",
     },
     {
-      question: "How do I measure my room correctly for the laminate flooring calculation?",
-      answer:
-        "To measure your room accurately, measure the length and width of the floor area in either meters or feet. For irregularly shaped rooms, divide the space into rectangles, measure each separately, and sum their areas. Always measure to the nearest centimeter or inch for precision. Avoid including areas like closets or built-in cabinets unless you plan to cover them with flooring.",
+      question: "How do I calculate the total square footage I need including waste?",
+      answer: "Multiply your room's square footage by your chosen waste allowance factor. For example, a 400 square foot room with 10% waste requires 400 × 1.10 = 440 square feet of laminate flooring. A 400 square foot room with 15% waste requires 400 × 1.15 = 460 square feet. Always round up to the nearest full box or carton when purchasing to ensure you have sufficient material.",
     },
     {
-      question:
-        "Why do different laminate flooring boxes cover different areas, and how does that affect ordering?",
-      answer:
-        "Laminate flooring boxes vary in coverage because of plank size, thickness, and packaging. Standard boxes typically cover around 2.13 square meters, while larger boxes can cover up to 3 square meters or more. Knowing the coverage per box helps you calculate how many boxes to order accurately, preventing overbuying or underbuying materials.",
+      question: "Why do I need more than the exact room measurements for laminate flooring?",
+      answer: "Waste occurs from unavoidable cuts at walls, doorways, closets, and irregular room shapes where planks must be trimmed to fit. Manufacturing defects in approximately 2% to 5% of planks can render them unusable, and mistakes during installation may damage boards. Additionally, installing laminate in a staggered pattern (which is recommended for structural integrity and appearance) creates more cutoff waste than simple linear layouts.",
     },
     {
-      question:
-        "Can I use this calculator if my flooring planks have different dimensions or thicknesses?",
-      answer:
-        "Yes, but you should adjust the coverage per unit accordingly. This calculator uses typical coverage values for standard and large laminate flooring boxes. If your planks differ significantly, check the packaging or supplier information for exact coverage per box and input that manually if possible, or select the closest size option.",
+      question: "Does laminate flooring waste allowance change based on room shape?",
+      answer: "Yes, room shape significantly impacts waste percentage. Rectangular rooms typically require only 10% waste allowance, L-shaped rooms need 12% to 15%, and rooms with multiple corners, alcoves, or curved walls require 15% to 20% allowance. Rooms with numerous doorways, closets, or architectural features should use the higher 20% waste factor to account for additional linear cuts and trimming requirements.",
     },
     {
-      question:
-        "How does the waste percentage affect the total material needed, and what is a recommended waste allowance?",
-      answer:
-        "The waste percentage increases the total material quantity to cover cuts, mistakes, and fitting around obstacles. For simple, rectangular rooms, 5-10% waste is usually sufficient. For complex layouts with many corners, stairs, or patterns, 10-15% waste is recommended. Using too low a waste allowance risks running short, while too high increases cost and leftover material.",
+      question: "What is the cost impact of underestimating laminate flooring waste?",
+      answer: "Underestimating waste by just 5% on a 500 square foot room means purchasing 525 square feet instead of the needed 575 square feet, requiring an additional order of 50 square feet. If laminate costs $3 per square foot, this shortage costs an extra $150 plus expedited shipping fees. Additionally, second orders often come from different production batches, creating color and finish inconsistencies across your floor.",
     },
     {
-      question:
-        "Is it better to order slightly more laminate flooring than calculated or exactly the amount needed?",
-      answer:
-        "It is generally better to order slightly more than the exact calculated amount to avoid shortages during installation. Flooring batches can vary slightly in color or texture, so ordering extra from the same batch ensures consistency for repairs or future replacements. Excess material can often be returned or stored for later use.",
+      question: "How does diagonal or pattern installation affect waste allowance calculations?",
+      answer: "Diagonal installations increase waste allowance to 15% to 20% because angled cuts generate significantly more scrap material than straight linear layouts. Herringbone or chevron patterns require 20% to 25% waste allowance due to the precise angled cuts required at each plank intersection. Calculate diagonal layouts conservatively; professional installers often recommend adding an additional 5% buffer beyond standard diagonal waste percentages for safety.",
     },
+    {
+      question: "Can I use leftover laminate flooring from one room in another room?",
+      answer: "Leftover material can be used in smaller adjoining rooms, closets, or transition areas if the color and finish match. However, matching can be problematic because laminate boards from different production runs may have slight color variations (typically &lt;2% variation but visible to the eye). It's best to plan separate waste allowances for each room rather than relying on sharing scraps, unless you're installing the same product throughout your entire home simultaneously.",
+    },
+    {
+      question: "What waste allowance should I use for laminate flooring around stairs or complex architectural features?",
+      answer: "Complex installations around stairs, built-in features, or curved transitions require 20% to 25% waste allowance due to intricate angle cuts and custom fitting requirements. Each stair nosing, landing transition, and architectural feature necessitates specialized cuts that generate significant scrap material. For projects involving more than 3 major architectural features, consider a 25% waste allowance to ensure sufficient material for adjustments and corrections during installation.",
+    },
+    {
+      question: "How much extra laminate flooring should I purchase for future repairs or replacements?",
+      answer: "Beyond your waste allowance, purchase an additional 5% to 10% of your room's square footage (separate from the waste calculation) for future repairs and replacements within 5 to 10 years. A 400 square foot room would require 40 to 80 additional square feet stored for future use, ensuring color matching availability after the product may be discontinued. Store leftover planks in a climate-controlled environment at 60°F to 80°F with 30% to 50% humidity to maintain condition for future repairs.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -305,159 +306,346 @@ export default function LaminateFlooringWasteAllowanceCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Professional Guide: Laminate Flooring Waste Allowance Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            Laminate flooring waste allowance is an essential factor in planning your flooring
-            project. It represents the extra material you need to purchase beyond the exact floor
-            area to accommodate cutting, fitting, and potential mistakes during installation.
-            Without accounting for waste, you risk running short of materials, causing delays and
-            additional costs.
-          </p>
-          <p>
-            Precision in measuring your floor dimensions and calculating the waste allowance helps
-            ensure you order the right amount of laminate flooring. This calculator assists you in
-            determining the total units required, factoring in waste, and estimating the cost based
-            on your inputs.
-          </p>
-          <p>
-            Laminate flooring comes in various box sizes and coverage areas. Standard boxes typically
-            cover around 2.13 square meters, while larger boxes can cover up to 3 square meters or
-            more. Selecting the correct material size in the calculator will improve the accuracy of
-            your order.
-          </p>
-          <p>
-            Remember that waste percentages vary depending on room complexity. Simple rectangular
-            rooms may only require 5-10% waste, while rooms with many corners, stairs, or patterns
-            may need 10-15% or more. Always consider your specific project conditions when choosing
-            a waste allowance.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Laminate Flooring Waste Allowance Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Laminate Flooring Waste Allowance Calculator helps you determine the exact amount of laminate flooring material needed for your project by accounting for unavoidable waste from cuts, damage, and installation inefficiencies. Accurate waste calculations prevent costly shortages requiring expensive reorders with potential color-matching issues, while also avoiding excessive overpurchasing that wastes money. This calculator is essential for budgeting correctly and ensuring your flooring installation project stays on schedule and within budget.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your room's square footage (length × width), select your room layout type (rectangular, L-shaped, or complex), and choose your installation pattern (straight, diagonal, herringbone, etc.). The calculator uses industry-standard waste percentages ranging from 10% for simple layouts to 25% for complex patterns, automatically adjusting based on your selections. You can also manually adjust the waste percentage if you prefer a custom calculation based on your installer's experience level or specific project requirements.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs the total square footage you need to purchase, recommended box quantities (most laminate comes in boxes covering 20-25 square feet), and estimated material cost if you input the price per square foot. Compare the calculated amount to your room's actual measurement to understand your waste factor; for example, a 400 square foot room requiring 460 square feet represents a 15% waste allowance. Use these results to request accurate quotes from suppliers and ensure your contractor purchases sufficient material to complete your project without shortages.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section
-        id="tips"
-        className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip 1:</strong> Always measure your room twice and consider irregular shapes by
-            breaking them into rectangles for more accurate area calculation.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Laminate flooring waste allowance not only covers cuts
-            but also accounts for damaged planks and future repairs, so ordering a bit extra is
-            smart.
-          </li>
-          <li>
-            <strong>Tip 2:</strong> When ordering, try to get all your flooring from the same batch
-            number to avoid color or texture variations.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Experienced installers often add 10-15% waste for
-            complex rooms and patterns, but only 5-7% for simple layouts.
-          </li>
+      {/* TABLE: Recommended Laminate Flooring Waste Allowance by Room Type and Layout */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Laminate Flooring Waste Allowance by Room Type and Layout</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows standard waste allowance percentages recommended by the National Wood Flooring Association based on room complexity and installation method.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Type/Layout</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Waste Allowance %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Additional Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Simple rectangular room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Straightforward layouts with minimal doorways</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Most cost-effective option</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Standard room with doorways</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Typical residential rooms with 2-3 doorways</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Industry baseline for most projects</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">L-shaped or moderate complexity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rooms with corners, alcoves, or 4+ doorways</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Accounts for additional linear cuts</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Complex room with multiple features</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rooms with closets, alcoves, and irregular shapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Professional recommendation for safety</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Diagonal or angled layout</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Diagonal or 45-degree installations</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Angled cuts generate more scrap</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Herringbone or chevron pattern</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Premium pattern installations</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Highest waste due to intricate angles</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Staircase with landings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multi-level installations with transitions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Includes nosing and custom cuts</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Curved walls or unusual shapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rooms with architectural curves</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Requires custom template fitting</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercial application</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High-traffic commercial spaces</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Professional installation standards</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages based on National Wood Flooring Association (NWFA) installation guidelines. Actual waste may vary by installer skill level and material quality.</p>
+      </section>
+
+      {/* TABLE: Laminate Flooring Waste Calculation Examples by Room Size */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Laminate Flooring Waste Calculation Examples by Room Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These real-world examples demonstrate how waste allowance percentages impact total material purchases for rooms of various sizes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Size (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">10% Waste</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15% Waste</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">20% Waste</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Difference at $3/sq ft</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">230</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">330</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">345</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$90</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">440</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">460</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">480</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$120</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">550</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">575</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">825</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">862.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$225</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1725</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cost differences calculated at $3.00 per square foot (national average 2024). Actual costs vary by laminate quality ($1.50-$5.00 per sq ft).</p>
+      </section>
+
+      {/* TABLE: Waste Percentage Comparison: Installation Patterns and Layout Complexity */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Waste Percentage Comparison: Installation Patterns and Layout Complexity</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This comparison shows how different installation patterns and room layouts directly impact required waste allowance percentages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Installation Pattern</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Layout Complexity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Waste %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Application</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Straight linear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rectangular room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Simple bedrooms, hallways</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Straight linear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Room with doorways</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Living rooms, kitchens</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Staggered straight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Master bedrooms</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Staggered straight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Complex room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multi-feature residential rooms</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">45-degree diagonal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Simple room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Accent areas, sunrooms</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">45-degree diagonal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Complex room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High-end residential installations</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Herringbone</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Any room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Formal entryways, premium finishes</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chevron</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Any room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Contemporary high-end spaces</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mixed pattern</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Complex room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Custom designer installations</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages represent professional contractor recommendations. DIY installations should add 2-5% additional buffer for learning curve.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always round your calculated total UP to the nearest full box or bundle when purchasing laminate flooring, even if the calculator shows 445.5 square feet; most retailers sell in 20 or 25 square foot boxes, so you'd need to purchase 460 square feet (23 boxes) to ensure complete coverage.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Request material samples from your supplier in the exact product line and color you're purchasing, then store these samples with your waste allowance calculation; if a second order becomes necessary due to underestimation, you'll have exact color matching information to prevent installation inconsistencies.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for acclimation time in your project timeline: laminate flooring must acclimate to your home's temperature and humidity (60°F to 80°F with 30% to 50% humidity) for 48 to 72 hours before installation, so order material at least 5 to 7 days before your scheduled installation date.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Communicate your calculated waste allowance percentage with your installer before work begins; experienced contractors may recommend adjusting the percentage based on their assessment of your specific room layout, wall condition, and door/window placement, potentially saving or costing an additional 5% in material.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Underestimating Waste:</strong> Many installers forget to add a sufficient waste
-            margin, leading to material shortages mid-project and costly last-minute orders.
-          </p>
-          <p>
-            <strong>2. Incorrect Measurements:</strong> Measuring only the longest length and width
-            without accounting for irregular shapes or alcoves can cause inaccurate area
-            calculations.
-          </p>
-          <p>
-            <strong>3. Ignoring Unit Conversions:</strong> Mixing metric and imperial units without
-            proper conversion can lead to ordering far too much or too little material.
-          </p>
-          <p>
-            <strong>4. Not Considering Box Coverage:</strong> Assuming all laminate boxes cover the
-            same area can cause miscalculations; always check the coverage per box.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Only Your Room's Exact Square Footage Without Waste Allowance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Purchasing exactly 400 square feet for a 400 square foot room leaves no material for cuts, mistakes, or manufacturing defects. This almost guarantees needing an expensive rush order mid-installation, likely from a different production batch causing visible color variations across your completed floor.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Applying the Same Waste Percentage to All Rooms in Your Home</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Each room's waste percentage should be calculated individually based on that specific room's layout complexity. Applying a flat 15% to a simple hallway (which only needs 10%) wastes money, while applying 10% to a diagonal-pattern living room creates a dangerous shortage requiring costly corrections.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting to Account for Diagonal Installation Waste Impact</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many DIY installers underestimate waste for diagonal patterns, thinking they only need 10% to 12% when industry standards recommend 20% to 25%. Diagonal cuts across the width of boards generate significantly more scrap than straight linear installations, and underestimating leads to material shortages mid-project.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Additional Material for Future Repairs and Replacements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Your waste allowance calculation handles installation waste, but you should separately purchase an additional 5% to 10% for future repairs over the next 5 to 10 years. Without stored matching material, replacing damaged planks years later becomes nearly impossible as products are discontinued and color batches become unavailable.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Calculator className="w-6 h-6 text-blue-500" />
-          Frequently Asked Questions
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
-            >
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What waste allowance percentage should I use for laminate flooring installation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Industry standard waste allowance for laminate flooring ranges from 10% to 15% for straightforward layouts, and 15% to 20% for complex designs with numerous cuts and angles. Most professional installers recommend a 10% baseline waste allowance for simple rectangular rooms, increasing to 15% for rooms with obstacles, doorways, and irregular shapes. If your layout includes diagonal patterns or multiple cut-outs, budget 20% waste to account for unusable material scraps.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the total square footage I need including waste?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiply your room's square footage by your chosen waste allowance factor. For example, a 400 square foot room with 10% waste requires 400 × 1.10 = 440 square feet of laminate flooring. A 400 square foot room with 15% waste requires 400 × 1.15 = 460 square feet. Always round up to the nearest full box or carton when purchasing to ensure you have sufficient material.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do I need more than the exact room measurements for laminate flooring?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Waste occurs from unavoidable cuts at walls, doorways, closets, and irregular room shapes where planks must be trimmed to fit. Manufacturing defects in approximately 2% to 5% of planks can render them unusable, and mistakes during installation may damage boards. Additionally, installing laminate in a staggered pattern (which is recommended for structural integrity and appearance) creates more cutoff waste than simple linear layouts.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does laminate flooring waste allowance change based on room shape?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, room shape significantly impacts waste percentage. Rectangular rooms typically require only 10% waste allowance, L-shaped rooms need 12% to 15%, and rooms with multiple corners, alcoves, or curved walls require 15% to 20% allowance. Rooms with numerous doorways, closets, or architectural features should use the higher 20% waste factor to account for additional linear cuts and trimming requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the cost impact of underestimating laminate flooring waste?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Underestimating waste by just 5% on a 500 square foot room means purchasing 525 square feet instead of the needed 575 square feet, requiring an additional order of 50 square feet. If laminate costs $3 per square foot, this shortage costs an extra $150 plus expedited shipping fees. Additionally, second orders often come from different production batches, creating color and finish inconsistencies across your floor.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does diagonal or pattern installation affect waste allowance calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Diagonal installations increase waste allowance to 15% to 20% because angled cuts generate significantly more scrap material than straight linear layouts. Herringbone or chevron patterns require 20% to 25% waste allowance due to the precise angled cuts required at each plank intersection. Calculate diagonal layouts conservatively; professional installers often recommend adding an additional 5% buffer beyond standard diagonal waste percentages for safety.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use leftover laminate flooring from one room in another room?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Leftover material can be used in smaller adjoining rooms, closets, or transition areas if the color and finish match. However, matching can be problematic because laminate boards from different production runs may have slight color variations (typically &lt;2% variation but visible to the eye). It's best to plan separate waste allowances for each room rather than relying on sharing scraps, unless you're installing the same product throughout your entire home simultaneously.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What waste allowance should I use for laminate flooring around stairs or complex architectural features?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Complex installations around stairs, built-in features, or curved transitions require 20% to 25% waste allowance due to intricate angle cuts and custom fitting requirements. Each stair nosing, landing transition, and architectural feature necessitates specialized cuts that generate significant scrap material. For projects involving more than 3 major architectural features, consider a 25% waste allowance to ensure sufficient material for adjustments and corrections during installation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much extra laminate flooring should I purchase for future repairs or replacements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Beyond your waste allowance, purchase an additional 5% to 10% of your room's square footage (separate from the waste calculation) for future repairs and replacements within 5 to 10 years. A 400 square foot room would require 40 to 80 additional square feet stored for future use, ensuring color matching availability after the product may be discontinued. Store leftover planks in a climate-controlled environment at 60°F to 80°F with 30% to 50% humidity to maintain condition for future repairs.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Laminate%20Flooring" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Laminate Flooring - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Laminate Flooring from the trusted team at This Old House.
-            </p>
+            <a href="https://www.nwfa.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Wood Flooring Association Installation Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry-leading standards and guidelines for laminate and wood flooring installation waste calculations and best practices.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Laminate%20Flooring" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Laminate Flooring - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Laminate Flooring, helping you get the job done right.
-            </p>
+            <a href="https://www.thespruce.com/laminate-flooring-installation-5217241" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce: Laminate Flooring Installation and Waste Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive homeowner's guide covering waste allowance percentages, calculation methods, and real-world installation examples.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Laminate%20Flooring" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Laminate Flooring - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Laminate Flooring from professional builders and craftsmen.
-            </p>
+            <a href="https://www.homedepot.com/c/Laminate_Flooring" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Home Depot: Laminate Flooring Buying Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical purchasing guide including waste allowance recommendations, material selection, and cost estimation tools.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Laminate%20Flooring" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Laminate Flooring - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Laminate Flooring.
-            </p>
+            <a href="https://www.bobvila.com/articles/laminate-flooring-installation/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bob Vila: How to Calculate Laminate Flooring Waste</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert analysis of waste factors across different room types, installation patterns, and professional vs. DIY installation considerations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

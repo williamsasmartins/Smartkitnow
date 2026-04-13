@@ -125,35 +125,41 @@ export default function FlooringMaterialCostCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is a Flooring Material Cost Estimator and why is it important?",
-      answer:
-        "A Flooring Material Cost Estimator is a tool used to calculate the amount of flooring material needed for a project based on the dimensions of the area and the type of material selected. It helps contractors and homeowners avoid ordering too much or too little material, saving money and reducing waste. Accurate estimation ensures project efficiency and timely completion.",
+      question: "What is the average cost per square foot for different flooring materials in 2025?",
+      answer: "Flooring costs vary significantly by material type. Laminate flooring averages $2–$8 per square foot installed, vinyl plank (LVP) ranges from $3–$10 per square foot, ceramic tile costs $5–$15 per square foot, hardwood flooring ranges from $8–$25 per square foot, and luxury vinyl tile (LVT) averages $4–$12 per square foot. Natural stone like marble or granite can exceed $15–$30 per square foot. These estimates include both material and basic installation labor.",
     },
     {
-      question: "How does waste percentage affect the flooring material calculation?",
-      answer:
-        "Waste percentage accounts for extra material needed due to cutting, fitting, mistakes, and damage during installation. Typically, a 5-15% waste margin is added depending on the complexity of the layout and material type. Including waste ensures you have enough material to complete the job without costly delays or additional orders.",
+      question: "How much waste percentage should I factor into my flooring estimate?",
+      answer: "Most flooring contractors recommend adding 10% waste for straightforward installations and 15–20% for complex layouts with numerous cuts or intricate patterns. For diagonal installations or specialty designs, increase the waste allowance to 20–25%. This accounts for cutting errors, future repairs, and material defects that are inevitable during installation.",
     },
     {
-      question: "What are the common types of flooring materials and their typical sizes?",
-      answer:
-        "Common flooring materials include laminate, hardwood, vinyl, and tile. Laminate and hardwood come in planks of varying sizes, vinyl is often sold in sheets, and tile comes in square or rectangular pieces. Each material type has standard and large sizes, which affect how many units are needed to cover a given area.",
+      question: "What factors affect the total cost of a flooring project beyond material price?",
+      answer: "Installation labor typically adds 50–100% to material costs depending on the flooring type and complexity. Subfloor preparation, removal of existing flooring, underlayment, and finishing treatments (sealers, stains, or waxes) can add $1–$5 per square foot. Geographic location, contractor experience level, and project timeline all influence final pricing significantly.",
     },
     {
-      question: "Can I use this estimator for both metric and imperial units?",
-      answer:
-        "Yes, the estimator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system, and input your dimensions accordingly. The calculator automatically adjusts material coverage sizes and outputs results in the selected unit system.",
+      question: "Is it cheaper to install flooring in a smaller room versus a larger space?",
+      answer: "Per-square-foot costs may be lower for larger projects due to economies of scale, but fixed costs like material delivery, subfloor preparation, and equipment rental are distributed across more square footage. Smaller rooms often have proportionally higher labor costs per square foot because preparation and finishing work cannot be as efficiently batched. A 200 square foot room may cost 15–20% more per square foot than a 1,000 square foot project.",
     },
     {
-      question: "How do I determine the price per unit for accurate cost estimation?",
-      answer:
-        "The price per unit should be based on the cost of a single plank, tile, or sheet of your chosen flooring material. Check with your supplier or retailer for current prices. Entering an accurate price per unit ensures the cost estimate reflects real-world expenses for budgeting and purchasing.",
+      question: "What is the lifespan and cost-per-year for common flooring materials?",
+      answer: "Laminate typically lasts 15–25 years at $0.13–$0.53 per square foot annually. Vinyl plank lasts 20–30 years at $0.15–$0.50 per square foot annually. Ceramic tile lasts 25–50+ years at $0.20–$0.60 per square foot annually. Hardwood can last 30–100+ years depending on maintenance at $0.27–$0.83 per square foot annually. This cost-per-year analysis helps justify material choice for long-term value.",
     },
     {
-      question: "What if my flooring area has irregular shapes or multiple rooms?",
-      answer:
-        "For irregular shapes or multiple rooms, measure each section separately and sum their areas to get the total floor area. Alternatively, measure the longest length and width encompassing the entire space and add a higher waste percentage to account for cuts and complexity. Always round up your material units to avoid shortages.",
+      question: "How do I account for room dimensions and irregularities in my flooring estimate?",
+      answer: "Measure length and width at multiple points to account for walls that may not be perfectly square, then calculate total square footage. For L-shaped or irregularly shaped rooms, divide the space into rectangles, calculate each section separately, and sum the totals. Add 10–15% extra to your base measurement to cover waste and ensure adequate material for cuts around doorways, closets, and built-ins.",
     },
+    {
+      question: "What is the difference between installed and material-only pricing?",
+      answer: "Material-only pricing covers the cost of the flooring product itself, typically $2–$30 per square foot depending on type. Installed pricing includes materials plus labor, underlayment, adhesives, and basic finishing, averaging $5–$40 per square foot total. Always clarify with contractors whether quoted prices include removal of old flooring, subfloor repair, or finishing work, as these can add significant cost.",
+    },
+    {
+      question: "How much does subfloor preparation typically cost and when is it necessary?",
+      answer: "Subfloor preparation costs $1–$5 per square foot depending on the extent of damage or leveling required. It is necessary when the existing floor has significant damage, moisture issues, or is not level within 1/8 inch per 10 feet. Skipping this step can void flooring warranties, reduce lifespan by 50% or more, and lead to costly repairs within 2–3 years.",
+    },
+    {
+      question: "Can the flooring cost estimator account for bulk discounts or contractor pricing?",
+      answer: "Most calculators use retail pricing; however, contractors typically receive 15–30% discounts on materials when ordering large quantities. If you are obtaining quotes, request both material and labor pricing separately so you can input wholesale rates if available. For DIY projects, purchasing materials directly from distributors rather than home improvement retailers can reduce costs by 10–20%, though you lose installation support.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -316,121 +322,320 @@ export default function FlooringMaterialCostCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Flooring Material Cost Estimator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            A Flooring Material Cost Estimator is an essential tool for anyone planning to install new flooring. It calculates the quantity of flooring units required based on the dimensions of the area and the type of flooring material selected. This helps ensure you purchase the right amount of material, avoiding costly shortages or excess waste.
-          </p>
-          <p>
-            Precision in measurement and calculation is critical because flooring materials are often sold in fixed sizes such as planks, tiles, or sheets. Ordering too few units can delay your project, while ordering too many leads to unnecessary expenses and leftover materials. Including a waste margin accounts for cutting, fitting, and potential damage during installation.
-          </p>
-          <p>
-            Flooring materials vary widely in type and size. Common types include laminate, hardwood, vinyl, and tile. Each has standard and large size options that affect coverage per unit. For example, laminate planks typically cover around 0.2 square meters, while vinyl sheets cover about 1 square meter. Selecting the correct material type and size in the estimator ensures accurate calculations.
-          </p>
-          <p>
-            This estimator supports both metric and imperial units, allowing you to input dimensions in meters or feet. It also factors in a customizable waste percentage and price per unit to provide a comprehensive cost estimate. By using this tool, you can confidently plan your flooring project with professional accuracy.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Flooring Material Cost Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Flooring Material Cost Estimator helps homeowners and contractors calculate the total investment required for a flooring project by combining material costs, labor expenses, waste allowances, and regional pricing factors. This tool eliminates guesswork when budgeting for renovations, providing accurate estimates that account for different flooring types, room sizes, and local market conditions. Accurate estimating prevents budget overruns, enables competitive contractor bidding, and supports informed decisions about material selection.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include room dimensions (length and width in feet), flooring material type (laminate, vinyl, tile, hardwood, etc.), total square footage to be covered, waste percentage (typically 10–20%), and your geographic location or regional labor rate. Some calculators also allow you to input contractor labor rates if you have received quotes, customizing the estimate to your specific situation. The calculator converts these inputs into per-square-foot material and labor costs, then multiplies by your total area to generate a comprehensive project budget.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret results by breaking down the total into material costs, labor costs, and waste allowance as separate line items. Compare the per-square-foot installed cost against local contractor quotes to validate reasonableness. Use the estimate to evaluate material alternatives—for example, comparing the $10 per square foot installed cost of solid hardwood against the $8 per square foot cost of engineered hardwood to weigh durability and longevity against budget constraints. Remember that estimates do not include removal of existing flooring, subfloor repair, or specialty finishes unless specifically entered.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always measure your flooring area twice and consider irregular shapes separately to improve accuracy.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> Some flooring materials, like vinyl sheets, come in rolls that can be cut to size, reducing waste compared to fixed-size planks or tiles.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Adding a 10% waste margin is standard, but complex patterns or diagonal installations may require up to 15% waste.
-          </li>
-          <li>
-            <strong>Tip:</strong> When ordering, round up to the nearest whole unit to avoid shortages during installation.
-          </li>
+      {/* TABLE: Average Flooring Material Costs (2025 Pricing) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Flooring Material Costs (2025 Pricing)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical material and installed costs per square foot for popular flooring options in the U.S. market.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Flooring Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material Cost ($/sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Installed Cost ($/sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expected Lifespan (Years)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Laminate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2–$8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vinyl Plank (LVP)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3–$10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–30</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Luxury Vinyl Tile (LVT)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7–$17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ceramic/Porcelain Tile</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5–$15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10–$25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–50+</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hardwood (Solid)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8–$25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15–$35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30–100+</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Engineered Hardwood</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5–$15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12–$28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–30</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Natural Stone (Marble/Granite)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15–$30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25–$50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50–100+</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cork</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10–$20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–30</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bamboo</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6–$15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12–$25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–35</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Installed costs include basic labor and standard underlayment. Prices vary by region and contractor; additional costs apply for removal, subfloor prep, and specialty finishes.</p>
+      </section>
+
+      {/* TABLE: Waste Percentage Guidelines by Installation Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Waste Percentage Guidelines by Installation Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different installation patterns and room configurations require varying waste allowances to ensure adequate material.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Installation Pattern</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Complexity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Waste %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: 500 sq ft Order</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Straight/Linear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Simple rectangular</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">550 sq ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Straight/Linear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multiple doorways/closets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12–15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">575–575 sq ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Diagonal Pattern</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Simple rectangular</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">575 sq ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Diagonal Pattern</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Complex/irregular</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">625–625 sq ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tile with Grouting</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard grid layout</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">550–560 sq ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Random/Mixed Pattern</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Complex design</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600 sq ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Herringbone/Parquet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Any configuration</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">575–600 sq ft</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Failure to order adequate waste material can result in color mismatches, delays, and additional costs due to production batch variations.</p>
+      </section>
+
+      {/* TABLE: Regional Labor Cost Variation for Flooring Installation */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Regional Labor Cost Variation for Flooring Installation</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Installation labor costs vary significantly by geographic region and local market conditions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Region/Market</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Labor Cost Range ($/sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Installation Time (days per 1,000 sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Price Adjustment Factor</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Major Urban Centers (NYC, LA, SF)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8–$20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+40–60%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mid-Size Cities</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5–$12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0–20%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Suburban Areas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4–$10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">–10–10%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rural/Small Towns</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3–$8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–4 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">–20–30%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High Cost-of-Living States (CA, MA)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7–$18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+30–50%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate Cost States</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4–$10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0–15%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lower Cost States</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2–$6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">–25–40%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Labor costs increase for complex subfloor preparation, custom finishes, or projects requiring multiple specialized tradespeople.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Get Multiple Quotes — Obtain price estimates from at least 3 local contractors to compare labor rates, material markup, and included services. Labor costs can vary by 30–50% between contractors, so comparison shopping protects your budget and quality expectations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure Twice, Order Once — Measure room dimensions multiple times at different points, photograph irregular areas, and account for waste before ordering materials. Ordering too little forces expensive rush orders or color mismatches; ordering too much wastes capital and creates storage issues.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Request a Breakdown — Ask contractors to itemize material costs, labor costs, and additional charges (removal, prep, finish) separately. This transparency allows you to verify calculator estimates and identify opportunities to reduce costs without compromising quality.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in Subfloor Condition — If your subfloor has moisture damage, soft spots, or significant slope, budget an additional $1–$3 per square foot for preparation and repair. Addressing subfloor issues upfront prevents costly flooring failure and warranty disputes later.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Plan for Future Repairs — Reserve 5–10% of leftover materials from installation for future patching or repairs. Stored material preserves color matching and eliminates sourcing challenges if damage occurs 5–10 years later.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Underestimating Waste:</strong> Failing to include an adequate waste margin can lead to running out of material mid-project, causing delays and extra costs.
-          </p>
-          <p>
-            <strong>2. Incorrect Unit Conversion:</strong> Mixing metric and imperial units without proper conversion can result in inaccurate calculations and ordering errors.
-          </p>
-          <p>
-            <strong>3. Ignoring Material Size Variations:</strong> Not accounting for the actual coverage area of your chosen material size can cause you to order too few or too many units.
-          </p>
-          <p>
-            <strong>4. Skipping Price Verification:</strong> Using outdated or estimated prices per unit can lead to budget overruns or underfunding your project.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Include Removal and Disposal Costs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many estimates overlook the cost of removing and disposing of old flooring, which adds $1–$3 per square foot. This is a mandatory step for most installations and often represents 15–25% of total labor cost.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Waste Percentage</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Ordering only the exact square footage needed for a room ignores waste from cuts, mistakes, and pattern alignment. This typically results in shortfalls and emergency orders at 20–40% premium pricing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Comparing Material-Only Prices to Installed Quotes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Contractors often quote installed prices (material + labor) while retailers quote material-only pricing, creating misleading cost comparisons. Always convert all quotes to installed pricing for accurate comparison.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Subfloor Preparation Needs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Proceeding without assessing subfloor condition can result in voided warranties, premature failure, and costs exceeding the original flooring investment within 2–5 years. Professional inspection before ordering materials prevents costly mistakes.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the average cost per square foot for different flooring materials in 2025?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Flooring costs vary significantly by material type. Laminate flooring averages $2–$8 per square foot installed, vinyl plank (LVP) ranges from $3–$10 per square foot, ceramic tile costs $5–$15 per square foot, hardwood flooring ranges from $8–$25 per square foot, and luxury vinyl tile (LVT) averages $4–$12 per square foot. Natural stone like marble or granite can exceed $15–$30 per square foot. These estimates include both material and basic installation labor.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much waste percentage should I factor into my flooring estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most flooring contractors recommend adding 10% waste for straightforward installations and 15–20% for complex layouts with numerous cuts or intricate patterns. For diagonal installations or specialty designs, increase the waste allowance to 20–25%. This accounts for cutting errors, future repairs, and material defects that are inevitable during installation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect the total cost of a flooring project beyond material price?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Installation labor typically adds 50–100% to material costs depending on the flooring type and complexity. Subfloor preparation, removal of existing flooring, underlayment, and finishing treatments (sealers, stains, or waxes) can add $1–$5 per square foot. Geographic location, contractor experience level, and project timeline all influence final pricing significantly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is it cheaper to install flooring in a smaller room versus a larger space?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Per-square-foot costs may be lower for larger projects due to economies of scale, but fixed costs like material delivery, subfloor preparation, and equipment rental are distributed across more square footage. Smaller rooms often have proportionally higher labor costs per square foot because preparation and finishing work cannot be as efficiently batched. A 200 square foot room may cost 15–20% more per square foot than a 1,000 square foot project.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the lifespan and cost-per-year for common flooring materials?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Laminate typically lasts 15–25 years at $0.13–$0.53 per square foot annually. Vinyl plank lasts 20–30 years at $0.15–$0.50 per square foot annually. Ceramic tile lasts 25–50+ years at $0.20–$0.60 per square foot annually. Hardwood can last 30–100+ years depending on maintenance at $0.27–$0.83 per square foot annually. This cost-per-year analysis helps justify material choice for long-term value.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for room dimensions and irregularities in my flooring estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Measure length and width at multiple points to account for walls that may not be perfectly square, then calculate total square footage. For L-shaped or irregularly shaped rooms, divide the space into rectangles, calculate each section separately, and sum the totals. Add 10–15% extra to your base measurement to cover waste and ensure adequate material for cuts around doorways, closets, and built-ins.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between installed and material-only pricing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Material-only pricing covers the cost of the flooring product itself, typically $2–$30 per square foot depending on type. Installed pricing includes materials plus labor, underlayment, adhesives, and basic finishing, averaging $5–$40 per square foot total. Always clarify with contractors whether quoted prices include removal of old flooring, subfloor repair, or finishing work, as these can add significant cost.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does subfloor preparation typically cost and when is it necessary?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Subfloor preparation costs $1–$5 per square foot depending on the extent of damage or leveling required. It is necessary when the existing floor has significant damage, moisture issues, or is not level within 1/8 inch per 10 feet. Skipping this step can void flooring warranties, reduce lifespan by 50% or more, and lead to costly repairs within 2–3 years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the flooring cost estimator account for bulk discounts or contractor pricing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most calculators use retail pricing; however, contractors typically receive 15–30% discounts on materials when ordering large quantities. If you are obtaining quotes, request both material and labor pricing separately so you can input wholesale rates if available. For DIY projects, purchasing materials directly from distributors rather than home improvement retailers can reduce costs by 10–20%, though you lose installation support.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Flooring%20Cost%20Estimation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Flooring Cost Estimation - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Flooring Cost Estimation from the trusted team at This Old House.
-            </p>
+            <a href="https://www.nahb.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of Home Builders (NAHB) — Construction Cost Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The NAHB provides comprehensive construction cost benchmarks and flooring material pricing data updated regularly for regional variation analysis.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Flooring%20Cost%20Estimation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Flooring Cost Estimation - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Flooring Cost Estimation, helping you get the job done right.
-            </p>
+            <a href="https://www.rsmeans.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">RS Means Building Construction Cost Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry-standard construction cost estimating database that includes detailed flooring material and labor cost breakdowns by material type and region.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Flooring%20Cost%20Estimation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Flooring Cost Estimation - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Flooring Cost Estimation from professional builders and craftsmen.
-            </p>
+            <a href="https://www.fcica.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Flooring Contractors Association — Installation Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional organization providing installation guidelines, waste standards, and best practices for flooring contractors and material selection.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Flooring%20Cost%20Estimation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Flooring Cost Estimation - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Flooring Cost Estimation.
-            </p>
+            <a href="https://www.bls.gov/oes/current/oes472161.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Bureau of Labor Statistics — Construction Wage Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal labor statistics reporting average flooring installer wages and regional variations to support accurate labor cost estimating.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

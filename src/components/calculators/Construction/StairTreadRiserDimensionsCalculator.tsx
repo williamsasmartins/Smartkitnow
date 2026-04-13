@@ -134,35 +134,41 @@ export default function StairTreadRiserDimensionsCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What are the standard dimensions for stair treads and risers?",
-      answer:
-        "Standard stair treads typically have a depth (run) between 10 to 11 inches (25 to 28 cm) and risers have a height between 7 to 7.75 inches (18 to 20 cm). These dimensions ensure comfortable and safe stair use. However, local building codes may vary, so always verify requirements before construction.",
+      question: "What is the standard tread depth for residential stairs?",
+      answer: "The standard tread depth for residential stairs is 10 to 11 inches, measured horizontally from the front edge of one step to the front edge of the next step. The International Building Code (IBC) requires a minimum tread depth of 10 inches for residential applications. This measurement ensures comfortable and safe stair navigation for most users.",
     },
     {
-      question: "Why is it important to include a waste margin in material calculations?",
-      answer:
-        "Including a waste margin accounts for cutting errors, material defects, and unexpected adjustments during installation. Typically, a 10% waste factor is recommended to avoid shortages and delays. Without this buffer, you risk running out of materials mid-project, causing costly downtime.",
+      question: "What is the maximum riser height allowed by building code?",
+      answer: "The maximum riser height for residential stairs is 7.75 inches according to the International Building Code. Commercial stairs have a maximum riser height of 7 inches. Exceeding these limits creates a safety hazard and violates building codes in most jurisdictions.",
     },
     {
-      question: "How does material size affect the quantity needed for stair treads and risers?",
-      answer:
-        "Material size directly impacts how many units are required. Larger material sizes cover more area per unit, reducing the total number of units needed. Choosing the right material size can optimize costs and reduce waste, but availability and handling considerations should also be factored in.",
+      question: "How do I calculate the number of stairs needed for my total rise?",
+      answer: "To calculate the number of stairs, divide your total rise (floor-to-floor height) by the desired riser height. For example, if your total rise is 120 inches and you want 7.5-inch risers, you would need 120 ÷ 7.5 = 16 stairs. Always round up and adjust individual riser heights slightly to ensure they are all equal.",
     },
     {
-      question: "Can I use this calculator for both metric and imperial measurements?",
-      answer:
-        "Yes, this calculator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system, and input your dimensions accordingly. The calculator converts all values internally to ensure accurate calculations regardless of the unit system.",
+      question: "What is the rule of 18 for stair design?",
+      answer: "The rule of 18 states that the sum of one tread depth plus one riser height should equal approximately 17 to 18 inches for comfortable stair proportions. For example, a 10-inch tread plus a 7.5-inch riser equals 17.5 inches, which falls within the ideal range and ensures consistent step comfort.",
     },
     {
-      question: "How do I estimate the cost of materials using this calculator?",
-      answer:
-        "Enter the price per unit of your chosen material in the 'Price per Unit' field. The calculator multiplies the total number of units needed (including waste) by this price to provide an estimated total cost. This helps in budgeting and procurement planning.",
+      question: "What is the minimum headroom required above stairs?",
+      answer: "The minimum headroom required above stairs is 6 feet 8 inches (80 inches) measured vertically from the stair nosing or floor. This clearance must be maintained throughout the entire flight of stairs to prevent head injuries and meet building code requirements.",
     },
     {
-      question: "What types of materials are typically used for stair treads and risers?",
-      answer:
-        "Common materials include hardwoods like oak or maple, engineered wood, composite decking, concrete, and metal. Each material has different durability, aesthetics, and cost profiles. Selecting the right material depends on the stair location, usage, and design preferences.",
+      question: "How do I ensure all risers and treads are consistent?",
+      answer: "Calculate your total rise and divide by your desired riser height, then adjust each riser slightly if needed so all risers are within 3/8 inch of each other. Use a layout tool or this calculator to distribute any remaining height difference evenly across all risers. Inconsistent steps are a major safety hazard and tripping risk.",
     },
+    {
+      question: "What is nosing and why is it important?",
+      answer: "Nosing is the horizontal projection of the tread that extends beyond the riser below, typically 1.25 inches. Nosing prevents foot catch on the riser and provides a clear visual line between steps, improving safety and preventing trips. Building codes require nosing on all treads in public and residential stairs.",
+    },
+    {
+      question: "Can I have different tread depths on the same flight?",
+      answer: "No, all treads in a single flight of stairs must be the same depth within a tolerance of 3/8 inch. Inconsistent tread depths create tripping hazards and violate building codes. If you must adjust, redistribute the change evenly across all steps.",
+    },
+    {
+      question: "What is the difference between residential and commercial stair requirements?",
+      answer: "Residential stairs allow maximum 7.75-inch risers and 10-inch minimum treads, while commercial stairs require maximum 7-inch risers and 11-inch minimum treads. Commercial stairs must also have a minimum width of 44 inches, whereas residential stairs need only 36 inches. Commercial codes are stricter to accommodate higher foot traffic and accessibility requirements.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -322,121 +328,309 @@ export default function StairTreadRiserDimensionsCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Stair Tread & Riser Dimensions Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
-          <p>
-            The Stair Tread & Riser Dimensions Calculator is a specialized tool designed to help contractors, builders, and DIY enthusiasts accurately estimate the amount of material needed for stair construction. By inputting the key dimensions of the stair tread and riser, this calculator determines the required material units, factoring in waste and material sizes.
-          </p>
-          <p>
-            Precision in stair dimensions is crucial not only for aesthetic appeal but also for safety and compliance with building codes. Incorrect tread depths or riser heights can lead to uncomfortable or hazardous stairs. This calculator ensures that you order the right amount of material, minimizing waste and cost overruns.
-          </p>
-          <p>
-            Materials commonly used for stair treads and risers include hardwoods like oak or maple, engineered wood, composite decking, concrete, and metal. Each material comes in standard sizes, which this calculator uses to determine how many units are necessary based on your project’s dimensions.
-          </p>
-          <p>
-            By selecting the appropriate unit system (metric or imperial), inputting your stair dimensions, and choosing your material size, you can quickly get an accurate estimate of material requirements and costs. This helps streamline project planning and procurement.
-          </p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Stair Tread & Riser Dimensions Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you design safe, code-compliant stairs by calculating the correct tread depth and riser height based on your total rise and desired stair proportions. Proper stair dimensions are critical for safety, accessibility, and building code compliance. Whether you're designing residential or commercial stairs, using this tool ensures your steps meet International Building Code (IBC) requirements and provide comfortable navigation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator requires you to input your total rise (the vertical distance from floor to floor), the number of stairs you want, or your preferred riser height. You can also input desired tread depth or use standard recommendations. The tool then calculates whether your dimensions comply with building codes, applies the rule of 17-18 inches for comfort, and shows you the actual measurements each step will have.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your calculated riser height, tread depth, and a compliance status indicating whether your design meets residential and commercial building codes. Use this information to verify your stair layout before construction. If your design doesn't comply, adjust either the total rise, number of steps, or riser height and recalculate until you achieve a code-compliant design with comfortable proportions.</p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
-      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
-        </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Tip:</strong> Always double-check your measurements on-site before ordering materials. Small errors in tread depth or riser height can significantly affect material needs.
-          </li>
-          <li>
-            <strong>Did You Know?</strong> The ideal stair tread depth and riser height ratio is often referred to as the "Golden Rule" of stairs, typically around 17 to 18 inches total (tread + riser) for comfortable climbing.
-          </li>
-          <li>
-            <strong>Contractor Secret:</strong> Ordering slightly larger material sizes can reduce the number of joints and seams, improving the stair’s durability and appearance.
-          </li>
-          <li>
-            <strong>Tip:</strong> When working with hardwoods, consider grain direction and board orientation to minimize waste and maximize strength.
-          </li>
+      {/* TABLE: IBC Stair Code Requirements by Application Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">IBC Stair Code Requirements by Application Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares the International Building Code requirements for residential, commercial, and accessible stairs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stair Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Riser Height</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Tread Depth</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Width</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Nosing Requirement</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.75 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25 inches max</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercial</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">44 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25 inches max</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Accessible (ADA)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 inches max</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Interior Private</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.75 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25 inches max</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Exterior Public</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 inches max</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All measurements must comply with local building codes; verify requirements with your jurisdiction before construction.</p>
+      </section>
+
+      {/* TABLE: Common Stair Proportions Using the Rule of 17-18 */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Stair Proportions Using the Rule of 17-18</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows common riser and tread combinations that satisfy the rule of 17-18 inches for comfortable stair proportions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Riser Height</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tread Depth</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Combined Total</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Comfort Rating</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Code Compliance</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Residential & Commercial</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Commercial & ADA</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Good</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Residential</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7.75 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.75 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Good</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Residential</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.75 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.25 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Residential</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7.25 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.75 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Residential & Commercial</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Proportions within 17-18 inches provide the most comfortable and safest stair climbing experience.</p>
+      </section>
+
+      {/* TABLE: Stair Flight Calculations for Common Floor Heights */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Stair Flight Calculations for Common Floor Heights</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical stair calculations for standard residential floor-to-floor heights using optimal riser dimensions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Rise (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Desired Riser Height</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Number of Risers</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Actual Riser Height</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Tread Depth</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">126</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">108</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.4 → 15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.2 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.5 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">132</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.6 → 18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.33 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">144</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.5 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">156</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20.8 → 21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.43 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 inches</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always round up the number of risers and adjust individual riser heights evenly to stay within code tolerance of 3/8 inch.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify local building codes before starting construction — some jurisdictions have stricter requirements than the IBC, especially for commercial properties and public buildings.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the rule of 17-18 inches (tread depth + riser height) as your design target for maximum comfort and safety, even if your code allows wider ranges.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Calculate your total rise accurately by measuring from the finished floor of the lower level to the finished floor of the upper level, including any carpet or flooring thickness.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Distribute any remaining height evenly across all risers if your total rise doesn't divide evenly — avoid having one step that differs by more than 3/8 inch from the others.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Plan for headroom clearance of at least 80 inches (6 feet 8 inches) above all stair nosing to meet safety codes and prevent head injuries.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider adding a 1.25-inch nosing to all treads for better visual definition between steps and to reduce foot catch hazards on the riser below.</li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes to Avoid
-        </h3>
-        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Unit Conversion:</strong> Mixing metric and imperial units without proper conversion can lead to ordering too much or too little material. Always confirm your unit system and convert measurements accurately.
-          </p>
-          <p>
-            <strong>2. Ignoring Waste Margin:</strong> Failing to include a waste percentage can cause material shortages during installation, leading to project delays and increased costs.
-          </p>
-          <p>
-            <strong>3. Overlooking Material Size:</strong> Not accounting for the actual size of material units can result in ordering an incorrect quantity. Always select the correct material size in the calculator.
-          </p>
-          <p>
-            <strong>4. Not Verifying Local Codes:</strong> Stair dimensions must comply with local building codes for safety. Using generic dimensions without verification can cause compliance issues.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Inconsistent Riser Heights</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Allowing risers to vary by more than 3/8 inch across a flight creates severe tripping hazards and violates building codes. This is one of the most common causes of stair-related injuries, and inspectors will reject designs with inconsistent steps during code review.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring Total Rise Incorrectly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to measure from the finished floor-to-finished floor (including flooring material thickness) can result in a final step that is too high or too low. This miscalculation forces you to either violate code or rebuild the stairs after construction has begun.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Exceeding Maximum Riser Height</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using riser heights greater than 7.75 inches for residential or 7 inches for commercial stairs violates building code and creates unsafe stepping conditions. Oversized risers cause excessive strain and are a primary cause of falls, especially for elderly or mobility-impaired users.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Inconsistent Tread Depths</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Varying tread depth creates visual confusion and increases fall risk as users cannot predict step dimensions. All treads must be within 3/8 inch of each other, and building inspectors will flag any design that doesn't meet this requirement.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Headroom Clearance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to verify that stairs have at least 80 inches of vertical clearance can result in dangerous low-hanging obstructions and code violations. Always measure headroom during the design phase, especially for basement or under-staircase installations.</p>
+          </div>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard tread depth for residential stairs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The standard tread depth for residential stairs is 10 to 11 inches, measured horizontally from the front edge of one step to the front edge of the next step. The International Building Code (IBC) requires a minimum tread depth of 10 inches for residential applications. This measurement ensures comfortable and safe stair navigation for most users.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum riser height allowed by building code?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The maximum riser height for residential stairs is 7.75 inches according to the International Building Code. Commercial stairs have a maximum riser height of 7 inches. Exceeding these limits creates a safety hazard and violates building codes in most jurisdictions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the number of stairs needed for my total rise?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To calculate the number of stairs, divide your total rise (floor-to-floor height) by the desired riser height. For example, if your total rise is 120 inches and you want 7.5-inch risers, you would need 120 ÷ 7.5 = 16 stairs. Always round up and adjust individual riser heights slightly to ensure they are all equal.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the rule of 18 for stair design?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The rule of 18 states that the sum of one tread depth plus one riser height should equal approximately 17 to 18 inches for comfortable stair proportions. For example, a 10-inch tread plus a 7.5-inch riser equals 17.5 inches, which falls within the ideal range and ensures consistent step comfort.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the minimum headroom required above stairs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The minimum headroom required above stairs is 6 feet 8 inches (80 inches) measured vertically from the stair nosing or floor. This clearance must be maintained throughout the entire flight of stairs to prevent head injuries and meet building code requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I ensure all risers and treads are consistent?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Calculate your total rise and divide by your desired riser height, then adjust each riser slightly if needed so all risers are within 3/8 inch of each other. Use a layout tool or this calculator to distribute any remaining height difference evenly across all risers. Inconsistent steps are a major safety hazard and tripping risk.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is nosing and why is it important?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Nosing is the horizontal projection of the tread that extends beyond the riser below, typically 1.25 inches. Nosing prevents foot catch on the riser and provides a clear visual line between steps, improving safety and preventing trips. Building codes require nosing on all treads in public and residential stairs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I have different tread depths on the same flight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, all treads in a single flight of stairs must be the same depth within a tolerance of 3/8 inch. Inconsistent tread depths create tripping hazards and violate building codes. If you must adjust, redistribute the change evenly across all steps.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between residential and commercial stair requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Residential stairs allow maximum 7.75-inch risers and 10-inch minimum treads, while commercial stairs require maximum 7-inch risers and 11-inch minimum treads. Commercial stairs must also have a minimum width of 44 inches, whereas residential stairs need only 36 inches. Commercial codes are stricter to accommodate higher foot traffic and accessibility requirements.</p>
+          </div>
         </div>
       </section>
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Stair%20Dimensions" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Stair Dimensions - This Old House
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Stair Dimensions from the trusted team at This Old House.
-            </p>
+            <a href="https://www.iccsafe.org/products-and-services/icc-building-safety-journal/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) 2024 Stair Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IBC standards for stair design including riser height, tread depth, and safety requirements for residential and commercial applications.</p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Stair%20Dimensions" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Stair Dimensions - The Family Handyman
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Stair Dimensions, helping you get the job done right.
-            </p>
+            <a href="https://www.osha.gov/laws-regs/regulations/1910/25" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">OSHA Stairway Standards 1910.25</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal occupational safety standards for stairways in workplaces, including dimensional requirements and fall protection guidelines.</p>
           </li>
           <li>
-            <a href="https://www.finehomebuilding.com/?s=Stair%20Dimensions" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Stair Dimensions - Fine Homebuilding
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Expert articles and detailed construction techniques for Stair Dimensions from professional builders and craftsmen.
-            </p>
+            <a href="https://www.ada.gov/resources/design-and-construction/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ADA Accessibility Guidelines for Stairs and Ramps</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Americans with Disabilities Act standards for accessible stair design, including dimensional requirements for universal accessibility.</p>
           </li>
           <li>
-            <a href="https://www.constructconnect.com/blog/search?term=Stair%20Dimensions" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Stair Dimensions - ConstructConnect
-            </a>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Construction industry insights, cost data, and project management tips relevant to Stair Dimensions.
-            </p>
+            <a href="https://www.nahb.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of Home Builders Stair Construction Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive residential stair construction standards and best practices from the leading home building trade organization.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 
