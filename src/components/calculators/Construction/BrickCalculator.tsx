@@ -359,73 +359,221 @@ export default function BrickCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 4. GUIDE */}
+
+      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Professional Guide: Brick
-          Calculator
+          <BookOpen className="w-6 h-6 text-blue-500" /> How to Calculate How Many Bricks You Need
         </h2>
-        <div className="prose prose-slate dark:prose-invert leading-relaxed text-slate-700 dark:text-slate-300">
+        <div className="space-y-4 leading-relaxed text-slate-700 dark:text-slate-300">
           <p>
-            A brick calculator is an essential tool for anyone involved in masonry or
-            construction projects that require bricks. It helps estimate the number
-            of bricks needed to build walls, fireplaces, patios, or other structures
-            by calculating the volume of the area to be covered and dividing it by the
-            volume of a single brick. This ensures you purchase the right amount of
-            materials, saving time and money.
+            Estimating bricks accurately is one of the most important steps before any masonry project. Order too few and you risk a mid-project delay — and a second delivery often means a different manufacturing batch with a slightly different color. Order too many and you are paying for material that sits in your yard. A good brick calculator bridges that gap by turning wall dimensions into a precise material list.
           </p>
           <p>
-            Precision matters greatly in brick calculations. Overestimating bricks
-            leads to unnecessary expenses and storage issues, while underestimating
-            can cause project delays and additional orders. Including a waste margin
-            accounts for breakage, cuts, and other unforeseen losses during
-            construction, providing a buffer to complete your project smoothly.
+            The core math is straightforward: divide the volume of your wall by the volume of one brick (including its mortar joint), then add a waste margin for cuts and breakage. Where most DIYers go wrong is using the wrong brick dimensions, forgetting to subtract windows and doors, or picking an unrealistic waste percentage.
           </p>
           <p>
-            Bricks come in various sizes and types, commonly categorized as standard
-            or large bricks. Standard bricks typically measure around 215mm × 102.5mm
-            × 65mm including mortar, while large bricks are bigger. Selecting the
-            correct brick size in the calculator is crucial for accurate estimates.
-          </p>
-          <p>
-            This calculator supports both metric and imperial units, allowing you to
-            input dimensions in meters or feet. It also lets you specify the waste
-            percentage and price per brick to estimate total costs. By using this
-            tool, you can plan your brick orders efficiently and avoid costly errors.
+            This guide walks through every variable so you can use the calculator above with confidence — and understand exactly where each number comes from.
           </p>
         </div>
       </section>
 
-      {/* 5. TIPS / DID YOU KNOW */}
+      {/* BRICK SIZES TABLE */}
+      <section id="brick-sizes" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          <Ruler className="w-6 h-6 text-blue-500" /> Standard Brick Sizes by Country
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Brick dimensions are not universal. Using the wrong size in your calculation can throw your estimate off by 10–20%. Below are the most common work-size dimensions (the actual brick, before mortar joints are added). Always confirm with your supplier, as manufacturers sometimes deviate slightly.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Country / Standard</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Length</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Width</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Height</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Bricks / m²*</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              {[
+                { country: "UK (BS EN 771-1)", l: "215 mm", w: "102.5 mm", h: "65 mm", bpm2: "~60" },
+                { country: "US Modular", l: "194 mm", w: "92 mm", h: "57 mm", bpm2: "~67" },
+                { country: "Australia (AS 4455)", l: "230 mm", w: "110 mm", h: "76 mm", bpm2: "~50" },
+                { country: "Europe / DIN 105", l: "240 mm", w: "115 mm", h: "71 mm", bpm2: "~48" },
+                { country: "South Africa", l: "222 mm", w: "106 mm", h: "73 mm", bpm2: "~52" },
+              ].map((row, i) => (
+                <tr key={i} className={i % 2 === 0 ? "bg-white dark:bg-slate-900" : "bg-slate-50 dark:bg-slate-800/50"}>
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">{row.country}</td>
+                  <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-400">{row.l}</td>
+                  <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-400">{row.w}</td>
+                  <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-400">{row.h}</td>
+                  <td className="px-4 py-3 text-right font-semibold text-blue-700 dark:text-blue-400">{row.bpm2}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">* Bricks per m² calculated for stretcher bond with a 10 mm mortar joint on all faces.</p>
+      </section>
+
+      {/* WALL TYPES */}
+      <section id="wall-types" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          <HardHat className="w-6 h-6 text-blue-500" /> Wall Types and Thickness
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The thickness you enter into the calculator determines how many bricks go through the wall's depth. Different construction types require different thicknesses — choosing the wrong one is the single biggest cause of under-ordering.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Wall Type</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Thickness (mm)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Typical Use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              {[
+                { type: "Single skin (half brick)", thick: "102.5 mm", use: "Garden walls under 600 mm, decorative dividers" },
+                { type: "Single brick (full brick)", thick: "215 mm", use: "Most freestanding walls, internal load-bearing" },
+                { type: "Cavity wall (outer skin only)", thick: "102.5 mm", use: "Outer leaf of modern insulated house walls" },
+                { type: "Double brick (solid)", thick: "327.5 mm", use: "Retaining walls, heavy structural applications" },
+                { type: "Piers / columns", thick: "215 × 215 mm", use: "Gate piers, pergola posts, structural supports" },
+              ].map((row, i) => (
+                <tr key={i} className={i % 2 === 0 ? "bg-white dark:bg-slate-900" : "bg-slate-50 dark:bg-slate-800/50"}>
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">{row.type}</td>
+                  <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-400">{row.thick}</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{row.use}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* BOND PATTERNS */}
+      <section id="bond-patterns" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          <Box className="w-6 h-6 text-blue-500" /> Brick Bond Patterns and How They Affect Quantity
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The pattern in which bricks are laid — called the bond — significantly affects how many bricks you need. Patterns that expose the short end of the brick (the header) require more bricks for the same face area. Here is how the most common bonds compare using UK standard bricks:
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700 mb-4">
+          <table className="w-full text-sm">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Bond Pattern</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Bricks / m²</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              {[
+                { bond: "Stretcher (Running) Bond", bpm2: "~60", use: "Modern single-skin walls — most common choice" },
+                { bond: "Header Bond", bpm2: "~120", use: "Curved walls; bricks laid end-on for tight radius" },
+                { bond: "English Bond", bpm2: "~90", use: "Strong structural and retaining walls" },
+                { bond: "Flemish Bond", bpm2: "~80", use: "Decorative façades with classic appearance" },
+                { bond: "Herringbone", bpm2: "~68–75", use: "Paving, garden paths, decorative floors" },
+              ].map((row, i) => (
+                <tr key={i} className={i % 2 === 0 ? "bg-white dark:bg-slate-900" : "bg-slate-50 dark:bg-slate-800/50"}>
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">{row.bond}</td>
+                  <td className="px-4 py-3 text-right font-semibold text-blue-700 dark:text-blue-400">{row.bpm2}</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{row.use}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg border border-blue-100 dark:border-blue-900 text-sm text-slate-700 dark:text-slate-300">
+          <strong>Practical note:</strong> This calculator uses the volume method, which is accurate for most single-skin and double-skin walls. For herringbone or decorative paving, add 15% extra waste on top of the standard margin, as the diagonal cuts generate significantly more offcuts.
+        </div>
+      </section>
+
+      {/* OPENINGS */}
+      <section id="openings" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          <CheckCircle2 className="w-6 h-6 text-blue-500" /> Subtracting Windows and Doors
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
+          The calculator works on the total gross wall dimensions — you need to manually subtract the area of any openings before entering your values, or deduct bricks after calculating.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
+          <strong>Method A (subtract area first):</strong> Measure the wall's total length and height. Measure each opening's width and height. Subtract the opening areas from the total wall area, then enter the net area as Length × Height with your wall thickness.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
+          <strong>Method B (deduct bricks after):</strong> Calculate bricks for the full gross wall. Then calculate bricks for each opening area separately (opening width × height × bricks/m²). Subtract the opening bricks from the gross total, then add your waste margin.
+        </p>
+        <div className="bg-amber-50 dark:bg-amber-950/30 p-4 rounded-lg border border-amber-200 dark:border-amber-900 text-sm text-slate-700 dark:text-slate-300">
+          <strong>Example:</strong> A 6 m × 2.5 m wall with one 1.2 m × 1.0 m window. Gross area = 15 m². Opening area = 1.2 m². Net area = 13.8 m². At 60 bricks/m² (stretcher bond): 13.8 × 60 = 828 bricks before waste.
+        </div>
+      </section>
+
+      {/* WASTE TABLE */}
+      <section id="waste" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          <Info className="w-6 h-6 text-blue-500" /> Recommended Waste Margins
+        </h2>
+        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Project Type</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Recommended Waste</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Reason</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              {[
+                { type: "Simple rectangular wall, professional bricklayer", waste: "5%", reason: "Minimal cuts, experienced handling" },
+                { type: "Standard residential build, DIY", waste: "10%", reason: "Some cuts at corners, learning curve" },
+                { type: "Complex shapes, angled walls", waste: "15%", reason: "Many diagonal cuts and offcuts" },
+                { type: "Herringbone / decorative pattern", waste: "15–20%", reason: "Diagonal cuts waste up to 50% of each cut brick" },
+                { type: "Reclaimed or handmade bricks", waste: "15–20%", reason: "Irregular sizes; matching replacement stock is hard" },
+              ].map((row, i) => (
+                <tr key={i} className={i % 2 === 0 ? "bg-white dark:bg-slate-900" : "bg-slate-50 dark:bg-slate-800/50"}>
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">{row.type}</td>
+                  <td className="px-4 py-3 text-right font-semibold text-blue-700 dark:text-blue-400">{row.waste}</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{row.reason}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* TIPS */}
       <section
         id="tips"
         className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900"
       >
         <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-200">
-          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips & Curiosities
+          <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips from Experienced Bricklayers
         </h3>
-        <ul className="space-y-2 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
+        <ul className="space-y-3 list-disc pl-5 text-sm text-slate-700 dark:text-slate-300">
           <li>
-            <strong>Tip:</strong> Always measure twice and consider architectural
-            features like windows or doors that reduce brick quantity.
+            <strong>Buy from one batch.</strong> Order all bricks at once from the same delivery. Different batches have subtle color variation that is invisible per brick but very obvious in a finished wall.
           </li>
           <li>
-            <strong>Did You Know?</strong> Mortar joints typically add about 10mm to
-            brick dimensions, which is included in the brick volume for accurate
-            calculations.
+            <strong>Mortar joint consistency matters.</strong> A 12 mm joint instead of 10 mm doesn't sound like much, but across 1,000 bricks it adds up to nearly 20 mm of extra height — enough to throw off window and door reveals.
           </li>
           <li>
-            <strong>Contractor Secret:</strong> Ordering 5-10% extra bricks beyond the
-            waste margin can save you from last-minute shortages.
+            <strong>Store bricks on a pallet, covered.</strong> Bricks left on bare ground absorb moisture unevenly. Wet bricks create weak mortar bonds because they dilute the mix at the laying face.
           </li>
           <li>
-            <strong>Tip:</strong> Use consistent units throughout your project to
-            avoid conversion errors.
+            <strong>Always measure openings from the finished reveal, not the structural opening.</strong> The structural opening is typically 10–20 mm larger per side to allow for plaster or tile finishes.
+          </li>
+          <li>
+            <strong>Did you know?</strong> The Great Wall of China used a mortar made from sticky rice mixed with lime — tests show it is still stronger than modern Portland cement mortars in compression.
           </li>
         </ul>
       </section>
 
-      {/* 6. MISTAKES */}
+      {/* MISTAKES */}
       <section
         id="mistakes"
         className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
@@ -435,34 +583,24 @@ export default function BrickCalculator() {
         </h3>
         <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
           <p>
-            <strong>1. Incorrect Measurements:</strong> Using inaccurate length,
-            height, or thickness values leads to wrong estimates. Always measure
-            carefully and double-check.
+            <strong>1. Forgetting mortar joints in the brick size.</strong> Brick catalogues list the work size (the actual brick) not the coordinating size (brick + mortar). Always add 10 mm to each dimension when calculating volume per brick, or use the nominal size directly.
           </p>
           <p>
-            <strong>2. Ignoring Waste Margin:</strong> Not including a waste factor
-            can cause shortages and project delays. Always add a reasonable waste
-            percentage.
+            <strong>2. Using the same thickness for a cavity wall's two skins.</strong> A cavity wall is two separate single-skin walls. Enter each skin separately — typically 102.5 mm each — and sum the results. Entering 205 mm as a single wall produces a very different (wrong) answer.
           </p>
           <p>
-            <strong>3. Mixing Units:</strong> Switching between metric and imperial
-            units without proper conversion causes calculation errors. Stick to one
-            unit system.
+            <strong>3. Not subtracting openings.</strong> A wall with two standard windows and a door can have 3–5 m² of openings — that is up to 300 bricks you don't actually need.
           </p>
           <p>
-            <strong>4. Overlooking Brick Size Variations:</strong> Different brick
-            sizes affect quantity. Ensure you select the correct brick size in the
-            calculator.
+            <strong>4. Applying waste after including openings in the gross count.</strong> Apply your waste margin only to the net brick count (after subtracting openings). Applying it to the gross count wastes money.
           </p>
           <p>
-            <strong>5. Forgetting Architectural Features:</strong> Doors, windows,
-            and openings reduce brick requirements. Subtract these areas from total
-            wall volume.
+            <strong>5. Ignoring corners.</strong> Every external corner needs half-bricks to maintain the bond pattern. For a wall with four corners, add approximately 10–15 extra bricks per metre of wall height per corner.
           </p>
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
           <Calculator className="w-6 h-6 text-blue-500" /> Frequently Asked Questions
@@ -483,42 +621,43 @@ export default function BrickCalculator() {
           ))}
         </div>
       </section>
+
+      {/* REFERENCES */}
       <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           References & Additional Resources
         </h2>
         <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-
           <li>
-            <a href="https://www.thisoldhouse.com/search?q=Brickwork%20Calculation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Brickwork Calculation - This Old House
+            <a href="https://www.brickdevelopment.org/technical-information/technical-data/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Brick Development Association — Technical Data
             </a>
             <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Professional advice, step-by-step tutorials, and expert videos on Brickwork Calculation from the trusted team at This Old House.
+              Official UK industry body providing technical specifications for brick sizes, bond patterns, mortar mixes, and structural requirements under BS EN 771-1.
             </p>
           </li>
           <li>
-            <a href="https://www.familyhandyman.com/?s=Brickwork%20Calculation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Brickwork Calculation - The Family Handyman
+            <a href="https://www.gobrick.com/think-brick/tools-resources/glossary" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Brick Industry Association (US) — Technical Notes on Brick Construction
             </a>
             <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Practical DIY guides, project plans, and tool reviews for Brickwork Calculation, helping you get the job done right.
+              The primary US industry resource for brick specifications, including modular sizes, mortar joint requirements, and bond patterns per ASTM standards.
             </p>
           </li>
           <li>
-            <a href="https://www.concretenetwork.com/search.html?q=Brickwork%20Calculation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Brickwork Calculation - Concrete Network
+            <a href="https://www.thisoldhouse.com/masonry/21015708/how-to-lay-brick" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              This Old House — How to Lay Brick
             </a>
             <p className="text-slate-600 dark:text-slate-400 mt-1">
-              The leading source for concrete information, including design ideas, contractor directories, and technical guides for Brickwork Calculation.
+              Step-by-step tutorial on brick laying technique from one of the most trusted names in home construction, including mortar mixing ratios and tool requirements.
             </p>
           </li>
           <li>
-            <a href="https://www.cement.org/search-results?indexCatalogue=site-search&searchQuery=Brickwork%20Calculation&wordsMode=0" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
-              Brickwork Calculation - Portland Cement Association
+            <a href="https://www.homeadvisor.com/cost/masonry/brick-costs/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              HomeAdvisor — Brick and Masonry Cost Guide
             </a>
             <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Technical resources and industry standards for cement and concrete applications related to Brickwork Calculation.
+              Real-world cost data for brick projects across the US, including average price per brick, labor costs per m², and total project estimates by wall type.
             </p>
           </li>
         </ul>
@@ -529,7 +668,7 @@ export default function BrickCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Brick Calculator"
-      description="The ultimate professional guide and calculator for Brick Calculator. Learn accurate formulas, waste factors, installation tips, and cost estimation."
+      description="Calculate exactly how many bricks you need for any wall, garden, or construction project. Includes brick size tables by country, bond pattern guide, waste margin recommendations, and mortar estimation."
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd}
@@ -537,14 +676,18 @@ export default function BrickCalculator() {
       example={example} // 9. PASSING EXAMPLE
       relatedCalculators={[]}
       onThisPage={[
-        // 10. FULL NAVIGATION
-        { id: "guide", label: "Guide" },
+        { id: "guide", label: "How to Calculate" },
+        { id: "brick-sizes", label: "Brick Sizes by Country" },
+        { id: "wall-types", label: "Wall Types & Thickness" },
+        { id: "bond-patterns", label: "Bond Patterns" },
+        { id: "openings", label: "Windows & Doors" },
+        { id: "waste", label: "Waste Margins" },
+        { id: "formula", label: "Formula" },
+        { id: "example", label: "Example" },
         { id: "tips", label: "Pro Tips" },
-        { id: "formula", label: "Formula" }, // Layout handles id="formula" automatically for the prop
-        { id: "example", label: "Example" }, // Layout handles id="example" automatically for the prop
-        { id: "mistakes", label: "Mistakes" },
+        { id: "mistakes", label: "Common Mistakes" },
         { id: "faq", label: "FAQ" },
-        { id: "references", label: "References & Resources" },
+        { id: "references", label: "References" },
       ]}
       showTopBanner
       showSidebar
