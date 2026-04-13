@@ -80,24 +80,40 @@ export default function RothIraConversionCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are Roth IRA conversion calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For Roth IRA conversion, accuracy depends on using current tax bracket management data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a tax bracket management professional."
+      question: "What is the pro-rata rule and how does it affect my Roth IRA conversion?",
+      answer: "The pro-rata rule requires you to aggregate all your traditional IRAs, SEP-IRAs, and SIMPLE IRAs when calculating the tax consequences of a conversion. If you have $100,000 in pre-tax IRAs and $50,000 in after-tax contributions, converting $50,000 means 66.67% of the conversion ($33,335) is taxable. This calculator factors in all your IRA balances to determine your actual tax liability on the conversion amount.",
     },
     {
-      question: "What key factors most affect Roth IRA conversion results?",
-      answer: "The most impactful variables in Roth IRA conversion calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How much can I convert to a Roth IRA in 2024?",
+      answer: "There are no income limits or contribution caps on Roth IRA conversions—you can convert any amount from a traditional IRA to a Roth IRA regardless of your income level. However, you must have earned income in the year of conversion, and the conversion is subject to income tax on the pre-tax portion of the amount converted. The calculator will show you the tax bill regardless of conversion size.",
     },
     {
-      question: "When should I recalculate Roth IRA conversion?",
-      answer: "Recalculate whenever tax bracket management conditions change significantly: after major tax bracket management events, when your inputs change (income, rates, holdings), or when tax bracket management regulations are updated. For time-sensitive tax bracket management metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "Will a Roth conversion increase my Modified Adjusted Gross Income (MAGI) and trigger higher Medicare premiums?",
+      answer: "Yes, Roth conversions are added to your MAGI in the conversion year, which can trigger higher Medicare premiums (IRMAA surcharges) for individuals over 65. For example, if your MAGI crosses $103,000 (individual) or $206,000 (married filing jointly) in 2024, you may pay an additional 35-80% in Medicare Part B and Part D premiums. This calculator helps model whether a conversion will push you into a higher IRMAA bracket.",
     },
     {
-      question: "How does Roth IRA conversion relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Roth ira conversion should be evaluated alongside related measures like retirement planning. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your tax bracket management situation, rather than optimizing any single number in isolation."
+      question: "Can I undo a Roth conversion through a recharacterization?",
+      answer: "No—the Tax Cuts and Jobs Act of 2017 eliminated recharacterizations of Roth conversions, effective January 1, 2018. Previously, you could undo a conversion if the market declined, but now all conversions are permanent. You must carefully use this calculator to estimate the tax impact before executing any conversion.",
     },
     {
-      question: "What are the most common mistakes when calculating Roth IRA conversion?",
-      answer: "The most frequent errors in Roth IRA conversion calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world tax bracket management conditions fluctuate. Double-check your inputs against current tax bracket management data before relying on results for significant financial decisions."
+      question: "What is the difference between a conversion and a contribution to a Roth IRA?",
+      answer: "A Roth IRA contribution is new money you add (up to $7,000 in 2024), while a conversion moves existing funds from a traditional IRA to a Roth IRA and triggers immediate taxation. Conversions have no income limits, but contributions have MAGI phase-out limits ($146,000-$161,000 for single filers in 2024). This calculator is designed specifically for conversions, not regular contributions.",
+    },
+    {
+      question: "What tax bracket will my conversion push me into?",
+      answer: "Your conversion amount is added to your ordinary income for the year and taxed at your marginal tax rate. For example, if you earn $80,000 and convert $50,000 in 2024 (single filer), your total taxable income becomes $130,000, pushing you from the 22% bracket into the 24% bracket on the upper portion of the conversion. This calculator estimates your blended tax rate based on your filing status and conversion amount.",
+    },
+    {
+      question: "Should I do a partial or full conversion?",
+      answer: "A partial conversion lets you stay in a lower tax bracket and minimize the pro-rata rule impact if you have after-tax IRA balances. A full conversion eliminates future RMDs and maximizes tax-free growth, but generates a larger one-time tax bill. This calculator lets you model both scenarios to find the conversion size that fits your tax situation and retirement goals.",
+    },
+    {
+      question: "What happens to my Required Minimum Distributions (RMDs) if I convert?",
+      answer: "Converting a traditional IRA to a Roth IRA eliminates RMDs for that portion of your savings—Roth IRAs have no RMDs during the original account holder's lifetime (as of the SECURE Act 2.0). This is especially valuable for high-net-worth retirees who don't need the income and want to leave tax-free growth to heirs. The calculator helps you project RMD savings over time.",
+    },
+    {
+      question: "Can I use funds from my 401(k) to pay the conversion taxes without penalty?",
+      answer: "You cannot withdraw funds from your 401(k) to pay Roth conversion taxes without triggering the 10% early withdrawal penalty if you're under 59½ (unless you qualify for an exception). It's best to pay the conversion tax from external funds like a savings account or taxable brokerage account. This calculator assumes you're paying the tax bill separately and shows the conversion amount plus estimated tax liability.",
     }
   ];
 
@@ -287,254 +303,289 @@ export default function RothIraConversionCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Roth IRA Conversion Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Roth IRA Conversion Calculator is a powerful tool designed to help individuals evaluate the financial implications of converting their traditional IRA into a Roth IRA. This conversion can be a strategic move for those looking to benefit from tax-free growth in retirement. By analyzing the tax cost now against the potential tax-free withdrawals in the future, users can make informed decisions about their retirement planning. This calculator is particularly useful for individuals nearing retirement age or those expecting a higher tax rate in the future, as it provides a clear picture of the potential long-term benefits and costs associated with the conversion.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in the realm of retirement planning, as even minor errors can lead to significant financial consequences. The Roth IRA Conversion Calculator ensures precision by factoring in current tax rates, expected growth rates, and the time horizon until retirement. By providing a detailed analysis, this tool helps users avoid costly mistakes and optimize their retirement strategy. For those considering a conversion, understanding the tax implications is essential, and this calculator serves as a reliable guide. For additional insights, explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> to understand how loan payments can impact your overall financial plan.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information about your current traditional IRA balance, the expected tax rate at the time of conversion, and the number of years until you plan to retire. Enter these values into the calculator to receive an estimate of the tax cost and the future value of your Roth IRA. This step-by-step approach ensures that you have a comprehensive understanding of the conversion process and its potential outcomes. For further guidance, check out our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a> for insights into managing long-term financial commitments.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            When considering a Roth IRA conversion, timing is everything. Converting during a year when your income is lower than usual can minimize the tax impact. Additionally, spreading the conversion over several years may help manage tax liabilities more effectively. Always consult with a financial advisor to tailor the strategy to your specific financial situation.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Roth IRA Conversion Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Roth IRA Conversion Calculator estimates the federal income tax you'll owe on converting funds from a traditional IRA to a Roth IRA. Converting to a Roth allows your money to grow tax-free and eliminates Required Minimum Distributions in retirement, but the conversion triggers a one-time tax bill in the conversion year. This calculator helps you decide whether and how much to convert based on your tax bracket, existing IRA balances, and retirement timeline.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your filing status, current taxable income, total IRA balances (including pre-tax and after-tax amounts), and the conversion amount you're considering. The tool applies the pro-rata rule to determine what portion of your conversion is taxable, calculates your new tax bracket, and estimates your federal income tax liability. You'll also see how the conversion affects your MAGI, which can influence Medicare premiums, Social Security taxation, and other income-based benefits.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the results to understand your total tax cost and net conversion benefit. If converting $100,000 costs you $24,000 in taxes but results in $200,000 of tax-free growth over 20 years, the conversion may be worthwhile—especially if you have 10+ years until retirement. Use the calculator to model different conversion amounts and timing strategies, and consult a tax professional to finalize your decision.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs as your financial situation changes. Factors such as changes in tax laws, shifts in income, or adjustments to your retirement timeline can all impact the results. By staying informed and proactive, you can make the most of your retirement planning efforts and ensure that your financial future is secure.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Roth IRA Conversion Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The Roth IRA Conversion Calculator uses a straightforward formula to estimate the tax cost of converting a traditional IRA to a Roth IRA and the future value of the converted funds. This formula is based on the current balance of the traditional IRA, the expected tax rate at the time of conversion, and the anticipated growth rate of the Roth IRA investments. The formula is widely accepted in financial planning circles due to its simplicity and effectiveness in providing a clear picture of the conversion's financial impact.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Future Value = (Traditional IRA Balance - Tax Cost) × (1 + Growth Rate) ^ Years
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Traditional IRA Balance = Current balance of your traditional IRA</li>
-              <li>Tax Cost = Traditional IRA Balance × (Expected Tax Rate / 100)</li>
-              <li>Growth Rate = Assumed annual growth rate of the Roth IRA investments</li>
-              <li>Years = Number of years until retirement</li>
-            </ul>
+      {/* TABLE: 2024-2025 IRA Contribution and Income Limits */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024-2025 IRA Contribution and Income Limits</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Key annual limits for Roth IRA contributions, conversions, and MAGI phase-out ranges.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2024</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2025</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Maximum Roth IRA Contribution</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Catch-Up Contribution (Age 50+)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Roth Contribution Phase-Out (Single)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$146,000–$161,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$148,000–$163,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Roth Contribution Phase-Out (MFJ)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$230,000–$240,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$233,000–$243,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Roth Conversion Income Limit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">None</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">None</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Traditional IRA RMD Threshold (Age 73)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Required</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Required</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Roth conversions have no income limits. Phase-out ranges apply only to new contributions, not conversions. All figures are IRS-indexed for inflation.</p>
+      </section>
+
+      {/* TABLE: 2024 Federal Tax Brackets and Marginal Rates */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024 Federal Tax Brackets and Marginal Rates</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Single and married filing jointly tax brackets showing how a Roth conversion may affect your total tax liability.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Bracket</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Filer Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Rate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1st Bracket</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0–$11,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0–$23,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2nd Bracket</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,601–$47,150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$23,201–$94,300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3rd Bracket</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47,151–$100,525</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$94,301–$201,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4th Bracket</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100,526–$191,950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$201,051–$383,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5th Bracket</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$191,951–$243,725</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$383,901–$487,450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6th Bracket</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$243,726–$609,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$487,451–$731,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7th Bracket</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$609,351+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$731,201+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">A Roth conversion increases your taxable income, potentially pushing you into a higher bracket. Use this table to estimate your marginal tax rate on the conversion amount.</p>
+      </section>
+
+      {/* TABLE: Pro-Rata Rule Impact on Roth Conversions */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Pro-Rata Rule Impact on Roth Conversions</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Examples showing how pre-tax and after-tax IRA balances affect the taxable portion of a conversion.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total IRA Balance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">After-Tax Basis</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pre-Tax Balance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Conversion Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Taxable Portion</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$80,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$250,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$80,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$500,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$300,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$150,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The pro-rata rule calculates: (Pre-Tax Balance ÷ Total Balance) × Conversion Amount = Taxable Portion. After-tax contributions are never taxed on conversion.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Execute conversions in low-income years—such as the year you retire early, take a sabbatical, or have capital losses—to minimize your marginal tax rate and the overall tax bill on the conversion.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Coordinate conversions with other life events: delay large capital gains, harvest tax losses, or time a conversion to avoid triggering IRMAA surcharges on Medicare premiums or higher taxation of Social Security benefits.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Split large conversions across multiple years using a 'conversion ladder' strategy to stay in lower tax brackets and avoid paying a massive tax bill in a single year.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep detailed records of all after-tax contributions to your traditional IRAs (Form 8606) so you can accurately calculate the pro-rata rule impact and avoid double taxation on the non-taxable portion of your basis.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the Pro-Rata Rule</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people assume they can convert only the pre-tax portion of their IRAs without triggering taxation on the after-tax contributions. In reality, the pro-rata rule applies to all IRA balances combined, so a 50-50 mix of pre-tax and after-tax means 50% of any conversion is taxable. Use this calculator to account for all IRA types and balances before deciding on a conversion amount.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Converting Without Paying Taxes from External Funds</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using IRA funds to pay the conversion tax bill defeats the purpose—those funds are also taxable, and you trigger the 10% early withdrawal penalty if you're under 59½. Always pay the tax bill from outside sources (savings, salary, investments) so the full conversion amount compounds tax-free in the Roth. The calculator shows your tax liability separately to help you plan external funding.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Considering IRMAA and Medicare Premium Impacts</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A large Roth conversion can push your MAGI above $103,000 (single) or $206,000 (married), triggering IRMAA surcharges of $35–$560+ per month on Medicare Part B and Part D premiums. A $200,000 conversion might sound good, but the 2-year Medicare penalty could erase tax savings. This calculator helps you check whether a conversion will cross IRMAA thresholds in your state.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Converting When You Have Required Minimum Distributions Pending</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you're age 73+ and due to take an RMD in the same year as a conversion, the RMD amount is still taxable, and adding a large conversion on top can push you into a significantly higher tax bracket. The pro-rata rule also applies to the combination of RMD and conversion, inflating the taxable percentage. Model both events together using this calculator to optimize your strategy.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the outcome of the conversion. The Traditional IRA Balance is the starting point for the calculation, representing the amount you plan to convert. The Tax Cost is calculated based on your expected tax rate, which can vary depending on your income and tax bracket. The Growth Rate is an estimate of how much your investments will grow annually, typically based on historical market performance. Finally, the Years variable represents the time horizon until retirement, allowing you to see the long-term benefits of the conversion.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence the results of a Roth IRA conversion is essential for making informed decisions. These factors interact in complex ways, and a thorough analysis can help you optimize your retirement strategy. Here are the key factors to consider:
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Current Tax Rate
-        </h3>
-        <p className="mb-4">
-          Your current tax rate is a critical factor in determining the tax cost of the conversion. A higher tax rate means a higher immediate cost, but it could be worth it if you expect your tax rate to be even higher in retirement. Understanding your current tax situation and projecting future changes can help you decide the best time to convert.
-        </p>
-        <p className="mb-6">
-          To optimize this factor, consider converting in a year when your income is lower, potentially resulting in a lower tax rate. Additionally, spreading the conversion over multiple years can help manage the tax impact. For more insights, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Expected Growth Rate
-        </h3>
-        <p className="mb-4">
-          The expected growth rate of your Roth IRA investments significantly impacts the future value of the conversion. A higher growth rate means greater tax-free growth potential, making the conversion more attractive. Historical market performance can provide a baseline for estimating this rate.
-        </p>
-        <p className="mb-6">
-          Consider diversifying your investments to achieve a balanced growth rate. While higher-risk investments may offer higher returns, they also come with increased volatility. Assess your risk tolerance and investment strategy to determine the appropriate growth rate for your situation.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Time Horizon
-        </h3>
-        <p className="mb-4">
-          The number of years until retirement affects the compounding growth of your Roth IRA. A longer time horizon allows more time for your investments to grow, increasing the benefits of the conversion. However, it also means a longer wait before accessing the funds tax-free.
-        </p>
-        <p className="mb-6">
-          If you're close to retirement, consider whether the immediate tax cost outweighs the potential growth. For those with a longer time horizon, the compounding effect can make the conversion more advantageous. Consult with a financial advisor to align your retirement timeline with your conversion strategy.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Future Tax Rate
-        </h3>
-        <p className="mb-6">
-          Anticipating your future tax rate is essential for evaluating the benefits of a Roth IRA conversion. If you expect your tax rate to be higher in retirement, converting now could save you money in the long run. Conversely, if you anticipate a lower tax rate, the conversion may not be as beneficial.
-        </p>
-        <p className="mb-6">
-          Consider factors such as changes in tax laws, shifts in income, and potential deductions or credits that could affect your future tax rate. By projecting these changes, you can make a more informed decision about the timing and scale of your conversion.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Legal and Regulatory Considerations
-        </h3>
-        <p className="mb-6">
-          Legal and regulatory factors can also impact your decision to convert. Changes in tax laws or retirement account regulations may alter the benefits of a Roth IRA conversion. Staying informed about these changes and consulting with a tax professional can help you navigate the complexities of the conversion process.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the pro-rata rule and how does it affect my Roth IRA conversion?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The pro-rata rule requires you to aggregate all your traditional IRAs, SEP-IRAs, and SIMPLE IRAs when calculating the tax consequences of a conversion. If you have $100,000 in pre-tax IRAs and $50,000 in after-tax contributions, converting $50,000 means 66.67% of the conversion ($33,335) is taxable. This calculator factors in all your IRA balances to determine your actual tax liability on the conversion amount.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much can I convert to a Roth IRA in 2024?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">There are no income limits or contribution caps on Roth IRA conversions—you can convert any amount from a traditional IRA to a Roth IRA regardless of your income level. However, you must have earned income in the year of conversion, and the conversion is subject to income tax on the pre-tax portion of the amount converted. The calculator will show you the tax bill regardless of conversion size.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Will a Roth conversion increase my Modified Adjusted Gross Income (MAGI) and trigger higher Medicare premiums?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, Roth conversions are added to your MAGI in the conversion year, which can trigger higher Medicare premiums (IRMAA surcharges) for individuals over 65. For example, if your MAGI crosses $103,000 (individual) or $206,000 (married filing jointly) in 2024, you may pay an additional 35-80% in Medicare Part B and Part D premiums. This calculator helps model whether a conversion will push you into a higher IRMAA bracket.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I undo a Roth conversion through a recharacterization?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No—the Tax Cuts and Jobs Act of 2017 eliminated recharacterizations of Roth conversions, effective January 1, 2018. Previously, you could undo a conversion if the market declined, but now all conversions are permanent. You must carefully use this calculator to estimate the tax impact before executing any conversion.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between a conversion and a contribution to a Roth IRA?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A Roth IRA contribution is new money you add (up to $7,000 in 2024), while a conversion moves existing funds from a traditional IRA to a Roth IRA and triggers immediate taxation. Conversions have no income limits, but contributions have MAGI phase-out limits ($146,000-$161,000 for single filers in 2024). This calculator is designed specifically for conversions, not regular contributions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What tax bracket will my conversion push me into?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your conversion amount is added to your ordinary income for the year and taxed at your marginal tax rate. For example, if you earn $80,000 and convert $50,000 in 2024 (single filer), your total taxable income becomes $130,000, pushing you from the 22% bracket into the 24% bracket on the upper portion of the conversion. This calculator estimates your blended tax rate based on your filing status and conversion amount.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I do a partial or full conversion?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A partial conversion lets you stay in a lower tax bracket and minimize the pro-rata rule impact if you have after-tax IRA balances. A full conversion eliminates future RMDs and maximizes tax-free growth, but generates a larger one-time tax bill. This calculator lets you model both scenarios to find the conversion size that fits your tax situation and retirement goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens to my Required Minimum Distributions (RMDs) if I convert?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Converting a traditional IRA to a Roth IRA eliminates RMDs for that portion of your savings—Roth IRAs have no RMDs during the original account holder's lifetime (as of the SECURE Act 2.0). This is especially valuable for high-net-worth retirees who don't need the income and want to leave tax-free growth to heirs. The calculator helps you project RMD savings over time.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use funds from my 401(k) to pay the conversion taxes without penalty?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You cannot withdraw funds from your 401(k) to pay Roth conversion taxes without triggering the 10% early withdrawal penalty if you're under 59½ (unless you qualify for an exception). It's best to pay the conversion tax from external funds like a savings account or taxable brokerage account. This calculator assumes you're paying the tax bill separately and shows the conversion amount plus estimated tax liability.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access comprehensive economic data and research from the Federal Reserve.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p590a" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 590-A: Contributions to Individual Retirement Arrangements (IRAs)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on IRA contributions, conversions, and the pro-rata rule with current limits and filing requirements.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Retirement Planning
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Explore resources and guides on retirement planning and financial protection.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p590b" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 590-B: Distributions from Individual Retirement Arrangements (IRAs)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive IRS resource explaining Roth conversion taxation, RMDs, and income limits for Roth eligibility.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Learn about banking regulations and financial education from the FDIC.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.ssa.gov/benefits/retirement/html/income-limits.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Social Security Administration: Income Limits and IRMAA</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Details on how Roth conversions affect your Modified Adjusted Gross Income and Medicare premium surcharges (IRMAA).</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Retirement Topics
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official IRS guidelines and information on retirement accounts and conversions.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Roth IRA Conversion
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed explanations and guides on Roth IRA conversions and financial planning.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Retirement Planning Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for effective retirement planning.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/r/rothconversion.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Roth IRA Conversion Strategy and Tax Planning</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">In-depth explanation of Roth conversion mechanics, pro-rata rules, timing strategies, and tax minimization tactics.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

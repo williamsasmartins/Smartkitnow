@@ -20,24 +20,40 @@ export default function VolatilityRiskAssessmentCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are volatility measurement calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For volatility measurement, accuracy depends on using current standard deviation data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a standard deviation professional."
+      question: "What is volatility and why does it matter for my investment portfolio?",
+      answer: "Volatility measures how much an asset's price fluctuates over time, typically expressed as standard deviation or annualized percentage change. High volatility means larger price swings (both up and down), which increases risk but also potential returns. Understanding your portfolio's volatility helps you determine if it aligns with your risk tolerance and investment timeline. For example, the S&P 500 has averaged 15-18% annualized volatility over the past decade, while bonds typically range from 3-7%.",
     },
     {
-      question: "What key factors most affect volatility measurement results?",
-      answer: "The most impactful variables in volatility measurement calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How does the calculator measure Value at Risk (VaR)?",
+      answer: "Value at Risk (VaR) estimates the maximum loss you could face over a specific time period at a given confidence level (commonly 95% or 99%). For example, a 95% VaR of $10,000 means there's a 95% probability your losses won't exceed $10,000 in one day. The calculator uses historical volatility data and your portfolio size to compute this metric. VaR is widely used by institutional investors and banks to manage portfolio risk, with the Basel III regulatory framework requiring banks to maintain capital reserves based on VaR calculations.",
     },
     {
-      question: "When should I recalculate volatility measurement?",
-      answer: "Recalculate whenever standard deviation conditions change significantly: after major standard deviation events, when your inputs change (income, rates, holdings), or when standard deviation regulations are updated. For time-sensitive standard deviation metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "What's the difference between historical volatility and implied volatility?",
+      answer: "Historical volatility is calculated from past price data and shows how much an asset actually moved; implied volatility is derived from options pricing and reflects what the market expects future volatility to be. This calculator primarily uses historical volatility, which is backward-looking but based on real price movements. Implied volatility is more forward-looking and useful for options traders, but both metrics are important for comprehensive risk assessment. A stock with 25% historical volatility but 40% implied volatility suggests traders expect future price swings to increase significantly.",
     },
     {
-      question: "How does volatility measurement relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Volatility measurement should be evaluated alongside related measures like beta. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your standard deviation situation, rather than optimizing any single number in isolation."
+      question: "How should I use the Sharpe Ratio result from this calculator?",
+      answer: "The Sharpe Ratio measures risk-adjusted returns by dividing excess return (above the risk-free rate) by volatility; a higher ratio indicates better returns per unit of risk taken. A Sharpe Ratio above 1.0 is generally considered good, above 2.0 is very good, and above 3.0 is excellent. This calculator helps you compare whether your portfolio is compensating you adequately for the volatility you're enduring. For context, the S&P 500 typically has a Sharpe Ratio between 0.4 and 0.8 depending on the market cycle and risk-free rate used.",
     },
     {
-      question: "What are the most common mistakes when calculating volatility measurement?",
-      answer: "The most frequent errors in volatility measurement calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world standard deviation conditions fluctuate. Double-check your inputs against current standard deviation data before relying on results for significant financial decisions."
+      question: "What input data do I need to run an accurate volatility assessment?",
+      answer: "You'll need your portfolio's current value, historical price or return data (typically 1-3 years of daily or monthly closing prices), your expected return rate, and the current risk-free rate (currently around 4.5-5.0% based on 3-month Treasury bills as of 2025). The calculator may also ask for your time horizon and confidence level for VaR calculations. More historical data generally produces more reliable volatility estimates, though too much old data may not reflect current market conditions. Ensure your data is adjusted for splits and dividends to avoid skewing volatility calculations.",
+    },
+    {
+      question: "How does portfolio diversification affect the volatility results?",
+      answer: "Diversification reduces portfolio volatility by spreading risk across uncorrelated assets; the calculator accounts for correlation coefficients between holdings when computing overall portfolio volatility. A portfolio of two perfectly correlated stocks (correlation = 1.0) will have higher volatility than the same stocks with zero or negative correlation. For example, stocks and bonds typically have correlation around 0.3-0.5, meaning a 60/40 stock-bond portfolio experiences significantly lower volatility than 100% stocks. This is why the calculator asks about your asset allocation and individual security correlations.",
+    },
+    {
+      question: "What does a Beta coefficient tell me about my investment's risk?",
+      answer: "Beta measures an asset's sensitivity to market movements, where Beta = 1.0 means the asset moves with the market, Beta > 1.0 means it's more volatile than the market, and Beta < 1.0 means it's less volatile. A tech stock with Beta of 1.5 is 50% more volatile than the S&P 500, while a utility stock with Beta of 0.7 is 30% less volatile. The calculator uses Beta to assess systematic risk—the unavoidable risk tied to overall market movements. This helps distinguish between volatility you can reduce through diversification versus volatility inherent to market exposure.",
+    },
+    {
+      question: "How often should I recalculate my portfolio's volatility using this tool?",
+      answer: "For actively managed portfolios, recalculate volatility quarterly (every 3 months) or whenever you make significant allocation changes; for buy-and-hold portfolios, annually is typically sufficient. Market conditions change rapidly—the VIX (stock market volatility index) ranged from 12.5 to 65+ during 2024, showing how dramatically risk metrics can shift. Recalculating helps you stay aware of whether your portfolio's actual risk matches your original risk tolerance and investment plan. Consider running the calculator before major rebalancing decisions or when adding new positions.",
+    },
+    {
+      question: "What should I do if my calculator results show volatility that's too high for my comfort level?",
+      answer: "If your portfolio volatility exceeds your risk tolerance, consider rebalancing toward lower-volatility assets like bonds, dividend aristocrats, or defensive sectors (utilities, consumer staples). You can also reduce position sizes in high-beta stocks and increase diversification across uncorrelated asset classes. For example, shifting from 80/20 stocks/bonds to 60/40 typically reduces overall volatility by 25-30% depending on correlations. The calculator can help you model different allocation scenarios before executing changes, allowing you to find your optimal risk-return balance.",
     }
   ];
 
@@ -291,252 +307,290 @@ export default function VolatilityRiskAssessmentCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Volatility & Risk Assessment Calculator
-        </h2>
-        
-        <p className="mb-6">
-          In the dynamic world of cryptocurrency trading, understanding market volatility and assessing risk is crucial for making informed investment decisions. The Volatility & Risk Assessment Calculator is designed to help traders and investors evaluate potential risks associated with their investments. By inputting key variables such as initial investment, expected return, and market volatility, users can gain insights into the potential outcomes of their trading strategies. This tool is particularly valuable for those looking to manage their exposure to volatile markets and optimize their investment portfolios.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are paramount in the financial sector, where even minor errors can lead to significant financial losses. The Volatility & Risk Assessment Calculator employs industry-standard formulas to ensure precision and reliability. By understanding the potential impact of volatility on expected returns, users can make more strategic decisions, potentially avoiding costly mistakes. For more insights into managing financial risks, consider exploring our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>, which offers detailed analysis on loan management.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information on your initial investment amount, the expected annual return rate, and the estimated market volatility percentage. Enter these values into the respective fields to calculate the projected value of your investment, the risk-adjusted return, and the impact of volatility. For a comprehensive understanding of how these factors interact, refer to our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>, which provides insights into amortization schedules and interest impacts.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always consider the broader economic context when assessing risk. Market conditions can change rapidly, and staying informed about global financial trends can help you anticipate shifts in volatility and adjust your strategies accordingly.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Volatility & Risk Assessment Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Volatility & Risk Assessment Calculator quantifies how much your portfolio or investment fluctuates in value and assesses the financial risk you're taking. This tool helps you understand whether your portfolio's volatility aligns with your risk tolerance, investment timeline, and financial goals. By measuring metrics like standard deviation, Value at Risk (VaR), Beta, and Sharpe Ratio, you gain a comprehensive view of portfolio risk that goes beyond simply knowing your asset allocation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator effectively, you'll input your portfolio's current value, historical price or return data (typically 1-3 years of monthly or daily prices), your expected annual return, the current risk-free rate, and your asset allocation breakdown. The calculator uses this data to compute volatility, which measures price fluctuations, and then derives risk-adjusted performance metrics. You may also need to specify your investment time horizon and preferred confidence levels for Value at Risk analysis (typically 95% or 99%).</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results will show you how much your portfolio typically fluctuates (expressed as a percentage or dollar amount), the maximum potential loss you might face under normal conditions (VaR), how sensitive your portfolio is to market movements (Beta), and whether you're being adequately compensated for the risk you're taking (Sharpe Ratio). Use these metrics to benchmark your portfolio against similar portfolios or asset class averages, and to make informed decisions about rebalancing or adjusting your risk exposure. If any metric falls outside your comfort zone, the calculator helps you model different allocation scenarios to find your optimal balance.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs to reflect current market conditions and using the results to guide your investment strategy. Be mindful of external factors such as economic policies and global events that could influence market volatility. For those interested in optimizing their loan repayments, our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a> offers valuable insights.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Volatility & Risk Assessment Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The Volatility & Risk Assessment Calculator utilizes a formula that combines the initial investment amount with the expected return rate and adjusts for market volatility. This approach provides a comprehensive view of potential investment outcomes, accounting for both growth and risk factors. The formula is widely recognized in financial analysis for its ability to model real-world scenarios accurately.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Projected Value = Initial Investment × (1 + Expected Return / 100)<br/>
-          Risk-Adjusted Return = Projected Value × (1 - Volatility / 100)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Initial Investment = The starting amount of money invested</li>
-              <li>Expected Return = The anticipated annual return rate (%)</li>
-              <li>Volatility = The estimated market volatility (%)</li>
-            </ul>
+      {/* TABLE: Historical Annualized Volatility by Asset Class (2023-2024) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Historical Annualized Volatility by Asset Class (2023-2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical volatility ranges for major asset classes to help benchmark your portfolio results against market standards.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Asset Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annualized Volatility Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Beta vs. S&P 500</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">U.S. Large-Cap Stocks (S&P 500)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">U.S. Mid-Cap Stocks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-24%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2-1.4</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">U.S. Small-Cap Stocks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-28%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.3-1.6</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">International Developed Markets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-21%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.85-1.1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Emerging Markets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-32%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.1-1.4</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Investment-Grade Bonds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.4</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Yield Bonds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-14%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-0.8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Real Estate (REITs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.9-1.2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commodities</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-28%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3-0.6</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60/40 Stock-Bond Portfolio</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.65-0.75</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Volatility data represents trailing 12-month annualized values. Past performance does not guarantee future results. Actual volatility varies based on time period, specific holdings, and market conditions.</p>
+      </section>
+
+      {/* TABLE: Sharpe Ratio Benchmarks and Interpretation */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sharpe Ratio Benchmarks and Interpretation</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these benchmarks to evaluate whether your portfolio's risk-adjusted returns are competitive with historical market performance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sharpe Ratio Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk-Adjusted Performance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Historical Example (2015-2024)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Below 0.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Negative returns relative to risk-free rate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Bear market portfolios, high volatility with losses</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0.0 to 0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Poor risk-adjusted returns</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mixed-performing portfolios, underperforming bonds</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0.5 to 1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below-average to average</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S&P 500 in slower growth years (2015-2018)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1.0 to 2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good risk-adjusted returns</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S&P 500 during bull markets, diversified portfolios</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.0 to 3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very good risk-adjusted returns</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60/40 balanced portfolios, tech-heavy rallies (2023)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Above 3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent risk-adjusted returns</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-volatility bond funds, market-beating strategies</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Sharpe Ratio assumes risk-free rate of 4.5-5.0% (2025 Treasury rates). Results depend heavily on time period, asset mix, and fee structure. Compare ratios across similar portfolio types, not absolute values.</p>
+      </section>
+
+      {/* TABLE: Value at Risk (VaR) Examples by Portfolio Size and Confidence Level */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Value at Risk (VaR) Examples by Portfolio Size and Confidence Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These examples demonstrate how VaR estimates translate into potential dollar losses at different confidence intervals for portfolios of varying sizes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Portfolio Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily VaR (95% Confidence)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily VaR (99% Confidence)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Assumed Volatility</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,258</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,871</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% annual</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,515</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,742</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% annual</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$250,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,288</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9,356</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% annual</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$500,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,576</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18,711</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% annual</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$1,000,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25,152</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$37,423</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% annual</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">VaR calculations based on 252 trading days per year and normal distribution assumptions. 95% confidence means a 5% chance of exceeding losses shown; 99% confidence means a 1% chance. Actual losses may exceed VaR estimates during extreme market events.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use at least 1-2 years of historical data when calculating volatility, but avoid mixing data from drastically different market regimes (like combining the 2008 financial crisis data with current data) unless you specifically want to stress-test your portfolio.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Recalculate your portfolio's volatility quarterly and after making significant changes (like adding new positions or rebalancing), as volatility is not static and market conditions shift regularly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Cross-reference your Sharpe Ratio results with your portfolio's Beta to understand if you're taking market-correlated risk efficiently; a high Sharpe Ratio combined with low Beta suggests strong diversification benefits.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Pay attention to correlation coefficients between your holdings rather than just individual volatility numbers; diversifying into uncorrelated assets (stocks and bonds, or stocks and commodities) is far more effective at reducing overall portfolio volatility than simply holding multiple stocks.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Too Short a Time Period for Volatility Calculation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating volatility from only 3-6 months of data can produce misleading results because it may capture unusual market events rather than true long-term volatility. Use at least 1-2 years of historical data for a more reliable measure of typical price fluctuations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Correlation When Assessing Portfolio Risk</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Summing individual asset volatilities to estimate portfolio volatility is incorrect; you must account for correlation coefficients between holdings. Two high-volatility stocks with negative correlation may actually produce lower overall portfolio volatility than one low-volatility stock alone.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mistaking Volatility for Risk</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">While volatility measures price fluctuations, it's not the same as investment risk for long-term investors; a volatile asset that recovers strongly may be less risky than a stable asset in permanent decline. Use VaR and Sharpe Ratio alongside volatility for a complete picture.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming VaR Represents Absolute Maximum Loss</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Value at Risk is a probability estimate (e.g., 95% chance losses won't exceed the stated amount), not a guarantee; during extreme market events like the 2020 COVID crash, actual losses frequently exceeded historical VaR estimates. Always maintain emergency reserves beyond what VaR suggests.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role in determining the final outcome. The initial investment represents the capital at risk, while the expected return reflects the potential growth rate. Volatility, on the other hand, introduces an element of uncertainty, highlighting the potential for fluctuations in market value. By understanding how these variables interact, investors can better manage their portfolios and mitigate risks.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Several factors can influence the results of the Volatility & Risk Assessment Calculator. Understanding these elements is crucial for accurately interpreting the outcomes and making informed investment decisions. Each factor interacts with others, creating a complex web of influences that can affect your financial strategy.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Initial Investment Amount
-        </h3>
-        <p className="mb-4">
-          The initial investment amount is the foundation of your financial strategy. It determines the scale of your potential returns and the level of risk you are exposed to. Larger investments can lead to higher returns but also increase the potential for significant losses.
-        </p>
-        <p className="mb-6">
-          Optimizing your initial investment involves balancing your financial goals with your risk tolerance. Consider diversifying your portfolio to mitigate risks and explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> for strategies on managing loan investments.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Expected Return Rate
-        </h3>
-        <p className="mb-4">
-          The expected return rate is a projection of the annual growth of your investment. It is influenced by market conditions, economic policies, and the performance of the assets in your portfolio. A higher expected return can indicate greater potential for profit but also comes with increased risk.
-        </p>
-        <p className="mb-6">
-          In different scenarios, the expected return rate can vary significantly. For instance, in a bullish market, returns might exceed expectations, while in a bearish market, they could fall short. Understanding these dynamics is crucial for setting realistic financial goals.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-4">
-          Volatility measures the degree of variation in market prices over time. High volatility indicates frequent and significant price changes, which can impact the stability of your investments. It is essential to account for volatility when assessing risk and potential returns.
-        </p>
-        <p className="mb-6">
-          To manage volatility effectively, consider employing hedging strategies or diversifying your investments across different asset classes. Industry experts often recommend maintaining a balanced portfolio to cushion against market fluctuations.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Economic Conditions
-        </h3>
-        <p className="mb-6">
-          Economic conditions, including inflation rates, interest rates, and fiscal policies, can significantly influence market behavior and, consequently, your investment outcomes. These factors can affect both the expected return and the level of volatility in the market.
-        </p>
-        <p className="mb-6">
-          Staying informed about economic trends and adjusting your investment strategy accordingly can help you navigate these challenges. For insights into how refinancing can impact your financial plans, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Regulatory Environment
-        </h3>
-        <p className="mb-6">
-          The regulatory environment can also impact your investment strategy. Changes in regulations can alter market dynamics, affecting both risk and return. It is important to stay updated on regulatory changes and understand their implications for your investments.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
-                {faq.question}
-              </h3>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is volatility and why does it matter for my investment portfolio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Volatility measures how much an asset's price fluctuates over time, typically expressed as standard deviation or annualized percentage change. High volatility means larger price swings (both up and down), which increases risk but also potential returns. Understanding your portfolio's volatility helps you determine if it aligns with your risk tolerance and investment timeline. For example, the S&P 500 has averaged 15-18% annualized volatility over the past decade, while bonds typically range from 3-7%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator measure Value at Risk (VaR)?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Value at Risk (VaR) estimates the maximum loss you could face over a specific time period at a given confidence level (commonly 95% or 99%). For example, a 95% VaR of $10,000 means there's a 95% probability your losses won't exceed $10,000 in one day. The calculator uses historical volatility data and your portfolio size to compute this metric. VaR is widely used by institutional investors and banks to manage portfolio risk, with the Basel III regulatory framework requiring banks to maintain capital reserves based on VaR calculations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between historical volatility and implied volatility?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Historical volatility is calculated from past price data and shows how much an asset actually moved; implied volatility is derived from options pricing and reflects what the market expects future volatility to be. This calculator primarily uses historical volatility, which is backward-looking but based on real price movements. Implied volatility is more forward-looking and useful for options traders, but both metrics are important for comprehensive risk assessment. A stock with 25% historical volatility but 40% implied volatility suggests traders expect future price swings to increase significantly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I use the Sharpe Ratio result from this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Sharpe Ratio measures risk-adjusted returns by dividing excess return (above the risk-free rate) by volatility; a higher ratio indicates better returns per unit of risk taken. A Sharpe Ratio above 1.0 is generally considered good, above 2.0 is very good, and above 3.0 is excellent. This calculator helps you compare whether your portfolio is compensating you adequately for the volatility you're enduring. For context, the S&P 500 typically has a Sharpe Ratio between 0.4 and 0.8 depending on the market cycle and risk-free rate used.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What input data do I need to run an accurate volatility assessment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You'll need your portfolio's current value, historical price or return data (typically 1-3 years of daily or monthly closing prices), your expected return rate, and the current risk-free rate (currently around 4.5-5.0% based on 3-month Treasury bills as of 2025). The calculator may also ask for your time horizon and confidence level for VaR calculations. More historical data generally produces more reliable volatility estimates, though too much old data may not reflect current market conditions. Ensure your data is adjusted for splits and dividends to avoid skewing volatility calculations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does portfolio diversification affect the volatility results?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Diversification reduces portfolio volatility by spreading risk across uncorrelated assets; the calculator accounts for correlation coefficients between holdings when computing overall portfolio volatility. A portfolio of two perfectly correlated stocks (correlation = 1.0) will have higher volatility than the same stocks with zero or negative correlation. For example, stocks and bonds typically have correlation around 0.3-0.5, meaning a 60/40 stock-bond portfolio experiences significantly lower volatility than 100% stocks. This is why the calculator asks about your asset allocation and individual security correlations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does a Beta coefficient tell me about my investment's risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Beta measures an asset's sensitivity to market movements, where Beta = 1.0 means the asset moves with the market, Beta > 1.0 means it's more volatile than the market, and Beta < 1.0 means it's less volatile. A tech stock with Beta of 1.5 is 50% more volatile than the S&P 500, while a utility stock with Beta of 0.7 is 30% less volatile. The calculator uses Beta to assess systematic risk—the unavoidable risk tied to overall market movements. This helps distinguish between volatility you can reduce through diversification versus volatility inherent to market exposure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my portfolio's volatility using this tool?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For actively managed portfolios, recalculate volatility quarterly (every 3 months) or whenever you make significant allocation changes; for buy-and-hold portfolios, annually is typically sufficient. Market conditions change rapidly—the VIX (stock market volatility index) ranged from 12.5 to 65+ during 2024, showing how dramatically risk metrics can shift. Recalculating helps you stay aware of whether your portfolio's actual risk matches your original risk tolerance and investment plan. Consider running the calculator before major rebalancing decisions or when adding new positions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my calculator results show volatility that's too high for my comfort level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If your portfolio volatility exceeds your risk tolerance, consider rebalancing toward lower-volatility assets like bonds, dividend aristocrats, or defensive sectors (utilities, consumer staples). You can also reduce position sizes in high-beta stocks and increase diversification across uncorrelated asset classes. For example, shifting from 80/20 stocks/bonds to 60/40 typically reduces overall volatility by 25-30% depending on correlations. The calculator can help you model different allocation scenarios before executing changes, allowing you to find your optimal risk-return balance.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Market Volatility
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data and analysis on market volatility and its impact on financial stability.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/pubs/invguide.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC: Guide to Understanding Risk</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official SEC guidance on understanding and assessing investment risk, including volatility and diversification concepts.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Investment Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive guides on investment strategies and risk management for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/v/var.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Value at Risk (VaR) Definition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive explanation of Value at Risk methodology, calculation approaches, and practical applications for portfolio management.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Investment Risk Management
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Resources on managing investment risks and understanding market dynamics.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/pubs/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve: Understanding Beta and Systematic Risk</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Resources from the Federal Reserve System explaining how Beta measures systematic market risk and portfolio sensitivity to market movements.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Implications of Investments
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official guidelines on the tax implications of various investment strategies.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Understanding Volatility
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                In-depth articles and tutorials on market volatility and investment strategies.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Investment Planning
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and tools for effective investment planning and risk assessment.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/investing/sharpe-ratio/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate: Sharpe Ratio Calculator and Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed explanation of the Sharpe Ratio as a risk-adjusted performance metric and how to use it for investment comparison.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -9,31 +9,43 @@ import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCi
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const faqs = [
-  {
-    question: "What should I compare beyond the monthly payment when evaluating two loans?",
-    answer: `Monthly payment is the least important metric when comparing loans — it only tells you cash flow, not true cost. The critical numbers to compare: (1) Total interest paid over the life of each loan — this is the real cost. A 72-month loan at 5% on $20,000 costs $3,200 in interest; a 48-month loan at 6% costs $2,550 — the shorter loan is cheaper despite the higher rate. (2) APR (not just the stated rate) — APR includes origination fees, points, and other charges, making it the true apples-to-apples comparison number. (3) Prepayment penalties — a loan with a lower rate but prepayment penalty can cost more if you plan to pay it off early.`
-  },
-  {
-    question: "What is the difference between APR and interest rate, and which matters for loan comparison?",
-    answer: `The interest rate is the annual cost of borrowing the principal. APR (Annual Percentage Rate) includes the interest rate plus all mandatory fees — origination fees, discount points, broker fees — expressed as a single annual rate. TILA (Truth in Lending Act) requires lenders to disclose APR. For comparison purposes, APR is always the correct metric because it captures the true cost. Example: Loan A = 6.5% rate, no fees vs. Loan B = 6.0% rate, 1% origination fee on a $30,000 loan. Loan B's APR ≈ 6.5% once the $300 fee is factored in — they are actually equivalent despite Loan B's lower stated rate.`
-  },
-  {
-    question: "How do I calculate the breakeven point when a lower-rate loan has higher fees?",
-    answer: `The breakeven point is how long you need to keep the loan to recover the extra upfront costs. Formula: Breakeven months = Fees paid ÷ Monthly savings. Example: Loan A = $20,000 at 7.5% for 60 months = $400.76/month. Loan B = $20,000 at 6.5% for 60 months, but with a $500 origination fee = $391.32/month. Monthly savings = $9.44. Breakeven = $500 ÷ $9.44 ≈ 53 months. If you plan to keep the loan for at least 53 months, Loan B wins. If you'll pay it off early, Loan A is better despite the higher rate.`
-  },
-  {
-    question: "When does a fixed-rate loan make more sense than a variable-rate loan?",
-    answer: `Fixed-rate loans lock your rate for the entire term — predictable and safe. Variable-rate loans (often called adjustable-rate) start lower but can rise with market rates. Fixed-rate is better when: (1) Current rates are historically low and likely to rise, (2) You plan to hold the loan for its full term, (3) You want payment certainty for budgeting. Variable-rate can be better when: (1) You plan to pay off the loan quickly (within the initial fixed-period), (2) Rates are high and expected to fall, (3) The initial rate discount is significant (1.5%+ lower than fixed). For most 5+ year loans, fixed-rate provides more protection against rate volatility.`
-  },
-  {
-    question: "How much does loan term affect total cost? Is a shorter term always better?",
-    answer: `Shorter terms pay significantly less total interest but require higher monthly payments. On a $25,000 loan at 7% APR: 36-month term = $772/month, $2,779 total interest. 60-month term = $495/month, $4,712 total interest. 84-month term = $376/month, $6,574 total interest. A shorter term is better if: your cash flow can handle the higher payment, and you want to minimize total cost. A longer term is better if: cash flow is tight, or the difference in monthly payment could be invested at a higher return than the loan rate (opportunity cost). If your loan rate is 5% but you can earn 8% investing the difference, the math may favor the longer term.`
-  },
-  {
-    question: "What is the impact of making extra principal payments, and should I compare loans based on this?",
-    answer: `Extra payments directly reduce the principal, which reduces the interest accruing on every future payment — the effect compounds over time. On a $30,000, 60-month loan at 7% APR: adding just $100/month extra reduces the payoff from 60 to 45 months and saves $1,240 in interest. When comparing two loans, factor in whether you plan to make extra payments: a loan with no prepayment penalty is worth a small rate premium over one that charges 2-3% of remaining balance for early payoff. Always confirm prepayment policy before signing — it can make a lower-rate loan more expensive than it appears.`
-  }
-];
+    {
+      question: "What loan types can I compare using this calculator?",
+      answer: "This calculator supports comparisons across multiple loan types including mortgages, auto loans, personal loans, and student loans. You can input different loan amounts, interest rates, and terms to see side-by-side comparisons of monthly payments, total interest paid, and amortization schedules. This flexibility helps you evaluate whether refinancing or switching loan products makes financial sense.",
+    },
+    {
+      question: "How does the calculator handle different interest rates?",
+      answer: "The calculator accepts both fixed and variable interest rates for each loan you're comparing. For fixed-rate loans, the rate remains constant throughout the term, while variable-rate inputs allow you to model scenarios with rate changes. As of 2024, average mortgage rates range from 6.5% to 7.2%, auto loans from 6.8% to 8.5%, and personal loans from 8% to 36%, depending on credit profile.",
+    },
+    {
+      question: "Can I compare loans with different term lengths?",
+      answer: "Yes, the calculator is designed specifically to compare loans with varying term lengths. For example, you might compare a 15-year mortgage at 6.8% against a 30-year mortgage at 6.5% to see how monthly payment and total interest differ. This helps illustrate why longer terms reduce monthly payments but increase total interest costs significantly.",
+    },
+    {
+      question: "What is included in the total cost calculation?",
+      answer: "The calculator computes total cost as the sum of all monthly payments plus any upfront fees you input, such as origination fees, closing costs, or prepaid interest. For example, a $300,000 mortgage with a 1% origination fee ($3,000) and 6.8% interest over 30 years results in total interest of approximately $219,000, making the true cost $522,000 before taxes and insurance.",
+    },
+    {
+      question: "How should I account for additional fees like origination or processing fees?",
+      answer: "Enter all one-time fees in the upfront costs field for each loan you're comparing. Origination fees typically range from 0.5% to 1.5% of the loan amount, while processing fees average $200–$500 for personal loans and $500–$2,000 for mortgages. Including these in your comparison ensures you're evaluating the true cost of borrowing, not just the interest rate.",
+    },
+    {
+      question: "Can the calculator show me how much interest I'll pay over time?",
+      answer: "Yes, the calculator displays cumulative interest paid and creates an amortization breakdown showing how each payment splits between principal and interest. Early in a loan term, most of your payment goes to interest, but this ratio shifts over time. For a $200,000 loan at 7% over 30 years, you'll pay approximately $239,600 in interest alone.",
+    },
+    {
+      question: "What happens if I want to compare more than two loans?",
+      answer: "Most loan comparison calculators allow you to input and display 2–4 loans simultaneously, displaying monthly payments and total costs side-by-side for easy evaluation. If you need to compare more loans, you can run multiple calculations and track results in a spreadsheet. This approach helps you identify which loan structure best aligns with your budget and financial goals.",
+    },
+    {
+      question: "How accurate is this calculator for real-world loan scenarios?",
+      answer: "The calculator provides accurate estimates based on the inputs you provide, but actual payments may vary slightly due to factors like property taxes, homeowners insurance, HOA fees, and PMI on mortgages, which aren't included in basic calculations. For personal loans and auto loans, the results are highly accurate as they typically don't have additional escrow items. Always verify final numbers with your lender before committing.",
+    },
+    {
+      question: "Should I use this calculator before or after getting loan quotes from lenders?",
+      answer: "Use this calculator both before and after obtaining quotes. Initial use helps you determine what loan terms you can afford and what questions to ask lenders. After receiving official loan estimates, enter the actual rates and fees into the calculator to verify the lender's numbers and compare multiple offers. This two-step approach ensures you're making an informed decision based on real market data.",
+    }
+  ];
 
 export default function LoanComparisonCalculator() {
   // STATE
@@ -373,259 +385,266 @@ export default function LoanComparisonCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Loan Comparison Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Loan Comparison Calculator is a powerful tool designed to help you evaluate two different loan options side-by-side. Whether you're considering a mortgage, auto loan, or personal loan, this calculator provides a clear picture of the financial implications of each option. By inputting the loan amount, interest rate, and term for each loan, you can quickly see how the monthly payments and total costs compare. This is particularly useful when you're trying to decide between loans with different interest rates or terms, as it allows you to make an informed decision based on your financial goals and budget.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial when comparing loans, as even small differences in interest rates or terms can lead to significant variations in total cost over time. For instance, a 0.5% difference in interest rate on a $300,000 mortgage can result in thousands of dollars in additional interest payments over the life of the loan. This calculator helps you avoid costly mistakes by providing precise calculations, enabling you to choose the most cost-effective loan. It's an essential tool for anyone looking to optimize their financial decisions and save money in the long run.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather all necessary information about the loans you're considering. This includes the loan amount, interest rate, and term for each loan. Enter these details into the calculator, and it will compute the monthly payments and total costs for each loan. This step-by-step approach ensures you have a clear understanding of each loan's financial impact. For more detailed insights, you can also explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> to understand how principal, rate, and term affect your payments.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            When comparing loans, always consider the total cost over the life of the loan, not just the monthly payment. A lower monthly payment might seem attractive, but it could mean paying more in interest over time. Use this calculator to balance monthly affordability with long-term savings.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Loan Comparison Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Loan Comparison Calculator helps you evaluate multiple loan offers side-by-side to make the best borrowing decision. By comparing monthly payments, total interest costs, and true out-of-pocket expenses across different loans, you can identify which option fits your budget and long-term financial goals. This tool is especially valuable when refinancing, consolidating debt, or choosing between competing loan offers from multiple lenders.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input key details for each loan you want to compare: the loan amount (principal), annual interest rate, loan term in years or months, and any one-time fees such as origination charges, closing costs, or prepaid interest. The calculator accepts both fixed and variable rates, allowing you to model different scenarios. Accuracy depends on the precision of your inputs, so obtain official loan estimates from lenders before entering data.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator's output displays monthly payment amounts, total interest paid over the loan's life, total cost (interest plus fees), and an amortization schedule showing how payments split between principal and interest. Use this information to compare the true cost of borrowing across options, not just the advertised interest rate. Pay special attention to how origination fees and longer terms increase total costs—for example, extending a mortgage from 15 to 30 years can add $140,000+ in interest despite lower monthly payments.</p>
         </div>
-        
-        <p className="mb-6">
-          For best results, ensure the data you enter is accurate and up-to-date. Consider factors such as potential changes in interest rates or your financial situation that could affect your ability to repay the loan. By regularly reviewing your loan options with this calculator, you can stay informed and make adjustments as needed. Additionally, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a> for a deeper dive into how amortization schedules impact your payments.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Loan Comparison Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The Loan Comparison Calculator uses a standard formula to calculate the monthly payment for each loan option. This formula is derived from the annuity formula used to calculate the present value of a series of future payments. It takes into account the loan amount, interest rate, and term to provide an accurate monthly payment figure. This approach is widely used in the financial industry because it provides a consistent method for comparing different loan options.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          M = P[r(1 + r)^n] / [(1 + r)^n – 1]
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>P = Loan principal (amount borrowed)</li>
-              <li>r = Monthly interest rate (annual rate / 12)</li>
-              <li>n = Number of payments (loan term in months)</li>
-            </ul>
+      {/* TABLE: Average Interest Rates by Loan Type (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Interest Rates by Loan Type (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Current benchmark interest rates vary significantly by loan product and borrower credit profile.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Excellent Credit (740+)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Good Credit (670-739)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fair Credit (580-669)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30-Year Mortgage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.45%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.85%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.50%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15-Year Mortgage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.95%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.10%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Auto Loan (60-month)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.32%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.45%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.20%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal Loan (36-month)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28.50%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Student Loan (Federal)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.05%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.05%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.05%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates are averages from major lenders as of April 2024 and fluctuate based on Federal Reserve policy and market conditions.</p>
+      </section>
+
+      {/* TABLE: Monthly Payment Comparison: $200,000 Loan at 7% Interest */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Payment Comparison: $200,000 Loan at 7% Interest</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how loan term length directly impacts monthly payments and total interest paid.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Term</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Amount Paid</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 Years (120 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,327.33</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$79,279.60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$279,279.60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 Years (180 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,663.79</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$99,482.20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$299,482.20</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 Years (240 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,393.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$134,348.80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$334,348.80</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30 Years (360 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,330.60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$239,416.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$439,416.00</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Longer terms reduce monthly payments but increase total interest costs significantly; a 20-year difference adds $160,136 in interest.</p>
+      </section>
+
+      {/* TABLE: Impact of Origination Fees on True Loan Cost */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Origination Fees on True Loan Cost</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Upfront fees increase the effective cost of borrowing and should be factored into loan comparisons.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Origination Fee (1%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Origination Fee (1.5%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total with Both Fees</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,250</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$300,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$500,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,500</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Fees are typically rolled into the loan balance, meaning you also pay interest on these costs over the life of the loan.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always enter the exact loan amount (principal) you'll actually borrow, as even small differences compound over 15–30 years. For a mortgage, this typically excludes down payment amounts but includes any fees rolled into the loan.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare the Annual Percentage Rate (APR) rather than just the interest rate, since APR includes certain fees and better reflects true borrowing costs. If the calculator doesn't include APR, multiply the interest rate by the loan term to estimate total interest, then add all fees.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Model multiple scenarios in one session: compare different term lengths (e.g., 15-year vs. 30-year mortgage), different interest rates (e.g., your pre-approval offer vs. competitors' rates), and different fee structures to see which combination minimizes total cost.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you're considering paying off a loan early or making extra payments, note that this calculator assumes regular monthly payments; contact your lender to confirm there are no prepayment penalties before accelerating payoff.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Origination and Processing Fees</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many borrowers focus only on interest rates and overlook upfront fees, which can add $500–$5,000 to the true cost of a loan. Always include these fees in your comparison, as they're often rolled into the loan balance and accrue interest over time.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Additional Loan Costs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">For mortgages, this calculator doesn't include property taxes, insurance, HOA fees, or PMI (if applicable), which can add hundreds of dollars to your monthly obligation. Use this calculator as a starting point, then add estimated costs to get a complete monthly budget picture.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Comparing Only Monthly Payments Instead of Total Cost</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A lower monthly payment doesn't always mean a better loan; a 30-year mortgage has lower payments than a 15-year mortgage but costs significantly more in total interest. Always evaluate total cost alongside monthly affordability.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated Interest Rate Assumptions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Interest rates change constantly, and a rate you used in a calculator last month may no longer be available. Always verify current rates with lenders and re-run comparisons before making a final decision.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          In this formula, P represents the principal amount of the loan, r is the monthly interest rate (calculated by dividing the annual rate by 12), and n is the total number of payments (the loan term in months). The formula calculates the monthly payment (M) by considering both the principal and the interest that will accrue over the life of the loan. This ensures that each payment covers both the interest and a portion of the principal, gradually reducing the balance to zero by the end of the term.
-        </p>
-        <p className="mb-4">
-          Understanding how each variable affects the calculation is crucial. For example, a higher interest rate (r) will increase the monthly payment, while a longer term (n) will decrease it. However, extending the term also increases the total interest paid over the life of the loan. By adjusting these variables, you can see how different loan structures impact your monthly budget and overall financial health.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your loan comparison results is essential for making informed financial decisions. These factors interact in complex ways, affecting both the monthly payments and the total cost of each loan option. By considering these elements, you can better assess which loan aligns with your financial goals.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate is one of the most significant factors affecting your loan's cost. It determines how much you'll pay in interest over the life of the loan. A lower interest rate reduces both your monthly payment and the total interest paid. For example, a 1% decrease in interest rate on a $200,000 loan can save you thousands in interest payments.
-        </p>
-        <p className="mb-6">
-          When comparing loans, look for the lowest interest rate available, but also consider other terms and conditions. Sometimes, a slightly higher rate might come with more favorable terms, such as no prepayment penalties. Use our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> to explore how different interest structures affect your payments.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Term
-        </h3>
-        <p className="mb-4">
-          The loan term, or the length of time you have to repay the loan, directly impacts your monthly payment and total interest cost. A longer term results in lower monthly payments but increases the total interest paid. Conversely, a shorter term increases monthly payments but reduces total interest.
-        </p>
-        <p className="mb-6">
-          Consider your financial situation and goals when choosing a loan term. If you can afford higher monthly payments, a shorter term can save you money in the long run. However, if cash flow is a concern, a longer term might be more manageable. Evaluate your options with our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Amount
-        </h3>
-        <p className="mb-4">
-          The principal amount of the loan is the starting point for all calculations. Larger loans result in higher monthly payments and total interest costs. It's important to borrow only what you need to minimize these expenses.
-        </p>
-        <p className="mb-6">
-          Before deciding on a loan amount, assess your financial needs and repayment ability. Consider other financial goals and obligations to ensure you can comfortably manage the loan payments. For more insights, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> to see how refinancing might affect your loan amount and terms.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Fees and Additional Costs
-        </h3>
-        <p className="mb-6">
-          Many loans come with additional fees, such as origination fees, closing costs, and prepayment penalties. These costs can significantly impact the total cost of the loan. It's crucial to factor these into your comparison to get a true picture of each loan's cost.
-        </p>
-        <p className="mb-6">
-          Always read the fine print and ask lenders about any fees associated with the loan. Sometimes, a loan with a slightly higher interest rate but lower fees can be more cost-effective. Consider these factors carefully when comparing loans.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Credit Score
-        </h3>
-        <p className="mb-6">
-          Your credit score plays a crucial role in determining the interest rate and terms you're offered. A higher credit score typically results in lower interest rates and better loan terms. It's essential to maintain a good credit score to access the most favorable loan options.
-        </p>
-        <p className="mb-6">
-          Before applying for a loan, check your credit report and address any issues that might negatively affect your score. Improving your credit score can save you money by qualifying you for lower interest rates. For more guidance, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> to see how credit impacts home equity lines of credit.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What loan types can I compare using this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator supports comparisons across multiple loan types including mortgages, auto loans, personal loans, and student loans. You can input different loan amounts, interest rates, and terms to see side-by-side comparisons of monthly payments, total interest paid, and amortization schedules. This flexibility helps you evaluate whether refinancing or switching loan products makes financial sense.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator handle different interest rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator accepts both fixed and variable interest rates for each loan you're comparing. For fixed-rate loans, the rate remains constant throughout the term, while variable-rate inputs allow you to model scenarios with rate changes. As of 2024, average mortgage rates range from 6.5% to 7.2%, auto loans from 6.8% to 8.5%, and personal loans from 8% to 36%, depending on credit profile.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I compare loans with different term lengths?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator is designed specifically to compare loans with varying term lengths. For example, you might compare a 15-year mortgage at 6.8% against a 30-year mortgage at 6.5% to see how monthly payment and total interest differ. This helps illustrate why longer terms reduce monthly payments but increase total interest costs significantly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is included in the total cost calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator computes total cost as the sum of all monthly payments plus any upfront fees you input, such as origination fees, closing costs, or prepaid interest. For example, a $300,000 mortgage with a 1% origination fee ($3,000) and 6.8% interest over 30 years results in total interest of approximately $219,000, making the true cost $522,000 before taxes and insurance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I account for additional fees like origination or processing fees?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter all one-time fees in the upfront costs field for each loan you're comparing. Origination fees typically range from 0.5% to 1.5% of the loan amount, while processing fees average $200–$500 for personal loans and $500–$2,000 for mortgages. Including these in your comparison ensures you're evaluating the true cost of borrowing, not just the interest rate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the calculator show me how much interest I'll pay over time?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator displays cumulative interest paid and creates an amortization breakdown showing how each payment splits between principal and interest. Early in a loan term, most of your payment goes to interest, but this ratio shifts over time. For a $200,000 loan at 7% over 30 years, you'll pay approximately $239,600 in interest alone.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I want to compare more than two loans?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most loan comparison calculators allow you to input and display 2–4 loans simultaneously, displaying monthly payments and total costs side-by-side for easy evaluation. If you need to compare more loans, you can run multiple calculations and track results in a spreadsheet. This approach helps you identify which loan structure best aligns with your budget and financial goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this calculator for real-world loan scenarios?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator provides accurate estimates based on the inputs you provide, but actual payments may vary slightly due to factors like property taxes, homeowners insurance, HOA fees, and PMI on mortgages, which aren't included in basic calculations. For personal loans and auto loans, the results are highly accurate as they typically don't have additional escrow items. Always verify final numbers with your lender before committing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I use this calculator before or after getting loan quotes from lenders?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use this calculator both before and after obtaining quotes. Initial use helps you determine what loan terms you can afford and what questions to ask lenders. After receiving official loan estimates, enter the actual rates and fees into the calculator to verify the lender's numbers and compare multiple offers. This two-step approach ensures you're making an informed decision based on real market data.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Interest Rates
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on interest rates and economic indicators from the Federal Reserve.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/mortgage-closing/loan-estimate/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau — Loan Estimate Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on understanding loan estimates and comparing mortgage terms from different lenders.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Loan Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on loans.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H.15" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve — Historical Mortgage Rate Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Primary source for historical and current mortgage interest rates used by financial institutions.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information from the FDIC.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/loans/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate — Loan Calculators and Rate Benchmarks</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Current average rates for auto loans, personal loans, and mortgages updated daily based on lender data.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information from the IRS.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained on Investopedia.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers on NerdWallet.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p970" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS — Publication 970: Tax Benefits for Education</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to federal student loan tax deductions and interest calculations relevant to student loan comparisons.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

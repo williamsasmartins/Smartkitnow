@@ -85,24 +85,40 @@ export default function HelocPaymentEstimatorCalculator() {
 
   const faqs = [
     {
-      question: "What is a HELOC Payment Estimator?",
-      answer: "A HELOC Payment Estimator is a tool designed to help you calculate the monthly payments for a Home Equity Line of Credit (HELOC). It considers both the draw period, where you typically pay only interest, and the repayment period, where you pay both principal and interest. This calculator helps borrowers understand their future financial obligations and plan accordingly."
+      question: "What is the difference between a HELOC draw period and repayment period?",
+      answer: "The draw period, typically 5-10 years, is when you can borrow and make interest-only payments on your HELOC. The repayment period, usually 10-20 years, begins after the draw period ends and requires you to pay down both principal and interest, often at a higher payment amount. This calculator helps you estimate payments for both phases.",
     },
     {
-      question: "How is the HELOC payment calculated?",
-      answer: "The HELOC payment is calculated differently for the draw period and the repayment period. During the draw period, the payment is usually interest-only, calculated as (Loan Balance × Interest Rate) / 12. During the repayment period, the payment includes both principal and interest, amortized over the remaining term. Our calculator uses these formulas to provide an accurate estimate of your monthly payments."
+      question: "How does the variable interest rate affect my HELOC payment estimate?",
+      answer: "Most HELOCs use variable rates tied to the prime rate plus a margin (typically 0.5-2%). When rates rise, your monthly payments increase; when they fall, your payments decrease. The HELOC Payment Estimator allows you to input different rate scenarios to see how a potential 1-3% rate increase could impact your payments over time.",
     },
     {
-      question: "What is the difference between the draw period and the repayment period?",
-      answer: "The draw period is the initial phase of a HELOC, typically lasting 5 to 10 years, during which you can borrow from the line of credit and make interest-only payments. The repayment period follows the draw period, usually lasting 10 to 20 years, during which you can no longer borrow and must repay the principal and interest. Understanding these phases is crucial for managing your HELOC effectively."
+      question: "What home equity do I need to qualify for a HELOC?",
+      answer: "Most lenders require at least 15-20% equity in your home to open a HELOC, with some allowing up to 80-90% loan-to-value (LTV) ratios. For example, on a $300,000 home, you'd typically need $45,000-$60,000 in equity to qualify. Use this calculator to determine manageable payment amounts based on your expected credit line.",
     },
     {
-      question: "Can I make extra payments on my HELOC?",
-      answer: "Yes, you can usually make extra payments on your HELOC during both the draw and repayment periods. Making extra payments during the draw period reduces your principal balance, which in turn reduces your interest payments. During the repayment period, extra payments can help you pay off the loan faster and save on total interest costs. Always check with your lender for any prepayment penalties."
+      question: "Can this calculator show me interest-only versus principal-and-interest payments?",
+      answer: "Yes, the HELOC Payment Estimator distinguishes between draw period payments (usually interest-only) and repayment period payments (principal and interest combined). For a $100,000 HELOC at 8% interest, your draw period payment might be $667/month, but your repayment period payment could jump to $1,200+/month depending on the term length.",
     },
     {
-      question: "How do interest rate changes affect my HELOC payments?",
-      answer: "Most HELOCs have variable interest rates, meaning your rate can change based on market conditions. If interest rates rise, your monthly payments will increase, and if they fall, your payments will decrease. This variability introduces some risk, so it's important to budget for potential rate increases. Some lenders offer fixed-rate options for a portion of your balance, providing more stability."
+      question: "What happens to my HELOC payment if interest rates spike?",
+      answer: "If rates jump 2-3%, your monthly payment can increase significantly during variable-rate periods. For instance, a $150,000 HELOC at 7% ($875/month) could rise to $1,050+ if rates hit 9%. This calculator lets you model rate-shock scenarios to ensure you can afford payments if the prime rate climbs.",
+    },
+    {
+      question: "How much can I typically borrow with a HELOC?",
+      answer: "HELOC credit limits typically range from $25,000 to $500,000, with most lenders capping borrowing at 80-85% of your home's value minus your mortgage balance. On a $400,000 home with a $250,000 mortgage, you might qualify for a $70,000-$120,000 HELOC depending on credit score and debt-to-income ratio.",
+    },
+    {
+      question: "Should I use the draw period to pay down other debts with a HELOC?",
+      answer: "Many borrowers use HELOCs to consolidate high-interest debt (credit cards at 18-24%) into lower-rate borrowing (current HELOC rates around 8-9%). However, this calculator shows that your payments balloon during the repayment period, so ensure you can afford the full principal-and-interest phase before borrowing heavily during the draw period.",
+    },
+    {
+      question: "What closing costs should I expect when opening a HELOC?",
+      answer: "HELOC closing costs typically range from $2,000-$5,000 (0.5-1.5% of the credit line), including appraisal, title search, and underwriting fees. Unlike mortgages, many HELOCs offer waived closing costs if you maintain a minimum balance or use the line regularly, so factor this into your total borrowing cost.",
+    },
+    {
+      question: "How does my credit score affect HELOC rates and payments?",
+      answer: "Borrowers with credit scores of 740+ typically qualify for rates 0.5-1.5% lower than those with 650-700 scores. A $200,000 HELOC at 7% costs $1,167/month in interest-only, but at 8.5% it costs $1,417/month—a $250 monthly difference. This calculator helps you understand how rate variations based on creditworthiness impact affordability.",
     }
   ];
 
@@ -316,250 +332,269 @@ export default function HelocPaymentEstimatorCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding HELOC Payment Estimator
-        </h2>
-        
-        <p className="mb-6">
-          A Home Equity Line of Credit (HELOC) is a flexible loan option for homeowners that allows them to borrow against the equity in their home. The HELOC Payment Estimator is a valuable tool that helps you calculate the monthly payments required during both the draw period and the repayment period of a HELOC. This tool is essential for homeowners considering a HELOC, as it provides a clear picture of the financial commitment involved. Whether you're planning home improvements, consolidating debt, or covering unexpected expenses, understanding your payment obligations is crucial for financial planning.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital when dealing with HELOCs because they directly impact your financial stability. Miscalculations can lead to unexpected financial strain, affecting your ability to meet other financial obligations. According to recent studies, a significant percentage of homeowners underestimate their HELOC payments, leading to financial stress. By using this estimator, you can avoid such pitfalls and make informed decisions about your borrowing needs. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information about your loan amount, interest rate, draw period, and repayment period. Enter these details into the respective fields to calculate your monthly payments. This tool provides an easy-to-understand breakdown of your payment obligations, helping you plan your finances better. For additional guidance, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. Small errors in the loan amount or interest rate can lead to significant differences in your estimated payments. Ensure that all values are current and reflect your financial situation accurately.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the HELOC Payment Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The HELOC Payment Estimator is designed to help you project monthly payments on a home equity line of credit, accounting for both the interest-only draw period and the principal-and-interest repayment period. Understanding these two phases is critical because payments can more than double when you transition from the draw phase to repayment, making advance planning essential for your household budget.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, you'll input three key variables: the total credit line amount you plan to borrow (or expect to qualify for), the interest rate (either current market rates or a scenario you want to test), and the duration of both your draw period and repayment period. These inputs directly determine whether your HELOC remains affordable throughout its full lifecycle and help you decide if consolidating debt or funding home improvements makes financial sense.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">After calculating, review both your draw-period and repayment-period payment amounts side by side. Pay special attention to the payment jump when the repayment phase begins—this is where many borrowers encounter affordability challenges. Use this estimate to compare with other lenders' terms, stress-test for potential rate increases, and ensure you can manage payments even if the prime rate climbs 1-2% above current levels.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this estimator include regularly updating your inputs as your financial situation changes. Consider how fluctuations in interest rates might affect your payments. Staying informed about market trends can help you optimize your HELOC strategy and minimize costs.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          HELOC Payment Estimator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The HELOC Payment Estimator uses a standard formula to calculate your monthly payments during both the draw and repayment periods. This formula considers the loan amount, interest rate, and the duration of each period. The draw period payments are typically interest-only, while the repayment period includes both principal and interest.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Monthly Payment = (Loan Amount × Interest Rate / 12) / (1 - (1 + Interest Rate / 12)^(-Repayment Period × 12))
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Loan Amount = Total amount borrowed</li>
-              <li>Interest Rate = Annual interest rate (as a decimal)</li>
-              <li>Repayment Period = Number of years for repayment</li>
-            </ul>
+      {/* TABLE: Sample HELOC Payment Estimates by Credit Line and Rate */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sample HELOC Payment Estimates by Credit Line and Rate</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated monthly payments during the draw period (interest-only) for various HELOC amounts and interest rates as of 2025.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Credit Line Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">At 7% APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">At 8% APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">At 9% APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">At 10% APR</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$292</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$333</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$375</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$417</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$583</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$667</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$833</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$150,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,250</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,167</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,333</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,667</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$250,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,458</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,667</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,083</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Payments shown are interest-only during typical 5-10 year draw periods. Actual rates vary by lender, creditworthiness, and market conditions. Repayment period payments will be significantly higher.</p>
+      </section>
+
+      {/* TABLE: HELOC Repayment Period Payment Comparison (10-Year Repayment) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">HELOC Repayment Period Payment Comparison (10-Year Repayment)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how monthly payments increase when transitioning from draw period to repayment period for a $150,000 HELOC at 8% interest.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Payment Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest (Period)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Principal Paid Down</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Years 1-5 (Draw)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Interest-Only</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Years 6-15 (Repayment)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Principal + Interest</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,823</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$73,815</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Years 1-15 Combined</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mixed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Avg: $1,412</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$133,815</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">This example assumes the HELOC rate remains constant at 8% throughout all periods. Variable rates may increase or decrease actual payments. Total interest paid would be higher if rates rise during the repayment phase.</p>
+      </section>
+
+      {/* TABLE: Home Equity Requirements by Loan-to-Value (LTV) Ratio */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Home Equity Requirements by Loan-to-Value (LTV) Ratio</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows minimum home equity needed to qualify for a HELOC based on common lender LTV maximums.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Home Value</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">80% LTV Max Borrow</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">85% LTV Max Borrow</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mortgage Balance Example</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Available HELOC Amount</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$250,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$212,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000–$62,500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$350,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$280,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$297,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$210,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$70,000–$87,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$400,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$320,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$340,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$70,000–$90,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$500,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$425,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100,000–$125,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual HELOC amounts depend on credit score, income, debt-to-income ratio, and individual lender policies. Most major lenders cap LTV at 85%, with some premium borrowers accessing up to 90%.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Model rate-shock scenarios by increasing your assumed interest rate by 2-3% to prepare for potential payment increases. If a $150,000 HELOC is unaffordable at 10% interest, it may not be wise to borrow at today's 8% rates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the draw period strategically to pay down high-interest debt (credit cards, personal loans) before the repayment phase begins, reducing the principal balance you'll need to repay with interest and principal combined.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare the total interest paid across different repayment periods (10, 15, or 20 years)—a longer repayment period lowers monthly payments but increases total interest cost significantly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in closing costs (typically $2,000-$5,000) when deciding whether to open a HELOC for debt consolidation; the interest savings must outweigh upfront fees to make the strategy worthwhile.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Repayment Period Payments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many borrowers focus only on low draw-period payments and ignore the payment shock when the repayment phase begins. A $100,000 HELOC might cost $667/month during the draw phase but $1,200+/month during repayment, creating budget strain if not anticipated in advance.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Borrowing More Than You Need</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Just because you qualify for a $200,000 HELOC doesn't mean you should draw the full amount. Each additional $50,000 borrowed increases your repayment phase payment by $600-$800/month depending on rates and terms, so only borrow what you actually need.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Variable Rate Risk</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming your HELOC rate will stay flat at today's 8% over 15+ years is unrealistic. A 3% rate increase can jump your monthly payment from $1,000 to $1,250+, so use this calculator to stress-test what happens if rates rise.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using a HELOC as Emergency Savings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some borrowers open a HELOC as a backup emergency fund but neglect to plan for repayment obligations. If you hit a financial hardship (job loss, medical bills) and have drawn on the HELOC, you'll still owe principal-and-interest payments during the repayment phase, which could worsen your situation.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining your monthly payment. The loan amount is the total credit line available, while the interest rate affects how much you'll pay in interest each month. The repayment period determines how long you'll be making payments, influencing the size of each installment. Adjusting any of these variables can significantly impact your financial planning.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your HELOC payments is essential for effective financial planning. These factors are interconnected and can vary based on your personal financial situation and market conditions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate is a critical factor in determining your monthly payments. A higher rate increases the cost of borrowing, while a lower rate reduces it. Interest rates can fluctuate based on economic conditions, so it's important to stay informed about market trends.
-        </p>
-        <p className="mb-6">
-          To optimize your HELOC, consider locking in a fixed rate if you anticipate rising interest rates. This can provide stability and predictability in your monthly payments. For more strategies, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Amount
-        </h3>
-        <p className="mb-4">
-          The loan amount is the total credit line available to you. It's determined by the equity in your home and the lender's policies. A larger loan amount results in higher monthly payments, while a smaller amount reduces your financial obligation.
-        </p>
-        <p className="mb-6">
-          Consider borrowing only what you need to minimize your debt and interest payments. Evaluate your financial goals and ensure that the loan amount aligns with your long-term plans.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Draw Period
-        </h3>
-        <p className="mb-4">
-          The draw period is the initial phase of a HELOC, during which you can borrow against your credit line. Payments during this period are typically interest-only, which can make them more affordable.
-        </p>
-        <p className="mb-6">
-          It's important to plan for the transition from the draw period to the repayment period, as payments will increase when you begin repaying the principal. Consider setting aside funds during the draw period to ease this transition.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Repayment Period
-        </h3>
-        <p className="mb-6">
-          The repayment period follows the draw period and requires you to repay both principal and interest. This period typically lasts 10 to 20 years, depending on your agreement with the lender. Planning for this phase is crucial, as payments will be higher than during the draw period.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Economic Conditions
-        </h3>
-        <p className="mb-6">
-          Economic conditions, such as inflation and changes in the housing market, can affect your HELOC payments. It's important to stay informed about these factors and adjust your financial strategy accordingly. For instance, rising inflation may lead to higher interest rates, impacting your monthly payments.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between a HELOC draw period and repayment period?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The draw period, typically 5-10 years, is when you can borrow and make interest-only payments on your HELOC. The repayment period, usually 10-20 years, begins after the draw period ends and requires you to pay down both principal and interest, often at a higher payment amount. This calculator helps you estimate payments for both phases.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the variable interest rate affect my HELOC payment estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most HELOCs use variable rates tied to the prime rate plus a margin (typically 0.5-2%). When rates rise, your monthly payments increase; when they fall, your payments decrease. The HELOC Payment Estimator allows you to input different rate scenarios to see how a potential 1-3% rate increase could impact your payments over time.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What home equity do I need to qualify for a HELOC?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most lenders require at least 15-20% equity in your home to open a HELOC, with some allowing up to 80-90% loan-to-value (LTV) ratios. For example, on a $300,000 home, you'd typically need $45,000-$60,000 in equity to qualify. Use this calculator to determine manageable payment amounts based on your expected credit line.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator show me interest-only versus principal-and-interest payments?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the HELOC Payment Estimator distinguishes between draw period payments (usually interest-only) and repayment period payments (principal and interest combined). For a $100,000 HELOC at 8% interest, your draw period payment might be $667/month, but your repayment period payment could jump to $1,200+/month depending on the term length.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens to my HELOC payment if interest rates spike?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If rates jump 2-3%, your monthly payment can increase significantly during variable-rate periods. For instance, a $150,000 HELOC at 7% ($875/month) could rise to $1,050+ if rates hit 9%. This calculator lets you model rate-shock scenarios to ensure you can afford payments if the prime rate climbs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much can I typically borrow with a HELOC?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">HELOC credit limits typically range from $25,000 to $500,000, with most lenders capping borrowing at 80-85% of your home's value minus your mortgage balance. On a $400,000 home with a $250,000 mortgage, you might qualify for a $70,000-$120,000 HELOC depending on credit score and debt-to-income ratio.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I use the draw period to pay down other debts with a HELOC?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Many borrowers use HELOCs to consolidate high-interest debt (credit cards at 18-24%) into lower-rate borrowing (current HELOC rates around 8-9%). However, this calculator shows that your payments balloon during the repayment period, so ensure you can afford the full principal-and-interest phase before borrowing heavily during the draw period.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What closing costs should I expect when opening a HELOC?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">HELOC closing costs typically range from $2,000-$5,000 (0.5-1.5% of the credit line), including appraisal, title search, and underwriting fees. Unlike mortgages, many HELOCs offer waived closing costs if you maintain a minimum balance or use the line regularly, so factor this into your total borrowing cost.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does my credit score affect HELOC rates and payments?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Borrowers with credit scores of 740+ typically qualify for rates 0.5-1.5% lower than those with 650-700 scores. A $200,000 HELOC at 7% costs $1,167/month in interest-only, but at 8.5% it costs $1,417/month—a $250 monthly difference. This calculator helps you understand how rate variations based on creditworthiness impact affordability.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Home Equity Lines of Credit
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on HELOCs, including interest rates and regulatory guidelines.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/about-us/blog/home-equity-lines-of-credit-how-they-work/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau – Home Equity Lines of Credit</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official CFPB guidance on how HELOCs work, including draw and repayment periods, variable rates, and borrower protections.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - HELOC Guide
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on HELOCs.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H.15" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve – Historical Prime Rate Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Historical and current prime rate data from the Federal Reserve, essential for understanding HELOC rate benchmarks tied to prime plus margin.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - HELOC Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information related to HELOCs.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/loans/home-equity/heloc-rates/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate – HELOC Rates and Terms Comparison</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Current HELOC interest rates, lender offers, and comparison tools to validate rate assumptions in your payment estimate.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Home Equity Loan Interest Deduction
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information for home equity loans.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Understanding HELOCs
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts related to HELOCs.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - HELOC vs. Home Equity Loan
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for HELOCs and home equity loans.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p936" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 936 – Home Mortgage Interest Deduction</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">IRS guidelines on tax deductibility of HELOC interest when funds are used to buy, build, or improve your home.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

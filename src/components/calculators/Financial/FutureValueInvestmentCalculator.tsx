@@ -35,24 +35,40 @@ export default function FutureValueInvestmentCalculator() {
 
   const faqs = [
     {
-      question: "What is the difference between future value with and without additional contributions?",
-      answer: "Future value without contributions (FV = PV × (1+r)^n) shows only compound growth on an initial lump sum. Future value with periodic contributions (FV = PV×(1+r)^n + PMT × ((1+r)^n − 1)/r) adds the compounding effect of regular deposits. Example: $10,000 invested at 7% for 30 years = $76,123 (no contributions). Add $200/month: total invested $72,000 extra, but final value = $265,903 -- contributions grew by 3.7× due to compounding. This illustrates why early, consistent contributions matter more than any single lump-sum deposit -- the monthly habit creates most of the terminal value in long-horizon scenarios."
+      question: "What is the difference between future value and present value in investment calculations?",
+      answer: "Future value (FV) calculates what your money will be worth at a specific date in the future based on compound growth, while present value (PV) works backward to determine what a future amount is worth in today's dollars. The Future Value of Investment Calculator uses the formula FV = PV × (1 + r)^n, where r is the annual interest rate and n is the number of years. Understanding this distinction helps you set realistic savings goals and compare investment opportunities fairly.",
     },
     {
-      question: "How do I account for inflation when interpreting future value results?",
-      answer: "Divide the nominal future value by (1 + inflation rate)^years to get real (purchasing-power-adjusted) value. With 3% inflation for 30 years: divide by 2.427. A $265,000 nominal value has purchasing power of $109,193 in today's dollars. Rule of thumb: at 3% inflation, purchasing power halves every 24 years. For retirement planning: your real return = ((1 + nominal rate) / (1 + inflation rate)) − 1. A 7% nominal return with 3% inflation = 3.88% real return. Always show clients both nominal and real projections -- most people significantly overestimate the purchasing power of large future-value numbers."
+      question: "How does compounding frequency affect my investment's future value?",
+      answer: "Compounding frequency—whether interest is calculated annually, semi-annually, quarterly, monthly, or daily—significantly impacts your final returns. For example, $10,000 invested at 5% annual interest compounded annually grows to $12,762.82 in 5 years, but compounded daily it reaches $12,840.03, a difference of $77.21. The more frequently interest compounds, the more you earn due to earning interest on your interest. This calculator allows you to adjust compounding frequency to match your actual investment product's terms.",
     },
     {
-      question: "What investment return rate should I use for a 30-year projection?",
-      answer: "Historical annualized returns (inflation-adjusted): S&P 500: ~7% real (10% nominal − 3% inflation). US bonds: ~1–2% real. Global diversified equity: ~5–6% real. Bitcoin (2015–2024): ~30% nominal (but with extreme volatility and selection bias for survival). Conservative planning assumption: 5–6% nominal for a balanced portfolio, 7–8% for equity-heavy. Never use past crypto returns as a projection rate -- the growth rate was front-loaded in early adoption and is not replicable. Run sensitivity analysis: calculate at 4%, 6%, and 8% to show the outcome range rather than picking one number as 'the answer'."
+      question: "What inflation rate should I use in the future value calculator?",
+      answer: "The U.S. average inflation rate has ranged from 2-9% over the past decade, with the Federal Reserve's target being 2% annually. When using the calculator, you can input the expected inflation rate to calculate 'real' future value (adjusted for purchasing power) versus nominal future value (actual dollar amount). If you're calculating long-term investments like retirement, using a 2.5-3% inflation assumption is prudent based on historical averages.",
     },
     {
-      question: "How does compounding frequency affect future value in practice?",
-      answer: "More frequent compounding increases future value, but the effect is small in most practical scenarios. $10,000 at 7% for 30 years: annual compounding = $76,123. Monthly compounding = $81,165. Daily compounding = $81,645. The difference between monthly and daily is only $480 over 30 years -- negligible. The difference between annual and monthly is $5,042 -- more meaningful. In practice, most mutual funds and ETFs compound daily (dividends reinvested at NAV). The formula assumes consistent returns; actual returns vary annually, which makes compounding frequency less important than the average rate achieved."
+      question: "Can I use this calculator for different investment types like stocks, bonds, and savings accounts?",
+      answer: "Yes, this calculator works for any investment type as long as you input the correct expected annual return rate. Stocks historically average 10% annually, investment-grade bonds range from 3-5%, and high-yield savings accounts currently offer 4-5% (as of 2024). Simply adjust the interest rate and compounding frequency to match your specific investment vehicle to get an accurate projection.",
     },
     {
-      question: "What is the Rule of 72 and how does it apply to future value calculations?",
-      answer: "The Rule of 72 is a shortcut: divide 72 by the annual return rate to estimate years to double. At 7%: 72/7 ≈ 10.3 years to double. At 10%: 72/10 = 7.2 years. At 4%: 72/4 = 18 years. It is surprisingly accurate for rates between 4% and 20% (error within 2%). For triple-doubling: multiply by 3 (at 7%, ~31 years to 8× your money = 3 doublings). Use this to sanity-check future value calculations: if your calculator shows your money doubling in 5 years at 7%, that is wrong (should be ~10 years). The Rule of 72 also works for inflation: at 3% inflation, purchasing power halves in 72/3 = 24 years."
+      question: "How accurate are future value projections over 20+ years?",
+      answer: "Future value calculations are mathematically precise but based on the assumption that returns remain consistent, which rarely happens in real investing. For short-term projections (1-5 years), accuracy is generally high if you use realistic rates. For longer periods (20+ years), the calculator provides a helpful baseline, but you should account for market volatility, changing interest rates, and economic cycles by running multiple scenarios with different return rates.",
+    },
+    {
+      question: "What is the '72 rule' and how does it relate to this calculator's results?",
+      answer: "The Rule of 72 is a quick mental math trick: divide 72 by your annual interest rate to estimate how many years it takes to double your money. For example, at 6% annual return, your investment doubles in approximately 12 years (72÷6=12). You can verify this with the calculator by setting your initial investment to $10,000 and checking when it reaches $20,000, confirming that consistent compound growth predictions are accurate.",
+    },
+    {
+      question: "Should I include additional contributions (monthly deposits) when calculating future value?",
+      answer: "This basic future value calculator computes growth on a single lump-sum investment. If you make regular monthly or annual contributions, your actual future value will be significantly higher, so you may want to use a separate future value of annuity calculator for a complete picture. For example, $10,000 invested once grows differently than $10,000 plus $500 monthly contributions—the latter produces substantially better results due to consistent dollar-cost averaging.",
+    },
+    {
+      question: "How do tax implications affect the future value shown by this calculator?",
+      answer: "The calculator displays pre-tax future value; actual gains depend on your tax bracket and investment account type. In a taxable brokerage account, capital gains taxes (15-20% for long-term gains, up to 37% for short-term) reduce your real returns, while 401(k)s and Roth IRAs offer tax-deferred or tax-free growth. Running the calculator with a slightly lower return rate (adjusted for estimated taxes) provides a more realistic after-tax projection.",
+    },
+    {
+      question: "What happens if I adjust my expected return rate down by 2-3% for market volatility?",
+      answer: "Adjusting for volatility provides a conservative estimate closer to real-world outcomes. For instance, if stocks average 10% historically but you assume 7-8% to account for downturns and fees, $50,000 invested for 10 years yields $96,715 (at 7%) instead of $129,687 (at 10%)—a difference of over $33,000. This approach helps you avoid overestimating retirement savings or investment goals and creates a more achievable financial plan.",
     }
   ];
 
@@ -425,258 +441,281 @@ export default function FutureValueInvestmentCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+    <div className="space-y-12">
 
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Future Value of Investment Calculator
-        </h2>
-
-        <p className="mb-6">
-          The Future Value of Investment Calculator is a powerful tool designed to help you estimate the growth of your investments over time. By inputting your initial principal, expected annual interest rate, the number of years you plan to invest, and any regular contributions you intend to make, this calculator provides a comprehensive projection of your investment's future value. Whether you're planning for retirement, saving for a major purchase, or simply looking to grow your wealth, understanding the potential future value of your investments is crucial for making informed financial decisions.
-        </p>
-
-        <p className="mb-6">
-          Accurate calculations are vital in the realm of investments. Even small errors can lead to significant financial discrepancies over time. For instance, underestimating the impact of compound interest can result in missed opportunities for growth. This calculator uses a standard formula to ensure precise calculations, helping you avoid costly mistakes. By understanding the potential outcomes of your investment strategies, you can better align your financial goals with realistic expectations. For more insights, explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> to see how different interest rates affect loan repayments.
-        </p>
-
-        <p className="mb-6">
-          To use this calculator effectively, gather information such as your initial investment amount, the expected annual interest rate, the duration of your investment, and any additional monthly contributions. Enter these values into the respective fields to calculate the future value. It's important to use realistic figures to ensure the accuracy of your projections. For instance, if you're unsure about the interest rate, consider using historical averages or consult with a financial advisor. For a deeper understanding of how contributions affect growth, check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5" />
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Remember, the power of compound interest means that even small regular contributions can significantly increase the future value of your investment. Consistency is key, and starting early can provide a substantial advantage over time.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Future Value of Investment Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Future Value of Investment Calculator helps you determine how much your money will grow over time based on compound interest. This tool is essential for retirement planning, savings goals, and investment strategy because it shows the real power of time and consistent returns. Whether you're saving for a down payment, education, or retirement, understanding your investment's future value helps you set realistic targets and track progress.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The key inputs you'll need are your initial investment amount (the money you start with today), the expected annual interest rate or return (use 5-10% for stocks, 3-5% for bonds, 4-5% for savings accounts), the time period in years, and the compounding frequency (daily, monthly, quarterly, or annually). Each of these factors directly affects your final result; a 1% difference in annual return can mean thousands of dollars over 20 years, and more frequent compounding slightly increases your earnings.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs the total future value in today's dollars, the total interest or gain earned, and sometimes shows growth year-by-year for visual comparison. Remember that this assumes your interest rate stays constant and no withdrawals occur—real investing involves market fluctuations and periodic contributions, which may increase or decrease actual results. For the most accurate planning, run multiple scenarios using conservative, moderate, and optimistic return rates.</p>
         </div>
-
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs to reflect changes in your financial situation or market conditions. Consider factors such as inflation, which can erode the real value of your returns. Additionally, review your investment strategy periodically to ensure it aligns with your evolving financial goals. By staying informed and proactive, you can optimize your investment outcomes and achieve greater financial security.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Future Value of Investment Calculator Formula
-        </h2>
+      {/* TABLE: Future Value of $10,000 at Various Interest Rates Over Time */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Future Value of $10,000 at Various Interest Rates Over Time</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different annual interest rates affect a $10,000 initial investment compounded annually over 5, 10, 15, and 20 years.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">After 5 Years</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">After 10 Years</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">After 15 Years</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">After 20 Years</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,592.74</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$13,439.16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,579.67</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18,061.11</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,762.82</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16,288.95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,789.28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$26,532.98</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,025.52</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$19,671.51</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$27,590.32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$38,696.31</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16,105.10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25,937.42</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,772.48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$67,274.64</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$17,623.42</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$31,058.48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$54,735.65</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$96,462.93</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume annual compounding with no additional contributions. Returns shown are before taxes and inflation.</p>
+      </section>
 
-        <p className="mb-6">
-          The formula used in this calculator is based on the future value of a series formula, which calculates the future value of an investment with regular contributions. This formula is widely recognized in financial planning and investment analysis due to its ability to account for compound interest over time. The standard formula is:
-        </p>
+      {/* TABLE: Impact of Compounding Frequency on $25,000 at 6% Annual Rate (10 Years) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Compounding Frequency on $25,000 at 6% Annual Rate (10 Years)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how different compounding frequencies affect the final amount for a $25,000 investment earning 6% annually.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Compounding Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Future Value</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Earned</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Difference vs. Annual</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Annual</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$44,738.64</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$19,738.64</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.00</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Semi-Annual</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$44,883.64</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$19,883.64</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$145.00</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Quarterly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$44,957.66</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$19,957.66</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$219.02</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Monthly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$45,023.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,023.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$284.48</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$45,058.08</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,058.08</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$319.44</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Higher compounding frequency results in slightly more interest earned. Most savings accounts compound daily; bonds typically compound semi-annually.</p>
+      </section>
 
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          FV = P × (1 + r/n)^(nt) + PMT × [((1 + r/n)^(nt) - 1) / (r/n)]
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>FV = Future Value of the investment</li>
-              <li>P = Principal investment amount</li>
-              <li>r = Annual interest rate (decimal)</li>
-              <li>n = Number of times interest is compounded per year</li>
-              <li>t = Number of years the money is invested for</li>
-              <li>PMT = Monthly contribution</li>
-            </ul>
+      {/* TABLE: Historical Average Investment Returns by Asset Class (2014-2024) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Historical Average Investment Returns by Asset Class (2014-2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These benchmarks show the typical annual returns for different investment types, which you can use as reasonable inputs in the Future Value Calculator.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Asset Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Annual Return</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Range for Conservative Estimate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">S&P 500 Stocks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-9%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bonds (Investment Grade)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Yield Savings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Money Market Accounts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Inflation Rate (U.S.)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Historical averages should not be considered guarantees of future performance. Past returns vary yearly; use conservative estimates when planning long-term investments.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use conservative return estimates (reduce your expected rate by 2-3%) when planning for major life goals like retirement—it's better to be pleasantly surprised with extra savings than to fall short of your target.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare compounding frequencies across your investment options; daily or monthly compounding can add hundreds or thousands to your future value over 20+ years compared to annual compounding.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Run the calculator backward to find the interest rate you need: set your target future value and adjust the rate upward until the output matches your goal, revealing what returns you must achieve.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for inflation by calculating your future value at your expected return rate, then dividing by (1 + inflation rate)^years to see your purchasing power in today's dollars.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test sensitivity by running the calculator three times—once at your expected return, once 2% lower (recession scenario), and once 2% higher (optimistic scenario)—to understand the range of possible outcomes.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Adjust for Taxes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator shows pre-tax returns; if your investment earns $50,000 in gains, you'll owe 15-20% capital gains tax or income tax (depending on account type), reducing your actual take-home amount by $7,500-$10,000.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Historical Stock Returns Without Risk Adjustment</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Stocks have averaged 10% annually, but individual years range from -50% to +50%; using 10% as your expected rate is unrealistic for conservative planning, and 7-8% is a more prudent assumption.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Inflation Over Long Periods</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">$100,000 in 20 years isn't worth $100,000 in today's purchasing power due to inflation; using 2.5-3% inflation adjustment reveals that your real value is significantly lower than the calculator's nominal result.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Constant Returns in a Volatile Market</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator assumes your interest rate never changes, but real investments fluctuate monthly or daily; treat the result as an average-case scenario, not a guarantee.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Fees and Expenses</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Investment management fees, expense ratios, and trading costs typically reduce returns by 0.5-2% annually; subtract these from your expected return rate before entering it into the calculator for accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing Nominal and Real Returns</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you input 5% as your return but that's already adjusted for inflation, don't apply an additional inflation adjustment to the results, as you'll double-count and underestimate your actual purchasing power.</p>
           </div>
         </div>
-
-        <p className="mb-4">
-          Each component of the formula plays a crucial role in determining the future value. The principal amount (P) is the initial sum invested, which grows over time through compound interest. The annual interest rate (r) is divided by the number of compounding periods per year (n) to determine the periodic interest rate. The number of years (t) represents the investment duration, while the monthly contribution (PMT) accounts for additional funds added regularly. Variations of this formula may be used for different compounding frequencies, such as quarterly or annually, depending on the investment terms.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-
-        <p className="mb-6">
-          Understanding the factors that influence your investment's future value is essential for making informed decisions. These factors interact in complex ways, affecting the growth trajectory of your investments. By analyzing each component, you can optimize your strategy to achieve your financial goals.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Initial Principal
-        </h3>
-        <p className="mb-4">
-          The initial principal is the starting point of your investment. A larger principal provides a greater base for compound interest to act upon, leading to more significant growth over time. For example, an initial investment of $10,000 will grow more substantially than a $5,000 investment, assuming the same interest rate and duration.
-        </p>
-        <p className="mb-6">
-          To maximize the impact of your principal, consider strategies to increase your initial investment, such as reallocating funds from lower-yielding accounts. For more insights on maximizing your principal, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate significantly impacts your investment's growth. Higher rates result in more substantial returns due to the compounding effect. For instance, an investment with a 7% annual interest rate will grow faster than one with a 5% rate over the same period.
-        </p>
-        <p className="mb-6">
-          Interest rates can vary based on market conditions and investment types. It's crucial to research and compare rates across different financial products to ensure you're getting the best return. For a detailed comparison of interest rates, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Duration
-        </h3>
-        <p className="mb-4">
-          The duration of your investment plays a critical role in determining its future value. Longer investment periods allow more time for compound interest to accumulate, resulting in exponential growth. For example, investing for 30 years will yield significantly higher returns than investing for 10 years.
-        </p>
-        <p className="mb-6">
-          To take full advantage of time, start investing as early as possible and maintain a long-term perspective. This approach minimizes the impact of short-term market fluctuations and maximizes growth potential. For strategies on optimizing investment duration, consult our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Regular Contributions
-        </h3>
-        <p className="mb-6">
-          Regular contributions enhance the growth of your investment by adding more funds for compounding. Even small monthly contributions can significantly increase the future value over time. For instance, contributing an additional $200 monthly can lead to substantial growth over a 20-year period.
-        </p>
-        <p className="mb-6">
-          To optimize contributions, set up automatic transfers from your checking account to your investment account. This strategy ensures consistency and helps you stay committed to your financial goals. For more tips on managing contributions, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Inflation
-        </h3>
-        <p className="mb-6">
-          Inflation erodes the purchasing power of your returns, affecting the real value of your investment. It's essential to consider inflation when projecting future value, as it can significantly impact your financial goals. For example, an investment that grows by 5% annually may only yield a real return of 2% if inflation is 3%.
-        </p>
-        <p className="mb-6">
-          To mitigate the effects of inflation, aim for investments that offer returns exceeding the inflation rate. Diversifying your portfolio across different asset classes can also help protect against inflationary pressures. For more information on inflation's impact, visit our <a href="/financial/related-calculator-6" className="text-blue-600 dark:text-blue-400 hover:underline">related calculator</a>.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
-                {faq.question}
-              </h3>
-              <p
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between future value and present value in investment calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Future value (FV) calculates what your money will be worth at a specific date in the future based on compound growth, while present value (PV) works backward to determine what a future amount is worth in today's dollars. The Future Value of Investment Calculator uses the formula FV = PV × (1 + r)^n, where r is the annual interest rate and n is the number of years. Understanding this distinction helps you set realistic savings goals and compare investment opportunities fairly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does compounding frequency affect my investment's future value?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Compounding frequency—whether interest is calculated annually, semi-annually, quarterly, monthly, or daily—significantly impacts your final returns. For example, $10,000 invested at 5% annual interest compounded annually grows to $12,762.82 in 5 years, but compounded daily it reaches $12,840.03, a difference of $77.21. The more frequently interest compounds, the more you earn due to earning interest on your interest. This calculator allows you to adjust compounding frequency to match your actual investment product's terms.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What inflation rate should I use in the future value calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The U.S. average inflation rate has ranged from 2-9% over the past decade, with the Federal Reserve's target being 2% annually. When using the calculator, you can input the expected inflation rate to calculate 'real' future value (adjusted for purchasing power) versus nominal future value (actual dollar amount). If you're calculating long-term investments like retirement, using a 2.5-3% inflation assumption is prudent based on historical averages.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for different investment types like stocks, bonds, and savings accounts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator works for any investment type as long as you input the correct expected annual return rate. Stocks historically average 10% annually, investment-grade bonds range from 3-5%, and high-yield savings accounts currently offer 4-5% (as of 2024). Simply adjust the interest rate and compounding frequency to match your specific investment vehicle to get an accurate projection.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate are future value projections over 20+ years?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Future value calculations are mathematically precise but based on the assumption that returns remain consistent, which rarely happens in real investing. For short-term projections (1-5 years), accuracy is generally high if you use realistic rates. For longer periods (20+ years), the calculator provides a helpful baseline, but you should account for market volatility, changing interest rates, and economic cycles by running multiple scenarios with different return rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the '72 rule' and how does it relate to this calculator's results?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Rule of 72 is a quick mental math trick: divide 72 by your annual interest rate to estimate how many years it takes to double your money. For example, at 6% annual return, your investment doubles in approximately 12 years (72÷6=12). You can verify this with the calculator by setting your initial investment to $10,000 and checking when it reaches $20,000, confirming that consistent compound growth predictions are accurate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include additional contributions (monthly deposits) when calculating future value?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This basic future value calculator computes growth on a single lump-sum investment. If you make regular monthly or annual contributions, your actual future value will be significantly higher, so you may want to use a separate future value of annuity calculator for a complete picture. For example, $10,000 invested once grows differently than $10,000 plus $500 monthly contributions—the latter produces substantially better results due to consistent dollar-cost averaging.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do tax implications affect the future value shown by this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator displays pre-tax future value; actual gains depend on your tax bracket and investment account type. In a taxable brokerage account, capital gains taxes (15-20% for long-term gains, up to 37% for short-term) reduce your real returns, while 401(k)s and Roth IRAs offer tax-deferred or tax-free growth. Running the calculator with a slightly lower return rate (adjusted for estimated taxes) provides a more realistic after-tax projection.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I adjust my expected return rate down by 2-3% for market volatility?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Adjusting for volatility provides a conservative estimate closer to real-world outcomes. For instance, if stocks average 10% historically but you assume 7-8% to account for downturns and fees, $50,000 invested for 10 years yields $96,715 (at 7%) instead of $129,687 (at 10%)—a difference of over $33,000. This approach helps you avoid overestimating retirement savings or investment goals and creates a more achievable financial plan.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.federalreserve.gov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on economic indicators and financial market trends.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/tools/fi-calculator.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Office of Investor Education and Advocacy - Compound Interest Calculator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The Securities and Exchange Commission's official guidance on understanding compound interest and future value calculations for investment planning.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.consumerfinance.gov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p550" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 550 - Investment Income and Expenses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal tax guidance on how investment gains, capital gains taxes, and income from various investment types are taxed, critical for calculating after-tax future value.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.fdic.gov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/datamanual/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve - Historical Stock Market Returns and Economic Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official Federal Reserve economic data and historical returns for benchmarking realistic future value assumptions across asset classes.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.irs.gov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.investopedia.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Investment Strategies
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.nerdwallet.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/investing/future-value/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate - Future Value Calculator and Investment Growth Articles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Trusted financial education resource providing calculator tools and detailed explanations of how compound growth and future value work for various investments.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

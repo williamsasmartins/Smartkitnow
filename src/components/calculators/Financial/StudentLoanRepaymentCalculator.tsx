@@ -31,28 +31,40 @@ export default function StudentLoanRepaymentCalculator() {
   // FAQ STRUCTURED DATA
   const faqs = [
     {
-      question: "What are the federal student loan repayment plan options and how do I choose?",
-      answer: "Federal student loans have several repayment plans: (1) Standard (10 years) — fixed payments, least total interest, $33,000 at 5% = $350/month. (2) Graduated — payments start low, increase every 2 years, more total interest than Standard. (3) Extended (up to 25 years) — lower monthly payments, significantly more interest. (4) Income-Driven Repayment (IDR) plans — payments capped at 5-20% of discretionary income depending on the plan (SAVE, IBR, PAYE, ICR). IDR is best if you have high debt relative to income or plan to pursue Public Service Loan Forgiveness. Standard is best if you can afford the payments and want to minimize total interest paid."
+      question: "How does the Student Loan Repayment Calculator determine my monthly payment?",
+      answer: "The calculator uses your loan balance, interest rate, and repayment term to compute your monthly payment using the standard amortization formula. For example, a $30,000 loan at 6.5% interest over 10 years results in approximately $318 per month. The calculation accounts for both principal and interest portions of each payment.",
     },
     {
-      question: "How does the SAVE income-driven repayment plan work, and who benefits most?",
-      answer: "The SAVE (Saving on a Valuable Education) plan, introduced in 2023, is the most generous IDR plan. It caps payments at 5% of discretionary income for undergraduate loans (10% for graduate) and defines discretionary income as income above 225% of the federal poverty guideline. For borrowers earning under ~$32,800 (single, 2024), payments are $0/month — and $0 payments still count toward forgiveness. SAVE also prevents interest from capitalizing as long as you make your required payment. Borrowers with income < $60,000 and balances > $30,000 typically benefit most from SAVE vs. Standard repayment."
+      question: "What's the difference between Standard, Graduated, and Income-Driven repayment plans?",
+      answer: "The Standard plan requires equal monthly payments over 10 years (typically $300–$400 for $30,000 in loans). Graduated plans start lower and increase every 2 years, also lasting 10 years. Income-Driven plans (PAYE, REPAYE, IBR, ICR) cap payments at 10–20% of discretionary income and extend repayment to 20–25 years, potentially resulting in forgiveness of remaining balances.",
     },
     {
-      question: "What is Public Service Loan Forgiveness (PSLF) and what are the requirements?",
-      answer: "PSLF forgives the remaining balance on Direct federal loans after 120 qualifying payments (10 years) while working full-time for a qualifying employer — government agencies, 501(c)(3) nonprofits, public schools, and public hospitals all qualify. Requirements: (1) Direct Loans only (FFEL and Perkins must be consolidated), (2) enrolled in an IDR or Standard plan, (3) working full-time (30+ hours/week) for a qualifying employer for each of the 120 payments. Payments do not need to be consecutive. Example: $80,000 in loans, earning $50,000 with SAVE plan = ~$167/month for 10 years = ~$20,000 total paid, with $60,000+ forgiven tax-free."
+      question: "How much total interest will I pay over the life of my loan?",
+      answer: "Total interest depends on your loan balance, interest rate, and repayment term. A $25,000 loan at 5.5% over 10 years costs approximately $7,128 in interest, while stretching it to 20 years increases total interest to roughly $15,500. The calculator shows your total interest paid in the results breakdown.",
     },
     {
-      question: "Should I pay off student loans early or invest the extra money?",
-      answer: "The math favors investing over early payoff when your expected investment return exceeds your loan interest rate. With federal loans at 5-7% and a diversified index fund historically returning 7-10% annually, investing the extra money often comes out ahead over a 10+ year horizon. However, paying down debt is a guaranteed risk-free return equal to your interest rate — no investment guarantees 7%. General guidance: (1) If loan rate < 5%, invest first after building a 3-6 month emergency fund. (2) If loan rate 5-7%, split the difference — do both. (3) If loan rate > 7%, pay aggressively. Also consider: if pursuing PSLF, do NOT pay extra — it reduces your forgiveness benefit."
+      question: "Can this calculator help me compare Federal Direct Loans versus Parent PLUS loans?",
+      answer: "Yes, you can use separate calculations to compare repayment scenarios. Federal Direct Loans for 2024–2025 have a maximum interest rate of 8.5%, while Parent PLUS loans carry an 8.25% rate. The calculator allows you to input different rates and terms to see which loan type results in lower monthly payments for your situation.",
     },
     {
-      question: "What happens if I refinance federal student loans into a private loan?",
-      answer: "Refinancing converts your federal loans into a private loan at (hopefully) a lower interest rate. The tradeoff: you permanently lose all federal protections. You lose access to IDR plans, which means no income-based payment caps during financial hardship. You lose PSLF eligibility — this is irreversible and catastrophic if you were on track for forgiveness. You lose federal deferment and forbearance options. Refinancing makes sense only if: (1) you have a stable, high income and will never pursue PSLF, (2) your credit qualifies you for a rate meaningfully lower than your current rate (1.5%+ improvement), and (3) you have an emergency fund to cover payments without income-based repayment options."
+      question: "How does extra principal payments affect my repayment timeline?",
+      answer: "Additional principal payments reduce your loan balance faster, decreasing the total interest paid and shortening your repayment term. For example, paying an extra $100 monthly on a $30,000 loan at 6.5% over 10 years could save you approximately $3,500 in interest and eliminate your debt 2–3 years earlier. Most calculators show the impact of lump-sum or recurring extra payments.",
     },
     {
-      question: "What is the student loan interest tax deduction?",
-      answer: "The student loan interest deduction allows you to deduct up to $2,500 of student loan interest paid annually from your taxable income — it's an above-the-line deduction, so you don't need to itemize. For 2024, the deduction phases out between $75,000-$90,000 MAGI (single filers) and $155,000-$185,000 (married filing jointly). At a 22% tax bracket, deducting $2,500 saves $550/year. Note: you can only deduct interest actually paid — if you are on an IDR plan with $0 payments, you deduct $0 even if interest is accruing. Interest that capitalizes (is added to your principal balance) is not deductible when capitalized, only when paid."
+      question: "What is the Federal Student Loan interest rate for 2024–2025?",
+      answer: "Federal Direct Subsidized and Unsubsidized Loans for the 2024–2025 academic year carry a fixed interest rate of 8.5%, while Federal Direct PLUS loans are set at 8.25%. These rates are fixed for the life of the loan and are determined annually by Congress based on the 10-year Treasury note.",
+    },
+    {
+      question: "How do I know which income-driven repayment plan is best for my calculator inputs?",
+      answer: "Use the calculator to model PAYE (Pay As You Earn), REPAYE (Revised Pay As You Earn), IBR (Income-Based Repayment), and ICR (Income-Contingent Repayment) side by side. PAYE and REPAYE typically offer the lowest payments for recent borrowers (10% of discretionary income), while REPAYE includes interest subsidy during forbearance. Your income level and loan amount determine which plan provides the most savings.",
+    },
+    {
+      question: "What happens if I stop making payments—will the calculator show capitalized interest?",
+      answer: "Capitalized interest occurs when unpaid interest is added to your principal balance, increasing the total amount you owe. For example, if interest capitalizes on a $25,000 loan at 6% during a 6-month forbearance period, approximately $750 is added to your principal. The calculator can show capitalization scenarios if you include a deferment or forbearance period in your inputs.",
+    },
+    {
+      question: "Can the calculator factor in Public Service Loan Forgiveness (PSLF) eligibility?",
+      answer: "While a basic repayment calculator doesn't automatically calculate PSLF forgiveness, you can use it to project 10 years of payments under an income-driven plan (the required plan type for PSLF). If your employer is PSLF-eligible and you make 120 qualifying payments, the remaining balance is forgiven tax-free. The calculator helps you see your payment timeline and estimate the forgiven amount.",
     }
   ];
 
@@ -240,146 +252,260 @@ export default function StudentLoanRepaymentCalculator() {
   );
 
   const editorial = (
-    <div>
-      {/* EDITORIAL CONTENT */}
-      <section id="editorial" className="space-y-8 mt-12">
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
-          Understanding Student Loan Repayment
-        </h2>
-        
-        <div className="prose prose-slate dark:prose-invert max-w-none">
-          <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-            Repaying student loans is a significant financial milestone for many graduates. Understanding the terms of your loan, including the interest rate and repayment period, is crucial for effective financial planning. By making informed decisions, you can manage your debt more efficiently and potentially save money over the life of the loan.
-          </p>
+    <div className="space-y-12">
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Student Loan Repayment Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Student Loan Repayment Calculator helps you estimate your monthly loan payment, total interest costs, and repayment timeline. Whether you're managing federal Direct Loans, PLUS loans, or private student debt, this tool lets you model different scenarios to understand your true cost of borrowing and find the most affordable repayment strategy for your financial situation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by entering your current loan balance (the amount you still owe), your interest rate (found on your loan documents or STUDENTAID.GOV for federal loans), and your desired repayment term or plan type. If you're eligible for income-driven repayment, you'll also input your gross annual income and family size to calculate payments as a percentage of your discretionary income. You can enter extra payment amounts to see how accelerated repayment reduces your timeline and interest burden.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the calculator results to compare your total monthly payment, total interest paid, and payoff date across different scenarios. The amortization schedule shows how much of each payment goes toward principal versus interest over time. Use these insights to decide whether to pursue Standard repayment, an income-driven plan, loan consolidation, or an aggressive extra-payment strategy that aligns with your budget and long-term financial goals.</p>
         </div>
       </section>
 
-      {/* SECTION 4: FAQ */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* TABLE: Monthly Payment Estimates by Loan Amount and Interest Rate (10-Year Standard Repayment) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Payment Estimates by Loan Amount and Interest Rate (10-Year Standard Repayment)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated monthly payments for federal student loans under the Standard 10-year repayment plan at various loan amounts and current interest rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Balance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5.5% Interest Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">6.5% Interest Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">8.5% Interest Rate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$283</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$299</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$331</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$25,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$472</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$498</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$552</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$35,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$661</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$697</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$773</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$944</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$996</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,104</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$75,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,416</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,494</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,656</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations based on 2024–2025 Federal Direct Loan interest rates. Actual payments may vary based on loan type and accrued interest.</p>
+      </section>
+
+      {/* TABLE: Income-Driven Repayment Plan Comparison (Annual Discretionary Income: $35,000) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Income-Driven Repayment Plan Comparison (Annual Discretionary Income: $35,000)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares estimated monthly payments under four income-driven repayment plans for a borrower with $40,000 in student loans and $35,000 in discretionary income.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Repayment Plan</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Forgiveness Timeline</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interest Subsidy</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">PAYE (Pay As You Earn)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$292</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes, during in-school and deferment</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">REPAYE (Revised PAYE)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$292</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–25 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes, during forbearance and non-repayment</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">IBR (Income-Based Repayment)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$325</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Partial, if new borrower</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">ICR (Income-Contingent Repayment)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No interest subsidy</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Estimates assume 6.5% average loan interest rate. Actual payments are capped at 10–20% of discretionary income depending on plan type and borrower status.</p>
+      </section>
+
+      {/* TABLE: Total Interest Paid Over Loan Lifetime ($30,000 Balance at 6.5%) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Total Interest Paid Over Loan Lifetime ($30,000 Balance at 6.5%)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different repayment terms and extra payments affect the total interest paid on a $30,000 student loan at 6.5% interest.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Repayment Term</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Amount Repaid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Extra $100/Month Payment Savings</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 years (Standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9,450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$39,450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$3,200 interest (7–8 years total)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,850</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$44,850</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$5,100 interest (10–11 years total)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$7,200 interest (13–14 years total)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Income-Driven (25 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$28,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$58,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$10,300 interest (17–18 years total)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume fixed 6.5% interest rate and monthly payments based on selected repayment plan. Extra payment savings show potential interest reduction if applied consistently.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Input your actual interest rate from STUDENTAID.GOV or your loan servicer's website—federal rates change annually (currently 8.5% for 2024–2025), and using the correct rate ensures accurate payment estimates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Model both the 10-year Standard plan and at least one income-driven plan side by side to compare total interest paid; for example, PAYE may result in $8,000 less interest than standard repayment if your income is lower than your loan balance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add extra principal payments (even $50–$100 monthly) into the calculator to see the cumulative savings; on a $35,000 loan at 6.5%, an extra $75 per month saves approximately $4,200 in interest and shortens repayment by 2–3 years.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you're pursuing Public Service Loan Forgiveness (PSLF), use the calculator to project 10 years of payments under PAYE or REPAYE and estimate your potential forgiven balance; for example, 120 payments of $300 leaves a $12,000+ balance eligible for tax-free forgiveness.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for capitalized interest</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Unpaid interest added to your principal balance increases your total debt during deferment or forbearance periods. Not including capitalization in your calculator input can underestimate your final payoff amount by hundreds of dollars.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using an incorrect interest rate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Federal loan rates vary by year and loan type (Subsidized vs. Unsubsidized vs. PLUS); using a generic 6% rate when your actual rate is 8.5% can skew payment estimates by $30–$50+ per month. Always verify your rate on STUDENTAID.GOV or your promissory note.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring income-driven repayment plans if your income is low</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you're earning under $50,000 annually with $30,000+ in loans, an income-driven plan often results in 30–50% lower monthly payments than Standard repayment. Neglecting to calculate PAYE or REPAYE scenarios may leave you overpaying by thousands.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all extra payments reduce principal immediately</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some loan servicers apply extra payments to the next scheduled payment rather than principal unless you explicitly designate them for principal reduction. Verify your servicer's policy or your calculator results may not reflect the actual interest savings from extra payments.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the Student Loan Repayment Calculator determine my monthly payment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your loan balance, interest rate, and repayment term to compute your monthly payment using the standard amortization formula. For example, a $30,000 loan at 6.5% interest over 10 years results in approximately $318 per month. The calculation accounts for both principal and interest portions of each payment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between Standard, Graduated, and Income-Driven repayment plans?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Standard plan requires equal monthly payments over 10 years (typically $300–$400 for $30,000 in loans). Graduated plans start lower and increase every 2 years, also lasting 10 years. Income-Driven plans (PAYE, REPAYE, IBR, ICR) cap payments at 10–20% of discretionary income and extend repayment to 20–25 years, potentially resulting in forgiveness of remaining balances.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much total interest will I pay over the life of my loan?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Total interest depends on your loan balance, interest rate, and repayment term. A $25,000 loan at 5.5% over 10 years costs approximately $7,128 in interest, while stretching it to 20 years increases total interest to roughly $15,500. The calculator shows your total interest paid in the results breakdown.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator help me compare Federal Direct Loans versus Parent PLUS loans?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, you can use separate calculations to compare repayment scenarios. Federal Direct Loans for 2024–2025 have a maximum interest rate of 8.5%, while Parent PLUS loans carry an 8.25% rate. The calculator allows you to input different rates and terms to see which loan type results in lower monthly payments for your situation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does extra principal payments affect my repayment timeline?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Additional principal payments reduce your loan balance faster, decreasing the total interest paid and shortening your repayment term. For example, paying an extra $100 monthly on a $30,000 loan at 6.5% over 10 years could save you approximately $3,500 in interest and eliminate your debt 2–3 years earlier. Most calculators show the impact of lump-sum or recurring extra payments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the Federal Student Loan interest rate for 2024–2025?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Federal Direct Subsidized and Unsubsidized Loans for the 2024–2025 academic year carry a fixed interest rate of 8.5%, while Federal Direct PLUS loans are set at 8.25%. These rates are fixed for the life of the loan and are determined annually by Congress based on the 10-year Treasury note.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know which income-driven repayment plan is best for my calculator inputs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use the calculator to model PAYE (Pay As You Earn), REPAYE (Revised Pay As You Earn), IBR (Income-Based Repayment), and ICR (Income-Contingent Repayment) side by side. PAYE and REPAYE typically offer the lowest payments for recent borrowers (10% of discretionary income), while REPAYE includes interest subsidy during forbearance. Your income level and loan amount determine which plan provides the most savings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I stop making payments—will the calculator show capitalized interest?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Capitalized interest occurs when unpaid interest is added to your principal balance, increasing the total amount you owe. For example, if interest capitalizes on a $25,000 loan at 6% during a 6-month forbearance period, approximately $750 is added to your principal. The calculator can show capitalization scenarios if you include a deferment or forbearance period in your inputs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the calculator factor in Public Service Loan Forgiveness (PSLF) eligibility?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While a basic repayment calculator doesn't automatically calculate PSLF forgiveness, you can use it to project 10 years of payments under an income-driven plan (the required plan type for PSLF). If your employer is PSLF-eligible and you make 120 qualifying payments, the remaining balance is forgiven tax-free. The calculator helps you see your payment timeline and estimate the forgiven amount.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Student Loan Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on student loans and interest rates, providing insights into national trends and policies.
-              </p>
-            </div>
+          <li>
+            <a href="https://studentaid.gov/understand-aid/types/loans/interest-rates" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Student Aid – STUDENTAID.GOV</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official U.S. Department of Education resource for current federal loan interest rates, repayment plan options, and loan servicer information.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Student Loans
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive guide on student loans, repayment options, and borrower rights.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/student-loans/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau – Student Loan Repayment</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB guidance on student loan repayment plans, borrower rights, and tools to manage federal and private loans.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://studentaid.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Student Aid
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                The official portal for federal student aid, offering resources on loans, grants, and repayment plans.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p970" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 970 – Tax Benefits for Education</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Internal Revenue Service documentation on student loan interest deductions, tax credits, and forgiveness tax implications.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Student Loan Repayment
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Educational articles explaining repayment strategies, loan forgiveness, and consolidation.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Student Loans
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Tools and advice for managing student loans, refinancing, and finding the best rates.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.bankrate.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Bankrate - Student Loan Calculator
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Calculators and articles to help you understand your loan payments and options.
-              </p>
-            </div>
+          <li>
+            <a href="https://studentaid.gov/manage-loans/repayment/plans/income-driven" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Student Aid – Income-Driven Repayment Plans</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed comparison of PAYE, REPAYE, IBR, and ICR plans, including eligibility, payment calculations, and forgiveness timelines.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

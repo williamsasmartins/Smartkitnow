@@ -30,24 +30,40 @@ export default function CostBasisFifoLifoCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are cost basis calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For cost basis, accuracy depends on using current FIFO/LIFO data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a FIFO/LIFO professional."
+      question: "What is the difference between FIFO and LIFO cost basis methods?",
+      answer: "FIFO (First-In, First-Out) assumes you sell your oldest purchased shares first, while LIFO (Last-In, First-Out) assumes you sell your most recently purchased shares first. FIFO typically results in lower capital gains in rising markets because older shares have lower cost bases. LIFO can reduce taxable gains in inflationary periods but is not permitted for mutual funds and is less commonly used for individual stocks.",
     },
     {
-      question: "What key factors most affect cost basis results?",
-      answer: "The most impactful variables in cost basis calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How does FIFO affect my capital gains taxes?",
+      answer: "Under FIFO, you sell the lowest-cost shares first, which maximizes your capital gains and tax liability in bull markets. For example, if you bought shares at $50, then $100, selling under FIFO means the $50 shares are sold first, generating a larger gain if the current price is $150. This method is straightforward but often results in higher taxes unless you've held shares for over one year for long-term capital gains treatment.",
     },
     {
-      question: "When should I recalculate cost basis?",
-      answer: "Recalculate whenever FIFO/LIFO conditions change significantly: after major FIFO/LIFO events, when your inputs change (income, rates, holdings), or when FIFO/LIFO regulations are updated. For time-sensitive FIFO/LIFO metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "Can I use LIFO for mutual funds and ETFs?",
+      answer: "No, the IRS does not permit LIFO accounting for mutual funds or ETFs; you must use FIFO, average cost, or specific identification. However, LIFO is allowed for individual stocks and some other securities. If you own mutual funds and attempt LIFO reporting, the IRS will disallow it and you may face penalties.",
     },
     {
-      question: "How does cost basis relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Cost basis should be evaluated alongside related measures like capital gains. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your FIFO/LIFO situation, rather than optimizing any single number in isolation."
+      question: "What is specific identification and when should I use it?",
+      answer: "Specific identification allows you to choose exactly which shares you sell, giving you maximum control over your tax liability. This method is ideal when you have shares purchased at widely varying prices and want to optimize for tax efficiency. For instance, if you have shares bought at $50, $75, and $120, you can select which lot to sell to match your financial goals.",
     },
     {
-      question: "What are the most common mistakes when calculating cost basis?",
-      answer: "The most frequent errors in cost basis calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world FIFO/LIFO conditions fluctuate. Double-check your inputs against current FIFO/LIFO data before relying on results for significant financial decisions."
+      question: "How do stock splits and dividends affect cost basis calculations?",
+      answer: "Stock splits adjust your cost basis proportionally but don't change total invested capital; a 2-for-1 split halves your per-share basis. Reinvested dividends create new cost basis positions at the dividend payment date price, which must be tracked separately for accurate FIFO/LIFO calculations. Failure to account for these adjustments can lead to underreporting gains or overstating losses.",
+    },
+    {
+      question: "What happens if I don't track cost basis and use the calculator?",
+      answer: "If you cannot locate original purchase records, the IRS allows you to use a reasonable estimate or the average closing price on the acquisition date as a fallback. However, using this calculator with estimated data may create discrepancies with your brokerage records and trigger audit risks. It's critical to obtain a Form 8949 from your broker, which lists all transactions with adjusted cost basis.",
+    },
+    {
+      question: "How do wash sale rules interact with FIFO cost basis calculations?",
+      answer: "Under wash sale rules, if you sell a security at a loss and repurchase substantially identical shares within 30 days before or after, the loss is disallowed and added to the new shares' cost basis. A FIFO calculator doesn't automatically flag wash sales, so you must monitor your trades separately. For example, selling 100 shares at a $500 loss on December 15 and buying 100 shares on January 5 triggers a wash sale, increasing your new cost basis by $500.",
+    },
+    {
+      question: "What is the long-term vs. short-term capital gains treatment in cost basis calculations?",
+      answer: "Assets held over one year receive long-term capital gains rates (0%, 15%, or 20% federal in 2024), while those held one year or less face short-term rates matching your ordinary income tax bracket, up to 37%. Your cost basis calculator must track purchase dates to determine holding periods. A FIFO method selling shares purchased 18 months ago qualifies as long-term gains, significantly reducing your tax burden compared to short-term treatment.",
+    },
+    {
+      question: "How should I handle inherited shares and their stepped-up basis?",
+      answer: "Inherited securities receive a stepped-up basis equal to fair market value on the date of death, not the original purchase price. Your cost basis calculator should use this stepped-up value, not the deceased owner's original cost basis. For example, if someone inherited shares worth $10,000 that originally cost $2,000, the new cost basis is $10,000, and gains are calculated from that higher baseline.",
     }
   ];
 
@@ -303,253 +319,275 @@ export default function CostBasisFifoLifoCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Cost Basis Calculator (FIFO/LIFO)
-        </h2>
-        
-        <p className="mb-6">
-          The Cost Basis Calculator using FIFO (First In, First Out) and LIFO (Last In, First Out) methods is an essential tool for investors, especially those dealing with stocks and cryptocurrencies. It helps in determining the cost basis of your investments, which is crucial for calculating capital gains or losses. This calculator allows you to input your purchase price and quantity, then choose between FIFO and LIFO methods to see how your cost basis changes. Understanding your cost basis is vital for accurate tax reporting and portfolio management, ensuring you pay the correct amount of taxes on your investments.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculation of cost basis is not just a matter of convenience; it is a legal necessity. Incorrect calculations can lead to overpayment or underpayment of taxes, which can have significant financial implications. For instance, overestimating your cost basis could result in paying more taxes than necessary, while underestimating it might lead to penalties from tax authorities. This calculator helps mitigate such risks by providing a reliable way to compute your cost basis using industry-standard methods. For more on managing your investments, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather your transaction details, including the purchase price and quantity of each asset. Enter these values into the calculator, select your preferred method (FIFO or LIFO), and hit calculate. The calculator will then display your total cost basis, adjusted cost basis, and potential gain or loss. This step-by-step approach ensures you have a clear understanding of your investment's financial standing. For further insights, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. Small errors in purchase price or quantity can lead to significant discrepancies in your cost basis calculation. Ensure your data is up-to-date and reflective of your current holdings to avoid costly mistakes.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cost Basis Calculator (FIFO/LIFO)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">A cost basis calculator using FIFO or LIFO methods determines your capital gains or losses when you sell investments by tracking which shares you sold and at what price. Accurate cost basis calculation is essential for tax reporting because it directly impacts the size of your capital gain or loss, which affects your tax liability. The IRS requires you to report capital gains on Form 8949 and Schedule D, making this calculator a critical tool for tax compliance.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need to input several key pieces of information: your purchase dates, the number of shares bought at each date, the price per share for each purchase, your sale date, and the sale price per share. You'll also select your preferred accounting method—FIFO assumes you sell oldest shares first, while LIFO assumes newest shares sell first. Additional inputs may include stock splits, reinvested dividends, or adjustments for inherited securities with stepped-up basis.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs your total capital gain or loss, the adjusted cost basis per share, and your holding period to determine if gains qualify as long-term (over one year) or short-term. You can use this result to estimate your tax liability by applying the appropriate tax rate—long-term gains typically receive preferential rates of 0%, 15%, or 20%, while short-term gains are taxed as ordinary income. Always compare your calculator results against your broker's cost basis statement to identify discrepancies before filing your tax return.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices include regularly updating your records and recalculating your cost basis after each transaction. This proactive approach helps you stay on top of your investments and ensures compliance with tax regulations. Factors such as market volatility and transaction fees can also affect your results, so consider these elements when analyzing your cost basis. For more detailed calculations, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Cost Basis Calculator (FIFO/LIFO) Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this Cost Basis Calculator is derived from standard accounting principles that dictate how assets are valued over time. The FIFO method assumes that the first assets purchased are the first to be sold, which is useful in a rising market where older, cheaper assets are sold first, potentially resulting in a lower cost basis and higher taxable gains. Conversely, the LIFO method assumes the last assets purchased are the first to be sold, which can be advantageous in a declining market by selling newer, more expensive assets first, potentially resulting in a higher cost basis and lower taxable gains.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Cost Basis = Purchase Price × Quantity
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Purchase Price = The price at which the asset was bought</li>
-              <li>Quantity = The amount of the asset purchased</li>
-              <li>Method = FIFO or LIFO, determining the order of asset sale</li>
-            </ul>
+      {/* TABLE: FIFO vs. LIFO Cost Basis Example with Real Numbers */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">FIFO vs. LIFO Cost Basis Example with Real Numbers</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how FIFO and LIFO methods produce different capital gains outcomes for the same stock position.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Purchase Date</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Shares Purchased</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Price Per Share</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">FIFO Sale Order</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">LIFO Sale Order</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">January 15, 2022</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$45.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1st Lot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3rd Lot</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">July 8, 2023</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$82.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2nd Lot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2nd Lot</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">November 22, 2024</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$115.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3rd Lot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1st Lot</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sale Price (Current)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 shares sold</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$125.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Gain: $4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Gain: $1,500</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Selling 50 shares at $125 under FIFO results in $4,000 capital gain; under LIFO, only $1,500 gain. FIFO triggers higher taxes in rising markets.</p>
+      </section>
+
+      {/* TABLE: 2024-2025 Long-Term Capital Gains Tax Rates by Income Level */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024-2025 Long-Term Capital Gains Tax Rates by Income Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These federal tax rates apply to assets held over one year, showing how cost basis methods impact final tax liability.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Filing Status</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0% Rate Income Limit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15% Rate Income Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">20% Rate Applies Above</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $47,025</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47,026–$518,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $518,900</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $94,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$94,051–$583,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $583,750</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Head of Household</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $62,700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$62,701–$551,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $551,350</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Separately</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $47,025</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47,026–$291,875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $291,875</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates are for 2024 tax year. A $10,000 long-term gain at 15% federal rate equals $1,500 tax; at 20%, it equals $2,000. Cost basis method selection can determine which bracket applies.</p>
+      </section>
+
+      {/* TABLE: Common Cost Basis Tracking Scenarios and Calculator Input Requirements */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Cost Basis Tracking Scenarios and Calculator Input Requirements</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different investment situations require specific data inputs for accurate FIFO/LIFO calculations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Investment Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Required Inputs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calculator Method</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tracking Complexity</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single purchase, one sale</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Buy date, quantity, price; sell date, price</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">FIFO/LIFO/Specific ID</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Multiple purchases over years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">All lot dates, quantities, prices; sale quantity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">FIFO/LIFO preferred</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stock splits or dividends reinvested</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Adjustment factors, dividend purchase dates</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">FIFO/LIFO with adjustments</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Inherited shares with stepped-up basis</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Death date fair market value</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Specific ID (new basis)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Employee stock options (ESO) exercised</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Grant date, exercise date, price per share</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Specific ID with holding period</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Complexity increases with multiple lots and corporate actions. Most brokers provide adjusted cost basis reports, but manual calculators help verify accuracy.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Obtain your official cost basis statement from your broker before using the calculator—Form 8949 or Schedule B from your brokerage contains adjusted basis figures that account for splits and dividends automatically.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When choosing between FIFO and LIFO, model both scenarios in the calculator to see the tax impact; in rising markets, LIFO typically reduces your capital gains by using higher-cost shares first.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track the holding period carefully by noting purchase and sale dates in the calculator—a sale just before the one-year mark loses long-term status, potentially increasing your effective tax rate by 15–37% depending on your bracket.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the specific identification method in the calculator if you have multiple lots with significantly different purchase prices; this gives you the most control to minimize taxes by selling high-cost shares first.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Document all corporate actions such as stock splits, dividend reinvestments, and spin-offs in the calculator because these adjust your cost basis and affect your calculation accuracy and audit defensibility.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for reinvested dividends</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many investors overlook reinvested dividend shares when calculating cost basis, treating them as part of the original purchase. Reinvested dividends create separate cost basis lots at the dividend payment date and price, which must be tracked individually in FIFO/LIFO calculations or your gains will be overstated.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing up holding periods across multiple lots</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">When you own multiple lots of the same security purchased on different dates, each lot has its own holding period. Using the calculator without tracking individual lot dates can result in incorrectly applying short-term rates to long-term holdings or vice versa, leading to overpaid taxes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring wash sale adjustments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you sold shares at a loss and repurchased within 30 days, the wash sale rule disallows the loss and adds it to the new shares' cost basis. The calculator alone won't flag wash sales, so you must manually adjust the cost basis of repurchased shares to include the disallowed loss amount.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using estimated cost basis instead of broker records</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Attempting to reconstruct cost basis from memory or old statements instead of obtaining an official broker statement creates audit risk and often produces incorrect results. The IRS expects you to use your broker's reported adjusted basis on Form 8949, not calculator estimates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking stepped-up basis for inherited securities</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you inherited shares, you should use fair market value on the date of death as the new cost basis, not the deceased owner's original purchase price. Failing to adjust for stepped-up basis in the calculator can result in reporting inflated capital gains on inherited holdings.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role in determining the final cost basis. The Purchase Price reflects the initial investment cost per unit, while Quantity indicates the total number of units acquired. The Method variable, either FIFO or LIFO, influences the sequence of asset disposition, affecting the cost basis calculation. For example, in a FIFO scenario, older assets are considered sold first, which may result in a lower cost basis if prices have risen since the initial purchase. Conversely, LIFO assumes newer assets are sold first, potentially increasing the cost basis if prices have decreased.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your cost basis calculation is crucial for accurate financial reporting and investment strategy. These factors interact in complex ways, affecting your overall financial outcomes. By recognizing and managing these elements, you can optimize your investment strategy and ensure compliance with tax regulations.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Conditions
-        </h3>
-        <p className="mb-4">
-          Market conditions significantly impact the cost basis calculation. In a bull market, asset prices tend to rise, which can affect the FIFO method by increasing taxable gains. Conversely, in a bear market, prices may fall, affecting the LIFO method by potentially reducing taxable gains. Understanding market trends helps in selecting the appropriate method for cost basis calculation.
-        </p>
-        <p className="mb-6">
-          To navigate these conditions effectively, consider diversifying your portfolio and using hedging strategies. This approach can mitigate risks associated with market volatility. For more strategies, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Transaction Fees
-        </h3>
-        <p className="mb-4">
-          Transaction fees are another critical factor that can alter your cost basis. These fees, charged by brokers or exchanges, should be included in the purchase price to ensure an accurate calculation. Failing to account for these costs can lead to an understated cost basis and unexpected tax liabilities.
-        </p>
-        <p className="mb-6">
-          Always review your transaction statements and include all associated fees in your calculations. This practice ensures a comprehensive understanding of your investment costs and aids in precise tax reporting.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Asset Type
-        </h3>
-        <p className="mb-4">
-          Different asset types, such as stocks, bonds, or cryptocurrencies, may have unique characteristics that affect cost basis calculations. For instance, cryptocurrencies can be highly volatile, leading to frequent changes in cost basis. Stocks, on the other hand, might offer dividends, which can also impact the calculation.
-        </p>
-        <p className="mb-6">
-          Understanding the specific attributes of your assets helps in making informed decisions. Consider consulting a financial advisor for personalized advice tailored to your portfolio's composition.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Regulations
-        </h3>
-        <p className="mb-6">
-          Tax regulations play a pivotal role in cost basis calculations. Different jurisdictions may have varying rules regarding the recognition of gains and losses, affecting how you report your investments. Staying informed about these regulations is essential to avoid penalties and ensure compliance.
-        </p>
-        <p className="mb-6">
-          Regularly review updates from tax authorities and consider using tax software to streamline your reporting process. This proactive approach helps in maintaining accurate records and avoiding potential legal issues.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Strategy
-        </h3>
-        <p className="mb-6">
-          Your overall investment strategy influences your choice of cost basis method. Long-term investors might prefer FIFO to capitalize on lower tax rates for long-term gains, while short-term traders might opt for LIFO to reduce taxable income during market downturns. Aligning your strategy with your financial goals ensures optimal outcomes.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between FIFO and LIFO cost basis methods?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">FIFO (First-In, First-Out) assumes you sell your oldest purchased shares first, while LIFO (Last-In, First-Out) assumes you sell your most recently purchased shares first. FIFO typically results in lower capital gains in rising markets because older shares have lower cost bases. LIFO can reduce taxable gains in inflationary periods but is not permitted for mutual funds and is less commonly used for individual stocks.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does FIFO affect my capital gains taxes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Under FIFO, you sell the lowest-cost shares first, which maximizes your capital gains and tax liability in bull markets. For example, if you bought shares at $50, then $100, selling under FIFO means the $50 shares are sold first, generating a larger gain if the current price is $150. This method is straightforward but often results in higher taxes unless you've held shares for over one year for long-term capital gains treatment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use LIFO for mutual funds and ETFs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, the IRS does not permit LIFO accounting for mutual funds or ETFs; you must use FIFO, average cost, or specific identification. However, LIFO is allowed for individual stocks and some other securities. If you own mutual funds and attempt LIFO reporting, the IRS will disallow it and you may face penalties.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is specific identification and when should I use it?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Specific identification allows you to choose exactly which shares you sell, giving you maximum control over your tax liability. This method is ideal when you have shares purchased at widely varying prices and want to optimize for tax efficiency. For instance, if you have shares bought at $50, $75, and $120, you can select which lot to sell to match your financial goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do stock splits and dividends affect cost basis calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Stock splits adjust your cost basis proportionally but don't change total invested capital; a 2-for-1 split halves your per-share basis. Reinvested dividends create new cost basis positions at the dividend payment date price, which must be tracked separately for accurate FIFO/LIFO calculations. Failure to account for these adjustments can lead to underreporting gains or overstating losses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I don't track cost basis and use the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If you cannot locate original purchase records, the IRS allows you to use a reasonable estimate or the average closing price on the acquisition date as a fallback. However, using this calculator with estimated data may create discrepancies with your brokerage records and trigger audit risks. It's critical to obtain a Form 8949 from your broker, which lists all transactions with adjusted cost basis.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do wash sale rules interact with FIFO cost basis calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Under wash sale rules, if you sell a security at a loss and repurchase substantially identical shares within 30 days before or after, the loss is disallowed and added to the new shares' cost basis. A FIFO calculator doesn't automatically flag wash sales, so you must monitor your trades separately. For example, selling 100 shares at a $500 loss on December 15 and buying 100 shares on January 5 triggers a wash sale, increasing your new cost basis by $500.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the long-term vs. short-term capital gains treatment in cost basis calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Assets held over one year receive long-term capital gains rates (0%, 15%, or 20% federal in 2024), while those held one year or less face short-term rates matching your ordinary income tax bracket, up to 37%. Your cost basis calculator must track purchase dates to determine holding periods. A FIFO method selling shares purchased 18 months ago qualifies as long-term gains, significantly reducing your tax burden compared to short-term treatment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I handle inherited shares and their stepped-up basis?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Inherited securities receive a stepped-up basis equal to fair market value on the date of death, not the original purchase price. Your cost basis calculator should use this stepped-up value, not the deceased owner's original cost basis. For example, if someone inherited shares worth $10,000 that originally cost $2,000, the new cost basis is $10,000, and gains are calculated from that higher baseline.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Cost Basis
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official guidelines on calculating cost basis for tax purposes, including FIFO and LIFO methods.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p550" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 550: Investment Income and Expenses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on cost basis accounting methods, holding periods, and capital gains treatment for individual investors.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - FIFO vs. LIFO
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive comparison of FIFO and LIFO methods, including advantages and disadvantages.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/pubs/edgarguide/forms/f8949.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Guide to Form 8949 and Schedule D</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">SEC explanation of how to report sales of securities and reconcile cost basis with your broker's reported figures on tax forms.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fidelity.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Fidelity - Understanding Cost Basis
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed explanation of cost basis and its importance in investment and tax planning.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/c/costbasis.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Cost Basis Definition and Methods</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Educational overview of cost basis calculation methods including FIFO, LIFO, average cost, and specific identification with practical examples.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.sec.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                U.S. Securities and Exchange Commission - Cost Basis
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official information on cost basis reporting requirements for securities.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.tdameritrade.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                TD Ameritrade - Cost Basis Explained
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Insights into how cost basis affects investment returns and tax obligations.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.charles-schwb.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Charles Schwab - Cost Basis Methods
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Overview of different cost basis methods and their implications for investors.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/taxtopics/tc409" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Topic 409: Capital Gains and Losses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">IRS guidance on long-term vs. short-term capital gains rates, wash sale rules, and how to report capital gains on your tax return.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

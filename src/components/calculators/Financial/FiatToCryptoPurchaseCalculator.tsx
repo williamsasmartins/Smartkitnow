@@ -20,24 +20,40 @@ export default function FiatToCryptoPurchaseCalculator() {
 
   const faqs = [
     {
-      question: "What fees are included in a fiat-to-crypto purchase and how do I minimize them?",
-      answer: "A fiat-to-crypto purchase typically includes: (1) Trading fee: 0.1–1.5% of transaction, (2) Spread: hidden markup between buy and sell price, (3) Deposit fee: varies by payment method (ACH: free; credit card: 3–5%; wire: $10–$25 flat). Total effective cost comparison (2024): Coinbase simple: 2.5–3.5% total. Coinbase Advanced: 0.6% taker + minimal spread. Kraken: 0.26% taker. Binance US: 0.1%. PayPal/CashApp: 1.5–2.5% spread (no stated fee but wide spread). To minimize: use ACH/bank transfer (not credit card), use limit orders on advanced trading interfaces, and compare all-in costs including the bid-ask spread, not just stated fees."
+      question: "How does the Fiat to Crypto Purchase Calculator determine the amount of cryptocurrency I'll receive?",
+      answer: "The calculator multiplies your fiat amount by the current exchange rate for your selected cryptocurrency, then subtracts any applicable fees (typically 0.5% to 2% depending on your exchange). For example, if you invest $1,000 in Bitcoin at $43,000 per BTC with a 1% fee, you'd receive approximately 0.0227 BTC after fees. The calculator updates exchange rates in real-time or at specified intervals to ensure accuracy.",
     },
     {
-      question: "How does my choice of fiat currency affect crypto purchase rates outside the US?",
-      answer: "Buying Bitcoin in USD on US exchanges provides the tightest spreads due to highest liquidity. In other currencies, you pay an implicit FX conversion fee. EUR→BTC on a EUR-denominated exchange: tighter spreads than USD→EUR→BTC via conversion. GBP→BTC: good liquidity on Coinbase UK, Kraken. Emerging market currencies (BRL, NGN, ARS): significantly wider spreads (2–5%) and fewer exchange options -- this is why P2P platforms like Paxful historically served these markets. For non-USD purchases, always calculate the all-in rate by comparing your fiat amount to the USD-equivalent value of crypto received."
+      question: "What fees should I account for when using this calculator?",
+      answer: "Most cryptocurrency exchanges charge trading fees ranging from 0.1% to 2% of your purchase amount, with major platforms like Coinbase charging around 1.5% for market orders and Kraken charging 0.16% to 0.26%. Bank transfer fees (typically $0-$15) and network transaction fees (gas fees on blockchain, usually $5-$50) should also be considered. Always check your specific exchange's fee structure, as promotional discounts or membership tiers can significantly reduce costs.",
     },
     {
-      question: "What is the tax basis of crypto purchased with fiat?",
-      answer: "Your cost basis = total fiat amount paid + all fees. If you buy $1,000 of BTC and pay $10 in trading fees, your cost basis is $1,010. This basis determines your capital gain or loss when you later sell or exchange the crypto. Keep records of: purchase date, amount of fiat paid, fees paid, and quantity of crypto received. The IRS requires these records; exchanges are required to report this data via 1099-DA starting 2025. Missing basis information forces you to either prove basis from transaction history or risk the IRS applying $0 basis (maximizing your taxable gain). Purchase confirmations should be saved permanently."
+      question: "Can this calculator help me compare prices across different cryptocurrency exchanges?",
+      answer: "While the calculator itself shows you the conversion at current market rates, you should use it alongside exchange-specific pricing tools to compare final amounts received. Price differences between exchanges like Coinbase, Kraken, and Gemini can range from 0.5% to 2% due to varying fee structures and liquidity. Using the calculator with exchange fee inputs allows you to model the exact outcome on each platform before committing funds.",
     },
     {
-      question: "How quickly does a fiat-to-crypto purchase settle and why does timing matter?",
-      answer: "Settlement times by method: ACH bank transfer: 3–5 business days (but many exchanges credit crypto immediately while holding the ACH settlement). Wire transfer: same day if sent before cutoff (typically 2PM local). Debit card: instant. Credit card: instant (but 3–5% fee and possible cash advance classification). The timing matters because crypto price fluctuates while fiat is in transit. Most exchanges lock in the price at order time (not settlement time), so a delayed ACH still gets the price at the moment of purchase. Verify your exchange's policy -- some use settlement price, which means your actual crypto quantity is determined after the ACH clears."
+      question: "How do market volatility and price slippage affect my purchase calculations?",
+      answer: "Cryptocurrency prices fluctuate constantly, and your actual purchase price may differ from the calculator estimate by 0.1% to 5% depending on order size and market conditions. Large purchases (over $50,000) can experience slippage where the price moves against you during execution. The calculator provides a snapshot at calculation time, but you should execute purchases immediately or use limit orders to lock in a specific price.",
     },
     {
-      question: "Is there a limit on how much fiat I can convert to crypto in a single purchase?",
-      answer: "Purchase limits vary by exchange, KYC tier, and payment method. Typical 2024 limits: Coinbase basic: $25,000/day ACH. Coinbase verified: $50,000/day. Kraken: $500,000/day (Pro). Wire transfers often have higher limits. Limits exist due to KYC/AML regulations -- any purchase over $10,000 triggers a Currency Transaction Report (CTR) to FinCEN. Structuring transactions (making multiple purchases under $10,000 specifically to avoid CTR filing) is a federal crime under 31 U.S.C. § 5324, regardless of whether the underlying funds are legal. For large purchases ($100K+), contact your exchange's OTC desk for better rates and institutional-level service."
+      question: "What is the difference between spot price and the price I'll actually pay?",
+      answer: "The spot price is the real-time market price of a cryptocurrency, while the actual purchase price includes your exchange's markup or spread. For example, if Bitcoin's spot price is $43,000, you might pay $43,645 on Coinbase due to their 1.5% markup for retail users. The calculator should account for this difference; premium or institutional pricing tiers can reduce this spread to 0.1%.",
+    },
+    {
+      question: "How should I use this calculator for tax planning purposes?",
+      answer: "The calculator helps you determine your cost basis—the total fiat amount spent including all fees—which is critical for calculating capital gains or losses when you sell. If you invest $10,000 and pay $150 in fees, your cost basis is $10,150, even if you received only 0.225 BTC. Keep detailed records of these calculations for IRS reporting, as the IRS treats cryptocurrency purchases as taxable events.",
+    },
+    {
+      question: "Can I use this calculator for stablecoin purchases like USDC or USDT?",
+      answer: "Yes, the calculator works for stablecoins, though the math is simpler since stablecoins maintain a $1 peg. When purchasing $5,000 of USDC with a 0.5% fee, you'd receive approximately 4,975 USDC after the $25 fee deduction. However, stablecoins still have network transfer fees (typically $1-$10) that should be factored in for accurate calculations.",
+    },
+    {
+      question: "What's the minimum and maximum purchase amount I should consider with this calculator?",
+      answer: "Most exchanges set minimum purchases between $10 and $100, while individual transaction limits range from $10,000 to $500,000+ depending on your account verification level. Large institutional purchases (over $1 million) may receive better rates through OTC (over-the-counter) desks, which this basic calculator doesn't account for. Using the calculator for purchases between $100 and $100,000 typically yields the most accurate results for retail investors.",
+    },
+    {
+      question: "How does payment method (bank transfer, credit card, wire) affect my purchase calculation?",
+      answer: "Payment methods significantly impact total cost: bank transfers typically charge 0% to 1% in fees ($0-$100 on a $10,000 purchase), credit cards charge 2% to 3.5% ($200-$350), and wire transfers cost $15-$50 flat fees. ACH transfers are usually cheapest for fiat deposits but take 3-5 days, while debit cards offer instant settlement at medium-range fees. Input your expected payment method fees into the calculator to see the true total cost of your crypto purchase.",
     }
   ];
 
@@ -303,249 +319,295 @@ export default function FiatToCryptoPurchaseCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Fiat to Crypto Purchase Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Fiat to Crypto Purchase Calculator is an essential tool for anyone looking to enter the cryptocurrency market. By inputting the amount of fiat currency you wish to spend, the current price of the cryptocurrency, and any transaction fees, this calculator provides you with an accurate estimate of how much cryptocurrency you can acquire. This is particularly useful for planning your entry points and ensuring you make informed financial decisions. Whether you're a seasoned investor or a newcomer to the crypto world, understanding how much crypto you can buy with your fiat currency is crucial for effective portfolio management.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in the fast-paced world of cryptocurrency. With volatile market conditions, even a small miscalculation can lead to significant financial implications. This calculator helps mitigate such risks by providing precise calculations, allowing you to strategize your investments better. According to recent studies, a well-planned entry into the crypto market can significantly enhance your investment returns. This tool empowers you to make data-driven decisions, reducing the guesswork often associated with crypto investments. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather the necessary information beforehand. You'll need the total amount of fiat currency you plan to invest, the current market price of the cryptocurrency, and any applicable transaction fees. Enter these values into the respective fields to get started. The calculator will then compute the total amount of cryptocurrency you can purchase, taking into account the transaction fees. For a more comprehensive understanding, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check the current market price of the cryptocurrency before making a purchase. Prices can fluctuate rapidly, and ensuring you have the most up-to-date information will help you avoid potential losses. Consider setting up alerts for price changes to stay informed.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Fiat to Crypto Purchase Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Fiat to Crypto Purchase Calculator helps you determine exactly how much cryptocurrency you'll receive when converting your local currency (USD, EUR, GBP, etc.) into digital assets like Bitcoin, Ethereum, or stablecoins. This tool accounts for real-time exchange rates and platform fees, providing transparency before you commit funds to a purchase. Knowing your expected crypto amount in advance prevents surprises and helps you make informed investment decisions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, start by entering the fiat amount you plan to invest (for example, $5,000), selecting your source currency, and choosing your target cryptocurrency. Next, input the current exchange rate (most calculators pull this automatically) and specify your platform's trading fees (typically 0.5% to 2%) along with any additional costs like bank transfer or network fees. The calculator will show you the before-fee and after-fee amounts, helping you understand the true cost of your purchase.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret the results by comparing the 'amount received' with your initial investment to calculate your total cost percentage. For instance, if you invest $10,000 and receive only $9,850 worth of crypto, you've paid $150 in total fees (1.5%). Use this information to shop between exchanges—a difference of 0.5% in fees across platforms translates to $50 saved on a $10,000 purchase. Remember that the calculator provides a snapshot; actual prices may shift by the time you execute the trade, so execute purchases promptly or use limit orders for large transactions.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices include regularly updating the crypto price and fee percentage to reflect current market conditions. This ensures your calculations remain accurate over time. Additionally, consider the impact of market volatility on your investment strategy. By staying informed and using this calculator, you can optimize your crypto purchases and enhance your investment outcomes.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Fiat to Crypto Purchase Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is designed to provide a clear and accurate representation of how much cryptocurrency you can purchase with a given amount of fiat currency. The formula takes into account the current price of the cryptocurrency and any transaction fees that may apply. This approach is widely accepted in the financial industry as it provides a straightforward method for calculating crypto purchases.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Crypto Amount = (Fiat Amount - (Fiat Amount × Fee Percentage)) / Crypto Price
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Fiat Amount = Total fiat currency you plan to spend</li>
-              <li>Fee Percentage = Transaction fee percentage</li>
-              <li>Crypto Price = Current market price of the cryptocurrency</li>
-            </ul>
+      {/* TABLE: Fee Comparison Across Major Cryptocurrency Exchanges (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Fee Comparison Across Major Cryptocurrency Exchanges (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical trading fees and spreads charged by leading cryptocurrency exchanges for fiat-to-crypto purchases.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Exchange</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maker Fee</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Taker Fee</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Credit Card Fee</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Spread</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Coinbase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kraken</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.16%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.26%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.75%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gemini</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bitstamp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Crypto.com</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Fees vary by account tier, trading volume, and payment method. Credit card fees are for purchases under $1,000. Premium or verified accounts may receive 10-50% discounts.</p>
+      </section>
+
+      {/* TABLE: Sample Fiat to Crypto Purchase Scenarios ($1,000 USD Investment) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sample Fiat to Crypto Purchase Scenarios ($1,000 USD Investment)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These scenarios demonstrate how fees and exchange rates impact the actual cryptocurrency received across different assets and platforms.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cryptocurrency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Exchange Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Amount Received (No Fees)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Platform Fee (1%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Net Amount Received</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bitcoin (BTC)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$43,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.0230 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.0227 BTC</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ethereum (ETH)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4255 ETH</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4213 ETH</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Solana (SOL)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$142</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.0423 SOL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.9644 SOL</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">USDC Stablecoin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000 USDC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">990 USDC</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Polygon (MATIC)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.82</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,219.51 MATIC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,207.79 MATIC</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates as of April 2025. Exchange fees range from 0.5% to 2%; this table assumes 1% for illustration. Network transfer fees are not included.</p>
+      </section>
+
+      {/* TABLE: Payment Method Costs and Timeline for Fiat Deposits */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Payment Method Costs and Timeline for Fiat Deposits</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different deposit methods carry varying fees and processing times, all of which should be factored into your total purchase cost calculation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Payment Method</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fee Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Fee ($1,000 purchase)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Processing Time</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">ACH Bank Transfer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0% - 1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 - $10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 business days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large purchases, lower cost</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wire Transfer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15 - $50 flat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15 - $50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 business days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large purchases, speed</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Debit Card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5% - 2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15 - $20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Instant</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small purchases, immediate access</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Credit Card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2% - 3.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20 - $35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Instant</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rewards, small amounts</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">PayPal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2% - 3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20 - $30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Instant - 1 day</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Convenience, smaller amounts</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Fees vary by exchange and region. Some exchanges offer ACH transfers at no cost. Credit card fees may not qualify for rewards on all cards.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always input the actual trading fee from your chosen exchange into the calculator, not an average—Kraken's 0.26% taker fee is substantially lower than Coinbase's 0.6%, and this compounds significantly on purchases over $10,000.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in payment method costs separately; using a $2,000 wire transfer with a $25 fee effectively costs 1.25%, while a debit card at 2% costs $40—use the calculator to model both scenarios.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare spot price vs. exchange price by checking the calculator's markup field; some platforms add a 1.5% spread on top of fees, effectively doubling your costs to 2-3% on small retail purchases.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator for cost basis tracking by recording your total fiat amount spent (including all fees) for each purchase; this is essential for calculating capital gains and fulfilling IRS reporting requirements when you eventually sell.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For large purchases over $50,000, contact exchanges about OTC pricing—the calculator reflects retail rates, but institutional desks offer 0.5-1% lower fees that aren't captured in standard calculations.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the difference between maker and taker fees</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many users assume a single exchange fee, but limit orders (maker) cost 0.16% on Kraken while market orders (taker) cost 0.26%. If you place a market order on a $10,000 purchase thinking you'll pay the 0.16% maker rate, you'll actually pay $26 instead of $16.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for network gas fees</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator shows your exchange fee cost, but once you withdraw crypto to your wallet, you'll pay network fees ($5-$50 for Bitcoin, $10-$100+ during congestion for Ethereum). Your true cost is exchange fee plus withdrawal fee, not just the exchange fee alone.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using outdated or incorrect exchange rates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If your calculator doesn't update rates in real-time and you use a rate from 30 minutes ago, your calculated amount could be 1-3% off from what you actually receive. Always verify rates directly on your exchange before purchasing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for slippage on large orders</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A $100,000 market order can move Bitcoin's price 0.5-2% against you depending on order book depth; the calculator shows you the current rate, but your actual execution price may be 0.5-2% worse if you buy via market order during low liquidity periods.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Miscalculating cost basis by excluding fees from your tax records</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you invest $10,000 but pay $150 in fees, your IRS cost basis is $10,150, not $10,000—failing to include fees in your cost basis calculation will result in overstating capital gains and paying excess taxes when you sell.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the final crypto amount. The Fiat Amount represents your total investment in fiat currency. The Fee Percentage accounts for any transaction costs, which can vary depending on the platform or exchange used. The Crypto Price is the current market value of the cryptocurrency. Changes in any of these variables will directly affect the amount of cryptocurrency you can purchase. For instance, a higher fee percentage will reduce the net fiat amount available for purchasing crypto.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your crypto purchase calculations is essential for making informed investment decisions. These factors can significantly impact the amount of cryptocurrency you can acquire and your overall investment strategy.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-4">
-          Cryptocurrency markets are known for their volatility. Prices can fluctuate dramatically within short periods, affecting the amount of crypto you can purchase. Staying updated with market trends and using tools like price alerts can help you navigate these fluctuations effectively.
-        </p>
-        <p className="mb-6">
-          To optimize your purchases during volatile periods, consider setting a budget and sticking to it. This approach helps mitigate risks associated with sudden price changes. For more strategies, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Transaction Fees
-        </h3>
-        <p className="mb-4">
-          Transaction fees can vary significantly between different exchanges and platforms. These fees directly impact the net amount of fiat currency available for purchasing crypto. It's crucial to compare fees across platforms to ensure you're getting the best deal.
-        </p>
-        <p className="mb-6">
-          Consider using exchanges with lower fees or promotional offers to maximize your crypto acquisition. Be aware of hidden fees that may not be immediately apparent. For more insights, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Exchange Rates
-        </h3>
-        <p className="mb-4">
-          Exchange rates between fiat currencies and cryptocurrencies can vary. These rates are influenced by market demand, geopolitical events, and economic indicators. Understanding these factors can help you predict potential rate changes and plan your purchases accordingly.
-        </p>
-        <p className="mb-6">
-          Monitoring exchange rates and using historical data can provide valuable insights into future trends. This information can guide your investment decisions and help you capitalize on favorable rates.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Regulatory Environment
-        </h3>
-        <p className="mb-6">
-          The regulatory landscape for cryptocurrencies is continually evolving. Changes in regulations can impact the availability and pricing of cryptocurrencies. Staying informed about regulatory developments is crucial for making informed investment decisions. For instance, new regulations may introduce additional fees or restrictions on crypto transactions.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Security Measures
-        </h3>
-        <p className="mb-6">
-          Security is a paramount concern when dealing with cryptocurrencies. Ensuring that your chosen platform has robust security measures in place can protect your investments from potential threats. Look for platforms with multi-factor authentication, encryption, and insurance against breaches.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the Fiat to Crypto Purchase Calculator determine the amount of cryptocurrency I'll receive?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator multiplies your fiat amount by the current exchange rate for your selected cryptocurrency, then subtracts any applicable fees (typically 0.5% to 2% depending on your exchange). For example, if you invest $1,000 in Bitcoin at $43,000 per BTC with a 1% fee, you'd receive approximately 0.0227 BTC after fees. The calculator updates exchange rates in real-time or at specified intervals to ensure accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What fees should I account for when using this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most cryptocurrency exchanges charge trading fees ranging from 0.1% to 2% of your purchase amount, with major platforms like Coinbase charging around 1.5% for market orders and Kraken charging 0.16% to 0.26%. Bank transfer fees (typically $0-$15) and network transaction fees (gas fees on blockchain, usually $5-$50) should also be considered. Always check your specific exchange's fee structure, as promotional discounts or membership tiers can significantly reduce costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator help me compare prices across different cryptocurrency exchanges?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While the calculator itself shows you the conversion at current market rates, you should use it alongside exchange-specific pricing tools to compare final amounts received. Price differences between exchanges like Coinbase, Kraken, and Gemini can range from 0.5% to 2% due to varying fee structures and liquidity. Using the calculator with exchange fee inputs allows you to model the exact outcome on each platform before committing funds.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do market volatility and price slippage affect my purchase calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cryptocurrency prices fluctuate constantly, and your actual purchase price may differ from the calculator estimate by 0.1% to 5% depending on order size and market conditions. Large purchases (over $50,000) can experience slippage where the price moves against you during execution. The calculator provides a snapshot at calculation time, but you should execute purchases immediately or use limit orders to lock in a specific price.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between spot price and the price I'll actually pay?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The spot price is the real-time market price of a cryptocurrency, while the actual purchase price includes your exchange's markup or spread. For example, if Bitcoin's spot price is $43,000, you might pay $43,645 on Coinbase due to their 1.5% markup for retail users. The calculator should account for this difference; premium or institutional pricing tiers can reduce this spread to 0.1%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I use this calculator for tax planning purposes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator helps you determine your cost basis—the total fiat amount spent including all fees—which is critical for calculating capital gains or losses when you sell. If you invest $10,000 and pay $150 in fees, your cost basis is $10,150, even if you received only 0.225 BTC. Keep detailed records of these calculations for IRS reporting, as the IRS treats cryptocurrency purchases as taxable events.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for stablecoin purchases like USDC or USDT?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator works for stablecoins, though the math is simpler since stablecoins maintain a $1 peg. When purchasing $5,000 of USDC with a 0.5% fee, you'd receive approximately 4,975 USDC after the $25 fee deduction. However, stablecoins still have network transfer fees (typically $1-$10) that should be factored in for accurate calculations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the minimum and maximum purchase amount I should consider with this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most exchanges set minimum purchases between $10 and $100, while individual transaction limits range from $10,000 to $500,000+ depending on your account verification level. Large institutional purchases (over $1 million) may receive better rates through OTC (over-the-counter) desks, which this basic calculator doesn't account for. Using the calculator for purchases between $100 and $100,000 typically yields the most accurate results for retail investors.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does payment method (bank transfer, credit card, wire) affect my purchase calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Payment methods significantly impact total cost: bank transfers typically charge 0% to 1% in fees ($0-$100 on a $10,000 purchase), credit cards charge 2% to 3.5% ($200-$350), and wire transfers cost $15-$50 flat fees. ACH transfers are usually cheapest for fiat deposits but take 3-5 days, while debit cards offer instant settlement at medium-range fees. Input your expected payment method fees into the calculator to see the true total cost of your crypto purchase.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Cryptocurrency Insights
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on cryptocurrency trends and regulatory guidelines.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/pubs/cryptocurrency-investor-alert.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Division of Investor Education and Advocacy - Cryptocurrency Investor Alert</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official SEC guidance on cryptocurrency risks, including fee transparency and exchange selection for retail investors.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Crypto Guide
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on cryptocurrency.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p544" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 544: Sales of Assets - Cryptocurrency Tax Reporting</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">IRS guidance on calculating cost basis and reporting capital gains from cryptocurrency purchases and sales for tax purposes.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Cryptocurrency Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information related to cryptocurrencies.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/cryptocurrency-4427699" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia - Cryptocurrency Exchanges: Full Beginner's Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive explanation of how cryptocurrency exchanges work, fee structures, and best practices for comparing platforms.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Crypto Tax Guidelines
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information for cryptocurrency transactions.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Cryptocurrency Basics
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained for beginners and experts alike.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Cryptocurrency Investing
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for cryptocurrency investments.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/about-us/newsroom/cfpb-report-cryptocurrency-asset-lending-platforms/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau - Virtual Currencies and Payments</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB consumer protection guidelines for cryptocurrency purchases and risks associated with unregulated digital asset platforms.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

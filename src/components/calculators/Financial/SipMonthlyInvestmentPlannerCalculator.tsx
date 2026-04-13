@@ -20,24 +20,40 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
 
   const faqs = [
     {
-      question: "What is a SIP and how does it work in the Indian market context?",
-      answer: "A Systematic Investment Plan (SIP) allows investing a fixed amount in mutual funds at regular intervals (typically monthly). In India, SIPs are the dominant retail investment vehicle: ₹19,000+ crore invested monthly via SIP as of 2024 (AMFI data). The NAV-based purchase means each SIP installment buys more units when markets fall and fewer when they rise -- the rupee-cost averaging effect. Minimum SIPs start at ₹500/month. SIP with step-up (increasing annual contribution by 10–15% matching salary growth) dramatically accelerates wealth accumulation. A ₹10,000/month SIP for 20 years at 12% CAGR = ₹99.9 lakh ($120K). A step-up SIP starting at ₹10,000 with 10% annual increase = ₹1.6 crore over the same period."
+      question: "What is a SIP and how does the calculator help me plan?",
+      answer: "SIP (Systematic Investment Plan) is an investment strategy where you invest a fixed amount regularly, typically monthly, into mutual funds or securities. The SIP calculator helps you forecast how your investments will grow over time by factoring in your monthly contribution amount, expected annual return rate, and investment duration. By using this planner, you can set realistic financial goals and understand the power of compound growth through consistent, disciplined investing.",
     },
     {
-      question: "What CAGR should I use for Indian equity mutual fund SIP projections?",
-      answer: "Historical CAGR for Indian equity categories (15-year, as of 2024): Nifty 50 Index: ~12–13%. Large-cap funds: 12–14%. Mid-cap funds: 15–18%. Small-cap funds: 16–20%. Flexi-cap/multi-cap: 13–16%. Use 12% for conservative large-cap projections, 15% for balanced flexi-cap assumptions, 18% for aggressive mid/small-cap modeling. Important caveat: historical 15-year returns include the post-2009 bull market; future returns may be lower as India's market matures. The SEBI-mandated disclaimer 'past returns are not indicative of future performance' applies. Model at three rates (10%, 12%, 15%) to show the range. Inflation in India averages 5–6%, so real returns are approximately 6–9%."
+      question: "How much should I invest monthly to reach a $500,000 goal in 10 years?",
+      answer: "To reach $500,000 in 10 years (120 months) with an assumed 12% annual return typical of equity mutual funds, you would need to invest approximately $2,580 per month. However, this varies significantly based on your expected rate of return—at 8% annual return, you'd need roughly $3,100 monthly, while at 15% return, only about $2,150 monthly. The SIP calculator allows you to input your target amount and see exactly what monthly contribution is needed for your specific timeline and expected returns.",
     },
     {
-      question: "How does the SIP corpus change if I pause or stop contributions mid-way?",
-      answer: "Pausing SIP mid-way has a significant impact because compound growth is most powerful in the final years. Example: SIP of ₹10,000/month for 20 years at 12% CAGR = ₹99.9 lakh. If you stop after 10 years and let ₹23.2 lakh compound for 10 more years: ₹72 lakh (no new contributions). Versus continuing for all 20 years: ₹99.9 lakh. The last 10 years of contributions (₹12 lakh invested) generated ₹27.9 lakh of additional corpus. Stopping SIP reduces corpus by 28%. For temporary financial stress, most AMCs allow SIP pause for 1–3 months without penalty -- preferable to permanent stoppage. Resuming at a higher amount after a pause partially compensates for missed growth."
+      question: "What annual return rate should I assume for equity mutual funds in the calculator?",
+      answer: "Historical data shows equity mutual funds have delivered average annual returns of 10-12% over long-term periods (15+ years), though this varies by market conditions and fund type. Large-cap funds typically average 10-11% annually, while mid-cap and small-cap funds may range from 12-14% with higher volatility. Conservative investors might use 8-10%, while growth-focused investors may assume 12-15%, but it's important to remember that past performance doesn't guarantee future results.",
     },
     {
-      question: "What is the tax treatment of SIP mutual fund redemptions in India?",
-      answer: "Each SIP installment starts its own holding period. For equity mutual funds: holding period ≥ 12 months = Long-Term Capital Gains (LTCG) at 12.5% (above ₹1.25 lakh LTCG per year, effective July 2024 Budget). Holding period < 12 months = Short-Term Capital Gains (STCG) at 20%. If you start monthly SIPs, after 12 months, the 1st installment qualifies for LTCG. The 13th installment becomes LTCG one month later, and so on. For debt mutual funds (post-April 2023): gains taxed at your slab rate regardless of holding period. For ELSS funds (tax-saving): 3-year lock-in per installment, LTCG applies, Section 80C deduction available (up to ₹1.5 lakh total)."
+      question: "Can the SIP calculator account for inflation in my investment goals?",
+      answer: "Yes, many advanced SIP calculators allow you to input the inflation rate to calculate what your future goal amount should actually be in today's money. For example, if you want $500,000 in 10 years and assume 5% annual inflation, you'd actually need approximately $814,000 to maintain the same purchasing power. Always factor in inflation rates between 4-6% for India or 2-3% for developed markets to ensure your investment target remains realistic.",
     },
     {
-      question: "How does SIP compare to PPF or FD for long-term wealth creation in India?",
-      answer: "Public Provident Fund (PPF): 7.1% guaranteed, tax-free, Section 80C benefit, 15-year lock-in, ₹1.5 lakh/year maximum. Fixed Deposit (FD): 6.5–7.5% (2024), fully taxable at slab rate, flexible tenure. Equity SIP (large-cap): ~12% historical CAGR, LTCG at 12.5% above ₹1.25 lakh. Example comparison on ₹10,000/month for 20 years: PPF (7.1% tax-free): ~₹54 lakh. FD (7% post-30% tax = 4.9% net): ~₹41 lakh. Equity SIP (12% CAGR, LTCG): ~₹85 lakh after tax. The equity SIP outperforms PPF by 57% over 20 years despite higher taxation, due to the higher pre-tax return. For risk-averse investors: PPF for guaranteed floor + SIP for growth outperformance is the optimal hybrid."
+      question: "How does increasing my SIP amount annually impact my final corpus?",
+      answer: "Step-up SIP, where you increase your monthly investment by a fixed percentage annually (typically 5-10%), can significantly boost your final amount. For instance, if you start with a $500 monthly SIP at 12% annual return and increase it by 7% yearly for 20 years, your corpus grows to approximately $6,10,000 versus $3,80,000 without the step-up. The SIP calculator with step-up feature helps you model salary increment scenarios and shows how disciplined increases amplify wealth creation through the compounding effect.",
+    },
+    {
+      question: "What is the difference between a SIP and lump sum investment using this calculator?",
+      answer: "A lump sum investment deploys the entire amount at once and begins compounding immediately, while SIP spreads investments over time, reducing market timing risk through rupee cost averaging. For example, investing $100,000 as a lump sum at 12% annual return for 10 years yields approximately $310,600, whereas investing $8,333 monthly ($100,000 total) over the same period yields roughly $165,400—less due to staggered entry, but lower downside risk. The SIP calculator helps visualize both scenarios to determine which strategy aligns with your risk tolerance and cash flow availability.",
+    },
+    {
+      question: "How does the compounding frequency affect SIP calculations in the calculator?",
+      answer: "While most SIP calculators assume monthly contributions and annual compounding, some advanced versions allow quarterly or daily compounding selection. The difference is modest but meaningful—a $1,000 monthly SIP at 12% annual return with annual compounding yields approximately $3,65,000 over 15 years, while monthly compounding yields roughly $3,72,000. For most practical purposes, the calculator uses annual compounding, but understanding this nuance helps explain small variations between calculator results and actual mutual fund statements.",
+    },
+    {
+      question: "Can I use the SIP calculator to plan for retirement with a specific monthly expense target?",
+      answer: "Yes, you can reverse-engineer your retirement needs using the calculator by first determining your monthly expense requirement, then calculating the corpus needed to generate that income through withdrawals or returns. For example, if you need $5,000 monthly in retirement (or $60,000 annually) at a 6% withdrawal rate, you'd need a $10,00,000 corpus at retirement. The SIP calculator then shows what monthly investment starting now will reach that target within your desired retirement timeline.",
+    },
+    {
+      question: "What happens if I miss or skip months in my SIP commitment?",
+      answer: "Missing SIP payments disrupts the compounding effect and reduces your final corpus significantly—missing just 6 months out of 120 could reduce your returns by 5-8% depending on when they occur. For example, a $2,000 monthly SIP at 12% annual return over 10 years yields $3,65,000, but missing 6 payments reduces it to approximately $3,28,000. The SIP calculator assumes regular, uninterrupted contributions; using it to model scenarios with gaps can help you understand the cost of inconsistency and reinforce the importance of disciplined investing.",
     }
   ];
 
@@ -300,252 +316,284 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding SIP/Monthly Investment Planner
-        </h2>
-        
-        <p className="mb-6">
-          A Systematic Investment Plan (SIP) is a disciplined investment strategy that allows individuals to invest a fixed amount regularly in mutual funds or stocks. The SIP/Monthly Investment Planner is a tool designed to help investors calculate the expected returns on their monthly investments over a specified period. By understanding the potential growth of their investments, individuals can make informed decisions about their financial future. This calculator is particularly useful for those who want to plan their investments systematically and achieve long-term financial goals.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in the realm of investments, as even minor errors can lead to significant financial discrepancies over time. The SIP/Monthly Investment Planner ensures that users can accurately project their investment growth, taking into account factors such as the investment amount, interest rate, and investment duration. This tool helps users avoid common pitfalls and make strategic decisions to maximize their returns. For a deeper understanding of financial planning, consider exploring our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information such as your monthly investment amount, expected annual interest rate, and the duration of your investment in years. Enter these values into the respective fields to calculate the future value of your investment. The calculator will provide insights into the total investment, interest earned, and the overall growth of your portfolio. For more investment planning tools, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Consistency is key when it comes to SIPs. Regular investments, even if small, can lead to substantial growth over time due to the power of compounding. Ensure that you stick to your investment plan and review your portfolio periodically to make necessary adjustments.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the SIP/Monthly Investment Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The SIP Monthly Investment Planner is a powerful tool that helps you forecast the growth of regular, disciplined investments over time. By understanding how monthly contributions compound over years, you can make informed decisions about your financial goals—whether saving for retirement, education, home purchase, or wealth accumulation. This calculator removes guesswork from investment planning by showing you exactly what your money can grow to under different scenarios.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator effectively, you'll need to input four key variables: your monthly investment amount (the fixed sum you'll contribute regularly), the expected annual rate of return (typically 8-12% for equity funds, 4-6% for balanced funds), the investment period in years (your time horizon), and optionally, annual step-up percentage if you plan to increase contributions over time. Understanding each input is crucial—the annual return rate significantly impacts your results, and it should reflect your fund type and risk appetite rather than overly optimistic assumptions. Time horizon is equally important because longer periods allow compound growth to work more powerfully in your favor.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once you've entered your data and generated results, focus on understanding three key metrics: total amount invested (your actual out-of-pocket contribution), wealth gained (the investment returns and compounding), and final corpus (your total accumulated amount). Pay attention to how changing one variable affects the outcome—for example, increasing your monthly SIP by $500 or extending your timeline by 5 years can dramatically shift results. Use these insights to adjust your investment strategy, set realistic goals, and stay motivated through consistent, disciplined participation in your SIP.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for optimizing your SIP include setting clear financial goals, choosing the right mutual funds or stocks, and regularly reviewing your investment strategy. Be mindful of market trends and economic factors that could impact your returns. By staying informed and proactive, you can enhance the effectiveness of your investment plan.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          SIP/Monthly Investment Planner Formula
-        </h2>
-        
-        <p className="mb-6">
-          The SIP/Monthly Investment Planner uses a formula that calculates the future value of a series of regular investments. This formula is derived from the concept of compound interest, which allows investments to grow exponentially over time. The standard formula used is:
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          FV = P × ((1 + r)^n - 1) / r × (1 + r)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>FV = Future Value of the investment</li>
-              <li>P = Monthly investment amount</li>
-              <li>r = Monthly interest rate (annual rate / 12)</li>
-              <li>n = Total number of investments (months)</li>
-            </ul>
+      {/* TABLE: SIP Returns Comparison: Monthly Investment of $1,000 at Different Annual Return Rates */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">SIP Returns Comparison: Monthly Investment of $1,000 at Different Annual Return Rates</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how varying expected return rates impact your investment corpus over different time horizons with consistent $1,000 monthly contributions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Investment Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">8% Annual Return</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">10% Annual Return</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">12% Annual Return</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15% Annual Return</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 years (60 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$68,550</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$73,580</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$79,080</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$87,450</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 years (120 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$156,300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$181,940</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$210,680</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$261,800</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 years (180 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$295,480</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$379,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$485,920</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$680,250</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 years (240 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$496,440</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$689,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$985,650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,586,200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25 years (300 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$777,130</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,131,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,721,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,949,800</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume annual compounding and uninterrupted monthly contributions. Actual returns depend on market conditions and fund performance. Past performance does not guarantee future results.</p>
+      </section>
+
+      {/* TABLE: Monthly SIP Amount Required to Reach $500,000 Goal at Different Time Horizons */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly SIP Amount Required to Reach $500,000 Goal at Different Time Horizons</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to determine how much you need to invest monthly to accumulate $500,000 based on your investment timeline and expected annual return.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time Horizon</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">8% Annual Return</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">10% Annual Return</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">12% Annual Return</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15% Annual Return</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 years (60 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,290</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,785</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,330</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,705</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 years (120 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,370</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,910</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 years (180 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,690</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,315</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,030</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$735</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 years (240 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,010</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$720</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$505</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$315</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25 years (300 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$645</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$440</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$290</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$170</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Figures are rounded to the nearest $5. These calculations assume consistent monthly investments and annual compounding. Adjust based on your actual expected returns and risk tolerance.</p>
+      </section>
+
+      {/* TABLE: Step-Up SIP Impact: Starting with $500/Month and Increasing 5-7% Annually */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Step-Up SIP Impact: Starting with $500/Month and Increasing 5-7% Annually</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table illustrates how annual increases to your SIP amount (step-up) enhance wealth accumulation over 20 years at 12% assumed annual return.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Year</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Regular SIP (No Increase)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5% Annual Step-Up</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">7% Annual Step-Up</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Year 5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$80,540</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$84,220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$85,990</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Year 10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$219,480</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$242,670</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$253,850</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Year 15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$495,220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$589,340</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$630,180</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Year 20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$985,650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,289,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,425,680</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All scenarios assume 12% annual return and monthly compounding. Step-up percentages align with typical salary increment expectations. Actual results depend on consistent execution and market performance.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Start your SIP early, even with a small amount—a $500 monthly SIP at age 25 can grow to over $2.5 million by age 60 (assuming 12% returns), whereas starting at age 35 yields only $820,000, demonstrating that time is your greatest asset in SIP investing.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the step-up SIP feature in the calculator to model salary increases—increasing your SIP by 5-10% annually aligned with your income growth can boost your final corpus by 25-35% without straining your budget.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare multiple scenarios using the calculator by varying return rates to understand the impact of conservative vs. aggressive fund selection—this helps you choose an asset allocation strategy that balances your risk tolerance with return expectations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in inflation by running two calculations: one for your goal amount and another for the inflation-adjusted amount—a $500,000 goal in 20 years with 5% inflation actually requires approximately $1.33 million in future rupees.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Review and rebalance your SIP assumptions annually by checking actual fund performance against your expected return rate—if your fund consistently underperforms, adjust your monthly contribution upward or reset your time horizon expectations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Utilize the calculator to plan for mid-life changes, such as career breaks or sabbaticals—model scenarios where you pause or reduce SIP contributions to understand the impact and prepare alternative strategies to maintain your long-term goals.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming unrealistic return rates above 15% annually</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many investors inflate their expected returns based on best-case scenarios or a single year of exceptional performance, leading to underfunded SIP plans. Historical equity returns average 10-12% annually over long periods; consistently expecting 18-20% creates a significant shortfall between projected and actual corpus.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the impact of missing or irregular SIP payments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treating SIP as optional rather than a fixed obligation means gaps in contributions compound negatively—missing just 12 months out of 240 can reduce your final amount by 5-8%. The calculator assumes perfect discipline; real-world success depends on treating SIP contributions as non-negotiable expense.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Failing to account for inflation in long-term goals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating a $500,000 goal without adjusting for 4-5% annual inflation means that amount has significantly less purchasing power after 15-20 years. Always run two calculations: one for nominal amount and one inflation-adjusted to understand your true requirement.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not revisiting and updating SIP calculator annually</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Market conditions, inflation, and personal circumstances change yearly, but many investors set a SIP plan once and never reassess. Annual calculator reviews allow you to confirm your funds are performing as expected, adjust contribution amounts based on salary increases, and reset timelines if needed to stay on track.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Comparing SIP results without accounting for fund-specific fees and taxes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The basic SIP calculator shows gross returns, but expense ratios (0.5-2% annually) and tax on capital gains can reduce net returns by 1-3% depending on fund type and holding period. Always factor in these costs when planning, or use net return assumptions in the calculator.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the future value of your investments. The monthly investment amount (P) is the fixed sum you invest regularly. The monthly interest rate (r) is derived from the annual rate, reflecting the compounding effect on a monthly basis. The total number of investments (n) represents the duration of your investment in months. By adjusting these variables, you can see how different scenarios impact your investment growth.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your investment results is essential for effective financial planning. These factors interact in complex ways, affecting the growth and stability of your investment portfolio.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Amount
-        </h3>
-        <p className="mb-4">
-          The amount you invest each month is a primary determinant of your investment's future value. Larger investments result in greater compounding effects, leading to higher returns. For instance, increasing your monthly investment from $500 to $600 can significantly boost your portfolio's growth over time.
-        </p>
-        <p className="mb-6">
-          To optimize this factor, consider gradually increasing your investment amount as your financial situation improves. This strategy, known as "step-up SIP," allows you to capitalize on the power of compounding. For more strategies, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate determines how quickly your investments grow. Higher rates lead to faster compounding and greater returns. However, interest rates can fluctuate based on market conditions, impacting your investment's performance.
-        </p>
-        <p className="mb-6">
-          It's important to choose investments with competitive interest rates and to stay informed about market trends. Diversifying your portfolio can help mitigate the risks associated with interest rate fluctuations.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Duration
-        </h3>
-        <p className="mb-4">
-          The length of time you invest affects the extent of compounding. Longer durations allow your investments to grow more, as compounding has more time to work its magic. For example, a 10-year investment will yield significantly higher returns than a 5-year investment, given the same monthly contribution and interest rate.
-        </p>
-        <p className="mb-6">
-          To maximize your returns, start investing as early as possible and maintain your investments for longer periods. This approach leverages the full potential of compounding.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Conditions
-        </h3>
-        <p className="mb-6">
-          Market conditions, including economic stability and geopolitical factors, can influence the performance of your investments. During periods of economic growth, investments typically perform well, while downturns can lead to reduced returns. It's crucial to monitor market trends and adjust your investment strategy accordingly. Diversification can help protect your portfolio from market volatility, ensuring more stable returns.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Inflation
-        </h3>
-        <p className="mb-6">
-          Inflation erodes the purchasing power of your returns, making it a critical factor to consider. Investments that outpace inflation ensure that your returns maintain their value over time. Consider investing in assets that historically offer returns above the inflation rate, such as equities or real estate. Understanding inflation's impact on your investments can help you make informed decisions and safeguard your financial future.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {/* FAQ SECTION */}
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a SIP and how does the calculator help me plan?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">SIP (Systematic Investment Plan) is an investment strategy where you invest a fixed amount regularly, typically monthly, into mutual funds or securities. The SIP calculator helps you forecast how your investments will grow over time by factoring in your monthly contribution amount, expected annual return rate, and investment duration. By using this planner, you can set realistic financial goals and understand the power of compound growth through consistent, disciplined investing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much should I invest monthly to reach a $500,000 goal in 10 years?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To reach $500,000 in 10 years (120 months) with an assumed 12% annual return typical of equity mutual funds, you would need to invest approximately $2,580 per month. However, this varies significantly based on your expected rate of return—at 8% annual return, you'd need roughly $3,100 monthly, while at 15% return, only about $2,150 monthly. The SIP calculator allows you to input your target amount and see exactly what monthly contribution is needed for your specific timeline and expected returns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What annual return rate should I assume for equity mutual funds in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Historical data shows equity mutual funds have delivered average annual returns of 10-12% over long-term periods (15+ years), though this varies by market conditions and fund type. Large-cap funds typically average 10-11% annually, while mid-cap and small-cap funds may range from 12-14% with higher volatility. Conservative investors might use 8-10%, while growth-focused investors may assume 12-15%, but it's important to remember that past performance doesn't guarantee future results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the SIP calculator account for inflation in my investment goals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, many advanced SIP calculators allow you to input the inflation rate to calculate what your future goal amount should actually be in today's money. For example, if you want $500,000 in 10 years and assume 5% annual inflation, you'd actually need approximately $814,000 to maintain the same purchasing power. Always factor in inflation rates between 4-6% for India or 2-3% for developed markets to ensure your investment target remains realistic.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does increasing my SIP amount annually impact my final corpus?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Step-up SIP, where you increase your monthly investment by a fixed percentage annually (typically 5-10%), can significantly boost your final amount. For instance, if you start with a $500 monthly SIP at 12% annual return and increase it by 7% yearly for 20 years, your corpus grows to approximately $6,10,000 versus $3,80,000 without the step-up. The SIP calculator with step-up feature helps you model salary increment scenarios and shows how disciplined increases amplify wealth creation through the compounding effect.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between a SIP and lump sum investment using this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A lump sum investment deploys the entire amount at once and begins compounding immediately, while SIP spreads investments over time, reducing market timing risk through rupee cost averaging. For example, investing $100,000 as a lump sum at 12% annual return for 10 years yields approximately $310,600, whereas investing $8,333 monthly ($100,000 total) over the same period yields roughly $165,400—less due to staggered entry, but lower downside risk. The SIP calculator helps visualize both scenarios to determine which strategy aligns with your risk tolerance and cash flow availability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the compounding frequency affect SIP calculations in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While most SIP calculators assume monthly contributions and annual compounding, some advanced versions allow quarterly or daily compounding selection. The difference is modest but meaningful—a $1,000 monthly SIP at 12% annual return with annual compounding yields approximately $3,65,000 over 15 years, while monthly compounding yields roughly $3,72,000. For most practical purposes, the calculator uses annual compounding, but understanding this nuance helps explain small variations between calculator results and actual mutual fund statements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the SIP calculator to plan for retirement with a specific monthly expense target?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, you can reverse-engineer your retirement needs using the calculator by first determining your monthly expense requirement, then calculating the corpus needed to generate that income through withdrawals or returns. For example, if you need $5,000 monthly in retirement (or $60,000 annually) at a 6% withdrawal rate, you'd need a $10,00,000 corpus at retirement. The SIP calculator then shows what monthly investment starting now will reach that target within your desired retirement timeline.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I miss or skip months in my SIP commitment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Missing SIP payments disrupts the compounding effect and reduces your final corpus significantly—missing just 6 months out of 120 could reduce your returns by 5-8% depending on when they occur. For example, a $2,000 monthly SIP at 12% annual return over 10 years yields $3,65,000, but missing 6 payments reduces it to approximately $3,28,000. The SIP calculator assumes regular, uninterrupted contributions; using it to model scenarios with gaps can help you understand the cost of inconsistency and reinforce the importance of disciplined investing.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access comprehensive economic data and research reports to understand market trends and interest rate movements.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/pubs/inwsmf.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Investment Company Information: Mutual Fund Fees and Expenses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official SEC guidance on understanding mutual fund fees, expense ratios, and how they impact long-term investment returns.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Investment Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Explore educational resources and guides to make informed investment decisions and protect your financial interests.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.finra.org/investors/insights/what-dollar-cost-averaging" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FINRA Investor Education: Dollar Cost Averaging and SIP Strategies</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">FINRA's comprehensive explanation of systematic investment plans and how regular contributions reduce market timing risk.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Learn about banking regulations, deposit insurance, and financial literacy to enhance your investment knowledge.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/s/systematicinvestmentplan.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Systematic Investment Plan (SIP) Definition and Calculator Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed article covering SIP mechanics, advantages over lump-sum investing, and practical examples of monthly investment planning.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access official tax guidelines and information on deductions to optimize your investment tax strategy.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Investment Strategies
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Discover detailed explanations of investment concepts and strategies to enhance your financial planning.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Financial Planning Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Utilize personal finance guides and comparison tools to make informed investment decisions.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p550" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 550: Investment Income and Expenses (Capital Gains and Losses)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS publication explaining tax treatment of mutual fund investments, capital gains, and how taxes impact SIP returns in taxable accounts.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

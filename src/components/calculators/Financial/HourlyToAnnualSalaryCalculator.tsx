@@ -20,24 +20,40 @@ export default function HourlyToAnnualSalaryCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are hourly wage conversion calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For hourly wage conversion, accuracy depends on using current overtime data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a overtime professional."
+      question: "How do I calculate my annual salary from an hourly wage?",
+      answer: "Multiply your hourly rate by the number of hours you work per week, then multiply by 52 weeks per year. For example, if you earn $25/hour and work 40 hours per week, your annual salary is $25 × 40 × 52 = $52,000. This calculator automates this calculation and accounts for different work schedules and paid time off.",
     },
     {
-      question: "What key factors most affect hourly wage conversion results?",
-      answer: "The most impactful variables in hourly wage conversion calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "Should I include overtime hours in my annual salary calculation?",
+      answer: "Only include overtime hours if they are guaranteed or consistent. Most salary conversions use standard 40-hour work weeks. If you regularly work 45 hours weekly at $20/hour with 1.5× overtime pay after 40 hours, you'd earn $20 × 40 + $20 × 1.5 × 5 = $950/week, or approximately $49,400 annually.",
     },
     {
-      question: "When should I recalculate hourly wage conversion?",
-      answer: "Recalculate whenever overtime conditions change significantly: after major overtime events, when your inputs change (income, rates, holdings), or when overtime regulations are updated. For time-sensitive overtime metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "How do paid time off (PTO) days affect my annual salary calculation?",
+      answer: "PTO days reduce your billable work hours but don't reduce your salary if you're paid during time off. If you have 15 PTO days annually, you work 250 days instead of 260, reducing your work hours by 120 hours (15 days × 8 hours). Include this in your calculator for an accurate take-home estimate.",
     },
     {
-      question: "How does hourly wage conversion relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Hourly wage conversion should be evaluated alongside related measures like benefits value. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your overtime situation, rather than optimizing any single number in isolation."
+      question: "What's the difference between gross annual salary and net annual income?",
+      answer: "Gross annual salary is your total earnings before taxes and deductions. Net annual income is what you take home after federal income tax, Social Security (6.2%), Medicare (1.45%), state tax, and other deductions. A $50,000 gross salary typically results in approximately $38,000–$41,000 net income depending on your tax bracket and deductions.",
     },
     {
-      question: "What are the most common mistakes when calculating hourly wage conversion?",
-      answer: "The most frequent errors in hourly wage conversion calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world overtime conditions fluctuate. Double-check your inputs against current overtime data before relying on results for significant financial decisions."
+      question: "How do I account for unpaid leave or sabbaticals in my calculation?",
+      answer: "Unpaid leave reduces your annual earnings directly. If you take 4 unpaid weeks off from a $30/hour job working 40 hours weekly, subtract 160 hours: ($30 × 40 × 52) − ($30 × 160) = $62,400 − $4,800 = $57,600 annual income.",
+    },
+    {
+      question: "What hourly wage equals a $60,000 annual salary?",
+      answer: "Working a standard 40-hour week for 52 weeks, divide $60,000 by 2,080 hours (40 × 52) to get approximately $28.85/hour. This is the most common conversion benchmark for full-time employment in the United States.",
+    },
+    {
+      question: "How does a part-time schedule affect annual salary calculations?",
+      answer: "Part-time workers typically work 20–35 hours per week. If you earn $18/hour working 30 hours weekly, your annual salary is $18 × 30 × 52 = $28,080. Always verify your actual weekly hours with your employer, as part-time schedules vary significantly.",
+    },
+    {
+      question: "Should I include bonuses and commissions in my hourly to annual conversion?",
+      answer: "Bonuses and commissions should be calculated separately if they're variable. Convert your base hourly wage first, then add guaranteed bonuses as a separate line item. For example, a $20/hour base job with a $5,000 annual bonus equals ($20 × 40 × 52) + $5,000 = $46,600.",
+    },
+    {
+      question: "What's the 2024–2025 federal minimum wage and its annual equivalent?",
+      answer: "The federal minimum wage is $7.25/hour, which equals $15,080 annually for full-time 40-hour-per-week work ($7.25 × 40 × 52). However, 30 states have higher minimum wages; for example, California's minimum wage is $16.50/hour, equivalent to $34,320 annually.",
     }
   ];
 
@@ -290,251 +306,298 @@ export default function HourlyToAnnualSalaryCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Hourly to Annual Salary Converter
-        </h2>
-        
-        <p className="mb-6">
-          Converting your hourly wage to an annual salary is a crucial step in understanding your overall financial health. This conversion allows you to see the bigger picture of your earnings, helping you plan for future expenses, savings, and investments. Whether you're negotiating a new job offer or planning your household budget, knowing your annual salary gives you a clear perspective on your financial standing. This calculator simplifies the process, providing you with an accurate annual salary based on your hourly wage, hours worked per week, and weeks worked per year.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in financial planning. Misestimating your annual salary can lead to budgeting errors, affecting your ability to save, invest, or even cover daily expenses. For instance, if you underestimate your earnings, you might cut back unnecessarily on spending or saving. Conversely, overestimating could result in overspending and financial strain. This tool helps mitigate such risks by providing precise calculations, ensuring you make informed decisions. For more on financial planning, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather the following information: your hourly wage, the average number of hours you work per week, and the number of weeks you work per year. Enter these values into the respective fields. The calculator will then compute your weekly, monthly, and annual earnings. For the most accurate results, ensure your inputs reflect your typical work schedule. If you have variable hours or weeks, consider using an average. For more detailed financial insights, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. Small errors in your hourly rate or weekly hours can significantly impact your annual salary calculation. Use this tool regularly to adjust for any changes in your work schedule or pay rate.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Hourly to Annual Salary Converter</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The hourly to annual salary converter is an essential tool for evaluating job offers, budgeting personal finances, and understanding your true earning potential. Whether you're comparing job opportunities, negotiating salary, or simply calculating what your paycheck translates to yearly, this calculator provides an accurate conversion by accounting for work hours, paid time off, and varying employment schedules.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, input your hourly wage rate and specify your average work hours per week (typically 40 for full-time roles, 20–35 for part-time positions). You can also adjust for paid time off days, holidays, unpaid leave, or overtime hours to get a more precise annual total. These inputs directly affect your final calculation, so accuracy in these numbers is essential.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your gross annual salary before taxes and deductions. To estimate your net take-home pay, apply an approximate tax rate of 20–30% depending on your tax bracket, state of residence, and withholding elections. Use this annual figure as a baseline for budgeting, loan applications, or when comparing compensation packages from different employers.</p>
         </div>
-        
-        <p className="mb-6">
-          For optimal use, consider the following best practices: update your inputs whenever your work schedule or hourly rate changes, and use this tool to compare potential job offers. Understanding how different hourly rates translate into annual salaries can aid in making informed career decisions. Additionally, consider other factors such as benefits and bonuses that might affect your overall compensation.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Hourly to Annual Salary Converter Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used to convert an hourly wage to an annual salary is straightforward yet powerful. It multiplies your hourly rate by the number of hours you work per week and then by the number of weeks you work per year. This formula is the industry standard for calculating annual salaries from hourly wages, providing a reliable estimate of your yearly earnings. Variations of this formula might include adjustments for unpaid leave or overtime, depending on your employment terms.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Annual Salary = Hourly Rate × Hours per Week × Weeks per Year
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Hourly Rate = Your wage per hour</li>
-              <li>Hours per Week = Average hours worked each week</li>
-              <li>Weeks per Year = Total weeks worked in a year</li>
-            </ul>
+      {/* TABLE: Hourly Wage to Annual Salary Conversion Chart (40-Hour Work Week) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Hourly Wage to Annual Salary Conversion Chart (40-Hour Work Week)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the annual salary equivalent for common hourly wage rates based on a standard 40-hour work week with no unpaid leave.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hourly Wage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weekly Earnings</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Salary (52 weeks)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$15.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$31,200</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$18.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$720</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$37,440</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$20.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,600</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$25.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$52,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$30.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$62,400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$35.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$72,800</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$40.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$83,200</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$104,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$60.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$124,800</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume 52 weeks of paid work per year with no unpaid leave or holidays.</p>
+      </section>
+
+      {/* TABLE: Impact of Paid Time Off on Annual Salary */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Paid Time Off on Annual Salary</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how vacation days and holidays reduce your effective work hours and billable annual salary.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">PTO Days Per Year</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Billable Work Days</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Work Hours Lost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Impact on $30/Hour Wage</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">260 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$62,400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$59,600</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">245 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$58,400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$57,200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">235 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$56,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">230 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$54,800</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">PTO calculations assume 8-hour work days. Benefits are still paid during PTO in most salaried positions.</p>
+      </section>
+
+      {/* TABLE: Gross vs. Net Annual Income (Federal Tax Estimates, 2024) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Gross vs. Net Annual Income (Federal Tax Estimates, 2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated federal income tax withholding and net take-home pay for different gross annual salaries filed as single filers.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gross Annual Salary</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Federal Income Tax (Est.)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">FICA Taxes (7.65%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Net Income</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,860</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,295</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25,845</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$40,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,290</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,060</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$33,650</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,105</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,825</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,070</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$60,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,590</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$48,360</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$75,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,325</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,738</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$58,938</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,885</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$76,465</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Estimates are based on 2024 tax brackets for single filers with standard deductions and include Social Security (6.2%) and Medicare (1.45%). State and local taxes not included.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to compare hourly job offers against salaried positions—convert both to annual figures to make apples-to-apples comparisons and ensure you're not leaving money on the table during salary negotiations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for all forms of paid leave—vacation days, sick leave, and holidays—when calculating your effective annual salary, as they reduce your billable work hours even though you're still compensated.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you work variable hours or freelance, calculate your annual salary based on your average weekly hours over the past 3–6 months rather than assuming a full 40-hour week, for a more realistic income projection.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Remember that your gross annual salary is different from your net take-home pay; plan your budget using the net figure after accounting for federal income tax, FICA taxes (7.65%), and state or local taxes, which can reduce your salary by 20–35%.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for unpaid lunch breaks</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many employees work 8.5 or 9 hours per day but are only paid for 8 hours due to unpaid lunch breaks. Don't count unpaid break time in your hourly calculation—use only paid work hours.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming 52 weeks of work without adjusting for holidays</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The U.S. has approximately 10–11 federal holidays annually, reducing billable work days from 260 to 250. Failing to account for this overstates your annual earnings by roughly $1,200–$2,400 depending on hourly wage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Including variable overtime as guaranteed income</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Overtime is rarely guaranteed; calculating your annual salary assuming regular overtime hours can lead to inflated expectations. Use only your base hourly rate and standard hours in your primary calculation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing gross and net salary</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Your gross annual salary does not equal your take-home income. Federal and FICA taxes reduce most salaries by 20–35%, so a $50,000 gross salary typically results in $33,000–$40,000 net income after taxes.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role. The Hourly Rate is the foundation, representing your earnings per hour. The Hours per Week factor in your typical work schedule, while the Weeks per Year account for the total time you work annually. Adjusting any of these variables will directly impact your annual salary. For example, increasing your weekly hours or hourly rate will proportionally increase your annual earnings. Conversely, fewer working weeks will decrease your total salary.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your salary conversion is essential for accurate financial planning. These factors interact in complex ways, affecting your overall earnings and financial outlook. By recognizing these elements, you can better manage your income and make informed decisions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Hourly Rate
-        </h3>
-        <p className="mb-4">
-          The hourly rate is the most direct factor affecting your annual salary. It represents the amount you earn for each hour worked. A higher hourly rate naturally leads to a higher annual salary, assuming other factors remain constant. For instance, a $5 increase in your hourly rate can significantly boost your yearly earnings.
-        </p>
-        <p className="mb-6">
-          To optimize this factor, consider negotiating your hourly rate during job offers or performance reviews. Research industry standards to ensure your rate is competitive. For more insights on salary negotiation, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Hours Worked Per Week
-        </h3>
-        <p className="mb-4">
-          The number of hours you work each week also impacts your annual salary. More hours mean more earnings, provided your hourly rate stays the same. For example, increasing your workweek from 35 to 40 hours can lead to a substantial increase in your annual salary.
-        </p>
-        <p className="mb-6">
-          However, working more hours can also lead to burnout. Balance is key. Consider the long-term implications of your work schedule on your health and productivity. If possible, explore flexible working arrangements that maximize both your earnings and well-being.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Weeks Worked Per Year
-        </h3>
-        <p className="mb-4">
-          The total number of weeks you work in a year is another critical factor. Most full-time positions assume 52 working weeks, but this can vary. Vacations, holidays, and unpaid leave can reduce the number of weeks you work, affecting your annual salary.
-        </p>
-        <p className="mb-6">
-          To manage this factor, plan your time off strategically. Ensure that your annual salary accounts for any unpaid leave. If you're self-employed, consider how taking time off will impact your income and plan accordingly.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Overtime and Bonuses
-        </h3>
-        <p className="mb-6">
-          Overtime and bonuses can significantly affect your annual salary. Overtime pay often comes at a higher rate, increasing your overall earnings. Bonuses, whether performance-based or seasonal, add to your annual income. Understanding how these elements fit into your salary structure can help you plan better financially.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Benefits and Deductions
-        </h3>
-        <p className="mb-6">
-          While not directly part of your salary, benefits and deductions play a role in your overall compensation. Health insurance, retirement contributions, and other benefits can add significant value to your package. Conversely, deductions for taxes and other obligations reduce your take-home pay. Understanding these elements helps you see the full picture of your earnings.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
-
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my annual salary from an hourly wage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiply your hourly rate by the number of hours you work per week, then multiply by 52 weeks per year. For example, if you earn $25/hour and work 40 hours per week, your annual salary is $25 × 40 × 52 = $52,000. This calculator automates this calculation and accounts for different work schedules and paid time off.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include overtime hours in my annual salary calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Only include overtime hours if they are guaranteed or consistent. Most salary conversions use standard 40-hour work weeks. If you regularly work 45 hours weekly at $20/hour with 1.5× overtime pay after 40 hours, you'd earn $20 × 40 + $20 × 1.5 × 5 = $950/week, or approximately $49,400 annually.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do paid time off (PTO) days affect my annual salary calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">PTO days reduce your billable work hours but don't reduce your salary if you're paid during time off. If you have 15 PTO days annually, you work 250 days instead of 260, reducing your work hours by 120 hours (15 days × 8 hours). Include this in your calculator for an accurate take-home estimate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between gross annual salary and net annual income?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gross annual salary is your total earnings before taxes and deductions. Net annual income is what you take home after federal income tax, Social Security (6.2%), Medicare (1.45%), state tax, and other deductions. A $50,000 gross salary typically results in approximately $38,000–$41,000 net income depending on your tax bracket and deductions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for unpaid leave or sabbaticals in my calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Unpaid leave reduces your annual earnings directly. If you take 4 unpaid weeks off from a $30/hour job working 40 hours weekly, subtract 160 hours: ($30 × 40 × 52) − ($30 × 160) = $62,400 − $4,800 = $57,600 annual income.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What hourly wage equals a $60,000 annual salary?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Working a standard 40-hour week for 52 weeks, divide $60,000 by 2,080 hours (40 × 52) to get approximately $28.85/hour. This is the most common conversion benchmark for full-time employment in the United States.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does a part-time schedule affect annual salary calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Part-time workers typically work 20–35 hours per week. If you earn $18/hour working 30 hours weekly, your annual salary is $18 × 30 × 52 = $28,080. Always verify your actual weekly hours with your employer, as part-time schedules vary significantly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include bonuses and commissions in my hourly to annual conversion?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Bonuses and commissions should be calculated separately if they're variable. Convert your base hourly wage first, then add guaranteed bonuses as a separate line item. For example, a $20/hour base job with a $5,000 annual bonus equals ($20 × 40 × 52) + $5,000 = $46,600.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the 2024–2025 federal minimum wage and its annual equivalent?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The federal minimum wage is $7.25/hour, which equals $15,080 annually for full-time 40-hour-per-week work ($7.25 × 40 × 52). However, 30 states have higher minimum wages; for example, California's minimum wage is $16.50/hour, equivalent to $34,320 annually.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.bls.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Bureau of Labor Statistics - Wage Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access comprehensive wage data and employment statistics for various industries.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/taxtopics/tc409" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Wage and Hour Laws</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on wage and salary classifications, withholding requirements, and tax implications of different employment types.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and information on deductions and credits.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.dol.gov/agencies/whd/minimum-wage" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Labor: Minimum Wage</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Current federal minimum wage rates and state-by-state minimum wage comparisons updated for 2024–2025.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.dol.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                U.S. Department of Labor - Employment Laws
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Information on labor laws and regulations affecting wages and working conditions.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/g/grossincome.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Gross Income vs. Net Income</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive explanation of the differences between gross and net income, including tax withholding and deduction calculations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive guides and articles on personal finance and investment strategies.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Money Management
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Tools and advice for managing your money, including budgeting and investing tips.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access financial tools and resources to help you make informed financial decisions.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.ssa.gov/myaccount" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Social Security Administration: Earnings Record</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Resource for verifying wage and earnings records, understanding FICA tax contributions, and planning retirement income based on annual earnings history.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

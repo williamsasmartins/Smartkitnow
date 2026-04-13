@@ -20,24 +20,40 @@ export default function SavingsRateTrackerCalculator() {
 
   const faqs = [
     {
-      question: "What is a good savings rate and how does it affect retirement timeline?",
-      answer: "Research by Mr. Money Mustache (popularized in personal finance communities) based on the 4% safe withdrawal rate: at a 10% savings rate, retirement takes ~46 years. At 20%: ~37 years. At 50%: ~17 years. At 75%: ~7 years. Every percentage point increase in savings rate accelerates retirement timeline exponentially because you simultaneously: (1) invest more, growing the portfolio faster, and (2) reduce spending, decreasing the portfolio size needed for retirement. The US personal savings rate was 3.6% in 2024 (BEA), far below the 15–20% recommended by most financial advisors. The median 401k balance for 55–64 year olds is $185,000 -- insufficient for most retirements."
+      question: "What is a good savings rate I should aim for?",
+      answer: "Financial experts generally recommend saving 10-20% of your gross income, though this varies by life stage and goals. The U.S. personal savings rate averaged 4-5% in 2024, meaning most households save less than experts recommend. If you're tracking your savings rate with this calculator and find you're below 10%, consider reviewing your budget to identify areas where you can reduce discretionary spending.",
     },
     {
-      question: "Should I include employer 401k contributions in my savings rate calculation?",
-      answer: "Including employer match gives the most economically accurate picture; excluding it gives the behavioral picture (what you personally sacrifice). Both metrics are useful. Example: earn $80,000, save $8,000 personally (10% personal rate), employer matches $4,000 = $12,000 total. Total savings rate = 15%. Personal savings rate = 10%. For benchmarking your own behavior: use personal rate. For estimating retirement timeline: use total rate (all sources going to long-term savings). Also consider: HSA contributions are effectively additional savings (triple tax advantage, can be used for healthcare in retirement). Include HSA in total savings rate, not in personal spending budget."
+      question: "How do I calculate my savings rate accurately?",
+      answer: "Your savings rate is calculated as (Total Savings ÷ Gross Income) × 100. Include all money you set aside—retirement contributions, emergency funds, investment accounts, and extra mortgage payments. Exclude debt repayment on consumer loans, as this reduces your available income rather than representing true savings. This calculator automates that formula, so you only need to enter your income and savings amounts.",
     },
     {
-      question: "How do I calculate my true savings rate including all forms of savings?",
-      answer: "True savings rate = (total savings) / (gross income). Total savings includes: 401k/403b contributions (yours + employer), IRA contributions, taxable brokerage additions, 529 contributions, HSA contributions, extra mortgage principal payments, any increase in savings account balance. Gross income: use pre-tax income (not take-home) to avoid inflating the rate. Example: $100,000 gross, $6,000 401k + $2,400 employer match + $7,000 IRA + $1,200 HSA + $3,400 brokerage = $20,000 saved. Savings rate = 20%. Tracking this monthly in a spreadsheet (or tool like YNAB, Monarch) reveals trends: did your savings rate drop because expenses increased or income decreased? The direction matters for corrective action."
+      question: "Should I include my 401(k) contributions in my savings rate?",
+      answer: "Yes, you should include 401(k) and other retirement plan contributions in your savings rate calculation. In 2024, the contribution limit for a 401(k) is $23,500 for workers under 50 and $31,000 for those 50 and older. Including these amounts gives you a more accurate picture of your total wealth-building efforts and shows the real impact of tax-advantaged retirement savings.",
     },
     {
-      question: "How much does a 1% increase in savings rate actually impact long-term wealth?",
-      answer: "On $80,000 income, 1% more savings = $800/year. At 7% over 30 years: $800/year grows to $81,272. That $800/year habit creates $81,272 in additional wealth. For a 2% increase ($1,600/year): $162,544. The key insight: at the time of the decision, $800/year feels trivial ($67/month). At retirement, it represents $81,272. Every percentage point of savings rate corresponds roughly to 1–1.5 months of earlier retirement eligibility (at 10–15% base savings rate). Automating savings increases ensures the behavioral change actually happens -- setting a recurring transfer the day after payday, before spending temptation."
+      question: "What's the difference between savings rate and savings amount?",
+      answer: "Your savings amount is the actual dollar figure you save (for example, $500 per month), while your savings rate is that amount as a percentage of your income ($500 ÷ $4,000 = 12.5%). The savings rate is more meaningful because it shows your savings discipline relative to your earnings—a $500 savings rate looks different on a $4,000 income versus a $10,000 income.",
     },
     {
-      question: "What is the FIRE movement's savings rate target and is it realistic for most people?",
-      answer: "FIRE (Financial Independence, Retire Early) typically targets 50–70% savings rates for retirement in 10–17 years. This requires: high income (dual-income households earning $150K+ combined), radical frugality, or geographic arbitrage (geoarbitrage to low cost-of-living areas). Is it realistic? For the median US household ($74,580 income, 2024): after taxes, housing, food, healthcare, and transportation, reaching 50%+ savings requires near-elimination of discretionary spending and/or significantly below-average housing costs. Lean FIRE (minimal spending in retirement on ~$40K/year, $1M portfolio) is more accessible than Fat FIRE ($100K+/year, $2.5M portfolio). The most realistic FIRE adaptation for median earners: 25–35% savings rate targeting 25–30 year horizons."
+      question: "How do I improve my savings rate using this tracker?",
+      answer: "Use this calculator to establish a baseline, then set a target rate increase of 1-2% per quarter. For example, if your current rate is 8%, aim for 9% or 10% in three months by reducing discretionary spending or increasing income. Track your progress monthly with this tool to stay motivated and identify which budget adjustments have the biggest impact.",
+    },
+    {
+      question: "Should net or gross income be used for the savings rate calculation?",
+      answer: "Financial advisors recommend using gross income (before taxes) for the most accurate savings rate calculation. This is because it shows what percentage of your actual earning power you're saving, making it easier to compare with benchmarks and financial goals. Some calculators use net income, so confirm which method you're using to ensure your rate is comparable to published statistics.",
+    },
+    {
+      question: "What savings rate do millionaires typically have?",
+      answer: "Studies show that most millionaires maintain savings rates of 20-30% or higher throughout their wealth-building years. Research from \"The Millionaire Next Door\" found that the average millionaire saves approximately 20% of household income. By using this tracker to consistently maintain a 20%+ savings rate, you can accelerate your path to building significant wealth over 20-30 years.",
+    },
+    {
+      question: "Can my savings rate be negative?",
+      answer: "Yes, a negative savings rate occurs when your spending exceeds your income, meaning you're going into debt each month. The U.S. has experienced negative household savings rates during certain economic periods. If your tracker shows a negative rate, it signals that you're spending more than you earn and need to increase income or reduce expenses immediately.",
+    },
+    {
+      question: "How does my savings rate affect my financial independence timeline?",
+      answer: "Your savings rate directly determines how quickly you can reach financial independence. Someone saving 25% of income needs approximately 32 years to retire (assuming 7% returns), while someone saving 50% needs only 17 years. This calculator helps you see how small rate increases dramatically compress your timeline—increasing from 15% to 25% could shorten your goal by 15+ years.",
     }
   ];
 
@@ -295,255 +311,285 @@ export default function SavingsRateTrackerCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Savings Rate Tracker
-        </h2>
-        
-        <p className="mb-6">
-          The Savings Rate Tracker is an essential tool for anyone looking to gain a clearer understanding of their financial health. By calculating the percentage of your income that is saved versus spent, you can make informed decisions about your financial future. This tool is particularly useful for individuals aiming to improve their savings habits, plan for retirement, or simply gain better control over their finances. Whether you're saving for a specific goal or just trying to build a safety net, knowing your savings rate is crucial.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in financial planning. A miscalculation could lead to overspending or under-saving, both of which can have significant long-term effects. For instance, underestimating your expenses might leave you without enough funds for emergencies, while overestimating your savings could result in missed investment opportunities. This calculator helps ensure that you have a realistic view of your financial situation, allowing you to make adjustments as needed. For more insights on financial planning, you might find our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> useful.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather all necessary information beforehand. You'll need your total monthly income, monthly expenses, and the amount you save each month. Enter these values into the respective fields to calculate your savings rate. This tool will provide you with a percentage that represents how much of your income is being saved. For additional guidance, check out our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Regularly tracking your savings rate can help you identify spending patterns and areas where you can cut back. This insight is invaluable for setting realistic financial goals and ensuring long-term financial stability.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Savings Rate Tracker</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Savings Rate Tracker is a simple tool that calculates what percentage of your income you're actually saving each month or year. Understanding your savings rate is crucial because it's one of the most powerful predictors of long-term financial success—it shows whether you're on track to build wealth, retire on schedule, or achieve your financial goals. Unlike absolute savings amounts, your rate is comparable across different income levels and life stages.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this tracker, you'll need two key inputs: your gross monthly or annual income (the total amount you earn before taxes) and your total monthly or annual savings (the sum of all money going into savings vehicles, including 401(k) contributions, emergency funds, investment accounts, and extra debt payments toward mortgages). Be sure to include all retirement account contributions, not just cash savings, to get an accurate picture of your wealth-building efforts.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator will display your savings rate as a percentage and compare it to industry benchmarks based on your income level and life stage. Use this result to identify whether you're ahead of, at, or behind recommended savings targets. If you're below 10%, consider setting a goal to increase your rate by 1-2% per quarter—even small improvements compound significantly over decades and can reduce your working years substantially.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs to reflect changes in income or expenses. It's also beneficial to compare your current savings rate with past rates to track your progress over time. Keep in mind that factors such as unexpected expenses or income changes can affect your results.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Savings Rate Tracker Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Savings Rate Tracker is straightforward yet powerful. It calculates your savings rate by dividing your total savings by your total income, then multiplying by 100 to convert it into a percentage. This formula is widely accepted in financial planning due to its simplicity and effectiveness in providing a clear picture of one's financial health.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Savings Rate (%) = (Total Savings / Total Income) × 100
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Total Savings = Amount saved each month</li>
-              <li>Total Income = Total monthly income</li>
-            </ul>
+      {/* TABLE: Savings Rate Benchmarks by Life Stage (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Savings Rate Benchmarks by Life Stage (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These benchmarks show recommended savings rates based on age and career stage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Life Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Savings Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Target (on $60k income)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Key Priority</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ages 20-25 (Early Career)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,000-$9,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency fund + retirement</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ages 25-35 (Career Growth)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9,000-$12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Retirement + home down payment</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ages 35-50 (Peak Earning)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,000-$18,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Retirement + wealth building</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ages 50-65 (Pre-Retirement)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,000-$21,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Catch-up contributions + wealth preservation</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">65+ (Retirement)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Variable</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Varies by plan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Capital preservation + income</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages assume stable employment and no major financial emergencies. Self-employed individuals may target slightly higher rates to cover business taxes and retirement.</p>
+      </section>
+
+      {/* TABLE: Average U.S. Household Savings Rates by Income Level (2024) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average U.S. Household Savings Rates by Income Level (2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how savings behavior varies across different income brackets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Household Income Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Savings Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Median Monthly Savings</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Primary Savings Method</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Under $30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50-$75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Checking/savings account</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$30,000-$60,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250-$350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Savings account + employer 401(k)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$60,000-$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500-$1,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">401(k) + brokerage accounts</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000-$200,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,250-$4,167</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multiple retirement + investments</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200,000+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,167+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Tax-advantaged + real estate</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data from Federal Reserve Survey of Consumer Finances. Rates include all savings vehicles: retirement accounts, investment accounts, and cash savings. Higher-income households benefit from tax-advantaged retirement account limits.</p>
+      </section>
+
+      {/* TABLE: Impact of Savings Rate on Long-Term Wealth (25-Year Projection) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Savings Rate on Long-Term Wealth (25-Year Projection)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different savings rates compound into vastly different wealth outcomes over 25 years.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Savings Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Savings (on $75k income)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">25-Year Total Contributions</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Projected Value (7% annual return)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Wealth Multiplier</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$93,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$249,456</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.7x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$187,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$498,912</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.7x</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$281,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$748,368</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.7x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$375,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$997,824</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.7x</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$562,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,496,736</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.7x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,995,648</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.7x</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes consistent savings rate and 7% annual investment returns (historical stock market average). Higher savings rates accumulate more principal, resulting in exponentially higher ending values due to compound interest.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Automate your savings by setting up automatic transfers to a separate savings account on payday—this 'pay yourself first' approach removes the temptation to spend money before you save it and helps you achieve higher savings rates consistently.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your savings rate monthly with this calculator to identify spending patterns and seasonal variations, then adjust your budget if you notice your rate dropping below your target threshold.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Include bonuses, tax refunds, and side income in your savings rate calculation—allocating even 50% of bonus income to savings can boost your annual rate by 2-3% without requiring lifestyle changes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use your savings rate as a benchmarking tool: if your rate is 12% and you earn $75,000 annually, you're saving $9,000 per year; increasing to 17% means an extra $3,750 annually, which compounds to over $100,000 in additional wealth over 25 years.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Only counting cash savings and ignoring retirement accounts</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people calculate their savings rate using only money in checking or savings accounts, overlooking 401(k), IRA, and other retirement contributions. This understates your true savings rate and can make you think you're underperforming when you're actually on track—include all tax-advantaged retirement savings in your calculation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using net income instead of gross income</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating your savings rate as a percentage of take-home pay inflates the number and makes it harder to compare against benchmarks that use gross income. A $500 monthly savings on $3,000 net income looks like 16.7%, but on a $4,500 gross income (before taxes) it's actually 11.1%—a significant difference in assessing your performance.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for variable income months</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you have irregular income (self-employed, commission-based, or seasonal work), your monthly savings rate will fluctuate dramatically; calculate your rate annually instead to smooth out monthly volatility and get a more accurate picture of your true savings behavior.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Including debt repayment as savings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Paying off a car loan or credit card is debt reduction, not savings, and should not be counted in your savings rate calculation. Only money going into assets (retirement accounts, investments, emergency funds) counts as savings—debt payments reduce your expenses but don't build wealth.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in this formula plays a crucial role. Total Savings represents the amount you set aside each month, which directly impacts your financial security. Total Income is the sum of all earnings, which provides the context for your savings rate. A higher savings rate indicates a stronger financial position, while a lower rate may suggest the need for adjustments in spending or saving habits.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your savings rate is essential for accurate financial planning. These factors can vary widely and may interact with each other in complex ways, affecting your overall financial health.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Income Stability
-        </h3>
-        <p className="mb-4">
-          Income stability is a critical factor in determining your savings rate. A steady income allows for consistent savings, while fluctuations can make it challenging to maintain a regular savings habit. For example, freelancers or those with variable income may find it harder to predict their savings rate accurately.
-        </p>
-        <p className="mb-6">
-          To optimize this factor, consider setting a baseline savings amount that you can achieve even during low-income months. This approach ensures that you continue to save regardless of income fluctuations. For more strategies, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Expense Management
-        </h3>
-        <p className="mb-4">
-          Effective expense management is crucial for maintaining a healthy savings rate. High expenses can significantly reduce the amount available for savings, impacting your financial goals. Tracking and categorizing expenses can help identify areas where you can cut back.
-        </p>
-        <p className="mb-6">
-          Consider using budgeting tools to monitor your spending and adjust as necessary. Reducing discretionary spending can free up more funds for savings, enhancing your financial security.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Savings Goals
-        </h3>
-        <p className="mb-4">
-          Having clear savings goals can motivate you to maintain or increase your savings rate. Whether saving for a vacation, a new home, or retirement, specific goals provide direction and purpose for your savings efforts.
-        </p>
-        <p className="mb-6">
-          To manage this factor effectively, set realistic and achievable goals. Break larger goals into smaller, manageable milestones to track your progress and stay motivated.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Inflation and Economic Conditions
-        </h3>
-        <p className="mb-6">
-          Inflation and economic conditions can affect your savings rate by influencing both income and expenses. Rising inflation may increase living costs, reducing the amount available for savings. Conversely, a strong economy might lead to higher income and increased savings potential.
-        </p>
-        <p className="mb-6">
-          Staying informed about economic trends can help you anticipate changes and adjust your savings strategy accordingly. Consider consulting financial advisors for personalized advice.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Lifestyle Choices
-        </h3>
-        <p className="mb-6">
-          Lifestyle choices, such as living arrangements and spending habits, can significantly impact your savings rate. Opting for a modest lifestyle can increase the amount available for savings, while extravagant spending may hinder your financial goals.
-        </p>
-        <p className="mb-6">
-          Evaluate your lifestyle choices and consider adjustments that align with your financial objectives. Simple changes, like dining out less frequently or choosing more affordable housing, can make a substantial difference in your savings rate.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a good savings rate I should aim for?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Financial experts generally recommend saving 10-20% of your gross income, though this varies by life stage and goals. The U.S. personal savings rate averaged 4-5% in 2024, meaning most households save less than experts recommend. If you're tracking your savings rate with this calculator and find you're below 10%, consider reviewing your budget to identify areas where you can reduce discretionary spending.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my savings rate accurately?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your savings rate is calculated as (Total Savings ÷ Gross Income) × 100. Include all money you set aside—retirement contributions, emergency funds, investment accounts, and extra mortgage payments. Exclude debt repayment on consumer loans, as this reduces your available income rather than representing true savings. This calculator automates that formula, so you only need to enter your income and savings amounts.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include my 401(k) contributions in my savings rate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, you should include 401(k) and other retirement plan contributions in your savings rate calculation. In 2024, the contribution limit for a 401(k) is $23,500 for workers under 50 and $31,000 for those 50 and older. Including these amounts gives you a more accurate picture of your total wealth-building efforts and shows the real impact of tax-advantaged retirement savings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between savings rate and savings amount?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your savings amount is the actual dollar figure you save (for example, $500 per month), while your savings rate is that amount as a percentage of your income ($500 ÷ $4,000 = 12.5%). The savings rate is more meaningful because it shows your savings discipline relative to your earnings—a $500 savings rate looks different on a $4,000 income versus a $10,000 income.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I improve my savings rate using this tracker?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use this calculator to establish a baseline, then set a target rate increase of 1-2% per quarter. For example, if your current rate is 8%, aim for 9% or 10% in three months by reducing discretionary spending or increasing income. Track your progress monthly with this tool to stay motivated and identify which budget adjustments have the biggest impact.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should net or gross income be used for the savings rate calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Financial advisors recommend using gross income (before taxes) for the most accurate savings rate calculation. This is because it shows what percentage of your actual earning power you're saving, making it easier to compare with benchmarks and financial goals. Some calculators use net income, so confirm which method you're using to ensure your rate is comparable to published statistics.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What savings rate do millionaires typically have?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Studies show that most millionaires maintain savings rates of 20-30% or higher throughout their wealth-building years. Research from "The Millionaire Next Door" found that the average millionaire saves approximately 20% of household income. By using this tracker to consistently maintain a 20%+ savings rate, you can accelerate your path to building significant wealth over 20-30 years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can my savings rate be negative?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, a negative savings rate occurs when your spending exceeds your income, meaning you're going into debt each month. The U.S. has experienced negative household savings rates during certain economic periods. If your tracker shows a negative rate, it signals that you're spending more than you earn and need to increase income or reduce expenses immediately.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does my savings rate affect my financial independence timeline?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your savings rate directly determines how quickly you can reach financial independence. Someone saving 25% of income needs approximately 32 years to retire (assuming 7% returns), while someone saving 50% needs only 17 years. This calculator helps you see how small rate increases dramatically compress your timeline—increasing from 15% to 25% could shorten your goal by 15+ years.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on economic conditions and regulatory guidelines.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bea.gov/news/2024" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Bureau of Economic Analysis - Personal Savings Rate Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official government statistics on U.S. household savings rates and personal income trends.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/econresdata/scf/scfindex.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve - Survey of Consumer Finances</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive data on U.S. household savings behavior, income distribution, and wealth accumulation by demographic groups.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/newsroom/2024-retirement-plan-contribution-limits-announced" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS - 2024 Retirement Plan Contribution Limits</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on 401(k), IRA, and other retirement account contribution limits for accurate savings rate calculations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Concepts
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/about-us/newsroom/consumer-financial-protection-bureau-releases-2023-financial-well-being-survey-results/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CFPB - Financial Well-Being Survey Results</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Consumer Financial Protection Bureau data on savings habits, emergency fund adequacy, and household financial resilience trends.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

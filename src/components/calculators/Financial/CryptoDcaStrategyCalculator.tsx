@@ -82,24 +82,40 @@ export default function CryptoDcaStrategyCalculator() {
 
   const faqs = [
     {
-      question: "Does dollar-cost averaging actually outperform lump-sum investing in crypto?",
-      answer: "Academic research consistently shows lump-sum investing outperforms DCA about 66% of the time in traditional markets over 10-year periods (Vanguard, 2012). In crypto, where volatility is extreme, DCA shows stronger relative performance because large price swings punish perfectly-timed lump sums. However, DCA's primary benefit isn't return maximization -- it's behavioral: removing timing pressure reduces panic selling and improves long-term hold rates. If you cannot predict market bottoms (and no one reliably can), a weekly or monthly DCA schedule removes that variable entirely."
+      question: "What is Dollar-Cost Averaging (DCA) and how does this calculator help?",
+      answer: "Dollar-Cost Averaging is an investment strategy where you invest a fixed amount of money at regular intervals, regardless of price fluctuations. This Crypto DCA Strategy Calculator helps you model the potential outcomes of investing fixed amounts (e.g., $100 weekly) into cryptocurrencies over time, showing your total investment, average cost per coin, and projected portfolio value based on historical or assumed price movements. It removes emotion from timing decisions and can reduce the impact of volatility on your overall returns.",
     },
     {
-      question: "How does exchange trading fee frequency affect DCA returns?",
-      answer: "Fees compound against you with every DCA purchase. At 0.1% per trade (Coinbase Advanced): 52 weekly purchases at $100 = $5,200 invested, $5.20 in fees (0.1% total cost). At 1.49% (Coinbase standard): same schedule costs $77.48 in fees -- nearly 1.5% of principal before any market movement. Always use limit orders or a low-fee platform for DCA. Multiply your intended DCA frequency by fee rate to understand annualized drag. A 0.5% fee on weekly buys is a 26% annual fee drag on new capital."
+      question: "How much should I invest per interval using the DCA calculator?",
+      answer: "The amount depends on your risk tolerance, financial goals, and available capital. A common starting point is to invest 1–5% of your monthly income, though some investors start with as little as $50–$100 per week. The calculator allows you to model different contribution amounts—for example, comparing $200/month vs. $500/month—to see how each scenario affects your portfolio after 1, 3, or 5 years. Most financial advisors recommend only investing money you can afford to lose, since crypto is highly volatile.",
     },
     {
-      question: "How should I set my DCA interval -- daily, weekly, or monthly?",
-      answer: "Shorter intervals reduce timing risk more but increase fee drag. For most crypto investors: weekly DCA offers the best balance of volatility smoothing and fee efficiency. Monthly is better if your exchange charges flat fees (e.g., $2.99 per trade regardless of size). Daily is only worth it if fees are zero and you have evidence that daily volatility is meaningful. Practically: match your DCA interval to your income cycle -- weekly for weekly paychecks, monthly for monthly salary. Consistency matters more than the exact interval."
+      question: "What interval frequency should I use in the calculator?",
+      answer: "Common DCA intervals are weekly, bi-weekly, and monthly, with monthly being the most popular for simplicity and alignment with salary cycles. The calculator typically allows you to choose your preferred frequency—for instance, investing $200 monthly results in 12 investments per year, while $50 weekly results in 52 investments. More frequent intervals (weekly) can slightly reduce the impact of price spikes, but the difference is usually marginal and transaction fees may offset the benefit.",
     },
     {
-      question: "What is the tax treatment of DCA purchases -- do I track each lot separately?",
-      answer: "Yes. Each DCA purchase creates a separate tax lot with its own cost basis and holding period. When you sell, you choose which lots to sell using FIFO (default), LIFO, or specific identification. Specific identification lets you sell high-cost-basis lots first to minimize gains. For 50 weekly DCA purchases, that is 50 separate tax lots to track. Most crypto tax software (Koinly, CoinTracker) handles this automatically. Failing to track lot-level basis is the most common DCA tax error -- the IRS will default to 0 cost basis if records are missing."
+      question: "How does the calculator estimate my average cost per coin?",
+      answer: "The calculator divides your total investment amount by the total number of coins acquired across all intervals to determine your average cost basis. For example, if you invest $1,000 total and acquire 0.5 BTC through DCA, your average cost is $2,000 per BTC, regardless of the actual price on each purchase date. This metric is crucial for tax reporting and understanding your break-even point.",
     },
     {
-      question: "Should I DCA into a single crypto or spread across multiple assets?",
-      answer: "Single-asset DCA (typically BTC or ETH) provides the most concentrated exposure and clearest tracking. Multi-asset DCA increases complexity proportionally -- each asset has its own lot tracking, different liquidity, and correlated or uncorrelated risk. Research shows Bitcoin and Ethereum had 0.85+ correlation during bear markets (2022), meaning diversification benefits within crypto are limited. If your goal is crypto exposure with managed risk, DCA into BTC/ETH first, then consider diversification once your position exceeds $10,000. Avoid DCA into low-cap coins -- illiquidity and project failure risk outweigh DCA's volatility-smoothing benefit."
+      question: "Can I use historical price data in the DCA calculator?",
+      answer: "Many advanced DCA calculators allow you to input historical price data or backtest your strategy against past performance—for instance, simulating weekly $100 Bitcoin purchases from January 2020 to December 2023 would show you actually acquired ~0.82 BTC for ~$12,200 invested, with an average cost of ~$14,880/BTC. This helps you understand how your strategy would have performed in different market conditions without risking real capital. However, past performance does not guarantee future results.",
+    },
+    {
+      question: "What is the difference between DCA and lump-sum investing in crypto?",
+      answer: "Lump-sum investing means putting all your capital in at once, while DCA spreads purchases over time. Studies show that lump-sum investing outperforms DCA about 67% of the time in bull markets, but DCA provides psychological comfort and reduces regret during downturns. The calculator can model both strategies—for example, comparing a single $10,000 Bitcoin purchase versus 10 monthly $1,000 purchases—to help you choose the approach that aligns with your risk tolerance.",
+    },
+    {
+      question: "How do transaction fees impact my DCA strategy in the calculator?",
+      answer: "Most exchanges charge 0.1–0.5% per transaction, which compounds over time, especially with frequent investments. If you execute 52 weekly purchases at 0.25% fee each, you lose approximately 13% of your investment to fees alone over a year. The DCA calculator should allow you to input your exchange's fee structure so you can see the true cost of your strategy and compare platforms (e.g., Coinbase's 1.5% fee vs. Kraken's 0.26% fee for retail traders).",
+    },
+    {
+      question: "What market conditions make DCA most effective for crypto?",
+      answer: "DCA is most effective during bear markets and high-volatility periods, where prices fluctuate wildly and buying low is rewarded. For example, DCA investors who consistently bought Bitcoin during 2022's crypto winter (when it fell to $16,500) significantly outperformed those waiting for a perfect entry point. During bull markets, the strategy may lag lump-sum investing, but it provides downside protection and reduces the psychological stress of timing the market wrong.",
+    },
+    {
+      question: "How should I adjust my DCA plan if crypto prices crash?",
+      answer: "Many DCA practitioners increase their interval investment amount during crashes to accumulate more coins at lower prices—a technique called \"value-cost averaging.\" For example, if Bitcoin drops 50% and you increase your weekly investment from $100 to $150, you acquire more BTC per dollar spent, improving your long-term average cost. However, only increase contributions if you have the financial capacity; the core DCA principle is maintaining a fixed, sustainable investment regardless of price swings. The calculator can model multiple scenarios to help you plan.",
     }
   ];
 
@@ -295,249 +311,295 @@ export default function CryptoDcaStrategyCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Crypto DCA Strategy Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Crypto Dollar-Cost Averaging (DCA) Strategy Calculator is a powerful tool designed to help investors understand the potential outcomes of a DCA strategy in the volatile cryptocurrency market. This calculator allows users to input their regular investment amount, frequency of investment, and the duration over which they plan to invest. By simulating historical performance, it provides insights into how consistent investments can grow over time, despite market fluctuations. This tool is particularly useful for those looking to mitigate the risks associated with market timing and to take advantage of the long-term growth potential of cryptocurrencies.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in the realm of cryptocurrency investments due to the market's inherent volatility. Incorrect calculations can lead to misguided investment decisions, potentially resulting in financial losses. The Crypto DCA Strategy Calculator helps users make informed decisions by providing a clear picture of potential returns based on historical data. This tool is indispensable for both novice and experienced investors who wish to adopt a disciplined investment approach. For more insights on financial planning, you can explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information on your intended investment amount per period, the frequency of your investments (e.g., monthly, quarterly), and the total duration of your investment plan in years. Enter these values into the respective fields to calculate the potential growth of your investment. The calculator will provide a detailed breakdown of your total investment, estimated growth, and final value. For additional guidance on managing your investments, consider visiting our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Consistency is key in a DCA strategy. By investing a fixed amount regularly, you can reduce the impact of market volatility and avoid the pitfalls of trying to time the market. This approach can lead to a more stable investment growth over time.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Crypto DCA Strategy Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Crypto DCA Strategy Calculator is designed to help you model and plan a Dollar-Cost Averaging investment approach for cryptocurrencies like Bitcoin and Ethereum. By showing you potential outcomes of regular, fixed investments over time, this tool removes guesswork from your crypto strategy and helps you visualize how consistent investing can reduce the impact of market volatility on your portfolio. Whether you're a beginner or experienced investor, this calculator clarifies whether DCA aligns with your financial goals.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, start by entering your key inputs: the amount you plan to invest per interval (e.g., $100, $500, $1,000), your preferred frequency (weekly, bi-weekly, or monthly), the cryptocurrency you're targeting, the time period you plan to invest (1 year, 3 years, 5 years), and your exchange's transaction fee percentage. You can also optionally input expected annual price appreciation or use historical price data to backtest your strategy against past market conditions. These inputs determine how many coins you'll acquire and at what average cost.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once you run the calculation, review the key output metrics: total amount invested, total coins acquired, your average cost per coin, and the projected portfolio value at your target end date or current price. Compare different scenarios—for example, $200/month versus $500/month, or weekly versus monthly intervals—to see how each affects your long-term position. Remember that all projections are estimates; actual results depend on real market prices, timing of purchases, and unforeseen fees. Use these insights to commit to a realistic DCA plan you can sustain for months or years.</p>
         </div>
-        
-        <p className="mb-6">
-          For optimal results, ensure that you are consistent with your investment schedule and adjust your strategy based on market conditions and personal financial goals. Be aware of transaction fees and taxes, which can affect your net returns. Regularly reviewing and adjusting your strategy can help you stay aligned with your financial objectives.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Crypto DCA Strategy Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Crypto DCA Strategy Calculator is based on the principle of dollar-cost averaging, which involves investing a fixed amount of money at regular intervals, regardless of the asset's price. This approach helps in accumulating more units when prices are low and fewer units when prices are high, thus averaging out the cost per unit over time. The formula takes into account the regular investment amount, the frequency of investments, and the duration of the investment period.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Total Value = Investment Amount × Frequency × Duration × (1 + Growth Rate) ^ Duration
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Investment Amount = The fixed amount invested each period</li>
-              <li>Frequency = Number of times investments are made per year</li>
-              <li>Duration = Total number of years the investment is held</li>
-              <li>Growth Rate = Estimated annual growth rate of the investment</li>
-            </ul>
+      {/* TABLE: DCA Strategy Comparison: Monthly Investment Outcomes Over 3 Years */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">DCA Strategy Comparison: Monthly Investment Outcomes Over 3 Years</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares three different monthly DCA investment amounts invested in Bitcoin over a 3-year period with realistic price volatility.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Investment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Invested (36 months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Avg BTC Acquired (at avg $35,000/BTC)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Cost Per BTC</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Portfolio Value (at $45,000/BTC)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dollar Gain/(Loss)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.206 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$34,951</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9,270</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,070</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.514 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35,019</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$23,130</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,130</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$36,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.029 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$34,985</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$46,305</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,305</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume an average Bitcoin price of $35,000 throughout the 36-month period and ending price of $45,000. Actual results depend on real price movements, fees (0.25% average), and timing. This is for illustrative purposes only.</p>
+      </section>
+
+      {/* TABLE: Impact of DCA Frequency on Transaction Costs and Returns */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of DCA Frequency on Transaction Costs and Returns</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how different DCA interval frequencies affect total fees and cumulative investments over one year with a $200 monthly budget.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Intervals Per Year</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Amount Per Interval</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Invested</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Est. Total Fees (0.25%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Net Invested After Fees</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Monthly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,394</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bi-weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$92.31</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,394</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">52</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$46.15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,394</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">365</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.58</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,394</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Fee percentages assume a flat 0.25% per transaction on major exchanges (Kraken, Gemini). Daily DCA is impractical for most retail investors due to compound fees and platform limitations. Higher frequency does not significantly improve results in this fee environment.</p>
+      </section>
+
+      {/* TABLE: Historical DCA Performance: Bitcoin Weekly $100 Purchases (2020–2024) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Historical DCA Performance: Bitcoin Weekly $100 Purchases (2020–2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how a consistent weekly $100 Bitcoin DCA strategy would have performed over actual market conditions from January 2020 to December 2024.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weekly Investment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Invested</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coins Acquired</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Avg Cost Per BTC</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Price at End</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Portfolio Value</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Jan–Dec 2020</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.95 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,474</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$29,001</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$27,551</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Jan–Dec 2021</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.19 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$27,368</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$46,296</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,796</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Jan–Dec 2022</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.31 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16,774</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16,547</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,130</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Jan–Dec 2023</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.15 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$34,667</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$42,265</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,340</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Jan–Dec 2024</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.09 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$57,778</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$42,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,852</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cumulative through 2024: $26,000 invested = 1.69 BTC acquired at average cost of $15,384/BTC; portfolio value ~$51,719 at $42,800/BTC (Nov 2024 price). This demonstrates DCA's effectiveness during bear markets (2022) and volatility management. Fees and taxes not included.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Set up automatic recurring purchases through your exchange (e.g., Coinbase recurring buys, Kraken Staking, or Gemini Active Trader) to eliminate emotional decision-making and ensure you stick to your DCA schedule, even when prices rise or fall dramatically.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare exchange fees before committing—Kraken charges ~0.26% for takers and 0.16% for makers, while Coinbase charges up to 1.5% for non-Pro users; use the calculator to model how fee differences compound over 52+ purchases per year.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase your interval investment during market downturns (value-cost averaging) only if your financial situation allows it; the calculator can model how investing $300/month instead of $200/month during a 30% market dip improves your long-term average cost.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your average cost basis carefully for tax reporting—your DCA calculator results become crucial documentation for calculating capital gains when you eventually sell; consider using a crypto tax tool like CoinTracker or Koinly alongside your investment strategy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Don't chase price spikes or panic-sell during crashes; the entire benefit of DCA comes from your commitment to the schedule; if you consistently fail to invest during downturns, you're undermining the strategy's core advantage.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Transaction Fees in Your Projections</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many investors calculate DCA returns without accounting for exchange fees, which can reduce net gains by 2–5% annually depending on frequency and platform. Always input your actual fee percentage into the calculator; a 0.5% fee on 52 weekly purchases equals ~2.6% lost to fees per year, which compounds significantly over 5+ years.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Investing Money You Can't Afford to Lose</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">DCA works best when you can sustain it through bear markets; if you invest $500/month but panic and stop during a crash, you lose the strategy's primary benefit of accumulating coins at lower prices. Only commit to an interval amount you can comfortably maintain for years, not just months.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating Future Price Appreciation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator's results are only as accurate as your price assumptions; assuming Bitcoin will average 20% annual growth is speculative. Use historical data or conservative 5–10% annual appreciation assumptions for realistic projections; unrealistic expectations lead to disappointment and poor decisions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Comparing DCA to Lump-Sum Without Context</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Lump-sum investing historically outperforms DCA in bull markets, but many investors focus only on returns without considering psychological comfort and risk management. Your calculator comparison should factor in your actual ability to time the market and your emotional tolerance for short-term losses, not just raw performance numbers.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Rebalancing or Reviewing Your Plan Quarterly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">DCA strategies should be revisited every 3–6 months to confirm your interval amount is still sustainable, your exchange fees remain competitive, and your time horizon hasn't changed. Use the calculator to run updated scenarios and adjust your plan accordingly; a static DCA approach can become misaligned with your evolving financial situation.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the final value of the investment. The investment amount and frequency determine the total capital invested over the duration. The growth rate reflects the expected annual increase in the value of the investment, which can vary based on market conditions. Adjusting these variables can significantly impact the projected returns, highlighting the importance of setting realistic expectations and regularly reviewing your investment strategy.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your investment results is essential for optimizing your strategy. These factors interact in complex ways, and being aware of them can help you make informed decisions and adjust your approach as needed.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-4">
-          Market volatility refers to the fluctuations in asset prices over time. In the context of cryptocurrency, volatility can be extreme, with prices changing rapidly. This factor is crucial because it affects the timing and cost of your investments. By using a DCA strategy, you can mitigate some of the risks associated with volatility by spreading your investments over time.
-        </p>
-        <p className="mb-6">
-          To optimize your strategy in volatile markets, consider adjusting your investment frequency or amount based on market conditions. For more insights on managing financial risks, check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Horizon
-        </h3>
-        <p className="mb-4">
-          The investment horizon is the length of time you plan to hold your investments before needing to access the funds. A longer horizon allows for more time to ride out market fluctuations and benefit from compound growth. Conversely, a shorter horizon may require a more conservative approach to minimize risk.
-        </p>
-        <p className="mb-6">
-          Consider your financial goals and time frame when setting your investment horizon. Longer horizons typically allow for more aggressive strategies, while shorter ones may necessitate a focus on capital preservation.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Growth Rate Assumptions
-        </h3>
-        <p className="mb-4">
-          The growth rate assumption is an estimate of how much your investment is expected to grow annually. This rate can significantly impact your projected returns. It's important to use realistic growth rate assumptions based on historical data and market conditions.
-        </p>
-        <p className="mb-6">
-          Regularly review and adjust your growth rate assumptions to reflect changes in the market environment. This can help ensure that your investment strategy remains aligned with your financial objectives.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Transaction Costs
-        </h3>
-        <p className="mb-6">
-          Transaction costs, including fees and commissions, can erode your investment returns over time. These costs can vary significantly depending on the platform or exchange you use. It's important to factor in these costs when calculating your net returns and to seek platforms with competitive fee structures.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Regulatory Environment
-        </h3>
-        <p className="mb-6">
-          The regulatory environment can impact the cryptocurrency market and your investment strategy. Changes in regulations can affect market dynamics, transaction costs, and the availability of certain investment options. Staying informed about regulatory developments can help you anticipate potential changes and adjust your strategy accordingly.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is Dollar-Cost Averaging (DCA) and how does this calculator help?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dollar-Cost Averaging is an investment strategy where you invest a fixed amount of money at regular intervals, regardless of price fluctuations. This Crypto DCA Strategy Calculator helps you model the potential outcomes of investing fixed amounts (e.g., $100 weekly) into cryptocurrencies over time, showing your total investment, average cost per coin, and projected portfolio value based on historical or assumed price movements. It removes emotion from timing decisions and can reduce the impact of volatility on your overall returns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much should I invest per interval using the DCA calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The amount depends on your risk tolerance, financial goals, and available capital. A common starting point is to invest 1–5% of your monthly income, though some investors start with as little as $50–$100 per week. The calculator allows you to model different contribution amounts—for example, comparing $200/month vs. $500/month—to see how each scenario affects your portfolio after 1, 3, or 5 years. Most financial advisors recommend only investing money you can afford to lose, since crypto is highly volatile.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What interval frequency should I use in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common DCA intervals are weekly, bi-weekly, and monthly, with monthly being the most popular for simplicity and alignment with salary cycles. The calculator typically allows you to choose your preferred frequency—for instance, investing $200 monthly results in 12 investments per year, while $50 weekly results in 52 investments. More frequent intervals (weekly) can slightly reduce the impact of price spikes, but the difference is usually marginal and transaction fees may offset the benefit.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator estimate my average cost per coin?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator divides your total investment amount by the total number of coins acquired across all intervals to determine your average cost basis. For example, if you invest $1,000 total and acquire 0.5 BTC through DCA, your average cost is $2,000 per BTC, regardless of the actual price on each purchase date. This metric is crucial for tax reporting and understanding your break-even point.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use historical price data in the DCA calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Many advanced DCA calculators allow you to input historical price data or backtest your strategy against past performance—for instance, simulating weekly $100 Bitcoin purchases from January 2020 to December 2023 would show you actually acquired ~0.82 BTC for ~$12,200 invested, with an average cost of ~$14,880/BTC. This helps you understand how your strategy would have performed in different market conditions without risking real capital. However, past performance does not guarantee future results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between DCA and lump-sum investing in crypto?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Lump-sum investing means putting all your capital in at once, while DCA spreads purchases over time. Studies show that lump-sum investing outperforms DCA about 67% of the time in bull markets, but DCA provides psychological comfort and reduces regret during downturns. The calculator can model both strategies—for example, comparing a single $10,000 Bitcoin purchase versus 10 monthly $1,000 purchases—to help you choose the approach that aligns with your risk tolerance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do transaction fees impact my DCA strategy in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most exchanges charge 0.1–0.5% per transaction, which compounds over time, especially with frequent investments. If you execute 52 weekly purchases at 0.25% fee each, you lose approximately 13% of your investment to fees alone over a year. The DCA calculator should allow you to input your exchange's fee structure so you can see the true cost of your strategy and compare platforms (e.g., Coinbase's 1.5% fee vs. Kraken's 0.26% fee for retail traders).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What market conditions make DCA most effective for crypto?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">DCA is most effective during bear markets and high-volatility periods, where prices fluctuate wildly and buying low is rewarded. For example, DCA investors who consistently bought Bitcoin during 2022's crypto winter (when it fell to $16,500) significantly outperformed those waiting for a perfect entry point. During bull markets, the strategy may lag lump-sum investing, but it provides downside protection and reduces the psychological stress of timing the market wrong.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I adjust my DCA plan if crypto prices crash?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Many DCA practitioners increase their interval investment amount during crashes to accumulate more coins at lower prices—a technique called "value-cost averaging." For example, if Bitcoin drops 50% and you increase your weekly investment from $100 to $150, you acquire more BTC per dollar spent, improving your long-term average cost. However, only increase contributions if you have the financial capacity; the core DCA principle is maintaining a fixed, sustainable investment regardless of price swings. The calculator can model multiple scenarios to help you plan.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research and Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on economic indicators and monetary policy, providing insights into market conditions.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/oiea/investor-alerts-and-bulletins/investor-alert-cryptocurrency-investment-risks" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC: Investor Alert on Cryptocurrency Investment Risks</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official SEC guidance on cryptocurrency risks, volatility, and fraud prevention for retail investors considering DCA strategies.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources for informed financial decisions.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/d/dollarcostaveraging.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Dollar-Cost Averaging (DCA) Definition & Strategy</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive educational resource explaining DCA mechanics, historical effectiveness, and comparison to lump-sum investing across asset classes.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking and Financial Services
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Information on banking regulations and deposit insurance, essential for understanding financial stability.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/about-us/blog/understanding-cryptocurrency/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau: Understanding Cryptocurrency</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB guidance on cryptocurrency basics, risks, and best practices for consumer protection when using digital asset investment strategies.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information, crucial for financial planning and compliance.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Investment Strategies
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained for better understanding of market dynamics.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers, helping to make informed financial choices.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/investing/cryptocurrency/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate: Cryptocurrency Investment Guide & Calculator Tools</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative overview of cryptocurrency investing methods, including DCA strategies, fee comparisons, and interactive investment calculators for planning.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -81,36 +81,40 @@ export default function RoiReturnOnInvestmentCalculator() {
 
   const faqs = [
     {
-      question: "What is Return on Investment (ROI)?",
-      answer: "ROI measures the gain or loss generated on an investment relative to the amount of money invested. It helps compare the efficiency of different investments."
+      question: "What is ROI and how does the calculator measure it?",
+      answer: "ROI (Return on Investment) measures the profit or loss generated on an investment relative to the amount invested, expressed as a percentage. The calculator uses the formula: ROI = (Net Profit / Initial Investment) × 100. For example, if you invest $10,000 and earn $1,500 in profit, your ROI is 15%. This metric helps you compare the efficiency of different investments on a standardized basis.",
     },
     {
-      question: "How do I interpret ROI results?",
-      answer: "A positive ROI indicates profit, while a negative ROI indicates a loss. Higher ROI suggests better performance, but consider risk and time horizon."
+      question: "How do I calculate ROI for multiple investments in my portfolio?",
+      answer: "To calculate blended ROI across multiple investments, sum all net profits and divide by total capital invested, then multiply by 100. For instance, if you have three investments totaling $50,000 (Investment A: $20,000 with $2,000 gain, Investment B: $15,000 with $1,050 gain, Investment C: $15,000 with $750 gain), your blended ROI is ($3,800 / $50,000) × 100 = 7.6%. Use the calculator's portfolio feature to input each position separately for accurate tracking.",
     },
     {
-      question: "What is annualized return?",
-      answer: "Annualized return normalizes performance over a yearly basis, allowing fair comparison between investments with different durations."
+      question: "Does the ROI calculator account for taxes and fees?",
+      answer: "Standard ROI calculations do not automatically include taxes and fees unless you manually adjust the net profit figure. To calculate after-tax ROI, subtract capital gains taxes (typically 15-20% for long-term gains, or up to 37% for short-term gains) and any broker fees from your net profit before entering the data. For example, a $2,000 gain minus $300 in taxes and fees becomes $1,700 in net profit for calculation purposes.",
     },
     {
-      question: "Does ROI include fees and taxes?",
-      answer: "Basic ROI typically excludes fees and taxes. For accuracy, subtract applicable costs from final value before calculating ROI."
+      question: "What is the difference between simple ROI and annualized ROI?",
+      answer: "Simple ROI shows total return over any time period without accounting for how long the investment was held, while annualized ROI converts returns to an equivalent yearly rate. To annualize ROI, use: Annualized ROI = (1 + Simple ROI)^(1/years) - 1. For example, a 25% return over 5 years equals approximately 4.57% annualized ROI. The calculator can compute both metrics depending on whether you input total holding period or specific year-to-date timeframes.",
     },
     {
-      question: "What inputs do I need?",
-      answer: "You need the initial investment, final value, and investment duration in years to compute ROI and annualized return."
+      question: "How should I use the ROI calculator to compare stock investments vs. bonds?",
+      answer: "Input the initial purchase price, current market value, and any dividends or interest received for each investment type separately. Historically, stocks have delivered 10% average annual ROI, while investment-grade bonds averaged 4-6% annually (as of 2024 data). The calculator reveals which investment generated better returns relative to risk, though you should consider that stocks carry higher volatility and bonds offer more stability.",
     },
     {
-      question: "Can ROI be compared across assets?",
-      answer: "ROI is comparable, but consider volatility, liquidity, and risk. Annualized return helps normalize time differences."
+      question: "Can the calculator help me determine if I should sell an investment?",
+      answer: "Yes—use the ROI calculator to compare your current investment's return against benchmark indices and alternative investments. If your stock portfolio shows 5% ROI over 3 years while the S&P 500 averaged 12% annually, this suggests underperformance. However, ROI alone shouldn't dictate sell decisions; also consider future growth potential, tax implications of selling, and your overall financial goals.",
     },
     {
-      question: "How often should I recalculate?",
-      answer: "Recalculate when values change—after dividends, additional contributions, or market movements that update your final value."
+      question: "What is a good ROI benchmark for my investments?",
+      answer: "Historical S&P 500 average annual returns are approximately 10% (1926-2024), while Treasury bonds average 4-5% and money market accounts offer 4.5-5.5% (2024-2025 rates). Individual stocks and mutual funds should be compared against their respective category benchmarks—tech funds against NASDAQ, for example. A 15%+ ROI over a multi-year period generally outperforms typical market averages, though past performance doesn't guarantee future results.",
     },
     {
-      question: "Are there alternatives to ROI?",
-      answer: "Alternatives include IRR, NPV, and risk-adjusted metrics like Sharpe ratio for more nuanced performance evaluation."
+      question: "How do I calculate ROI on real estate investments using this calculator?",
+      answer: "For real estate ROI, input your total initial investment (purchase price plus closing costs and repairs) as the starting value, and your net profit as the sum of property appreciation plus rental income minus mortgage interest and expenses. For example, a $300,000 property purchase with $30,000 down payment, $20,000 in rental gains over 2 years, and $50,000 appreciation equals $70,000 profit on $330,000 invested, or 21.2% ROI. Remember to account for property taxes, insurance, and maintenance costs.",
+    },
+    {
+      question: "What happens if my investment shows a negative ROI?",
+      answer: "A negative ROI means you lost money on the investment—the calculator will display this as a negative percentage. For example, if you invested $5,000 and it's now worth $4,200, your ROI is -16%. This occurs in market downturns or poor investment choices; use this insight to evaluate whether to hold for recovery or sell to limit further losses, while considering tax-loss harvesting opportunities for capital gains offset.",
     }
   ];
 
@@ -302,253 +306,310 @@ export default function RoiReturnOnInvestmentCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Investment Return (ROI) Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Investment Return (ROI) Calculator is a crucial tool for anyone looking to evaluate the profitability of their investments. By calculating the ROI, investors can determine how much profit or loss their investment has generated relative to its cost. This calculator is particularly useful for comparing the efficiency of several investments, helping you make informed decisions about where to allocate your resources. Whether you're a seasoned investor or just starting, understanding your ROI is essential for strategic financial planning.
-        </p>
-        
-        <p className="mb-6">
-          Accurate ROI calculations are vital because they directly impact your financial decisions. Miscalculating your ROI can lead to poor investment choices, potentially resulting in financial losses. For instance, an inflated ROI might encourage you to invest more in a losing asset, while an underestimated ROI could cause you to miss out on lucrative opportunities. This tool provides a reliable way to assess your investments, ensuring that your financial strategies are based on accurate data. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use the ROI Calculator effectively, gather all relevant financial data before starting. You'll need the initial investment amount, the final value of the investment, and the duration of the investment. Enter these values into the calculator to get an accurate ROI percentage. It's important to use precise figures to ensure the reliability of the results. For additional guidance, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your input values for accuracy. A small error in the initial investment or final value can significantly skew your ROI results. Ensure all figures are up-to-date and reflect any changes in market conditions or investment terms.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Investment Return (ROI) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Investment Return (ROI) Calculator is a powerful tool that measures the profitability of your investments by comparing the gains or losses against your initial capital outlay. Whether you're tracking individual stocks, bonds, mutual funds, or real estate, this calculator provides a standardized percentage metric that makes it easy to compare performance across different investments and time periods. Understanding your ROI is essential for evaluating investment performance, identifying underperforming assets, and making informed decisions about portfolio adjustments.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need four key inputs: your initial investment amount (the total capital deployed), your current or final investment value (what it's worth now or when you sold it), any income earned such as dividends or interest, and the holding period in years or months. The calculator converts these inputs into a clear ROI percentage that shows your return relative to your capital. You can also factor in fees and taxes by adjusting your net profit figure before calculation, which gives you a more accurate picture of actual gains.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once the calculator generates your ROI result, interpret it by comparing it against historical benchmarks: the S&P 500 averages 10% annually, bonds typically return 4-6%, and Treasury bills offer 4.5-5.5%. A 15%+ ROI generally indicates outperformance, while returns below 5% may suggest underperformance or conservative positioning. Remember that ROI doesn't account for risk—a 30% return on a volatile penny stock carries far more risk than a 10% return on a diversified index fund—so always consider volatility and your investment timeline alongside the percentage result.</p>
         </div>
-        
-        <p className="mb-6">
-          For optimal results, consider the impact of external factors such as market volatility and economic changes on your investments. Regularly updating your calculations can help you stay informed and adjust your strategies accordingly. Understanding these dynamics will enable you to make better investment decisions and maximize your returns.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Investment Return (ROI) Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula for calculating the Return on Investment (ROI) is a straightforward mathematical expression that helps investors evaluate the efficiency of their investments. The standard formula is: ROI = (Final Value - Initial Investment) / Initial Investment × 100. This formula provides a percentage that represents the gain or loss relative to the initial investment cost. It's widely used because it offers a clear and concise measure of investment performance.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          ROI = (Final Value - Initial Investment) / Initial Investment × 100
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Final Value = The value of the investment at the end of the period</li>
-              <li>Initial Investment = The original amount of money invested</li>
-              <li>ROI = Return on Investment percentage</li>
-            </ul>
+      {/* TABLE: Historical Average Annual ROI by Asset Class (2014-2024) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Historical Average Annual ROI by Asset Class (2014-2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical annual returns across major investment categories to help benchmark your calculator results.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Asset Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Annual ROI</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">S&P 500 Index</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate-High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Core portfolio holdings</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">NASDAQ-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Growth-focused portfolios</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Investment-Grade Bonds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Income and stability</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Treasury Bills (6-month)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cash alternatives</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Real Estate (Residential)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Long-term wealth building</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Money Market Accounts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency funds</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dividend-Paying Stocks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Income generation</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data reflects 10-year historical averages; actual returns vary by year and market conditions. Past performance does not guarantee future results.</p>
+      </section>
+
+      {/* TABLE: ROI Calculation Examples for Common Investments */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">ROI Calculation Examples for Common Investments</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These real-world scenarios demonstrate how to use the ROI calculator for different investment types.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Investment Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Initial Investment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Final Value</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total ROI</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time Period</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Apple Stock Purchase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">185%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bond Investment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mutual Fund (Tech)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$39,625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">58.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rental Property</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$330,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$465,000 (with $35K rental gains)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dividend Stock Portfolio</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$67,500 (with $5K dividends)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cryptocurrency (Bitcoin)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 years</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Examples are illustrative only and do not account for taxes, fees, or inflation adjustments. Actual results will vary.</p>
+      </section>
+
+      {/* TABLE: Tax Impact on ROI (2024 U.S. Federal Rates) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tax Impact on ROI (2024 U.S. Federal Rates)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Understanding how taxes reduce your net ROI is critical for accurate investment evaluation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gain Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example $10K Gain</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">After-Tax Gain</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Effective ROI Impact</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Long-term Capital Gains (High income)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-2% ROI reduction</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Long-term Capital Gains (Mid income)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-1.5% ROI reduction</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Long-term Capital Gains (Low income)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No reduction</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Short-term Capital Gains (Top bracket)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-3.7% ROI reduction</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Qualified Dividends (High income)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-2% ROI reduction</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Municipal Bond Interest</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0% (Federal)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No reduction</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Tax rates vary by income level and filing status. State and local taxes may apply in addition to federal rates.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always include all sources of return in your ROI calculation—don't forget reinvested dividends, interest payments, and rental income, as these significantly boost your total ROI percentage and provide a complete picture of investment performance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the ROI calculator to compare your results against relevant benchmarks monthly or quarterly; if your portfolio consistently underperforms the S&P 500 by more than 3-5% annually, consider rebalancing toward index funds or reviewing your investment strategy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Calculate both simple and annualized ROI when holding investments for periods longer than one year; annualized ROI reveals the true year-over-year compound growth rate and makes it easier to compare investments held for different time periods.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in taxes and fees when evaluating after-tax ROI for taxable accounts; a 25% pre-tax return can shrink to 15-18% after capital gains taxes and trading fees, fundamentally changing whether an investment met your financial goals.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring taxes in your ROI calculation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many investors calculate ROI without subtracting capital gains taxes and trading fees, which can reduce actual returns by 2-5% annually. Always compute after-tax ROI for accurate performance assessment, especially in taxable brokerage accounts where short-term gains face rates up to 37%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Comparing short-term ROI to long-term benchmarks</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Measuring a 6-month investment return and comparing it directly to the S&P 500's 10-year average creates an apples-to-oranges comparison. Use the calculator to annualize short-term returns for fair benchmarking, or compare similar time horizons to identify true underperformance.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to include dividends and interest in your calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">ROI should include all income sources—dividend payments, bond interest, and rental income—not just capital appreciation. Omitting these understates your actual return, potentially making a solid 12% total return appear as only an 8% capital gain.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using ROI alone to make sell or hold decisions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High ROI doesn't always mean you should hold forever, and negative ROI doesn't always mean sell immediately; consider tax implications of selling, future growth potential, and your overall asset allocation before acting on ROI results alone.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role in determining the ROI. The Final Value represents the current worth of the investment, which could include capital gains, dividends, or interest earned. The Initial Investment is the starting amount of money put into the investment. By comparing these two values, the ROI formula provides a percentage that indicates the profitability of the investment. A higher ROI percentage signifies a more profitable investment.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your ROI is essential for making informed investment decisions. These factors can significantly impact the outcome of your ROI calculations, and being aware of them can help you optimize your investment strategy.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Conditions
-        </h3>
-        <p className="mb-4">
-          Market conditions play a pivotal role in determining the ROI of an investment. Economic factors such as inflation, interest rates, and market volatility can affect the final value of your investments. For instance, a booming economy might lead to higher returns, while a recession could result in losses.
-        </p>
-        <p className="mb-6">
-          To manage this factor, stay informed about economic trends and adjust your investment strategy accordingly. Diversifying your portfolio can also mitigate risks associated with market fluctuations. For more strategies, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Duration
-        </h3>
-        <p className="mb-4">
-          The duration of your investment can significantly impact your ROI. Longer investment periods generally allow more time for compound growth, potentially leading to higher returns. However, longer durations also expose investments to more market risks.
-        </p>
-        <p className="mb-6">
-          Consider your financial goals and risk tolerance when deciding on the investment duration. Short-term investments might offer quick returns but with higher volatility, while long-term investments can provide stability and growth over time.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Initial Investment Amount
-        </h3>
-        <p className="mb-4">
-          The amount of money you initially invest can influence the ROI. Larger investments might yield higher absolute returns, but they also come with increased risk. It's important to balance the potential rewards with the risks involved.
-        </p>
-        <p className="mb-6">
-          Evaluate your financial situation and investment goals to determine the appropriate initial investment amount. Consider consulting with a financial advisor to ensure your investment aligns with your long-term objectives.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Fees and Expenses
-        </h3>
-        <p className="mb-6">
-          Investment-related fees and expenses can erode your returns. Management fees, transaction costs, and taxes can all reduce the final value of your investment. It's crucial to account for these costs when calculating your ROI.
-        </p>
-        <p className="mb-6">
-          To minimize the impact of fees, consider low-cost investment options such as index funds or ETFs. Regularly review your investment portfolio to ensure that fees are not disproportionately affecting your returns.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Economic and Political Factors
-        </h3>
-        <p className="mb-6">
-          Broader economic and political factors can also influence your investment returns. Changes in government policies, trade agreements, and geopolitical events can all affect market performance. Staying informed about these factors can help you anticipate potential impacts on your investments.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is ROI and how does the calculator measure it?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">ROI (Return on Investment) measures the profit or loss generated on an investment relative to the amount invested, expressed as a percentage. The calculator uses the formula: ROI = (Net Profit / Initial Investment) × 100. For example, if you invest $10,000 and earn $1,500 in profit, your ROI is 15%. This metric helps you compare the efficiency of different investments on a standardized basis.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate ROI for multiple investments in my portfolio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To calculate blended ROI across multiple investments, sum all net profits and divide by total capital invested, then multiply by 100. For instance, if you have three investments totaling $50,000 (Investment A: $20,000 with $2,000 gain, Investment B: $15,000 with $1,050 gain, Investment C: $15,000 with $750 gain), your blended ROI is ($3,800 / $50,000) × 100 = 7.6%. Use the calculator's portfolio feature to input each position separately for accurate tracking.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the ROI calculator account for taxes and fees?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard ROI calculations do not automatically include taxes and fees unless you manually adjust the net profit figure. To calculate after-tax ROI, subtract capital gains taxes (typically 15-20% for long-term gains, or up to 37% for short-term gains) and any broker fees from your net profit before entering the data. For example, a $2,000 gain minus $300 in taxes and fees becomes $1,700 in net profit for calculation purposes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between simple ROI and annualized ROI?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Simple ROI shows total return over any time period without accounting for how long the investment was held, while annualized ROI converts returns to an equivalent yearly rate. To annualize ROI, use: Annualized ROI = (1 + Simple ROI)^(1/years) - 1. For example, a 25% return over 5 years equals approximately 4.57% annualized ROI. The calculator can compute both metrics depending on whether you input total holding period or specific year-to-date timeframes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I use the ROI calculator to compare stock investments vs. bonds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Input the initial purchase price, current market value, and any dividends or interest received for each investment type separately. Historically, stocks have delivered 10% average annual ROI, while investment-grade bonds averaged 4-6% annually (as of 2024 data). The calculator reveals which investment generated better returns relative to risk, though you should consider that stocks carry higher volatility and bonds offer more stability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the calculator help me determine if I should sell an investment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—use the ROI calculator to compare your current investment's return against benchmark indices and alternative investments. If your stock portfolio shows 5% ROI over 3 years while the S&P 500 averaged 12% annually, this suggests underperformance. However, ROI alone shouldn't dictate sell decisions; also consider future growth potential, tax implications of selling, and your overall financial goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a good ROI benchmark for my investments?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Historical S&P 500 average annual returns are approximately 10% (1926-2024), while Treasury bonds average 4-5% and money market accounts offer 4.5-5.5% (2024-2025 rates). Individual stocks and mutual funds should be compared against their respective category benchmarks—tech funds against NASDAQ, for example. A 15%+ ROI over a multi-year period generally outperforms typical market averages, though past performance doesn't guarantee future results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate ROI on real estate investments using this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For real estate ROI, input your total initial investment (purchase price plus closing costs and repairs) as the starting value, and your net profit as the sum of property appreciation plus rental income minus mortgage interest and expenses. For example, a $300,000 property purchase with $30,000 down payment, $20,000 in rental gains over 2 years, and $50,000 appreciation equals $70,000 profit on $330,000 invested, or 21.2% ROI. Remember to account for property taxes, insurance, and maintenance costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my investment shows a negative ROI?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A negative ROI means you lost money on the investment—the calculator will display this as a negative percentage. For example, if you invested $5,000 and it's now worth $4,200, your ROI is -16%. This occurs in market downturns or poor investment choices; use this insight to evaluate whether to hold for recovery or sell to limit further losses, while considering tax-loss harvesting opportunities for capital gains offset.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access comprehensive economic data and insights from the Federal Reserve, including interest rates and market trends.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/prot-rules/introduction-invest.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC: Investment Returns and Performance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The SEC provides authoritative guidance on understanding investment performance metrics and evaluating returns on securities.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Investment Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Explore investment guides and resources to help you make informed financial decisions and protect your investments.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/taxtopics/tc409" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Capital Gains Tax Rates (2024)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS resource outlining federal capital gains tax rates and how they apply to long-term and short-term investment returns.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking and Investment Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Learn about banking regulations and investment information from the Federal Deposit Insurance Corporation.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/r/returnoninvestment.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Return on Investment (ROI) Definition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide explaining ROI calculations, formulas, and how to interpret results across different investment types.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access official tax guidelines and information on deductions related to investments from the IRS.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Investment Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Discover detailed financial education and investment concepts explained in depth on Investopedia.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Utilize personal finance guides and comparison tools to manage your investments effectively on NerdWallet.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/datadownload/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve: Historical S&P 500 Returns and Market Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Reserve economic data portal providing historical stock market returns and benchmarks for comparing investment performance.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

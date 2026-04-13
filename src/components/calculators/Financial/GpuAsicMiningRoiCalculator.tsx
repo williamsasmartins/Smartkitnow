@@ -20,24 +20,40 @@ export default function GpuAsicMiningRoiCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are GPU/ASIC mining ROI calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For GPU/ASIC mining ROI, accuracy depends on using current hardware depreciation data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a hardware depreciation professional."
+      question: "What is the difference between GPU and ASIC mining for ROI calculations?",
+      answer: "GPU mining uses graphics processors (like NVIDIA RTX 4090) to solve algorithms and is suitable for multiple cryptocurrencies, while ASIC mining uses specialized chips designed for one specific algorithm and offers higher hash rates but less flexibility. GPUs typically generate 100-500 MH/s depending on the model, whereas ASICs for Bitcoin can achieve 100+ TH/s. The ROI calculator accounts for these differences in electricity costs, hardware depreciation, and mining difficulty adjustments.",
     },
     {
-      question: "What key factors most affect GPU/ASIC mining ROI results?",
-      answer: "The most impactful variables in GPU/ASIC mining ROI calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How does electricity cost affect my mining ROI?",
+      answer: "Electricity is typically 60-80% of total mining operating costs, making it the most critical variable in ROI calculations. A miner paying $0.06/kWh will see dramatically different returns than one paying $0.15/kWh—this can mean the difference between profitability and losses. The calculator multiplies your hardware's power consumption (e.g., RTX 4090 uses 450W) by your local electricity rate and the number of operating hours to determine total energy costs.",
     },
     {
-      question: "When should I recalculate GPU/ASIC mining ROI?",
-      answer: "Recalculate whenever hardware depreciation conditions change significantly: after major hardware depreciation events, when your inputs change (income, rates, holdings), or when hardware depreciation regulations are updated. For time-sensitive hardware depreciation metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "What hardware specifications should I input for accurate GPU mining ROI?",
+      answer: "You need the GPU model (e.g., RTX 4090, RX 7900 XTX), its hash rate in MH/s for your target coin, power consumption in watts, and purchase price. For example, an RTX 4090 produces approximately 120 MH/s on Ethereum-equivalent coins while consuming 450W. Accurate specs ensure the calculator properly estimates daily earnings and break-even timelines based on current mining difficulty.",
     },
     {
-      question: "How does GPU/ASIC mining ROI relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Gpu/asic mining roi should be evaluated alongside related measures like mining efficiency. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your hardware depreciation situation, rather than optimizing any single number in isolation."
+      question: "How do mining difficulty adjustments impact ROI projections?",
+      answer: "Mining difficulty adjusts approximately every 2 weeks for Bitcoin and every 12-15 seconds for Ethereum-based coins, reducing rewards as more miners join the network. A difficulty increase of 10% can reduce your daily earnings by proportionally similar amounts, extending your payback period. The calculator uses current difficulty data but projects future earnings based on historical difficulty trends, which may overestimate or underestimate actual returns.",
     },
     {
-      question: "What are the most common mistakes when calculating GPU/ASIC mining ROI?",
-      answer: "The most frequent errors in GPU/ASIC mining ROI calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world hardware depreciation conditions fluctuate. Double-check your inputs against current hardware depreciation data before relying on results for significant financial decisions."
+      question: "What is the typical payback period for a $1,500 GPU mining rig?",
+      answer: "Payback periods range from 6-18 months depending on cryptocurrency prices, electricity costs, and difficulty levels. At current conditions with $0.08/kWh electricity and using 2-3 GPUs totaling $1,500, a miner might earn $300-400/month, resulting in a 4-5 month payback period. However, this assumes stable difficulty and coin prices—actual timelines vary significantly based on market conditions.",
+    },
+    {
+      question: "Should I include cooling and maintenance costs in my ROI calculation?",
+      answer: "Yes, cooling and maintenance typically add 10-15% to your operating costs beyond electricity. This includes cooling fans, replacement thermal paste, replacement power supplies, and potential hardware repairs or replacements. The most accurate ROI calculations incorporate these as additional monthly expenses rather than ignoring them or treating them as one-time costs.",
+    },
+    {
+      question: "How does cryptocurrency price volatility affect mining ROI calculations?",
+      answer: "Mining revenue is directly tied to cryptocurrency market prices—a 30% drop in Bitcoin price immediately reduces your mining earnings by 30%, even if hash rate and difficulty remain constant. The calculator shows ROI based on current prices, but actual returns depend heavily on whether prices rise, fall, or stabilize over your mining period. It's essential to model scenarios with different price assumptions rather than relying on a single fixed-price projection.",
+    },
+    {
+      question: "What is the minimum electricity rate needed to break even on ASIC mining?",
+      answer: "For modern ASIC miners like the Antminer S21 Pro (21 TH/s, 3,410W), the break-even electricity rate is approximately $0.04-0.05/kWh at current Bitcoin difficulty levels. Miners in regions with cheaper electricity (Iceland, El Salvador, parts of China and Central Asia) achieve profitability at rates that would produce losses in North America or Europe. Your calculator results should clearly indicate whether your input electricity rate supports profitability.",
+    },
+    {
+      question: "How should I account for hardware depreciation in my mining ROI?",
+      answer: "Mining hardware depreciates 40-60% in the first year due to technological obsolescence and wear, but many miners ignore this critical cost factor. A $2,000 GPU might be worth $800-1,200 after one year, representing $800-1,200 in non-cash expenses that should reduce your calculated ROI. The most accurate calculator results subtract estimated resale value loss from gross mining profits to show true net ROI.",
     }
   ];
 
@@ -291,251 +307,315 @@ export default function GpuAsicMiningRoiCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding GPU/ASIC Mining ROI Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The GPU/ASIC Mining ROI Calculator is an essential tool for anyone involved in cryptocurrency mining. It helps miners determine how long it will take to recoup their investment in mining hardware, such as GPUs or ASICs, based on current profitability metrics. This calculation is crucial for making informed decisions about hardware purchases and operational strategies. By understanding the return on investment (ROI), miners can optimize their operations to maximize profits and minimize risks.
-        </p>
-        
-        <p className="mb-6">
-          Accurate ROI calculations are vital in the volatile world of cryptocurrency mining. An incorrect estimation can lead to significant financial losses, especially given the high upfront costs associated with purchasing mining hardware. This calculator provides a reliable way to assess potential returns, allowing miners to adjust their strategies accordingly. For more insights into financial planning, consider exploring our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information on your hardware cost, daily profit, and electricity expenses. Enter these values into the respective fields to calculate your ROI. The tool will provide an estimate of the number of days required to break even, along with monthly and annual profit projections. For additional guidance on managing financial resources, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always consider the volatility of cryptocurrency markets when planning your mining operations. Prices can fluctuate significantly, impacting your profitability and ROI. Regularly update your calculations to reflect current market conditions and adjust your strategy accordingly.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the GPU/ASIC Mining ROI Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The GPU/ASIC Mining ROI Calculator helps miners estimate profitability by analyzing hardware costs, electricity expenses, and mining rewards to determine break-even timelines and return on investment. This tool is essential for evaluating whether mining is viable in your region and which hardware configuration offers the best returns, as profitability varies dramatically by location, electricity costs, and cryptocurrency prices.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator accurately, input four key variables: (1) your hardware model and hash rate (e.g., RTX 4090 at 120 MH/s), (2) power consumption in watts (450W for RTX 4090), (3) your local electricity rate per kilowatt-hour (typically $0.04-$0.15 depending on region), and (4) hardware purchase price in dollars. Optional inputs include mining pool fees (typically 1-2%), expected difficulty increase rates, and hardware depreciation assumptions, which refine your projections.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret the results by examining three critical outputs: the daily/monthly gross mining revenue (before costs), total daily/monthly operating expenses (primarily electricity), and net profit or loss. The break-even timeline shows when cumulative profits equal your hardware investment—if this exceeds 12 months, profitability becomes questionable due to hardware obsolescence and price volatility. Use the ROI percentage to compare against alternative investments, remembering that mining returns are highly sensitive to electricity rates and difficulty adjustments.</p>
         </div>
-        
-        <p className="mb-6">
-          For best results, ensure that your input data is accurate and up-to-date. Consider factors such as hardware efficiency, network difficulty, and electricity rates, as these can significantly influence your ROI. By staying informed and proactive, you can optimize your mining operations for maximum profitability.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          GPU/ASIC Mining ROI Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is designed to provide a straightforward estimation of the return on investment for mining hardware. It calculates the number of days required to break even based on the net daily profit, which is the difference between daily earnings from mining and electricity costs. This approach is widely accepted in the mining community due to its simplicity and effectiveness.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          ROI Days = Hardware Cost / (Daily Profit - Electricity Cost)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Hardware Cost = Initial investment in mining hardware</li>
-              <li>Daily Profit = Earnings from mining per day</li>
-              <li>Electricity Cost = Daily cost of electricity used by mining hardware</li>
-            </ul>
+      {/* TABLE: GPU Mining Hardware Specifications and Profitability (2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">GPU Mining Hardware Specifications and Profitability (2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares current popular GPU models with their hash rates, power consumption, and estimated monthly profitability at $0.08/kWh electricity cost.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">GPU Model</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hash Rate (MH/s)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Power Draw (W)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">MSRP ($)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Est. Monthly Profit ($)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">NVIDIA RTX 4090</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,599</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">285</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">NVIDIA RTX 4080 Super</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">999</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">AMD RX 7900 XTX</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">420</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">899</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">210</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">NVIDIA RTX 4070 Ti Super</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">285</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">799</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">AMD RX 7700 XT</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">399</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">NVIDIA RTX 4070</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">599</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">105</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Estimates based on current Ethereum-equivalent algorithm difficulty and $2,500-3,200 coin prices; actual results vary by coin mined and pool fees (1-2%).</p>
+      </section>
+
+      {/* TABLE: ASIC Mining Hardware Comparison and ROI Timeline */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">ASIC Mining Hardware Comparison and ROI Timeline</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows current ASIC miners with their respective hash rates, power consumption, and estimated break-even periods at different electricity rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">ASIC Model</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hash Rate (TH/s)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Power (W)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hardware Cost ($)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Payback at $0.04/kWh (months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Payback at $0.08/kWh (months)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Antminer S21 Pro</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3410</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Whatsminer M66</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Antminer S21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">IceRiver KS0 Pro</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Antminer L7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3425</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21.6</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Payback timelines assume current Bitcoin difficulty; difficulty increases reduce profitability and extend break-even periods. Includes hardware cost only, not facility or cooling setup.</p>
+      </section>
+
+      {/* TABLE: Electricity Cost Impact on Annual Mining Profitability */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Electricity Cost Impact on Annual Mining Profitability</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how regional electricity rates significantly affect annual profitability for a single RTX 4090 GPU miner.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Electricity Rate ($/kWh)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Electricity Cost ($)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Mining Revenue ($)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Net Profit ($)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual ROI (%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0.04</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">248</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">186</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0.06</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">108</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">212</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">159</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0.08</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">144</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">176</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">132</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0.10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">105</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">216</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">104</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">78</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0.14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">252</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">68</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">51</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Based on RTX 4090 (450W, 120 MH/s) mining Ethereum-equivalent at $2,800 coin price; assumes 2% pool fee and 99% uptime. Revenue decreases if difficulty increases or price declines.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare electricity rates across regions before committing to mining—moving from $0.12/kWh to $0.06/kWh can double your annual profitability and reduce payback periods from 18 months to 9 months for the same hardware.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for all overhead costs including cooling solutions, replacement power supplies, mining rig frames, and network equipment, which typically add 10-15% to your stated electricity expenses.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Model multiple scenarios using the calculator with different cryptocurrency prices (±20% and ±50%) and difficulty growth rates (5%, 10%, 20% monthly) to understand profitability under bearish and bullish conditions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track actual mining performance against calculator projections monthly—if real earnings are 15-20% below estimates, investigate pool efficiency, hardware degradation, or difficulty changes that require ROI recalculation.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Evaluate GPU mining ROI separately from ASIC mining because ASICs depreciate faster due to rapid chip obsolescence, while GPUs retain dual-use value for gaming or compute work if mining becomes unprofitable.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Electricity Costs in ROI Calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many new miners focus only on gross mining revenue and overlook electricity, which represents 60-80% of operating expenses. Failing to account for accurate electricity rates can make unprofitable operations appear profitable, leading to significant losses when actual bills arrive.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated or Incorrect Hash Rate Specifications</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Inputting optimistic manufacturer hash rates instead of real-world verified rates (which are typically 10-20% lower due to pool overhead and stale shares) inflates projected earnings and extends break-even timelines. Always verify hash rates with independent benchmarks like mining pool reports or Reddit mining communities.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Hardware Depreciation and Obsolescence</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">GPU and ASIC mining hardware depreciates 40-60% in the first year, but many calculators ignore this non-cash expense entirely. Without accounting for resale value loss, you overestimate true ROI by 30-50%, making mediocre investments appear attractive.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Static Difficulty and Cryptocurrency Prices</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator's accuracy depends on reasonable assumptions about future difficulty growth and price stability, but mining difficulty increases 5-20% monthly on average. Projecting profitability without accounting for difficulty adjustments produces unrealistic results that diverge significantly from actual experience.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Geographic Tax Implications on Mining Income</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Mining rewards are taxable income in most jurisdictions, with tax rates ranging from 20-37% depending on location and classification as hobby or business. Failing to reserve 20-30% of profits for taxes reduces actual net ROI substantially below calculator projections.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the ROI. The hardware cost represents the initial investment, while the daily profit reflects the revenue generated from mining activities. Electricity cost is a critical factor, as it directly impacts the net profit. By adjusting these variables, miners can explore different scenarios and identify the most profitable strategies.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your mining ROI is essential for optimizing your operations. These factors can vary widely and interact in complex ways, affecting your overall profitability. By analyzing these elements, you can make informed decisions and enhance your mining strategy.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Hardware Efficiency
-        </h3>
-        <p className="mb-4">
-          Hardware efficiency is a critical factor in mining profitability. More efficient hardware can produce more hashes per watt of electricity, reducing operational costs and increasing net profit. Investing in high-efficiency hardware can significantly shorten the time required to achieve ROI.
-        </p>
-        <p className="mb-6">
-          To optimize hardware efficiency, consider upgrading to newer models or optimizing existing setups. Regular maintenance and monitoring can also help maintain peak performance. For more insights on financial optimization, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Cryptocurrency Market Prices
-        </h3>
-        <p className="mb-4">
-          The price of cryptocurrencies directly impacts mining profitability. Higher prices generally lead to increased earnings, while lower prices can reduce profit margins. Staying informed about market trends and price fluctuations is crucial for effective mining operations.
-        </p>
-        <p className="mb-6">
-          To mitigate risks associated with price volatility, consider diversifying your mining portfolio or using hedging strategies. Regularly updating your ROI calculations can help you adapt to changing market conditions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Network Difficulty
-        </h3>
-        <p className="mb-4">
-          Network difficulty refers to the complexity of mining a new block. As more miners join the network, difficulty increases, potentially reducing individual earnings. Monitoring network difficulty is essential for understanding its impact on your ROI.
-        </p>
-        <p className="mb-6">
-          To manage network difficulty, consider mining less competitive cryptocurrencies or joining mining pools. These strategies can help stabilize earnings and improve ROI.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Electricity Costs
-        </h3>
-        <p className="mb-6">
-          Electricity costs are a significant expense in mining operations. High electricity rates can erode profits, making it essential to find cost-effective energy solutions. Consider relocating to regions with lower electricity costs or investing in renewable energy sources to reduce expenses.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Regulatory and Legal Considerations
-        </h3>
-        <p className="mb-6">
-          Regulatory and legal factors can influence mining operations. Compliance with local laws and regulations is crucial to avoid potential fines or shutdowns. Stay informed about legal developments in your region and adjust your operations accordingly.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
-
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between GPU and ASIC mining for ROI calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">GPU mining uses graphics processors (like NVIDIA RTX 4090) to solve algorithms and is suitable for multiple cryptocurrencies, while ASIC mining uses specialized chips designed for one specific algorithm and offers higher hash rates but less flexibility. GPUs typically generate 100-500 MH/s depending on the model, whereas ASICs for Bitcoin can achieve 100+ TH/s. The ROI calculator accounts for these differences in electricity costs, hardware depreciation, and mining difficulty adjustments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does electricity cost affect my mining ROI?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Electricity is typically 60-80% of total mining operating costs, making it the most critical variable in ROI calculations. A miner paying $0.06/kWh will see dramatically different returns than one paying $0.15/kWh—this can mean the difference between profitability and losses. The calculator multiplies your hardware's power consumption (e.g., RTX 4090 uses 450W) by your local electricity rate and the number of operating hours to determine total energy costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What hardware specifications should I input for accurate GPU mining ROI?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You need the GPU model (e.g., RTX 4090, RX 7900 XTX), its hash rate in MH/s for your target coin, power consumption in watts, and purchase price. For example, an RTX 4090 produces approximately 120 MH/s on Ethereum-equivalent coins while consuming 450W. Accurate specs ensure the calculator properly estimates daily earnings and break-even timelines based on current mining difficulty.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do mining difficulty adjustments impact ROI projections?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mining difficulty adjusts approximately every 2 weeks for Bitcoin and every 12-15 seconds for Ethereum-based coins, reducing rewards as more miners join the network. A difficulty increase of 10% can reduce your daily earnings by proportionally similar amounts, extending your payback period. The calculator uses current difficulty data but projects future earnings based on historical difficulty trends, which may overestimate or underestimate actual returns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the typical payback period for a $1,500 GPU mining rig?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Payback periods range from 6-18 months depending on cryptocurrency prices, electricity costs, and difficulty levels. At current conditions with $0.08/kWh electricity and using 2-3 GPUs totaling $1,500, a miner might earn $300-400/month, resulting in a 4-5 month payback period. However, this assumes stable difficulty and coin prices—actual timelines vary significantly based on market conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include cooling and maintenance costs in my ROI calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, cooling and maintenance typically add 10-15% to your operating costs beyond electricity. This includes cooling fans, replacement thermal paste, replacement power supplies, and potential hardware repairs or replacements. The most accurate ROI calculations incorporate these as additional monthly expenses rather than ignoring them or treating them as one-time costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does cryptocurrency price volatility affect mining ROI calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mining revenue is directly tied to cryptocurrency market prices—a 30% drop in Bitcoin price immediately reduces your mining earnings by 30%, even if hash rate and difficulty remain constant. The calculator shows ROI based on current prices, but actual returns depend heavily on whether prices rise, fall, or stabilize over your mining period. It's essential to model scenarios with different price assumptions rather than relying on a single fixed-price projection.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the minimum electricity rate needed to break even on ASIC mining?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For modern ASIC miners like the Antminer S21 Pro (21 TH/s, 3,410W), the break-even electricity rate is approximately $0.04-0.05/kWh at current Bitcoin difficulty levels. Miners in regions with cheaper electricity (Iceland, El Salvador, parts of China and Central Asia) achieve profitability at rates that would produce losses in North America or Europe. Your calculator results should clearly indicate whether your input electricity rate supports profitability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I account for hardware depreciation in my mining ROI?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mining hardware depreciates 40-60% in the first year due to technological obsolescence and wear, but many miners ignore this critical cost factor. A $2,000 GPU might be worth $800-1,200 after one year, representing $800-1,200 in non-cash expenses that should reduce your calculated ROI. The most accurate calculator results subtract estimated resale value loss from gross mining profits to show true net ROI.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on economic indicators and financial stability, providing insights into market trends.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/individuals/international-taxpayers/virtual-currency" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Virtual Currency Guidance for Mining Activities</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on taxation of cryptocurrency mining rewards as ordinary income and capital gains treatment of mined cryptocurrency sales.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on financial management.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/spotlight/cryptocurrency-digital-assets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Cryptocurrency and Digital Assets Guidance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative SEC resource on cryptocurrency regulations, investment risks, and how mining activities are classified from a securities and regulatory perspective.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Information on banking regulations and deposit insurance, crucial for financial planning.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/c/cryptocurrency.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia's Cryptocurrency Mining and ROI Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide explaining mining mechanics, profitability factors, hardware costs, and how to calculate return on investment for mining operations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information, essential for compliance and financial planning.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained for better financial literacy.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers, aiding in financial decision-making.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.eia.gov/electricity/state/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Energy Information Administration Electricity Rates by State</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official EIA data on average electricity rates by state and region, essential for accurately inputting local power costs into mining profitability calculators.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

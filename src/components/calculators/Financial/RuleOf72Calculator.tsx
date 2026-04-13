@@ -19,24 +19,40 @@ export default function RuleOf72Calculator() {
 
   const faqs = [
     {
-      question: "How accurate are Rule of 72 calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For Rule of 72, accuracy depends on using current compound interest data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a compound interest professional."
+      question: "What is the Rule of 72 and how does this calculator use it?",
+      answer: "The Rule of 72 is a simple formula that estimates how many years it takes for an investment to double at a given annual interest rate. The calculator divides 72 by your annual return rate to instantly show doubling time. For example, at a 6% annual return, your money doubles in approximately 12 years (72 ÷ 6 = 12). This rule works best for returns between 3% and 10%.",
     },
     {
-      question: "What key factors most affect Rule of 72 results?",
-      answer: "The most impactful variables in Rule of 72 calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How accurate is the Rule of 72 Calculator?",
+      answer: "The Rule of 72 is remarkably accurate for moderate interest rates between 3% and 10%, typically within 0.1 to 0.2 years of the true doubling time. At 5% annual returns, the rule estimates 14.4 years, while the actual time is 14.21 years. However, accuracy decreases significantly at very high rates (above 15%) or very low rates (below 2%).",
     },
     {
-      question: "When should I recalculate Rule of 72?",
-      answer: "Recalculate whenever compound interest conditions change significantly: after major compound interest events, when your inputs change (income, rates, holdings), or when compound interest regulations are updated. For time-sensitive compound interest metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "Can I use the Rule of 72 for investment accounts earning less than 3%?",
+      answer: "While technically possible, the Rule of 72 becomes less accurate below 3% returns. A savings account earning 0.5% APY would theoretically take 144 years to double according to the rule, but the actual time is 138.6 years. For rates below 3%, using the more precise Rule of 69.3 or an exact compound interest calculation provides better accuracy.",
     },
     {
-      question: "How does Rule of 72 relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Rule of 72 should be evaluated alongside related measures like doubling time. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your compound interest situation, rather than optimizing any single number in isolation."
+      question: "What average annual returns should I assume for stocks and bonds?",
+      answer: "Historically, the S&P 500 has averaged approximately 10% annual returns since 1926 (including dividends), suggesting stocks double every 7.2 years. Investment-grade bonds have averaged around 5-6% annually, implying a doubling period of 12-14.4 years. However, past performance doesn't guarantee future results, and actual returns vary year to year.",
     },
     {
-      question: "What are the most common mistakes when calculating Rule of 72?",
-      answer: "The most frequent errors in Rule of 72 calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world compound interest conditions fluctuate. Double-check your inputs against current compound interest data before relying on results for significant financial decisions."
+      question: "How does inflation affect the Rule of 72 doubling time calculation?",
+      answer: "The Rule of 72 typically calculates nominal doubling time (before adjusting for inflation), but you should compare your rate against inflation for real purchasing power growth. If your investment returns 7% annually but inflation is 3%, your real return is approximately 4%, meaning purchasing power doubles in about 18 years (72 ÷ 4). Ignoring inflation can significantly overestimate actual wealth growth.",
+    },
+    {
+      question: "Why is the number 72 used instead of other numbers?",
+      answer: "The number 72 was chosen because it has many divisors (1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72), making mental math easier at various common interest rates. At 8%, money doubles in 9 years; at 6%, it takes 12 years; at 4%, it requires 18 years. Some mathematicians prefer Rule of 69.3 for greater precision, but 72 offers a practical balance between accuracy and ease of calculation.",
+    },
+    {
+      question: "Can the Rule of 72 be used for loan debt that's compounding?",
+      answer: "Yes, the Rule of 72 works inversely for debt growth. If your credit card debt carries a 24% APR, the outstanding balance doubles approximately every 3 years (72 ÷ 24 = 3). This demonstrates why high-interest debt is particularly dangerous—a $5,000 balance becomes $10,000 in 3 years, then $20,000 in 6 years if only minimum payments are made and no additional charges are incurred.",
+    },
+    {
+      question: "How do I factor in regular contributions when using the Rule of 72?",
+      answer: "The Rule of 72 assumes a single lump-sum investment with no additional contributions. If you're adding monthly or annual contributions, your money will actually double faster than the calculator suggests. For example, with a 7% return and monthly $500 contributions, doubling happens sooner than the predicted 10.3 years because you're continuously investing new capital at compound returns.",
+    },
+    {
+      question: "What's the difference between simple and compound interest in the Rule of 72?",
+      answer: "The Rule of 72 is based on compound interest, where earnings generate their own earnings over time. With simple interest at 6%, you'd gain only 6% annually on your original principal, taking much longer to double. Compound interest is far more powerful—at 6% compounded annually, your money doubles in 12 years, while simple interest would take 16.67 years to double the original amount.",
     }
   ];
 
@@ -249,257 +265,332 @@ export default function RuleOf72Calculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Rule of 72 Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Rule of 72 is a simplified way to estimate the number of years required to double the invested money at a given annual rate of return. This calculator is designed to provide a quick and easy way to perform this calculation, making it an invaluable tool for investors who want to understand the potential growth of their investments over time. Whether you're planning for retirement, saving for a major purchase, or simply curious about your investment's future, this calculator can help you make informed decisions.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in the financial world, as they can significantly impact your investment strategy and financial planning. Incorrect calculations can lead to poor investment decisions, resulting in financial losses or missed opportunities. By using this Rule of 72 Calculator, you can ensure that your estimates are based on sound mathematical principles, allowing you to plan confidently and strategically. For more detailed financial planning, consider using our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, you'll need to gather some basic information about your investment. Start by entering the initial amount of your investment and the expected annual interest rate. The calculator will then use the Rule of 72 to estimate how many years it will take for your investment to double. For the most accurate results, ensure that the interest rate reflects the average annual return you expect to achieve. For more insights, check out our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Remember, the Rule of 72 is an approximation and works best for interest rates between 6% and 10%. For interest rates outside this range, the results may be less accurate. Always consider using a more detailed financial model for precise planning.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Rule of 72 Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Rule of 72 Calculator is a quick estimation tool that determines how long your money takes to double at a given annual return rate. This simple yet powerful financial concept helps you understand the compounding effect of investments and debt growth. Whether you're planning retirement savings, comparing investment options, or evaluating the cost of high-interest debt, this calculator provides instant insight into long-term wealth accumulation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your expected annual return rate as a percentage. This could be your investment portfolio's average return (7-10% for stocks), your savings account interest rate (currently 4-5% for high-yield accounts), or even a loan's APR if you're calculating debt growth. The calculator then applies the Rule of 72 formula (72 ÷ annual rate = doubling time) to instantly show how many years until your money or debt doubles.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret the results by understanding that the output represents approximate doubling time in years. At an 8% annual return, your $10,000 investment becomes $20,000 in roughly 9 years. Use this timeline to benchmark against your financial goals—if you need funds to double within 5 years, you'll need an average return of at least 14.4% annually. Remember that this calculator provides estimates; actual results depend on consistent returns, compound frequency, and whether additional contributions are made.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your interest rate to reflect current market conditions and considering the impact of taxes and fees on your investment returns. Additionally, be aware of external factors such as economic changes that could affect your investment's performance. For more tips, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Rule of 72 Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The Rule of 72 is a straightforward mathematical formula used to estimate the number of years required to double an investment at a fixed annual rate of interest. The formula is expressed as:
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Years to Double = 72 / Interest Rate
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Interest Rate = The annual interest rate expressed as a percentage</li>
-            </ul>
+      {/* TABLE: Rule of 72: Doubling Time by Annual Return Rate */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Rule of 72: Doubling Time by Annual Return Rate</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how many years it takes for an investment to double at various annual return rates using the Rule of 72 formula.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Return Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Years to Double (Rule of 72)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Actual Years to Double</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Accuracy Variance</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.9% error</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23.45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4% error</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.67</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.9% error</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.3% error</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8% error</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6% error</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.01</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1% error</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.27</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0% error</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.0% error</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.96</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.2% error</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Accuracy is highest between 5% and 10% returns. At extreme rates (below 2% or above 15%), use the precise compound interest formula instead.</p>
+      </section>
+
+      {/* TABLE: Historical Investment Doubling Periods (1926-2024) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Historical Investment Doubling Periods (1926-2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These estimates show how long different asset classes have historically taken to double based on average annual returns.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Asset Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Annual Return (1926-2024)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Historical Doubling Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Number of Doublings Since 1926</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">S&P 500 (stocks)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.1 times</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">US Treasury Bonds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.1 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0 times</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Corporate Bonds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.4 times</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gold</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.8 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.8 times</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Real Estate (median home)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.9 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.2 times</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Savings Account (current)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.42%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">171 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.11 times</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Yield Savings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.75%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.6 times</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Money Market Funds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.1 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.9 times</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Historical returns do not guarantee future performance. Past data reflects nominal (pre-inflation) returns. Current savings rates are as of 2024.</p>
+      </section>
+
+      {/* TABLE: Credit Card Debt Doubling Time at Various APR Rates */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Credit Card Debt Doubling Time at Various APR Rates</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how quickly credit card balances compound and double at typical APR rates, showing the cost of high-interest debt.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Credit Card APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Years to Double Balance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Original $5,000 Becomes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interest Paid to Double</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.8 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">21%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.4 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.0 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">27%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.7 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">29.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These calculations assume no payments or additional charges are made. The average US credit card APR was 21.59% as of Q4 2024.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare the Rule of 72 results across different investment types to understand opportunity costs—if stocks double every 7 years but bonds take 12 years, the 5-year difference highlights the power of equity allocation in long-term portfolios.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to set realistic return expectations by working backward: if you want your money to double in 10 years, divide 72 by 10 to find you need approximately 7.2% annual returns, helping you select appropriate investment vehicles.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Apply the Rule of 72 to debt management by calculating how quickly high-interest credit card balances grow—a 24% APR doubles your balance in just 3 years, creating urgency to pay down debt before compound interest overwhelms your finances.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for inflation by subtracting the current inflation rate (typically 2-3% annually) from your investment return to find your real purchasing power doubling time—a 7% stock return minus 3% inflation means your real wealth doubles every 14.4 years, not 10.3 years.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring inflation when planning long-term investments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many investors celebrate a 6% return without realizing that 3% inflation reduces real wealth growth to 3%, doubling actual purchasing power in 24 years instead of 12. Always adjust returns for inflation when planning retirement or long-term goals to avoid overestimating true wealth accumulation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the Rule of 72 for returns below 2% or above 20%</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The Rule of 72 loses accuracy at extreme rates. A savings account earning 0.5% would take 144 years by the rule, but the actual time is 139 years. For very low or very high rates, use a precise compound interest calculator instead.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting that this assumes no additional contributions or withdrawals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The Rule of 72 calculates doubling for a single lump-sum investment. If you contribute monthly like in a 401(k) or IRA, your money doubles much faster than the calculator predicts because you're continuously investing new capital.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming past returns guarantee future performance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">While the S&P 500 averaged 10% since 1926, any given decade may see 5% or 15% returns. The Rule of 72 is a planning tool, not a guarantee—adjust your rate assumptions based on realistic expectations and diversification, not historical averages alone.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          In this formula, the number 72 is a constant that provides a quick approximation of the doubling time. The interest rate should be expressed as a percentage (e.g., 6 for 6%). This formula is widely used due to its simplicity and ease of use, making it a popular choice for quick mental calculations. However, it's important to note that the Rule of 72 is an approximation and may not be precise for all interest rates.
-        </p>
-        <p className="mb-4">
-          The Rule of 72 is most accurate for interest rates between 6% and 10%. For rates outside this range, the approximation may become less accurate, and a more detailed financial analysis may be necessary. Despite its limitations, the Rule of 72 remains a valuable tool for investors seeking a quick estimate of investment growth.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence the results of the Rule of 72 calculation is crucial for making informed investment decisions. These factors can significantly impact the accuracy and applicability of the results.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate is the most critical factor in the Rule of 72 calculation. It determines how quickly your investment will grow over time. Higher interest rates result in shorter doubling periods, while lower rates extend the time required to double your investment. For example, an interest rate of 8% will double an investment in approximately 9 years, while a 4% rate will take about 18 years.
-        </p>
-        <p className="mb-6">
-          It's essential to use a realistic interest rate that reflects your investment's expected performance. Consider factors such as market conditions, historical performance, and economic forecasts when determining the appropriate rate. For more detailed analysis, you might want to explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Duration
-        </h3>
-        <p className="mb-4">
-          The duration of your investment also plays a significant role in the Rule of 72 calculation. While the formula provides an estimate of the time required to double your investment, actual results may vary based on the investment's lifespan. Short-term investments may not fully realize the benefits of compound interest, while long-term investments can significantly increase wealth due to compounding effects.
-        </p>
-        <p className="mb-6">
-          Consider your financial goals and time horizon when using the Rule of 72. Longer investment durations generally lead to greater wealth accumulation, but they also require patience and discipline. For more insights, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-4">
-          Market volatility can impact the accuracy of the Rule of 72 calculation. Fluctuations in market conditions can lead to variations in interest rates, affecting the time required to double your investment. During periods of high volatility, it's essential to remain cautious and consider the potential impact on your investment strategy.
-        </p>
-        <p className="mb-6">
-          Diversifying your portfolio and maintaining a long-term perspective can help mitigate the effects of market volatility. Regularly reviewing and adjusting your investment strategy can also ensure that you remain on track to achieve your financial goals.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Inflation
-        </h3>
-        <p className="mb-6">
-          Inflation is another critical factor that can influence the results of the Rule of 72 calculation. As inflation erodes purchasing power, it can affect the real value of your investment returns. When using the Rule of 72, it's important to consider the impact of inflation on your investment's growth.
-        </p>
-        <p className="mb-6">
-          To account for inflation, consider using a real interest rate, which adjusts the nominal rate for inflation. This approach provides a more accurate estimate of your investment's growth in terms of purchasing power. For more information on managing inflation, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Implications
-        </h3>
-        <p className="mb-6">
-          Taxes can also impact the results of the Rule of 72 calculation. Depending on your investment type and tax bracket, taxes can reduce your effective interest rate, extending the time required to double your investment. Understanding the tax implications of your investments is crucial for accurate financial planning.
-        </p>
-        <p className="mb-6">
-          Consider consulting with a tax professional to understand how taxes may affect your investment strategy. By optimizing your tax situation, you can potentially increase your investment returns and achieve your financial goals more efficiently.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the Rule of 72 and how does this calculator use it?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Rule of 72 is a simple formula that estimates how many years it takes for an investment to double at a given annual interest rate. The calculator divides 72 by your annual return rate to instantly show doubling time. For example, at a 6% annual return, your money doubles in approximately 12 years (72 ÷ 6 = 12). This rule works best for returns between 3% and 10%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the Rule of 72 Calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Rule of 72 is remarkably accurate for moderate interest rates between 3% and 10%, typically within 0.1 to 0.2 years of the true doubling time. At 5% annual returns, the rule estimates 14.4 years, while the actual time is 14.21 years. However, accuracy decreases significantly at very high rates (above 15%) or very low rates (below 2%).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the Rule of 72 for investment accounts earning less than 3%?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While technically possible, the Rule of 72 becomes less accurate below 3% returns. A savings account earning 0.5% APY would theoretically take 144 years to double according to the rule, but the actual time is 138.6 years. For rates below 3%, using the more precise Rule of 69.3 or an exact compound interest calculation provides better accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What average annual returns should I assume for stocks and bonds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Historically, the S&P 500 has averaged approximately 10% annual returns since 1926 (including dividends), suggesting stocks double every 7.2 years. Investment-grade bonds have averaged around 5-6% annually, implying a doubling period of 12-14.4 years. However, past performance doesn't guarantee future results, and actual returns vary year to year.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does inflation affect the Rule of 72 doubling time calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Rule of 72 typically calculates nominal doubling time (before adjusting for inflation), but you should compare your rate against inflation for real purchasing power growth. If your investment returns 7% annually but inflation is 3%, your real return is approximately 4%, meaning purchasing power doubles in about 18 years (72 ÷ 4). Ignoring inflation can significantly overestimate actual wealth growth.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is the number 72 used instead of other numbers?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The number 72 was chosen because it has many divisors (1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72), making mental math easier at various common interest rates. At 8%, money doubles in 9 years; at 6%, it takes 12 years; at 4%, it requires 18 years. Some mathematicians prefer Rule of 69.3 for greater precision, but 72 offers a practical balance between accuracy and ease of calculation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the Rule of 72 be used for loan debt that's compounding?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the Rule of 72 works inversely for debt growth. If your credit card debt carries a 24% APR, the outstanding balance doubles approximately every 3 years (72 ÷ 24 = 3). This demonstrates why high-interest debt is particularly dangerous—a $5,000 balance becomes $10,000 in 3 years, then $20,000 in 6 years if only minimum payments are made and no additional charges are incurred.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I factor in regular contributions when using the Rule of 72?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Rule of 72 assumes a single lump-sum investment with no additional contributions. If you're adding monthly or annual contributions, your money will actually double faster than the calculator suggests. For example, with a 7% return and monthly $500 contributions, doubling happens sooner than the predicted 10.3 years because you're continuously investing new capital at compound returns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between simple and compound interest in the Rule of 72?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Rule of 72 is based on compound interest, where earnings generate their own earnings over time. With simple interest at 6%, you'd gain only 6% annually on your original principal, taking much longer to double. Compound interest is far more powerful—at 6% compounded annually, your money doubles in 12 years, while simple interest would take 16.67 years to double the original amount.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Explore comprehensive economic data and research provided by the Federal Reserve.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/r/ruleof72.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Rule of 72 Explanation</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to the Rule of 72 formula, its history, and how to apply it to investment planning.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Investment Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access educational resources and guides on managing investments and personal finance.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/alerts/compoundinterest.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC: Investor Bulletin on Compound Interest</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official SEC resource explaining compound interest mechanics and the long-term effects on investment growth.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Learn about banking regulations and financial education from the FDIC.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/datadownload/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve: Historical Stock Market Returns</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Reserve Economic Data (FRED) providing historical return rates and economic indicators for investment analysis.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and information on deductions from the IRS.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Concepts
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed explanations of financial concepts and investment strategies.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for making informed financial decisions.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/credit-cards/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau: Credit Card Interest Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB consumer guide to understanding credit card APR, compounding, and the true cost of high-interest debt.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

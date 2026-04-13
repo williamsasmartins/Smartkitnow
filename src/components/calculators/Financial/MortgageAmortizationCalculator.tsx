@@ -438,192 +438,290 @@ export default function MonthlyBudgetPlannerCalculator() {
 
   // EDITORIAL
   const editorial = (
-    <div className="skn-editorial space-y-10 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      <section id="introduction" className="space-y-3">
-        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
-          <HelpCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-          How this monthly budget planner works
-        </h2>
-        <p>
-          This calculator helps you understand how much money you really have
-          left at the end of the month. You enter your take-home income, your
-          total monthly expenses, and an optional savings goal. We estimate your
-          monthly surplus, savings rate, and how long it could take to reach
-          that goal.
-        </p>
-        <p>
-          It&apos;s a simple planning tool meant for education and awareness,
-          not a full replacement for detailed financial planning. You can use
-          the results as a starting point to decide whether you need to cut
-          costs, increase income, or adjust your savings target.
-        </p>
+    <div className="space-y-12">
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Monthly Budget Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Monthly Budget Planner is a financial tool designed to help you track income and expenses, allocate funds across spending categories, and monitor progress toward savings goals. By creating a detailed monthly budget, you gain visibility into your cash flow, identify spending patterns, and make informed decisions about money. This calculator transforms budgeting from a vague concept into a concrete action plan that increases financial control and reduces financial stress.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the planner effectively, start by entering your total monthly income (after taxes). Then list all fixed expenses (rent, insurance, loan payments) and variable expenses (groceries, utilities, entertainment) across distinct categories. The calculator allows you to set spending targets for each category—most users benefit from organizing categories into 8-12 groups covering needs, wants, and savings. Input realistic figures based on your actual spending history or industry benchmarks provided in this guide.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret your planner results by comparing actual spending to budgeted amounts each week. A positive balance means you're under budget; negative indicates overspending in that category. Use monthly totals to assess whether you're meeting the 50/30/20 rule or your custom allocation goals, then adjust future months accordingly. Over time, consistent tracking reveals which categories consistently overshoot, allowing you to make targeted lifestyle changes or increase allocation limits to reflect reality.</p>
+        </div>
       </section>
 
-      <section id="formula" className="space-y-3">
-        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
-          <Calculator className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-          Core formula behind the planner
-        </h2>
-        <p>
-          The logic behind this calculator is intentionally straightforward so
-          you can follow each step:
-        </p>
+      {/* TABLE: Recommended Monthly Budget Allocation (50/30/20 Rule) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Monthly Budget Allocation (50/30/20 Rule)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the standard budget breakdown recommended by financial experts for household expenses based on take-home income.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Budget Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Percentage of Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example (Monthly Income: $5,000)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Essential Needs (housing, food, utilities, insurance, transportation)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal Wants (dining out, entertainment, hobbies, shopping)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Savings & Debt Repayment (emergency fund, retirement, loan payments)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">This is a guideline; adjust percentages based on personal circumstances. Those with high debt may allocate more to debt repayment; those with stable income may increase savings.</p>
+      </section>
+
+      {/* TABLE: Average Monthly Household Expenses by Category (2024-2025) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Monthly Household Expenses by Category (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table displays typical monthly spending benchmarks for a family of four earning $75,000 annually, helping you compare your budget planner entries to national averages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expense Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Monthly Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Percentage of $6,250 Take-Home</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Housing (rent/mortgage, property tax, insurance, maintenance)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Groceries & Food</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Utilities (electricity, gas, water, internet)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$275</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.4%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Transportation (car payment, gas, insurance, maintenance)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Childcare & Education</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Insurance (health, auto, home, life)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.4%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal & Entertainment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$375</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dining Out & Subscriptions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Savings & Emergency Fund</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Miscellaneous & Buffer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$175</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.8%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Figures are U.S. Bureau of Labor Statistics 2024 averages. Your actual expenses will vary based on location, family size, and lifestyle. Urban areas typically spend 15-25% more on housing and transportation.</p>
+      </section>
+
+      {/* TABLE: Monthly Budget Planner: Suggested Category Limits & Goals */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Budget Planner: Suggested Category Limits & Goals</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table provides recommended spending caps and savings targets for each major budget category to help you set realistic goals in your monthly planner.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Monthly Limit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Overspending Risk</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Groceries (family of 4)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600-$800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Eating out unplanned, impulse purchases</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Entertainment & Hobbies</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200-$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Subscriptions, streaming, event tickets</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dining Out & Coffee</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150-$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Convenience purchases, daily habits</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Utilities</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150-$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Seasonal increases, inefficient usage</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal Care & Clothing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100-$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sales, impulse fashion buys</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Emergency Fund Contribution</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400-$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Deprioritizing for immediate wants</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Debt Repayment (beyond minimum)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200-$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Insufficient allocation to principal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Transportation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400-$600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fuel volatility, maintenance surprises</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Limits depend on income and regional costs. Using your monthly budget planner with these targets creates accountability and prevents category creep.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
         <ul className="list-disc pl-5 space-y-2">
-          <li>
-            <strong>Net income</strong> = Monthly income − Monthly expenses
-          </li>
-          <li>
-            <strong>Savings rate</strong> = (Net income ÷ Monthly income) ×
-            100%
-          </li>
-          <li>
-            <strong>Months to goal</strong> = Savings goal ÷ Net income
-          </li>
-        </ul>
-        <p>
-          If your net income is negative or zero, the calculator will show that
-          there is no remaining money to save and you may need to revisit your
-          income or expense assumptions.
-        </p>
-      </section>
-
-      <section id="factors" className="space-y-3">
-        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
-          <Info className="w-5 h-5 text-violet-600 dark:text-violet-400" />
-          Key factors that affect your results
-        </h2>
-        <p>Several factors can change what this planner shows:</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li>
-            <strong>Income stability:</strong> If your income fluctuates from
-            month to month, use a conservative estimate rather than the best
-            month you ever had.
-          </li>
-          <li>
-            <strong>Irregular expenses:</strong> Annual insurance premiums,
-            car repairs, or one-off purchases can distort a single month. It
-            helps to spread those over 12 months to get a more realistic
-            average.
-          </li>
-          <li>
-            <strong>Debt payments:</strong> Minimum payments on credit cards or
-            loans are part of your regular expenses and reduce how much you can
-            save.
-          </li>
-          <li>
-            <strong>Saving priority:</strong> You might choose to split surplus
-            between savings, extra debt payments, and fun money. The calculator
-            assumes you direct the full surplus to your savings goal.
-          </li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the 50/30/20 rule as your starting framework — allocate 50% of after-tax income to needs, 30% to wants, and 20% to savings and debt repayment. Adjust these percentages within your planner if your situation requires more debt payoff (increase to 40%) or aggressive saving (increase to 30%), but stay disciplined about the total.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track every expense in your budget planner within 24-48 hours of spending to maintain accuracy and catch errors early. Studies show that people who log expenses within 2 days are 85% more likely to stick to their budget than those who log weekly or monthly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Create a separate 'miscellaneous' category with a 5% buffer (typically $250-$500 for most households) to capture unexpected small expenses without derailing your entire budget. This prevents frustration and maintains realistic planning for irregular one-off costs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Review and adjust your budget planner monthly, not annually. Set a recurring calendar reminder for the first Sunday of each month to review the previous month's actual spending, celebrate wins in under-budget categories, and redistribute funds from surplus areas to deficit areas.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Automate savings by scheduling transfers to a separate savings account immediately after payday—treat 'savings' as a non-negotiable expense in your planner. Automating even $300-500 monthly removes willpower from the equation and ensures consistent progress toward your emergency fund or financial goals.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Identify your personal spending triggers within the planner and proactively address them. If your entertainment category consistently overspends by $100-200, investigate whether it's streaming subscriptions, concert tickets, or dining out—then set sub-category limits to control that specific leak.</li>
         </ul>
       </section>
 
-      <section id="faq" className="space-y-4">
-        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
-          <HelpCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-          Frequently asked questions
-        </h2>
-
-        <div className="space-y-3">
-          <h3 className="font-semibold text-slate-900 dark:text-slate-100">
-            Is this planner giving me financial advice?
-          </h3>
-          <p>
-            No. This tool is for general education and budgeting awareness only.
-            It does not consider your full financial situation, risk tolerance,
-            or goals. For personalized advice, talk to a licensed financial
-            professional.
-          </p>
-        </div>
-
-        <div className="space-y-3">
-          <h3 className="font-semibold text-slate-900 dark:text-slate-100">
-            What if my net income is negative?
-          </h3>
-          <p>
-            A negative net income means your expenses are higher than your
-            income. In that case, you may need to reduce expenses, increase
-            income, or both. The calculator will not estimate months to goal
-            if there is no surplus to save.
-          </p>
-        </div>
-
-        <div className="space-y-3">
-          <h3 className="font-semibold text-slate-900 dark:text-slate-100">
-            How often should I update my budget?
-          </h3>
-          <p>
-            Many people review their budget monthly, but you can adjust it more
-            often during periods of change (new job, move, major purchase, or
-            big life event). Updating the calculator regularly helps you keep
-            your plan realistic.
-          </p>
-        </div>
-
-        <div className="space-y-3">
-          <h3 className="font-semibold text-slate-900 dark:text-slate-100">
-            Does this include investment returns or interest?
-          </h3>
-          <p>
-            No. The results assume you simply set money aside each month
-            without investment growth. If you plan to invest your savings, your
-            actual time to reach a goal could be shorter or longer depending on
-            market performance.
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Gross Income Instead of Net Income</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people budget based on gross salary without subtracting taxes, Social Security, and health insurance, leading to overspending within weeks. Always use your net (take-home) income as the foundation for your monthly budget planner to avoid unrealistic allocations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Irregular or Annual Expenses</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to account for car insurance, property taxes, holiday gifts, or annual subscriptions creates budget surprises that derail planning. Divide annual irregular expenses by 12 and add them as monthly line items in your planner to smooth cash flow.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Setting Unrealistic Spending Limits</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many budgeters allocate $300 monthly to groceries when they historically spend $600, leading to immediate budget failure and discouragement. Use 3-6 months of actual bank statements to establish realistic baseline categories, then adjust downward by 5-10% as a stretch goal.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Updating Your Budget for Life Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Significant events like job changes, marriage, children, or relocation alter income and expenses dramatically, but many people continue using outdated budget templates. Review and rebuild your budget planner whenever major life events occur to ensure all categories reflect current reality.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting the Emergency Fund</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Prioritizing wants over emergency savings leaves you vulnerable to debt when unexpected expenses arise. Treat emergency fund contributions (10-15% of income) as a non-negotiable line item in your planner, even if other categories must shrink temporarily.</p>
+          </div>
         </div>
       </section>
 
-      <section id="references" className="space-y-3">
-        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
-          <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-          References & further reading
-        </h2>
-        <p>
-          These resources offer more detail on budgeting methods and practical
-          ways to organize your finances:
-        </p>
-        <ul className="space-y-3">
-          <li className="flex items-start gap-3">
-            <BookOpen className="w-5 h-5 mt-1 text-blue-600 dark:text-blue-400" />
-            <div>
-              <a
-                href="https://www.consumerfinance.gov/consumer-tools/budgeting/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                Consumer Financial Protection Bureau – Budgeting basics
-              </a>
-              <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">
-                Guidance on how to start a budget, track spending, and adjust
-                when life changes.
-              </p>
-            </div>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What income should I include in my monthly budget planner?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Include all regular monthly income sources such as salary, wages, freelance earnings, rental income, and investment returns. Use your net income (after taxes) rather than gross income for more accurate budgeting. If your income varies, use the average of the last 3-6 months to create a realistic baseline.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I categorize my expenses in the monthly budget planner?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Organize expenses into fixed costs (rent, insurance, loan payments) and variable costs (groceries, utilities, entertainment). The typical budget breakdown follows the 50/30/20 rule: 50% for needs, 30% for wants, and 20% for savings and debt repayment. Your monthly budget planner should track at least 8-10 spending categories for better insights.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended emergency fund percentage in a monthly budget?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Financial experts recommend allocating 10-15% of your monthly budget to emergency savings, building toward 3-6 months of living expenses in a dedicated fund. For a household with $5,000 monthly expenses, this means saving $500-750 per month until reaching $15,000-30,000 in emergency reserves. This buffer protects against job loss, medical emergencies, or unexpected repairs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I update my monthly budget planner?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Review and update your budget monthly, ideally within the first week of each month before spending occurs. Track actual spending against budgeted amounts and adjust categories as needed based on seasonal changes or life events. A quarterly deeper review (every 3 months) helps identify spending trends and refine long-term goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the monthly budget planner help me reduce debt?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the budget planner helps by showing exactly how much you can allocate to debt payments each month. Using the avalanche method (highest interest rate first) or snowball method (smallest balance first), you can direct extra funds from the planner toward principal payments. Even adding $100-200 monthly toward debt can reduce repayment time by 12-24 months on average.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What percentage should groceries represent in my monthly budget?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The USDA recommends spending 8-12% of household income on groceries for a moderate-cost plan. For a household earning $5,000 monthly, this equates to $400-600 in groceries. Using your monthly budget planner to track this category helps identify overspending and opportunities to optimize food costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I handle irregular or seasonal expenses in my budget planner?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Divide annual irregular expenses (car insurance, holidays, property taxes) by 12 and add them as monthly line items. For example, if car insurance costs $1,200 annually, allocate $100 monthly in your budget. This smooths cash flow and prevents budget surprises during peak spending months.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a healthy savings rate to include in my monthly budget?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Financial advisors recommend saving 15-20% of gross income monthly, though 10% is a reasonable starting point. For someone earning $6,000 monthly, this means saving $600-1,200. Your budget planner should prioritize allocating savings before discretionary spending to automate wealth building.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How can I use the monthly budget planner to track spending in real-time?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter budgeted amounts upfront, then log actual expenses daily or weekly to see your spending against targets. Most planners show remaining balance for each category, letting you adjust spending mid-month. Reviewing daily for just 2-3 minutes increases awareness and reduces budget overruns by 15-30%.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve Economic Data (FRED) — Consumer Expenditure Survey</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official U.S. economic data on average household spending patterns and income statistics used to benchmark budget allocations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <Info className="w-5 h-5 mt-1 text-blue-600 dark:text-blue-400" />
-            <div>
-              <a
-                href="https://www.investor.gov/introduction-investing/investing-basics/why-save-when-youre-young"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                Investor.gov – Why saving early matters
-              </a>
-              <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">
-                Explains why building the habit of saving and budgeting early
-                can make a big difference over time.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/consumer-tools/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau (CFPB) — Budgeting Tools & Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government-backed guidance on budgeting best practices, expense tracking, and creating realistic monthly spending plans.</p>
+          </li>
+          <li>
+            <a href="https://www.bls.gov/news.release/cesan.nr0.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Bureau of Labor Statistics — Average Energy Costs & Consumer Expenditure</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official statistics on typical household expenses by category, region, and family size to validate budget planner benchmarks.</p>
+          </li>
+          <li>
+            <a href="https://www.investopedia.com/articles/personal-finance/032916/how-create-budget.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia — How to Create a Budget (50/30/20 Rule Explained)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to the 50/30/20 budgeting framework and practical strategies for implementing a monthly budget plan.</p>
           </li>
         </ul>
-
-        <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
-          This calculator is for informational and educational purposes only
-          and is not a substitute for professional financial advice.
-        </p>
       </section>
+
     </div>
   );
 

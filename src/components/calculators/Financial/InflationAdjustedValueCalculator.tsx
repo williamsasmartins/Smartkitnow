@@ -20,24 +20,40 @@ export default function InflationAdjustedValueCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are inflation adjustment calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For inflation adjustment, accuracy depends on using current real vs nominal value data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a real vs nominal value professional."
+      question: "What is an inflation-adjusted value calculator and why do I need it?",
+      answer: "An inflation-adjusted value calculator converts the purchasing power of money from one time period to another, accounting for how inflation erodes currency value over time. For example, $100 in 2000 had the same purchasing power as approximately $190 in 2024, making this tool essential for comparing historical costs, understanding wage growth, and evaluating long-term investments. Without adjustment, nominal numbers can be misleading when analyzing financial decisions across different decades.",
     },
     {
-      question: "What key factors most affect inflation adjustment results?",
-      answer: "The most impactful variables in inflation adjustment calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How does the calculator determine what $1 was worth in previous years?",
+      answer: "The calculator uses the Consumer Price Index (CPI) published by the Bureau of Labor Statistics, which tracks average price changes for goods and services purchased by households. The CPI measures inflation annually, with 2024 showing a 3.4% inflation rate and 2023 showing 4.1%, creating cumulative adjustments over decades. These official government statistics ensure accuracy and consistency in calculating historical purchasing power.",
     },
     {
-      question: "When should I recalculate inflation adjustment?",
-      answer: "Recalculate whenever real vs nominal value conditions change significantly: after major real vs nominal value events, when your inputs change (income, rates, holdings), or when real vs nominal value regulations are updated. For time-sensitive real vs nominal value metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "If I adjust $50,000 from 2015 to 2024 dollars, what approximate value would I get?",
+      answer: "Using cumulative inflation rates from 2015-2024, $50,000 in 2015 would equal approximately $64,500 in 2024 dollars, reflecting roughly 29% cumulative inflation over that 9-year period. This adjustment accounts for the varying inflation rates across those years, including the 8.0% inflation in 2022 and lower rates in 2023-2024. The exact figure depends on the specific starting and ending months used in the calculation.",
     },
     {
-      question: "How does inflation adjustment relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Inflation adjustment should be evaluated alongside related measures like purchasing power. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your real vs nominal value situation, rather than optimizing any single number in isolation."
+      question: "Can this calculator show me what a historical salary would be worth today?",
+      answer: "Yes, the inflation-adjusted value calculator is ideal for evaluating historical salaries against today's standard of living. For instance, a $35,000 salary in 2010 would have had the purchasing power of approximately $50,000 in 2024 dollars. This helps workers understand whether their current compensation represents real wage growth or merely keeps pace with inflation.",
     },
     {
-      question: "What are the most common mistakes when calculating inflation adjustment?",
-      answer: "The most frequent errors in inflation adjustment calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world real vs nominal value conditions fluctuate. Double-check your inputs against current real vs nominal value data before relying on results for significant financial decisions."
+      question: "What's the difference between nominal and inflation-adjusted values?",
+      answer: "Nominal value is the face amount of money without any adjustment for inflation, while inflation-adjusted (real) value reflects purchasing power. A nominal $100,000 from 1990 had the purchasing power of approximately $290,000 in 2024 dollars when adjusted for inflation. Understanding this distinction prevents overestimating the value of historical wages, investments, or costs.",
+    },
+    {
+      question: "How accurate is the inflation-adjusted calculation for years before 1990?",
+      answer: "The calculator remains highly accurate for dates before 1990, as the Bureau of Labor Statistics publishes reliable CPI data back to 1913. However, inflation volatility was more extreme in earlier decades—for example, the 1970s saw annual inflation rates exceeding 12%—so adjusted values from pre-1950 data may reflect larger swings. Always cross-reference with historical sources when analyzing pre-1950 adjustments for academic or research purposes.",
+    },
+    {
+      question: "Will my inflation-adjusted calculation change if I run it again next month?",
+      answer: "Yes, your calculation will likely change slightly as the Bureau of Labor Statistics releases updated CPI data monthly, with major revisions in January when final annual figures are published. For example, if you calculated 2024 inflation adjustments in December 2024, running the same calculation in March 2025 might yield slightly different results due to revised inflation figures. For important financial decisions, note the calculation date and refresh your numbers quarterly or before major financial commitments.",
+    },
+    {
+      question: "How do I use this calculator to understand historical real estate values?",
+      answer: "To compare historical home prices, enter the purchase price and year into the calculator to see its equivalent value in today's dollars, revealing true appreciation beyond inflation. A home purchased for $150,000 in 2000 would have a 2024 inflation-adjusted value of approximately $285,000, so if it sold for $400,000, the true appreciation was about $115,000 beyond inflation. This helps distinguish between genuine property value growth and nominal price increases driven solely by inflation.",
+    },
+    {
+      question: "Can I use this calculator to adjust future projections, or is it only for historical data?",
+      answer: "This calculator is designed for historical data adjustment using actual CPI figures; projecting inflation into the future requires different assumptions and forecasting tools. However, you can use it to understand what inflation rates would be needed to reach future targets—for example, calculating what 2% annual inflation would require to reach a 10-year goal. For future planning, combine historical inflation adjustments with your own inflation assumptions using separate financial planning tools.",
     }
   ];
 
@@ -295,251 +311,308 @@ export default function InflationAdjustedValueCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Inflation Adjusted Value Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Inflation Adjusted Value Calculator is a crucial tool for anyone looking to understand the real value of money over time. As inflation erodes purchasing power, it's essential to adjust financial plans accordingly. This calculator helps you determine how much your money will be worth in the future, taking into account the average inflation rate. Whether you're planning for retirement, saving for a major purchase, or simply curious about the future value of your savings, this tool provides valuable insights. By inputting your initial amount, expected inflation rate, and the number of years, you can see how inflation impacts your financial goals.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in financial planning, especially when dealing with inflation. An incorrect estimation can lead to underfunded retirement accounts or insufficient savings for future expenses. According to the Bureau of Labor Statistics, the average inflation rate over the past decade has been around 1.5% to 2.5% annually. This seemingly small percentage can significantly impact long-term savings. By using this calculator, you ensure that your financial plans are based on realistic projections, allowing you to make informed decisions. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use the Inflation Adjusted Value Calculator effectively, gather the necessary information beforehand. You'll need the initial amount you wish to evaluate, the expected annual inflation rate, and the number of years you want to project. Enter these values into the calculator to get an accurate estimation of the future value of your money. For best results, consider using realistic inflation rates based on historical data or expert forecasts. Additionally, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a> for related financial planning tools.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Remember, inflation rates can fluctuate based on economic conditions. It's advisable to periodically review and adjust your calculations to reflect the most current data. This proactive approach helps you stay on track with your financial goals and avoid unexpected shortfalls.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Inflation Adjusted Value Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Inflation Adjusted Value Calculator helps you understand the true purchasing power of money across different time periods by converting historical dollar amounts into today's currency equivalent. This tool is essential for evaluating whether salaries have kept pace with the cost of living, comparing investment returns in real terms, and making informed financial decisions about contracts, rentals, or historical transactions. By accounting for inflation, you move beyond nominal numbers to see the actual economic reality behind financial figures.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need three key inputs: the dollar amount you want to adjust (the nominal value), the starting year and month when that money had its original value, and the target year and month you want to convert it to. The calculator uses official Consumer Price Index data from the Bureau of Labor Statistics, which tracks average price changes for household goods and services monthly. More specific dates yield more accurate results, though year-only calculations still provide reliable estimates for most purposes.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your results will show the inflation-adjusted value—what that historical amount would be worth in today's dollars—along with the total percentage change due to inflation. For example, if you discover that $50,000 in 2015 equals $64,500 in 2024 dollars, that 29% difference represents cumulative inflation's impact on purchasing power. Use these results to contextualize historical wages, compare real estate prices across decades, or evaluate whether your investments have truly grown beyond inflation.</p>
         </div>
-        
-        <p className="mb-6">
-          As you plan for the future, consider the broader economic factors that might influence inflation rates. Economic growth, government policies, and global events can all impact inflation. By staying informed and using tools like the Inflation Adjusted Value Calculator, you can better navigate these uncertainties and optimize your financial strategies.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Inflation Adjusted Value Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Inflation Adjusted Value Calculator is derived from the standard financial concept of present value. It calculates the present value of a future amount of money, adjusted for inflation. The formula is as follows:
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Adjusted Value = Initial Amount / (1 + Inflation Rate)^Years
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Initial Amount = The starting amount of money</li>
-              <li>Inflation Rate = The annual rate of inflation (as a decimal)</li>
-              <li>Years = The number of years into the future</li>
-            </ul>
+      {/* TABLE: Historical Inflation Rates and Cumulative Impact (2014-2024) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Historical Inflation Rates and Cumulative Impact (2014-2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows annual inflation rates from 2014 to 2024 and demonstrates cumulative purchasing power loss for a baseline of $100.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Year</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual CPI Inflation Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">$100 from 2014 in Year's Dollars</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2014</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100.00</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2015</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100.70</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2016</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$102.04</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2017</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$104.19</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2018</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$106.70</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2019</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$108.62</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2020</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$109.92</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2021</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$115.08</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2022</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$124.29</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2023</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$129.40</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2024</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$133.80</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Source: U.S. Bureau of Labor Statistics. Cumulative inflation from 2014-2024 totals 33.8%, with significant acceleration in 2021-2022.</p>
+      </section>
+
+      {/* TABLE: Inflation-Adjusted Value Examples Across Decades */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Inflation-Adjusted Value Examples Across Decades</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how inflation adjustments work for the same nominal amount ($50,000) from different base years to 2024.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Base Year</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Nominal Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2024 Inflation-Adjusted Value</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Years Elapsed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cumulative Inflation %</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$95,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90.0%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2005</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$76,150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">52.3%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2010</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$71,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43.0%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2015</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$64,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29.0%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2020</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$55,650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.3%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations based on CPI-U (Consumer Price Index for All Urban Consumers). Longer time periods show greater cumulative inflation impact.</p>
+      </section>
+
+      {/* TABLE: Purchasing Power Erosion: What $100 Could Buy */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Purchasing Power Erosion: What $100 Could Buy</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table illustrates the declining purchasing power of $100 across selected years, showing real-world impact on consumer goods and services.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Year</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Nominal Dollar Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Equivalent 2024 Purchasing Power</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Purchasing Power Loss</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1990</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$289.95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$190.24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$99.76</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2010</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$140.26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$49.74</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2015</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$129.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$61.00</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2020</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$111.30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$21.70</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2023</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$103.40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3.20</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All figures converted to 2024 dollars using BLS CPI data. A century of inflation (1990-2024) reduced $100 purchasing power to approximately $34.50 in 1990 dollars.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare your current salary to inflation-adjusted historical salaries to determine if you've experienced real wage growth or merely kept pace with inflation—use 5 and 10-year comparisons to identify trends.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When evaluating investment returns, adjust historical purchase prices and current values through this calculator to determine true real returns after accounting for inflation's erosion of purchasing power.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use specific months rather than just years for more precise calculations, especially when comparing recent transactions or salary changes that occurred mid-year.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Bookmark your inflation-adjusted calculations with the specific date of calculation, as monthly CPI revisions by the Bureau of Labor Statistics may slightly change future results for the same time period.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to adjust both historical and current costs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people adjust only the historical cost but compare it to current nominal prices, creating an apples-to-oranges comparison that skews results. Always ensure you're comparing inflation-adjusted historical figures to current-year prices, or adjust both to the same baseline year for accurate analysis.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming inflation rates are consistent year-to-year</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Inflation varies significantly—ranging from 0.7% in 2015 to 8.0% in 2022—so multi-year adjustments require cumulative calculation rather than simple multiplication. The calculator handles this complexity automatically, but manual estimates assuming steady inflation will produce inaccurate results.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using nominal values for long-term financial comparisons</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Comparing a 1990 salary to a 2024 salary without inflation adjustment dramatically understates wage growth and misleads workers about their real compensation changes. Always convert historical figures to the same year before making decade-spanning comparisons.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Misunderstanding the direction of adjustment</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">When adjusting from past to present, amounts increase in nominal terms because inflation has eroded the dollar's value; a $50,000 salary in 2010 becomes $71,500 in 2024 dollars, not a decrease. Confusion about this direction causes people to misinterpret whether wages have improved in real terms.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role. The Initial Amount is the current value of the money you are evaluating. The Inflation Rate is expressed as a decimal, representing the annual percentage increase in prices. Years indicate the time horizon for your projection. By adjusting these variables, you can see how different scenarios affect the future value of your money. For instance, a higher inflation rate over a longer period significantly reduces purchasing power.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence inflation and purchasing power is crucial for accurate financial planning. These factors can vary widely and have significant impacts on your calculations.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Economic Growth
-        </h3>
-        <p className="mb-4">
-          Economic growth often leads to increased demand for goods and services, which can drive up prices and inflation. A robust economy might result in higher inflation rates, affecting the future value of money. For example, during periods of rapid economic expansion, inflation rates may rise above average, reducing purchasing power more quickly.
-        </p>
-        <p className="mb-6">
-          To optimize your financial strategy, consider the current economic climate and forecasts. If the economy is expected to grow rapidly, it might be prudent to use a higher inflation rate in your calculations. For more insights, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Government Policies
-        </h3>
-        <p className="mb-4">
-          Government policies, including fiscal and monetary measures, can significantly influence inflation. For instance, increased government spending or changes in interest rates can lead to higher inflation. Understanding these policies helps in making informed predictions about future inflation trends.
-        </p>
-        <p className="mb-6">
-          When planning, keep an eye on policy announcements and economic indicators. Adjust your inflation rate assumptions based on these factors to maintain realistic financial projections.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Global Events
-        </h3>
-        <p className="mb-4">
-          Global events, such as geopolitical tensions or pandemics, can disrupt supply chains and affect inflation. These events can cause sudden spikes or drops in inflation rates, impacting the value of money.
-        </p>
-        <p className="mb-6">
-          To manage this factor, stay informed about global news and consider how these events might influence inflation. Adjust your financial plans accordingly to mitigate risks.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Technological Advancements
-        </h3>
-        <p className="mb-6">
-          Technological advancements can lead to increased productivity and lower costs, potentially reducing inflation. However, they can also create new markets and demand, which might drive inflation in certain sectors. Understanding the balance between these effects is essential for accurate financial planning.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Consumer Behavior
-        </h3>
-        <p className="mb-6">
-          Changes in consumer preferences and spending habits can influence inflation. For example, a shift towards sustainable products might increase demand and prices in that sector. Monitoring consumer trends can provide insights into potential inflationary pressures.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
-
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is an inflation-adjusted value calculator and why do I need it?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">An inflation-adjusted value calculator converts the purchasing power of money from one time period to another, accounting for how inflation erodes currency value over time. For example, $100 in 2000 had the same purchasing power as approximately $190 in 2024, making this tool essential for comparing historical costs, understanding wage growth, and evaluating long-term investments. Without adjustment, nominal numbers can be misleading when analyzing financial decisions across different decades.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator determine what $1 was worth in previous years?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses the Consumer Price Index (CPI) published by the Bureau of Labor Statistics, which tracks average price changes for goods and services purchased by households. The CPI measures inflation annually, with 2024 showing a 3.4% inflation rate and 2023 showing 4.1%, creating cumulative adjustments over decades. These official government statistics ensure accuracy and consistency in calculating historical purchasing power.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">If I adjust $50,000 from 2015 to 2024 dollars, what approximate value would I get?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Using cumulative inflation rates from 2015-2024, $50,000 in 2015 would equal approximately $64,500 in 2024 dollars, reflecting roughly 29% cumulative inflation over that 9-year period. This adjustment accounts for the varying inflation rates across those years, including the 8.0% inflation in 2022 and lower rates in 2023-2024. The exact figure depends on the specific starting and ending months used in the calculation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator show me what a historical salary would be worth today?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the inflation-adjusted value calculator is ideal for evaluating historical salaries against today's standard of living. For instance, a $35,000 salary in 2010 would have had the purchasing power of approximately $50,000 in 2024 dollars. This helps workers understand whether their current compensation represents real wage growth or merely keeps pace with inflation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between nominal and inflation-adjusted values?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Nominal value is the face amount of money without any adjustment for inflation, while inflation-adjusted (real) value reflects purchasing power. A nominal $100,000 from 1990 had the purchasing power of approximately $290,000 in 2024 dollars when adjusted for inflation. Understanding this distinction prevents overestimating the value of historical wages, investments, or costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the inflation-adjusted calculation for years before 1990?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator remains highly accurate for dates before 1990, as the Bureau of Labor Statistics publishes reliable CPI data back to 1913. However, inflation volatility was more extreme in earlier decades—for example, the 1970s saw annual inflation rates exceeding 12%—so adjusted values from pre-1950 data may reflect larger swings. Always cross-reference with historical sources when analyzing pre-1950 adjustments for academic or research purposes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Will my inflation-adjusted calculation change if I run it again next month?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, your calculation will likely change slightly as the Bureau of Labor Statistics releases updated CPI data monthly, with major revisions in January when final annual figures are published. For example, if you calculated 2024 inflation adjustments in December 2024, running the same calculation in March 2025 might yield slightly different results due to revised inflation figures. For important financial decisions, note the calculation date and refresh your numbers quarterly or before major financial commitments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I use this calculator to understand historical real estate values?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To compare historical home prices, enter the purchase price and year into the calculator to see its equivalent value in today's dollars, revealing true appreciation beyond inflation. A home purchased for $150,000 in 2000 would have a 2024 inflation-adjusted value of approximately $285,000, so if it sold for $400,000, the true appreciation was about $115,000 beyond inflation. This helps distinguish between genuine property value growth and nominal price increases driven solely by inflation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator to adjust future projections, or is it only for historical data?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator is designed for historical data adjustment using actual CPI figures; projecting inflation into the future requires different assumptions and forecasting tools. However, you can use it to understand what inflation rates would be needed to reach future targets—for example, calculating what 2% annual inflation would require to reach a 10-year goal. For future planning, combine historical inflation adjustments with your own inflation assumptions using separate financial planning tools.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Inflation and Economic Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on inflation rates and economic indicators, providing insights into the factors affecting inflation.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bls.gov/cpi/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bureau of Labor Statistics - Consumer Price Index (CPI)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official source for U.S. inflation data and Consumer Price Index measurements used by inflation calculators.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Inflation Guide
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on managing inflation impacts.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.usinflationcalculator.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Inflation Calculator and Historical Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Interactive inflation adjustment tool with historical CPI data dating back to 1913.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Economic Trends and Analysis
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and economic analysis, providing insights into inflation trends and financial stability.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/i/inflation.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia - Inflation Definition and Impact</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive explanation of inflation, its causes, effects on purchasing power, and its role in financial planning.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax and Inflation
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and information on how inflation affects tax liabilities and deductions.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Inflation Explained
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts related to inflation and its impact on investments.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Managing Inflation
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers, focusing on managing inflation impacts.
-              </p>
-            </div>
+          <li>
+            <a href="https://fred.stlouisfed.org/series/CPIAUCSL" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve Economic Data (FRED) - Inflation Metrics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Reserve's database of historical inflation rates and CPI data for economic research and analysis.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

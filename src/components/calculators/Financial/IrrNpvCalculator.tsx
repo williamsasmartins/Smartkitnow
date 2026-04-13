@@ -20,24 +20,40 @@ export default function IrrNpvCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are IRR/NPV calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For IRR/NPV, accuracy depends on using current capital budgeting data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a capital budgeting professional."
+      question: "What is the difference between IRR and NPV?",
+      answer: "IRR (Internal Rate of Return) is the discount rate that makes NPV equal to zero, expressed as a percentage, while NPV (Net Present Value) is the dollar amount difference between the present value of cash inflows and outflows at a specific discount rate. NPV tells you the absolute value added by an investment, whereas IRR tells you the annualized return rate. For example, a project with an IRR of 15% and an NPV of $50,000 at a 10% discount rate means the investment returns 15% annually and adds $50,000 in today's dollars.",
     },
     {
-      question: "What key factors most affect IRR/NPV results?",
-      answer: "The most impactful variables in IRR/NPV calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How do I input cash flows into the IRR NPV calculator?",
+      answer: "Enter your initial investment as a negative number (e.g., -$100,000) in Year 0, then input all subsequent positive or negative cash flows for each year. The calculator processes these chronologically to compute both IRR and NPV. Ensure you include all expected cash flows, including salvage value or terminal value in the final year, for accurate results.",
     },
     {
-      question: "When should I recalculate IRR/NPV?",
-      answer: "Recalculate whenever capital budgeting conditions change significantly: after major capital budgeting events, when your inputs change (income, rates, holdings), or when capital budgeting regulations are updated. For time-sensitive capital budgeting metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "What discount rate should I use for NPV calculations?",
+      answer: "Use your company's cost of capital or required rate of return as the discount rate. For most businesses, this ranges from 8% to 12%, though it can be higher for riskier projects (15%+) or lower for government bonds (2-4%). The discount rate reflects the opportunity cost of capital and your risk tolerance; using 10% is a common baseline for general business investments.",
     },
     {
-      question: "How does IRR/NPV relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Irr/npv should be evaluated alongside related measures like project valuation. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your capital budgeting situation, rather than optimizing any single number in isolation."
+      question: "Can the IRR NPV calculator handle negative cash flows in the middle of a project?",
+      answer: "Yes, the calculator handles both positive and negative cash flows at any point in the project timeline. Negative cash flows might represent maintenance costs, additional capital investments, or unexpected expenses. Multiple sign changes in cash flows can result in multiple IRRs, which the calculator will identify, so review all results carefully.",
     },
     {
-      question: "What are the most common mistakes when calculating IRR/NPV?",
-      answer: "The most frequent errors in IRR/NPV calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world capital budgeting conditions fluctuate. Double-check your inputs against current capital budgeting data before relying on results for significant financial decisions."
+      question: "What does a negative NPV mean for my investment decision?",
+      answer: "A negative NPV indicates that the project's returns fall short of your required discount rate, meaning it destroys value rather than creating it. For example, an NPV of -$15,000 at a 12% discount rate means the investment returns less than 12% annually. You should reject projects with negative NPV unless strategic or non-financial factors justify the decision.",
+    },
+    {
+      question: "How is IRR calculated in this calculator?",
+      answer: "The IRR calculator uses iterative methods (Newton-Raphson or similar algorithms) to find the discount rate where NPV equals zero. This requires solving a polynomial equation based on your cash flows. The calculator automatically performs these complex calculations and displays the result as a percentage, typically within 0.01% accuracy.",
+    },
+    {
+      question: "Why might my project have multiple IRRs?",
+      answer: "Multiple IRRs occur when cash flows change sign more than once (e.g., initial investment, positive returns, then large final costs). A project with outflows in Year 0, inflows in Years 1-3, and a major cleanup cost in Year 4 could produce two IRRs. When multiple IRRs exist, rely on NPV analysis with your company's cost of capital rather than IRR for decision-making.",
+    },
+    {
+      question: "Should I compare projects using IRR or NPV?",
+      answer: "For mutually exclusive projects or those with different scales, NPV is the superior metric because it directly shows the value created in dollars. IRR can be misleading when comparing projects of different sizes or durations; a 25% IRR on a $10,000 investment may be less valuable than a 15% IRR on a $1,000,000 investment. Use NPV as your primary decision criterion and IRR as a secondary validation tool.",
+    },
+    {
+      question: "What is the typical hurdle rate (discount rate) used in corporate finance?",
+      answer: "Most corporations use a weighted average cost of capital (WACC) between 8% and 12% as their hurdle rate. Tech companies often use 15-20% due to higher risk, while utilities may use 6-8% for stable, regulated projects. Your hurdle rate should reflect your company's cost of debt and equity; the Federal Reserve's current rate environment (2024: 5.25-5.50% base rate) influences these benchmarks.",
     }
   ];
 
@@ -299,254 +315,278 @@ export default function IrrNpvCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding IRR NPV Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The IRR NPV Calculator is an essential tool for financial analysts and investors looking to evaluate the profitability of investments or projects. By calculating the Internal Rate of Return (IRR) and Net Present Value (NPV), users can determine the potential return on investment and the present value of future cash flows. This calculator is particularly useful in capital budgeting to assess the viability of projects and make informed financial decisions. Whether you are a seasoned investor or a business owner, understanding these metrics is crucial for strategic planning and maximizing returns.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations of IRR and NPV are vital in financial analysis as they directly impact investment decisions. Incorrect calculations can lead to misguided investments, resulting in financial losses. According to a study by the CFA Institute, projects with a positive NPV are more likely to increase shareholder value. This calculator helps users avoid such pitfalls by providing precise and reliable results. For those interested in related financial tools, the <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> offers insights into monthly payments and interest costs.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather all relevant cash flow data, including initial investments and projected returns over time. Enter these values into the calculator along with the expected discount rate. The tool will compute the IRR and NPV, providing a clear picture of the investment's potential. Ensure that your data is accurate and up-to-date to achieve the best results. For further exploration, check out our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a> for insights into long-term financial commitments.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your cash flow entries for accuracy. Small errors in data input can lead to significant discrepancies in the IRR and NPV results. Consider consulting a financial advisor for complex investment scenarios to ensure your calculations align with industry standards.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the IRR NPV Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The IRR NPV Calculator is a powerful tool for evaluating capital investments and projects by computing two critical metrics: Net Present Value (NPV) and Internal Rate of Return (IRR). NPV measures the absolute dollar value an investment adds to your business in today's currency, while IRR shows the annualized percentage return. Understanding both metrics helps you make informed decisions about which projects deserve funding and which should be rejected.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your initial investment (as a negative number) and then enter all expected cash inflows and outflows for each subsequent year. You'll also need to specify your discount rate, which represents your company's cost of capital or required rate of return—typically between 8% and 12% for most businesses. The calculator processes these inputs to determine the NPV at your chosen discount rate and calculate the IRR (the rate at which NPV equals zero).</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret the results as follows: if NPV is positive, the project creates value and should generally be accepted; if NPV is negative, the project destroys value and should be rejected. For IRR, compare it against your hurdle rate—if IRR exceeds your required return, the project is acceptable. For mutually exclusive projects, choose the one with the highest NPV in dollars, not necessarily the highest IRR percentage, as IRR can be misleading when comparing different investment sizes or durations.</p>
         </div>
-        
-        <p className="mb-6">
-          When using the IRR NPV Calculator, consider factors such as inflation, market volatility, and changes in interest rates, as these can affect the outcomes. Regularly update your data and recalculate to reflect current market conditions. This proactive approach helps in making timely and informed investment decisions.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          IRR NPV Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The IRR NPV Calculator employs standard financial formulas to compute the Internal Rate of Return (IRR) and Net Present Value (NPV). The NPV formula calculates the present value of future cash flows by discounting them at a specified rate. The IRR is the discount rate that makes the NPV of all cash flows equal to zero. These formulas are widely accepted in financial analysis for evaluating investment opportunities and determining their profitability.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          NPV = Σ (Cash Flow / (1 + r)^t) - Initial Investment
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Cash Flow = Net cash inflow-outflow during a period</li>
-              <li>r = Discount rate</li>
-              <li>t = Time period</li>
-            </ul>
+      {/* TABLE: NPV Sensitivity Analysis: Impact of Discount Rate Changes */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">NPV Sensitivity Analysis: Impact of Discount Rate Changes</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how NPV changes for a $100,000 initial investment with $30,000 annual returns over 5 years at different discount rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Discount Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">NPV ($)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Decision Rule</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$29,853</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Accept - Strong positive return</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16,299</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Accept - Moderate positive return</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,645</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Accept - Marginal positive return</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,628</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Borderline - Close to break-even</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">13.07%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Break-even IRR</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$4,940</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reject - Negative value</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$14,357</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reject - Significant value destruction</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$21,058</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reject - High value loss</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The IRR for this project is approximately 13.07%. NPV becomes negative when discount rate exceeds the IRR.</p>
+      </section>
+
+      {/* TABLE: IRR Comparison: Project Selection Example */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">IRR Comparison: Project Selection Example</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how IRR and NPV can lead to different conclusions when comparing three projects with identical discount rate of 10%.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Project</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Initial Investment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">IRR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">NPV @ 10%</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Project A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,450</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Project B</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$150,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$28,900</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Project C</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,175</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Project B has the highest NPV despite lower IRR, making it the best choice if capital is not constrained. Project C has the highest IRR but creates less total value.</p>
+      </section>
+
+      {/* TABLE: Benchmark Hurdle Rates by Industry (2024-2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Benchmark Hurdle Rates by Industry (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These industry-specific discount rates reflect typical WACC and required returns used in NPV calculations across sectors.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Industry Sector</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Hurdle Rate Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Profile</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Utilities & Regulated Industries</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6% - 8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low risk, stable cash flows</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Manufacturing & Industrial</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9% - 12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate risk, cyclical</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Technology & Software</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15% - 22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High risk, growth-oriented</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Real Estate & Infrastructure</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7% - 11%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate-low risk, long-term</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Biotechnology & Pharmaceuticals</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% - 25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very high risk, R&D intensive</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Consumer Staples</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8% - 11%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-moderate risk, stable demand</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Financial Services</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12% - 16%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate-high risk, regulatory</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Energy & Oil & Gas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10% - 15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate-high risk, commodity exposure</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Hurdle rates vary within industries based on company size, leverage, and strategic objectives. These represent 2024-2025 benchmarks and should be adjusted for current market conditions.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always use conservative cash flow estimates when calculating IRR and NPV. Overly optimistic projections are the leading cause of poor investment decisions; consider using pessimistic, base, and optimistic scenarios to stress-test your analysis.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for the time value of money accurately by ensuring your discount rate reflects current market conditions. The Federal Reserve's rate environment directly impacts your cost of capital; review your hurdle rate annually to stay current with 2024-2025 market conditions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For long-term projects (10+ years), perform a sensitivity analysis by testing NPV at multiple discount rates (±2-3%) to understand how sensitive your decision is to changing interest rates or cost of capital assumptions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Don't rely on IRR alone when comparing projects of significantly different sizes or durations. A project with 30% IRR but only $5,000 NPV may be inferior to a 12% IRR project with $500,000 NPV; always prioritize NPV for final investment decisions.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the timing of cash flows</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to enter cash flows in the correct year distorts both IRR and NPV calculations. A $50,000 cash inflow in Year 3 is worth less than $50,000 today; the calculator accounts for this, but only if you input it in Year 3, not Year 1.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using an incorrect or outdated discount rate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying a 5% discount rate when your company's cost of capital is 12% will artificially inflate NPV and lead to accepting mediocre projects. Update your hurdle rate annually to reflect current interest rates and your company's borrowing costs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing IRR with profitability index</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A high IRR doesn't guarantee the best investment decision, especially when comparing projects of different scales. A $10,000 investment with 40% IRR creates far less total value than a $1,000,000 investment with 15% IRR; NPV should drive your final decision.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking the presence of multiple IRRs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Projects with non-conventional cash flows (multiple sign changes) can produce two or more valid IRRs, confusing your analysis. If the calculator returns multiple IRRs, abandon IRR as your decision metric and rely exclusively on NPV.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role in determining the NPV. The cash flow represents the net amount of cash being transferred into and out of a project. The discount rate reflects the opportunity cost of capital, and the time period accounts for the duration of the investment. Changes in these variables can significantly impact the NPV, highlighting the importance of accurate data input.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence IRR and NPV calculations is crucial for accurate financial analysis. These factors can vary significantly based on the nature of the investment and external economic conditions. By recognizing these elements, you can better interpret the results and make informed decisions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Cash Flow Timing
-        </h3>
-        <p className="mb-4">
-          The timing of cash flows is a critical factor in IRR and NPV calculations. Early cash inflows are more valuable than later ones due to the time value of money. Projects with significant upfront cash flows tend to have higher NPVs, making them more attractive investments.
-        </p>
-        <p className="mb-6">
-          To optimize cash flow timing, consider strategies such as accelerating revenue collection or delaying expenses. This can improve the overall financial health of the project. For more insights, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Discount Rate Selection
-        </h3>
-        <p className="mb-4">
-          The discount rate is a pivotal component in NPV calculations, representing the opportunity cost of capital. A higher discount rate results in a lower NPV, indicating a less attractive investment. Conversely, a lower rate increases the NPV, suggesting greater profitability.
-        </p>
-        <p className="mb-6">
-          Selecting an appropriate discount rate is essential for accurate analysis. It should reflect the risk profile of the investment and the investor's required rate of return. Consider consulting financial experts to determine the most suitable rate for your project.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Economic Conditions
-        </h3>
-        <p className="mb-4">
-          External economic factors, such as inflation and interest rates, can significantly impact IRR and NPV results. Inflation erodes the purchasing power of future cash flows, while fluctuating interest rates affect the cost of capital.
-        </p>
-        <p className="mb-6">
-          To account for these variables, regularly update your calculations to reflect current economic conditions. This proactive approach ensures that your investment decisions remain relevant and informed.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Project Duration
-        </h3>
-        <p className="mb-6">
-          The length of the investment period influences both IRR and NPV. Longer projects may face greater uncertainty and risk, affecting their attractiveness. Shorter projects, while potentially less risky, may offer lower returns.
-        </p>
-        <p className="mb-6">
-          Evaluate the trade-offs between project duration and expected returns. Consider diversifying your investment portfolio to balance risk and reward effectively.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Initial Investment Size
-        </h3>
-        <p className="mb-6">
-          The size of the initial investment is a fundamental factor in determining NPV. Larger investments require higher returns to justify the risk, while smaller investments may be more manageable but offer limited growth potential.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
-
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between IRR and NPV?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">IRR (Internal Rate of Return) is the discount rate that makes NPV equal to zero, expressed as a percentage, while NPV (Net Present Value) is the dollar amount difference between the present value of cash inflows and outflows at a specific discount rate. NPV tells you the absolute value added by an investment, whereas IRR tells you the annualized return rate. For example, a project with an IRR of 15% and an NPV of $50,000 at a 10% discount rate means the investment returns 15% annually and adds $50,000 in today's dollars.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I input cash flows into the IRR NPV calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your initial investment as a negative number (e.g., -$100,000) in Year 0, then input all subsequent positive or negative cash flows for each year. The calculator processes these chronologically to compute both IRR and NPV. Ensure you include all expected cash flows, including salvage value or terminal value in the final year, for accurate results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What discount rate should I use for NPV calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use your company's cost of capital or required rate of return as the discount rate. For most businesses, this ranges from 8% to 12%, though it can be higher for riskier projects (15%+) or lower for government bonds (2-4%). The discount rate reflects the opportunity cost of capital and your risk tolerance; using 10% is a common baseline for general business investments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the IRR NPV calculator handle negative cash flows in the middle of a project?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator handles both positive and negative cash flows at any point in the project timeline. Negative cash flows might represent maintenance costs, additional capital investments, or unexpected expenses. Multiple sign changes in cash flows can result in multiple IRRs, which the calculator will identify, so review all results carefully.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does a negative NPV mean for my investment decision?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A negative NPV indicates that the project's returns fall short of your required discount rate, meaning it destroys value rather than creating it. For example, an NPV of -$15,000 at a 12% discount rate means the investment returns less than 12% annually. You should reject projects with negative NPV unless strategic or non-financial factors justify the decision.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How is IRR calculated in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The IRR calculator uses iterative methods (Newton-Raphson or similar algorithms) to find the discount rate where NPV equals zero. This requires solving a polynomial equation based on your cash flows. The calculator automatically performs these complex calculations and displays the result as a percentage, typically within 0.01% accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why might my project have multiple IRRs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiple IRRs occur when cash flows change sign more than once (e.g., initial investment, positive returns, then large final costs). A project with outflows in Year 0, inflows in Years 1-3, and a major cleanup cost in Year 4 could produce two IRRs. When multiple IRRs exist, rely on NPV analysis with your company's cost of capital rather than IRR for decision-making.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I compare projects using IRR or NPV?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For mutually exclusive projects or those with different scales, NPV is the superior metric because it directly shows the value created in dollars. IRR can be misleading when comparing projects of different sizes or durations; a 25% IRR on a $10,000 investment may be less valuable than a 15% IRR on a $1,000,000 investment. Use NPV as your primary decision criterion and IRR as a secondary validation tool.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the typical hurdle rate (discount rate) used in corporate finance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most corporations use a weighted average cost of capital (WACC) between 8% and 12% as their hurdle rate. Tech companies often use 15-20% due to higher risk, while utilities may use 6-8% for stable, regulated projects. Your hurdle rate should reflect your company's cost of debt and equity; the Federal Reserve's current rate environment (2024: 5.25-5.50% base rate) influences these benchmarks.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access comprehensive economic data and analysis from the Federal Reserve.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company_type=40&owner=exclude&match=&filenum=&State=&SIC=&myHID=&owner=exclude&count=100" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC: Financial Statement Analysis</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">U.S. Securities and Exchange Commission guidance on analyzing financial statements and investment metrics for public companies.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Explore educational resources and tools for better financial decision-making.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/i/irr.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Internal Rate of Return (IRR)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive explanation of IRR, how it's calculated, and its applications in capital budgeting and investment analysis.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Financial Institution Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Find information on banking regulations and financial institution performance.
-              </p>
-            </div>
+          <li>
+            <a href="https://corporatefinanceinstitute.com/resources/financial-analysis/npv-vs-irr/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Corporate Finance Institute: NPV vs. IRR</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed comparison of Net Present Value and Internal Rate of Return, including when to use each metric in investment decisions.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access official tax guidelines and resources for individuals and businesses.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Concepts
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Learn about key financial concepts and investment strategies.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Discover personal finance guides and comparison tools for better money management.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/monetarypolicy/fomcprojections.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve: Economic Projections and Interest Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Reserve's current interest rate policy and economic projections, essential for determining appropriate discount rates in 2024-2025.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

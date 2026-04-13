@@ -84,28 +84,40 @@ export default function CreditCardInterestCalculator() {
 
   const faqs = [
     {
-      question: "How is credit card interest calculated daily vs. monthly?",
-      answer: "Most US credit cards use daily compounding. Your Daily Periodic Rate (DPR) = APR ÷ 365. Each day, your balance is multiplied by (1 + DPR). On a $5,000 balance at 24% APR, the DPR is 0.0657%/day — costing ~$3.29 in interest on day one. Because interest compounds daily, carrying a balance costs slightly more than the stated APR implies. This is why paying the statement balance in full (not just the minimum) on or before the due date eliminates all interest charges."
+      question: "How does the credit card interest calculator determine my monthly interest charges?",
+      answer: "The calculator uses your average daily balance and annual percentage rate (APR) to compute interest. It multiplies your balance by your daily periodic rate (APR ÷ 365) and the number of days in your billing cycle. For example, a $5,000 balance at 18% APR over 30 days generates approximately $73.97 in interest charges.",
     },
     {
-      question: "What is the average credit card APR in 2024?",
-      answer: "The Federal Reserve reported the average credit card interest rate at 21.47% APR as of Q4 2023 — a 20-year high following the 2022–2023 rate hike cycle. Rewards cards and cards targeting lower credit tiers often carry 25–30% APR. Cards for excellent credit (760+ FICO) range from 17–22%. Credit unions typically offer 1–5 percentage points lower than banks. If your current rate is above 24%, a balance transfer to a 0% intro APR card (typically 15–21 months) can save hundreds in interest while you pay down the principal."
+      question: "What's the difference between APR and daily periodic rate in the calculator?",
+      answer: "APR is your annual percentage rate expressed yearly, while the daily periodic rate is APR divided by 365 days. A 21% APR equals a 0.0575% daily periodic rate. The calculator converts APR to a daily rate to accurately compute interest for your specific billing cycle length.",
     },
     {
-      question: "How much faster do you pay off debt by paying more than the minimum?",
-      answer: "The minimum payment trap is severe: a $5,000 balance at 22% APR with a 2% minimum payment (~$100/month) takes over 30 years to pay off and costs ~$11,000 in interest. Paying $200/month cuts that to 3 years and ~$1,400 in interest. Paying $300/month: under 2 years, ~$900 in interest. Doubling the minimum payment roughly triples the payoff speed and cuts total interest cost by 80–90%. Use this calculator to find your exact payoff date by entering different payment amounts."
+      question: "Can the calculator show me how long it takes to pay off my balance?",
+      answer: "Yes, many credit card interest calculators include payoff timelines when you input your monthly payment amount. If you have a $10,000 balance at 19% APR and pay $200 monthly, the calculator will show you'll need approximately 66 months and pay $3,241 in total interest to reach zero balance.",
     },
     {
-      question: "Does my credit score affect my credit card APR?",
-      answer: "Yes — significantly. Credit card APRs are tiered by FICO score band. Approximate 2024 ranges: 750–850 (Exceptional): 17–21%; 670–749 (Good): 20–25%; 580–669 (Fair): 24–29%; Below 580: 29%+ or denial. Improving your score from 650 to 720 can reduce your APR by 5–8 percentage points. After 12 consecutive on-time payments, you can request an APR reduction from your issuer — issuers grant these in roughly 1 in 3 cases, often reducing by 1–3 points."
+      question: "How accurate is the calculator if my credit card charges variable interest rates?",
+      answer: "The calculator assumes a fixed APR throughout the calculation period. If your rate is variable and tied to prime rate changes, results may differ from actual charges. For the most accurate projections with variable-rate cards, use the current APR and update your inputs if the rate changes.",
     },
     {
-      question: "What is a grace period and how does it prevent interest charges?",
-      answer: "A grace period is the time between your statement closing date and your payment due date (typically 21–25 days). If you pay your full statement balance before the due date each month, no interest is charged on purchases — the grace period applies. If you carry a balance, you lose the grace period and interest accrues on new purchases from the transaction date. Cash advances have no grace period and start accruing interest immediately at a higher cash advance APR."
+      question: "Does the calculator account for promotional 0% APR periods?",
+      answer: "Most standard credit card interest calculators apply a single APR rate throughout. If your card has a promotional 0% APR period (commonly 6-21 months), manually calculate that interest-free period separately, then use the calculator for the remaining balance at the post-promotional rate.",
     },
     {
-      question: "Should I use a balance transfer or debt consolidation loan to reduce interest?",
-      answer: "A 0% APR balance transfer card works best when: (1) you have good credit (680+) to qualify, (2) you can pay off the balance within the promotional period (12–21 months), and (3) your balance is under $15,000. Watch for: 3–5% balance transfer fee, the go-to rate after the promo period (often 25%+). A <a href='/financial/debt-consolidation'>debt consolidation loan</a> works better for larger balances or longer payoff timelines — a fixed 12% personal loan on a $15,000 balance saves ~$2,000/year vs. carrying it on a 24% card."
+      question: "What if I make multiple purchases at different times during my billing cycle?",
+      answer: "The calculator uses your total balance or average daily balance as the input. If you need precision with staggered purchases, sum your average balance across the cycle. Most issuers use the average daily balance method, which accounts for purchase timing automatically when you input the correct total balance figure.",
+    },
+    {
+      question: "How do balance transfers affect the calculator's interest estimates?",
+      answer: "Balance transfers often carry different APRs than regular purchases—frequently 0% introductory followed by 15-25% standard rates. Input the balance transfer amount and its specific APR separately to calculate accurate interest. The calculator should show lower initial charges during the 0% period, then higher charges once the promotional rate expires.",
+    },
+    {
+      question: "Can I use the calculator to compare interest costs between different credit cards?",
+      answer: "Absolutely—this is one of the calculator's most valuable uses. Input the same balance and timeframe with different APRs from competing cards to compare interest costs. For instance, a $7,500 balance costs $1,237 over 12 months at 18% APR versus $1,050 at 15% APR, showing the value of lower rates.",
+    },
+    {
+      question: "What happens if I miss a payment—does the calculator account for penalty APR increases?",
+      answer: "Standard credit card interest calculators do not include penalty APR increases that typically range from 25-35% for late payments. If you want to model a missed payment scenario, manually update the APR input to your card's penalty rate after the missed payment date in your calculation.",
     }
   ];
 
@@ -305,250 +317,285 @@ export default function CreditCardInterestCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Credit Card Interest Calculator
-        </h2>
-        
-        <p className="mb-6">
-          Credit card interest can be a significant financial burden if not managed properly. This calculator helps you estimate the total interest you will pay on your credit card balance over a specified period. By inputting your current balance, the annual interest rate, and the repayment period, you can see how much carrying debt will cost you in the long run. This tool is essential for anyone looking to manage their credit card debt effectively and avoid unnecessary financial strain.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial when dealing with credit card interest. An incorrect estimate can lead to unexpected expenses and financial stress. According to recent studies, the average American household carries a credit card balance of over $6,000, with interest rates often exceeding 15%. By using this calculator, you can make informed decisions about your repayment strategy and potentially save hundreds or even thousands of dollars in interest. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather your latest credit card statement to find your current balance and interest rate. Enter these values along with your desired repayment period in months. The calculator will then provide you with the total interest you will pay and your monthly payment amount. For additional guidance, refer to our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always aim to pay more than the minimum payment on your credit card. This reduces the principal balance faster, thereby decreasing the total interest paid over time. Consider setting up automatic payments to ensure you never miss a due date.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Credit Card Interest Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The credit card interest calculator helps you understand exactly how much interest you'll pay on your balance over time. This tool is essential for making informed decisions about debt repayment, comparing cards, and evaluating the true cost of carrying a balance. By inputting your specific numbers, you can see the real financial impact of your credit card usage.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter three key inputs: your current credit card balance (the amount you owe), your card's annual percentage rate or APR (found on your statement or cardholder agreement), and your billing cycle length or the timeframe you want to analyze. Some calculators also allow you to input your monthly payment amount to show you how long payoff will take. These inputs determine your interest charges with precision.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your monthly interest charges, total interest over your selected period, and often a payoff timeline if you've included a payment amount. Use these outputs to compare different payment strategies—paying $200 versus $300 monthly, for example—or to evaluate whether a balance transfer or lower-APR card makes financial sense. The calculator transforms abstract APR numbers into concrete dollar amounts you'll actually pay.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices include regularly reviewing your credit card statements and adjusting your repayment plan as needed. Factors such as changes in interest rates or unexpected expenses can affect your repayment strategy. Stay informed and proactive to minimize your interest payments and maintain financial health.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Credit Card Interest Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is based on the standard method for calculating credit card interest. It takes into account the principal balance, the annual interest rate, and the repayment period. This approach is widely accepted and provides a reliable estimate of the total interest you will pay. Variations of this formula may exist, but they typically involve more complex calculations that are unnecessary for most users.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Total Interest = Principal × (Annual Interest Rate / 12) × Number of Months
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Principal = Current credit card balance</li>
-              <li>Annual Interest Rate = Yearly interest rate expressed as a decimal</li>
-              <li>Number of Months = Total repayment period in months</li>
-            </ul>
+      {/* TABLE: Monthly Interest Charges by APR and Balance */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Interest Charges by APR and Balance</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how much interest you'll pay in one month across common credit card balances and APR ranges.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Balance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15% APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">18% APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">21% APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">25% APR</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$31.25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$37.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$43.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$52.08</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$62.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$87.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$104.17</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$7,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$93.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$112.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$131.25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$156.25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$125.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$175.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$208.33</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$187.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$225.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$262.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$312.50</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume 30-day billing cycle. Actual charges may vary by issuer's daily balance method.</p>
+      </section>
+
+      {/* TABLE: Total Interest Paid Over 12 Months with Fixed Monthly Payments */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Total Interest Paid Over 12 Months with Fixed Monthly Payments</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates total interest accumulation and payoff timelines for a $5,000 balance across different payment amounts and APRs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">18% APR (Months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">18% APR (Total Interest)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">21% APR (Months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">21% APR (Total Interest)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">39 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,118</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,289</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$744</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$847</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$570</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$624</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$452</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$490</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$307</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$330</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Payoff timelines calculated using standard amortization. Higher payments significantly reduce total interest costs.</p>
+      </section>
+
+      {/* TABLE: Average Credit Card APR by Card Type (2024-2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Credit Card APR by Card Type (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Understanding current market APRs helps you benchmark your card's rate and use the calculator with realistic inputs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Card Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average APR Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Highest APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Penalty APR Range</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rewards Card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.5% - 22.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27% - 35%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cash Back Card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17% - 23%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27% - 35%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Balance Transfer Card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0% intro (6-21 mo.)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% - 25% after</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28% - 35%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Secured Card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% - 25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29% - 35%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Student Card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18% - 23%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28% - 35%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates vary based on creditworthiness; applicants with excellent credit (750+) typically qualify for rates at lower end of ranges.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Calculate your average daily balance accurately by adding up your balance at the end of each day during your billing cycle and dividing by the number of days—this is what most issuers use for interest calculations, and inputting this figure into the calculator gives the most precise results.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to test different monthly payment amounts and see how much you save on total interest with each $50 or $100 increase in payments; even small increases can shorten payoff time by months and save hundreds in interest.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Run separate calculations for different credit cards with the same balance to compare APRs—a 3% APR difference between two cards might save you $400-$600 annually on a $10,000 balance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Update your calculator inputs if your issuer notifies you of an APR change due to rate increases or promotional periods ending; staying current ensures your projections remain accurate.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the balance transfer scenario feature (if available) to model transferring your balance to a 0% introductory rate card, then calculate interest on the remaining balance after the promotional period expires to see true savings.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the wrong APR in the calculator</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some cardholders confuse their purchase APR with their balance transfer or cash advance APR, which can differ by 10+ percentage points. Always verify which APR applies to your specific balance before entering it into the calculator to avoid significantly underestimating interest costs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for multiple billing cycles</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you're planning to pay down a balance over several months, ensure the calculator accounts for each month's accruing interest, not just the first month. Single-month calculations give an incomplete picture of total interest costs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming interest compounds daily without recalculation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Credit card interest doesn't technically compound—it's calculated fresh each month on your balance. However, if you don't make payments, your balance grows and interest accrues on the larger amount, so regular recalculation as your balance changes is crucial for accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring grace periods in the calculation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you pay your full balance before the grace period ends (typically 20-25 days), you owe zero interest. Many calculators assume interest starts immediately, so if you consistently use your grace period, actual charges will be lower than the calculator shows.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable plays a crucial role in determining the total interest paid. The principal is the amount of debt you currently owe. The annual interest rate is the percentage charged by your credit card issuer for borrowing money. The number of months represents how long you plan to take to repay the balance. Adjusting any of these variables will directly impact the total interest calculated.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your credit card interest calculations is essential for managing your debt effectively. These factors interact in complex ways, and being aware of them can help you make better financial decisions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate is the most significant factor affecting your total interest payments. Higher rates result in more interest paid over time. For example, a 20% interest rate will accrue more interest than a 15% rate on the same balance.
-        </p>
-        <p className="mb-6">
-          To optimize this factor, consider negotiating a lower rate with your credit card issuer or transferring your balance to a card with a lower rate. Check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a> for more strategies.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Principal Balance
-        </h3>
-        <p className="mb-4">
-          The principal balance is the amount you owe on your credit card. A higher balance means more interest will accrue. For instance, a $10,000 balance will accumulate more interest than a $5,000 balance at the same interest rate.
-        </p>
-        <p className="mb-6">
-          Reducing your principal balance by making larger payments can significantly decrease the total interest paid. Aim to pay more than the minimum payment each month to lower your balance faster.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Repayment Period
-        </h3>
-        <p className="mb-4">
-          The repayment period is the time you plan to take to pay off your balance. A longer period results in more interest paid, as interest accumulates over time. For example, paying off a balance over 24 months will incur more interest than over 12 months.
-        </p>
-        <p className="mb-6">
-          To minimize interest, aim to shorten your repayment period by increasing your monthly payments. This reduces the time interest has to accrue, saving you money in the long run.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Payment Frequency
-        </h3>
-        <p className="mb-6">
-          Making payments more frequently can reduce the total interest paid. For example, making bi-weekly payments instead of monthly can decrease the principal balance faster, reducing the amount of interest accrued. This strategy effectively shortens the repayment period without increasing the total amount paid each month.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Additional Fees
-        </h3>
-        <p className="mb-6">
-          Be aware of additional fees that may affect your balance, such as late payment fees or annual fees. These can increase your principal balance, leading to more interest paid. Always read the terms and conditions of your credit card agreement to understand all potential fees.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the credit card interest calculator determine my monthly interest charges?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your average daily balance and annual percentage rate (APR) to compute interest. It multiplies your balance by your daily periodic rate (APR ÷ 365) and the number of days in your billing cycle. For example, a $5,000 balance at 18% APR over 30 days generates approximately $73.97 in interest charges.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between APR and daily periodic rate in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">APR is your annual percentage rate expressed yearly, while the daily periodic rate is APR divided by 365 days. A 21% APR equals a 0.0575% daily periodic rate. The calculator converts APR to a daily rate to accurately compute interest for your specific billing cycle length.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the calculator show me how long it takes to pay off my balance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, many credit card interest calculators include payoff timelines when you input your monthly payment amount. If you have a $10,000 balance at 19% APR and pay $200 monthly, the calculator will show you'll need approximately 66 months and pay $3,241 in total interest to reach zero balance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the calculator if my credit card charges variable interest rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator assumes a fixed APR throughout the calculation period. If your rate is variable and tied to prime rate changes, results may differ from actual charges. For the most accurate projections with variable-rate cards, use the current APR and update your inputs if the rate changes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the calculator account for promotional 0% APR periods?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most standard credit card interest calculators apply a single APR rate throughout. If your card has a promotional 0% APR period (commonly 6-21 months), manually calculate that interest-free period separately, then use the calculator for the remaining balance at the post-promotional rate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if I make multiple purchases at different times during my billing cycle?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your total balance or average daily balance as the input. If you need precision with staggered purchases, sum your average balance across the cycle. Most issuers use the average daily balance method, which accounts for purchase timing automatically when you input the correct total balance figure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do balance transfers affect the calculator's interest estimates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Balance transfers often carry different APRs than regular purchases—frequently 0% introductory followed by 15-25% standard rates. Input the balance transfer amount and its specific APR separately to calculate accurate interest. The calculator should show lower initial charges during the 0% period, then higher charges once the promotional rate expires.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the calculator to compare interest costs between different credit cards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absolutely—this is one of the calculator's most valuable uses. Input the same balance and timeframe with different APRs from competing cards to compare interest costs. For instance, a $7,500 balance costs $1,237 over 12 months at 18% APR versus $1,050 at 15% APR, showing the value of lower rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I miss a payment—does the calculator account for penalty APR increases?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard credit card interest calculators do not include penalty APR increases that typically range from 25-35% for late payments. If you want to model a missed payment scenario, manually update the APR input to your card's penalty rate after the missed payment date in your calculation.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Credit Card Interest Rates
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on credit card interest rates and regulatory guidelines.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-credit-card-apr-en/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Understanding Credit Card Terms and APR</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The Consumer Financial Protection Bureau explains how APRs work and how to calculate monthly interest charges on credit cards.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Credit Card Tips
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on credit cards.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/supervisionreg/regz.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Truth in Lending Act (Regulation Z) - APR Disclosure Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Reserve guidance on how credit card issuers must disclose APRs and calculate interest under TILA requirements.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Managing Credit Card Debt
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and strategies for managing credit card debt effectively.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/finance/credit-cards/current-credit-card-interest-rates/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Average Credit Card Interest Rates and Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Bankrate provides current benchmark APR data for different credit card types and creditworthiness levels.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Interest Deduction Guidelines
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information related to interest payments.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Understanding Credit Card Interest
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained, including credit card interest.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Credit Card Comparison Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers looking to optimize credit card usage.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/a/averagedailybalance.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Credit Card Interest Calculation Methods</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Investopedia details the average daily balance method and other calculation approaches used by credit card issuers.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

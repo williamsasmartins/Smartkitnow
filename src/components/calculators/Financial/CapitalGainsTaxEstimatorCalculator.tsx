@@ -88,28 +88,40 @@ export default function CapitalGainsTaxEstimatorCalculator() {
 
   const faqs = [
     {
-      question: "What is the difference between short-term and long-term capital gains?",
-      answer: "Short-term capital gains apply to assets held 365 days or fewer and are taxed at your ordinary income rate (10–37% in 2024). Long-term capital gains apply to assets held longer than one year and are taxed at preferential rates: 0% (income ≤ $47,025), 15% ($47,026–$518,900), or 20% (above $518,900) for single filers. Holding an asset just one extra day to cross the one-year threshold can save thousands. For example, a $20,000 gain in the 32% income bracket drops from $6,400 (short-term) to $3,000 (15% long-term)."
+      question: "What is the difference between short-term and long-term capital gains for tax purposes?",
+      answer: "Short-term capital gains apply to assets held for one year or less and are taxed at your ordinary income tax rate, which ranges from 10% to 37% in 2024. Long-term capital gains apply to assets held for more than one year and receive preferential tax rates of 0%, 15%, or 20% depending on your income level. For example, a single filer with long-term gains would pay 0% on gains up to $47,025, 15% on gains from $47,025 to $518,900, and 20% above that threshold in 2024.",
     },
     {
-      question: "Does the wash-sale rule apply to capital gains calculations?",
-      answer: "The wash-sale rule disallows claiming a loss if you repurchase the same or substantially identical security within 30 days before or after the sale. It does not affect gain calculations -- only losses. If you sell a stock at a loss to offset capital gains (tax-loss harvesting), you must wait 31 days before buying it back. Note: as of 2024, the IRS has not formally applied wash-sale rules to cryptocurrency, though proposed legislation would change this."
+      question: "How does my filing status affect capital gains tax calculations?",
+      answer: "Your filing status determines the income thresholds for each capital gains tax bracket, which directly impacts your effective tax rate. A married couple filing jointly in 2024 pays 0% on long-term gains up to $94,050, compared to $47,025 for single filers—effectively doubling the threshold. This calculator adjusts all rate calculations based on whether you file as single, married filing jointly, married filing separately, or head of household.",
     },
     {
-      question: "How does state capital gains tax work alongside federal tax?",
-      answer: "Most states tax capital gains as ordinary income, with no preferential long-term rate. State rates range from 0% (FL, TX, WA, NV, no state income tax) to 13.3% (California, which has the highest rate and taxes all gains as income). Combined federal + state rates in high-tax states can reach 33% for long-term gains and 50%+ for short-term. California, for instance, applies 13.3% on top of up to 20% federal, plus the 3.8% Net Investment Income Tax (NIIT) for high earners."
+      question: "What role does my ordinary income play in calculating capital gains tax?",
+      answer: "Capital gains tax brackets are stacked on top of your ordinary income, meaning your existing wage, salary, and investment income first fills up the lower tax brackets before your capital gains are taxed. If you're a single filer earning $40,000 in wages and realize $20,000 in long-term gains, only $7,025 of your gains ($47,025 threshold minus $40,000 income) would qualify for the 0% rate, while the remaining $12,975 would be taxed at 15%. This stacking effect makes it essential to input your total ordinary income into the estimator.",
     },
     {
-      question: "What is the Net Investment Income Tax (NIIT) and who pays it?",
-      answer: "The NIIT is an additional 3.8% tax on net investment income (including capital gains) for taxpayers whose modified adjusted gross income (MAGI) exceeds $200,000 (single) or $250,000 (married filing jointly). This means high earners pay up to 23.8% on long-term gains (20% + 3.8%) rather than 20%. The NIIT applies to both realized and some unrealized gains in specific circumstances. Use this calculator's results alongside your MAGI to determine whether the NIIT applies."
+      question: "How do net capital losses reduce my capital gains tax liability?",
+      answer: "You can use capital losses to offset capital gains dollar-for-dollar, reducing your taxable gain amount. If you realized $50,000 in long-term capital gains and $15,000 in capital losses, only $35,000 would be subject to capital gains tax. If losses exceed gains, you can deduct up to $3,000 of net losses against ordinary income in 2024, with excess losses carrying forward indefinitely to future years.",
     },
     {
-      question: "Can I offset capital gains with capital losses?",
-      answer: "Yes. Capital losses directly offset capital gains dollar-for-dollar. If losses exceed gains, up to $3,000 of excess loss can offset ordinary income per year; remaining losses carry forward indefinitely. Strategy: harvest losses in December to offset gains realized earlier in the year. Example: $15,000 gain + $12,000 loss = $3,000 net gain. Without the loss, you might owe $450 (15% rate); with it, only $450 on $3,000. Carry-forward losses reduce future tax liability even after you stop investing."
+      question: "What is the Net Investment Income Tax and does this calculator include it?",
+      answer: "The Net Investment Income Tax (NIIT) is an additional 3.8% tax on investment income for high-income earners—single filers earning over $200,000 or married couples filing jointly earning over $250,000 in 2024. Capital gains are subject to this tax if your modified adjusted gross income exceeds the threshold, making it a critical component of your total capital gains tax burden. This calculator factors in the NIIT when applicable to provide your complete tax liability estimate.",
     },
     {
-      question: "How are cryptocurrency capital gains taxed in 2024?",
-      answer: "The IRS treats cryptocurrency as property (Notice 2014-21), so the same short-term/long-term rules apply. Every disposal -- sell, swap, or use crypto to purchase goods -- is a taxable event. The cost basis method matters: FIFO, LIFO, and specific identification all produce different gains. The IRS now requires Form 1099-DA from brokers starting in 2025. Unreported crypto gains are the #1 crypto tax mistake; the IRS receives transaction data from major exchanges. Use this calculator to estimate liability, then report on Schedule D and Form 8949."
+      question: "How does the holding period affect the tax rate I'll pay on my investment gains?",
+      answer: "Assets held for exactly one year or less are taxed as short-term capital gains at your ordinary income tax rate (up to 37%), while assets held longer than one year qualify for long-term capital gains rates (0%, 15%, or 20%). For example, selling stock purchased on January 15, 2023, on January 14, 2024, results in short-term treatment, but selling on January 15, 2024, qualifies as long-term. The holding period is one of the most impactful variables in this calculator, potentially saving you thousands in taxes.",
+    },
+    {
+      question: "Can I use the capital gains tax estimator to plan a charitable donation strategy?",
+      answer: "While this calculator doesn't directly model charitable giving, it helps you understand your tax liability baseline, which informs donation planning. If the calculator shows you'll pay $8,000 in capital gains tax on appreciated securities, donating those appreciated shares to charity instead of selling them can eliminate the capital gains tax entirely while generating a charitable deduction. You can use the estimator to compare scenarios by running calculations with and without the gains amount.",
+    },
+    {
+      question: "What are the 2024 long-term capital gains tax brackets for married filing jointly?",
+      answer: "In 2024, married couples filing jointly face 0% tax on long-term gains up to $94,050, 15% on gains from $94,050 to $583,750, and 20% on gains exceeding $583,750. These brackets are adjusted annually for inflation and represent a significant advantage over single filer brackets, which max out the 0% bracket at $47,025. The calculator automatically applies these married filing jointly brackets when you select that filing status.",
+    },
+    {
+      question: "How do state and local capital gains taxes factor into my total tax bill estimate?",
+      answer: "The federal capital gains tax estimator calculates only federal liability; however, most states and some localities impose additional capital gains taxes ranging from 0% to 13.3%. California, New York, and Oregon have capital gains tax rates of 13.3%, 8.82%, and 9.9% respectively, which can significantly increase your total burden. To get a complete picture, you should add your state's capital gains tax rate to the federal estimate provided by this calculator.",
     }
   ];
 
@@ -309,253 +321,274 @@ export default function CapitalGainsTaxEstimatorCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Capital Gains Tax Estimator
-        </h2>
-        
-        <p className="mb-6">
-          The Capital Gains Tax Estimator is a crucial tool for anyone involved in the buying and selling of assets, particularly in the realm of cryptocurrencies. This calculator helps you determine the tax obligations arising from the sale of these assets, distinguishing between short-term and long-term capital gains tax based on the holding period. Whether you're a seasoned investor or a beginner, understanding your tax liabilities is essential for effective financial planning. This tool provides clarity and precision, allowing you to make informed decisions about your investments and their potential tax implications.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations in this domain are vital due to the significant financial implications of capital gains tax. Incorrect calculations can lead to unexpected tax bills, affecting your overall financial health. According to recent data, capital gains tax rates can vary significantly, impacting your net returns. By using this estimator, you can avoid surprises and plan your finances better. For more insights into financial planning, you might find our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> useful.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information about the purchase price, sale price, and the holding period of your asset. Enter these values into the respective fields to get an accurate estimate of your capital gains tax. The tool will automatically calculate whether your gains are subject to short-term or long-term tax rates. For a deeper understanding of how these inputs affect your results, check out our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check the holding period of your assets. A difference of just one day can change your tax rate from short-term to long-term, significantly affecting your tax liability. Ensure your records are accurate to avoid costly mistakes.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Capital Gains Tax Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Capital Gains Tax Estimator is a financial tool designed to calculate your federal income tax liability on investment gains from selling stocks, real estate, mutual funds, cryptocurrencies, and other appreciated assets. Understanding your capital gains tax obligation helps you make informed decisions about when to sell investments, whether to harvest losses, and how to optimize your overall tax strategy. This calculator provides an accurate federal estimate based on 2024 tax brackets and rules.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the estimator effectively, you'll need to input several key variables: your filing status (single, married filing jointly, etc.), your ordinary income from all sources (wages, salaries, interest, dividends), the amount and type of capital gains (short-term or long-term), any capital losses to offset gains, and your age (to account for Medicare tax thresholds). The holding period—how long you owned the asset—is especially important because it determines whether gains qualify for preferential long-term rates (0%, 15%, or 20%) or are taxed as ordinary income at rates up to 37%. Each input directly impacts your calculated tax liability.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your results will show the total federal capital gains tax owed, the effective tax rate on your gains, and any applicable Net Investment Income Tax (NIIT). Compare the results across different scenarios—for example, calculating tax if you sell in 2024 versus waiting until 2025—to identify opportunities to reduce your burden. Remember that federal estimates don't include state and local capital gains taxes, which can add 0% to 13.3% depending on your location, so add your state's rate to the federal result for a complete picture.</p>
         </div>
-        
-        <p className="mb-6">
-          For optimal results, consider the timing of your asset sales. Selling assets held for more than a year can often result in a lower tax rate. Additionally, be aware of any changes in tax laws that might affect your calculations. Staying informed and using tools like this estimator can help you manage your investments more effectively.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Capital Gains Tax Estimator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Capital Gains Tax Estimator is based on standard tax calculation methods. It calculates the tax liability by determining the difference between the sale price and the purchase price of an asset, then applying the appropriate tax rate based on the holding period. This approach is widely accepted and used by financial professionals to ensure accurate tax reporting and compliance with tax regulations.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Tax Liability = (Sale Price - Purchase Price) × Tax Rate
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Sale Price = The amount for which the asset was sold</li>
-              <li>Purchase Price = The amount paid to acquire the asset</li>
-              <li>Tax Rate = The applicable tax rate based on holding period</li>
-            </ul>
+      {/* TABLE: 2024 Long-Term Capital Gains Tax Brackets by Filing Status */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024 Long-Term Capital Gains Tax Brackets by Filing Status</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These are the federal tax brackets for long-term capital gains in 2024, showing how gains are taxed at preferential rates based on your total taxable income.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Filing Status</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0% Rate Applies To</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15% Rate Applies To</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">20% Rate Applies To</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 to $47,025</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47,025 to $518,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $518,900</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 to $94,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$94,050 to $583,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $583,750</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Separately</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 to $47,025</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47,025 to $291,875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $291,875</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Head of Household</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 to $62,975</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$62,975 to $551,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $551,350</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Thresholds are adjusted annually for inflation. Brackets apply to long-term gains (assets held more than one year). Ordinary income fills brackets first, then capital gains are stacked on top.</p>
+      </section>
+
+      {/* TABLE: Capital Gains Tax Impact Comparison: $50,000 Gain Example */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Capital Gains Tax Impact Comparison: $50,000 Gain Example</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how your filing status and income level affect the total tax on a $50,000 long-term capital gain with no offsetting losses.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Filing Status</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ordinary Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Effective Tax Rate on Gains</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Tax Owed</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Low-income earner</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Middle-income earner</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-income earner</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20% + 3.8% NIIT</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,900</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married couple</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Married Filing Jointly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-income couple</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Married Filing Jointly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20% + 3.8% NIIT</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,900</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">NIIT (Net Investment Income Tax) of 3.8% applies to single filers earning over $200,000 and married filing jointly earning over $250,000. Assumes no state or local capital gains taxes.</p>
+      </section>
+
+      {/* TABLE: Short-Term vs. Long-Term Capital Gains Tax Comparison */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Short-Term vs. Long-Term Capital Gains Tax Comparison</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This comparison shows how holding period affects your tax liability on the same $30,000 investment gain.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Holding Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Classification</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Rate (Single Filer at $75K Income)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax on $30,000 Gain</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Savings vs. Short-Term</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Less than 1 year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Short-term capital gain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22% (ordinary income)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">More than 1 year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Long-term capital gain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,100</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">More than 1 year (very high earner)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Long-term capital gain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20% + 3.8% NIIT</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">($540 higher)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Waiting just one day longer than one year can trigger long-term status and preferential rates. Tax rates vary based on your income level and filing status. NIIT applies when modified adjusted gross income exceeds $200,000 for single filers.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Hold investments longer than one year before selling to qualify for long-term capital gains rates (0%, 15%, or 20%) instead of short-term rates up to 37%—waiting 366 days instead of 365 can save thousands in taxes on large gains.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Harvest capital losses strategically by selling underperforming investments to offset gains from winners, reducing your taxable gain dollar-for-dollar; you can deduct up to $3,000 of excess losses against ordinary income annually.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider the stacking effect of capital gains on top of your ordinary income—if you're close to a higher tax bracket threshold, accelerating or deferring gains to different tax years can reduce your effective rate.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this calculator to model gifting appreciated securities to charity instead of selling them, which eliminates capital gains tax entirely while generating a charitable deduction—especially valuable for highly appreciated long-held assets.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check whether you'll trigger the Net Investment Income Tax (3.8% additional tax) by calculating your modified adjusted gross income; this affects single filers earning over $200,000 and married couples over $250,000.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Run multiple scenarios in the calculator—such as realizing gains over two tax years instead of one, or selling before versus after year-end—to identify the lowest-tax strategy for your situation.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for ordinary income when calculating long-term capital gains tax</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Capital gains tax brackets stack on top of your ordinary income, so if you earn $80,000 in wages as a single filer, only $0 of your capital gains qualify for the 0% bracket (since the bracket ends at $47,025). Many people assume they qualify for the lowest rate and underestimate their tax liability.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing the one-year holding period rule</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assets must be held for more than one year (not exactly one year) to qualify for long-term capital gains rates. Selling on the 365th day results in short-term treatment and ordinary income tax rates; you need to wait until day 366 or later.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the Net Investment Income Tax applicability</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High-income earners often forget about the 3.8% NIIT on capital gains when modified adjusted gross income exceeds $200,000 (single) or $250,000 (married filing jointly), resulting in an underestimated total tax liability.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Failing to include state and local capital gains taxes in the estimate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">This calculator computes federal taxes only, but states like California, New York, and Oregon impose additional capital gains taxes of 9.9% to 13.3%, which can double your effective tax rate—you must add your state's tax separately.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not using capital losses to offset gains</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many investors overlook the opportunity to sell underwater positions to realize losses that directly offset capital gains, potentially saving 15% to 20% on taxes. The calculator helps quantify these savings when you input capital losses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Treating inherited assets and stepped-up basis incorrectly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assets inherited from a deceased spouse receive a stepped-up basis to fair market value at the date of death, meaning zero capital gains tax on appreciation that occurred before inheritance—this calculator assumes you're the original owner, so inherited gains need separate analysis.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the final tax liability. The Sale Price and Purchase Price are straightforward, representing the transaction amounts. The Tax Rate, however, varies depending on whether the asset was held for less than a year (short-term) or more than a year (long-term). Short-term gains are typically taxed at higher rates, similar to ordinary income, while long-term gains benefit from reduced rates. Understanding these variables helps in planning the timing of asset sales to optimize tax outcomes.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your capital gains tax is essential for effective financial planning. These factors not only determine your tax liability but also impact your overall investment strategy. By considering these elements, you can make informed decisions that align with your financial goals.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Holding Period
-        </h3>
-        <p className="mb-4">
-          The holding period of an asset is a critical factor in determining the applicable tax rate. Assets held for less than a year are subject to short-term capital gains tax, which is generally higher. Conversely, assets held for more than a year qualify for long-term capital gains tax, which is typically lower. This distinction can significantly affect your tax liability.
-        </p>
-        <p className="mb-6">
-          To optimize your tax outcomes, consider holding assets for longer periods to benefit from the reduced long-term tax rates. This strategy can lead to substantial savings, especially for high-value transactions. For more strategies on managing your finances, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Asset Type
-        </h3>
-        <p className="mb-4">
-          Different types of assets may be subject to varying capital gains tax rules. For instance, collectibles like art and antiques often have different tax rates compared to stocks or real estate. Understanding the specific tax implications for each asset type is crucial for accurate tax planning.
-        </p>
-        <p className="mb-6">
-          Consider consulting a tax professional to understand the nuances of tax rates for different asset classes. This knowledge can help you make strategic decisions about which assets to sell and when, maximizing your after-tax returns.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Bracket
-        </h3>
-        <p className="mb-4">
-          Your overall tax bracket can influence the rate at which your capital gains are taxed. Higher income levels may result in higher capital gains tax rates, particularly for short-term gains. It's important to consider your total income when planning asset sales to avoid pushing yourself into a higher tax bracket.
-        </p>
-        <p className="mb-6">
-          To manage this factor effectively, plan your asset sales in conjunction with other income sources. Timing your sales to align with lower income years can help reduce your overall tax burden. For more insights, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Law Changes
-        </h3>
-        <p className="mb-6">
-          Tax laws are subject to change, and staying informed about these changes is crucial for accurate tax planning. Legislative updates can alter tax rates, exemptions, and deductions, impacting your capital gains tax liability. Keeping abreast of these changes ensures that your tax strategies remain effective and compliant.
-        </p>
-        <p className="mb-6">
-          Regularly review tax updates from reliable sources and consider consulting with a tax advisor to understand how changes might affect your situation. This proactive approach can help you adapt your strategies and avoid unexpected tax liabilities.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Strategy
-        </h3>
-        <p className="mb-6">
-          Your overall investment strategy plays a significant role in determining your capital gains tax liability. Strategies that involve frequent buying and selling may result in higher short-term gains, while a buy-and-hold approach can lead to more favorable long-term tax rates. Aligning your investment strategy with your tax planning goals can optimize your financial outcomes.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between short-term and long-term capital gains for tax purposes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Short-term capital gains apply to assets held for one year or less and are taxed at your ordinary income tax rate, which ranges from 10% to 37% in 2024. Long-term capital gains apply to assets held for more than one year and receive preferential tax rates of 0%, 15%, or 20% depending on your income level. For example, a single filer with long-term gains would pay 0% on gains up to $47,025, 15% on gains from $47,025 to $518,900, and 20% above that threshold in 2024.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does my filing status affect capital gains tax calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your filing status determines the income thresholds for each capital gains tax bracket, which directly impacts your effective tax rate. A married couple filing jointly in 2024 pays 0% on long-term gains up to $94,050, compared to $47,025 for single filers—effectively doubling the threshold. This calculator adjusts all rate calculations based on whether you file as single, married filing jointly, married filing separately, or head of household.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What role does my ordinary income play in calculating capital gains tax?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Capital gains tax brackets are stacked on top of your ordinary income, meaning your existing wage, salary, and investment income first fills up the lower tax brackets before your capital gains are taxed. If you're a single filer earning $40,000 in wages and realize $20,000 in long-term gains, only $7,025 of your gains ($47,025 threshold minus $40,000 income) would qualify for the 0% rate, while the remaining $12,975 would be taxed at 15%. This stacking effect makes it essential to input your total ordinary income into the estimator.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do net capital losses reduce my capital gains tax liability?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You can use capital losses to offset capital gains dollar-for-dollar, reducing your taxable gain amount. If you realized $50,000 in long-term capital gains and $15,000 in capital losses, only $35,000 would be subject to capital gains tax. If losses exceed gains, you can deduct up to $3,000 of net losses against ordinary income in 2024, with excess losses carrying forward indefinitely to future years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the Net Investment Income Tax and does this calculator include it?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Net Investment Income Tax (NIIT) is an additional 3.8% tax on investment income for high-income earners—single filers earning over $200,000 or married couples filing jointly earning over $250,000 in 2024. Capital gains are subject to this tax if your modified adjusted gross income exceeds the threshold, making it a critical component of your total capital gains tax burden. This calculator factors in the NIIT when applicable to provide your complete tax liability estimate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the holding period affect the tax rate I'll pay on my investment gains?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Assets held for exactly one year or less are taxed as short-term capital gains at your ordinary income tax rate (up to 37%), while assets held longer than one year qualify for long-term capital gains rates (0%, 15%, or 20%). For example, selling stock purchased on January 15, 2023, on January 14, 2024, results in short-term treatment, but selling on January 15, 2024, qualifies as long-term. The holding period is one of the most impactful variables in this calculator, potentially saving you thousands in taxes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the capital gains tax estimator to plan a charitable donation strategy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While this calculator doesn't directly model charitable giving, it helps you understand your tax liability baseline, which informs donation planning. If the calculator shows you'll pay $8,000 in capital gains tax on appreciated securities, donating those appreciated shares to charity instead of selling them can eliminate the capital gains tax entirely while generating a charitable deduction. You can use the estimator to compare scenarios by running calculations with and without the gains amount.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the 2024 long-term capital gains tax brackets for married filing jointly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">In 2024, married couples filing jointly face 0% tax on long-term gains up to $94,050, 15% on gains from $94,050 to $583,750, and 20% on gains exceeding $583,750. These brackets are adjusted annually for inflation and represent a significant advantage over single filer brackets, which max out the 0% bracket at $47,025. The calculator automatically applies these married filing jointly brackets when you select that filing status.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do state and local capital gains taxes factor into my total tax bill estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The federal capital gains tax estimator calculates only federal liability; however, most states and some localities impose additional capital gains taxes ranging from 0% to 13.3%. California, New York, and Oregon have capital gains tax rates of 13.3%, 8.82%, and 9.9% respectively, which can significantly increase your total burden. To get a complete picture, you should add your state's capital gains tax rate to the federal estimate provided by this calculator.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Capital Gains
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official guidelines on capital gains tax, including rates and exemptions.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p550" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 550: Investment Income and Expenses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on capital gains, holding periods, net investment income tax, and how to report investment income on your tax return.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Capital Gains Tax
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive guide on capital gains tax, including strategies for minimizing liability.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2024" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS 2024 Tax Brackets and Long-Term Capital Gains Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Annual IRS announcement of updated tax brackets, capital gains rates, and income thresholds for Net Investment Income Tax in 2024.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Understanding Capital Gains
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance insights on capital gains and how they affect your taxes.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/c/capital_gains_tax.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Capital Gains Tax Explained</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive explanation of short-term and long-term capital gains, how rates are calculated, and strategies to minimize capital gains tax liability.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Tax Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Educational resources on taxes and financial planning for consumers.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access to economic data and analysis relevant to capital gains.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Resources on financial education and consumer protection.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.nerdwallet.com/article/investing/capital-gains-tax" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NerdWallet: Capital Gains Tax Calculator and State Tax Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Overview of federal and state capital gains tax rates by jurisdiction, examples of how taxes are calculated, and tips for tax planning.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

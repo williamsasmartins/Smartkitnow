@@ -20,24 +20,40 @@ export default function NetIncomeAfterTaxCalculator() {
 
   const faqs = [
     {
-      question: "What is the difference between gross income, adjusted gross income (AGI), and taxable income?",
-      answer: "Gross income: all income before any deductions (wages, self-employment, dividends, etc.). Adjusted Gross Income (AGI): gross income minus above-the-line deductions (401k contributions, student loan interest, HSA contributions, self-employment tax deduction). Taxable income: AGI minus either the standard deduction ($14,600 single, $29,200 married in 2024) or itemized deductions, whichever is larger. Net income after tax is applied to taxable income through the progressive bracket system. AGI is the threshold used for many phase-outs (Roth IRA eligibility, student loan deduction, Child Tax Credit) -- reducing AGI through pre-tax contributions is often more valuable than post-tax deductions."
+      question: "What is the difference between gross income and net income after tax?",
+      answer: "Gross income is your total earnings before any deductions, while net income after tax is what remains after federal, state, and local taxes are subtracted. For example, if you earn $75,000 gross and owe $15,000 in taxes, your net income after tax is $60,000. This calculator helps you quickly determine that take-home figure based on your specific tax situation.",
     },
     {
-      question: "How do pre-tax contributions (401k, HSA, FSA) reduce net income after tax?",
-      answer: "Pre-tax contributions reduce AGI dollar-for-dollar, lowering both federal and state income taxes. At 22% marginal rate: $23,000 401k contribution saves $5,060 in federal taxes + state tax savings. HSA contribution ($4,150 individual, $8,300 family in 2024): saves at your marginal rate with zero tax ever on qualified withdrawals -- triple tax advantage. FSA ($3,200 in 2024 for healthcare): saves taxes but use-it-or-lose-it. Example: $80,000 salary. No contributions: ~$17,000 federal tax. Max 401k: taxable income drops to $57,000, federal tax ~$9,500 -- $7,500 saved. Your take-home decreases by only $15,500 (not $23,000) because taxes fund the rest."
+      question: "How does the Net Income after Tax Calculator account for federal tax brackets in 2025?",
+      answer: "The calculator applies the 2025 federal tax brackets, which include rates of 10%, 12%, 22%, 24%, 32%, 35%, and 37% depending on your income level and filing status. For single filers in 2025, the 22% bracket applies to income between $47,150 and $100,525. The calculator automatically applies the correct marginal and effective tax rates to your income.",
     },
     {
-      question: "What is marginal vs effective tax rate and why does the difference matter?",
-      answer: "Marginal rate: the rate on your last dollar of income (determines the value of deductions). Effective rate: your total tax divided by total income -- your actual average burden. Example: $80,000 income (single filer, 2024). Tax owed: 10% on first $11,600 ($1,160) + 12% on $11,601–$47,150 ($4,266) + 22% on $47,151–$80,000 ($7,227) = $12,653 total. Effective rate: $12,653 / $80,000 = 15.8%. Marginal rate: 22%. A $10,000 deduction saves 22% = $2,200 -- use marginal rate for deduction value. The effective rate is what you actually pay. Many people mistakenly believe their entire income is taxed at their marginal rate -- this is wrong, and leads to poor tax planning decisions."
+      question: "Should I include bonuses and overtime in my gross income for this calculator?",
+      answer: "Yes, all forms of taxable income—including bonuses, overtime, freelance income, and investment gains—should be included in your gross income input. These earnings are subject to the same tax treatment as your regular salary, so including them ensures your net income calculation is accurate. Excluding bonuses or overtime will underestimate your actual tax liability.",
     },
     {
-      question: "How does FICA tax (Social Security and Medicare) affect net income?",
-      answer: "FICA taxes reduce every paycheck separately from income tax. Social Security: 6.2% on wages up to $168,600 (2024 wage base). Medicare: 1.45% on all wages, plus Additional Medicare Tax of 0.9% on wages above $200,000 (single). Total FICA: 7.65% on most wages (your employer pays a matching 7.65%). Self-employed: 15.3% self-employment tax (both sides), but deduct half as an above-the-line deduction. At $80,000 salary: FICA = $6,120. Combined with federal income tax of $12,653 = $18,773 total federal burden. FICA is not progressive above the Social Security wage base -- earning $300,000 means you stop paying the 6.2% after $168,600, reducing your effective FICA rate."
+      question: "How do standard deductions affect the net income after tax calculation?",
+      answer: "The standard deduction reduces your taxable income before taxes are calculated. For 2025, the standard deduction is $14,600 for single filers and $29,200 for married filing jointly. The calculator applies this deduction automatically, so if you earn $60,000 as a single filer, only $45,400 is subject to federal income tax, resulting in a higher net income after tax.",
     },
     {
-      question: "What state income tax differences should I consider when calculating net take-home pay?",
-      answer: "Nine states have no income tax: Alaska, Florida, Nevada, New Hampshire (dividends/interest only), South Dakota, Tennessee (dividends/interest only), Texas, Washington, Wyoming. California has the highest marginal rate: 13.3% (over $1M income). On $80,000 income: California adds ~$5,000–$6,000 in state tax; Texas adds $0. Moving from California to Texas effectively provides a 7–8% gross pay raise. States also vary on what they tax: New Hampshire taxes only investment income. Some states exempt pension/retirement income entirely. When comparing job offers or considering relocation, always compare total after-tax income including state tax, as a $5,000 salary difference may be irrelevant when offset by state tax differences."
+      question: "Does this calculator include state and local income taxes?",
+      answer: "Most Net Income after Tax Calculators allow you to input your state and local tax rates to provide a complete picture of your after-tax income. State income tax rates vary from 0% in states like Texas and Florida to 13.3% in California. If your calculator has this feature, entering your state rate ensures you see your true take-home pay.",
+    },
+    {
+      question: "How does self-employment tax factor into net income after tax?",
+      answer: "Self-employed individuals owe both income tax and self-employment tax (Social Security and Medicare), which totals 15.3% on net earnings. This calculator may account for self-employment tax if you select that option, significantly reducing net income compared to W-2 employees. For example, a self-employed person earning $80,000 gross might owe approximately $11,304 in self-employment and income taxes combined.",
+    },
+    {
+      question: "Can I use this calculator to estimate my quarterly estimated tax payments?",
+      answer: "Yes, you can use the net income after tax calculation to estimate your total annual tax liability, then divide by four to determine quarterly payments. However, self-employed individuals and high-income earners should also consider prior-year income, credits, and deductions when calculating estimated taxes. The IRS typically requires estimated tax payments when you expect to owe $1,000 or more in taxes.",
+    },
+    {
+      question: "What tax credits should I factor into this calculator for a more accurate result?",
+      answer: "Common tax credits that reduce your tax liability include the Earned Income Credit (up to $3,995 for 2025), Child Tax Credit ($2,000 per child), and Dependent Care Credit. These credits are applied after calculating your tax, dollar-for-dollar reducing what you owe. If your calculator has a credits section, entering eligible credits will increase your net income after tax.",
+    },
+    {
+      question: "How does filing status (single vs. married) change the net income after tax calculation?",
+      answer: "Filing status determines which tax brackets and standard deduction apply to your income. Married filing jointly has wider tax brackets and a higher standard deduction ($29,200 vs. $14,600 for single in 2025), typically resulting in lower taxes on the same household income. Using the correct filing status in this calculator is essential for an accurate net income estimate.",
     }
   ];
 
@@ -300,252 +316,284 @@ export default function NetIncomeAfterTaxCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Net Income after Tax Calculator
-        </h2>
-        
-        <p className="mb-6">
-          Calculating your net income after taxes is crucial for effective financial planning. This calculator helps you determine your take-home pay after accounting for taxes and deductions. Whether you're budgeting for monthly expenses or planning for future investments, knowing your net income is essential. This tool is particularly useful for employees, freelancers, and business owners who need to understand their actual earnings after tax obligations are met.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in financial planning to avoid overestimating your disposable income. Misjudging your net income can lead to budget shortfalls and financial stress. According to recent studies, many individuals underestimate their tax liabilities, which can result in unexpected financial burdens. This calculator provides a reliable estimate, helping you make informed decisions about savings, investments, and expenditures. For more insights, explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator, gather your gross income details, applicable tax rates, and any deductions you qualify for. Enter these values into the respective fields to get an accurate calculation of your net income. Ensure that the tax rate reflects your current tax bracket, and include all eligible deductions to optimize your results. For additional guidance, check out our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. Small errors in tax rate or deduction entries can significantly impact your net income calculation. Use this tool regularly to stay updated with any changes in your financial situation or tax laws.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Net Income after Tax Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Net Income after Tax Calculator is a tool designed to determine how much money you'll actually take home after federal, state, and local taxes are deducted from your gross income. This is essential for budgeting, financial planning, and understanding your true earning power. Whether you're evaluating a job offer, planning for retirement, or simply want to understand your paycheck, this calculator provides a clear picture of your after-tax income.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, start by entering your gross annual income (salary, wages, bonuses, and self-employment earnings). Next, select your filing status (single, married filing jointly, head of household, etc.) and provide any applicable state or local tax rates. You can also add adjustments for tax credits, deductions beyond the standard deduction, and self-employment taxes if applicable. The calculator will automatically apply 2025 federal tax brackets and calculate your tax liability.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once the calculation is complete, review your estimated net income after tax—this is your projected take-home pay for the year. Compare this figure to your gross income to see your effective tax rate (total tax divided by gross income). Use this information to adjust your budget, evaluate salary negotiations, or plan quarterly estimated tax payments if you're self-employed. Remember that this calculator provides an estimate; actual taxes may vary based on life changes, credits claimed, or adjustments made during tax season.</p>
         </div>
-        
-        <p className="mb-6">
-          Regularly updating your calculations with current data ensures you remain on top of your financial health. Consider factors like changes in salary, tax laws, or personal deductions that might affect your net income. Staying informed and proactive helps you avoid financial pitfalls and capitalize on opportunities for savings and investments.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Net Income after Tax Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is straightforward yet comprehensive, ensuring accurate results. It calculates net income by subtracting total taxes and deductions from your gross income. This approach is widely accepted in financial planning and provides a clear picture of your take-home pay.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Net Income = (Gross Income - Deductions) - (Gross Income × Tax Rate)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Gross Income = Total earnings before taxes</li>
-              <li>Deductions = Total allowable deductions</li>
-              <li>Tax Rate = Applicable tax percentage</li>
-            </ul>
+      {/* TABLE: 2025 Federal Income Tax Brackets by Filing Status */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2025 Federal Income Tax Brackets by Filing Status</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These are the official federal tax brackets for 2025, used to calculate your taxable income and determine net income after tax.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Filers</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Head of Household</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 – $14,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 – $29,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 – $21,900</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,601 – $59,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$29,201 – $119,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$21,901 – $83,550</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$59,751 – $95,375</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$119,501 – $182,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$83,551 – $127,550</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$95,376 – $182,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$182,101 – $231,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$127,551 – $206,335</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">32%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$182,101 – $231,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$231,251 – $578,125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$206,336 – $578,125</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$231,251 – $578,125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$578,126 – $693,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$578,126 – $693,750</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">37%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$578,126+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$693,751+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$693,751+</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Brackets are adjusted annually for inflation. Self-employed individuals should also account for self-employment tax when calculating net income.</p>
+      </section>
+
+      {/* TABLE: Standard Deductions and Personal Exemptions for 2025 */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard Deductions and Personal Exemptions for 2025</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard deductions reduce your taxable income and directly impact your net income after tax calculation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Filing Status</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Standard Deduction</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Additional Deduction (Age 65+)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$29,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000 per spouse</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Separately</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Head of Household</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$21,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Qualifying Widow(er)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$29,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These deductions are subtracted from gross income before applying tax rates. Higher deductions result in lower taxable income and higher net income after tax.</p>
+      </section>
+
+      {/* TABLE: Average Effective Tax Rates by Income Level (2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Effective Tax Rates by Income Level (2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows approximate effective tax rates (total tax divided by gross income) at different income levels for single filers, helping you benchmark your net income calculation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gross Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Federal Tax (Approx.)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Effective Tax Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Net Income After Tax</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$40,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,502</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$36,498</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$60,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,070</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$52,930</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$80,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,006</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$68,994</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,506</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$84,494</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$150,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$30,106</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$119,894</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$46,606</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$153,394</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These estimates assume standard deduction only and no credits or additional deductions. State and local taxes are not included. Actual results vary based on individual circumstances.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for all income sources when using this calculator—include W-2 wages, bonuses, freelance income, rental income, investment gains, and side hustles to get an accurate net income estimate.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Update your filing status immediately if your circumstances change (marriage, divorce, or claiming dependents), as this significantly impacts your tax brackets and standard deduction, directly affecting your net income after tax.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you expect major life changes (new child, significant investment income, or job loss), recalculate your net income to determine if you need to adjust your withholding or make quarterly estimated tax payments.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this calculator alongside the IRS Tax Withholding Estimator to ensure your employer is withholding the correct amount from each paycheck, preventing surprise tax bills and maximizing your actual net income.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Include All Income</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people only input their salary and forget side income, freelance earnings, or investment gains, resulting in an underestimated tax liability and overstated net income. The IRS taxes all income sources, so every dollar earned must be included in your gross income calculation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Net Income with Take-Home Pay</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Net income after tax is your income after federal, state, and local taxes, but you may still have additional deductions from your paycheck like health insurance premiums, retirement contributions, or student loan payments. Your actual take-home pay may be lower than the net income this calculator shows.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated Tax Brackets or Deduction Amounts</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Tax brackets and standard deductions change annually for inflation. Using 2024 rates when calculating 2025 income will produce inaccurate results; always ensure your calculator uses the current tax year's brackets and deductions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Self-Employment Tax</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Self-employed individuals owe 15.3% in self-employment taxes (Social Security and Medicare) in addition to income tax, which can reduce net income by 10-20% compared to W-2 employees earning the same gross income. Failing to include this results in a significantly inflated net income estimate.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each component of the formula plays a critical role. Gross Income is your total earnings before any deductions or taxes. Deductions reduce your taxable income, leading to lower tax liabilities. The Tax Rate is the percentage of your income that goes to taxes, determined by your tax bracket. Adjusting any of these variables will directly affect your net income, providing flexibility in financial planning.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your net income is essential for accurate financial planning. These factors interact in complex ways, affecting your overall financial health. By analyzing each factor, you can optimize your income and make informed decisions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Gross Income
-        </h3>
-        <p className="mb-4">
-          Gross income is the starting point for calculating net income. It includes all earnings before taxes and deductions. A higher gross income generally leads to higher net income, but it can also push you into a higher tax bracket, increasing your tax rate.
-        </p>
-        <p className="mb-6">
-          To optimize, consider ways to increase your gross income through salary negotiations or additional income streams. For more strategies, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Rate
-        </h3>
-        <p className="mb-4">
-          The tax rate significantly impacts your net income. It is determined by your income level and filing status. Higher income typically results in a higher tax rate, reducing your net income.
-        </p>
-        <p className="mb-6">
-          Understanding your tax bracket and potential deductions can help manage your tax liabilities. Consider consulting a tax professional for personalized advice.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Deductions
-        </h3>
-        <p className="mb-4">
-          Deductions lower your taxable income, thereby reducing your tax liability. Common deductions include mortgage interest, student loan interest, and retirement contributions.
-        </p>
-        <p className="mb-6">
-          Maximizing deductions can significantly increase your net income. Keep detailed records of all deductible expenses and consult tax guidelines to ensure compliance.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Filing Status
-        </h3>
-        <p className="mb-6">
-          Your filing status affects your tax rate and eligibility for certain deductions. Common statuses include single, married filing jointly, and head of household. Each status has different tax implications and thresholds.
-        </p>
-        <p className="mb-6">
-          Choosing the correct filing status can optimize your tax liabilities. Evaluate your options annually to ensure you're taking advantage of the best status for your situation.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          State and Local Taxes
-        </h3>
-        <p className="mb-6">
-          In addition to federal taxes, state and local taxes can impact your net income. These vary widely by location and can include income, sales, and property taxes. Understanding these additional taxes is crucial for accurate net income calculations.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between gross income and net income after tax?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gross income is your total earnings before any deductions, while net income after tax is what remains after federal, state, and local taxes are subtracted. For example, if you earn $75,000 gross and owe $15,000 in taxes, your net income after tax is $60,000. This calculator helps you quickly determine that take-home figure based on your specific tax situation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the Net Income after Tax Calculator account for federal tax brackets in 2025?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator applies the 2025 federal tax brackets, which include rates of 10%, 12%, 22%, 24%, 32%, 35%, and 37% depending on your income level and filing status. For single filers in 2025, the 22% bracket applies to income between $47,150 and $100,525. The calculator automatically applies the correct marginal and effective tax rates to your income.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include bonuses and overtime in my gross income for this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, all forms of taxable income—including bonuses, overtime, freelance income, and investment gains—should be included in your gross income input. These earnings are subject to the same tax treatment as your regular salary, so including them ensures your net income calculation is accurate. Excluding bonuses or overtime will underestimate your actual tax liability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do standard deductions affect the net income after tax calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The standard deduction reduces your taxable income before taxes are calculated. For 2025, the standard deduction is $14,600 for single filers and $29,200 for married filing jointly. The calculator applies this deduction automatically, so if you earn $60,000 as a single filer, only $45,400 is subject to federal income tax, resulting in a higher net income after tax.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does this calculator include state and local income taxes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most Net Income after Tax Calculators allow you to input your state and local tax rates to provide a complete picture of your after-tax income. State income tax rates vary from 0% in states like Texas and Florida to 13.3% in California. If your calculator has this feature, entering your state rate ensures you see your true take-home pay.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does self-employment tax factor into net income after tax?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Self-employed individuals owe both income tax and self-employment tax (Social Security and Medicare), which totals 15.3% on net earnings. This calculator may account for self-employment tax if you select that option, significantly reducing net income compared to W-2 employees. For example, a self-employed person earning $80,000 gross might owe approximately $11,304 in self-employment and income taxes combined.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator to estimate my quarterly estimated tax payments?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, you can use the net income after tax calculation to estimate your total annual tax liability, then divide by four to determine quarterly payments. However, self-employed individuals and high-income earners should also consider prior-year income, credits, and deductions when calculating estimated taxes. The IRS typically requires estimated tax payments when you expect to owe $1,000 or more in taxes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What tax credits should I factor into this calculator for a more accurate result?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common tax credits that reduce your tax liability include the Earned Income Credit (up to $3,995 for 2025), Child Tax Credit ($2,000 per child), and Dependent Care Credit. These credits are applied after calculating your tax, dollar-for-dollar reducing what you owe. If your calculator has a credits section, entering eligible credits will increase your net income after tax.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does filing status (single vs. married) change the net income after tax calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Filing status determines which tax brackets and standard deduction apply to your income. Married filing jointly has wider tax brackets and a higher standard deduction ($29,200 vs. $14,600 for single in 2025), typically resulting in lower taxes on the same household income. Using the correct filing status in this calculator is essential for an accurate net income estimate.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on economic indicators and regulatory guidelines.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2025" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Tax Brackets and Standard Deduction Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on 2025 tax brackets, standard deductions, and inflation adjustments for income calculations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/forms/about-form-1040" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Form 1040 Instructions and Net Income Calculation</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">IRS publication explaining how to calculate taxable income and net income on the federal tax return.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/credits-deductions-for-individuals" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Tax Credits and Deductions Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive IRS resource on tax credits and deductions that affect your net income after tax calculation.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/businesses/small-businesses-self-employed/self-employment-tax-social-security-medicare-tax-for-self-employed" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Self-Employment Tax Calculator and Guidance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS explanation of self-employment tax calculations for freelancers and business owners determining net income.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

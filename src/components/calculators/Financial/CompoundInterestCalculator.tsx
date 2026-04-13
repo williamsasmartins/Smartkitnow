@@ -36,36 +36,40 @@ export default function CompoundInterestCalculator() {
   // FAQ DATA
   const faqs = [
     {
-      question: "What is compound interest?",
-      answer: "Compound interest is the interest on a loan or deposit calculated based on both the initial principal and the accumulated interest from previous periods. It allows your money to grow faster over time compared to simple interest, as you earn interest on your interest."
+      question: "What is the compound interest formula used in this calculator?",
+      answer: "This calculator uses the formula A = P(1 + r/n)^(nt), where A is the final amount, P is the principal, r is the annual interest rate, n is the number of times interest compounds per year, and t is time in years. For continuous compounding, it uses A = Pe^(rt). Understanding this formula helps you verify the calculator's outputs and adjust inputs based on your financial goals.",
     },
     {
-      question: "How does compounding frequency affect my investment?",
-      answer: "The more frequently interest is compounded, the more interest you earn. For example, interest compounded daily will yield a higher return than interest compounded yearly, because the interest is added to the principal more often, allowing it to start earning interest sooner."
+      question: "How much will $10,000 grow in 10 years at 7% annual interest compounded monthly?",
+      answer: "With $10,000 invested at 7% annual interest compounded monthly, your investment will grow to approximately $20,068 after 10 years, earning $10,068 in compound interest. This assumes no additional deposits or withdrawals. The monthly compounding (12 times per year) accelerates growth compared to annual compounding, which would yield $19,672.",
     },
     {
-      question: "What is the formula for compound interest?",
-      answer: "The formula for compound interest is A = P(1 + r/n)^(nt), where A is the future value of the investment/loan, P is the principal investment amount, r is the annual interest rate (decimal), n is the number of times that interest is compounded per unit t, and t is the time the money is invested or borrowed for."
+      question: "What's the difference between annual and daily compounding on a savings account?",
+      answer: "Daily compounding accrues interest 365 times per year versus 12 times for monthly or 1 time for annual compounding. On a $25,000 deposit at 4.5% for 5 years, daily compounding yields approximately $31,307 versus $31,262 with annual compounding—a difference of $45. While the gap narrows with lower interest rates, daily compounding is most beneficial for high-yield savings accounts and certificates of deposit.",
     },
     {
-      question: "Can I lose money with compound interest?",
-      answer: "Compound interest itself is a mechanism for growth, but if you are investing in assets that can lose value (like stocks), your principal can decrease. However, in a savings account or CD with a guaranteed rate, compound interest will only increase your balance."
+      question: "How does starting early impact compound interest growth?",
+      answer: "Starting 10 years earlier with a $5,000 initial investment at 8% compounded annually results in approximately $108,627 over 40 years, compared to $58,955 if you start 10 years later with the same parameters. This demonstrates the power of time: the extra decade generates an additional $49,672 with no additional contributions, illustrating why early investment is critical for retirement planning.",
     },
     {
-      question: "What is the difference between simple and compound interest?",
-      answer: "Simple interest is calculated only on the principal amount, whereas compound interest is calculated on the principal plus any accumulated interest. Over long periods, compound interest results in significantly higher returns."
+      question: "Can I use this calculator for loan interest calculations?",
+      answer: "This calculator is designed for investment growth scenarios where compound interest works in your favor. For loan calculations, interest typically compounds against you, and most loans use different formulas (amortization schedules). Use this calculator for savings accounts, CDs, investment portfolios, and retirement accounts, but use a loan calculator for mortgages, personal loans, or credit card debt.",
     },
     {
-      question: "How can I maximize my compound interest earnings?",
-      answer: "To maximize earnings, start saving early, contribute regularly, choose accounts with higher interest rates, and opt for more frequent compounding intervals (e.g., daily or monthly instead of yearly)."
+      question: "What annual interest rate do I need to double my money in 10 years?",
+      answer: "Using the Rule of 72 or this calculator, you need approximately 7.2% annual interest compounded annually to double your principal in 10 years. For example, $50,000 at 7.2% grows to approximately $100,350 over 10 years. The required rate decreases with more frequent compounding; daily compounding requires roughly 6.93% to achieve the same result.",
     },
     {
-      question: "Does inflation affect compound interest?",
-      answer: "Yes, inflation reduces the purchasing power of your money over time. While compound interest grows your nominal balance, it's important to consider the 'real' rate of return, which is the interest rate minus the inflation rate."
+      question: "How should I account for inflation when using this calculator?",
+      answer: "Calculate your nominal return (what the calculator shows) separately from your real return (adjusted for inflation). If your investment grows to $15,000 but inflation averages 2.5% annually over the period, your real purchasing power gain is lower. Subtract the average inflation rate from your interest rate to estimate real returns: a 6% return minus 2.5% inflation equals roughly 3.5% real growth.",
     },
     {
-      question: "Is compound interest relevant for loans?",
-      answer: "Yes, compound interest works against you when you have debt. Credit cards and loans often use compound interest, meaning you pay interest on the interest charged, which can cause debt to grow rapidly if not paid off."
+      question: "What compounding frequency should I use for my investment scenario?",
+      answer: "Check your account or investment documentation: savings accounts often compound daily (365 times/year), CDs may compound monthly or quarterly, bonds typically compound semi-annually (2 times/year), and Treasury securities usually compound semi-annually. Using the correct frequency is crucial for accuracy; daily compounding on a $20,000 deposit at 5% over 5 years yields $25,664 versus $25,526 with annual compounding.",
+    },
+    {
+      question: "Can I add regular deposits to this calculator, or just use a lump sum?",
+      answer: "This calculator typically uses a starting principal amount (lump sum), though many versions allow you to add additional regular deposits or contributions. If your calculator has a monthly or annual contribution field, use it for retirement savings scenarios; if not, you can run separate calculations for your lump sum and recurring deposits using a future value of annuity calculator. Combining both methods gives the complete picture of your savings growth.",
     }
   ];
 
@@ -431,258 +435,293 @@ export default function CompoundInterestCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+    <div className="space-y-12">
 
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Compound Interest Calculator
-        </h2>
-
-        <p className="mb-6">
-          The Compound Interest Calculator is an essential tool for anyone looking to understand the growth of their investments over time. By calculating compound interest, this tool allows you to see how your initial investment grows as interest is added to the principal amount, and then interest is calculated on the new total. This is a powerful concept in finance, as it can significantly increase the value of your investments over time. Whether you're planning for retirement, saving for a major purchase, or simply looking to grow your wealth, understanding compound interest is crucial.
-        </p>
-
-        <p className="mb-6">
-          Accurate calculations are vital when it comes to financial planning. The compound interest formula takes into account the principal amount, the interest rate, the time period, and the frequency of compounding. Small errors in any of these inputs can lead to significant discrepancies in the final result. This calculator helps ensure that you have precise and reliable data to base your financial decisions on. For instance, using the <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> alongside this tool can provide a comprehensive view of your financial commitments and growth potential.
-        </p>
-
-        <p className="mb-6">
-          To use this calculator effectively, gather information about your initial investment (principal), the annual interest rate, the number of years you plan to invest, and how often the interest is compounded (yearly, monthly, or daily). Enter these values into the calculator to see how your investment will grow over time. For more detailed financial planning, consider using the <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a> to understand how your investments can impact your mortgage payments.
-        </p>
-
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5" />
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. Even a small mistake in the interest rate or compounding frequency can lead to vastly different outcomes. This calculator is a tool to help guide your decisions, but it should be used in conjunction with professional financial advice for the best results.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Compound Interest Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Compound Interest Calculator helps you project how your investments or savings will grow over time by showing the effect of compound interest—earning interest on your interest. This tool is essential for financial planning, whether you're saving for retirement, a down payment, or any long-term goal. By understanding potential growth, you can set realistic targets and make informed decisions about where to invest your money.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, input four key values: your initial principal (starting amount), the annual interest rate your investment earns, the time period (in years), and the compounding frequency (daily, monthly, quarterly, annually, or continuously). The principal is what you deposit upfront; the interest rate depends on your account type (savings accounts typically offer 4-5% in 2024-2025, while stock market averages hover around 10%); and compounding frequency determines how often interest is added to your balance—check your account terms for this detail.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator displays two critical results: your final amount (principal plus all compound interest earned) and the total interest generated. Use these results to compare different scenarios: try adjusting the interest rate or time period to see how small changes impact your long-term wealth. If the projected balance doesn't meet your goals, you can experiment with higher rates or longer timeframes, helping you identify realistic strategies for reaching your financial objectives.</p>
         </div>
-
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs as your financial situation changes. For example, if you receive a windfall or your interest rate changes, update the calculator to see how these changes affect your investment growth. Understanding the impact of different compounding frequencies can also help you choose the best investment strategy. Consider using the <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a> to explore how additional contributions can accelerate your investment growth.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Compound Interest Calculator Formula
-        </h2>
+      {/* TABLE: Compound Interest Growth Comparison by Frequency */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Compound Interest Growth Comparison by Frequency</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how $25,000 grows over 20 years at 5% annual interest using different compounding frequencies.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Compounding Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Final Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Earned</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Difference vs. Annual</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Annual (1x/year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$66,332</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,332</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Semi-Annual (2x/year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$66,505</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,505</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$173</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Quarterly (4x/year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$66,593</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,593</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$261</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Monthly (12x/year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$66,688</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,688</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$356</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Daily (365x/year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$66,717</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,717</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$385</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Continuous</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$66,721</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,721</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$389</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">More frequent compounding generates slightly higher returns, with daily and continuous compounding showing minimal but measurable differences. Most savings accounts use daily compounding.</p>
+      </section>
 
-        <p className="mb-6">
-          The compound interest formula is a fundamental concept in finance, used to calculate the future value of an investment based on periodic compounding. The formula is expressed as A = P(1 + r/n)^(nt), where A is the future value of the investment, P is the principal amount, r is the annual interest rate, n is the number of times interest is compounded per year, and t is the time in years. This formula is widely used because it accurately reflects the exponential growth of investments over time.
-        </p>
+      {/* TABLE: Time to Double Your Investment at Various Interest Rates */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Time to Double Your Investment at Various Interest Rates</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how long it takes to double a principal investment at different annual interest rates with annual compounding.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Interest Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Years to Double</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: $10,000 Becomes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Earned</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23.4 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.7 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.9 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.0 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.3 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Use the Rule of 72 as a quick approximation: divide 72 by the interest rate to estimate doubling time. Higher rates significantly reduce the time needed to achieve your financial goals.</p>
+      </section>
 
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          A = P(1 + r/n)^(nt)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>P = Principal amount (initial investment)</li>
-              <li>r = Annual interest rate (decimal)</li>
-              <li>n = Number of compounding periods per year</li>
-              <li>t = Time in years</li>
-              <li>A = Future value of the investment</li>
-            </ul>
+      {/* TABLE: Compound Interest Impact: Early vs. Late Starting */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Compound Interest Impact: Early vs. Late Starting</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares three investors who each invest $5,000 annually with 8% annual returns, demonstrating the advantage of starting early.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Investor Profile</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Investment Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Contributions</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Final Balance at Age 65</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Compound Interest Earned</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Early Bird</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Age 25-65 (40 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,395,580</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,195,580</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Middle Starter</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Age 35-65 (30 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$703,440</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$553,440</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Late Starter</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Age 45-65 (20 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$293,253</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$193,253</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The early bird invests $100,000 more but earns $642,327 more in compound interest than the late starter, demonstrating the exponential power of time in wealth building.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare your current savings account's interest rate against high-yield savings accounts (currently offering 4.5-5.2% in 2024-2025) using this calculator—moving $50,000 from 0.5% to 5% can generate an extra $22,500+ over 10 years.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test multiple scenarios by adjusting the compounding frequency: switching from annual to daily compounding can add hundreds of dollars over time on larger balances, so always select the most frequent option available for your account.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator backward to determine the interest rate you need: if you want to grow $20,000 to $40,000 in 15 years, adjust the rate until you hit your target—this reveals whether your current investment choice will actually meet your goal.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in inflation by subtracting average inflation (historically 2-3%) from your interest rate to see your real purchasing power growth; a 6% return in an inflationary environment may only represent 3-4% real value growth.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Run annual checks using this calculator with your actual account balances and current interest rates to verify you're on track toward your long-term goals and to spot opportunities to shift money to better-performing investments.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Match Compounding Frequency to Your Account</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using annual compounding when your account compounds daily will underestimate your returns. A $15,000 deposit at 5% over 10 years shows $24,432 with annual compounding but $24,555 with daily compounding—always check your bank statement or account terms for the correct frequency.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Inflation's Impact on Real Returns</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 4% interest rate sounds good, but if inflation averages 3%, your real return is only 1%. This mistake leads to overestimating your purchasing power growth and setting unrealistic financial goals.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Savings Account Rates Stay Constant</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Interest rates fluctuate with Federal Reserve changes; the 5% rate you lock in today may drop to 2% in 18 months. Use conservative rate estimates in the calculator rather than peak rates to build a more realistic retirement plan.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Entering Incorrect Time Periods or Rates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering 10 instead of 0.10 for a 10% rate, or confusing months with years, will produce completely wrong results. Double-check that interest rates are in decimal form (5% = 0.05) and time periods match your compounding frequency selection.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using This Calculator for Loan Interest Scenarios</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Compound interest calculators assume growth (positive interest), but loans work oppositely with amortization schedules. Using this for mortgage or credit card calculations will give misleading results; use loan-specific calculators instead.</p>
           </div>
         </div>
-
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the future value of an investment. The principal amount (P) is the initial sum of money invested, and it serves as the base for calculating interest. The annual interest rate (r) is expressed as a decimal, so a 5% interest rate would be 0.05. The number of compounding periods per year (n) affects how often interest is calculated and added to the principal. Common compounding frequencies include yearly, monthly, and daily. The time (t) is the duration of the investment in years. As these variables change, so does the future value, illustrating the power of compound interest.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-
-        <p className="mb-6">
-          Understanding the factors that influence compound interest is essential for maximizing your investment returns. These factors include the principal amount, interest rate, compounding frequency, time, and external economic conditions. Each of these elements can significantly impact the growth of your investment, and understanding their interplay can help you make informed financial decisions.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Principal Amount
-        </h3>
-        <p className="mb-4">
-          The principal amount is the initial sum of money invested or borrowed. It serves as the foundation for calculating interest. A larger principal amount will result in more interest earned over time, assuming all other factors remain constant. For example, investing $10,000 at a 5% annual interest rate will yield more interest than investing $5,000 at the same rate.
-        </p>
-        <p className="mb-6">
-          To optimize your investment, consider increasing your principal amount whenever possible. This could involve making additional contributions or reinvesting dividends. Using tools like the <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> can help you understand the impact of different principal amounts on your financial goals.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate is the percentage at which your investment grows annually. Higher interest rates lead to faster growth, while lower rates result in slower accumulation. For instance, an investment with a 7% interest rate will grow more quickly than one with a 3% rate, assuming all other factors are equal.
-        </p>
-        <p className="mb-6">
-          Interest rates can vary based on market conditions and the type of investment. It's important to shop around for the best rates and consider the risk associated with higher returns. Comparing different investment options using the <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> can provide insights into potential savings and growth opportunities.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Compounding Frequency
-        </h3>
-        <p className="mb-4">
-          Compounding frequency refers to how often interest is calculated and added to the principal. Common frequencies include yearly, monthly, and daily. More frequent compounding results in more interest being added to the principal, leading to faster growth. For example, daily compounding will yield more interest than monthly compounding, given the same rate and principal.
-        </p>
-        <p className="mb-6">
-          When selecting an investment, consider the compounding frequency as it can significantly impact your returns. Opt for investments with more frequent compounding to maximize growth. Understanding the effect of compounding frequency can be enhanced by using the <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>, which provides insights into how different compounding frequencies affect loan payments and interest.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Time
-        </h3>
-        <p className="mb-6">
-          Time is one of the most critical factors in compound interest calculations. The longer your money is invested, the more time it has to grow. This is due to the exponential nature of compounding, where interest is calculated on both the initial principal and the accumulated interest from previous periods. For example, an investment held for 20 years will grow significantly more than one held for 10 years, even if the principal and interest rate are the same.
-        </p>
-        <p className="mb-6">
-          To maximize the benefits of compound interest, start investing as early as possible and allow your investments to grow over time. This long-term approach can lead to substantial wealth accumulation. Consider using the <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a> to explore how additional contributions can further enhance your investment growth over time.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          External Economic Conditions
-        </h3>
-        <p className="mb-6">
-          External economic conditions, such as inflation, interest rate changes, and market volatility, can also impact your investment's growth. Inflation can erode the purchasing power of your returns, while changes in interest rates can affect the growth rate of your investment. Market volatility can lead to fluctuations in the value of your investment, especially if it's tied to stocks or other market-dependent assets.
-        </p>
-        <p className="mb-6">
-          To mitigate the impact of external conditions, diversify your investments across different asset classes and consider inflation-protected securities. Staying informed about economic trends and adjusting your investment strategy accordingly can help protect your portfolio from adverse conditions. Utilizing tools like the <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> can provide insights into how economic changes might affect your financial obligations and investment growth.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
-                {faq.question}
-              </h3>
-              <div
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the compound interest formula used in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator uses the formula A = P(1 + r/n)^(nt), where A is the final amount, P is the principal, r is the annual interest rate, n is the number of times interest compounds per year, and t is time in years. For continuous compounding, it uses A = Pe^(rt). Understanding this formula helps you verify the calculator's outputs and adjust inputs based on your financial goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much will $10,000 grow in 10 years at 7% annual interest compounded monthly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">With $10,000 invested at 7% annual interest compounded monthly, your investment will grow to approximately $20,068 after 10 years, earning $10,068 in compound interest. This assumes no additional deposits or withdrawals. The monthly compounding (12 times per year) accelerates growth compared to annual compounding, which would yield $19,672.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between annual and daily compounding on a savings account?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Daily compounding accrues interest 365 times per year versus 12 times for monthly or 1 time for annual compounding. On a $25,000 deposit at 4.5% for 5 years, daily compounding yields approximately $31,307 versus $31,262 with annual compounding—a difference of $45. While the gap narrows with lower interest rates, daily compounding is most beneficial for high-yield savings accounts and certificates of deposit.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does starting early impact compound interest growth?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Starting 10 years earlier with a $5,000 initial investment at 8% compounded annually results in approximately $108,627 over 40 years, compared to $58,955 if you start 10 years later with the same parameters. This demonstrates the power of time: the extra decade generates an additional $49,672 with no additional contributions, illustrating why early investment is critical for retirement planning.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for loan interest calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator is designed for investment growth scenarios where compound interest works in your favor. For loan calculations, interest typically compounds against you, and most loans use different formulas (amortization schedules). Use this calculator for savings accounts, CDs, investment portfolios, and retirement accounts, but use a loan calculator for mortgages, personal loans, or credit card debt.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What annual interest rate do I need to double my money in 10 years?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Using the Rule of 72 or this calculator, you need approximately 7.2% annual interest compounded annually to double your principal in 10 years. For example, $50,000 at 7.2% grows to approximately $100,350 over 10 years. The required rate decreases with more frequent compounding; daily compounding requires roughly 6.93% to achieve the same result.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I account for inflation when using this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Calculate your nominal return (what the calculator shows) separately from your real return (adjusted for inflation). If your investment grows to $15,000 but inflation averages 2.5% annually over the period, your real purchasing power gain is lower. Subtract the average inflation rate from your interest rate to estimate real returns: a 6% return minus 2.5% inflation equals roughly 3.5% real growth.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What compounding frequency should I use for my investment scenario?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check your account or investment documentation: savings accounts often compound daily (365 times/year), CDs may compound monthly or quarterly, bonds typically compound semi-annually (2 times/year), and Treasury securities usually compound semi-annually. Using the correct frequency is crucial for accuracy; daily compounding on a $20,000 deposit at 5% over 5 years yields $25,664 versus $25,526 with annual compounding.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I add regular deposits to this calculator, or just use a lump sum?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator typically uses a starting principal amount (lump sum), though many versions allow you to add additional regular deposits or contributions. If your calculator has a monthly or annual contribution field, use it for retirement savings scenarios; if not, you can run separate calculations for your lump sum and recurring deposits using a future value of annuity calculator. Combining both methods gives the complete picture of your savings growth.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.federalreserve.gov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on economic conditions and regulatory guidelines affecting financial markets.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/pubs/growofmoneytaxes.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Securities and Exchange Commission (SEC) — Investor Education</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official SEC resource explaining compound interest, the power of long-term investing, and how to calculate investment growth.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.consumerfinance.gov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources for financial literacy.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/econres/notes/feds-notes/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve — Economic Research on Savings Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Reserve research on current savings rates, historical interest rate trends, and monetary policy impacts on consumer savings.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.fdic.gov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Information on banking regulations and deposit insurance to safeguard your investments.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/banking/savings/savings-accounts/best-high-yield-savings-accounts/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate — High-Yield Savings Account Rates and Comparisons</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Current market rates for savings accounts and certificates of deposit, updated daily to help you find the best returns on your investments.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.irs.gov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information to help you understand your tax obligations.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.investopedia.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained for better financial decision-making.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <a
-                href="https://www.nerdwallet.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers to make informed financial choices.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/consumer-tools/money-as-you-grow/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau (CFPB) — Savings and Investing Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB resources on understanding compound interest, investment basics, and strategies for building wealth over time.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

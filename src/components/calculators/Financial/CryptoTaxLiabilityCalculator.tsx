@@ -20,24 +20,40 @@ export default function CryptoTaxLiabilityCalculator() {
 
   const faqs = [
     {
-      question: "Which crypto transactions are taxable events in 2024?",
-      answer: "Taxable: selling crypto for USD, trading crypto-to-crypto, paying for goods/services with crypto, receiving staking rewards (taxed as ordinary income at receipt), receiving mining income, receiving airdrops (taxed as income when you gain dominion and control). Not taxable: buying crypto with fiat, holding, transferring between your own wallets, gifting below the annual exclusion ($18,000 in 2024). The IRS added a crypto question to the top of Form 1040 in 2019 -- answering 'no' when you had taxable transactions is a perjury risk. Over 8,000 cryptocurrency enforcement cases were opened by IRS CI in 2023."
+      question: "What transactions trigger capital gains tax in cryptocurrency?",
+      answer: "Any sale, trade, or exchange of crypto for fiat currency, other cryptocurrencies, or goods and services is a taxable event. This includes selling Bitcoin for USD, swapping Ethereum for Dogecoin on a DEX, or purchasing coffee with cryptocurrency. Even if you realize a loss, you must report the transaction to claim the loss deduction against other income, up to $3,000 per year in the U.S.",
     },
     {
-      question: "How do I calculate crypto tax liability for staking rewards?",
-      answer: "Staking rewards are taxed as ordinary income at their fair market value (FMV) on the date received. Example: received 0.5 ETH as staking reward when ETH = $2,000/ETH. Taxable income = $1,000 (ordinary income at your marginal rate). Your new cost basis for this 0.5 ETH is $1,000. When you later sell it at $3,000, you recognize an additional $500 capital gain (($3,000 − $1,000) × 0.5 ETH). This double taxation -- income at receipt + capital gain at sale -- is why staking has complex tax treatment. The IRS confirmed this position in Rev. Rul. 2023-14."
+      question: "How do I calculate my cost basis for cryptocurrency purchases?",
+      answer: "Cost basis includes the purchase price plus any transaction fees (mining fees, exchange fees, conversion costs). For example, if you bought 1 Bitcoin at $40,000 and paid $200 in fees, your cost basis is $40,200. The crypto tax calculator uses this figure to determine your gain or loss when you sell. Accurate cost basis tracking is critical because the IRS requires specific identification of which coins you sold using methods like FIFO, LIFO, or specific ID.",
     },
     {
-      question: "What crypto tax forms does the IRS require?",
-      answer: "Form 8949 (Sales and Other Dispositions of Capital Assets): reports every individual disposal with cost basis, proceeds, and gain/loss. Schedule D: summarizes all capital gains/losses from Form 8949. Schedule 1 (Additional Income): reports staking, mining, and airdrop income. Starting 2025, exchanges issue Form 1099-DA (Digital Asset Proceeds) -- similar to a 1099-B for stocks. Before 2025, most exchanges issued 1099-Misc or nothing. Missing a Form 8949 entry for each disposal is an audit risk; the IRS cross-references exchange 1099 data. Crypto tax software (Koinly, TaxBit, CoinTracker) generates compliant Form 8949 exports automatically."
+      question: "What is the difference between short-term and long-term capital gains on crypto?",
+      answer: "Short-term capital gains apply to crypto held for one year or less and are taxed as ordinary income at rates up to 37% (2024). Long-term capital gains apply to crypto held for more than one year and receive preferential rates: 0%, 15%, or 20% depending on your tax bracket. For example, a $10,000 gain on Bitcoin held 6 months could owe $3,700 in federal tax, while the same gain held 13 months could owe $1,500.",
     },
     {
-      question: "How does the IRS detect unreported cryptocurrency income?",
-      answer: "The IRS receives data from major US exchanges via John Doe summonses and voluntary reporting. Coinbase was required to report user data for accounts with $20,000+ in transactions (2016). Kraken, Poloniex, and others faced similar summonses. Starting 2025, all US exchanges must issue 1099-DA for every customer. Additionally, the IRS uses blockchain analytics firms (Chainalysis, CipherTrace) to trace on-chain activity to real identities via exchange-linked wallet addresses. Virtual currency is included on FBAR if foreign exchange holdings exceed $10,000. The IRS crypto unit audited over 1,000 cases in 2023 with an 89% success rate."
+      question: "Do I owe taxes on cryptocurrency staking rewards?",
+      answer: "Yes, staking rewards are taxed as ordinary income at their fair market value on the date received. If you stake Ethereum and receive 0.5 ETH worth $1,000 at that time, you owe income tax on $1,000. When you later sell that staked ETH, you also owe capital gains tax on any appreciation or loss from the $1,000 cost basis. The crypto tax liability calculator helps you track both the initial income tax and subsequent capital gains.",
     },
     {
-      question: "Can I deduct crypto losses against other income?",
-      answer: "Crypto losses follow standard capital loss rules: they first offset capital gains (net against gains dollar-for-dollar). If net capital losses remain, up to $3,000 can offset ordinary income per year ($1,500 for married filing separately). Excess losses carry forward indefinitely. Example: $30,000 crypto loss, $20,000 capital gain from stocks. Net loss = $10,000. Use $3,000 against ordinary income this year; carry $7,000 forward. Note: unlike stocks, the wash-sale rule does not currently apply to crypto (as of 2024) -- you can sell at a loss and immediately repurchase the same crypto. This enables aggressive tax-loss harvesting strategies that are unavailable in traditional markets."
+      question: "How does the wash-sale rule apply to cryptocurrency losses?",
+      answer: "The IRS wash-sale rule does not currently apply to cryptocurrency, unlike stocks and bonds, allowing you to sell at a loss and immediately repurchase the same asset to claim the loss. However, this is subject to change pending legislation. You can deduct crypto losses up to $3,000 against other income annually, with excess losses carried forward indefinitely. Always consult a tax professional, as rules continue to evolve.",
+    },
+    {
+      question: "What crypto transactions are NOT taxable events?",
+      answer: "Non-taxable events include transferring crypto between your own wallets, purchasing crypto with fiat currency, holding crypto without selling, and charitable donations (reported at fair market value). However, receiving crypto as payment for services, mining rewards, airdrops, and hard fork coins ARE taxable when received. The calculator focuses on transactions that create a tax liability, so transfers between personal wallets should be excluded from calculations.",
+    },
+    {
+      question: "How do I report cryptocurrency income from mining and airdrops?",
+      answer: "Mining income and airdrops are reported as ordinary income on Form 1040 and Schedule C at the fair market value on the date received. If you mined 0.1 Bitcoin when it was worth $25,000, you report $2,500 as income. If you receive an airdrop of 1,000 new tokens worth $5 each, you report $5,000 as income. These amounts establish your cost basis, so future appreciation or depreciation creates a separate capital gain or loss.",
+    },
+    {
+      question: "What records do I need to provide to the calculator for accurate tax liability estimates?",
+      answer: "You need: transaction date, type (buy, sell, trade, stake), amount of crypto, price per unit at transaction date, any fees paid, and the asset received (if trading). For accurate calculations, maintain records from your exchange (CSV exports), wallet transactions, and DEX activity. The calculator uses these inputs to compute your total taxable income, short-term and long-term gains, and estimated tax liability based on your filing status.",
+    },
+    {
+      question: "How does my tax bracket affect my crypto tax liability?",
+      answer: "Your tax bracket determines your marginal rate for short-term gains (taxed as ordinary income) and your rate for long-term gains (0%, 15%, or 20%). In 2024, single filers with income up to $47,025 pay 10% on short-term gains and 0% on long-term gains; income from $47,026–$518,900 pays up to 24% short-term and 15% long-term. The crypto tax calculator can estimate your liability if you provide your estimated total income and filing status.",
     }
   ];
 
@@ -290,252 +306,296 @@ export default function CryptoTaxLiabilityCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Crypto Tax Liability Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Crypto Tax Liability Calculator is an essential tool for anyone involved in cryptocurrency trading or investing. As the popularity of digital currencies continues to rise, so does the complexity of tax regulations surrounding them. This calculator helps you estimate your potential tax liability based on your crypto gains, tax rate, and other income sources. By understanding your tax obligations, you can better prepare for tax season and avoid unexpected liabilities. Whether you're a seasoned trader or a casual investor, this tool provides clarity and peace of mind.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in the realm of cryptocurrency taxation. With fluctuating market values and varying tax rates, even small errors can lead to significant financial consequences. According to recent studies, a large percentage of crypto investors are unaware of their full tax obligations, leading to potential fines and penalties. This calculator simplifies the process, allowing you to make informed decisions and optimize your tax strategy. For more insights, explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather all relevant financial information beforehand. You'll need to input your total crypto gains, applicable tax rate, and any additional income. The calculator will then compute your estimated tax liability and net income after taxes. For accurate results, ensure that your data is up-to-date and reflects your current financial situation. For additional guidance, check out our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. Small discrepancies in your crypto gains or tax rate can lead to significant differences in your tax liability. Use this tool regularly to stay updated with your financial status and make necessary adjustments to your tax strategy.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Crypto Tax Liability Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Crypto Tax Liability Calculator estimates your federal income tax and capital gains tax owed on cryptocurrency transactions throughout a tax year. This tool is essential because every crypto sale, trade, and income event (mining, staking, airdrops) creates a taxable event with different tax rates and reporting requirements. Understanding your potential tax liability helps you plan sales, optimize losses, and avoid underpayment penalties.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your individual transactions including the date acquired, date sold, quantity, purchase price per unit, sale price per unit, and any transaction fees. You'll also need to specify your filing status and estimated total taxable income (wages, self-employment, interest, dividends, etc.) to determine your applicable tax bracket. The calculator automatically categorizes gains and losses by holding period (short-term vs. long-term) and computes your ordinary income from staking or mining rewards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your short-term capital gains (taxed at ordinary rates up to 37%), long-term capital gains (taxed at preferential rates of 0%, 15%, or 20%), and total estimated federal tax liability. Review the detailed breakdown to identify high-tax transactions and consider tax-loss harvesting or timing strategies. Remember that this calculator provides federal tax estimates only and does not include state or local taxes, self-employment tax, net investment income tax (3.8%), or alternative minimum tax (AMT), so consult a tax professional for a complete picture.</p>
         </div>
-        
-        <p className="mb-6">
-          For optimal results, consider the timing of your calculations. Cryptocurrency markets are volatile, and prices can change rapidly. It's advisable to perform calculations at regular intervals and adjust your strategy accordingly. Additionally, be aware of any changes in tax laws that may affect your liability. By staying informed and proactive, you can minimize your tax burden and maximize your net income.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Crypto Tax Liability Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is designed to provide a straightforward estimation of your crypto tax liability. It takes into account your total crypto gains, the applicable tax rate, and any additional income you may have. This approach is widely accepted in the financial industry and aligns with standard tax calculation practices. By using this formula, you can gain a clear understanding of your potential tax obligations and plan accordingly.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Tax Liability = (Crypto Gains × Tax Rate) + (Other Income × Tax Rate)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Crypto Gains = Total profit from cryptocurrency transactions</li>
-              <li>Tax Rate = Percentage of tax applicable on your income</li>
-              <li>Other Income = Additional income subject to the same tax rate</li>
-            </ul>
+      {/* TABLE: 2024 Long-Term Capital Gains Tax Rates by Filing Status */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024 Long-Term Capital Gains Tax Rates by Filing Status</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Long-term capital gains on cryptocurrency held over one year receive preferential tax rates based on your income and filing status.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Filing Status</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0% Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15% Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">20% Rate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0–$47,025</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47,026–$518,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$518,901+</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0–$94,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$94,051–$583,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$583,751+</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Separately</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0–$47,025</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47,026–$291,875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$291,876+</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Head of Household</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0–$62,975</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$62,976–$551,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$551,351+</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates apply to taxable income, including long-term crypto gains. Net investment income tax of 3.8% may apply to high-income earners.</p>
+      </section>
+
+      {/* TABLE: Sample Crypto Tax Liability Calculations */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sample Crypto Tax Liability Calculations</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These examples show how the calculator determines tax liability based on holding period and income level.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Purchase Price</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sale Price</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Holding Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Federal Tax Owed</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bitcoin sold after 3 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$45,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Short-term</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24% (ordinary income)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,600</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ethereum sold after 14 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Long-term</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$225</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Staking rewards converted immediately</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000 (fair market value)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">< 1 year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32% (ordinary income + NIIT)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$384</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Multi-year hodl sold at profit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Long-term (5+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0% or 15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0–$3,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes single filer; does not include state or local taxes. Self-employment tax may apply if crypto is business income.</p>
+      </section>
+
+      {/* TABLE: Crypto Income and Tax Reporting Requirements */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Crypto Income and Tax Reporting Requirements</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different types of crypto transactions have specific reporting requirements and tax treatment.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Transaction Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Taxable Event?</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">When Reported</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Form</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Treatment</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Buying crypto with fiat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">None</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Establishes cost basis only</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Selling crypto for fiat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sale date</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Form 8949</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Capital gain/loss (short or long-term)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Trading crypto for crypto</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Trade date</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Form 8949</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Capital gain/loss; value at FMV received</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mining rewards</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Receipt date</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Schedule C (self-employment)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ordinary income at FMV</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Staking rewards</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Receipt date</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Form 1099-MISC or Schedule C</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ordinary income; subsequent sale is capital gain/loss</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Airdrops</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Receipt date</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Schedule C (if income)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ordinary income at FMV</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Transfer between own wallets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">None</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No tax impact</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Form 1099-NEC may be issued by exchanges; always reconcile with your own records. Reporting thresholds may vary by state.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track all transactions with dates and prices in real-time using exchange exports, wallet transaction history, and DEX records to ensure accuracy when using the calculator and filing taxes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to run multiple scenarios comparing FIFO (first-in, first-out), LIFO (last-in, first-out), and specific ID cost basis methods to minimize your tax liability within IRS rules.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Identify losses in the calculator and consider tax-loss harvesting by selling underwater positions to offset short-term gains and reduce your ordinary income by up to $3,000 per year.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Re-run the calculator quarterly as you accumulate transactions throughout the year to monitor your estimated tax liability and avoid surprise bills or underpayment penalties at year-end.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in state and local taxes (California 13.3%, New York City 8.82%, etc.) by adding them to your calculator results, as crypto gains are not exempt from state taxation.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you receive staking rewards or mining income, use the calculator to distinguish between ordinary income tax (at receipt) and capital gains tax (at sale), as many taxpayers miss the initial income tax obligation.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to include transaction fees in cost basis</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many traders ignore exchange fees, gas fees, and conversion costs when calculating cost basis, which inflates their capital gains. A $40,000 Bitcoin purchase with $200 in fees has a $40,200 cost basis, not $40,000; the calculator requires accurate fees to avoid overpaying taxes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Treating all crypto sales as long-term capital gains</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Holding crypto for only 11 months results in short-term capital gains taxed at ordinary income rates (up to 37%), not the preferential long-term rate (15%). Verify your holding period carefully in the calculator, as selling one day before the one-year mark costs significantly more in taxes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring staking and mining income when calculating tax liability</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many crypto holders report only capital gains while missing the ordinary income from staking rewards and mining, which are taxed as income on receipt regardless of whether they've been sold. Omitting these from the calculator dramatically understates your total tax liability.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming crypto-to-crypto trades are not taxable</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Exchanging Bitcoin for Ethereum is a taxable event valued at the fair market value of the asset received, not a like-kind exchange exempt from tax. The calculator must account for all crypto-to-crypto swaps using accurate FMV on the trade date.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not reconciling calculator results with exchange and wallet records</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Discrepancies between calculated gains and actual transactions often stem from missing airdrop income, dust from forks, or mismatched dates and prices. Always verify calculator inputs against your exchange CSV exports and wallet blockchain history before filing.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining your tax liability. The Crypto Gains represent the total profit you've made from buying and selling cryptocurrencies. The Tax Rate is the percentage of tax that applies to your income bracket. Other Income includes any additional earnings that are subject to taxation. By adjusting these variables, you can see how different scenarios impact your overall tax obligation. For instance, a higher tax rate will increase your liability, while additional income will also contribute to a larger tax bill.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your crypto tax liability is essential for accurate calculations. These factors can vary significantly based on your financial situation and the specific details of your cryptocurrency transactions. By recognizing how these elements interact, you can optimize your tax strategy and minimize your liability.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-4">
-          Cryptocurrency markets are known for their volatility, which can significantly impact your gains and losses. Price fluctuations can lead to unexpected profits or losses, affecting your overall tax liability. It's crucial to monitor market trends and adjust your calculations accordingly to ensure accuracy.
-        </p>
-        <p className="mb-6">
-          To mitigate the effects of market volatility, consider using dollar-cost averaging or other investment strategies. These approaches can help stabilize your returns and reduce the impact of short-term market swings. For more strategies, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Regulations
-        </h3>
-        <p className="mb-4">
-          Tax laws and regulations surrounding cryptocurrencies are continually evolving. Changes in legislation can affect how your gains are taxed and what deductions you may be eligible for. Staying informed about these changes is vital for accurate tax planning.
-        </p>
-        <p className="mb-6">
-          Regularly consult with a tax professional or financial advisor to stay updated on the latest regulations. They can provide valuable insights and help you navigate complex tax scenarios. Understanding these regulations can prevent costly mistakes and ensure compliance with the law.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Duration
-        </h3>
-        <p className="mb-4">
-          The length of time you hold your cryptocurrency investments can influence your tax liability. Long-term holdings may qualify for lower tax rates, while short-term trades are typically taxed at higher rates. Understanding these distinctions can help you optimize your investment strategy.
-        </p>
-        <p className="mb-6">
-          Consider holding investments for longer periods to take advantage of favorable tax rates. However, always weigh the potential tax benefits against market conditions and your financial goals. For more insights, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Income Bracket
-        </h3>
-        <p className="mb-6">
-          Your overall income level determines the tax bracket you fall into, which directly affects your tax rate. Higher income levels may result in higher tax rates, increasing your liability. It's essential to consider your entire financial picture when calculating your crypto taxes.
-        </p>
-        <p className="mb-6">
-          To manage your tax bracket effectively, explore opportunities for deductions and credits. These can reduce your taxable income and lower your overall tax burden. Consult with a tax advisor to identify potential savings and optimize your tax strategy.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Transaction History
-        </h3>
-        <p className="mb-6">
-          Keeping detailed records of your cryptocurrency transactions is crucial for accurate tax calculations. Each trade, purchase, or sale can impact your gains and losses, affecting your tax liability. Ensure that your records are comprehensive and up-to-date.
-        </p>
-        <p className="mb-6">
-          Use reliable software or tools to track your transaction history and generate reports. These resources can simplify the process and help you identify any discrepancies. Accurate record-keeping is essential for compliance and can prevent issues during tax audits.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="mt-12 border-t border-slate-200 dark:border-slate-700 pt-10">
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
-                {faq.question}
-              </h3>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What transactions trigger capital gains tax in cryptocurrency?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Any sale, trade, or exchange of crypto for fiat currency, other cryptocurrencies, or goods and services is a taxable event. This includes selling Bitcoin for USD, swapping Ethereum for Dogecoin on a DEX, or purchasing coffee with cryptocurrency. Even if you realize a loss, you must report the transaction to claim the loss deduction against other income, up to $3,000 per year in the U.S.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my cost basis for cryptocurrency purchases?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cost basis includes the purchase price plus any transaction fees (mining fees, exchange fees, conversion costs). For example, if you bought 1 Bitcoin at $40,000 and paid $200 in fees, your cost basis is $40,200. The crypto tax calculator uses this figure to determine your gain or loss when you sell. Accurate cost basis tracking is critical because the IRS requires specific identification of which coins you sold using methods like FIFO, LIFO, or specific ID.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between short-term and long-term capital gains on crypto?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Short-term capital gains apply to crypto held for one year or less and are taxed as ordinary income at rates up to 37% (2024). Long-term capital gains apply to crypto held for more than one year and receive preferential rates: 0%, 15%, or 20% depending on your tax bracket. For example, a $10,000 gain on Bitcoin held 6 months could owe $3,700 in federal tax, while the same gain held 13 months could owe $1,500.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do I owe taxes on cryptocurrency staking rewards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, staking rewards are taxed as ordinary income at their fair market value on the date received. If you stake Ethereum and receive 0.5 ETH worth $1,000 at that time, you owe income tax on $1,000. When you later sell that staked ETH, you also owe capital gains tax on any appreciation or loss from the $1,000 cost basis. The crypto tax liability calculator helps you track both the initial income tax and subsequent capital gains.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the wash-sale rule apply to cryptocurrency losses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The IRS wash-sale rule does not currently apply to cryptocurrency, unlike stocks and bonds, allowing you to sell at a loss and immediately repurchase the same asset to claim the loss. However, this is subject to change pending legislation. You can deduct crypto losses up to $3,000 against other income annually, with excess losses carried forward indefinitely. Always consult a tax professional, as rules continue to evolve.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What crypto transactions are NOT taxable events?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Non-taxable events include transferring crypto between your own wallets, purchasing crypto with fiat currency, holding crypto without selling, and charitable donations (reported at fair market value). However, receiving crypto as payment for services, mining rewards, airdrops, and hard fork coins ARE taxable when received. The calculator focuses on transactions that create a tax liability, so transfers between personal wallets should be excluded from calculations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I report cryptocurrency income from mining and airdrops?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mining income and airdrops are reported as ordinary income on Form 1040 and Schedule C at the fair market value on the date received. If you mined 0.1 Bitcoin when it was worth $25,000, you report $2,500 as income. If you receive an airdrop of 1,000 new tokens worth $5 each, you report $5,000 as income. These amounts establish your cost basis, so future appreciation or depreciation creates a separate capital gain or loss.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What records do I need to provide to the calculator for accurate tax liability estimates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You need: transaction date, type (buy, sell, trade, stake), amount of crypto, price per unit at transaction date, any fees paid, and the asset received (if trading). For accurate calculations, maintain records from your exchange (CSV exports), wallet transactions, and DEX activity. The calculator uses these inputs to compute your total taxable income, short-term and long-term gains, and estimated tax liability based on your filing status.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does my tax bracket affect my crypto tax liability?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your tax bracket determines your marginal rate for short-term gains (taxed as ordinary income) and your rate for long-term gains (0%, 15%, or 20%). In 2024, single filers with income up to $47,025 pay 10% on short-term gains and 0% on long-term gains; income from $47,026–$518,900 pays up to 24% short-term and 15% long-term. The crypto tax calculator can estimate your liability if you provide your estimated total income and filing status.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Cryptocurrency Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on cryptocurrency regulations and their impact on financial markets.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/newsroom/irs-virtual-currency-guidance" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Virtual Currency Guidance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on taxation of virtual currencies, including capital gains treatment and reporting requirements for crypto transactions.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Crypto Guide
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on cryptocurrencies.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p550" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Form 8949 Instructions</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Instructions for reporting sales of capital assets, including cryptocurrency transactions, on Form 8949 and Schedule D.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Digital Asset Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information related to digital assets.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/alerts-bulletins" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Office of Investor Education and Advocacy — Crypto Investor Alerts</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">SEC guidance on cryptocurrency investments and tax implications for U.S. investors.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Cryptocurrency Tax Guidelines
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information for cryptocurrency transactions.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Cryptocurrency Investment
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts related to cryptocurrencies.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Cryptocurrency Tax Planning
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for cryptocurrency tax planning.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p544" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 544: Sales of Assets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive IRS publication covering cost basis, holding periods, capital gains and losses, and tax reporting for all asset sales including crypto.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 
