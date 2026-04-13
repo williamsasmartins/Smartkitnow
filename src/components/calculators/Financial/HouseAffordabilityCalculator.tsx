@@ -122,9 +122,14 @@ export default function HouseAffordabilityCalculator() {
     };
   }, [inputs]);
 
+  const editorial = (
+    <div className="space-y-12" />
+  );
+
   return (
     <CalculatorVerticalLayout 
       title="House Affordability Calculator"
+      editorial={editorial}
       description="Determine how much house you can afford based on your income and debts."
       jsonLd={faqJsonLd}
       onThisPage={[

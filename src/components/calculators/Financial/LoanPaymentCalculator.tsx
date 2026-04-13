@@ -226,6 +226,225 @@ export default function LoanPaymentCalculator() {
     ? results.amortizationSchedule
     : results.amortizationSchedule.slice(0, 12);
 
+  const editorial = (
+    <div className="space-y-12">
+            {/* ==================== HOW TO USE ==================== */}
+            <section id="how-to-use" className="scroll-mt-32">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+                How to use the loan payment calculator
+              </h2>
+              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+                This loan payment calculator helps you estimate how much you&apos;ll pay each month
+                for a fixed-rate, fully amortizing loan. It works well for personal loans, auto
+                loans, small business loans, and other traditional installment debt.
+              </p>
+              <ol className="list-decimal pl-5 space-y-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+                <li>
+                  <span className="font-semibold">Enter the loan amount (principal).</span>{" "}
+                  This is the amount you plan to borrow after any down payment.
+                </li>
+                <li>
+                  <span className="font-semibold">Add the interest rate (APR).</span>{" "}
+                  Use the <em>annual</em> percentage rate quoted by your lender, not a monthly rate.
+                </li>
+                <li>
+                  <span className="font-semibold">Set the loan term in months.</span>{" "}
+                  For example, 36, 48, 60 or 72 months are common for auto loans.
+                </li>
+                <li>
+                  <span className="font-semibold">Optionally choose a first payment date.</span>{" "}
+                  This doesn&apos;t change the math but helps label the amortization schedule.
+                </li>
+                <li>
+                  <span className="font-semibold">Click &quot;Calculate payment&quot;.</span>{" "}
+                  You&apos;ll see your monthly payment, total interest, total paid, and a full payment schedule.
+                </li>
+              </ol>
+              <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+                Use these results to compare offers from different lenders, test shorter or longer
+                terms, and understand how interest costs change over time.
+              </p>
+            </section>
+  
+            {/* ==================== FORMULA SECTION ==================== */}
+            <section id="formula" className="scroll-mt-32">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+                The math behind loan payment calculations
+              </h2>
+              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+                Most installment loans use a standard <strong>amortization formula</strong>. This
+                formula ensures that every payment is the same amount, but the mix of principal and
+                interest changes over time as your balance shrinks.
+              </p>
+              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+                Early payments are interest-heavy because the outstanding balance is still large.
+                Later payments become more principal-heavy as the balance declines. The calculator
+                reproduces this schedule month by month so you can see exactly how your loan will
+                behave.
+              </p>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                If the interest rate is zero, the calculation simplifies: your monthly payment is
+                simply the principal divided by the number of months. In that special case, there is no
+                interest portion at all—every payment directly reduces the balance.
+              </p>
+            </section>
+  
+            {/* ==================== FACTORS ==================== */}
+            <section id="factors" className="scroll-mt-32">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+                What affects your monthly loan payment?
+              </h2>
+              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+                Three main levers control your monthly payment and total interest:{" "}
+                <strong>loan amount</strong>, <strong>interest rate</strong>, and{" "}
+                <strong>term length</strong>.
+              </p>
+              <ul className="list-disc pl-5 space-y-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+                <li>
+                  <span className="font-semibold">Loan amount (principal).</span>{" "}
+                  Larger loans naturally create higher payments and more total interest. A bigger
+                  down payment reduces the amount financed and can dramatically lower both.
+                </li>
+                <li>
+                  <span className="font-semibold">Interest rate (APR).</span>{" "}
+                  Even small changes in APR can have a big impact on total interest over several
+                  years. Improving your credit score or shopping multiple lenders can often shave
+                  off percentage points and save thousands.
+                </li>
+                <li>
+                  <span className="font-semibold">Term length.</span>{" "}
+                  Longer terms reduce the monthly payment but increase the number of payments, so
+                  you usually pay much more interest overall. Shorter terms are tougher on your
+                  budget but cheaper in the long run.
+                </li>
+              </ul>
+              <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+                Use the calculator to experiment: try shortening the term by 12 months, or test
+                variations in the interest rate you might get with a better credit score. Watching the
+                total interest and payoff date change is a powerful way to make more informed
+                borrowing decisions.
+              </p>
+            </section>
+  
+            {/* ==================== EXAMPLES ==================== */}
+            <section id="examples" className="scroll-mt-32">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+                Example scenarios: how payment choices change the cost
+              </h2>
+              <h3 className="text-2xl font-semibold mt-4 mb-2 text-slate-900 dark:text-slate-100">
+                Example 1: Shorter term vs. longer term
+              </h3>
+              <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+                Suppose you&apos;re comparing a $20,000 loan at 7.0% APR with two options:
+              </p>
+              <ul className="list-disc pl-5 mb-4 space-y-2 text-slate-700 dark:text-slate-300">
+                <li>36 months (3 years)</li>
+                <li>60 months (5 years)</li>
+              </ul>
+              <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+                The 36-month option will have a much higher monthly payment, but you&apos;ll
+                be out of debt sooner and pay far less interest overall. The 60-month option
+                fits more easily into your monthly budget but costs more in the long run.
+              </p>
+  
+              <h3 className="text-2xl font-semibold mt-6 mb-2 text-slate-900 dark:text-slate-100">
+                Example 2: Improving your interest rate
+              </h3>
+              <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+                Now imagine you can either accept a 10.5% APR or qualify for 7.5% APR on the
+                same $15,000 loan over 48 months.
+              </p>
+              <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+                The monthly payment difference might seem modest, but over 4 years the lower
+                rate can save you hundreds of dollars in interest. Use the calculator to
+                plug in both rates and compare the total interest side by side.
+              </p>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                This is a good reminder to treat interest rate as more than just a small
+                percentage—over time it becomes a major cost driver for any loan.
+              </p>
+            </section>
+  
+            {/* ==================== FAQ ==================== */}
+            <section id="faq" className="scroll-mt-32">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                Frequently asked questions
+              </h2>
+  
+              <div className="space-y-6">
+                {faqs.map((faq, index) => (
+                  <div key={index}>
+                    <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
+                      {faq.question}
+                    </h3>
+                    <div
+                      className="text-slate-700 dark:text-slate-300 leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: faq.answer }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
+  
+            {/* ==================== REFERENCES ==================== */}
+            <section id="references" className="scroll-mt-32">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                References & additional resources
+              </h2>
+              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+                These resources provide more detail on loan terminology, borrowing costs, and how to
+                compare offers from different lenders.
+              </p>
+              <ul className="space-y-4">
+                <li className="leading-relaxed">
+                  <a
+                    href="https://www.consumerfinance.gov/consumer-tools/loans/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  >
+                    Consumer Financial Protection Bureau – Loans & Credit
+                  </a>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                    Official explanations of common loan types, key terms, and questions to ask
+                    before you borrow.
+                  </p>
+                </li>
+                <li className="leading-relaxed">
+                  <a
+                    href="https://www.fdic.gov/resources/consumers/money-smart"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  >
+                    FDIC Money Smart – Borrowing basics
+                  </a>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                    Educational materials from the Federal Deposit Insurance Corporation on how loans
+                    work and how to avoid common borrowing pitfalls.
+                  </p>
+                </li>
+                <li className="leading-relaxed">
+                  <a
+                    href="https://studentaid.gov/understand-aid/types/loans"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  >
+                    Federal Student Aid – Types of student loans
+                  </a>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                    Detailed overview of federal student loan programs, repayment plans, and how
+                    interest accrues over time.
+                  </p>
+                </li>
+              </ul>
+            </section>
+          </div>
+  );
+
   return (
     <CalculatorVerticalLayout
       title="Loan Payment Calculator"
@@ -614,224 +833,7 @@ export default function LoanPaymentCalculator() {
           )}
         </div>
       }
-      editorial={
-        <div className="space-y-12">
-          {/* ==================== HOW TO USE ==================== */}
-          <section id="how-to-use" className="scroll-mt-32">
-            <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-              How to use the loan payment calculator
-            </h2>
-            <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-              This loan payment calculator helps you estimate how much you&apos;ll pay each month
-              for a fixed-rate, fully amortizing loan. It works well for personal loans, auto
-              loans, small business loans, and other traditional installment debt.
-            </p>
-            <ol className="list-decimal pl-5 space-y-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-              <li>
-                <span className="font-semibold">Enter the loan amount (principal).</span>{" "}
-                This is the amount you plan to borrow after any down payment.
-              </li>
-              <li>
-                <span className="font-semibold">Add the interest rate (APR).</span>{" "}
-                Use the <em>annual</em> percentage rate quoted by your lender, not a monthly rate.
-              </li>
-              <li>
-                <span className="font-semibold">Set the loan term in months.</span>{" "}
-                For example, 36, 48, 60 or 72 months are common for auto loans.
-              </li>
-              <li>
-                <span className="font-semibold">Optionally choose a first payment date.</span>{" "}
-                This doesn&apos;t change the math but helps label the amortization schedule.
-              </li>
-              <li>
-                <span className="font-semibold">Click &quot;Calculate payment&quot;.</span>{" "}
-                You&apos;ll see your monthly payment, total interest, total paid, and a full payment schedule.
-              </li>
-            </ol>
-            <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-              Use these results to compare offers from different lenders, test shorter or longer
-              terms, and understand how interest costs change over time.
-            </p>
-          </section>
-
-          {/* ==================== FORMULA SECTION ==================== */}
-          <section id="formula" className="scroll-mt-32">
-            <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-              The math behind loan payment calculations
-            </h2>
-            <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-              Most installment loans use a standard <strong>amortization formula</strong>. This
-              formula ensures that every payment is the same amount, but the mix of principal and
-              interest changes over time as your balance shrinks.
-            </p>
-            <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-              Early payments are interest-heavy because the outstanding balance is still large.
-              Later payments become more principal-heavy as the balance declines. The calculator
-              reproduces this schedule month by month so you can see exactly how your loan will
-              behave.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              If the interest rate is zero, the calculation simplifies: your monthly payment is
-              simply the principal divided by the number of months. In that special case, there is no
-              interest portion at all—every payment directly reduces the balance.
-            </p>
-          </section>
-
-          {/* ==================== FACTORS ==================== */}
-          <section id="factors" className="scroll-mt-32">
-            <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-              What affects your monthly loan payment?
-            </h2>
-            <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-              Three main levers control your monthly payment and total interest:{" "}
-              <strong>loan amount</strong>, <strong>interest rate</strong>, and{" "}
-              <strong>term length</strong>.
-            </p>
-            <ul className="list-disc pl-5 space-y-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-              <li>
-                <span className="font-semibold">Loan amount (principal).</span>{" "}
-                Larger loans naturally create higher payments and more total interest. A bigger
-                down payment reduces the amount financed and can dramatically lower both.
-              </li>
-              <li>
-                <span className="font-semibold">Interest rate (APR).</span>{" "}
-                Even small changes in APR can have a big impact on total interest over several
-                years. Improving your credit score or shopping multiple lenders can often shave
-                off percentage points and save thousands.
-              </li>
-              <li>
-                <span className="font-semibold">Term length.</span>{" "}
-                Longer terms reduce the monthly payment but increase the number of payments, so
-                you usually pay much more interest overall. Shorter terms are tougher on your
-                budget but cheaper in the long run.
-              </li>
-            </ul>
-            <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-              Use the calculator to experiment: try shortening the term by 12 months, or test
-              variations in the interest rate you might get with a better credit score. Watching the
-              total interest and payoff date change is a powerful way to make more informed
-              borrowing decisions.
-            </p>
-          </section>
-
-          {/* ==================== EXAMPLES ==================== */}
-          <section id="examples" className="scroll-mt-32">
-            <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-              Example scenarios: how payment choices change the cost
-            </h2>
-            <h3 className="text-2xl font-semibold mt-4 mb-2 text-slate-900 dark:text-slate-100">
-              Example 1: Shorter term vs. longer term
-            </h3>
-            <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-              Suppose you&apos;re comparing a $20,000 loan at 7.0% APR with two options:
-            </p>
-            <ul className="list-disc pl-5 mb-4 space-y-2 text-slate-700 dark:text-slate-300">
-              <li>36 months (3 years)</li>
-              <li>60 months (5 years)</li>
-            </ul>
-            <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-              The 36-month option will have a much higher monthly payment, but you&apos;ll
-              be out of debt sooner and pay far less interest overall. The 60-month option
-              fits more easily into your monthly budget but costs more in the long run.
-            </p>
-
-            <h3 className="text-2xl font-semibold mt-6 mb-2 text-slate-900 dark:text-slate-100">
-              Example 2: Improving your interest rate
-            </h3>
-            <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-              Now imagine you can either accept a 10.5% APR or qualify for 7.5% APR on the
-              same $15,000 loan over 48 months.
-            </p>
-            <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-              The monthly payment difference might seem modest, but over 4 years the lower
-              rate can save you hundreds of dollars in interest. Use the calculator to
-              plug in both rates and compare the total interest side by side.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              This is a good reminder to treat interest rate as more than just a small
-              percentage—over time it becomes a major cost driver for any loan.
-            </p>
-          </section>
-
-          {/* ==================== FAQ ==================== */}
-          <section id="faq" className="scroll-mt-32">
-            <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-              Frequently asked questions
-            </h2>
-
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index}>
-                  <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-                    {faq.question}
-                  </h3>
-                  <div
-                    className="text-slate-700 dark:text-slate-300 leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: faq.answer }}
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* ==================== REFERENCES ==================== */}
-          <section id="references" className="scroll-mt-32">
-            <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
-              <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-              References & additional resources
-            </h2>
-            <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-              These resources provide more detail on loan terminology, borrowing costs, and how to
-              compare offers from different lenders.
-            </p>
-            <ul className="space-y-4">
-              <li className="leading-relaxed">
-                <a
-                  href="https://www.consumerfinance.gov/consumer-tools/loans/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                >
-                  Consumer Financial Protection Bureau – Loans & Credit
-                </a>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                  Official explanations of common loan types, key terms, and questions to ask
-                  before you borrow.
-                </p>
-              </li>
-              <li className="leading-relaxed">
-                <a
-                  href="https://www.fdic.gov/resources/consumers/money-smart"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                >
-                  FDIC Money Smart – Borrowing basics
-                </a>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                  Educational materials from the Federal Deposit Insurance Corporation on how loans
-                  work and how to avoid common borrowing pitfalls.
-                </p>
-              </li>
-              <li className="leading-relaxed">
-                <a
-                  href="https://studentaid.gov/understand-aid/types/loans"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                >
-                  Federal Student Aid – Types of student loans
-                </a>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                  Detailed overview of federal student loan programs, repayment plans, and how
-                  interest accrues over time.
-                </p>
-              </li>
-            </ul>
-          </section>
-        </div>
-      }
+      editorial={editorial}
     />
   );
 }

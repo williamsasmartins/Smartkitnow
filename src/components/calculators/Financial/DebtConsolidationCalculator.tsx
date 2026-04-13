@@ -105,6 +105,10 @@ export default function DebtConsolidationCalculator() {
     };
   }, [inputs]);
 
+  const editorial = (
+    <div className="space-y-12" />
+  );
+
   return (
     <CalculatorVerticalLayout 
       title="Debt Consolidation Calculator"
