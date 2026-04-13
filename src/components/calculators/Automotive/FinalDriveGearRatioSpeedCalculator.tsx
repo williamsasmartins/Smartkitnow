@@ -83,29 +83,40 @@ export default function FinalDriveGearRatioSpeedCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "What is the final drive ratio and why is it important?",
-      answer:
-        "The final drive ratio is the gear ratio of the last set of gears in the drivetrain, typically in the differential. It determines how many times the driveshaft turns for each rotation of the wheels. This ratio significantly affects vehicle acceleration, top speed, and fuel efficiency. A higher final drive ratio means more torque to the wheels but lower top speed, while a lower ratio favors higher speed but less torque."
+      question: "What is the relationship between final drive ratio and top speed?",
+      answer: "Final drive ratio directly affects your vehicle's top speed—a lower ratio (like 2.73:1) allows higher speeds, while a higher ratio (like 4.10:1) reduces top speed but increases acceleration. For example, a vehicle with a 3.55:1 final drive ratio and 26-inch tires will reach approximately 155 mph at 6,500 RPM, whereas a 4.10:1 ratio in the same vehicle would top out around 135 mph. The relationship is inverse: as the ratio number increases, maximum speed decreases.",
     },
     {
-      question: "How does the gear ratio affect vehicle speed?",
-      answer:
-        "The gear ratio of a specific gear in the transmission determines how engine RPM translates to wheel RPM. Lower gears have higher ratios, providing more torque but less speed, while higher gears have lower ratios, allowing higher speeds at lower engine RPM. The combination of gear ratio and final drive ratio directly influences the vehicle's speed at a given engine RPM."
+      question: "How do I calculate wheel speed from RPM and gear ratio?",
+      answer: "Wheel speed is calculated by dividing engine RPM by the combined gear ratio (transmission gear ratio × final drive ratio), then multiplying by tire circumference. For example, at 3,000 RPM with a 1.0 transmission ratio and 3.73 final drive ratio on a 26-inch tire (81.68-inch circumference), the calculation is: (3,000 ÷ 3.73) × 81.68 ÷ 336 = approximately 20.6 mph. This calculator automates this process to give you instant results across multiple RPM values.",
     },
     {
-      question: "Why do I need to input tire diameter for this calculation?",
-      answer:
-        "Tire diameter affects the circumference of the tire, which determines how far the vehicle travels with each wheel rotation. Larger tires cover more distance per rotation, increasing vehicle speed for the same engine RPM and gear ratios. Accurate tire diameter input ensures precise speed calculations."
+      question: "Why would I need to change my final drive ratio?",
+      answer: "Drivers change final drive ratios to optimize performance for specific uses—lower ratios (like 2.73:1) improve fuel efficiency and highway cruising, while higher ratios (like 4.56:1) enhance acceleration and towing capacity. For instance, truck owners frequently upgrade to 4.10:1 or 4.56:1 ratios for better low-end torque, whereas street racers might use 3.73:1 or lower for balanced acceleration and top speed. This calculator helps you predict the exact performance impact before investing in a gear swap.",
     },
     {
-      question: "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, this calculator supports both imperial (inches, mph) and metric (millimeters, km/h) units. Simply select your preferred unit system, and input the tire diameter accordingly. The calculator will automatically adjust the formulas and output the speed in the correct units."
+      question: "What tire size changes affect my speed calculations?",
+      answer: "Tire diameter is critical because it directly determines how far your vehicle travels per wheel rotation. A vehicle with 25-inch tires will travel approximately 78.5 inches per revolution, while 33-inch tires travel about 103.6 inches per revolution—roughly 32% more distance. If you upgrade from 25-inch to 33-inch tires without recalibrating your speedometer, your actual speed will be 32% higher than displayed, which is why this calculator requires accurate tire measurements.",
     },
     {
-      question: "What engine RPM should I use for this calculation?",
-      answer:
-        "You should input the engine RPM at which you want to know the vehicle speed, such as the engine speed at a certain throttle position or cruising RPM. This allows you to estimate the vehicle speed at that engine speed and gear combination, useful for performance tuning or understanding driving characteristics."
+      question: "How does transmission gear ratio interact with final drive ratio?",
+      answer: "Transmission and final drive ratios multiply together to create the total reduction ratio affecting wheel speed at any given RPM. For example, in 3rd gear with a 1.0 ratio and a 3.55 final drive, you get a combined 3.55:1 reduction, but in 1st gear with a 3.27 ratio and the same 3.55 final drive, the total becomes 11.6:1—dramatically slower wheel speed for maximum acceleration. This calculator shows the cumulative effect of both ratios across all gears.",
+    },
+    {
+      question: "What is overdrive and how does it affect speed calculations?",
+      answer: "Overdrive is a transmission gear (typically 4th or 5th gear) with a ratio &lt;1.0—commonly 0.70:1 to 0.85:1—that reduces engine RPM relative to wheel speed for highway efficiency. With a 0.75 overdrive ratio and 3.55 final drive, the combined ratio is only 2.66:1, meaning at 2,500 RPM you can achieve highway speeds with lower fuel consumption. This calculator helps you understand how overdrive gearing affects fuel economy by showing the RPM required to maintain specific speeds.",
+    },
+    {
+      question: "Can I use this calculator to determine fuel economy impacts?",
+      answer: "Yes—this calculator reveals the RPM required at any speed, which is directly tied to fuel consumption rates. A 3.55 final drive in a sedan at 65 mph might require 2,200 RPM, while a 4.10 ratio requires 2,550 RPM—approximately 16% higher engine load and typically worse fuel economy. By comparing RPM requirements across different ratios at your typical cruising speed, you can estimate fuel economy impacts before modifying your vehicle.",
+    },
+    {
+      question: "What do different final drive ratios mean for towing capacity?",
+      answer: "Higher final drive ratios (like 4.56:1) provide more mechanical advantage for moving heavy loads by keeping engines in optimal torque RPM ranges during towing. Trucks rated for 14,000-pound towing typically use 3.73:1 or 4.10:1 ratios, while those rated for 20,000+ pounds often use 4.56:1 ratios. This calculator doesn't directly calculate towing capacity, but shows how different ratios affect available torque multiplication at any given wheel speed.",
+    },
+    {
+      question: "How does this calculator apply to manual versus automatic transmissions?",
+      answer: "Both manual and automatic transmissions use individual gear ratios multiplied by the final drive ratio, so this calculator applies equally to both—the key difference is that automatics shift between ratios automatically while manuals require driver input. Whether you have a 6-speed manual with ratios of 3.27, 1.95, 1.35, 1.00, 0.83, 0.67 or an automatic with different ratios, this calculator handles the math identically. The final drive ratio remains constant regardless of transmission type in most vehicles.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -229,113 +240,308 @@ export default function FinalDriveGearRatioSpeedCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) from the dropdown at the top right.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the tire diameter in inches (imperial) or millimeters (metric). This is typically found on the tire sidewall or vehicle specs.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the final drive ratio of your vehicle’s differential. This is usually a decimal number like 3.91 or 4.10.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the gear ratio for the gear you want to calculate speed for, such as 1.00 for direct drive or 0.75 for overdrive.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Input the engine RPM at which you want to calculate the vehicle speed.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Click the <em>Calculate</em> button to see the estimated vehicle speed displayed below.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Final Drive & Gear Ratio Speed Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Understanding how your vehicle’s speed relates to engine RPM, gear ratios, and tire size is essential for automotive engineers, enthusiasts, and anyone interested in vehicle performance. The final drive ratio and gear ratio together determine how many times the wheels turn for each revolution of the engine. The tire diameter then translates wheel rotations into distance traveled, allowing us to calculate speed.
-          </p>
-          <p>
-            The final drive ratio is the gear reduction in the differential, which multiplies torque but reduces speed. A higher final drive ratio means the engine turns more times to rotate the wheels once, resulting in better acceleration but lower top speed. Conversely, a lower final drive ratio favors higher top speed but less torque multiplication.
-          </p>
-          <p>
-            Gear ratios in the transmission further modify engine speed before it reaches the differential. Lower gears have higher ratios, providing torque multiplication for acceleration or climbing, while higher gears have lower ratios for cruising efficiency and speed.
-          </p>
-          <p>
-            Tire diameter affects the distance traveled per wheel revolution. Larger tires cover more ground per rotation, increasing speed for a given engine RPM and gear setup. However, changing tire size also affects speedometer accuracy and vehicle dynamics.
-          </p>
-          <p>
-            This calculator combines these factors to estimate vehicle speed at a given engine RPM and gear. It supports both imperial and metric units, making it versatile for global users. By inputting your vehicle’s tire diameter, final drive ratio, gear ratio, and engine RPM, you can quickly determine your speed, aiding in tuning, diagnostics, or educational purposes.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Final Drive & Gear Ratio Speed Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines your vehicle's wheel speed and RPM at any driving speed, helping you understand how gear ratios affect performance, fuel economy, and capability. Whether you're considering a differential swap, evaluating tire size changes, or optimizing for towing, this tool instantly shows the mechanical relationship between engine RPM, transmission gearing, and actual speed. Understanding these numbers is essential for modifying vehicles or selecting the right drivetrain components for your driving needs.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator requires three key inputs: your vehicle's final drive ratio (found in the owner's manual or differential specification), the transmission gear ratio you're analyzing, and your tire diameter in inches. The final drive ratio is typically a single number (like 3.55:1 or 4.10:1) representing the reduction in your differential, while transmission ratios vary by gear—enter the ratio for the specific gear you want to analyze. Tire diameter should be the overall diameter including the rubber sidewall; you can calculate it by adding the rim diameter to twice the sidewall height (rim diameter + 2 × sidewall height).</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your wheel speed and required RPM for any vehicle speed, typically ranging from idle speeds up to your vehicle's rev limit. A higher RPM result at a given speed indicates a higher gear ratio (more mechanical advantage), which improves acceleration but reduces fuel efficiency; conversely, lower RPM means a lower ratio favoring highway cruising efficiency. Use these results to compare how different differential ratios or tire sizes affect your performance profile, fuel economy, and suitability for towing or off-road driving.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect units for tire diameter:</strong> Entering tire diameter in the wrong unit system (e.g., inches when metric is selected) will produce inaccurate results. Always verify your unit selection matches your input.
-          </p>
-          <p>
-            <strong>2. Using nominal tire size instead of actual diameter:</strong> Tire sizes printed on the sidewall (e.g., 225/45R17) need to be converted to actual diameter. Using nominal or partial sizes leads to errors.
-          </p>
-          <p>
-            <strong>3. Forgetting to include both gear ratio and final drive ratio:</strong> Both ratios multiply to affect speed. Omitting one or entering zero will invalidate the calculation.
-          </p>
-          <p>
-            <strong>4. Inputting unrealistic engine RPM values:</strong> Engine speeds beyond typical operating ranges can produce misleading speeds. Use realistic RPM values for meaningful results.
-          </p>
-          <p>
-            <strong>5. Not accounting for tire wear or inflation:</strong> Tire diameter changes with wear and inflation pressure, affecting circumference and speed. For precise work, measure actual tire diameter.
-          </p>
+      {/* TABLE: Final Drive Ratio Comparison: Speed & Acceleration Impact */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Final Drive Ratio Comparison: Speed & Acceleration Impact</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how different final drive ratios affect 60 mph RPM and estimated 0-60 acceleration for a typical sedan with a 3.0-liter engine and 26-inch tires.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Final Drive Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">RPM at 60 mph</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Est. 0-60 Time (sec)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.73:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Highway fuel economy</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.08:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,310</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Balanced performance</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.31:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,490</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily driving</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.55:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,670</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Everyday use & towing</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.73:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,810</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Performance & light towing</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.90:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,940</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Acceleration focused</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.10:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,090</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy towing & off-road</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.56:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,440</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maximum towing capacity</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">RPM values assume 60 mph at sea level with standard tire pressure; 0-60 times are approximate and vary by engine power and drivetrain type.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Tire Size Impact on Wheel Speed Calculations */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tire Size Impact on Wheel Speed Calculations</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different tire diameters affect the distance traveled per wheel revolution and resulting speed at constant RPM.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tire Size (Diameter)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Circumference (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speed at 2,000 RPM (w/ 3.55:1 ratio)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speed at 3,000 RPM (w/ 3.55:1 ratio)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-inch (actual ~25")</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">78.54</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.8 mph</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.1 mph</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">22-inch (actual ~27")</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">84.82</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.0 mph</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23.9 mph</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24-inch (actual ~29")</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">91.11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.2 mph</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25.8 mph</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">26-inch (actual ~31")</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">97.39</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.4 mph</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27.6 mph</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">28-inch (actual ~33")</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">103.67</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19.6 mph</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29.4 mph</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30-inch (actual ~35")</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">109.96</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20.8 mph</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31.2 mph</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Circumference calculated from tire diameter using π; speeds shown are wheel speeds and do not account for drivetrain losses (~10-15%).</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Multi-Gear Transmission Ratio Examples: Total Reduction by Gear */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Multi-Gear Transmission Ratio Examples: Total Reduction by Gear</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how transmission gear ratios combine with a 3.55 final drive ratio to create total reduction in different gears.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Transmission Gear</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gear Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Final Drive</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Reduction</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1st Gear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.27</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.61:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">From complete stop</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2nd Gear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.92:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Acceleration building</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3rd Gear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.79:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mid-range acceleration</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4th Gear (Direct)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.55:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Highway cruising</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5th Gear (Overdrive)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.83</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.95:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fuel-efficient highway</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6th Gear (Deep OD)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.67</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.38:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maximum efficiency</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Overdrive gears (&lt;1.0) reduce engine RPM for the same wheel speed, improving fuel economy on highways; total reduction multiplies transmission ratio by final drive ratio.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always measure tire diameter accurately—don't rely on marketing tire sizes like '33-inch' without verifying the actual diameter, as many all-terrain and mud-terrain tires run smaller than advertised by 1-2 inches, which will skew your speed calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When comparing gear ratios for performance changes, focus on RPM at your typical cruising speed—if you upgrade from a 3.55:1 to a 3.73:1 ratio and your highway cruising RPM increases from 2,100 to 2,250, expect roughly 5-7% worse fuel economy on the highway.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Remember that this calculator shows theoretical wheel speed; real-world vehicle speedometer readings are often calibrated slightly high (typically 2-5%) for safety and to account for tire wear, so your actual speed may be 2-5% lower than calculated.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you're swapping differentials for towing, use this calculator to ensure your engine stays in its optimal torque range (typically 2,000-4,000 RPM for most trucks) during typical highway towing speeds—if you're spinning above 3,500 RPM while towing at 65 mph, your ratio is likely too high.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href={ref.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using marketing tire size instead of actual diameter</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many drivers enter a tire size like '33-inch' without measuring the actual tire diameter, but manufacturers often market tires by approximate size—measuring reveals they're frequently 31-32 inches. This error compounds across all calculations, making your speed and RPM results inaccurate by 3-6%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing final drive ratio with transmission gear ratio</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The final drive ratio (differential) is typically a single fixed number for your entire vehicle, while transmission ratios change with each gear. Entering a transmission ratio as your final drive, or vice versa, will produce completely incorrect results for all calculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for drivetrain losses</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">This calculator shows theoretical wheel speed based on pure mathematics, but real vehicles lose 10-15% of power to drivetrain friction (transmission, transfer case, axles). Your actual MPH will be approximately 10-15% lower than this calculator's results, which is why speedometers are calibrated slightly high.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming identical ratios across different vehicle models</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even vehicles from the same manufacturer with the same engine may have different factory final drive ratios—a 2024 Ford F-150 might come with 3.31:1 or 3.55:1 depending on the model, so always verify your specific ratio rather than assuming a benchmark number.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the relationship between final drive ratio and top speed?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Final drive ratio directly affects your vehicle's top speed—a lower ratio (like 2.73:1) allows higher speeds, while a higher ratio (like 4.10:1) reduces top speed but increases acceleration. For example, a vehicle with a 3.55:1 final drive ratio and 26-inch tires will reach approximately 155 mph at 6,500 RPM, whereas a 4.10:1 ratio in the same vehicle would top out around 135 mph. The relationship is inverse: as the ratio number increases, maximum speed decreases.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate wheel speed from RPM and gear ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Wheel speed is calculated by dividing engine RPM by the combined gear ratio (transmission gear ratio × final drive ratio), then multiplying by tire circumference. For example, at 3,000 RPM with a 1.0 transmission ratio and 3.73 final drive ratio on a 26-inch tire (81.68-inch circumference), the calculation is: (3,000 ÷ 3.73) × 81.68 ÷ 336 = approximately 20.6 mph. This calculator automates this process to give you instant results across multiple RPM values.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why would I need to change my final drive ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Drivers change final drive ratios to optimize performance for specific uses—lower ratios (like 2.73:1) improve fuel efficiency and highway cruising, while higher ratios (like 4.56:1) enhance acceleration and towing capacity. For instance, truck owners frequently upgrade to 4.10:1 or 4.56:1 ratios for better low-end torque, whereas street racers might use 3.73:1 or lower for balanced acceleration and top speed. This calculator helps you predict the exact performance impact before investing in a gear swap.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What tire size changes affect my speed calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Tire diameter is critical because it directly determines how far your vehicle travels per wheel rotation. A vehicle with 25-inch tires will travel approximately 78.5 inches per revolution, while 33-inch tires travel about 103.6 inches per revolution—roughly 32% more distance. If you upgrade from 25-inch to 33-inch tires without recalibrating your speedometer, your actual speed will be 32% higher than displayed, which is why this calculator requires accurate tire measurements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does transmission gear ratio interact with final drive ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Transmission and final drive ratios multiply together to create the total reduction ratio affecting wheel speed at any given RPM. For example, in 3rd gear with a 1.0 ratio and a 3.55 final drive, you get a combined 3.55:1 reduction, but in 1st gear with a 3.27 ratio and the same 3.55 final drive, the total becomes 11.6:1—dramatically slower wheel speed for maximum acceleration. This calculator shows the cumulative effect of both ratios across all gears.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is overdrive and how does it affect speed calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Overdrive is a transmission gear (typically 4th or 5th gear) with a ratio &lt;1.0—commonly 0.70:1 to 0.85:1—that reduces engine RPM relative to wheel speed for highway efficiency. With a 0.75 overdrive ratio and 3.55 final drive, the combined ratio is only 2.66:1, meaning at 2,500 RPM you can achieve highway speeds with lower fuel consumption. This calculator helps you understand how overdrive gearing affects fuel economy by showing the RPM required to maintain specific speeds.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator to determine fuel economy impacts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—this calculator reveals the RPM required at any speed, which is directly tied to fuel consumption rates. A 3.55 final drive in a sedan at 65 mph might require 2,200 RPM, while a 4.10 ratio requires 2,550 RPM—approximately 16% higher engine load and typically worse fuel economy. By comparing RPM requirements across different ratios at your typical cruising speed, you can estimate fuel economy impacts before modifying your vehicle.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What do different final drive ratios mean for towing capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Higher final drive ratios (like 4.56:1) provide more mechanical advantage for moving heavy loads by keeping engines in optimal torque RPM ranges during towing. Trucks rated for 14,000-pound towing typically use 3.73:1 or 4.10:1 ratios, while those rated for 20,000+ pounds often use 4.56:1 ratios. This calculator doesn't directly calculate towing capacity, but shows how different ratios affect available torque multiplication at any given wheel speed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator apply to manual versus automatic transmissions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Both manual and automatic transmissions use individual gear ratios multiplied by the final drive ratio, so this calculator applies equally to both—the key difference is that automatics shift between ratios automatically while manuals require driver input. Whether you have a 6-speed manual with ratios of 3.27, 1.95, 1.35, 1.00, 0.83, 0.67 or an automatic with different ratios, this calculator handles the math identically. The final drive ratio remains constant regardless of transmission type in most vehicles.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.sae.org/standards/content/j2030_202310/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SAE International Technical Standards for Gear Ratio Measurement</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">SAE J2030 defines standardized methods for measuring and reporting gear ratios in automotive transmissions and differentials.</p>
+          </li>
+          <li>
+            <a href="https://www.fueleconomy.gov/feg/noframes/2024.shtml" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA Fuel Economy Guide: Impact of Vehicle Modifications</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The EPA provides guidance on how modifications like gear ratios and tire size changes affect official fuel economy ratings.</p>
+          </li>
+          <li>
+            <a href="https://www.nhtsa.gov/vehicle-manufacturers/standards-federal-motor-vehicle-safety-standards" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Highway Traffic Safety Administration: Speedometer Accuracy Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">NHTSA Federal Motor Vehicle Safety Standard 121 specifies speedometer accuracy requirements, typically allowing a ±10% variance.</p>
+          </li>
+          <li>
+            <a href="https://www.tram-online.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Tire and Rim Association: Standard Tire Dimensions</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The Tire and Rim Association maintains the official standards for tire sizing, aspect ratios, and overall diameter calculations used in the automotive industry.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

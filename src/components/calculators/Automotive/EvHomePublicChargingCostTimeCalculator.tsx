@@ -65,29 +65,40 @@ export default function EvHomePublicChargingCostTimeCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "What factors affect the cost difference between home and public EV charging?",
-      answer:
-        "The cost difference primarily depends on the electricity rates at home versus public charging stations. Home electricity rates are usually lower, but some public chargers may offer competitive pricing or discounts. Additionally, public chargers often have higher power outputs, reducing charging time but sometimes at a premium cost per kWh. Taxes, fees, and membership plans can also influence the final cost."
+      question: "How much does it cost to charge an EV at home versus at a public charging station?",
+      answer: "Home charging typically costs $0.03–$0.05 per mile using residential electricity rates averaging $0.14–$0.16 per kWh, while public Level 2 chargers cost $0.07–$0.12 per mile and DC fast chargers range from $0.15–$0.30 per mile. A typical EV with a 60 kWh battery costs roughly $8–$10 to fully charge at home, compared to $15–$25 at public Level 2 stations and $20–$35 at DC fast chargers. Home charging is typically 40–60% cheaper for routine daily charging.",
     },
     {
-      question: "How does charging power impact the total charging time?",
-      answer:
-        "Charging power, measured in kilowatts (kW), directly affects how quickly an EV battery can be replenished. Higher charging power means faster charging times. For example, a 50 kW public charger can charge a 50 kWh battery in about one hour, whereas a 7 kW home charger would take over seven hours. However, the vehicle's onboard charger and battery management system also limit maximum charging speeds."
+      question: "How long does it take to charge an EV at home compared to public chargers?",
+      answer: "A Level 1 home charger (120V) adds 2–5 miles of range per hour and requires 24–48 hours for a full charge, while a Level 2 home charger (240V) adds 25–30 miles per hour and fully charges in 6–10 hours. Public Level 2 chargers provide similar speeds (25–30 miles/hour), while DC fast chargers deliver 150–200 miles in 20–30 minutes. For overnight home charging, you'll wake up with a full battery; for road trips, public DC fast chargers are necessary.",
     },
     {
-      question: "Can I use this calculator for any EV model?",
-      answer:
-        "Yes, this calculator is designed to be flexible for any EV model as long as you know the battery capacity in kWh and the charging rates. However, keep in mind that actual charging times may vary based on the vehicle's maximum charging rate and battery state of charge. Always refer to your EV's specifications for the most accurate estimates."
+      question: "What is the break-even point for installing a home EV charger?",
+      answer: "A Level 2 home charger installation costs $500–$2,500 depending on electrical upgrades required. At typical usage of 12,000 miles annually, home charging saves $300–$600 per year compared to public charging, meaning the break-even occurs in 2–8 years. Federal tax credits of up to $1,000 and state incentives can accelerate this timeline by 1–2 years.",
     },
     {
-      question: "Why is public charging sometimes more expensive despite faster charging?",
-      answer:
-        "Public charging stations often charge a premium for faster charging due to infrastructure costs and convenience. They may also include additional fees or membership costs. While the higher power output reduces charging time, the cost per kWh can be significantly higher than residential electricity rates, making public charging more expensive overall."
+      question: "How do time-of-use electricity rates affect home charging costs?",
+      answer: "Time-of-use (TOU) rates vary by utility, typically offering off-peak rates of $0.08–$0.12 per kWh (usually 9 PM–6 AM) versus peak rates of $0.18–$0.25 per kWh. Charging during off-peak hours can reduce home charging costs by 30–50% compared to peak charging. Many EV owners can save $200–$400 annually by scheduling charging during off-peak windows using scheduled departure features.",
     },
     {
-      question: "How can I reduce my EV charging costs at home?",
-      answer:
-        "To reduce home charging costs, consider charging during off-peak hours when electricity rates are lower if your utility offers time-of-use pricing. Installing solar panels can also offset electricity costs. Additionally, using a smart charger that schedules charging sessions can optimize costs and battery health."
+      question: "What is the difference between Level 1, Level 2, and DC fast charging?",
+      answer: "Level 1 uses standard 120V outlets (2–5 miles/hour, found at home), Level 2 uses 240V circuits (25–30 miles/hour, at home or public locations), and DC fast charging uses 400V–900V systems (150–200 miles in 20–30 minutes, exclusively at public stations). Level 1 is free to install but impractical for regular use; Level 2 is ideal for home and daily commuting; DC fast is essential for long-distance travel. Most EV owners rely on home Level 2 for 80% of charging and public stations for occasional rapid top-ups.",
+    },
+    {
+      question: "How do subscription and membership plans at public charging networks compare to pay-per-use?",
+      answer: "Pay-per-use public charging averages $0.25–$0.50 per kWh or $3–$5 per session, while membership plans like EVgo or Electrify America cost $10–$50 monthly and reduce per-kWh rates to $0.15–$0.35. For users charging publicly &lt;5 times monthly, pay-per-use is cheaper; for &gt;10 public charges monthly, a $20–$30 monthly membership typically saves $100–$200 annually. Many workplace and multi-unit home charging networks offer free or subsidized charging, eliminating this decision entirely.",
+    },
+    {
+      question: "What percentage of EV charging happens at home versus public stations?",
+      answer: "Studies show 70–85% of EV charging occurs at home, while 15–30% happens at work, destination, or public chargers. This distribution heavily favors home charging because most daily driving is &lt;50 miles, easily covered by overnight home charging. Public charging is reserved for road trips, emergency top-ups, and situations where home charging is unavailable.",
+    },
+    {
+      question: "How do ambient temperature and battery condition affect charging time and cost?",
+      answer: "Cold temperatures (&lt;32°F) reduce charging efficiency by 10–20% and extend charging times by 5–15% due to battery preconditioning requirements. Hot temperatures (&gt;85°F) can trigger thermal management systems that slightly reduce charging speed but have minimal cost impact. Battery degradation over 5–10 years reduces capacity by 5–10%, slightly extending charging times but not significantly affecting per-mile costs on modern EVs with 200+ mile ranges.",
+    },
+    {
+      question: "What hidden costs should I consider when comparing home versus public charging?",
+      answer: "Home charging hidden costs include increased electricity consumption ($30–$100 annually), potential electrical panel upgrades ($800–$3,000), and circuit breaker additions. Public charging hidden costs include membership fees ($10–$50 monthly), session surcharges ($1–$3), and idle fees ($0.50–$1.00 per minute after charging completes). Additionally, public charging is less convenient for daily use and may incur parking or access fees at some locations.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -235,107 +246,285 @@ export default function EvHomePublicChargingCostTimeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Enter your EV's battery capacity</strong> in kilowatt-hours (kWh). This is typically found in your vehicle's specifications.
-          </li>
-          <li>
-            <strong>Input your home electricity rate</strong> in dollars per kWh. Check your utility bill or provider's website for accurate rates.
-          </li>
-          <li>
-            <strong>Enter the public charging rate</strong> you expect to pay per kWh at public stations. Rates vary by provider and location.
-          </li>
-          <li>
-            <strong>Provide the charging power</strong> (in kW) for both your home charger and the public charger you plan to use. This affects charging time.
-          </li>
-          <li>
-            <strong>Click "Calculate"</strong> to see the estimated cost and time for charging your EV at home versus public stations.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to EV Home vs Public Charging Cost & Time Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Electric vehicles (EVs) offer a cleaner alternative to traditional gasoline-powered cars, but understanding the costs and time involved in charging them is essential for budgeting and convenience. This calculator helps you compare the cost and time of charging your EV at home versus using public charging stations by considering your battery size, electricity rates, and charging speeds.
-          </p>
-          <p>
-            The battery capacity, measured in kilowatt-hours (kWh), represents the total energy storage of your EV. Charging costs are calculated by multiplying this capacity by the electricity rate you pay, either at home or at public stations. Home electricity rates are generally lower, making home charging more economical, but public chargers often provide faster charging speeds.
-          </p>
-          <p>
-            Charging power, expressed in kilowatts (kW), determines how quickly your EV battery can be replenished. Home chargers typically range from 3.7 kW to 11 kW, while public fast chargers can deliver 50 kW or more. Faster charging reduces wait times but may come at a higher cost per kWh.
-          </p>
-          <p>
-            By inputting your specific values, this calculator provides a clear comparison of both cost and time, helping you make informed decisions about when and where to charge your EV. Whether you prioritize saving money or minimizing charging time, understanding these factors can enhance your EV ownership experience.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the EV Home vs Public Charging Cost & Time Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The EV Home vs Public Charging Cost & Time Calculator helps you compare the total cost and charging duration of powering your electric vehicle at home versus using public charging networks. This tool is essential for EV owners and prospective buyers who want to understand long-term ownership costs, determine the financial viability of home charger installation, and optimize their charging strategy based on driving patterns and electricity rates.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, input your vehicle's battery capacity (typically 40–100 kWh), your home electricity rate (found on your utility bill), local public charging rates (Level 2 and DC fast prices from networks in your area), your annual mileage, and the percentage of charging you expect to do at home versus public stations. The calculator will also ask for home charger installation costs if you haven't yet installed one, allowing you to see the break-even timeline.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results display your annual home charging cost, public charging cost, total charging expenditure, and annual savings by choosing home charging. The calculator also projects payback periods for home charger installation and shows charging time comparisons for different scenarios. Use these insights to decide whether to install a home charger, adjust your charging behavior, or negotiate workplace charging access to minimize overall EV ownership costs.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring charging power limits:</strong> Many users forget that their EV or charger may have maximum charging power limits, which can affect charging time. Always check your vehicle's maximum AC and DC charging rates.
-          </p>
-          <p>
-            <strong>2. Using average rates without checking:</strong> Electricity rates vary by location and time of day. Using inaccurate rates can lead to misleading cost estimates.
-          </p>
-          <p>
-            <strong>3. Assuming full battery charge every time:</strong> Most EV owners rarely charge from 0% to 100%. Partial charges affect cost and time differently.
-          </p>
-          <p>
-            <strong>4. Not accounting for charging efficiency:</strong> Some energy is lost during charging due to heat and battery management, typically around 10%. This calculator assumes ideal conditions.
-          </p>
-          <p>
-            <strong>5. Overlooking additional fees:</strong> Public charging stations may have session fees or membership costs not included in per kWh rates.
-          </p>
+      {/* TABLE: Charging Cost Comparison by Type (2024-2025 Benchmarks) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Charging Cost Comparison by Type (2024-2025 Benchmarks)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Real-world charging costs per mile and full-charge scenarios across home Level 1, home Level 2, public Level 2, and DC fast charging options.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Charger Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Per Mile</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Per kWh</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Full Charge Cost (60 kWh)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speed (Miles/Hour)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Home Level 1 (120V)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.03–$0.04</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.14–$0.16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8.40–$9.60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Home Level 2 (240V)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.03–$0.05</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.14–$0.16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8.40–$9.60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–30</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Public Level 2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.07–$0.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.22–$0.35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$13.20–$21.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">DC Fast Charging</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.15–$0.30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.35–$0.65</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$21.00–$39.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150–200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Workplace Charging (Free)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6–20</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs based on national average residential electricity ($0.14–$0.16/kWh) and public network rates. DC fast charging prices vary significantly by network and region; Electrify America, EVgo, and Tesla Supercharger rates range $0.30–$0.65/kWh as of 2025.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Annual Charging Cost Scenarios by Daily Commute Distance */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Annual Charging Cost Scenarios by Daily Commute Distance</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Total annual charging costs for different daily commute patterns using home Level 2 versus public charging, assuming 12,000–15,000 annual miles.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Miles</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Home Level 2 Cost (7 days/week)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Public Level 2 (50% of charging)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">DC Fast (20% of charging)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Public Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Savings (Home vs. Public)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12,000 (33 mi/day)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$504–$576</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$396–$648</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$216–$432</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$612–$1,080</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$108–$504</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15,000 (41 mi/day)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$630–$720</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$495–$810</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$270–$540</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$765–$1,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$135–$720</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20,000 (55 mi/day)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$840–$960</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$660–$1,080</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$360–$720</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,020–$1,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$180–$960</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25,000 (68 mi/day)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,050–$1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$825–$1,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450–$900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,275–$2,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$225–$1,200</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes home Level 2 at $0.14–$0.16/kWh, public Level 2 at $0.22–$0.35/kWh, and DC fast at $0.35–$0.65/kWh. Public charging mix reflects 80% Level 2 and 20% DC fast for longer occasional trips.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Home Charger Installation Costs and ROI Timeline */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Home Charger Installation Costs and ROI Timeline</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical home Level 2 charger installation costs, federal incentives, and payback periods based on annual charging savings.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Component</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Level 2 Charger Unit (240V)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400–$800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Brands: Tesla Wall Connector, Clipper Creek, ChargePoint Home</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Electrical Installation & Labor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$1,700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Costs vary by home; upgraded panel may add $800–$3,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Total Installation (Standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500–$2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Assumes existing 200A service panel, &lt;50 feet from panel</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Total Installation (Major Upgrade)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000–$4,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Includes panel upgrade, trenching, or new circuit breaker</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Federal Tax Credit (IRA 2024–2025)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30% of installation costs, capped at $1,000 per charger</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">State/Utility Rebates</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0–$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">California, New York, Illinois, and others offer additional incentives</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Payback Period (with incentives)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–6 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Based on $300–$600 annual savings and $1,000 tax credit</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Installation costs vary significantly by state, local electrical codes, and distance from service panel. Always obtain multiple quotes before installation. Federal IRA tax credits are available through 2032 and reduce taxable income.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Enable time-of-use (TOU) electricity rates with your utility provider and schedule all home charging during off-peak hours (typically 9 PM–6 AM) to reduce costs by 30–50% compared to peak rates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Install a 240V Level 2 home charger if you drive &gt;30 miles daily or charge more than twice weekly; the $500–$2,500 installation pays for itself in 2–6 years through savings versus public charging.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine home charging with public DC fast charging only for road trips &gt;200 miles; using DC fast chargers for routine daily charging wastes $3–$10 per charge compared to home charging.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Apply for federal IRA tax credits (up to $1,000), state rebates (varies $0–$2,000), and utility incentives before installing a home charger to reduce net installation costs and accelerate payback to 1–3 years.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href={ref.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Time-of-Use Electricity Rates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many EV owners charge at peak hours without realizing they're paying 50–100% more per kWh than off-peak rates. Switching to TOU rates and charging between 9 PM–6 AM can save $200–$400 annually with zero additional effort if you use scheduled departure features.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating Public Charging Convenience</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Public charging involves finding available stations, parking fees, idle charges after charging completes, and time delays (20–30 minutes for DC fast, 1–3 hours for Level 2). Home charging is &gt;10x more convenient for daily use and costs 50–70% less, making it the default choice for 80–90% of EV charging.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Excluding Hidden Installation Costs in Break-Even Analysis</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Home charger installation costs extend far beyond the $400–$800 unit price; electrical panel upgrades ($800–$3,000), trenching, and labor can double or triple total costs. Always obtain multiple quotes and factor in federal credits and state rebates before calculating payback periods.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming All DC Fast Chargers Cost the Same</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">DC fast charger networks vary dramatically in pricing: Tesla Superchargers ($0.30–$0.45/kWh), Electrify America ($0.35–$0.65/kWh), and EVgo ($0.40–$0.70/kWh) have different pricing strategies, membership discounts, and regional surcharges. Always compare rates in your specific area before assuming road trip costs.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does it cost to charge an EV at home versus at a public charging station?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Home charging typically costs $0.03–$0.05 per mile using residential electricity rates averaging $0.14–$0.16 per kWh, while public Level 2 chargers cost $0.07–$0.12 per mile and DC fast chargers range from $0.15–$0.30 per mile. A typical EV with a 60 kWh battery costs roughly $8–$10 to fully charge at home, compared to $15–$25 at public Level 2 stations and $20–$35 at DC fast chargers. Home charging is typically 40–60% cheaper for routine daily charging.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does it take to charge an EV at home compared to public chargers?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A Level 1 home charger (120V) adds 2–5 miles of range per hour and requires 24–48 hours for a full charge, while a Level 2 home charger (240V) adds 25–30 miles per hour and fully charges in 6–10 hours. Public Level 2 chargers provide similar speeds (25–30 miles/hour), while DC fast chargers deliver 150–200 miles in 20–30 minutes. For overnight home charging, you'll wake up with a full battery; for road trips, public DC fast chargers are necessary.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the break-even point for installing a home EV charger?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A Level 2 home charger installation costs $500–$2,500 depending on electrical upgrades required. At typical usage of 12,000 miles annually, home charging saves $300–$600 per year compared to public charging, meaning the break-even occurs in 2–8 years. Federal tax credits of up to $1,000 and state incentives can accelerate this timeline by 1–2 years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do time-of-use electricity rates affect home charging costs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Time-of-use (TOU) rates vary by utility, typically offering off-peak rates of $0.08–$0.12 per kWh (usually 9 PM–6 AM) versus peak rates of $0.18–$0.25 per kWh. Charging during off-peak hours can reduce home charging costs by 30–50% compared to peak charging. Many EV owners can save $200–$400 annually by scheduling charging during off-peak windows using scheduled departure features.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between Level 1, Level 2, and DC fast charging?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Level 1 uses standard 120V outlets (2–5 miles/hour, found at home), Level 2 uses 240V circuits (25–30 miles/hour, at home or public locations), and DC fast charging uses 400V–900V systems (150–200 miles in 20–30 minutes, exclusively at public stations). Level 1 is free to install but impractical for regular use; Level 2 is ideal for home and daily commuting; DC fast is essential for long-distance travel. Most EV owners rely on home Level 2 for 80% of charging and public stations for occasional rapid top-ups.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do subscription and membership plans at public charging networks compare to pay-per-use?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pay-per-use public charging averages $0.25–$0.50 per kWh or $3–$5 per session, while membership plans like EVgo or Electrify America cost $10–$50 monthly and reduce per-kWh rates to $0.15–$0.35. For users charging publicly &lt;5 times monthly, pay-per-use is cheaper; for &gt;10 public charges monthly, a $20–$30 monthly membership typically saves $100–$200 annually. Many workplace and multi-unit home charging networks offer free or subsidized charging, eliminating this decision entirely.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What percentage of EV charging happens at home versus public stations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Studies show 70–85% of EV charging occurs at home, while 15–30% happens at work, destination, or public chargers. This distribution heavily favors home charging because most daily driving is &lt;50 miles, easily covered by overnight home charging. Public charging is reserved for road trips, emergency top-ups, and situations where home charging is unavailable.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do ambient temperature and battery condition affect charging time and cost?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cold temperatures (&lt;32°F) reduce charging efficiency by 10–20% and extend charging times by 5–15% due to battery preconditioning requirements. Hot temperatures (&gt;85°F) can trigger thermal management systems that slightly reduce charging speed but have minimal cost impact. Battery degradation over 5–10 years reduces capacity by 5–10%, slightly extending charging times but not significantly affecting per-mile costs on modern EVs with 200+ mile ranges.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What hidden costs should I consider when comparing home versus public charging?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Home charging hidden costs include increased electricity consumption ($30–$100 annually), potential electrical panel upgrades ($800–$3,000), and circuit breaker additions. Public charging hidden costs include membership fees ($10–$50 monthly), session surcharges ($1–$3), and idle fees ($0.50–$1.00 per minute after charging completes). Additionally, public charging is less convenient for daily use and may incur parking or access fees at some locations.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.eia.gov/electricity/state/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Energy Information Administration (EIA) – Average Electricity Rates by State</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official government data on residential electricity rates across all U.S. states, updated monthly and used to calculate home charging costs.</p>
+          </li>
+          <li>
+            <a href="https://www.irs.gov/credits-deductions/individuals/alternative-fuel-vehicle-refueling-property-credit" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Alternative Fuel Vehicle Refueling Property Credit</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal tax credit information for EV charger installation, including the 30% credit up to $1,000 available through 2032 under the Inflation Reduction Act.</p>
+          </li>
+          <li>
+            <a href="https://afdc.energy.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Energy – Electric Vehicle Charging Station Locator (Alternative Fuels Data Center)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official government database of public EV charging stations with real-time pricing, availability, and network information for cost comparisons.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerreports.org/cars/new-electric-cars/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Reports – EV Charging Costs & Infrastructure Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Independent consumer guidance on EV ownership costs, charging options, and total cost of ownership comparisons for electric vehicles.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

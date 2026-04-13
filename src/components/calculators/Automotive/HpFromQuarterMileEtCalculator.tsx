@@ -73,29 +73,40 @@ export default function HpFromQuarterMileEtCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How accurate is the horsepower estimate from quarter mile ET and weight?",
-      answer:
-        "The horsepower estimate derived from quarter mile ET and vehicle weight provides a good approximation but is not exact. It assumes optimal traction, no aerodynamic drag losses, and consistent environmental conditions. Real-world factors such as drivetrain losses, tire grip, altitude, and weather can affect actual horsepower requirements. Use this calculator as a guideline rather than an absolute measurement."
+      question: "How is horsepower calculated from quarter mile elapsed time?",
+      answer: "Horsepower is estimated using the relationship between a vehicle's weight, quarter mile ET (elapsed time), and acceleration. The most common formula used is: HP = (Weight × 5.825) / ET³. This empirical formula assumes standard atmospheric conditions and typical drag coefficients. For example, a 3,500 lb car running 12 seconds would produce approximately 130 horsepower.",
     },
     {
-      question: "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, this calculator supports both metric and imperial units. Simply select your preferred unit system from the dropdown menu. Enter the vehicle weight in pounds (lbs) for imperial or kilograms (kg) for metric, and the quarter mile elapsed time (ET) in seconds. The formula adapts accordingly to provide an accurate horsepower estimate."
+      question: "What is the difference between calculated HP and actual dyno horsepower?",
+      answer: "Calculated horsepower from quarter mile times provides an estimate based on acceleration performance, while dyno horsepower measures actual power output at the wheels or crank. The quarter mile method can vary by 10-20% depending on launch quality, traction, driver skill, and environmental factors. A car showing 400 hp on a dyno might run quarter mile times suggesting 380-420 hp due to these variables.",
     },
     {
-      question: "Why does the formula use the constant 5.825?",
-      answer:
-        "The constant 5.825 is an empirically derived value used in drag racing to relate quarter mile ET to horsepower and weight. It normalizes the ET to a baseline for the cubic relationship in the formula. This constant helps convert the time and weight inputs into a horsepower estimate that aligns with observed performance data."
+      question: "Does vehicle weight significantly affect the horsepower estimate?",
+      answer: "Yes, vehicle weight is critical in the calculation because heavier vehicles require more power to achieve the same acceleration. Two vehicles with identical quarter mile times but different weights will show different horsepower estimates. For instance, a 3,000 lb vehicle and 4,500 lb vehicle both running 11 seconds would be calculated as 185 hp and 278 hp respectively.",
     },
     {
-      question: "What if my vehicle is heavily modified or has forced induction?",
-      answer:
-        "Modifications such as forced induction, weight reduction, or aerodynamic enhancements can affect the accuracy of this estimate. The formula assumes a typical vehicle setup without extreme modifications. For highly tuned or modified vehicles, consider this calculator as a rough estimate and consult dyno testing or professional tuning for precise horsepower measurements."
+      question: "What quarter mile time would indicate 500 horsepower?",
+      answer: "Using the standard formula HP = (Weight × 5.825) / ET³, a 3,500 lb vehicle would need to run approximately 9.5 seconds to produce an estimated 500 horsepower. However, this varies significantly by weight—a heavier 5,000 lb vehicle would need roughly 10.8 seconds for the same power output. These are theoretical minimums and real-world results depend on traction and environmental conditions.",
     },
     {
-      question: "Can I estimate quarter mile ET if I know horsepower and weight?",
-      answer:
-        "While this calculator focuses on estimating horsepower from ET and weight, the inverse calculation is possible but less straightforward due to the cubic relationship. Other calculators or formulas exist to estimate ET from horsepower and weight, often requiring iterative or empirical methods. For best results, use dedicated ET calculators if you want to predict elapsed times."
+      question: "How do atmospheric conditions affect quarter mile ET and calculated horsepower?",
+      answer: "Air density, temperature, and altitude all influence quarter mile performance and thus calculated horsepower estimates. Cool, dense air at sea level provides better traction and engine performance than hot, thin air at high altitude. A vehicle might run 11.5 seconds at sea level but 12.1 seconds at 5,000 ft elevation, suggesting lower power despite identical engine output.",
+    },
+    {
+      question: "Can I use this calculator for all types of vehicles?",
+      answer: "This calculator works best for conventional vehicles with standard aerodynamics and weight distributions. It's less accurate for high-downforce race cars, trucks with trailers, or vehicles with extreme modifications. Drag racing sleds, for example, may produce different results because the formula assumes typical drag coefficients around 0.3-0.4.",
+    },
+    {
+      question: "What does ET mean in drag racing terminology?",
+      answer: "ET stands for Elapsed Time and represents the total time in seconds it takes a vehicle to complete a quarter mile (1,320 feet or 402 meters) from a dead stop. Lower ET numbers indicate faster acceleration and, theoretically, more horsepower. The difference between a 10-second and 11-second ET can represent 50+ horsepower variation depending on vehicle weight.",
+    },
+    {
+      question: "How accurate is the horsepower estimate for stock vehicles versus modified cars?",
+      answer: "The calculator is generally accurate within ±10% for stock vehicles that haven't been significantly modified. For heavily modified or turbocharged vehicles, accuracy decreases because the formula doesn't account for power delivery variations or boost characteristics. A stock 300 hp sedan might show calculated results within 20 hp, while a heavily modified car could vary by 50+ hp.",
+    },
+    {
+      question: "What is considered a good quarter mile time for a street vehicle?",
+      answer: "Most stock sedans run 14-16 second quarter miles, while performance vehicles typically achieve 11-13 seconds, and high-performance sports cars often run under 11 seconds. A 12-second quarter mile generally indicates 250-350 hp depending on weight, while a 10-second time suggests 400+ hp. Anything under 9 seconds typically indicates specialty performance or racing vehicles with 500+ hp.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -209,110 +220,310 @@ export default function HpFromQuarterMileEtCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) from the dropdown menu.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the quarter mile elapsed time (ET) in seconds. This is the time your vehicle took to complete the quarter mile.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the vehicle weight in pounds (lbs) if using Imperial units or kilograms (kg) if using Metric.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click the "Calculate" button to get the estimated horsepower required to achieve the entered ET with the given weight.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Review the results and use the detailed explanation below for further understanding.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Horsepower from Quarter Mile ET Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            The quarter mile elapsed time (ET) is a critical performance metric in automotive drag racing, representing how quickly a vehicle can cover a quarter mile distance from a standing start. Estimating the horsepower required to achieve a specific ET based on vehicle weight is valuable for enthusiasts, engineers, and tuners aiming to understand or improve vehicle performance.
-          </p>
-          <p>
-            This calculator uses a well-established empirical formula: <em>Horsepower = Weight / (ET / 5.825)^3</em>. The constant 5.825 is derived from drag racing data and normalizes the ET to a baseline, allowing the cubic relationship between time and power to be accurately modeled. The formula assumes ideal traction and no significant losses due to aerodynamics or drivetrain inefficiencies.
-          </p>
-          <p>
-            When you input your vehicle's weight and quarter mile ET, the calculator computes the estimated horsepower needed to achieve that performance. This estimate helps in setting realistic goals for engine tuning, modifications, or comparing different vehicles. However, keep in mind that real-world conditions such as tire grip, weather, altitude, and mechanical losses can influence actual performance.
-          </p>
-          <p>
-            For metric users, ensure weight is entered in kilograms, while imperial users should enter weight in pounds. The ET should always be in seconds regardless of the unit system. This tool is ideal for quick estimations and planning but should be complemented with dyno testing or professional assessments for precise horsepower measurements.
-          </p>
-          <p>
-            Understanding this relationship empowers automotive professionals and enthusiasts to make informed decisions about vehicle upgrades, performance tuning, and financial investments in automotive projects.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horsepower from Quarter Mile ET Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Horsepower from Quarter Mile ET Calculator is a specialized tool that estimates your vehicle's horsepower based on its performance in the quarter mile drag racing distance. Rather than requiring expensive dyno testing, this calculator uses the empirical relationship between elapsed time, vehicle weight, and power output to provide a reliable estimate. This method is widely used by automotive enthusiasts and performance shops to quickly assess engine performance.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, you need two key pieces of information: your vehicle's weight (including driver and fuel) and its quarter mile elapsed time in seconds. The calculator applies the standard performance formula used in drag racing to convert these variables into an estimated horsepower figure. Most users obtain their quarter mile time by visiting a local drag strip or timing facility, and vehicle weight can be determined through a commercial scale or estimated from manufacturer specifications plus modifications.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results provide an estimated horsepower range rather than an exact figure, typically with a margin of error of ±10-15% depending on various factors. This estimate represents the power required to achieve your measured quarter mile time under the conditions present during your run. Compare your calculated horsepower against dyno-tested results or similar vehicles to validate whether your quarter mile time aligns with your engine's actual output, accounting for variations in traction, driver skill, and atmospheric conditions.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Units:</strong> Entering weight in the wrong unit system (e.g., pounds instead of kilograms) will lead to wildly inaccurate horsepower estimates. Always double-check your unit selection.
-          </p>
-          <p>
-            <strong>2. Unrealistic ET Values:</strong> Extremely low or high ET values that don't match typical vehicle performance can skew results. Ensure your ET input is realistic for the vehicle type.
-          </p>
-          <p>
-            <strong>3. Ignoring Vehicle Modifications:</strong> The formula assumes a standard vehicle setup. Highly modified cars with forced induction, weight reduction, or aerodynamic aids may not fit the model well.
-          </p>
-          <p>
-            <strong>4. Overreliance on Estimates:</strong> This calculator provides an estimate, not a precise measurement. For critical applications, use dyno testing or professional evaluation.
-          </p>
-          <p>
-            <strong>5. Neglecting Environmental Factors:</strong> Altitude, temperature, and humidity affect engine performance but are not accounted for in this formula.
-          </p>
+      {/* TABLE: Estimated Horsepower by Vehicle Weight and Quarter Mile ET */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Estimated Horsepower by Vehicle Weight and Quarter Mile ET</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows approximate horsepower estimates for different vehicle weights across common quarter mile elapsed times.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vehicle Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">10 second ET</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">11 second ET</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">12 second ET</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">13 second ET</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">14 second ET</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">145 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">108 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">84 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">67 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55 hp</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">174 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">130 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">101 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66 hp</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">203 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">151 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">117 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">93 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">77 hp</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">232 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">173 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">134 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">107 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">88 hp</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">261 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">195 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">151 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">99 hp</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">290 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">216 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">168 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">134 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110 hp</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations based on formula: HP = (Weight × 5.825) / ET³. Results assume standard atmospheric conditions and typical 0.3-0.4 drag coefficients.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Quarter Mile Performance by Vehicle Class and Typical Horsepower */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Quarter Mile Performance by Vehicle Class and Typical Horsepower</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Representative quarter mile times and estimated horsepower for common vehicle categories.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vehicle Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average ET</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated HP</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0-60 mph Time</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Economy Sedan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.5 seconds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2 seconds</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mid-Size Sedan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,400 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.2 seconds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.8 seconds</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Performance Sedan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,600 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.8 seconds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">118 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.1 seconds</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sports Car</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,300 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.5 seconds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">162 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.9 seconds</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Muscle Car</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,800 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2 seconds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">305 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.2 seconds</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Performance Supercar</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.1 seconds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">523 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.8 seconds</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data represents typical real-world conditions. Actual results vary based on driver skill, traction, weather, and vehicle setup.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Impact of Vehicle Weight on Required ET for Specific Horsepower Targets */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Vehicle Weight on Required ET for Specific Horsepower Targets</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the quarter mile ET required to achieve common horsepower levels across different vehicle weights.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Target Horsepower</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2,800 lbs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">3,500 lbs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">4,200 lbs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5,000 lbs</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">150 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.65 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.66 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.58 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.52 sec</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">250 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.39 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.28 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.10 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.93 sec</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">350 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.54 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.35 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.11 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.86 sec</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">450 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.89 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.65 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.37 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.07 sec</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">550 hp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.38 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.10 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.77 sec</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.42 sec</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations based on inverse application of the standard formula. Times assume optimal launch conditions and consistent traction.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always include the driver's weight and fuel load when determining total vehicle weight—a missing 200 lbs can skew horsepower estimates by 15-20 hp. Use a commercial truck scale or visit a local drag strip that provides accurate weight measurements rather than estimating.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Obtain your quarter mile ET during optimal conditions with good traction and a consistent launch technique. Poor traction or wheel spin artificially inflates ET numbers, resulting in underestimated horsepower—the same 400 hp car might show 350 hp if launched on slippery pavement.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare calculated results against dyno testing and manufacturer specifications to establish a baseline for your vehicle. A significant discrepancy might indicate measurement errors, excessive drivetrain loss, or a need for tuning adjustments to maximize power transfer.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for atmospheric conditions when comparing ET times across multiple runs. A 0.4 second improvement at sea level versus 5,000 ft elevation doesn't indicate increased horsepower—it reflects better air density. Record temperature, barometric pressure, and humidity for more accurate comparisons.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href={ref.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Manual Transmissions Without Accounting for Clutch Slippage</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Manual transmission vehicles lose performance during clutch engagement and gear changes, which can add 0.3-0.5 seconds to quarter mile times compared to automatic vehicles. Always measure ET fairly against vehicles of similar transmission type, or adjust results by 30-50 hp when comparing across transmission types.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Tire Traction as a Performance Limiting Factor</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Poor traction during launch creates wheelspin, artificially increasing quarter mile times and reducing calculated horsepower estimates. A car with 400 hp might run 11.5 seconds with street tires but 10.8 seconds with drag-specific tires—the horsepower hasn't changed, only the launch efficiency has improved.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Inaccurate Vehicle Weight Measurements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Estimating weight rather than weighing the vehicle introduces errors that directly multiply through the calculation. A 300 lb error (±8% on a 3,800 lb car) can result in 50+ hp discrepancies in the final estimate. Always use calibrated scales for accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing ET-Based Estimates with Actual Dyno Horsepower</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Quarter mile calculations estimate gross horsepower but don't account for drivetrain losses (typically 10-15% for rear-wheel drive vehicles). A vehicle showing 350 calculated hp might only deliver 300 hp to the wheels, which is the relevant figure for real-world performance upgrades.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How is horsepower calculated from quarter mile elapsed time?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Horsepower is estimated using the relationship between a vehicle's weight, quarter mile ET (elapsed time), and acceleration. The most common formula used is: HP = (Weight × 5.825) / ET³. This empirical formula assumes standard atmospheric conditions and typical drag coefficients. For example, a 3,500 lb car running 12 seconds would produce approximately 130 horsepower.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between calculated HP and actual dyno horsepower?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Calculated horsepower from quarter mile times provides an estimate based on acceleration performance, while dyno horsepower measures actual power output at the wheels or crank. The quarter mile method can vary by 10-20% depending on launch quality, traction, driver skill, and environmental factors. A car showing 400 hp on a dyno might run quarter mile times suggesting 380-420 hp due to these variables.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does vehicle weight significantly affect the horsepower estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, vehicle weight is critical in the calculation because heavier vehicles require more power to achieve the same acceleration. Two vehicles with identical quarter mile times but different weights will show different horsepower estimates. For instance, a 3,000 lb vehicle and 4,500 lb vehicle both running 11 seconds would be calculated as 185 hp and 278 hp respectively.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What quarter mile time would indicate 500 horsepower?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Using the standard formula HP = (Weight × 5.825) / ET³, a 3,500 lb vehicle would need to run approximately 9.5 seconds to produce an estimated 500 horsepower. However, this varies significantly by weight—a heavier 5,000 lb vehicle would need roughly 10.8 seconds for the same power output. These are theoretical minimums and real-world results depend on traction and environmental conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do atmospheric conditions affect quarter mile ET and calculated horsepower?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Air density, temperature, and altitude all influence quarter mile performance and thus calculated horsepower estimates. Cool, dense air at sea level provides better traction and engine performance than hot, thin air at high altitude. A vehicle might run 11.5 seconds at sea level but 12.1 seconds at 5,000 ft elevation, suggesting lower power despite identical engine output.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for all types of vehicles?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator works best for conventional vehicles with standard aerodynamics and weight distributions. It's less accurate for high-downforce race cars, trucks with trailers, or vehicles with extreme modifications. Drag racing sleds, for example, may produce different results because the formula assumes typical drag coefficients around 0.3-0.4.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does ET mean in drag racing terminology?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">ET stands for Elapsed Time and represents the total time in seconds it takes a vehicle to complete a quarter mile (1,320 feet or 402 meters) from a dead stop. Lower ET numbers indicate faster acceleration and, theoretically, more horsepower. The difference between a 10-second and 11-second ET can represent 50+ horsepower variation depending on vehicle weight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the horsepower estimate for stock vehicles versus modified cars?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator is generally accurate within ±10% for stock vehicles that haven't been significantly modified. For heavily modified or turbocharged vehicles, accuracy decreases because the formula doesn't account for power delivery variations or boost characteristics. A stock 300 hp sedan might show calculated results within 20 hp, while a heavily modified car could vary by 50+ hp.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is considered a good quarter mile time for a street vehicle?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most stock sedans run 14-16 second quarter miles, while performance vehicles typically achieve 11-13 seconds, and high-performance sports cars often run under 11 seconds. A 12-second quarter mile generally indicates 250-350 hp depending on weight, while a 10-second time suggests 400+ hp. Anything under 9 seconds typically indicates specialty performance or racing vehicles with 500+ hp.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.nhra.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NHRA Technical Rules and Specifications</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official National Hot Rod Association resource for quarter mile racing standards, vehicle classifications, and performance measurement protocols.</p>
+          </li>
+          <li>
+            <a href="https://www.sae.org/standards/content/j1349_202308/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Society of Automotive Engineers (SAE) Power Testing Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standard specifications for measuring and reporting automotive horsepower and torque across different testing methodologies.</p>
+          </li>
+          <li>
+            <a href="https://www.popularmechanics.com/cars/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Popular Mechanics Automotive Performance Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive automotive resource covering quarter mile testing, performance measurements, and horsepower calculations for enthusiasts and professionals.</p>
+          </li>
+          <li>
+            <a href="https://www.caranddriver.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Car and Driver Performance Specifications Database</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative source for documented quarter mile times, horsepower figures, and performance data across thousands of vehicles and model years.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

@@ -50,29 +50,40 @@ export default function EvKwhCostPerMileCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How does kWh per 100 miles affect the cost per mile for an EV?",
-      answer:
-        "The kWh per 100 miles metric indicates how much electrical energy an EV consumes to travel 100 miles. A lower kWh/100mi means the vehicle is more energy-efficient, resulting in a lower cost per mile when multiplied by the electricity rate. Understanding this relationship helps EV owners estimate their driving costs accurately."
+      question: "What does kWh per 100 miles mean for electric vehicles?",
+      answer: "kWh per 100 miles measures how much electrical energy an EV consumes to travel 100 miles, similar to MPG for gas cars. A lower number indicates better efficiency—for example, a Tesla Model 3 uses approximately 25 kWh per 100 miles, while larger vehicles like the Hummer EV use around 40 kWh per 100 miles. This metric is crucial for calculating your actual fuel costs and understanding real-world EV operating expenses.",
     },
     {
-      question: "Why is electricity rate important in calculating cost per mile?",
-      answer:
-        "Electricity rate, usually expressed in dollars per kilowatt-hour ($/kWh), directly impacts how much you pay to charge your EV. Even if your vehicle is efficient, a high electricity rate can increase your cost per mile. This calculator helps you factor in your local electricity costs for precise budgeting."
+      question: "How do I convert kWh per 100 miles to cost per mile?",
+      answer: "To convert, multiply your vehicle's kWh per 100 miles by your local electricity rate (in dollars per kWh) and divide by 100. For example, if your EV uses 28 kWh per 100 miles and electricity costs $0.15 per kWh, your cost per mile is (28 × $0.15) ÷ 100 = $0.042 per mile. This calculator automates this conversion to help you quickly compare EV operating costs.",
     },
     {
-      question: "Can I use this calculator for different units or countries?",
-      answer:
-        "This calculator uses kWh per 100 miles and dollars per kWh, which are common in the US and some other countries. If you use metric units like kWh per 100 kilometers, you may need to convert values accordingly. The calculator currently supports imperial units but can be adapted for metric with proper conversions."
+      question: "What is the average electricity cost per kWh in the US?",
+      answer: "As of 2024-2025, the average U.S. residential electricity rate is approximately $0.16 per kWh, though rates vary significantly by region—from around $0.11 per kWh in Louisiana to over $0.24 per kWh in Hawaii. Time-of-use (TOU) rates and off-peak charging can reduce your effective cost by 30-50%, making the actual cost per mile substantially lower than calculations using average rates.",
     },
     {
-      question: "How accurate are the cost estimates from this calculator?",
-      answer:
-        "The estimates are based on your inputs for energy consumption and electricity rates, so accuracy depends on the precision of those values. Real-world factors like driving habits, terrain, temperature, and charging efficiency can cause variations. Use this as a reliable baseline for budgeting rather than an exact figure."
+      question: "How does my EV's efficiency compare to gasoline vehicles?",
+      answer: "A typical EV with 26 kWh per 100 miles costs approximately $0.039 per mile at $0.15/kWh, while a 25 MPG gas car costs about $0.16 per mile at $3.50/gallon. This means EVs are roughly 4 times more efficient on a per-mile cost basis, even before accounting for maintenance savings and government incentives that can further improve EV economics.",
     },
     {
-      question: "Can this calculator help me compare EV models?",
-      answer:
-        "Yes, by inputting the kWh per 100 miles for different EV models and your local electricity rate, you can compare their estimated cost per mile. This helps in evaluating which EV might be more economical to operate over time, aiding your purchase decision."
+      question: "Why do some EVs use more kWh per 100 miles than others?",
+      answer: "EV efficiency depends on vehicle weight, aerodynamics, tire rolling resistance, battery capacity, and driving conditions. Larger SUVs and trucks naturally consume more energy—a Rivian R1T uses about 35-38 kWh per 100 miles, while compact EVs like the Hyundai Ioniq 6 achieve 22-24 kWh per 100 miles. Cold weather, highway driving, and aggressive acceleration can increase consumption by 20-40% compared to optimal conditions.",
+    },
+    {
+      question: "How should I factor in home charging versus public charging costs?",
+      answer: "Home charging typically costs $0.13-$0.18 per kWh using residential rates, while DC fast charging at public stations averages $0.25-$0.35 per kWh. If you charge at home 90% of the time and use public chargers occasionally, calculate a blended rate (e.g., 0.90 × $0.15 + 0.10 × $0.30 = $0.165/kWh) to accurately reflect your total charging costs in your cost-per-mile analysis.",
+    },
+    {
+      question: "What electricity rates should I use for this calculator?",
+      answer: "Check your utility bill for your current residential rate, which typically appears as cents per kWh or as a total charge divided by kilowatt-hours used. If you use time-of-use rates, use your off-peak rate since most EV owners charge overnight when rates are 20-40% lower than peak hours. For road trips with public charging, use a higher rate ($0.25-$0.35/kWh) for those segments only.",
+    },
+    {
+      question: "How does battery size affect my cost per mile calculation?",
+      answer: "Battery size doesn't directly change the cost per mile metric—a 50 kWh battery and 100 kWh battery in the same vehicle model have identical efficiency ratings (kWh per 100 miles). However, larger batteries increase purchase price, affecting total cost of ownership, and may have slightly better efficiency at highway speeds due to lower percentage of parasitic loads relative to total capacity.",
+    },
+    {
+      question: "Can I use this calculator to compare EVs when shopping?",
+      answer: "Yes, this calculator is ideal for comparing operating costs across different EV models. Simply input each vehicle's EPA-rated kWh per 100 miles and your local electricity rate to calculate cost per mile—for example, comparing a Chevy Bolt EV (26 kWh/100 mi) at $0.039/mile versus a Tesla Model Y (24 kWh/100 mi) at $0.036/mile reveals a meaningful difference over 100,000 miles of ownership.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -181,101 +192,320 @@ export default function EvKwhCostPerMileCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Enter your EV's energy consumption in kilowatt-hours per 100 miles (kWh/100mi). This value is often found in your vehicle's specifications or EPA ratings.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input your local electricity rate in dollars per kilowatt-hour ($/kWh). Check your utility bill or local energy provider for accurate rates.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the "Calculate" button to see your estimated cost per mile and cost per 100 miles based on your inputs.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the results and use them to budget your EV driving costs or compare different EV models.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to EV kWh per 100 mi ↔ Cost per Mile
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Electric vehicles (EVs) have transformed the automotive landscape by offering a cleaner and often more economical alternative to traditional gasoline-powered cars. One of the key metrics to understand when evaluating EV operating costs is the energy consumption rate, typically expressed as kilowatt-hours per 100 miles (kWh/100mi). This figure represents how much electrical energy the vehicle uses to travel 100 miles and is crucial for estimating your charging expenses.
-          </p>
-          <p>
-            To calculate the cost per mile of driving an EV, you multiply the energy consumption by the cost of electricity per kilowatt-hour, then divide by 100. For example, if your EV consumes 30 kWh per 100 miles and your electricity rate is $0.15 per kWh, your cost per mile is (30 * 0.15) / 100 = $0.045, or 4.5 cents per mile. This simple calculation helps you budget your driving expenses and compare the efficiency of different EV models.
-          </p>
-          <p>
-            It's important to note that actual consumption can vary based on driving habits, terrain, temperature, and other factors. Additionally, electricity rates differ by region and time of day, especially if you have time-of-use pricing. This calculator provides a baseline estimate to help you understand and plan your EV costs effectively.
-          </p>
-          <p>
-            By regularly monitoring your EV's energy consumption and electricity rates, you can optimize your charging strategy, choose more efficient routes, and ultimately save money while reducing your carbon footprint.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the EV kWh per 100 mi ↔ Cost per Mile Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator converts between two critical EV efficiency metrics: kilowatt-hours per 100 miles (kWh/100 mi) and cost per mile. Understanding this relationship is essential for evaluating true operating costs, comparing different EV models, and budgeting your transportation expenses. Whether you're shopping for an electric vehicle or tracking the efficiency of your current EV, this tool helps you make data-driven decisions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The primary inputs are your vehicle's EPA-rated efficiency (in kWh per 100 miles—find this on the vehicle's label or EPA website) and your local electricity rate (in dollars per kWh—check your utility bill or use regional averages). The calculator instantly converts these inputs to show your cost per mile, allowing you to compare operating expenses across different vehicle models and charging locations. You can also work backward: enter a cost-per-mile target and your electricity rate to determine what efficiency rating you need.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret your results by comparing your EV's cost per mile against gasoline vehicles (which typically range $0.09–$0.20+ per mile) and other EVs in the same class. Use your calculated cost per mile multiplied by your annual mileage to project yearly fuel costs, or extend it to 100,000-200,000 miles to understand total ownership expenses. Remember that these calculations reflect average conditions; cold weather, highway driving, and aggressive acceleration can increase consumption by 20-40%, while ideal conditions may reduce costs.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Using incorrect consumption values:</strong> Many users confuse miles per kWh with kWh per 100 miles. Always ensure you use kWh per 100 miles for this calculator to get accurate results.
-          </p>
-          <p>
-            <strong>2. Ignoring electricity rate variations:</strong> Electricity costs can vary by time of day or season. Using an average rate may not reflect your actual charging costs if you have time-of-use rates.
-          </p>
-          <p>
-            <strong>3. Forgetting to convert units:</strong> This calculator currently uses imperial units. If you have consumption data in kWh per 100 kilometers, convert it to kWh per 100 miles by multiplying by 1.609.
-          </p>
-          <p>
-            <strong>4. Overlooking real-world factors:</strong> Weather, terrain, and driving style affect energy consumption. Use this calculator as a baseline, not an exact predictor.
-          </p>
+      {/* TABLE: EPA-Rated Efficiency for Popular EV Models (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">EPA-Rated Efficiency for Popular EV Models (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows real-world EPA efficiency ratings for leading electric vehicles, allowing you to use accurate data in your cost-per-mile calculations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">EV Model</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">kWh per 100 Miles</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Battery Size (kWh)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">EPA Range (miles)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tesla Model 3 Standard Range</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">272</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chevy Bolt EV</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">259</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hyundai Ioniq 6 SE RWD</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">53</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">361</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tesla Model Y Long Range</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">330</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ford Mustang Mach-E Premium RWD</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">76</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">312</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">BMW i4 eDrive40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">81</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">301</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kia EV9 Long Range RWD</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">99</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">304</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rivian R1T Long Range</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">135</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hummer EV 3X (Supertruck)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">348</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data based on EPA certification ratings. Actual efficiency varies with driving conditions, weather, and driving habits. Highway driving typically increases consumption by 15-25%.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Cost Per Mile Comparison by Region (25 kWh per 100 mi baseline) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Cost Per Mile Comparison by Region (25 kWh per 100 mi baseline)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how regional electricity rates significantly impact EV operating costs using a standard 25 kWh/100 mi efficiency baseline.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Region</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Electricity Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Per Mile</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Cost (10,000 mi)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hawaii</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.24/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.060</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">California</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.18/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.045</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Northeast (avg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.17/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.043</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$425</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">National Average</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.16/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.040</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Texas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.14/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.035</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$350</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Louisiana</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.11/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.028</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$275</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Off-Peak Rate (avg home)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.12/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.030</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates as of Q1 2025. Off-peak rates typically apply to 11 PM–6 AM charging. Regional rates vary by utility; check your specific bill for accurate calculations.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Gas vs. EV Operating Cost Comparison */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Gas vs. EV Operating Cost Comparison</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This comparison shows real operating costs between EVs and gas vehicles across different efficiency levels and fuel prices.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vehicle Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Energy Consumption</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Per Unit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Per Mile</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Cost (15,000 mi)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">EV (efficient)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 kWh/100 mi</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.15/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.036</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$540</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">EV (average)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28 kWh/100 mi</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.15/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.042</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$630</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">EV (large SUV)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35 kWh/100 mi</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.15/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.053</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$795</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gas Car (efficient)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32 MPG</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3.50/gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.109</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,638</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gas Car (average)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 MPG</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3.50/gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.146</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,188</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gas Car (poor efficiency)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18 MPG</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3.50/gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.194</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,917</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">EV costs use national average electricity rate of $0.15/kWh. Gas prices assumed at $3.50/gallon. EVs offer 60-85% lower per-mile operating costs before maintenance savings.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use your vehicle's EPA efficiency rating from the window sticker or fueleconomy.gov rather than estimated figures, as EPA ratings account for standardized testing procedures that reflect real-world driving patterns.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If your utility offers time-of-use (TOU) rates, calculate your blended electricity cost by weighting off-peak and peak rates according to your actual charging schedule—most EV owners who charge overnight save 20-40% compared to peak-hour rates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Include charging losses (typically 10-15% when accounting for charger efficiency) in your calculations for public DC fast charging, as network averages often quote per-kWh rates that don't reflect the extra energy drawn from the grid.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your actual energy consumption using your vehicle's trip computer or mobile app, then recalculate quarterly to verify that your real-world efficiency matches EPA estimates—significant deviations may indicate battery degradation, tire pressure issues, or seasonal weather impacts.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href="#"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Peak Electricity Rates Instead of Off-Peak Rates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many EV owners mistakenly use their daytime peak rate ($0.20+/kWh) to calculate costs when they actually charge mostly overnight at off-peak rates ($0.10-$0.14/kWh). This overstates true operating costs by 50% or more, leading to inaccurate vehicle comparison and budgeting.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Charger Efficiency Losses</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">DC fast chargers and Level 2 chargers lose 10-15% of energy as heat during conversion. Using only the vehicle's onboard consumption underestimates true grid-to-wheel costs by roughly this percentage, particularly for frequent road-trip users relying on public infrastructure.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Comparing EPA Efficiency Ratings Across Different Test Cycles</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Older EVs tested under different EPA protocols may not be directly comparable to newer models' ratings. Always verify the test year and consider that highway efficiency typically runs 15-25% worse than EPA combined ratings, affecting real-world cost-per-mile accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Seasonal and Temperature Variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cold weather reduces EV efficiency by 20-40% due to battery conditioning and heater load, while highway speeds significantly increase consumption compared to city driving. Using annual average efficiency masks these variations, leading to underfunded winter budgets.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does kWh per 100 miles mean for electric vehicles?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">kWh per 100 miles measures how much electrical energy an EV consumes to travel 100 miles, similar to MPG for gas cars. A lower number indicates better efficiency—for example, a Tesla Model 3 uses approximately 25 kWh per 100 miles, while larger vehicles like the Hummer EV use around 40 kWh per 100 miles. This metric is crucial for calculating your actual fuel costs and understanding real-world EV operating expenses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I convert kWh per 100 miles to cost per mile?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">To convert, multiply your vehicle's kWh per 100 miles by your local electricity rate (in dollars per kWh) and divide by 100. For example, if your EV uses 28 kWh per 100 miles and electricity costs $0.15 per kWh, your cost per mile is (28 × $0.15) ÷ 100 = $0.042 per mile. This calculator automates this conversion to help you quickly compare EV operating costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the average electricity cost per kWh in the US?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As of 2024-2025, the average U.S. residential electricity rate is approximately $0.16 per kWh, though rates vary significantly by region—from around $0.11 per kWh in Louisiana to over $0.24 per kWh in Hawaii. Time-of-use (TOU) rates and off-peak charging can reduce your effective cost by 30-50%, making the actual cost per mile substantially lower than calculations using average rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does my EV's efficiency compare to gasoline vehicles?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A typical EV with 26 kWh per 100 miles costs approximately $0.039 per mile at $0.15/kWh, while a 25 MPG gas car costs about $0.16 per mile at $3.50/gallon. This means EVs are roughly 4 times more efficient on a per-mile cost basis, even before accounting for maintenance savings and government incentives that can further improve EV economics.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do some EVs use more kWh per 100 miles than others?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">EV efficiency depends on vehicle weight, aerodynamics, tire rolling resistance, battery capacity, and driving conditions. Larger SUVs and trucks naturally consume more energy—a Rivian R1T uses about 35-38 kWh per 100 miles, while compact EVs like the Hyundai Ioniq 6 achieve 22-24 kWh per 100 miles. Cold weather, highway driving, and aggressive acceleration can increase consumption by 20-40% compared to optimal conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I factor in home charging versus public charging costs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Home charging typically costs $0.13-$0.18 per kWh using residential rates, while DC fast charging at public stations averages $0.25-$0.35 per kWh. If you charge at home 90% of the time and use public chargers occasionally, calculate a blended rate (e.g., 0.90 × $0.15 + 0.10 × $0.30 = $0.165/kWh) to accurately reflect your total charging costs in your cost-per-mile analysis.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What electricity rates should I use for this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check your utility bill for your current residential rate, which typically appears as cents per kWh or as a total charge divided by kilowatt-hours used. If you use time-of-use rates, use your off-peak rate since most EV owners charge overnight when rates are 20-40% lower than peak hours. For road trips with public charging, use a higher rate ($0.25-$0.35/kWh) for those segments only.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does battery size affect my cost per mile calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Battery size doesn't directly change the cost per mile metric—a 50 kWh battery and 100 kWh battery in the same vehicle model have identical efficiency ratings (kWh per 100 miles). However, larger batteries increase purchase price, affecting total cost of ownership, and may have slightly better efficiency at highway speeds due to lower percentage of parasitic loads relative to total capacity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator to compare EVs when shopping?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator is ideal for comparing operating costs across different EV models. Simply input each vehicle's EPA-rated kWh per 100 miles and your local electricity rate to calculate cost per mile—for example, comparing a Chevy Bolt EV (26 kWh/100 mi) at $0.039/mile versus a Tesla Model Y (24 kWh/100 mi) at $0.036/mile reveals a meaningful difference over 100,000 miles of ownership.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.eia.gov/electricity/monthly/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Energy Information Administration – Electric Power Monthly</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official source for U.S. average electricity rates by state and region updated monthly.</p>
+          </li>
+          <li>
+            <a href="https://www.fueleconomy.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA FuelEconomy.gov – Find a Car</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official EPA database of all vehicle efficiency ratings, including EPA kWh per 100 miles for electric vehicles.</p>
+          </li>
+          <li>
+            <a href="https://afdc.energy.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Energy – Alternative Fuels Data Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource for EV charging infrastructure, electricity rates, and vehicle efficiency comparisons.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerreports.org/cars/electric-vehicles/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Reports – EV Ratings and Reliability</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Independent testing and real-world efficiency data for electric vehicles, including long-term cost-of-ownership analysis.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

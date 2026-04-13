@@ -19,7 +19,7 @@ const ROOT = path.resolve(__dirname, "..");
 
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 const MODEL = "claude-haiku-4-5-20251001";
-const MAX_TOKENS = 4096;
+const MAX_TOKENS = 8192;
 const DELAY_MS = 2500; // between API calls
 const MIN_FAQS_THRESHOLD = 8; // skip if already has 8+ FAQs AND tables
 const PROGRESS_FILE = path.join(ROOT, "scripts", ".improve-progress.json");

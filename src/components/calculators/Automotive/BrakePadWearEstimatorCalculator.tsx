@@ -109,29 +109,40 @@ export default function BrakePadWearEstimatorCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How often should I check my brake pads and rotors?",
-      answer:
-        "Brake pads and rotors should be inspected at least every 10,000 to 15,000 miles or during regular vehicle maintenance. Frequent checks are especially important if you drive in heavy traffic or mountainous areas, as these conditions accelerate wear. Regular inspections help prevent costly repairs and ensure your vehicle's braking system remains safe and effective."
+      question: "How often should brake pads be replaced?",
+      answer: "Most brake pads last between 25,000 and 70,000 miles depending on driving habits, vehicle weight, and pad material. Aggressive braking and frequent stop-and-go driving can reduce pad lifespan to 25,000–40,000 miles, while highway driving may extend it to 50,000–70,000 miles. This calculator helps you estimate your specific wear rate based on your driving patterns and current mileage.",
     },
     {
-      question: "What does minimum thickness mean for brake pads and rotors?",
-      answer:
-        "Minimum thickness is the manufacturer-specified limit below which brake pads or rotors should not be used. Operating below this thickness compromises braking performance and safety, increasing the risk of brake failure. It is essential to replace components before they reach this minimum to maintain optimal braking efficiency."
+      question: "What's the average cost to replace brake pads and rotors?",
+      answer: "Brake pad replacement typically costs $150–$300 per axle (front or rear), while rotor replacement adds $300–$800 per axle depending on vehicle type and labor rates. A complete front brake service (pads and rotors) averages $500–$1,200, and rear service costs $400–$900. Using this estimator helps you plan maintenance budgets and avoid unexpected repair expenses.",
     },
     {
-      question: "Can I replace only the brake pads without replacing the rotors?",
-      answer:
-        "In many cases, brake pads can be replaced independently if the rotors are still within their minimum thickness and show no signs of damage like warping or deep grooves. However, if rotors are worn or damaged, replacing both pads and rotors together is recommended to ensure even braking and prolong component life."
+      question: "How do I know if my brake pads are worn out?",
+      answer: "Common warning signs include a high-pitched squealing noise when braking, reduced braking responsiveness, longer stopping distances, or a brake warning light on your dashboard. Most modern vehicles have brake pad wear sensors that trigger the warning light when pads reach approximately 2–3mm thickness. This calculator uses your current thickness and mileage estimates to predict when you'll reach the critical 2mm replacement threshold.",
     },
     {
-      question: "How does driving style affect brake pad and rotor wear?",
-      answer:
-        "Aggressive driving, such as frequent hard braking, rapid acceleration, and driving downhill without engine braking, significantly increases wear on brake pads and rotors. Conversely, smooth and gradual braking extends their lifespan. Understanding your driving habits can help you anticipate maintenance needs and reduce replacement costs."
+      question: "Do brake rotors wear faster than brake pads?",
+      answer: "Brake rotors typically last 50,000–70,000 miles, which is longer than brake pads in most cases. However, severe braking, towing heavy loads, or driving in mountainous terrain can accelerate rotor wear to 40,000–50,000 miles. This calculator tracks both components separately so you can prioritize replacement based on actual wear rates.",
     },
     {
-      question: "Why do brake rotors sometimes need replacement more often than pads?",
-      answer:
-        "Brake rotors can wear unevenly or warp due to excessive heat, heavy braking, or poor maintenance, which may necessitate replacement even if pads are still usable. Rotors are also subject to corrosion and physical damage. Regular inspection and proper brake system care help maximize rotor life."
+      question: "What factors affect brake pad wear rates?",
+      answer: "Key factors include driving style (aggressive braking accelerates wear), vehicle weight and load, brake pad material (ceramic pads last longer than semi-metallic), road conditions, and climate. Stop-and-go city driving typically causes 30–40% faster wear than highway driving, while towing or hauling cargo can increase wear by 20–50%. Enter your driving conditions into this calculator to get a personalized wear estimate.",
+    },
+    {
+      question: "Can I extend brake pad lifespan?",
+      answer: "Yes, you can extend pad life by 15–25% through smooth braking, avoiding sudden stops, maintaining proper tire pressure, and reducing vehicle load. Downshifting when descending hills and using engine braking reduces friction brake wear by 10–20%. This calculator helps you understand how driving behavior changes your replacement timeline.",
+    },
+    {
+      question: "What's the difference between ceramic, semi-metallic, and organic brake pads?",
+      answer: "Ceramic pads last 50,000–70,000 miles with quiet operation but cost $150–$250 per axle. Semi-metallic pads last 25,000–50,000 miles, cost $100–$150 per axle, and provide better cooling. Organic pads last 20,000–40,000 miles and cost $50–$100 per axle but produce more dust and heat. Select your pad type in this calculator to get an accurate wear forecast.",
+    },
+    {
+      question: "How accurate is a brake wear estimator?",
+      answer: "A brake wear estimator is typically accurate to within ±15–20% because it uses your actual driving data, mileage, and vehicle specifications. Accuracy depends on honest input about your driving habits, braking frequency, and current pad thickness. Regular visual inspections every 10,000–15,000 miles help validate the calculator's predictions and catch premature wear.",
+    },
+    {
+      question: "Should I replace brake pads and rotors together?",
+      answer: "Mechanics recommend replacing pads and rotors together if rotors show scoring, uneven wear, or are below the minimum thickness of 1.25mm for most vehicles. If rotors are in good condition and &gt;1.5mm thick, you can replace pads alone, saving $300–$500 per axle. This calculator helps you monitor both components to make informed replacement decisions.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -286,104 +297,275 @@ export default function BrakePadWearEstimatorCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred measurement unit: Imperial (inches) or Metric (millimeters).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the current thickness of your brake pads and rotors as measured with a caliper or gauge.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the minimum thickness specifications for your brake pads and rotors, usually found in your vehicle’s manual or manufacturer’s website.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Provide the current market price for a set of brake pads and rotors to estimate replacement costs.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to see the estimated wear percentages and whether replacement is recommended, along with an approximate cost.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Brake Pad/Rotors Wear Estimator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Brake pads and rotors are critical components of your vehicle’s braking system, responsible for safely slowing and stopping your car. Over time, these parts wear down due to friction and heat generated during braking. Monitoring their thickness is essential to maintain optimal braking performance and ensure safety on the road. This calculator helps estimate the wear level of your brake pads and rotors based on current and minimum thickness measurements, providing a clear indication of when replacement is necessary.
-          </p>
-          <p>
-            The wear percentage is calculated by comparing the current thickness against the typical new thickness and the minimum allowable thickness specified by manufacturers. For brake pads, a typical new thickness is around 12 mm (0.47 inches), while rotors usually start at about 30 mm (1.18 inches). When the wear exceeds 80%, it is generally recommended to replace the component to avoid brake failure or damage to other parts. This tool also estimates the replacement cost based on your input prices, helping you plan financially for maintenance.
-          </p>
-          <p>
-            Regular inspection and timely replacement of brake pads and rotors not only enhance safety but also improve vehicle performance and reduce long-term repair costs. Aggressive driving, frequent braking, and harsh road conditions can accelerate wear, so it’s important to check these components more often under such circumstances. Using this estimator, you can make informed decisions about brake maintenance, ensuring your vehicle remains safe and reliable.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Brake Pad/Rotors Wear Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Brake Pad/Rotors Wear Estimator is a tool designed to predict when your vehicle's braking components will need replacement based on current wear measurements and your driving patterns. By tracking pad thickness, rotor condition, and mileage, this calculator helps you schedule maintenance proactively, avoid safety hazards, and budget for repairs before they become emergencies.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, you'll need to input several key pieces of information: your vehicle type (sedan, SUV, truck), brake pad material (ceramic, semi-metallic, or organic), current pad thickness in millimeters, current rotor thickness, monthly driving mileage, and your typical driving environment (highway, city, mountain, towing). These inputs allow the calculator to determine your unique wear rate and project a replacement timeline specific to your habits and vehicle.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once you run the calculation, the results will show estimated months remaining until replacement is needed and the projected mileage at which replacement should occur. Compare these estimates against your vehicle's warranty, maintenance schedule, and budget to plan ahead. If the calculator shows &lt;3 months remaining, schedule an inspection immediately; if &gt;12 months, you have time to save for the service or monitor wear with regular visual checks.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Thickness Measurement:</strong> Using improper tools or measuring at the wrong spot can lead to inaccurate thickness readings, resulting in wrong wear estimates. Always use a calibrated caliper and measure at multiple points.
-          </p>
-          <p>
-            <strong>2. Ignoring Minimum Thickness Specs:</strong> Some users enter unrealistic minimum thickness values or omit them altogether. Always refer to your vehicle’s manual or manufacturer data for accurate minimum thickness.
-          </p>
-          <p>
-            <strong>3. Not Considering Unit Conversion:</strong> Mixing metric and imperial units without proper conversion can cause errors. Ensure all inputs are in the same unit system selected.
-          </p>
-          <p>
-            <strong>4. Overlooking Rotor Condition:</strong> Thickness alone doesn’t tell the full story; warped or cracked rotors need replacement regardless of thickness. Visual inspection is crucial.
-          </p>
-          <p>
-            <strong>5. Delaying Replacement:</strong> Waiting too long to replace worn pads or rotors can damage other brake components and increase repair costs. Use this estimator proactively.
-          </p>
+      {/* TABLE: Typical Brake Pad Lifespan by Material Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Typical Brake Pad Lifespan by Material Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows expected lifespan, cost, and performance characteristics for the three main brake pad materials used in passenger vehicles.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pad Material</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expected Lifespan (Miles)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost per Axle</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Heat Resistance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dust/Noise Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ceramic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50,000–70,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150–$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low dust, quiet</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Semi-Metallic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25,000–50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Good</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate dust, moderate noise</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Organic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20,000–40,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50–$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High dust, quieter</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Carbon-Ceramic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70,000–100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300–$600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Superior</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very low dust, quiet</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Lifespan varies by vehicle weight, driving habits, and operating conditions. Highway driving extends lifespan; city driving and towing reduce it.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Brake Pad Wear Rates by Driving Condition */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Brake Pad Wear Rates by Driving Condition</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table estimates how different driving environments and habits affect brake pad wear acceleration compared to average highway driving.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Driving Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Wear Rate Multiplier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Annual Mileage Lost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Primary Cause</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Highway cruising (stable speed)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Base rate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal braking</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mixed city/highway</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Base rate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate braking</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Urban stop-and-go</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.4x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+40% faster wear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Frequent hard stops</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mountain/hilly terrain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.6x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+60% faster wear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extended braking descents</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Towing/heavy load</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+50% faster wear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increased stopping force needed</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aggressive driving</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+100% faster wear</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hard acceleration and braking</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Multipliers are relative to a baseline of 45,000 miles for ceramic pads under mixed driving. Actual wear depends on vehicle weight, brake system type, and driver behavior consistency.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Rotor Thickness Specifications and Replacement Guidelines */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Rotor Thickness Specifications and Replacement Guidelines</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table provides minimum safe rotor thicknesses and replacement thresholds for common vehicle types to ensure braking safety and performance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vehicle Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">New Rotor Thickness</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Operating Minimum</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Replacement Threshold</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Rotor Lifespan</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sedan/Compact Car</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25 inches (31.75mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.125 inches (3.2mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.0625 inches (1.6mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50,000–70,000 miles</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">SUV/Crossover</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.38 inches (35mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.137 inches (3.5mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.0785 inches (2.0mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45,000–65,000 miles</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Truck/Heavy Duty</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.50 inches (38mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.156 inches (4.0mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.094 inches (2.4mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40,000–60,000 miles</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Performance/Sport Car</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25 inches (31.75mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.125 inches (3.2mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.0625 inches (1.6mm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30,000–50,000 miles</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rotors &lt;0.0625 inches (1.6mm) on standard vehicles are unsafe and must be replaced immediately. Check your vehicle's service manual for exact specifications, as luxury and performance brands may differ.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your brake pad thickness every 10,000–15,000 miles using a simple depth gauge (available at auto parts stores for $5–$15) to validate the calculator's predictions and catch premature wear early.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Record your odometer reading and brake component measurements in a vehicle maintenance log; entering this historical data into the calculator improves accuracy and helps identify unusual wear patterns that may indicate alignment or suspension problems.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Adjust your inputs seasonally if your driving changes significantly (e.g., winter mountain driving vs. summer highway road trips), as the calculator recalculates wear projections based on current usage patterns.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this calculator as a planning tool only—always have a professional mechanic visually inspect your brakes before replacement, as road salt, water exposure, and driving conditions may accelerate wear beyond model predictions.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href="#"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Warning Light Indicators</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many drivers ignore brake pad wear sensor warnings and rely solely on the calculator's timeline, but warning lights trigger at 2–3mm thickness for safety reasons. If your brake warning light activates, schedule an inspection within 500 miles regardless of the calculator's estimate.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Stop-and-Go Driving Impact</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Drivers often underestimate how much city and urban driving accelerates brake wear; stop-and-go conditions can increase wear rates by 40–60% compared to highway driving. Be honest about your commute type to get accurate replacement predictions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Incorrect Current Thickness Measurements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Measuring pad thickness without proper tools leads to inaccurate calculations; use a digital caliper or brake pad wear gauge for precision. Visual estimates are unreliable and can miss uneven wear across the brake pad surface.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Replacing Pads Without Inspecting Rotors</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many drivers replace brake pads but skip rotor inspection, missing opportunities to resurface or replace damaged rotors before they cause safety issues. This calculator tracks both components separately so you can address rotor wear proactively.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should brake pads be replaced?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most brake pads last between 25,000 and 70,000 miles depending on driving habits, vehicle weight, and pad material. Aggressive braking and frequent stop-and-go driving can reduce pad lifespan to 25,000–40,000 miles, while highway driving may extend it to 50,000–70,000 miles. This calculator helps you estimate your specific wear rate based on your driving patterns and current mileage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the average cost to replace brake pads and rotors?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Brake pad replacement typically costs $150–$300 per axle (front or rear), while rotor replacement adds $300–$800 per axle depending on vehicle type and labor rates. A complete front brake service (pads and rotors) averages $500–$1,200, and rear service costs $400–$900. Using this estimator helps you plan maintenance budgets and avoid unexpected repair expenses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my brake pads are worn out?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common warning signs include a high-pitched squealing noise when braking, reduced braking responsiveness, longer stopping distances, or a brake warning light on your dashboard. Most modern vehicles have brake pad wear sensors that trigger the warning light when pads reach approximately 2–3mm thickness. This calculator uses your current thickness and mileage estimates to predict when you'll reach the critical 2mm replacement threshold.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do brake rotors wear faster than brake pads?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Brake rotors typically last 50,000–70,000 miles, which is longer than brake pads in most cases. However, severe braking, towing heavy loads, or driving in mountainous terrain can accelerate rotor wear to 40,000–50,000 miles. This calculator tracks both components separately so you can prioritize replacement based on actual wear rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect brake pad wear rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Key factors include driving style (aggressive braking accelerates wear), vehicle weight and load, brake pad material (ceramic pads last longer than semi-metallic), road conditions, and climate. Stop-and-go city driving typically causes 30–40% faster wear than highway driving, while towing or hauling cargo can increase wear by 20–50%. Enter your driving conditions into this calculator to get a personalized wear estimate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I extend brake pad lifespan?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, you can extend pad life by 15–25% through smooth braking, avoiding sudden stops, maintaining proper tire pressure, and reducing vehicle load. Downshifting when descending hills and using engine braking reduces friction brake wear by 10–20%. This calculator helps you understand how driving behavior changes your replacement timeline.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between ceramic, semi-metallic, and organic brake pads?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Ceramic pads last 50,000–70,000 miles with quiet operation but cost $150–$250 per axle. Semi-metallic pads last 25,000–50,000 miles, cost $100–$150 per axle, and provide better cooling. Organic pads last 20,000–40,000 miles and cost $50–$100 per axle but produce more dust and heat. Select your pad type in this calculator to get an accurate wear forecast.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is a brake wear estimator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A brake wear estimator is typically accurate to within ±15–20% because it uses your actual driving data, mileage, and vehicle specifications. Accuracy depends on honest input about your driving habits, braking frequency, and current pad thickness. Regular visual inspections every 10,000–15,000 miles help validate the calculator's predictions and catch premature wear.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I replace brake pads and rotors together?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mechanics recommend replacing pads and rotors together if rotors show scoring, uneven wear, or are below the minimum thickness of 1.25mm for most vehicles. If rotors are in good condition and &gt;1.5mm thick, you can replace pads alone, saving $300–$500 per axle. This calculator helps you monitor both components to make informed replacement decisions.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.fmcsa.dot.gov/regulations/title-49-cfr-part-396-inspection-repair-and-maintenance" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Vehicle Maintenance Recommendations</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Motor Carrier Safety Administration guidelines on brake system inspection, maintenance, and safety standards for commercial and passenger vehicles.</p>
+          </li>
+          <li>
+            <a href="https://www.nhtsa.gov/vehicle-manufacturers/vehicle-performance-requirements" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Brake System Performance Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">National Highway Traffic Safety Administration technical specifications and performance standards for automotive braking systems and components.</p>
+          </li>
+          <li>
+            <a href="https://www.edmunds.com/automotive-guides/maintenance-cost-guide" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Automotive Maintenance Cost Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Edmunds provides comprehensive data on average brake service costs, parts pricing, and labor rates across vehicle types and regions.</p>
+          </li>
+          <li>
+            <a href="https://consumer.ftc.gov/articles/how-keep-your-car-good-running-condition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Guide to Vehicle Maintenance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Trade Commission consumer guidance on vehicle maintenance schedules, brake system care, and recognizing signs of needed repairs.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

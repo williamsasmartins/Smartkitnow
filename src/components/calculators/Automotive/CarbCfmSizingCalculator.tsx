@@ -64,29 +64,40 @@ export default function CarbCfmSizingCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "What does CFM mean in carburetor sizing?",
-      answer:
-        "CFM stands for Cubic Feet per Minute and measures the volume of air a carburetor can flow. Proper carburetor sizing ensures the engine receives the correct air-fuel mixture for optimal performance. An undersized carburetor restricts airflow, limiting power, while an oversized one can cause poor throttle response and fuel economy."
+      question: "What is CFM and why does it matter for carburetor sizing?",
+      answer: "CFM stands for cubic feet per minute and measures the volume of air a carburetor can deliver to the engine. Proper CFM sizing is critical because an undersized carburetor will restrict airflow and reduce engine power, while an oversized one causes poor fuel atomization, sluggish throttle response, and reduced fuel economy. Most street engines perform best with carburetors sized between 0.4 and 0.6 CFM per cubic inch of displacement.",
     },
     {
-      question: "How does volumetric efficiency affect carburetor CFM sizing?",
-      answer:
-        "Volumetric efficiency (VE) represents how effectively an engine fills its cylinders with air compared to its theoretical maximum. Higher VE means more air intake, requiring a larger carburetor CFM rating. Using VE in calculations helps tailor carburetor size to real engine breathing capabilities, improving accuracy."
+      question: "How do I calculate the required CFM for my engine?",
+      answer: "The basic formula is: (Engine Displacement in cubic inches × RPM × 0.5) ÷ 3,456 = CFM. For example, a 350 cubic inch engine at 5,500 RPM would need approximately (350 × 5,500 × 0.5) ÷ 3,456 = 278 CFM. The 0.5 multiplier accounts for volumetric efficiency, which is typical for naturally aspirated street engines. This calculator automates this computation for accuracy.",
     },
     {
-      question: "Can I use this calculator for both imperial and metric units?",
-      answer:
-        "Yes, this calculator supports both imperial (cubic inches) and metric (liters) units for engine displacement. It automatically converts liters to cubic inches internally to maintain consistency in calculations. Just select your preferred unit system before entering values."
+      question: "What's the difference between gross CFM and net CFM ratings?",
+      answer: "Gross CFM is the maximum airflow a carburetor can theoretically deliver under ideal lab conditions, while net CFM reflects real-world performance with a standard air filter and intake manifold in place. Net CFM is typically 10-20% lower than gross CFM and is the more accurate specification for sizing purposes. Always use net CFM ratings when comparing carburetors for your engine build.",
     },
     {
-      question: "Why is RPM important in determining carburetor size?",
-      answer:
-        "RPM (revolutions per minute) indicates how fast the engine runs and directly impacts airflow demand. Higher RPM engines require carburetors with greater CFM to supply sufficient air for combustion. Including RPM in sizing ensures the carburetor matches the engine's operating speed range."
+      question: "Can I use a carburetor rated higher than my calculated CFM requirement?",
+      answer: "While an oversized carburetor won't damage your engine, it will negatively impact performance and driveability. A carburetor sized &gt;20% above requirements often exhibits poor low-end response, inconsistent idle quality, and reduced fuel mileage. Industry experts recommend staying within 5-15% above your calculated CFM for optimal street performance and reliability.",
     },
     {
-      question: "What happens if I choose a carburetor with too high or too low CFM?",
-      answer:
-        "Selecting a carburetor with too low CFM restricts airflow, causing power loss and poor engine response. Conversely, too high CFM can lead to poor fuel atomization, rough idling, and inefficient fuel consumption. Proper sizing balances airflow and fuel delivery for optimal engine performance."
+      question: "How does engine displacement affect CFM requirements?",
+      answer: "CFM requirements scale directly with engine displacement. A 305 cubic inch engine typically needs 180-240 CFM, while a 454 cubic inch engine requires 280-380 CFM. Larger displacement engines draw more air volume per combustion cycle, so they demand proportionally larger carburetors. The calculator accounts for this relationship automatically.",
+    },
+    {
+      question: "What role does RPM play in determining carburetor size?",
+      answer: "RPM directly influences how much air your engine consumes per unit of time. An engine turning 3,000 RPM requires less CFM than the same displacement engine at 6,000 RPM because the combustion cycles occur more frequently at higher speeds. Racing engines operating at &gt;7,000 RPM may require 15-25% larger carburetors than street engines of identical displacement.",
+    },
+    {
+      question: "Should I account for forced induction when sizing a carburetor?",
+      answer: "Yes, significantly. Supercharged and turbocharged engines require substantially larger carburetors because forced induction increases the volume of air entering the engine. For a turbocharged engine, multiply your base CFM calculation by 1.5 to 1.8 depending on boost pressure. Blown engines may require custom carburetors or fuel injection systems entirely.",
+    },
+    {
+      question: "What is volumetric efficiency and how does it affect my calculation?",
+      answer: "Volumetric efficiency (VE) is the ratio of actual air drawn into the engine versus the theoretical maximum, expressed as a percentage. Street engines typically have 75-85% VE, while high-performance engines reach 95-105% VE. Stock carburetors usually assume 50% VE in sizing formulas, but modified engines with performance intakes and headers may operate at 70-80% VE, requiring larger carburetors.",
+    },
+    {
+      question: "How do I know if my current carburetor is sized correctly?",
+      answer: "Signs of an undersized carburetor include power loss above 4,000 RPM, hesitation during acceleration, and inability to reach target horsepower. Oversized carburetors exhibit poor idle quality, stumbling on acceleration, and sluggish low-end response. Use this calculator to determine your required CFM, then compare against your carburetor's net CFM rating to verify proper sizing for your engine.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -219,110 +230,342 @@ export default function CarbCfmSizingCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system: Imperial (cubic inches) or Metric (liters) for engine displacement.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your engine's displacement value in the chosen unit.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the maximum RPM at which your engine will operate or peak power RPM.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the volumetric efficiency (VE) percentage of your engine. If unknown, use a typical value between 80-90%.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click the "Calculate" button to get the recommended carburetor CFM size.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Carburetor CFM Sizing Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Carburetor sizing is a critical aspect of engine tuning and performance optimization. The carburetor controls the air and fuel mixture entering the engine, and its capacity is measured in cubic feet per minute (CFM) of airflow. Selecting the right carburetor size ensures the engine breathes efficiently, maximizing power output while maintaining drivability and fuel economy.
-          </p>
-          <p>
-            The fundamental formula used in this calculator is: <em>CFM = (Displacement × RPM × Volumetric Efficiency) ÷ 3456</em>. Here, displacement is the total volume of all engine cylinders, RPM is the engine speed, and volumetric efficiency (VE) is a measure of how effectively the engine fills its cylinders with air. The constant 3456 converts the units to cubic feet per minute.
-          </p>
-          <p>
-            Volumetric efficiency varies depending on engine design, camshaft profile, intake and exhaust systems, and tuning. Typical naturally aspirated engines have VE values between 80% and 90%, while performance engines can exceed 100% with forced induction or tuned intake systems. Accurately estimating VE improves carburetor sizing precision.
-          </p>
-          <p>
-            Using this calculator, you can input your engine's displacement, maximum RPM, and VE to determine the ideal carburetor CFM rating. This helps avoid common pitfalls such as undersized carburetors that restrict airflow or oversized carburetors that cause poor throttle response and inefficient fuel atomization. Proper carburetor sizing is essential for balanced engine performance, fuel efficiency, and emissions control.
-          </p>
-          <p>
-            Remember, this calculator provides an estimate. Final carburetor selection should consider additional factors like intended use (street, racing), fuel type, and tuning preferences. Consulting with a professional tuner or engine builder is recommended for custom applications.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Carburetor CFM Sizing Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Carburetor CFM Sizing Calculator determines the optimal carburetor size for your engine based on displacement, RPM capability, and modification level. Proper carburetor sizing is essential for maximizing power, improving fuel economy, and ensuring smooth drivability across all RPM ranges. An undersized carburetor restricts airflow and limits horsepower, while an oversized unit causes poor idle quality and sluggish throttle response.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by entering your engine's displacement in cubic inches (for example, 350 for a small block Chevy), the peak RPM your engine will reach, and your engine's volumetric efficiency percentage. If you've upgraded your camshaft, heads, or intake manifold, select the appropriate modification category to apply the correct adjustment factor. The calculator will instantly compute your engine's required CFM at peak RPM.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results will display your recommended CFM range—typically shown as a target value with acceptable variance of ±5% to ±15% depending on your engine type. Compare this result against the net CFM rating of any carburetor you're considering, and stay within the recommended range for optimal performance. If your calculated CFM falls between two standard carburetor sizes, choose the smaller option for better low-end response on street engines, or the larger for maximum top-end power on race applications.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring Volumetric Efficiency:</strong> Using a default VE of 100% without considering engine specifics can lead to inaccurate carburetor sizing. Always estimate VE based on engine condition and modifications.
-          </p>
-          <p>
-            <strong>2. Using Peak RPM Instead of Cruise RPM:</strong> Sizing carburetors based on maximum RPM only may cause poor drivability at lower speeds. Consider the engine's typical operating RPM range.
-          </p>
-          <p>
-            <strong>3. Mixing Units Incorrectly:</strong> Ensure displacement units match the selected system (imperial or metric). Incorrect unit conversion leads to wrong CFM calculations.
-          </p>
-          <p>
-            <strong>4. Oversizing Carburetors:</strong> Bigger is not always better. Oversized carburetors can cause poor throttle response, rough idle, and increased fuel consumption.
-          </p>
-          <p>
-            <strong>5. Neglecting Other Engine Factors:</strong> Carburetor sizing is one part of tuning. Intake manifold design, camshaft profile, and exhaust system also affect airflow and performance.
-          </p>
+      {/* TABLE: Recommended Carburetor CFM by Engine Displacement and RPM */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Carburetor CFM by Engine Displacement and RPM</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table provides quick reference CFM recommendations for common engine displacements across different RPM ranges for naturally aspirated street engines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Engine Displacement (ci)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">3,000 RPM</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">4,500 RPM</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5,500 RPM</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">6,500 RPM</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">7,500 RPM</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">283</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">122</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">184</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">224</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">265</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">306</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">305</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">132</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">198</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">242</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">286</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">330</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">327</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">142</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">213</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">260</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">307</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">354</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">152</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">228</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">278</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">328</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">378</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">383</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">166</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">249</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">304</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">359</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">414</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">173</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">260</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">317</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">374</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">432</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">427</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">185</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">277</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">338</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">399</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">460</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">454</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">197</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">295</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">425</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">490</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">496</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">215</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">322</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">393</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">464</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">535</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values calculated using standard volumetric efficiency of 50% and 0.5 multiplier. Actual requirements may vary based on camshaft profile, intake manifold design, and air filter restriction.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Carburetor CFM Adjustment Factors for Engine Modifications */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Carburetor CFM Adjustment Factors for Engine Modifications</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Apply these multipliers to your base CFM calculation when your engine includes performance modifications beyond stock specifications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Modification Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjustment Factor</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: 350ci Engine Base CFM 278</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stock Configuration</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">278 CFM</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mild Cam & Intake Upgrade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.05–1.10x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">292–306 CFM</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Performance Cam & Ported Heads</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.10–1.15x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">306–320 CFM</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Performance Build (VE &gt;90%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.15–1.25x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320–348 CFM</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Street/Strip with 3.0–5.0 psi Boost</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.50–1.70x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">417–472 CFM</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Racing Engine (VE &gt;100%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25–1.35x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">348–375 CFM</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Supercharged (8+ psi)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.75–2.25x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">486–625 CFM</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Forced induction applications may require fuel injection instead of carburetors; consult with a tuning specialist for boost &gt;10 psi.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Common Carburetor Models and Their CFM Ratings (Net) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Carburetor Models and Their CFM Ratings (Net)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference net CFM ratings for popular carburetors used in street rod and muscle car applications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Carburetor Model</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Net CFM</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Application</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bore Size</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Holley 2300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180–200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small block street engines</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.875–2.0 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Holley 4150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250–750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wide range street to race</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.875–2.25 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Edelbrock Performer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200–600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Street performance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.875–2.25 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Holley 4160</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350–950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Truck and marine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.0–2.5 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Demon 625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Big block street/strip</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.3 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Carter AFB</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400–600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vintage muscle cars</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.0–2.25 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Quadrajet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300–750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Stock GM applications</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.875–2.25 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Holley Stealth</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">550–950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Modern street rods</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.1–2.5 inches</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Net CFM ratings are provided by manufacturers and may vary slightly between years and specifications. Always verify specifications with current carburetor documentation.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always use net CFM ratings from manufacturer specifications when comparing carburetors, not the gross CFM figures sometimes advertised. Net CFM accounts for real-world conditions with intake manifolds and air filters installed, providing realistic sizing guidance for your build.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For street-driven vehicles, aim for a carburetor sized 5-10% above your calculated CFM requirement to ensure adequate airflow at peak power while maintaining smooth low-speed response and acceptable idle quality.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Document your engine's actual peak RPM capability when performing your calculation. Dyno results or professional tuning data is ideal; if unavailable, use conservative estimates. Oversizing CFM based on optimistic RPM projections is a common sizing mistake.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for seasonal air density variations if your engine operates at high altitudes or in hot climates. Thin air at elevation requires carburetors sized 10-15% larger to maintain the same fuel-air mixture quality compared to sea-level operations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When transitioning from a carburetor to fuel injection, note that EFI systems don't have CFM limitations and can be tuned across a wider RPM range. Consult with a fuel injection specialist to ensure your fuel system, injector size, and engine computer match your horsepower goals.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href={ref.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Gross CFM with Net CFM</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many engine builders select carburetors based on gross CFM advertising figures, which overstate real-world performance by 10-25%. Always reference net CFM ratings from manufacturer tech sheets, which reflect actual airflow with standard filtering and manifolding installed.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Volumetric Efficiency Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Upgrading your camshaft, heads, or intake manifold significantly increases volumetric efficiency and therefore CFM requirements. Failing to recalculate after modifications often results in an undersized carburetor that restricts power at high RPM.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Oversizing for Perceived Future Builds</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Selecting a carburetor larger than your current engine requires leads to poor idle quality, weak acceleration, and fuel economy loss. Size your carburetor for your actual engine configuration now; upgrade later if you perform major modifications.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Forced Induction</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Supercharged and turbocharged engines require 50-125% more CFM than naturally aspirated equivalents, yet many builders use stock carburetor sizing formulas. Forced induction engines typically need fuel injection systems rather than larger carburetors to operate reliably.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Real-World Peak RPM Limitations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating CFM based on theoretical maximum RPM rather than your engine's actual operating ceiling results in oversizing. Stock transmission converters, gear ratios, and engine durability considerations typically limit street engines to 5,500-6,500 RPM despite higher theoretical capability.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is CFM and why does it matter for carburetor sizing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">CFM stands for cubic feet per minute and measures the volume of air a carburetor can deliver to the engine. Proper CFM sizing is critical because an undersized carburetor will restrict airflow and reduce engine power, while an oversized one causes poor fuel atomization, sluggish throttle response, and reduced fuel economy. Most street engines perform best with carburetors sized between 0.4 and 0.6 CFM per cubic inch of displacement.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the required CFM for my engine?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The basic formula is: (Engine Displacement in cubic inches × RPM × 0.5) ÷ 3,456 = CFM. For example, a 350 cubic inch engine at 5,500 RPM would need approximately (350 × 5,500 × 0.5) ÷ 3,456 = 278 CFM. The 0.5 multiplier accounts for volumetric efficiency, which is typical for naturally aspirated street engines. This calculator automates this computation for accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between gross CFM and net CFM ratings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gross CFM is the maximum airflow a carburetor can theoretically deliver under ideal lab conditions, while net CFM reflects real-world performance with a standard air filter and intake manifold in place. Net CFM is typically 10-20% lower than gross CFM and is the more accurate specification for sizing purposes. Always use net CFM ratings when comparing carburetors for your engine build.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use a carburetor rated higher than my calculated CFM requirement?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While an oversized carburetor won't damage your engine, it will negatively impact performance and driveability. A carburetor sized &gt;20% above requirements often exhibits poor low-end response, inconsistent idle quality, and reduced fuel mileage. Industry experts recommend staying within 5-15% above your calculated CFM for optimal street performance and reliability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does engine displacement affect CFM requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">CFM requirements scale directly with engine displacement. A 305 cubic inch engine typically needs 180-240 CFM, while a 454 cubic inch engine requires 280-380 CFM. Larger displacement engines draw more air volume per combustion cycle, so they demand proportionally larger carburetors. The calculator accounts for this relationship automatically.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What role does RPM play in determining carburetor size?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">RPM directly influences how much air your engine consumes per unit of time. An engine turning 3,000 RPM requires less CFM than the same displacement engine at 6,000 RPM because the combustion cycles occur more frequently at higher speeds. Racing engines operating at &gt;7,000 RPM may require 15-25% larger carburetors than street engines of identical displacement.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I account for forced induction when sizing a carburetor?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, significantly. Supercharged and turbocharged engines require substantially larger carburetors because forced induction increases the volume of air entering the engine. For a turbocharged engine, multiply your base CFM calculation by 1.5 to 1.8 depending on boost pressure. Blown engines may require custom carburetors or fuel injection systems entirely.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is volumetric efficiency and how does it affect my calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Volumetric efficiency (VE) is the ratio of actual air drawn into the engine versus the theoretical maximum, expressed as a percentage. Street engines typically have 75-85% VE, while high-performance engines reach 95-105% VE. Stock carburetors usually assume 50% VE in sizing formulas, but modified engines with performance intakes and headers may operate at 70-80% VE, requiring larger carburetors.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my current carburetor is sized correctly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Signs of an undersized carburetor include power loss above 4,000 RPM, hesitation during acceleration, and inability to reach target horsepower. Oversized carburetors exhibit poor idle quality, stumbling on acceleration, and sluggish low-end response. Use this calculator to determine your required CFM, then compare against your carburetor's net CFM rating to verify proper sizing for your engine.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.holley.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Holley Performance – Carburetor Selection Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Manufacturer technical resources and carburetor specification database for selecting appropriately sized carburetors by engine displacement and application.</p>
+          </li>
+          <li>
+            <a href="https://www.edelbrock.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Edelbrock – Performance Carburetor Tech Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive carburetor sizing recommendations, installation guides, and volumetric efficiency data for street and racing applications.</p>
+          </li>
+          <li>
+            <a href="https://www.caranddriver.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Car and Driver – Engine Modification and Carburetor Basics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Editorial content covering carburetor theory, proper sizing techniques, and real-world performance implications for engine modifications.</p>
+          </li>
+          <li>
+            <a href="https://www.ls1tech.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">LS1Tech.com – Carburetor Sizing Calculator Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical forums and guides with detailed carburetor calculations, modification factor discussions, and peer community experience with various engine builds.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

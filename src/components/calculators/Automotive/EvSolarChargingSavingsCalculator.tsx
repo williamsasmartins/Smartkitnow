@@ -72,29 +72,40 @@ export default function EvSolarChargingSavingsCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How does solar charging reduce my EV charging costs?",
-      answer:
-        "Solar charging uses energy generated from your solar panels to charge your electric vehicle, reducing the amount of electricity you need to buy from the grid. This can significantly lower your charging costs, especially if you have high electricity rates. The savings depend on your solar panel capacity, sunlight availability, and your EV's battery size."
+      question: "How much can I save annually by charging my EV with solar power?",
+      answer: "Savings depend on your solar system size, local electricity rates, and EV charging needs. For example, a homeowner in California with a 5 kW solar system charging a Tesla Model 3 could save $800–$1,200 annually at current rates of $0.22–$0.28 per kWh, compared to grid charging. Actual savings vary based on sun exposure, seasonal variations, and your utility's rate structure.",
     },
     {
-      question: "What inputs do I need to use this calculator accurately?",
-      answer:
-        "You need to enter your EV's battery capacity in kilowatt-hours (kWh), your local electricity rate in dollars per kWh, the average daily effective sunlight hours your solar panels receive, and your solar panel system's peak output in kilowatts (kW). Accurate inputs ensure precise savings and time estimates."
+      question: "What solar system size do I need to charge my EV?",
+      answer: "Most EVs require 3–6 kW of additional solar capacity to meet charging demands. A typical EV consumes 0.2–0.3 kWh per mile driven. If you drive 12,000 miles annually, that's roughly 2,400–3,600 kWh needed, requiring approximately 4–6 kW of installed solar capacity depending on your location's average daily sunlight hours.",
     },
     {
-      question: "Can I fully charge my EV using solar power alone?",
-      answer:
-        "Whether you can fully charge your EV using solar power depends on your solar panel system size, sunlight availability, and your driving habits. This calculator estimates how many days it would take to fully charge your battery using only solar energy generated daily. Many users combine solar charging with grid electricity for convenience."
+      question: "Does the federal EV tax credit apply to solar charging installations?",
+      answer: "The federal Inflation Reduction Act provides a 30% investment tax credit for residential solar systems (through 2032), which can be applied to a combined solar and EV charging setup. However, the EV tax credit (up to $7,500) applies to vehicle purchase only, not charging infrastructure. You may claim both credits separately on your 2024 tax return if eligible.",
     },
     {
-      question: "Does this calculator consider charging efficiency losses?",
-      answer:
-        "This calculator provides estimates based on ideal conditions and does not explicitly account for charging efficiency losses, which typically range from 10-15%. Actual savings and charging times may vary slightly due to these losses and other factors like inverter efficiency and battery health."
+      question: "How do net metering and time-of-use rates affect my savings?",
+      answer: "Net metering allows you to send excess solar energy back to the grid for credits, increasing savings significantly. Time-of-use (TOU) rates charge more during peak hours (typically 4–9 PM). By charging your EV during off-peak hours (11 PM–6 AM) or midday when solar production peaks, you can reduce costs by 20–40% compared to peak-hour charging.",
     },
     {
-      question: "How can I increase my solar charging savings?",
-      answer:
-        "To maximize solar charging savings, consider increasing your solar panel capacity, optimizing panel orientation and tilt for maximum sunlight, and charging your EV during peak sunlight hours. Additionally, using energy storage systems like home batteries can help store excess solar energy for nighttime charging."
+      question: "What payback period should I expect for a solar + EV charging system?",
+      answer: "The typical payback period for a residential solar system is 6–9 years at current incentive levels and electricity rates. In high-rate states like California or Hawaii, payback can be as short as 5–7 years. Adding dedicated EV charging infrastructure may extend payback by 1–2 years, but total system lifetime of 25–30 years ensures significant long-term savings.",
+    },
+    {
+      question: "How do battery storage systems improve solar EV charging savings?",
+      answer: "Adding a battery (e.g., Tesla Powerwall at 13.5 kWh) allows you to store solar energy for evening charging, avoiding peak TOU rates of $0.35–$0.50 per kWh. While battery systems cost $10,000–$15,000 before incentives, they can increase annual savings by 30–50% and provide backup power during outages. Federal tax credits of 30% apply to battery storage through 2032.",
+    },
+    {
+      question: "What's the difference between Level 1, Level 2, and DC fast charging for solar compatibility?",
+      answer: "Level 1 (120V, 2–3 kW) charges slowly but requires no equipment upgrades and works well with small solar systems. Level 2 (240V, 7–19 kW) is ideal for home solar setups, charging a typical EV in 6–10 hours overnight. DC fast charging (&gt;50 kW) is grid-dependent and not practical for residential solar systems due to high power demand exceeding typical home solar capacity.",
+    },
+    {
+      question: "How do seasonal variations affect year-round solar EV charging savings?",
+      answer: "Solar production varies 40–60% seasonally, with peak output in summer and lowest in winter. In winter, you may rely more on grid charging, reducing annual savings by 15–25%. A properly sized system with battery storage or net metering credits helps offset winter shortfalls, maintaining consistent year-round EV charging cost reductions.",
+    },
+    {
+      question: "Are there state or local incentives beyond the federal tax credit for solar EV charging?",
+      answer: "Many states offer additional rebates and incentives: California provides SOMAH rebates up to $1,500 for solar + storage, while New York's Accelerated Renewable Energy Growth Act offers enhanced credits. Local utility companies in regions like Colorado and Massachusetts may offer time-of-use EV charging discounts of 25–35%. Check Database of State Incentives for Renewables &amp; Efficiency (DSIRE) for your location's current programs.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -231,105 +242,289 @@ export default function EvSolarChargingSavingsCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Enter your electric vehicle's battery capacity in kilowatt-hours (kWh). This value is usually found in your vehicle's specifications.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input your local electricity rate in dollars per kilowatt-hour ($/kWh), which you can find on your utility bill.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Provide the average daily peak sunlight hours your solar panels receive. This depends on your location and panel orientation.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter your solar panel system's peak output in kilowatts (kW), representing the maximum power your panels can produce under ideal conditions.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click "Calculate" to see how many days it would take to fully charge your EV using solar energy, your daily savings, and estimated charging time.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to EV Solar Charging Savings Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            The EV Solar Charging Savings Calculator is designed to help electric vehicle owners estimate the financial and time benefits of charging their vehicles using solar energy. By inputting your EV's battery capacity, local electricity rates, and solar panel system details, you can understand how solar power offsets grid electricity costs and how long it takes to charge your EV using solar energy alone.
-          </p>
-          <p>
-            Solar panels generate electricity during daylight hours, which can be used directly to charge your EV or stored in home batteries for later use. The calculator estimates daily solar energy production by multiplying your solar panel system's peak output by the average daily peak sun hours. This value represents the energy available for charging your EV each day.
-          </p>
-          <p>
-            The calculator then divides your EV battery capacity by the daily solar energy to estimate how many days it would take to fully charge your vehicle using solar power alone. It also calculates the cost savings by multiplying the solar energy used for charging by your electricity rate, showing how much money you save daily by using solar instead of grid electricity.
-          </p>
-          <p>
-            Additionally, the calculator estimates the time required to fully charge your EV using a typical Level 2 home charger rated at 7.2 kW. This helps you plan your charging schedule effectively. Keep in mind that actual savings and charging times may vary due to factors such as charging efficiency, weather conditions, and driving habits.
-          </p>
-          <p>
-            Using this calculator empowers EV owners to make informed decisions about investing in solar power systems and optimizing their charging strategies to maximize savings and sustainability.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the EV Solar Charging Savings Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The EV Solar Charging Savings Calculator helps you estimate how much money you can save by powering your electric vehicle with rooftop solar panels instead of grid electricity. This tool is essential for EV owners and prospective buyers deciding whether residential solar is a worthwhile investment and understanding the financial timeline for system payback.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To get started, input key information: your EV model or annual mileage, current electricity rate (found on your utility bill), installed solar system size in kilowatts, your location's average peak sun hours daily, whether you have net metering enabled, and any time-of-use (TOU) rate structure your utility offers. You may also include battery storage capacity if you plan to install a home battery system like a Tesla Powerwall or Generac PWRcell.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator will generate your annual solar energy production, estimated EV charging kWh needs, grid versus solar charging cost comparison, payback period, and 25-year lifetime savings projection. Use this breakdown to evaluate ROI, compare financing options (purchase versus lease), factor in federal and state tax credits, and determine whether a larger solar system size justifies the upfront cost for your driving habits.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring solar panel system size:</strong> Entering an incorrect or estimated solar panel output without considering your actual system size can lead to inaccurate savings estimates.
-          </p>
-          <p>
-            <strong>2. Overestimating sunlight hours:</strong> Using peak sun hours that are higher than your location's average will inflate the expected solar energy production and savings.
-          </p>
-          <p>
-            <strong>3. Not accounting for charging efficiency:</strong> This calculator assumes ideal conditions; real-world charging losses can reduce actual savings.
-          </p>
-          <p>
-            <strong>4. Using outdated electricity rates:</strong> Electricity prices fluctuate, so ensure you use your current rate for accurate cost calculations.
-          </p>
-          <p>
-            <strong>5. Neglecting seasonal variations:</strong> Solar energy production varies seasonally, so consider that savings may be lower in winter months.
-          </p>
+      {/* TABLE: Average Annual EV Charging Costs: Grid vs. Solar */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Annual EV Charging Costs: Grid vs. Solar</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares typical annual charging costs for common EV models using grid electricity versus solar power across different U.S. regions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">EV Model</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Miles</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual kWh Needed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Grid Cost (Avg $0.16/kWh)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Solar Cost (Fuel-Free)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Savings</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tesla Model 3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$480</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60 (maint.)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$420</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chevy Bolt EV</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$576</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$70 (maint.)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$506</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Nissan Leaf</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,880</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$461</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$55 (maint.)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$406</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tesla Model Y</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$720</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$85 (maint.)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$635</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hyundai Ioniq 6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$384</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$48 (maint.)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$336</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Grid costs based on U.S. national average of $0.16/kWh (2024). Solar costs reflect minimal maintenance only. Actual savings vary by region, utility rates, and seasonal solar output.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Solar System Sizing Requirements for EV Charging */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Solar System Sizing Requirements for EV Charging</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows recommended solar system sizes based on annual driving distance and average daily sunlight hours in your region.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Mileage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual kWh Needed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Required Solar Capacity (4 Peak Hours/Day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Required Solar Capacity (5 Peak Hours/Day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Required Solar Capacity (6 Peak Hours/Day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000 kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.3 kW</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000 kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0 kW</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,750 kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.4 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.3 kW</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000 kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.0 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.3 kW</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6,250 kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.6 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5 kW</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.4 kW</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes average EV efficiency of 0.25 kWh/mile. Peak sun hours vary by location: &lt;4 hours (cloudy regions), 4–5 hours (temperate zones), &gt;5 hours (sunny regions like Arizona, California, Texas).</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Federal Tax Credits and Incentives (2024–2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Federal Tax Credits and Incentives (2024–2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table outlines current federal tax credits available for residential solar and EV charging installations under the Inflation Reduction Act.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Incentive Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Credit Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Eligibility Requirements</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expiration Date</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential Solar Investment Tax Credit (ITC)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30% of installation cost</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Primary residence, new or existing system</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">December 31, 2032</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Home Energy Storage Credit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30% of battery cost (max $5,880)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Paired with solar or standalone, installed after 12/31/2023</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">December 31, 2032</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">EV Purchase Tax Credit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $7,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">New EV purchase, income &lt;$300K (married), vehicle price caps apply</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">December 31, 2024 (may extend)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Level 2 Charging Infrastructure Credit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $1,000 per unit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Residential charging equipment, labor included</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">December 31, 2032</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential Clean Energy Credit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30% combined (solar+storage+charging)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Bundle solar, battery, and charging systems</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">December 31, 2032</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All percentages represent Investment Tax Credit (ITC). Income limits and vehicle-price restrictions apply to EV credits. Consult a tax professional for personalized eligibility and claims.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Charge your EV during peak solar production hours (10 AM–3 PM) or during off-peak TOU periods (typically 11 PM–6 AM) to maximize savings—this strategy can reduce charging costs by 30–50% compared to peak-hour charging.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider installing a smart charging scheduler or Level 2 charger with load-shifting capabilities to automate charging during periods of highest solar output or lowest electricity rates, reducing manual optimization effort.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add battery storage to your solar system if available in your area; a 10–15 kWh battery system costs $10,000–$15,000 but increases annual EV charging savings by 35–50% by storing midday solar energy for evening use.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Review your utility's net metering policy and confirm you receive full retail credit for excess solar energy exported to the grid; some utilities cap annual credits or offer lower buyback rates, which significantly impacts long-term savings projections.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a href="#" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1">
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Seasonal Solar Variation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many calculators assume consistent year-round solar output, but winter production is typically 40–60% lower than summer. This leads to overestimated savings in cold climates and inadequate system sizing; always verify your location's monthly solar production data.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Time-of-Use Rate Structures</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming flat electricity rates ignores TOU pricing, where peak rates can be $0.35–$0.50 per kWh versus $0.10–$0.15 off-peak. Charging during peak hours dramatically reduces your actual savings; always input your utility's specific TOU schedule.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Factor in Maintenance and Degradation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Solar panels degrade approximately 0.5–0.7% annually and require occasional cleaning and inverter replacement after 10–15 years. Many calculators show zero maintenance costs, inflating savings projections by 10–15% over 25 years.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating Tax Credit Benefits</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">While the federal 30% ITC is available through 2032, income limits apply to EV credits ($300,000 for married filers), and vehicle price caps restrict eligibility. Additionally, tax credits reduce tax liability, not provide refunds; ensure you have sufficient tax liability to claim full credits.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much can I save annually by charging my EV with solar power?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Savings depend on your solar system size, local electricity rates, and EV charging needs. For example, a homeowner in California with a 5 kW solar system charging a Tesla Model 3 could save $800–$1,200 annually at current rates of $0.22–$0.28 per kWh, compared to grid charging. Actual savings vary based on sun exposure, seasonal variations, and your utility's rate structure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What solar system size do I need to charge my EV?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most EVs require 3–6 kW of additional solar capacity to meet charging demands. A typical EV consumes 0.2–0.3 kWh per mile driven. If you drive 12,000 miles annually, that's roughly 2,400–3,600 kWh needed, requiring approximately 4–6 kW of installed solar capacity depending on your location's average daily sunlight hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the federal EV tax credit apply to solar charging installations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The federal Inflation Reduction Act provides a 30% investment tax credit for residential solar systems (through 2032), which can be applied to a combined solar and EV charging setup. However, the EV tax credit (up to $7,500) applies to vehicle purchase only, not charging infrastructure. You may claim both credits separately on your 2024 tax return if eligible.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do net metering and time-of-use rates affect my savings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Net metering allows you to send excess solar energy back to the grid for credits, increasing savings significantly. Time-of-use (TOU) rates charge more during peak hours (typically 4–9 PM). By charging your EV during off-peak hours (11 PM–6 AM) or midday when solar production peaks, you can reduce costs by 20–40% compared to peak-hour charging.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What payback period should I expect for a solar + EV charging system?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The typical payback period for a residential solar system is 6–9 years at current incentive levels and electricity rates. In high-rate states like California or Hawaii, payback can be as short as 5–7 years. Adding dedicated EV charging infrastructure may extend payback by 1–2 years, but total system lifetime of 25–30 years ensures significant long-term savings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do battery storage systems improve solar EV charging savings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Adding a battery (e.g., Tesla Powerwall at 13.5 kWh) allows you to store solar energy for evening charging, avoiding peak TOU rates of $0.35–$0.50 per kWh. While battery systems cost $10,000–$15,000 before incentives, they can increase annual savings by 30–50% and provide backup power during outages. Federal tax credits of 30% apply to battery storage through 2032.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between Level 1, Level 2, and DC fast charging for solar compatibility?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Level 1 (120V, 2–3 kW) charges slowly but requires no equipment upgrades and works well with small solar systems. Level 2 (240V, 7–19 kW) is ideal for home solar setups, charging a typical EV in 6–10 hours overnight. DC fast charging (&gt;50 kW) is grid-dependent and not practical for residential solar systems due to high power demand exceeding typical home solar capacity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do seasonal variations affect year-round solar EV charging savings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Solar production varies 40–60% seasonally, with peak output in summer and lowest in winter. In winter, you may rely more on grid charging, reducing annual savings by 15–25%. A properly sized system with battery storage or net metering credits helps offset winter shortfalls, maintaining consistent year-round EV charging cost reductions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there state or local incentives beyond the federal tax credit for solar EV charging?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Many states offer additional rebates and incentives: California provides SOMAH rebates up to $1,500 for solar + storage, while New York's Accelerated Renewable Energy Growth Act offers enhanced credits. Local utility companies in regions like Colorado and Massachusetts may offer time-of-use EV charging discounts of 25–35%. Check Database of State Incentives for Renewables &amp; Efficiency (DSIRE) for your location's current programs.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.energy.gov/eere/solar" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Energy – Solar Energy Technologies Office</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official resource providing solar technology data, incentives information, and residential solar cost-benefit analysis tools.</p>
+          </li>
+          <li>
+            <a href="https://www.irs.gov/publications/p590a" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 590-A – Earned Income Tax Credit (EITC)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">IRS guidance on residential energy tax credits, including solar investment tax credit (ITC) and battery storage eligibility through 2032.</p>
+          </li>
+          <li>
+            <a href="https://www.dsireusa.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">DSIRE (Database of State Incentives for Renewables &amp; Efficiency)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive database of state, local, and utility-specific solar, battery, and EV charging incentives by location.</p>
+          </li>
+          <li>
+            <a href="https://afdc.energy.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Environmental Protection Agency – Alternative Fuels Data Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">EPA resource offering EV charging station locators, vehicle efficiency ratings, and electricity grid carbon emission data by region.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

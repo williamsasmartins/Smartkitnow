@@ -64,29 +64,40 @@ export default function AnnualEvHybridCostCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How does this calculator compare EV and hybrid annual costs?",
-      answer:
-        "This calculator estimates the annual fuel or electricity cost based on your driving distance, vehicle efficiency, and fuel or electricity price. For EVs, efficiency is often expressed in kWh per distance, while hybrids use MPG or L/100km. By inputting these values, you can compare the yearly energy costs of an electric vehicle versus a hybrid, helping you make an informed financial decision."
+      question: "How much does it cost to charge an electric vehicle per mile compared to a hybrid?",
+      answer: "On average, charging an EV costs approximately $0.03 to $0.05 per mile, while hybrid fuel costs range from $0.08 to $0.12 per mile depending on electricity rates and fuel prices. Using the national average electricity rate of $0.16 per kWh and gasoline at $3.50 per gallon, a typical EV with 4 miles per kWh efficiency costs significantly less than a hybrid relying primarily on gas. Your actual costs will vary based on local utility rates and driving patterns.",
     },
     {
-      question: "Why is it important to consider both distance and efficiency?",
-      answer:
-        "Annual driving distance and vehicle efficiency directly impact your total energy consumption and cost. A highly efficient vehicle driven extensively may still incur significant costs, while a less efficient vehicle driven minimally might cost less. This calculator combines these factors to provide a realistic estimate of your yearly fuel or electricity expenses."
+      question: "What annual mileage should I use to get an accurate comparison?",
+      answer: "Most drivers average 12,000 to 15,000 miles annually in the United States. For an accurate comparison using this calculator, enter your actual expected annual mileage; however, if you're unsure, 12,500 miles is a reasonable baseline for typical sedan drivers. Higher mileage drivers benefit more from EVs due to lower per-mile operating costs, while lower mileage drivers may see less dramatic savings.",
     },
     {
-      question: "Can I use this calculator for both US and metric units?",
-      answer:
-        "Yes, the calculator supports both imperial (miles, MPG, gallons) and metric (kilometers, L/100km, liters) units. Simply select your preferred unit system, and input the corresponding values. The calculator will handle the calculations accordingly to provide accurate annual cost estimates."
+      question: "How do local electricity rates affect EV charging costs?",
+      answer: "Electricity rates vary dramatically by region, ranging from $0.10 per kWh in states like Louisiana to $0.23 per kWh in California. This means charging an EV in California costs more than double that in Louisiana for identical driving distances. When using this calculator, input your local utility rate or check your electric bill to ensure precise cost comparisons with hybrids in your area.",
     },
     {
-      question: "How accurate are the cost estimates?",
-      answer:
-        "The estimates are based on the inputs you provide and standard calculation formulas. Real-world factors such as driving habits, terrain, weather, and vehicle maintenance can affect actual costs. Use this calculator as a guideline rather than an exact prediction."
+      question: "Are there hidden costs I should consider beyond fuel and electricity?",
+      answer: "EVs typically have lower maintenance costs due to regenerative braking and no oil changes, saving approximately $4,600 over the vehicle's lifetime compared to gas vehicles. However, hybrid maintenance costs fall between EVs and traditional gas cars at roughly $2,800 in additional costs. Battery replacement for EVs (rarely needed within 10 years) and hybrid battery costs should be factored in separately from fuel expenses.",
     },
     {
-      question: "What is the difference between fuel price and electricity price inputs?",
-      answer:
-        "Fuel price refers to the cost per gallon or liter of gasoline or diesel, while electricity price is the cost per kWh for charging an EV. Ensure you input the correct price for the energy type your vehicle uses to get an accurate annual cost estimate."
+      question: "How do I account for time-of-use electricity pricing in my calculations?",
+      answer: "Many utilities offer time-of-use (TOU) rates where off-peak charging (typically 9 PM to 6 AM) costs 30-50% less than peak rates. If your EV can charge during off-peak hours, your effective electricity rate could be $0.10 per kWh instead of $0.16, dramatically improving EV cost advantages. Enter your lowest available TOU rate into the calculator if you have the ability to charge during discounted periods.",
+    },
+    {
+      question: "What's the impact of gasoline price volatility on hybrid costs?",
+      answer: "Gasoline prices fluctuate between $2.50 and $4.50 per gallon seasonally and geographically, creating significant cost variance for hybrid owners. A hybrid costing $1,800 annually in fuel at $3.00 per gallon could cost $2,700 at $4.50 per gallon—a 50% increase. Use your local current gasoline price and consider regional trends when running this comparison, as fuel costs represent the largest variable in hybrid operating expenses.",
+    },
+    {
+      question: "How does driving behavior (city vs. highway) affect the calculator results?",
+      answer: "EVs achieve better efficiency in city driving due to regenerative braking, averaging 4-5 miles per kWh, while highway driving drops to 3-4 miles per kWh. Hybrids also perform better in city driving (25-30 MPG) versus highway (30-35 MPG), but both vehicle types benefit from city driving patterns. Adjust your annual mileage split between city and highway driving in your analysis for most accurate results.",
+    },
+    {
+      question: "Should I account for federal tax credits or state incentives in my comparison?",
+      answer: "The federal EV tax credit of up to $7,500 (available through 2032 for qualifying vehicles) significantly reduces EV purchase prices but doesn't directly affect fuel costs. Some states like California and New York offer additional $2,000-$5,000 incentives for EV purchases. While these credits don't change annual operating costs shown by this calculator, they improve the overall total cost of ownership when purchasing decisions are being made.",
+    },
+    {
+      question: "Can this calculator help me determine break-even points between EV and hybrid purchases?",
+      answer: "This calculator shows annual fuel/electricity costs only and doesn't factor vehicle purchase prices, which is essential for true break-even analysis. An EV might cost $5,000-$10,000 more upfront but save $1,500-$2,500 annually on fuel, reaching break-even in 2-6 years depending on mileage. For complete ROI analysis, combine this calculator's results with purchase price differences and factor in financing costs and incentives.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -208,114 +219,289 @@ export default function AnnualEvHybridCostCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to use this calculator
-        </h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system — Imperial (miles, MPG, gallons) or Metric (kilometers, L/100km, liters).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your estimated annual driving distance in miles or kilometers.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input your vehicle's fuel efficiency (MPG for Imperial, L/100km for Metric). For EVs, use electricity consumption equivalent.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the current price of fuel or electricity per gallon/liter or per kWh.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click "Calculate" to see your estimated annual fuel or electricity cost.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" />
-          Complete Guide to Annual Fuel/Electricity Cost: EV vs Hybrid
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Understanding the annual fuel or electricity cost of your vehicle is crucial for budgeting and making informed decisions between electric vehicles (EVs) and hybrids. This calculator helps you estimate these costs based on your driving habits and local energy prices. For traditional hybrids, fuel efficiency is typically measured in miles per gallon (MPG) or liters per 100 kilometers (L/100km), while EVs use electricity consumption measured in kilowatt-hours (kWh) per distance. By entering your annual driving distance, vehicle efficiency, and the price of fuel or electricity, you receive an estimate of your yearly energy expenses.
-          </p>
-          <p>
-            The calculation differs slightly depending on the unit system you choose. In the imperial system, the formula divides the annual distance by the vehicle's MPG to find gallons consumed, then multiplies by the fuel price. In the metric system, it multiplies the distance by the fuel consumption rate (L/100km) divided by 100, then multiplies by the fuel price per liter. For EVs, the same principles apply, but the efficiency input corresponds to kWh per mile or km, and the price is per kWh. This tool is invaluable for comparing the cost-effectiveness of EVs versus hybrids, helping you understand potential savings or expenses over a year.
-          </p>
-          <p>
-            Keep in mind that real-world factors such as driving style, terrain, climate, and vehicle maintenance can affect actual consumption and costs. This calculator provides a reliable estimate based on your inputs, serving as a guide to help you plan your vehicle expenses more accurately.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Annual Fuel/Electricity Cost: EV vs Hybrid Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator compares the annual operating costs of electric vehicles and hybrid vehicles based on your driving patterns and local fuel/electricity prices. Understanding these costs is critical for making informed vehicle purchase decisions, as fuel and electricity represent the largest ongoing operating expenses after insurance and maintenance. By inputting your specific driving habits and local utility rates, you can see precisely how much you'll spend annually on each powertrain option.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator requires three key inputs: your expected annual mileage (typically 12,000-15,000 miles for average U.S. drivers), your local electricity rate per kilowatt-hour (found on your utility bill or online), and the current gasoline price in your area. Vehicle efficiency ratings are pre-populated based on typical EPA data, but you can adjust these if you have your vehicle's specific MPG or miles-per-kWh rating from your owner's manual or fuel economy documentation. These inputs directly determine your total annual operating costs by multiplying miles driven by cost-per-mile for each vehicle type.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret the results by comparing the total annual costs shown for each vehicle type—the difference reveals your potential annual savings. An EV showing $1,500 annual costs versus a hybrid at $2,625 means $1,125 in yearly savings, which compounds to $5,625-$11,250 over 5-10 years of ownership. Note that this calculator focuses solely on fuel/electricity costs and doesn't include vehicle purchase price, maintenance, insurance, or financing—consider these factors separately for complete total-cost-of-ownership analysis.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" />
-          Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Mixing Units:</strong> Entering distance, efficiency, or price in different unit systems (e.g., miles with L/100km) can lead to incorrect results. Always ensure all inputs correspond to the selected unit system.
-          </p>
-          <p>
-            <strong>2. Using Average Prices:</strong> Fuel and electricity prices fluctuate by location and time. Using outdated or generalized prices may not reflect your actual costs.
-          </p>
-          <p>
-            <strong>3. Ignoring Real-World Factors:</strong> This calculator assumes consistent driving conditions. Variations in terrain, traffic, and weather can impact fuel or electricity consumption.
-          </p>
-          <p>
-            <strong>4. Confusing Efficiency Metrics:</strong> For EVs, efficiency is often in kWh per mile or km, not MPG. Ensure you use the correct efficiency figure for your vehicle type.
-          </p>
-          <p>
-            <strong>5. Not Updating Inputs Regularly:</strong> Changes in driving habits or energy prices should be updated to keep estimates accurate.
-          </p>
+      {/* TABLE: Annual Fuel/Electricity Costs by Vehicle Type and Annual Mileage */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Annual Fuel/Electricity Costs by Vehicle Type and Annual Mileage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows projected annual operating costs for electric vehicles versus hybrids at different annual mileage levels using 2024-2025 national average rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Mileage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">EV Cost (at $0.16/kWh)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hybrid Cost (at $3.50/gal)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Savings (EV)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$900</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12,500 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,125</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,350</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,800</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,250</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">EV costs assume 4 miles per kWh efficiency; hybrid costs assume 28 MPG combined. Actual savings vary by local electricity rates, gasoline prices, and vehicle efficiency ratings.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently asked questions
-        </h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Regional Electricity Rates Impact on EV Charging Costs */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Regional Electricity Rates Impact on EV Charging Costs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Electricity rates vary significantly across U.S. regions, directly affecting annual EV operating costs for equivalent mileage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Region/State</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Avg. Electricity Rate (2024)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Cost (12,500 mi)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">vs. National Average</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Louisiana</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.10/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$937</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-38% cheaper</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Texas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.12/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-25% cheaper</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">National Average</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.16/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">baseline</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">New York</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.19/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,781</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+19% more</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Massachusetts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.21/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,969</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+31% more</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">California</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.23/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,156</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+44% more</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Based on U.S. Energy Information Administration 2024 data. Residential rates include all taxes and fees. Time-of-use rates can reduce costs by 30-50% during off-peak hours.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" />
-          References & additional resources
-        </h2>
+      {/* TABLE: Vehicle Efficiency Ratings by Category (EPA 2024-2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Vehicle Efficiency Ratings by Category (EPA 2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard efficiency metrics show how vehicle type and size affect fuel/electricity consumption and operating costs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vehicle Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Efficiency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost per Mile (avg.)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Cost (12,500 mi)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Compact EV</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5 mi/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.036</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mid-size EV</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0 mi/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.040</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full-size EV</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5 mi/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.046</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$575</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Compact Hybrid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 MPG</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.073</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$912</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mid-size Hybrid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42 MPG</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.083</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,038</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full-size Hybrid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38 MPG</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.092</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,150</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Efficiency ratings from EPA FuelEconomy.gov. EV costs use $0.16/kWh; hybrid costs use $3.50/gallon. Real-world efficiency varies with driving conditions.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your most recent utility bill for your exact per-kWh electricity rate rather than using national averages—rates vary by 130% between the cheapest and most expensive states, dramatically affecting EV cost comparisons.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If your utility offers time-of-use (TOU) pricing, calculate costs using off-peak rates (typically $0.08-$0.12/kWh) available during night charging hours—this can reduce annual EV costs by 30-50% compared to peak rates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in your actual commute distance and driving patterns; drivers with &lt;10,000 annual miles see smaller absolute savings with EVs despite better per-mile efficiency, while high-mileage drivers (&gt;20,000 miles) see the greatest benefit from lower EV operating costs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your actual vehicle's real-world efficiency for 2-3 months using your fuel/electricity receipts and odometer readings, then input these figures for the most accurate cost comparison tailored to your specific driving behavior and conditions.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href={ref.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Regional Electricity Rate Variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using national average electricity rates ($0.16/kWh) when your state's actual rate is $0.23/kWh (California) or $0.10/kWh (Louisiana) creates massive calculation errors. Always verify your local utility rate on your monthly bill or utility company website before running comparisons.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Off-Peak Charging Discounts</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many utilities offer time-of-use rates 30-50% cheaper during off-peak hours (typically 9 PM–6 AM), but only benefit drivers who can charge during these windows. If you have access to TOU pricing but use daytime charging exclusively, you'll overestimate your EV costs significantly.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Vehicle Efficiency Ratings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">MPG for hybrids and miles-per-kWh for EVs measure different things and aren't directly comparable without conversion. Using EPA ratings of 42 MPG (hybrid) versus 4.5 mi/kWh (EV) requires understanding that 4.5 mi/kWh roughly equals 120 MPGe (miles-per-gallon-equivalent) in energy content.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Excluding Long-Term Price Volatility</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Gasoline prices fluctuate $1-$2 per gallon seasonally and geographically, while electricity rates remain more stable; using a single gasoline price for 5-year projections underestimates hybrid cost uncertainty. Consider 10-year historical ranges ($2.50-$4.50 per gallon) when planning long-term ownership decisions.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does it cost to charge an electric vehicle per mile compared to a hybrid?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">On average, charging an EV costs approximately $0.03 to $0.05 per mile, while hybrid fuel costs range from $0.08 to $0.12 per mile depending on electricity rates and fuel prices. Using the national average electricity rate of $0.16 per kWh and gasoline at $3.50 per gallon, a typical EV with 4 miles per kWh efficiency costs significantly less than a hybrid relying primarily on gas. Your actual costs will vary based on local utility rates and driving patterns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What annual mileage should I use to get an accurate comparison?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most drivers average 12,000 to 15,000 miles annually in the United States. For an accurate comparison using this calculator, enter your actual expected annual mileage; however, if you're unsure, 12,500 miles is a reasonable baseline for typical sedan drivers. Higher mileage drivers benefit more from EVs due to lower per-mile operating costs, while lower mileage drivers may see less dramatic savings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do local electricity rates affect EV charging costs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Electricity rates vary dramatically by region, ranging from $0.10 per kWh in states like Louisiana to $0.23 per kWh in California. This means charging an EV in California costs more than double that in Louisiana for identical driving distances. When using this calculator, input your local utility rate or check your electric bill to ensure precise cost comparisons with hybrids in your area.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there hidden costs I should consider beyond fuel and electricity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">EVs typically have lower maintenance costs due to regenerative braking and no oil changes, saving approximately $4,600 over the vehicle's lifetime compared to gas vehicles. However, hybrid maintenance costs fall between EVs and traditional gas cars at roughly $2,800 in additional costs. Battery replacement for EVs (rarely needed within 10 years) and hybrid battery costs should be factored in separately from fuel expenses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for time-of-use electricity pricing in my calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Many utilities offer time-of-use (TOU) rates where off-peak charging (typically 9 PM to 6 AM) costs 30-50% less than peak rates. If your EV can charge during off-peak hours, your effective electricity rate could be $0.10 per kWh instead of $0.16, dramatically improving EV cost advantages. Enter your lowest available TOU rate into the calculator if you have the ability to charge during discounted periods.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the impact of gasoline price volatility on hybrid costs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gasoline prices fluctuate between $2.50 and $4.50 per gallon seasonally and geographically, creating significant cost variance for hybrid owners. A hybrid costing $1,800 annually in fuel at $3.00 per gallon could cost $2,700 at $4.50 per gallon—a 50% increase. Use your local current gasoline price and consider regional trends when running this comparison, as fuel costs represent the largest variable in hybrid operating expenses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does driving behavior (city vs. highway) affect the calculator results?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">EVs achieve better efficiency in city driving due to regenerative braking, averaging 4-5 miles per kWh, while highway driving drops to 3-4 miles per kWh. Hybrids also perform better in city driving (25-30 MPG) versus highway (30-35 MPG), but both vehicle types benefit from city driving patterns. Adjust your annual mileage split between city and highway driving in your analysis for most accurate results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I account for federal tax credits or state incentives in my comparison?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The federal EV tax credit of up to $7,500 (available through 2032 for qualifying vehicles) significantly reduces EV purchase prices but doesn't directly affect fuel costs. Some states like California and New York offer additional $2,000-$5,000 incentives for EV purchases. While these credits don't change annual operating costs shown by this calculator, they improve the overall total cost of ownership when purchasing decisions are being made.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator help me determine break-even points between EV and hybrid purchases?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator shows annual fuel/electricity costs only and doesn't factor vehicle purchase prices, which is essential for true break-even analysis. An EV might cost $5,000-$10,000 more upfront but save $1,500-$2,500 annually on fuel, reaching break-even in 2-6 years depending on mileage. For complete ROI analysis, combine this calculator's results with purchase price differences and factor in financing costs and incentives.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.eia.gov/electricity/state/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Energy Information Administration - Average Electricity Rates by State</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official government source providing current residential electricity rates by state, updated monthly to reflect regional pricing variations.</p>
+          </li>
+          <li>
+            <a href="https://www.fueleconomy.gov/feg/findacar.shtml" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA FuelEconomy.gov - Find a Car</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative EPA resource providing official fuel economy ratings, MPG estimates, and annual fuel cost data for all vehicle makes and models.</p>
+          </li>
+          <li>
+            <a href="https://afdc.energy.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Energy - Alternative Fuels Data Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government resource offering electric vehicle charging infrastructure data, EV cost comparisons, fuel price tracking, and total cost of ownership calculators.</p>
+          </li>
+          <li>
+            <a href="https://consumer.ftc.gov/articles/buying-electric-vehicle" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Trade Commission - Buying an Electric Vehicle</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Consumer protection agency guidance on EV purchasing including cost considerations, tax credits, and operating expense factors for informed decision-making.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 
