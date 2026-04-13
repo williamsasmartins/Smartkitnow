@@ -19,7 +19,7 @@ const ROOT = path.resolve(__dirname, "..");
 
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 const MODEL = "claude-haiku-4-5-20251001";
-const MAX_TOKENS = 8192;
+const MAX_TOKENS = 4096;
 const DELAY_MS = 2500; // between API calls
 const MIN_FAQS_THRESHOLD = 8; // skip if already has 8+ FAQs AND tables
 const PROGRESS_FILE = path.join(ROOT, "scripts", ".improve-progress.json");
@@ -149,70 +149,65 @@ function findFaqsBounds(content) {
 
 // ─── PROMPT ──────────────────────────────────────────────────────────────────
 function buildPrompt(title, category) {
-  return `You are a financial content expert creating SEO-optimized editorial content for a calculator page.
+  return `You are an expert content writer creating SEO-optimized editorial content for a calculator page.
 
 Calculator: "${title}"
 Category: ${category}
 
-Generate editorial content in JSON format. Return ONLY valid JSON, no markdown, no explanation.
+Generate editorial content in JSON. Return ONLY valid JSON — no markdown fences, no explanation.
+Keep all string values CONCISE to stay within token limits.
 
 {
   "faqs": [
-    {"question": "...", "answer": "..."},
-    ... (exactly 9 FAQs, specific to this calculator, with real numbers and benchmarks)
+    {"question": "...", "answer": "1-2 sentences max with specific numbers."},
+    ... (exactly 7 FAQs specific to this calculator)
   ],
   "tables": [
     {
       "id": "table-1",
       "heading": "Table heading",
-      "intro": "One sentence explaining the table.",
-      "headers": ["Column 1", "Column 2", "Column 3"],
-      "rows": [
-        ["value", "value", "value"],
-        ...
-      ],
-      "note": "Optional footnote (or empty string)"
+      "intro": "One sentence.",
+      "headers": ["Col 1", "Col 2", "Col 3"],
+      "rows": [["val","val","val"], ...],
+      "note": ""
     },
-    ... (2 to 3 tables with REAL, ACCURATE data relevant to this calculator)
+    ... (exactly 2 tables with REAL, ACCURATE data)
   ],
   "guide": {
     "heading": "How to Use the ${title}",
     "paragraphs": [
-      "Paragraph 1 (2-3 sentences explaining what this calculator does and why it matters).",
-      "Paragraph 2 (2-3 sentences on the key inputs and what they mean).",
-      "Paragraph 3 (2-3 sentences on how to interpret the results)."
+      "1-2 sentences on what this calculator does.",
+      "1-2 sentences on key inputs.",
+      "1-2 sentences on interpreting results."
     ]
   },
   "tips": [
-    "Tip 1 — specific actionable advice for this calculator topic.",
-    "Tip 2 — ...",
-    "Tip 3 — ...",
-    "Tip 4 — ..."
+    "Tip 1 — one sentence.",
+    "Tip 2 — one sentence.",
+    "Tip 3 — one sentence.",
+    "Tip 4 — one sentence."
   ],
   "mistakes": [
-    {"title": "Mistake name", "body": "1-2 sentence explanation."},
-    {"title": "Mistake name", "body": "..."},
-    {"title": "Mistake name", "body": "..."},
-    {"title": "Mistake name", "body": "..."}
+    {"title": "Name", "body": "One sentence."},
+    {"title": "Name", "body": "One sentence."},
+    {"title": "Name", "body": "One sentence."},
+    {"title": "Name", "body": "One sentence."}
   ],
   "references": [
-    {
-      "title": "Reference name",
-      "url": "https://real-authoritative-url.gov-or-org",
-      "description": "One sentence description."
-    },
-    ... (exactly 4 references, REAL URLs from IRS, SEC, Investopedia, Bankrate, NerdWallet, Consumer Financial Protection Bureau, etc.)
+    {"title": "Name", "url": "https://real-url.org", "description": "One sentence."},
+    {"title": "Name", "url": "https://real-url.org", "description": "One sentence."},
+    {"title": "Name", "url": "https://real-url.org", "description": "One sentence."},
+    {"title": "Name", "url": "https://real-url.org", "description": "One sentence."}
   ],
   "lastUpdated": "April 2026"
 }
 
 Rules:
-- All FAQs must be SPECIFIC to "${title}" — no generic finance questions
-- Every table must have REAL data (actual rates, actual benchmarks, actual limits for 2024-2025)
-- Every reference URL must be a REAL URL that exists on an authoritative site
-- Tips and mistakes must be specific to this calculator, not generic financial advice
-- Answers should be 2-4 sentences with specific numbers where applicable
-- CRITICAL: In all text values, never use raw < or > as comparison operators. Use &lt; and &gt; instead. Example: "held &lt;1 year", "Beta &gt; 1.0", "&lt;$50M daily volume"`;
+- FAQs must be SPECIFIC to "${title}" — no generic questions
+- Tables must have REAL data (actual benchmarks, limits, rates for 2024-2025)
+- Reference URLs must be REAL, authoritative URLs
+- Tips and mistakes must be specific to this calculator
+- CRITICAL: Never use raw < or > as comparison operators — use &lt; and &gt; instead`;
 }
 
 // ─── JSX GENERATION ──────────────────────────────────────────────────────────
