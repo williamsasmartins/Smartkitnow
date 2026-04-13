@@ -201,20 +201,40 @@ export default function LoanPaymentCalculator() {
 
   const faqs = [
     {
-      question: "Does this calculator include taxes, insurance, or fees?",
-      answer: "No. This tool focuses on the core <strong>principal and interest</strong> payment for a fixed-rate, fully amortizing loan. Real-world payments may also include taxes, insurance, origination fees, late fees, or other charges depending on the type of loan and your lender's policies."
+      question: "What is the formula the loan payment calculator uses?",
+      answer: "The loan payment calculator uses the standard amortization formula: M = P[r(1+r)^n]/[(1+r)^n-1], where M is the monthly payment, P is the principal loan amount, r is the monthly interest rate (annual rate divided by 12), and n is the total number of payments. This formula calculates the fixed payment amount needed to fully repay a loan over its term with compound interest.",
     },
     {
-      question: "What happens if I make extra payments?",
-      answer: "Extra principal payments reduce your balance faster, which lowers the amount of interest that accrues each month. The result is an earlier payoff date and less total interest paid. This version of the calculator does not model extra payments, but you can still experiment by shortening the term or lowering the loan amount to approximate their impact."
+      question: "How does changing the interest rate affect my monthly payment?",
+      answer: "Interest rate changes have a significant impact on your monthly payment. For example, on a $300,000 mortgage over 30 years, a 6% interest rate results in a $1,799 monthly payment, while a 7% rate increases it to $1,996—a difference of $197 per month or $70,920 over the loan's life. Even a 0.5% increase can add $50-100+ to your monthly payment depending on the loan amount and term.",
     },
     {
-      question: "Can I use this for credit card debt?",
-      answer: "You can approximate revolving credit scenarios, but credit cards usually charge interest daily and payments may not be fixed. For precise projections, look for a credit card–specific payoff calculator, but this tool is still useful for rough planning and \"what if\" scenarios."
+      question: "What's the difference between the principal and total interest paid?",
+      answer: "The principal is the original amount borrowed (for example, $200,000), while total interest is the additional cost of borrowing that money. On a $200,000 loan at 6.5% over 30 years, you'd pay approximately $252,000 total, meaning $52,000 in interest alone. The loan payment calculator breaks down exactly how much of each payment goes toward principal versus interest.",
     },
     {
-      question: "Is this financial advice?",
-      answer: "No. The calculator is for educational and planning purposes only and does not replace professional financial advice. Always review loan documents carefully and consult a qualified financial professional or credit counselor if you are unsure which option is best for your situation."
+      question: "Can the loan payment calculator help me compare different loan terms?",
+      answer: "Yes, the calculator is excellent for term comparison. For instance, a $250,000 loan at 6% costs $1,499/month over 30 years but $1,887/month over 20 years. While the 20-year option has higher monthly payments, it saves you approximately $108,000 in total interest, making it valuable for comparing short-term versus long-term borrowing strategies.",
+    },
+    {
+      question: "How do extra payments affect the amortization schedule shown by the calculator?",
+      answer: "Extra payments reduce both the loan term and total interest significantly. On a $300,000 mortgage at 6.5% over 30 years, adding just $200 to your monthly $1,896 payment can shorten the loan by 5-7 years and save $60,000+ in interest. Some calculators allow you to input extra payments to show the accelerated payoff schedule.",
+    },
+    {
+      question: "What loan types can I calculate with a loan payment calculator?",
+      answer: "The loan payment calculator works for most fixed-rate loans including mortgages, auto loans, personal loans, and student loans. It calculates based on the principal amount, annual interest rate, and loan term in months or years. Variable-rate loans and adjustable-rate mortgages (ARMs) require manual recalculation when rates change, as the calculator assumes a constant interest rate.",
+    },
+    {
+      question: "Why does my first payment seem to go mostly toward interest?",
+      answer: "In an amortization schedule, early payments are heavily weighted toward interest because interest is calculated on the remaining balance. On a $400,000 mortgage at 6.5%, your first payment of $2,528 might include $2,167 in interest and only $361 in principal. As you pay down the principal, more of each payment goes toward principal reduction, which is why the amortization schedule shifts over time.",
+    },
+    {
+      question: "How accurate is the loan payment calculator for real-world loans?",
+      answer: "The calculator is very accurate for fixed-rate loans when you input the correct principal, interest rate, and term. However, real-world loans may include additional fees (origination fees, PMI, closing costs) that aren't reflected in the basic payment calculation. Always verify results with your lender, as some institutions may round payments differently or apply daily compounding instead of monthly.",
+    },
+    {
+      question: "Can I use the calculator to determine how much loan I can afford?",
+      answer: "Yes, by working backward with the calculator. If you can afford $1,500 monthly payments over 30 years at a 6.5% interest rate, you can borrow approximately $237,000. Most lenders also use the debt-to-income ratio rule: your total monthly debt payments shouldn't exceed 36-43% of gross monthly income, which the calculator can help you verify.",
     }
   ];
 
@@ -228,221 +248,296 @@ export default function LoanPaymentCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-            {/* ==================== HOW TO USE ==================== */}
-            <section id="how-to-use" className="scroll-mt-32">
-              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-                How to use the loan payment calculator
-              </h2>
-              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-                This loan payment calculator helps you estimate how much you&apos;ll pay each month
-                for a fixed-rate, fully amortizing loan. It works well for personal loans, auto
-                loans, small business loans, and other traditional installment debt.
-              </p>
-              <ol className="list-decimal pl-5 space-y-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-                <li>
-                  <span className="font-semibold">Enter the loan amount (principal).</span>{" "}
-                  This is the amount you plan to borrow after any down payment.
-                </li>
-                <li>
-                  <span className="font-semibold">Add the interest rate (APR).</span>{" "}
-                  Use the <em>annual</em> percentage rate quoted by your lender, not a monthly rate.
-                </li>
-                <li>
-                  <span className="font-semibold">Set the loan term in months.</span>{" "}
-                  For example, 36, 48, 60 or 72 months are common for auto loans.
-                </li>
-                <li>
-                  <span className="font-semibold">Optionally choose a first payment date.</span>{" "}
-                  This doesn&apos;t change the math but helps label the amortization schedule.
-                </li>
-                <li>
-                  <span className="font-semibold">Click &quot;Calculate payment&quot;.</span>{" "}
-                  You&apos;ll see your monthly payment, total interest, total paid, and a full payment schedule.
-                </li>
-              </ol>
-              <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-                Use these results to compare offers from different lenders, test shorter or longer
-                terms, and understand how interest costs change over time.
-              </p>
-            </section>
-  
-            {/* ==================== FORMULA SECTION ==================== */}
-            <section id="formula" className="scroll-mt-32">
-              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-                The math behind loan payment calculations
-              </h2>
-              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-                Most installment loans use a standard <strong>amortization formula</strong>. This
-                formula ensures that every payment is the same amount, but the mix of principal and
-                interest changes over time as your balance shrinks.
-              </p>
-              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-                Early payments are interest-heavy because the outstanding balance is still large.
-                Later payments become more principal-heavy as the balance declines. The calculator
-                reproduces this schedule month by month so you can see exactly how your loan will
-                behave.
-              </p>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                If the interest rate is zero, the calculation simplifies: your monthly payment is
-                simply the principal divided by the number of months. In that special case, there is no
-                interest portion at all—every payment directly reduces the balance.
-              </p>
-            </section>
-  
-            {/* ==================== FACTORS ==================== */}
-            <section id="factors" className="scroll-mt-32">
-              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-                What affects your monthly loan payment?
-              </h2>
-              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-                Three main levers control your monthly payment and total interest:{" "}
-                <strong>loan amount</strong>, <strong>interest rate</strong>, and{" "}
-                <strong>term length</strong>.
-              </p>
-              <ul className="list-disc pl-5 space-y-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-                <li>
-                  <span className="font-semibold">Loan amount (principal).</span>{" "}
-                  Larger loans naturally create higher payments and more total interest. A bigger
-                  down payment reduces the amount financed and can dramatically lower both.
-                </li>
-                <li>
-                  <span className="font-semibold">Interest rate (APR).</span>{" "}
-                  Even small changes in APR can have a big impact on total interest over several
-                  years. Improving your credit score or shopping multiple lenders can often shave
-                  off percentage points and save thousands.
-                </li>
-                <li>
-                  <span className="font-semibold">Term length.</span>{" "}
-                  Longer terms reduce the monthly payment but increase the number of payments, so
-                  you usually pay much more interest overall. Shorter terms are tougher on your
-                  budget but cheaper in the long run.
-                </li>
-              </ul>
-              <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-                Use the calculator to experiment: try shortening the term by 12 months, or test
-                variations in the interest rate you might get with a better credit score. Watching the
-                total interest and payoff date change is a powerful way to make more informed
-                borrowing decisions.
-              </p>
-            </section>
-  
-            {/* ==================== EXAMPLES ==================== */}
-            <section id="examples" className="scroll-mt-32">
-              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-                Example scenarios: how payment choices change the cost
-              </h2>
-              <h3 className="text-2xl font-semibold mt-4 mb-2 text-slate-900 dark:text-slate-100">
-                Example 1: Shorter term vs. longer term
-              </h3>
-              <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-                Suppose you&apos;re comparing a $20,000 loan at 7.0% APR with two options:
-              </p>
-              <ul className="list-disc pl-5 mb-4 space-y-2 text-slate-700 dark:text-slate-300">
-                <li>36 months (3 years)</li>
-                <li>60 months (5 years)</li>
-              </ul>
-              <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-                The 36-month option will have a much higher monthly payment, but you&apos;ll
-                be out of debt sooner and pay far less interest overall. The 60-month option
-                fits more easily into your monthly budget but costs more in the long run.
-              </p>
-  
-              <h3 className="text-2xl font-semibold mt-6 mb-2 text-slate-900 dark:text-slate-100">
-                Example 2: Improving your interest rate
-              </h3>
-              <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-                Now imagine you can either accept a 10.5% APR or qualify for 7.5% APR on the
-                same $15,000 loan over 48 months.
-              </p>
-              <p className="mb-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-                The monthly payment difference might seem modest, but over 4 years the lower
-                rate can save you hundreds of dollars in interest. Use the calculator to
-                plug in both rates and compare the total interest side by side.
-              </p>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                This is a good reminder to treat interest rate as more than just a small
-                percentage—over time it becomes a major cost driver for any loan.
-              </p>
-            </section>
-  
-            {/* ==================== FAQ ==================== */}
-            <section id="faq" className="scroll-mt-32">
-              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                Frequently asked questions
-              </h2>
-  
-              <div className="space-y-6">
-                {faqs.map((faq, index) => (
-                  <div key={index}>
-                    <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-                      {faq.question}
-                    </h3>
-                    <div
-                      className="text-slate-700 dark:text-slate-300 leading-relaxed"
-                      dangerouslySetInnerHTML={{ __html: faq.answer }}
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-  
-            {/* ==================== REFERENCES ==================== */}
-            <section id="references" className="scroll-mt-32">
-              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                References & additional resources
-              </h2>
-              <p className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-                These resources provide more detail on loan terminology, borrowing costs, and how to
-                compare offers from different lenders.
-              </p>
-              <ul className="space-y-4">
-                <li className="leading-relaxed">
-                  <a
-                    href="https://www.consumerfinance.gov/consumer-tools/loans/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                  >
-                    Consumer Financial Protection Bureau – Loans & Credit
-                  </a>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                    Official explanations of common loan types, key terms, and questions to ask
-                    before you borrow.
-                  </p>
-                </li>
-                <li className="leading-relaxed">
-                  <a
-                    href="https://www.fdic.gov/resources/consumers/money-smart"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                  >
-                    FDIC Money Smart – Borrowing basics
-                  </a>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                    Educational materials from the Federal Deposit Insurance Corporation on how loans
-                    work and how to avoid common borrowing pitfalls.
-                  </p>
-                </li>
-                <li className="leading-relaxed">
-                  <a
-                    href="https://studentaid.gov/understand-aid/types/loans"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                  >
-                    Federal Student Aid – Types of student loans
-                  </a>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                    Detailed overview of federal student loan programs, repayment plans, and how
-                    interest accrues over time.
-                  </p>
-                </li>
-              </ul>
-            </section>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Loan Payment Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Loan Payment Calculator is a financial tool designed to help you determine your monthly loan payment based on three key variables: the loan amount (principal), the interest rate, and the loan term. Whether you're considering a mortgage, auto loan, personal loan, or student loan, this calculator provides instant insights into what your monthly obligations will be and how much total interest you'll pay over the life of the loan.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter the loan principal amount (the money you're borrowing), the annual interest rate offered by your lender, and the loan term in months or years. The calculator automatically applies the amortization formula to compute your fixed monthly payment. You can also input extra payments if you plan to pay down the loan faster, which the calculator will use to show an accelerated payoff timeline.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results display your monthly payment, total interest paid, and the complete amortization schedule showing how each payment is split between principal and interest. Pay special attention to the early months of the schedule—you'll notice most of your payment goes toward interest rather than principal, which is normal due to how compound interest works on loans.</p>
+        </div>
+      </section>
+
+      {/* TABLE: Monthly Payment Comparison by Interest Rate (30-Year, $300,000 Loan) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Payment Comparison by Interest Rate (30-Year, $300,000 Loan)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how interest rate changes affect your monthly payment on a $300,000 loan over 30 years.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interest Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Amount Paid</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.00%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,432</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$215,609</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$515,609</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,520</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$247,515</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$547,515</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.00%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,610</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$279,767</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$579,767</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,703</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$312,589</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$612,589</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.00%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,799</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$347,515</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$647,515</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,896</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$382,480</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$682,480</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7.00%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,996</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$418,512</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$718,512</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7.50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,098</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$455,604</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$755,604</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8.00%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,201</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$493,639</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$793,639</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Payments calculated using standard amortization formula. Actual payments may vary based on lender rounding and additional fees.</p>
+      </section>
+
+      {/* TABLE: Loan Term Impact on Monthly Payments and Interest (5% Interest Rate, $250,000 Loan) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Loan Term Impact on Monthly Payments and Interest (5% Interest Rate, $250,000 Loan)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how loan length affects both monthly payments and total interest costs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Term</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Amount Paid</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 years (120 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,389</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$36,680</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$286,680</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 years (180 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,681</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$52,303</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$302,303</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 years (240 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,325</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$67,445</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$317,445</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25 years (300 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,097</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$82,688</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$332,688</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30 years (360 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,342</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$233,140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$433,140</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Shorter terms have higher monthly payments but substantially lower total interest. A 15-year loan saves approximately $130,837 in interest compared to a 30-year loan.</p>
+      </section>
+
+      {/* TABLE: Impact of Extra Payments on Loan Payoff ($300,000 Mortgage, 6.5%, 30-Year Term) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Extra Payments on Loan Payoff ($300,000 Mortgage, 6.5%, 30-Year Term)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how additional monthly payments can accelerate loan payoff and reduce total interest.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Extra Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">New Loan Term</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interest Saved</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Years Saved</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0 (Regular payment only)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27 years 4 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$33,487</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 years 8 months</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 years 2 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$62,845</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 years 10 months</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23 years 5 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$89,634</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 years 7 months</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 years 7 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$137,923</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9 years 5 months</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Extra payments are applied directly to principal, significantly reducing total interest and shortening the amortization period.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Lower your interest rate by improving your credit score before applying for a loan—each 50-point increase can save $50-100+ monthly on larger loans like mortgages.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always compare the total interest paid, not just the monthly payment, when evaluating different loan terms and interest rates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to test different scenarios: try shorter terms, lower rates, and extra payment amounts to find the optimal balance between affordability and total interest savings.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider making biweekly payments (half your monthly payment every two weeks) instead of monthly—this results in one extra payment per year and can reduce interest significantly without stretching your budget.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to convert annual interest rate to monthly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If your loan has a 6% annual interest rate, you must divide by 12 to get 0.5% monthly for calculator purposes. Entering 6 instead of 0.5 will dramatically overstate your monthly payment and lead to incorrect planning.</p>
           </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing the loan term—months vs. years</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 30-year mortgage equals 360 months, not 30 months. Entering 30 when you mean months will calculate a drastically shorter loan period and unrealistic monthly payments that don't match your actual loan agreement.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring closing costs, fees, and insurance in the total cost</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator shows your monthly payment and interest, but doesn't include origination fees, PMI (private mortgage insurance), property taxes, homeowners insurance, or HOA fees. Your true monthly housing cost may be 20-40% higher than the calculator alone suggests.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the calculator to predict variable-rate loan payments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">ARMs and variable-rate loans will have different payments as rates adjust, making the fixed calculation inaccurate. The calculator works only for fixed-rate loans where the interest rate remains constant throughout the loan term.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the formula the loan payment calculator uses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The loan payment calculator uses the standard amortization formula: M = P[r(1+r)^n]/[(1+r)^n-1], where M is the monthly payment, P is the principal loan amount, r is the monthly interest rate (annual rate divided by 12), and n is the total number of payments. This formula calculates the fixed payment amount needed to fully repay a loan over its term with compound interest.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does changing the interest rate affect my monthly payment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Interest rate changes have a significant impact on your monthly payment. For example, on a $300,000 mortgage over 30 years, a 6% interest rate results in a $1,799 monthly payment, while a 7% rate increases it to $1,996—a difference of $197 per month or $70,920 over the loan's life. Even a 0.5% increase can add $50-100+ to your monthly payment depending on the loan amount and term.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between the principal and total interest paid?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The principal is the original amount borrowed (for example, $200,000), while total interest is the additional cost of borrowing that money. On a $200,000 loan at 6.5% over 30 years, you'd pay approximately $252,000 total, meaning $52,000 in interest alone. The loan payment calculator breaks down exactly how much of each payment goes toward principal versus interest.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the loan payment calculator help me compare different loan terms?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator is excellent for term comparison. For instance, a $250,000 loan at 6% costs $1,499/month over 30 years but $1,887/month over 20 years. While the 20-year option has higher monthly payments, it saves you approximately $108,000 in total interest, making it valuable for comparing short-term versus long-term borrowing strategies.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do extra payments affect the amortization schedule shown by the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Extra payments reduce both the loan term and total interest significantly. On a $300,000 mortgage at 6.5% over 30 years, adding just $200 to your monthly $1,896 payment can shorten the loan by 5-7 years and save $60,000+ in interest. Some calculators allow you to input extra payments to show the accelerated payoff schedule.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What loan types can I calculate with a loan payment calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The loan payment calculator works for most fixed-rate loans including mortgages, auto loans, personal loans, and student loans. It calculates based on the principal amount, annual interest rate, and loan term in months or years. Variable-rate loans and adjustable-rate mortgages (ARMs) require manual recalculation when rates change, as the calculator assumes a constant interest rate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does my first payment seem to go mostly toward interest?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">In an amortization schedule, early payments are heavily weighted toward interest because interest is calculated on the remaining balance. On a $400,000 mortgage at 6.5%, your first payment of $2,528 might include $2,167 in interest and only $361 in principal. As you pay down the principal, more of each payment goes toward principal reduction, which is why the amortization schedule shifts over time.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the loan payment calculator for real-world loans?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator is very accurate for fixed-rate loans when you input the correct principal, interest rate, and term. However, real-world loans may include additional fees (origination fees, PMI, closing costs) that aren't reflected in the basic payment calculation. Always verify results with your lender, as some institutions may round payments differently or apply daily compounding instead of monthly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the calculator to determine how much loan I can afford?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, by working backward with the calculator. If you can afford $1,500 monthly payments over 30 years at a 6.5% interest rate, you can borrow approximately $237,000. Most lenders also use the debt-to-income ratio rule: your total monthly debt payments shouldn't exceed 36-43% of gross monthly income, which the calculator can help you verify.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.federalreserve.gov/faqs/credit_15066.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve - Consumer Credit FAQ</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official Federal Reserve guidance on understanding consumer loan terms, interest rates, and payment calculations.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerfinance.gov/mortgagetools/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau - Mortgage Calculator Tool</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB's official mortgage calculator and educational resources for understanding loan payments and amortization.</p>
+          </li>
+          <li>
+            <a href="https://www.bankrate.com/loans/personal-loans/loan-payment-calculator/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate - Loan Payment Calculator & Amortization Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Bankrate's comprehensive guide to loan calculators, amortization schedules, and how to compare different loan options.</p>
+          </li>
+          <li>
+            <a href="https://www.irs.gov/publications/p936" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 936 - Home Mortgage Interest Deduction</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">IRS guidance on home mortgage interest deductions, which affects the true cost of mortgage loans for tax purposes.</p>
+          </li>
+        </ul>
+      </section>
+
+    </div>
   );
 
   return (
