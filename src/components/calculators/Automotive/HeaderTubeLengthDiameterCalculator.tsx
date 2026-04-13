@@ -191,19 +191,22 @@ export default function HeaderTubeLengthDiameterCalculator() {
   // --- 3. REFERENCES ---
   const references = [
     {
-      title: "Flowmaster Header Design Guide",
+      title: "Flowmaster: How to Choose Headers",
+      url: "https://www.flowmaster.com/tech-info/",
       description:
-        "Comprehensive guide on header tube diameter and length selection for performance engines."
+        "Technical resources on exhaust header design, tube diameter selection, and performance tuning from a leading exhaust manufacturer."
     },
     {
-      title: "How to Choose Exhaust Header Tube Diameter",
+      title: "Summit Racing: Header Buying Guide",
+      url: "https://www.summitracing.com/expert-advice/article/how-to-choose-headers",
       description:
-        "Technical article explaining the impact of tube diameter on engine performance."
+        "Step-by-step guide on selecting the right headers for your engine, covering tube diameter, length, and material choices."
     },
     {
-      title: "Engine Builder Magazine - Header Tuning",
+      title: "Engine Builder Magazine: Header Tuning",
+      url: "https://www.enginebuildermag.com/search/?q=header+tuning",
       description:
-        "In-depth editorial on header primary tube length tuning for different RPM ranges."
+        "In-depth editorial on header primary tube length tuning for different RPM ranges and engine configurations."
     }
   ];
 
@@ -373,7 +376,7 @@ export default function HeaderTubeLengthDiameterCalculator() {
           {references.map((ref, i) => (
             <div key={i}>
               <a
-                href="#"
+                href={ref.url}
                 className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -391,7 +394,7 @@ export default function HeaderTubeLengthDiameterCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Header Primary Tube Length & Diameter Calculator"
-      description="Professional automotive calculator: Header Primary Tube Length & Diameter Calculator. Get accurate estimates, expert advice, and financial insights."
+      description="Calculate the optimal primary tube length and diameter for your exhaust headers based on engine displacement, desired horsepower, and pipe wall thickness."
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd}
