@@ -29,3 +29,5 @@ bun.lockb
 .env
 .env.*
 !.env.example
+
+.vercel
