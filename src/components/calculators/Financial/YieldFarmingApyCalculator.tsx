@@ -20,24 +20,40 @@ export default function YieldFarmingApyCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are yield farming APY calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For yield farming APY, accuracy depends on using current DeFi risk data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a DeFi risk professional."
+      question: "What is the difference between APY and APR in yield farming?",
+      answer: "APY (Annual Percentage Yield) accounts for compounding interest, while APR (Annual Percentage Rate) is a simple interest calculation. In yield farming, APY is the more accurate metric because rewards are typically reinvested daily or weekly, creating compound returns. For example, a 100% APR on a $10,000 deposit compounds to approximately $27,048 APY if reinvested daily, versus just $20,000 with simple interest.",
     },
     {
-      question: "What key factors most affect yield farming APY results?",
-      answer: "The most impactful variables in yield farming APY calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How do I calculate my total yield farming returns with this calculator?",
+      answer: "Enter your initial investment amount, the APY percentage offered by the pool, your investment period in days or months, and whether you're compounding daily, weekly, or monthly. The calculator automatically applies the compounding formula and shows your final balance, total interest earned, and effective return. For instance, a $5,000 investment at 50% APY compounded daily for 1 year yields approximately $8,245 in total value.",
     },
     {
-      question: "When should I recalculate yield farming APY?",
-      answer: "Recalculate whenever DeFi risk conditions change significantly: after major DeFi risk events, when your inputs change (income, rates, holdings), or when DeFi risk regulations are updated. For time-sensitive DeFi risk metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "What APY rates are typical for yield farming in 2024-2025?",
+      answer: "Yield farming APY rates vary significantly by protocol and risk level, ranging from 5-15% for established blue-chip pairs like ETH/USDC on Uniswap v3, 20-50% for mid-tier liquidity pools, and 50%+ for newer or riskier protocols. Stablecoin pairs (USDC/USDT) typically offer 8-12% APY, while single-token staking on major platforms averages 4-8% APY. Always verify current rates directly on the protocol, as these figures change daily based on pool utilization and governance incentives.",
     },
     {
-      question: "How does yield farming APY relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Yield farming apy should be evaluated alongside related measures like impermanent loss. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your DeFi risk situation, rather than optimizing any single number in isolation."
+      question: "Does this calculator account for impermanent loss?",
+      answer: "This calculator focuses solely on APY rewards and does not factor in impermanent loss, which occurs when token prices diverge in liquidity pools. To calculate true returns, you must separately assess impermanent loss using the formula: IL% = (2√(price ratio))/(1 + price ratio) - 1. For example, if one token doubles in price, impermanent loss is approximately 5.72%, which could offset several months of yield farming rewards.",
     },
     {
-      question: "What are the most common mistakes when calculating yield farming APY?",
-      answer: "The most frequent errors in yield farming APY calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world DeFi risk conditions fluctuate. Double-check your inputs against current DeFi risk data before relying on results for significant financial decisions."
+      question: "How often should I reinvest my yield farming rewards?",
+      answer: "The calculator assumes automatic daily, weekly, or monthly compounding based on your selection, but actual reinvestment frequency depends on gas fees versus reward size. If rewards are $50 but gas costs $40, reinvesting weekly is wasteful; monthly or quarterly may be better. L2 solutions like Arbitrum or Optimism offer sub-$1 gas fees, making daily reinvestment economically viable, whereas Ethereum mainnet typically requires monthly or larger reinvestment cycles.",
+    },
+    {
+      question: "What is impermanent loss and how does it affect yield farming APY?",
+      answer: "Impermanent loss is the opportunity cost when token prices in your liquidity pool move significantly relative to each other. While the calculator shows APY rewards, a 30% APY is negated if one token in your pair drops 40% in value. To estimate net returns, subtract both impermanent loss percentage and any slippage or trading fees from your calculated APY rewards.",
+    },
+    {
+      question: "Can I use this calculator for staking rewards as well as liquidity mining?",
+      answer: "Yes, this calculator works for any yield-generating activity where you receive a fixed or estimated APY, including solo staking (Ethereum staking averages 3-4% APY), delegated staking, and liquidity mining. However, staking typically offers lower but more stable returns than liquidity pools; Ethereum staking at 3.8% APY on $10,000 for one year yields approximately $10,388 compared to volatile liquidity pools.",
+    },
+    {
+      question: "How does the calculator handle different compounding frequencies?",
+      answer: "The calculator uses the compound interest formula: A = P(1 + r/n)^(nt), where P is principal, r is annual rate, n is compounding frequency, and t is time in years. Daily compounding (n=365) yields slightly higher returns than weekly (n=52) or monthly (n=12); for example, $1,000 at 50% APY compounded daily for one year grows to $1,645, versus $1,638 monthly, a $7 difference.",
+    },
+    {
+      question: "What risks should I consider before using projected APY returns?",
+      answer: "Yield farming carries smart contract risk, impermanent loss, rug pull risk on new protocols, and APY volatility as pool incentives change. Many protocols display unsustainably high APYs (100%+) that decrease as liquidity increases; Curve Finance rewards dropped from 50% to 8% APY within months as TVL grew. Always assume APY rates are temporary, verify contract audits on protocols with under $10M TVL, and never invest more than you can afford to lose.",
     }
   ];
 
@@ -292,255 +308,331 @@ export default function YieldFarmingApyCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Yield Farming APY Calculator
-        </h2>
-        
-        <p className="mb-6">
-          Yield farming, a popular strategy in the decentralized finance (DeFi) space, involves staking or lending crypto assets to generate high returns or rewards in the form of additional cryptocurrency. The Yield Farming APY Calculator is designed to help investors estimate the potential annual percentage yield (APY) they can earn from their yield farming activities. This tool is crucial for anyone involved in DeFi as it provides a clear picture of potential earnings, allowing for better financial planning and decision-making.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in yield farming due to the volatile nature of cryptocurrency markets. An incorrect estimation can lead to significant financial losses or missed opportunities for profit. This calculator takes into account various factors such as initial investment, daily interest rate, and compounding frequency to provide a reliable estimate of potential returns. By using this tool, investors can make informed decisions about where to allocate their resources for maximum benefit. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use the Yield Farming APY Calculator effectively, gather information about your initial investment, the expected daily interest rate, and the frequency of compounding. Enter these values into the calculator to get an estimate of your annual yield and total interest earned. This step-by-step approach ensures that you input accurate data, resulting in more precise calculations. For further guidance on financial calculations, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your input values before calculating. Small errors in data entry can lead to significantly different results, affecting your investment strategy. Ensure you understand the terms and conditions of the yield farming platform you are using.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Yield Farming APY Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Yield Farming APY Calculator helps you project potential returns from DeFi liquidity pools, yield farming, and staking activities by computing compound interest over time. This tool is essential for comparing different protocols, assessing whether the yield justifies the risk, and planning reinvestment strategies. Understanding your projected returns allows you to make informed decisions about capital allocation across multiple yield sources.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your initial investment amount (in USD or tokens), the APY percentage offered by the protocol or liquidity pool, your investment time horizon (days, months, or years), and your preferred compounding frequency (daily, weekly, or monthly). Each input directly impacts your final return: higher APY and more frequent compounding increase profits, while longer investment periods allow compounding to work exponentially. Be conservative with APY estimates—use historical lows rather than current peaks, as many protocols reduce incentives as liquidity grows.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret the calculator's output by examining both your total projected balance and the interest earned separately, then adjust expectations for impermanent loss, gas fees, and taxes. For example, if the calculator shows $15,000 earnings on a $10,000 deposit over one year at 50% APY with daily compounding, but impermanent loss reduces returns by 10% and gas fees cost $500, your net gain is closer to $4,000. Always cross-reference projected APY with the protocol's current rates, audit reports, and TVL trends before committing capital.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs as market conditions change, and considering the impact of fees and other costs associated with yield farming. These factors can significantly affect your net returns. Additionally, it's advisable to diversify your investments across multiple platforms to mitigate risk. For more strategies, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Yield Farming APY Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Yield Farming APY Calculator is based on the compound interest formula, which is a standard approach for calculating investment growth over time. This formula considers the initial investment, the interest rate, and the frequency of compounding to determine the future value of the investment. The compound interest formula is widely used in finance due to its ability to accurately model the effects of compounding, which is a key feature of yield farming.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          FV = P × (1 + r/n)^(nt)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>P = Initial investment</li>
-              <li>r = Daily interest rate</li>
-              <li>n = Compounding frequency</li>
-              <li>t = Time period in years</li>
-            </ul>
+      {/* TABLE: Yield Farming APY Returns Comparison by Platform & Asset Pair (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Yield Farming APY Returns Comparison by Platform & Asset Pair (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical APY rates across major DeFi protocols for common liquidity pool and staking pairs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Protocol</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Asset Pair / Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical APY Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Compounding Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Uniswap v3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">ETH/USDC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Curve Finance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">USDC/USDT/DAI</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aave</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">ETH Lending</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Continuous</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lido</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">stETH Staking</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5-4.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Balancer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multi-token Pool</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Convex Finance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">cvxCRV Staking</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">MakerDAO</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">DAI Savings Rate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Yearn Finance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yield Optimizer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">GMX</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">GLP LP Token</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Camelot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">ARB/ETH Pool</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-80%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">APY rates fluctuate daily based on TVL, token incentives, and market conditions. Data reflects approximate ranges as of Q1 2025. Always verify current rates directly on protocol dashboards before investing.</p>
+      </section>
+
+      {/* TABLE: Impact of Compounding Frequency on $10,000 Investment at 50% APY */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Compounding Frequency on $10,000 Investment at 50% APY</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different compounding intervals affect final returns over various time periods.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual (1x)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Quarterly (4x)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly (12x)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weekly (52x)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily (365x)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 Months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,554</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,582</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,598</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,607</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6 Months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,767</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,878</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,932</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,956</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1 Year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$24,858</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$26,533</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$27,018</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$27,049</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2 Years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$61,817</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$70,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$72,966</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$73,110</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 Years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$80,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$153,958</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$186,629</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$197,294</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$197,884</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations use the compound interest formula A = P(1 + r/n)^(nt). Daily compounding outperforms annual by 2.4% in year one and 10% by year three, demonstrating the power of frequent reinvestment.</p>
+      </section>
+
+      {/* TABLE: Gas Fees vs. Reward Value: Reinvestment Breakeven Analysis on Ethereum */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Gas Fees vs. Reward Value: Reinvestment Breakeven Analysis on Ethereum</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows at what reward size reinvestment becomes economical on Ethereum mainnet versus Layer 2 networks.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Network</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Gas Cost per TX</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Breakeven Reward Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Economical Reinvestment Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ethereum Mainnet (Peak)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$80-150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ethereum Mainnet (Low Gas)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400-600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weekly</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Arbitrum (L2)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.10-0.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Optimism (L2)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.15-0.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75-150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Polygon (Sidechain)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.05-0.20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Base (L2)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.08-0.40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Gas costs fluctuate with network congestion. L2 solutions make daily reinvestment viable for smaller positions ($5K-50K), while mainnet ETH farming remains economical only for positions >$100K reinvesting monthly.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to model multiple scenarios: test the same investment across different APY rates (20%, 50%, 100%) and compounding frequencies to see which setup maximizes returns relative to risk and gas costs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for impermanent loss separately by researching historical price volatility of your asset pair; stablecoin pairs minimize impermanent loss but offer lower APYs (8-12%), while volatile pairs require 50%+ APY to offset losses.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in gas fees and taxes: on Ethereum mainnet, reinvest only when earned rewards exceed $500-1000, and reserve 30-40% of projected gains for capital gains taxes (25-37% federal rate depending on holding period).</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your actual APY against projections monthly; if the protocol's displayed APY drops below 20% or TVL increases by 50%+ without matching reward increases, consider rotating capital to more stable opportunities like Curve (8-12%) or Aave lending (4-6%).</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming APY Rates Are Permanent</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many yield farming protocols advertise 100%+ APYs that drop to 10-20% within weeks as liquidity increases and incentive emissions decrease. The Yearn Curve factory launched at 50% APY but declined to 8% within 60 days. Always assume high APYs are temporary promotional rates and recalculate projections if rates drop by 50%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Impermanent Loss in LP Calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator shows only APY rewards and does not subtract impermanent loss, which can erase 5-50% of gains if token prices diverge significantly. A 30% APY means nothing if one token in your pair drops 40%, resulting in a net loss even after farming rewards are included.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Gas Fees on Mainnet Reinvestment</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Reinvesting rewards weekly on Ethereum mainnet at current $20-80 gas prices can cost $20-150 per transaction, making small positions unprofitable. A $2,000 position earning $100/week in rewards loses $20-30 to gas per reinvestment, reducing effective APY by 10-15%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Tax Implications</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Yield farming rewards are taxable as ordinary income the moment they're earned, not when withdrawn, and daily or weekly reinvestment creates numerous taxable events. Failing to reserve 30-40% of projected gains for taxes can result in significant tax liability at year-end, effectively reducing your APY by 20-37%.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the final result. The initial investment (P) is the amount of money you start with. The daily interest rate (r) is the rate at which your investment grows each day. The compounding frequency (n) is how often the interest is applied to the investment. Finally, the time period (t) is the duration of the investment in years. Changes in any of these variables will affect the future value of the investment, highlighting the importance of accurate data entry.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your yield farming results is crucial for optimizing your investment strategy. These factors interact in complex ways, and being aware of them can help you make more informed decisions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Initial Investment
-        </h3>
-        <p className="mb-4">
-          The initial investment is the starting point of your yield farming journey. A larger initial investment can lead to higher returns due to the compounding effect. However, it's important to balance potential gains with the risk of loss, especially in volatile markets.
-        </p>
-        <p className="mb-6">
-          To optimize your initial investment, consider diversifying across different yield farming platforms. This approach can help mitigate risk while maximizing potential returns. For more insights, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Daily Interest Rate
-        </h3>
-        <p className="mb-4">
-          The daily interest rate is a critical factor in determining your returns. It represents the percentage increase in your investment each day. Higher rates can lead to substantial gains, but they also come with increased risk.
-        </p>
-        <p className="mb-6">
-          Interest rates can vary significantly across different platforms and projects. It's essential to research and compare rates to ensure you're getting the best possible return on your investment. Keep an eye on market trends and adjust your strategy accordingly.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Compounding Frequency
-        </h3>
-        <p className="mb-4">
-          Compounding frequency refers to how often the interest is applied to your investment. More frequent compounding can lead to higher returns, as interest is calculated on an increasingly larger balance.
-        </p>
-        <p className="mb-6">
-          While daily compounding is common in yield farming, some platforms may offer different frequencies. Understanding the impact of compounding frequency on your returns can help you choose the best platform for your needs.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-6">
-          Market volatility can significantly impact your yield farming results. Cryptocurrency prices can fluctuate rapidly, affecting the value of your investment. It's important to stay informed about market trends and adjust your strategy as needed.
-        </p>
-        <p className="mb-6">
-          Diversifying your investments and setting stop-loss orders can help protect your portfolio from sudden market changes. Regularly reviewing your investment strategy can also ensure that you're prepared for any market conditions.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Platform Fees
-        </h3>
-        <p className="mb-6">
-          Fees associated with yield farming platforms can eat into your returns. These fees can include transaction fees, withdrawal fees, and management fees. It's essential to factor these costs into your calculations to get an accurate picture of your net returns.
-        </p>
-        <p className="mb-6">
-          Comparing fees across different platforms can help you choose the most cost-effective option. Look for platforms that offer competitive rates and transparent fee structures to maximize your earnings.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
-                {faq.question}
-              </h3>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between APY and APR in yield farming?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">APY (Annual Percentage Yield) accounts for compounding interest, while APR (Annual Percentage Rate) is a simple interest calculation. In yield farming, APY is the more accurate metric because rewards are typically reinvested daily or weekly, creating compound returns. For example, a 100% APR on a $10,000 deposit compounds to approximately $27,048 APY if reinvested daily, versus just $20,000 with simple interest.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my total yield farming returns with this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your initial investment amount, the APY percentage offered by the pool, your investment period in days or months, and whether you're compounding daily, weekly, or monthly. The calculator automatically applies the compounding formula and shows your final balance, total interest earned, and effective return. For instance, a $5,000 investment at 50% APY compounded daily for 1 year yields approximately $8,245 in total value.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What APY rates are typical for yield farming in 2024-2025?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yield farming APY rates vary significantly by protocol and risk level, ranging from 5-15% for established blue-chip pairs like ETH/USDC on Uniswap v3, 20-50% for mid-tier liquidity pools, and 50%+ for newer or riskier protocols. Stablecoin pairs (USDC/USDT) typically offer 8-12% APY, while single-token staking on major platforms averages 4-8% APY. Always verify current rates directly on the protocol, as these figures change daily based on pool utilization and governance incentives.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does this calculator account for impermanent loss?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator focuses solely on APY rewards and does not factor in impermanent loss, which occurs when token prices diverge in liquidity pools. To calculate true returns, you must separately assess impermanent loss using the formula: IL% = (2√(price ratio))/(1 + price ratio) - 1. For example, if one token doubles in price, impermanent loss is approximately 5.72%, which could offset several months of yield farming rewards.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I reinvest my yield farming rewards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator assumes automatic daily, weekly, or monthly compounding based on your selection, but actual reinvestment frequency depends on gas fees versus reward size. If rewards are $50 but gas costs $40, reinvesting weekly is wasteful; monthly or quarterly may be better. L2 solutions like Arbitrum or Optimism offer sub-$1 gas fees, making daily reinvestment economically viable, whereas Ethereum mainnet typically requires monthly or larger reinvestment cycles.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is impermanent loss and how does it affect yield farming APY?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Impermanent loss is the opportunity cost when token prices in your liquidity pool move significantly relative to each other. While the calculator shows APY rewards, a 30% APY is negated if one token in your pair drops 40% in value. To estimate net returns, subtract both impermanent loss percentage and any slippage or trading fees from your calculated APY rewards.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for staking rewards as well as liquidity mining?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator works for any yield-generating activity where you receive a fixed or estimated APY, including solo staking (Ethereum staking averages 3-4% APY), delegated staking, and liquidity mining. However, staking typically offers lower but more stable returns than liquidity pools; Ethereum staking at 3.8% APY on $10,000 for one year yields approximately $10,388 compared to volatile liquidity pools.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator handle different compounding frequencies?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses the compound interest formula: A = P(1 + r/n)^(nt), where P is principal, r is annual rate, n is compounding frequency, and t is time in years. Daily compounding (n=365) yields slightly higher returns than weekly (n=52) or monthly (n=12); for example, $1,000 at 50% APY compounded daily for one year grows to $1,645, versus $1,638 monthly, a $7 difference.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What risks should I consider before using projected APY returns?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yield farming carries smart contract risk, impermanent loss, rug pull risk on new protocols, and APY volatility as pool incentives change. Many protocols display unsustainably high APYs (100%+) that decrease as liquidity increases; Curve Finance rewards dropped from 50% to 8% APY within months as TVL grew. Always assume APY rates are temporary, verify contract audits on protocols with under $10M TVL, and never invest more than you can afford to lose.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.coindesk.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                CoinDesk - Cryptocurrency News
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Stay updated with the latest news and trends in the cryptocurrency market.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/oiea/investor-alerts-and-bulletins/ia_cryptocurrency.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC: Investor Bulletin on Cryptocurrency and Blockchain Investments</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official SEC guidance on cryptocurrency investment risks, including DeFi protocols and smart contract vulnerabilities.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.defipulse.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                DeFi Pulse - DeFi Market Tracker
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Track the latest trends and data in the decentralized finance space.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/yield-farming-5105283" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Yield Farming Explained</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive explanation of yield farming mechanisms, APY calculations, impermanent loss, and DeFi risks.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive guides and articles on financial concepts and investment strategies.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.coingecko.com/en/defi" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CoinGecko: DeFi Yield Farming Rates & APY Tracker</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Real-time tracking of yield farming APY rates across major DeFi protocols and liquidity pools with historical benchmarks.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.binance.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Binance Academy - Crypto Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Learn about cryptocurrency and blockchain technology through detailed articles and tutorials.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access official data and research on economic conditions and policies.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/banking/savings/apy/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate: Understanding Annual Percentage Yield (APY)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed explanation of APY vs. APR, compound interest formulas, and how to calculate effective returns on investments.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

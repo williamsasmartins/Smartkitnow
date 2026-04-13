@@ -20,24 +20,40 @@ export default function PositionSizeRiskManagementCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are position sizing calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For position sizing, accuracy depends on using current risk management data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a risk management professional."
+      question: "What is position sizing and why does it matter?",
+      answer: "Position sizing is the practice of determining how much capital to allocate to a single trade based on your account size and risk tolerance. It matters because it directly controls your maximum loss per trade; for example, risking 1-2% of a $50,000 account means your maximum loss per trade is $500-$1,000. Proper position sizing prevents catastrophic losses and allows you to survive losing streaks while maintaining long-term profitability.",
     },
     {
-      question: "What key factors most affect position sizing results?",
-      answer: "The most impactful variables in position sizing calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How do I calculate the correct position size for my trade?",
+      answer: "Use the formula: Position Size = (Account Size × Risk Percentage) / (Entry Price - Stop Loss Price). For example, with a $100,000 account, risking 2%, an entry price of $50, and a stop loss at $48, your position size would be ($100,000 × 0.02) / ($50 - $48) = 1,000 shares. This calculator automates this process and ensures your maximum loss matches your risk tolerance.",
     },
     {
-      question: "When should I recalculate position sizing?",
-      answer: "Recalculate whenever risk management conditions change significantly: after major risk management events, when your inputs change (income, rates, holdings), or when risk management regulations are updated. For time-sensitive risk management metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "What percentage of my account should I risk per trade?",
+      answer: "Professional traders typically risk between 0.5% and 2% of their account per trade, with 1% being the industry standard for sustainable trading. Beginners should start at 0.5%-1% to build discipline, while experienced traders with proven systems may use up to 2%. The Kelly Criterion, a mathematical formula, suggests optimal risk can be higher only if you have a win rate above 55% and positive expected value.",
     },
     {
-      question: "How does position sizing relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Position sizing should be evaluated alongside related measures like Kelly criterion. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your risk management situation, rather than optimizing any single number in isolation."
+      question: "How does the risk-reward ratio affect my position sizing?",
+      answer: "The risk-reward ratio determines whether a trade is worth taking; a 1:2 ratio means you stand to make $2 for every $1 you risk. When calculating position size, a better risk-reward ratio (like 1:3 or 1:4) allows you to risk slightly more per trade since losses are offset by larger gains. The calculator helps you identify trades with favorable risk-reward setups before committing capital.",
     },
     {
-      question: "What are the most common mistakes when calculating position sizing?",
-      answer: "The most frequent errors in position sizing calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world risk management conditions fluctuate. Double-check your inputs against current risk management data before relying on results for significant financial decisions."
+      question: "What is the difference between fixed fractional and fixed dollar risk?",
+      answer: "Fixed fractional risk bases position size on a percentage of your account (e.g., 1% of $50,000 = $500 risk), while fixed dollar risk risks the same dollar amount on every trade regardless of account growth. Fixed fractional is preferred because it scales with your account—as you grow from $50,000 to $100,000, your risk per trade doubles proportionally. This calculator uses fixed fractional risk, which is the professional standard.",
+    },
+    {
+      question: "How should I adjust position size if I'm on a losing streak?",
+      answer: "Most professionals reduce position size by 25-50% after 3 consecutive losses to preserve capital and rebuild confidence. For example, if you normally risk 1% ($500 on a $50,000 account), drop to 0.5% ($250) until you return to profitability. Never increase position size to recover losses quickly—this is called revenge trading and typically results in larger drawdowns.",
+    },
+    {
+      question: "Can I use the same position size for different trading instruments?",
+      answer: "No—position size must be calculated individually for each trade based on your entry price, stop loss, and the specific instrument's volatility. A stock with a $2 stop loss and a currency pair with a 0.02 pip stop loss will have very different position sizes despite the same dollar risk ($500). This calculator allows you to input instrument-specific parameters to ensure each position is sized correctly.",
+    },
+    {
+      question: "What is the maximum drawdown I should tolerate in trading?",
+      answer: "Professional traders typically limit maximum drawdown to 20-25% of their account, with some conservative traders capping it at 10-15%. A 25% drawdown means you need a 33% gain to recover, while a 50% drawdown requires a 100% gain to break even. Using proper position sizing with 1% risk per trade typically results in maximum drawdowns of 10-15% during normal trading conditions.",
+    },
+    {
+      question: "How does volatility impact position sizing decisions?",
+      answer: "Higher volatility instruments (like growth stocks or cryptocurrency) require smaller position sizes because stop losses must be wider to accommodate normal price swings. For example, a volatile tech stock might require a $5 stop loss versus a $0.50 stop loss for a stable blue-chip stock, significantly reducing the share count you can buy. This calculator accounts for volatility through the stop loss distance input, ensuring you don't overleverage in volatile markets.",
     }
   ];
 
@@ -300,256 +316,277 @@ export default function PositionSizeRiskManagementCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Position Size & Risk Management Tool
-        </h2>
-        
-        <p className="mb-6">
-          The Position Size & Risk Management Tool is an essential calculator for traders and investors who want to optimize their trading strategy by managing risk effectively. This tool helps you determine the optimal position size for your trades based on your account size, risk tolerance, and stop-loss levels. By calculating the appropriate trade amounts, you can ensure that you are not overexposing your account to potential losses, which is crucial for long-term success in financial markets.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations in position sizing and risk management are vital because they directly impact your financial outcomes. Incorrect calculations can lead to excessive risk-taking or overly conservative trading, both of which can hinder your financial goals. According to studies, traders who manage their risk effectively are more likely to sustain profitability over time. This tool aids in making informed decisions by providing precise calculations that align with your trading strategy. For more insights on managing finances, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information about your account size, the percentage of risk you are willing to take per trade, and your stop-loss level. Enter these values into the respective fields to calculate your position size. The tool will provide you with the risk amount and trade amount, helping you to strategize your trades efficiently. For further guidance on financial planning, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs to ensure accuracy. Small errors in data entry can lead to significant discrepancies in your trading strategy. Make it a habit to verify your account size, risk percentage, and stop-loss values before calculating.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Position Size & Risk Management Tool</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the optimal number of shares or contracts to trade based on your account size, risk tolerance, and stop loss level. By automating position size calculations, it eliminates emotional decision-making and ensures every trade follows a consistent risk management framework. Whether you're day trading stocks, swing trading futures, or trading forex, this tool is essential for protecting your capital and maximizing long-term returns.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your total account balance (the capital you're willing to risk), your risk percentage per trade (typically 1-2%), your entry price, and your stop loss price. The tool will automatically calculate your maximum loss in dollars and your appropriate position size in shares or contracts. You can also adjust the risk-reward ratio to assess whether the trade offers sufficient profit potential relative to your risk.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your position size, maximum loss, and potential profit based on your risk-reward ratio. Use these outputs to decide whether to enter the trade and to set your take-profit level accordingly. Record your results and review them monthly to ensure your actual drawdowns align with your expected risk parameters—if they don't, adjust your position sizing or stop loss discipline.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this tool include setting realistic risk percentages that align with your financial goals and market conditions. Consider factors such as market volatility and your trading experience when determining your stop-loss levels. Regularly review and adjust your strategy as needed to adapt to changing market environments.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Position Size & Risk Management Tool Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Position Size & Risk Management Tool is a standard approach in trading to calculate the optimal position size. It is derived from the basic principle of risk management, which aims to limit potential losses to a predetermined percentage of your trading account. This formula is widely accepted in the financial industry due to its simplicity and effectiveness in maintaining a balanced risk-reward ratio.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Position Size = (Account Size × Risk Percentage) / Stop Loss
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Account Size = Total capital available for trading</li>
-              <li>Risk Percentage = Percentage of account size you're willing to risk</li>
-              <li>Stop Loss = Maximum loss allowed per trade</li>
-            </ul>
+      {/* TABLE: Position Size Examples by Account Size and Risk Percentage */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Position Size Examples by Account Size and Risk Percentage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows calculated position sizes for different account balances using the standard 1% risk rule with a typical $2 stop loss.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Account Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk per Trade (1%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stop Loss Distance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Position Size (Shares)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 shares</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$25,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">125 shares</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250 shares</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500 shares</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$250,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,250 shares</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$500,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,500 shares</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These calculations assume a fixed $2 stop loss distance. Actual position sizes will vary based on your entry price and stop loss placement.</p>
+      </section>
+
+      {/* TABLE: Risk-Reward Ratio Impact on Trade Viability */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Risk-Reward Ratio Impact on Trade Viability</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how risk-reward ratios affect minimum win rate requirements and expected value for profitable trading.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk-Reward Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Win Rate Needed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expected Value (at 50% win rate)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended for</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not recommended</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.25 per dollar risked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Conservative traders</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.50 per dollar risked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard approach</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.00 per dollar risked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Intermediate traders</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1:4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.50 per dollar risked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Advanced traders</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Expected value calculations assume the stated win rate. A 1:2 ratio with a 50% win rate generates $0.50 profit per dollar risked on average.</p>
+      </section>
+
+      {/* TABLE: Maximum Drawdown Scenarios and Recovery Requirements */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Maximum Drawdown Scenarios and Recovery Requirements</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the gain required to recover from various drawdown levels, illustrating why position sizing matters.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Drawdown Percentage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gain Needed to Break Even</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time to Recover (at 1% monthly gain)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 months</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18 months</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 months</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33 months</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43 months</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 months</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These calculations use geometric mean; a 20% loss requires a 25% gain to return to breakeven because the base changes after the loss.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always calculate position size before entering a trade—never improvise or guess at share quantities, as this leads to over-leveraging and catastrophic losses.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the 1% rule as your baseline: risk no more than 1% of your account per trade until you have at least 100 trades of documented history and a positive expectancy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Place your stop loss based on technical levels (support, resistance, or swing points), not on your desired risk percentage—calculate position size to fit your stop loss, never the reverse.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Review your position sizing discipline monthly: track actual losses versus expected losses to ensure you're following your risk management plan and identify emotional trading that violates it.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Placing Stop Loss After Calculating Position Size</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many traders calculate position size based on a desired risk amount, then place the stop loss afterwards. This leads to either undersizing (if they want a tight stop) or oversizing (if they want a looser stop). Always identify the logical stop loss level first, then calculate position size to fit.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Fixed Dollar Risk Instead of Fixed Fractional Risk</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Trading the same dollar amount on every trade ($500 per trade, for example) fails to scale with account growth. Once your account doubles, you should be risking proportionally more on each position. Use fixed fractional risk (1% of your account) instead.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Volatility When Sizing Positions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High-volatility instruments like growth stocks or crypto require wider stop losses, which means proportionally smaller position sizes for the same dollar risk. Failure to adjust for volatility results in over-leveraged positions that breach your account risk limits during normal market swings.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Increasing Position Size After Winning Streaks</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Traders often become overconfident after consecutive wins and increase position size beyond their risk rules, only to suffer large losses when their luck reverses. Stick to your calculated position size regardless of recent performance, and only increase when your account size grows.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the position size. The Account Size represents your total capital, which is the foundation for calculating risk. The Risk Percentage is a subjective measure that reflects your risk tolerance and trading strategy. The Stop Loss is a predefined level that limits your losses, ensuring that you do not exceed your risk tolerance. Adjusting these variables allows you to tailor your trading strategy to your financial goals and market conditions.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your position size and risk management is crucial for optimizing your trading strategy. These factors interact with each other, and changes in one can significantly impact your overall trading performance.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Account Size
-        </h3>
-        <p className="mb-4">
-          Your account size is the total capital you have available for trading. It determines the scale of your trades and directly influences your risk management strategy. A larger account size allows for more flexibility in position sizing and risk allocation.
-        </p>
-        <p className="mb-6">
-          To optimize your account size, consider diversifying your investments and regularly reviewing your financial goals. Ensure that your account size aligns with your risk tolerance and trading objectives. For more strategies on managing finances, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Risk Percentage
-        </h3>
-        <p className="mb-4">
-          The risk percentage is the portion of your account size that you are willing to risk on a single trade. It reflects your risk tolerance and is a critical component of your trading strategy. A higher risk percentage can lead to greater potential returns but also increases the risk of significant losses.
-        </p>
-        <p className="mb-6">
-          Adjust your risk percentage based on your financial goals and market conditions. Consider starting with a conservative risk percentage and gradually increasing it as you gain confidence and experience. For more insights, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Stop Loss
-        </h3>
-        <p className="mb-4">
-          A stop loss is a predetermined level at which you will exit a trade to prevent further losses. It is a crucial risk management tool that helps protect your capital from significant downturns in the market.
-        </p>
-        <p className="mb-6">
-          Set your stop loss based on market volatility and your risk tolerance. Avoid setting it too close to your entry point, as this may result in premature exits. Conversely, a stop loss set too far away can expose you to unnecessary risk. For more tips, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-6">
-          Market volatility refers to the degree of variation in trading prices over a period. High volatility can lead to rapid price changes, affecting your stop loss and position size. Understanding market volatility is essential for effective risk management.
-        </p>
-        <p className="mb-6">
-          Monitor market trends and adjust your trading strategy accordingly. During periods of high volatility, consider reducing your position size to minimize risk. Conversely, in stable markets, you may increase your position size to capitalize on consistent trends.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Trading Experience
-        </h3>
-        <p className="mb-6">
-          Your level of trading experience can significantly impact your risk management strategy. Experienced traders may feel comfortable taking on more risk, while beginners should adopt a more conservative approach.
-        </p>
-        <p className="mb-6">
-          Continuously educate yourself on trading strategies and market analysis. As you gain experience, gradually adjust your risk tolerance and position sizing to align with your growing expertise. For more educational resources, visit our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is position sizing and why does it matter?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Position sizing is the practice of determining how much capital to allocate to a single trade based on your account size and risk tolerance. It matters because it directly controls your maximum loss per trade; for example, risking 1-2% of a $50,000 account means your maximum loss per trade is $500-$1,000. Proper position sizing prevents catastrophic losses and allows you to survive losing streaks while maintaining long-term profitability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the correct position size for my trade?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use the formula: Position Size = (Account Size × Risk Percentage) / (Entry Price - Stop Loss Price). For example, with a $100,000 account, risking 2%, an entry price of $50, and a stop loss at $48, your position size would be ($100,000 × 0.02) / ($50 - $48) = 1,000 shares. This calculator automates this process and ensures your maximum loss matches your risk tolerance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What percentage of my account should I risk per trade?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Professional traders typically risk between 0.5% and 2% of their account per trade, with 1% being the industry standard for sustainable trading. Beginners should start at 0.5%-1% to build discipline, while experienced traders with proven systems may use up to 2%. The Kelly Criterion, a mathematical formula, suggests optimal risk can be higher only if you have a win rate above 55% and positive expected value.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the risk-reward ratio affect my position sizing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The risk-reward ratio determines whether a trade is worth taking; a 1:2 ratio means you stand to make $2 for every $1 you risk. When calculating position size, a better risk-reward ratio (like 1:3 or 1:4) allows you to risk slightly more per trade since losses are offset by larger gains. The calculator helps you identify trades with favorable risk-reward setups before committing capital.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between fixed fractional and fixed dollar risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Fixed fractional risk bases position size on a percentage of your account (e.g., 1% of $50,000 = $500 risk), while fixed dollar risk risks the same dollar amount on every trade regardless of account growth. Fixed fractional is preferred because it scales with your account—as you grow from $50,000 to $100,000, your risk per trade doubles proportionally. This calculator uses fixed fractional risk, which is the professional standard.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I adjust position size if I'm on a losing streak?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most professionals reduce position size by 25-50% after 3 consecutive losses to preserve capital and rebuild confidence. For example, if you normally risk 1% ($500 on a $50,000 account), drop to 0.5% ($250) until you return to profitability. Never increase position size to recover losses quickly—this is called revenge trading and typically results in larger drawdowns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the same position size for different trading instruments?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No—position size must be calculated individually for each trade based on your entry price, stop loss, and the specific instrument's volatility. A stock with a $2 stop loss and a currency pair with a 0.02 pip stop loss will have very different position sizes despite the same dollar risk ($500). This calculator allows you to input instrument-specific parameters to ensure each position is sized correctly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum drawdown I should tolerate in trading?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Professional traders typically limit maximum drawdown to 20-25% of their account, with some conservative traders capping it at 10-15%. A 25% drawdown means you need a 33% gain to recover, while a 50% drawdown requires a 100% gain to break even. Using proper position sizing with 1% risk per trade typically results in maximum drawdowns of 10-15% during normal trading conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does volatility impact position sizing decisions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Higher volatility instruments (like growth stocks or cryptocurrency) require smaller position sizes because stop losses must be wider to accommodate normal price swings. For example, a volatile tech stock might require a $5 stop loss versus a $0.50 stop loss for a stable blue-chip stock, significantly reducing the share count you can buy. This calculator accounts for volatility through the stop loss distance input, ensuring you don't overleverage in volatile markets.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Risk Management Guidelines
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official guidelines on risk management practices and financial stability
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/p/positionsizing.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Position Sizing and Risk Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Investopedia's comprehensive guide to position sizing principles and practical calculation methods for traders.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Trading Tips
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive resources on consumer protection and trading best practices
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/tools.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Investor Protection Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official SEC resources on risk management and understanding investment products and their associated risks.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Financial Risk Management
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Information on banking regulations and risk management strategies
-              </p>
-            </div>
+          <li>
+            <a href="https://www.cftc.gov/LearnAndProtect/ConsumerProtection/RiskManagement" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Risk Management Best Practices</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFTC guidance on risk management practices for futures and derivatives trading, including position sizing considerations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Implications of Trading
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and implications for trading and investments
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Position Sizing Strategies
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed explanations of position sizing strategies and risk management
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Financial Planning Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and tools for effective financial planning
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/k/kellycriteria.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Kelly Criterion and Position Sizing</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed explanation of the Kelly Criterion formula for calculating optimal position sizing based on win rate and odds.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

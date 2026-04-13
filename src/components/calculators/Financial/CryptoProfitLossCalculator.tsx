@@ -81,24 +81,40 @@ export default function CryptoProfitLossCalculator() {
 
   const faqs = [
     {
-      question: "How do exchange fees affect my actual crypto profit?",
-      answer: "Fees are subtracted from profit on both entry and exit. On a $10,000 trade at 0.1% taker fee: $10 fee buying + $10 fee selling = $20 total fees. On a 5% price move ($500 gain), your net profit is $480 -- fees consumed 4% of profit. On small price moves, fees dominate: a 0.2% move on a $10,000 position yields $20 gain minus $20 fees = $0 net. Always factor in your platform's maker/taker structure. Binance: 0.1% standard, 0.075% with BNB. Coinbase Advanced: 0.6% taker. Kraken: 0.26% taker. Over 100 trades per year, fee optimization can save thousands."
+      question: "How do I calculate my crypto gains if I bought Bitcoin at $35,000 and sold at $63,000?",
+      answer: "Your gross profit would be $28,000 per Bitcoin ($63,000 - $35,000). To calculate your net profit/loss, subtract any transaction fees, trading commissions, and gas fees from this amount. If you paid $500 in total fees, your actual profit would be $27,500. The crypto profit/loss calculator automates this by allowing you to input your entry price, exit price, quantity, and fees to instantly determine your taxable gain or loss.",
     },
     {
-      question: "Should I use FIFO or specific identification for crypto cost basis?",
-      answer: "FIFO (first-in, first-out) is the IRS default if you do not specify otherwise. It sells your oldest lots first, which often means selling low-cost-basis lots (bought long ago when price was lower), maximizing taxable gains. Specific identification lets you choose which lot to sell -- typically the highest-cost-basis lot to minimize gain. For profit/loss calculation, the method changes your taxable outcome, not your economic gain. Example: bought 1 BTC at $20,000 (2022) and 1 BTC at $60,000 (2024), selling 1 BTC at $70,000. FIFO: $50,000 gain. Specific ID: $10,000 gain. Always document your lot selection at time of sale for IRS compliance."
+      question: "What's the difference between realized and unrealized gains on the calculator?",
+      answer: "Realized gains occur when you actually sell your cryptocurrency, while unrealized gains are paper profits from holdings that haven't been sold yet. This calculator focuses on realized gains/losses since those are what trigger tax events and determine your actual profits. For example, if you bought Ethereum at $2,000 and it's now worth $3,500 but you haven't sold, that's an unrealized gain of $1,500—not yet taxable.",
     },
     {
-      question: "What counts as a taxable disposal for crypto profit/loss purposes?",
-      answer: "Any of these triggers a taxable event requiring gain/loss calculation: (1) selling crypto for fiat, (2) trading crypto-to-crypto (e.g., BTC→ETH -- the BTC sale is taxable), (3) using crypto to pay for goods or services, (4) receiving staking or mining rewards (taxed as income at fair market value on receipt date, then as capital gain/loss when sold). Non-taxable events: buying crypto with fiat, transferring between your own wallets, gifting crypto below annual exclusion ($18,000 in 2024), holding. Every taxable event needs a basis record; missing basis records default to $0 cost basis under IRS rules."
+      question: "Should I include trading fees and gas fees in my profit calculation?",
+      answer: "Yes, absolutely. Trading fees on exchanges like Coinbase typically range from 0.5% to 4% of your transaction, while Ethereum gas fees can vary from $5 to $200+ depending on network congestion. The IRS allows these fees to be deducted from your gains, so including them in the calculator reduces your taxable profit. For a $10,000 trade with 2% fees ($200), your actual profit basis decreases by that amount.",
     },
     {
-      question: "How do I calculate profit on a partial crypto sale?",
-      answer: "Profit = (Sale price × units sold) − (Cost basis per unit × units sold) − fees. If you bought 2 ETH at $1,500 each ($3,000 total) and sell 0.5 ETH at $2,200: proceeds = $1,100. Cost basis for 0.5 ETH = $750. Net gain = $350 (before fees). Remaining 1.5 ETH retains its original $2,250 cost basis for future calculations. For DCA purchases (multiple lots at different prices), calculate the weighted average cost or track each lot individually for specific identification. Weighted average is simpler but not accepted by IRS for crypto -- you must use FIFO, LIFO, or specific ID."
+      question: "Can this calculator help me with tax reporting for the IRS?",
+      answer: "Yes, the calculator helps you calculate your realized gains and losses, which are reported on Schedule D (Form 1040) and potentially Form 8949. However, it doesn't replace professional tax software or a CPA—you'll need to track your cost basis, holding period (short-term vs. long-term), and aggregate all transactions across exchanges. Long-term capital gains (held 1+ year) are taxed at 0%, 15%, or 20% depending on income, while short-term gains are taxed as ordinary income up to 37%.",
     },
     {
-      question: "How does leverage affect crypto profit and loss calculations?",
-      answer: "Leveraged crypto trading multiplies both gains and losses by the leverage ratio. At 10× leverage on a $1,000 margin: you control $10,000 of crypto. A 5% price increase = $500 gain (50% on your $1,000 margin). A 10% price decrease = $1,000 loss -- full liquidation of margin. Liquidation typically occurs at 8–12% adverse move on 10× leverage (exchanges maintain a buffer). Profit/loss calculations must use the full position value, not just margin. Additionally, funding rates on perpetual contracts (0.01–0.1% per 8 hours) create ongoing cost that erodes leveraged positions -- equivalent to 10–45% annual cost on a perpetually held leveraged position."
+      question: "What if I made multiple crypto trades—can I calculate my total P&L?",
+      answer: "Yes, most crypto profit/loss calculators allow you to input multiple transactions across different dates and prices. You can calculate individual trade profits and then sum them to see your overall portfolio performance. For tax purposes, the IRS treats each transaction separately for short-term vs. long-term classification, so tracking each buy and sell is critical for accurate tax reporting.",
+    },
+    {
+      question: "How does the calculator handle crypto-to-crypto trades, like swapping Ethereum for Bitcoin?",
+      answer: "Crypto-to-crypto swaps are taxable events in the U.S. This means when you exchange Ethereum for Bitcoin, you're selling the Ethereum at its fair market value on that date and buying Bitcoin—triggering a capital gain or loss. The calculator should account for the fair market value of both cryptocurrencies at the time of the swap. If you swapped $5,000 worth of Ethereum for Bitcoin and Ethereum was up 20% since purchase, you owe taxes on that $1,000 gain.",
+    },
+    {
+      question: "What cost basis method should I use if I don't remember exactly which coins I sold?",
+      answer: "The IRS allows three methods: FIFO (First-In-First-Out, the default), LIFO (Last-In-First-Out), and specific identification. FIFO assumes you sell your oldest coins first, which often maximizes short-term gains. LIFO can sometimes reduce your tax burden by selling newer, higher-priced coins. Most traders use FIFO by default, but the calculator should let you specify your method since it significantly impacts your taxable gain or loss.",
+    },
+    {
+      question: "Can I use this calculator to offset gains with losses for tax purposes?",
+      answer: "Yes—this is called tax-loss harvesting. If you sold Bitcoin for a $5,000 loss and Ethereum for an $8,000 gain, you can net them to show a $3,000 overall gain, reducing your tax liability. You can also carry forward capital losses up to $3,000 per year against ordinary income, with unlimited carryforward of excess losses. The calculator helps you identify both gains and losses to optimize your tax strategy.",
+    },
+    {
+      question: "How accurate is the calculator if I'm using spot prices from different times of day?",
+      answer: "Crypto prices fluctuate every minute, so using prices from different times can create discrepancies. For tax accuracy, you should use the price at the exact time of your transaction—most exchanges provide this in your transaction history. CoinMarketCap and CoinGecko offer historical price data, and the calculator is most accurate when you input prices with timestamps. A Bitcoin price swing from $45,000 to $46,000 could change your profit calculation by $1,000 per coin.",
     }
   ];
 
@@ -290,249 +306,269 @@ export default function CryptoProfitLossCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Crypto Profit/Loss Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Crypto Profit/Loss Calculator is a powerful tool designed to help traders and investors determine the financial outcome of their cryptocurrency transactions. By inputting the buy and sell prices and the quantity of the cryptocurrency traded, users can quickly see their profit or loss in monetary terms. This calculator is essential for anyone involved in the volatile world of crypto trading, where prices can fluctuate dramatically in a short period. Whether you're a seasoned trader or a novice investor, understanding your potential gains or losses is crucial for making informed decisions.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in the cryptocurrency market due to its inherent volatility. An incorrect calculation could lead to significant financial losses or missed opportunities. For instance, a miscalculation in the return on investment (ROI) might lead a trader to hold onto a losing position for too long. This tool helps users avoid such pitfalls by providing precise calculations, enabling them to strategize effectively. According to recent studies, over 70% of crypto traders rely on calculators for decision-making. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather the necessary information beforehand. You'll need the buy price, sell price, and the quantity of the cryptocurrency you traded. Enter these values into the respective fields to get your results. The calculator will display your profit or loss, ROI, and the break-even price. For the most accurate results, ensure that the prices entered are current and reflect the actual transaction values. For more detailed calculations, consider using our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check the prices and quantities before calculating. A small error in input can lead to a significant discrepancy in the results. Use this calculator as a guide, but remember that market conditions can change rapidly.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Crypto Profit/Loss Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Crypto Profit/Loss Calculator is designed to quickly determine your realized gains or losses from cryptocurrency transactions. This is essential for tax reporting, portfolio performance tracking, and investment decision-making. Whether you're a day trader managing hundreds of transactions or a long-term holder selling a portion of your portfolio, this calculator eliminates manual math errors and ensures you capture every fee that reduces your taxable profit.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need your transaction details: the cryptocurrency type (Bitcoin, Ethereum, etc.), the price you bought (entry price), the price you sold (exit price), the quantity transacted, and any fees incurred (trading commissions, gas fees, withdrawal fees). Most exchanges provide these details in your transaction history or CSV export files. Accuracy is critical—entering a $1,000 price difference per coin on even one Bitcoin transaction changes your result by $1,000, so double-check your data before calculating.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs your realized profit or loss, which you'll use for tax reporting on Schedule D and Form 8949. Pay attention to whether your gain or loss is short-term (held under 1 year, taxed as ordinary income) or long-term (held 1+ year, taxed at preferential rates of 0%, 15%, or 20%). If the result is negative, congratulations—you can use that loss to offset other gains or up to $3,000 of ordinary income for tax relief. Document your calculation with screenshots or exports for IRS compliance.</p>
         </div>
-        
-        <p className="mb-6">
-          For optimal use, update your calculations regularly, especially in a fast-moving market. Consider factors like transaction fees and market trends that might affect your results. By staying informed and using the calculator consistently, you can make better trading decisions and optimize your crypto investments.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Crypto Profit/Loss Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is straightforward yet effective for determining your crypto trades' profitability. It calculates the difference between the sell price and the buy price, multiplied by the quantity of cryptocurrency traded. This method is widely accepted in the trading community for its simplicity and accuracy. In some cases, traders might adjust the formula to account for transaction fees or taxes, but the core calculation remains the same.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Profit/Loss = (Sell Price - Buy Price) × Quantity
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Sell Price = The price at which the cryptocurrency was sold</li>
-              <li>Buy Price = The price at which the cryptocurrency was purchased</li>
-              <li>Quantity = The amount of cryptocurrency traded</li>
-            </ul>
+      {/* TABLE: Sample Crypto Profit/Loss Scenarios (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sample Crypto Profit/Loss Scenarios (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These scenarios illustrate how entry price, exit price, quantity, and fees impact your final profit or loss.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cryptocurrency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Entry Price</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Exit Price</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Quantity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Trading Fees</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Net Profit/Loss</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Classification</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bitcoin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$63,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$27,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Long-term (if held 1+ year)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ethereum</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 ETH</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$1,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Taxable loss</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bitcoin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$28,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$42,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5 BTC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,850</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Short-term (if held <1 year)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Solana</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$195</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 SOL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,025</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Long-term (if held 1+ year)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Tax classification assumes long-term holding for assets held 365+ days; short-term for holdings <365 days. Tax rates vary by income bracket and filing status. Consult a tax professional for your specific situation.</p>
+      </section>
+
+      {/* TABLE: Typical Exchange Fees and Gas Costs (2024-2025) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Typical Exchange Fees and Gas Costs (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Fee structures vary by exchange and network, affecting your actual profit calculation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Exchange / Network</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maker Fee</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Taker Fee</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Gas/Network Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Impact on $10,000 Trade</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Coinbase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Included</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kraken</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.16%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.26%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Included</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$26</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Binance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Included</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ethereum Network (ERC-20)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5–$200+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5–$200+</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bitcoin Network</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2–$30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2–$30</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Gas fees on Ethereum fluctuate dramatically based on network congestion; figures shown are average estimates during peak and off-peak hours. Always include network fees in your cost basis for accurate P&L calculation.</p>
+      </section>
+
+      {/* TABLE: U.S. Federal Capital Gains Tax Rates (2024–2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">U.S. Federal Capital Gains Tax Rates (2024–2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Your tax rate depends on your holding period and income bracket; this table shows the federal rates for single filers.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Holding Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0% Rate (Income Limit)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15% Rate (Income Limit)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">20% Rate (Income Limit)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Long-term (1+ year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to $47,025</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47,025–$518,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $518,900</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Short-term (<1 year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Taxed as ordinary income—up to 37%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Taxed as ordinary income—up to 37%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Taxed as ordinary income—up to 37%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Income thresholds for 2024 tax year; 2025 figures may vary with inflation adjustments. State taxes (0–13%) and Net Investment Income Tax (3.8% for high earners) also apply. Consult a tax professional for your full tax liability.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your exact transaction timestamp, not just the date—crypto prices fluctuate hourly, and using CoinMarketCap or your exchange's historical price data at the precise time ensures IRS-compliant accuracy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Don't forget about small fees; a $50 mining or withdrawal fee may seem minor, but across 50 transactions, that's $2,500 in deductible costs that reduce your taxable gain.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to test different cost-basis methods (FIFO vs. LIFO) if you have high trading volume—switching methods could reduce your tax bill by thousands of dollars, though you must elect your method before filing.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Export your calculator results and save them with your exchange statements and wallet records; the IRS may request proof of cost basis, purchase dates, and sale dates during an audit, and complete documentation is your strongest defense.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring staking rewards and airdrops as taxable income</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many traders forget that crypto staking rewards and airdrops are immediately taxable at fair market value when received, separate from later capital gains. If you earned 5 ETH in staking rewards worth $9,000 when received, that's $9,000 in ordinary income—even if you haven't sold the ETH yet and it's now worth $8,000.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using current price instead of transaction price</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator requires the actual price you bought or sold at, not today's price. If Bitcoin was $40,000 when you bought but is now $65,000, you must use $40,000 for your entry price, not $65,000—otherwise your profit calculation is completely wrong.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for wash sales rules</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">While crypto doesn't have strict IRS wash-sale rules like stocks, the IRS is increasingly scrutinizing same-day or near-simultaneous buy-sell transactions. Selling Bitcoin for a loss and buying it back within days could trigger audit scrutiny, even if technically allowed.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not converting foreign exchange rates for international purchases</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you bought crypto on a foreign exchange when 1 Bitcoin cost €35,000 (approximately $38,000 USD at that time), you must convert using the exchange rate on that transaction date, not today's rate. Using today's rate inflates or deflates your cost basis incorrectly.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in this formula plays a crucial role. The Sell Price and Buy Price determine the gain or loss per unit of cryptocurrency, while the Quantity amplifies this effect based on the number of units traded. For example, a small price difference can lead to substantial profits or losses if the quantity is large. Conversely, a significant price change might not impact the overall result if the quantity is minimal. Understanding these dynamics is essential for effective trading strategies.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Several factors can influence the outcome of your crypto profit/loss calculations. Understanding these factors is crucial for making informed trading decisions. They interact in complex ways, and even small changes can have significant impacts on your results.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-4">
-          Market volatility refers to the rapid and unpredictable changes in cryptocurrency prices. This factor is a double-edged sword; it can lead to substantial profits or devastating losses. Traders must monitor market trends and news that could trigger volatility.
-        </p>
-        <p className="mb-6">
-          To mitigate risks associated with volatility, consider using stop-loss orders and diversifying your portfolio. Stay updated with market analyses and forecasts. For more strategies, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Transaction Fees
-        </h3>
-        <p className="mb-4">
-          Transaction fees are costs incurred when buying or selling cryptocurrencies. These fees can vary significantly between exchanges and can impact your net profit or loss. It's essential to factor in these costs when calculating your trades' profitability.
-        </p>
-        <p className="mb-6">
-          Compare fees across different platforms and consider using exchanges with lower costs. Some exchanges offer discounts for high-volume traders or loyalty programs. Understanding fee structures can help you optimize your trading strategy.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Implications
-        </h3>
-        <p className="mb-4">
-          Taxes on cryptocurrency transactions can affect your net profit. Different jurisdictions have varying tax laws regarding crypto trading. It's crucial to understand these regulations to avoid unexpected liabilities.
-        </p>
-        <p className="mb-6">
-          Consult with a tax professional to ensure compliance with local laws. Keep detailed records of all transactions, as these will be necessary for tax reporting. For more information, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Exchange Rates
-        </h3>
-        <p className="mb-6">
-          Exchange rates between cryptocurrencies and fiat currencies can fluctuate, impacting your trade's value. This factor is particularly relevant for traders dealing with multiple currencies. Understanding how exchange rates work can help you make better trading decisions.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Regulatory Changes
-        </h3>
-        <p className="mb-6">
-          Regulatory changes can have significant impacts on the cryptocurrency market. New laws or regulations can affect market sentiment and price stability. Staying informed about regulatory developments is crucial for long-term success in crypto trading.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my crypto gains if I bought Bitcoin at $35,000 and sold at $63,000?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your gross profit would be $28,000 per Bitcoin ($63,000 - $35,000). To calculate your net profit/loss, subtract any transaction fees, trading commissions, and gas fees from this amount. If you paid $500 in total fees, your actual profit would be $27,500. The crypto profit/loss calculator automates this by allowing you to input your entry price, exit price, quantity, and fees to instantly determine your taxable gain or loss.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between realized and unrealized gains on the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Realized gains occur when you actually sell your cryptocurrency, while unrealized gains are paper profits from holdings that haven't been sold yet. This calculator focuses on realized gains/losses since those are what trigger tax events and determine your actual profits. For example, if you bought Ethereum at $2,000 and it's now worth $3,500 but you haven't sold, that's an unrealized gain of $1,500—not yet taxable.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include trading fees and gas fees in my profit calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, absolutely. Trading fees on exchanges like Coinbase typically range from 0.5% to 4% of your transaction, while Ethereum gas fees can vary from $5 to $200+ depending on network congestion. The IRS allows these fees to be deducted from your gains, so including them in the calculator reduces your taxable profit. For a $10,000 trade with 2% fees ($200), your actual profit basis decreases by that amount.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator help me with tax reporting for the IRS?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator helps you calculate your realized gains and losses, which are reported on Schedule D (Form 1040) and potentially Form 8949. However, it doesn't replace professional tax software or a CPA—you'll need to track your cost basis, holding period (short-term vs. long-term), and aggregate all transactions across exchanges. Long-term capital gains (held 1+ year) are taxed at 0%, 15%, or 20% depending on income, while short-term gains are taxed as ordinary income up to 37%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if I made multiple crypto trades—can I calculate my total P&L?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, most crypto profit/loss calculators allow you to input multiple transactions across different dates and prices. You can calculate individual trade profits and then sum them to see your overall portfolio performance. For tax purposes, the IRS treats each transaction separately for short-term vs. long-term classification, so tracking each buy and sell is critical for accurate tax reporting.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator handle crypto-to-crypto trades, like swapping Ethereum for Bitcoin?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Crypto-to-crypto swaps are taxable events in the U.S. This means when you exchange Ethereum for Bitcoin, you're selling the Ethereum at its fair market value on that date and buying Bitcoin—triggering a capital gain or loss. The calculator should account for the fair market value of both cryptocurrencies at the time of the swap. If you swapped $5,000 worth of Ethereum for Bitcoin and Ethereum was up 20% since purchase, you owe taxes on that $1,000 gain.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What cost basis method should I use if I don't remember exactly which coins I sold?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The IRS allows three methods: FIFO (First-In-First-Out, the default), LIFO (Last-In-First-Out), and specific identification. FIFO assumes you sell your oldest coins first, which often maximizes short-term gains. LIFO can sometimes reduce your tax burden by selling newer, higher-priced coins. Most traders use FIFO by default, but the calculator should let you specify your method since it significantly impacts your taxable gain or loss.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator to offset gains with losses for tax purposes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—this is called tax-loss harvesting. If you sold Bitcoin for a $5,000 loss and Ethereum for an $8,000 gain, you can net them to show a $3,000 overall gain, reducing your tax liability. You can also carry forward capital losses up to $3,000 per year against ordinary income, with unlimited carryforward of excess losses. The calculator helps you identify both gains and losses to optimize your tax strategy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the calculator if I'm using spot prices from different times of day?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Crypto prices fluctuate every minute, so using prices from different times can create discrepancies. For tax accuracy, you should use the price at the exact time of your transaction—most exchanges provide this in your transaction history. CoinMarketCap and CoinGecko offer historical price data, and the calculator is most accurate when you input prices with timestamps. A Bitcoin price swing from $45,000 to $46,000 could change your profit calculation by $1,000 per coin.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Cryptocurrency Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on cryptocurrency regulations and guidelines for traders.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/pub/irs-pdf/p544.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 544: Sales of Assets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on calculating and reporting gains and losses from asset sales, including cryptocurrency transactions.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Crypto Trading Guide
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive guide on consumer protection and educational resources for crypto traders.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/newsroom/public-statements/statement-digital-assets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Division of Corporation Finance: Cryptocurrency and Digital Asset Guidance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">SEC information on how cryptocurrency transactions are regulated and taxed under federal securities laws.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Cryptocurrency Banking
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Information on banking regulations and cryptocurrency deposit insurance.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/c/capital_gains_tax.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Capital Gains Tax Explained</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed explanation of short-term and long-term capital gains tax rates, holding periods, and how to calculate taxable gains.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Cryptocurrency Taxation
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and information on cryptocurrency transactions and reporting.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Cryptocurrency Investing
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts for cryptocurrency traders.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Cryptocurrency Trading Tips
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for cryptocurrency traders.
-              </p>
-            </div>
+          <li>
+            <a href="https://coinmarketcap.com/historical/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CoinMarketCap: Historical Cryptocurrency Price Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Free tool to look up historical cryptocurrency prices by date, essential for verifying transaction prices for accurate P&L calculations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

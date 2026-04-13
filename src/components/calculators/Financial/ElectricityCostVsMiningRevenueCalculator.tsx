@@ -30,24 +30,40 @@ export default function ElectricityCostVsMiningRevenueCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are mining profitability calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For mining profitability, accuracy depends on using current electricity cost data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a electricity cost professional."
+      question: "What is the break-even point between electricity costs and mining revenue?",
+      answer: "The break-even point occurs when your total electricity costs equal your mining revenue over a specific period. For example, if you're mining Bitcoin with an ASIC miner consuming 1,500 watts at $0.12 per kWh, you'd need to generate approximately $5.40 daily in revenue just to cover electricity costs. Using this calculator, you can input your specific wattage, local electricity rate, and expected hash rate to find your exact break-even mining difficulty or price point.",
     },
     {
-      question: "What key factors most affect mining profitability results?",
-      answer: "The most impactful variables in mining profitability calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How do I find my local electricity rate for mining calculations?",
+      answer: "Your electricity rate is listed on your monthly utility bill, typically shown in cents per kilowatt-hour (¢/kWh). In the U.S., residential rates average $0.14/kWh, while commercial rates average $0.11/kWh, and industrial mining operations may negotiate rates as low as $0.04-$0.08/kWh. If you're unsure, contact your utility provider directly, as rates vary significantly by region and can affect your mining profitability by 50% or more.",
     },
     {
-      question: "When should I recalculate mining profitability?",
-      answer: "Recalculate whenever electricity cost conditions change significantly: after major electricity cost events, when your inputs change (income, rates, holdings), or when electricity cost regulations are updated. For time-sensitive electricity cost metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "What hardware specifications do I need to input into this calculator?",
+      answer: "You'll need your mining hardware's power consumption (in watts), hash rate (measured in TH/s for Bitcoin or MH/s for Ethereum), and operational efficiency rating. For example, an Antminer S21 Pro consumes 3,410 watts and produces 200 TH/s, while a more efficient model like the S21 uses 3,360 watts for slightly less output. These specifications determine how much electricity your operation uses relative to the mining revenue it generates.",
     },
     {
-      question: "How does mining profitability relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Mining profitability should be evaluated alongside related measures like crypto mining. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your electricity cost situation, rather than optimizing any single number in isolation."
+      question: "How often do mining difficulty and block rewards change?",
+      answer: "Bitcoin mining difficulty adjusts approximately every 2 weeks (every 2,016 blocks) to maintain a 10-minute average block time, while block rewards halve every 210,000 blocks (approximately every 4 years, with the most recent halving in April 2024 reducing rewards from 6.25 to 3.125 BTC). Ethereum, which transitioned to proof-of-stake in 2022, no longer has traditional mining, but other coins like Litecoin and Dogecoin have different adjustment schedules. This calculator helps you project earnings under various difficulty scenarios to stress-test your operation's viability.",
     },
     {
-      question: "What are the most common mistakes when calculating mining profitability?",
-      answer: "The most frequent errors in mining profitability calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world electricity cost conditions fluctuate. Double-check your inputs against current electricity cost data before relying on results for significant financial decisions."
+      question: "What is the impact of mining pool fees on net revenue?",
+      answer: "Mining pools typically charge 1-3% in fees (with popular pools like Stratum V2 offering lower fees), which directly reduces your net revenue from mining. For example, if you generate $100 daily in mining rewards and your pool charges 2%, your net revenue drops to $98, equivalent to losing $730 monthly. When using this calculator, subtract your pool fee percentage from projected revenue to get a realistic picture of actual take-home profit after electricity costs.",
+    },
+    {
+      question: "How do cooling and infrastructure costs factor into total operating expenses?",
+      answer: "Cooling costs typically add 20-30% to your base electricity bill for large-scale mining operations, as ASIC miners generate significant heat requiring industrial ventilation systems. For a 100 kW mining operation at $0.10/kWh base rate ($10/hour), cooling could add $2-$3 per hour in additional costs, totaling $48-$72 daily. While this calculator focuses on direct electricity costs, professional miners should account for infrastructure overhead, facility leasing, and cooling expenses separately to calculate true profitability.",
+    },
+    {
+      question: "What is the current Bitcoin mining reward and how does it affect profitability calculations?",
+      answer: "As of 2024-2025, the Bitcoin block reward is 3.125 BTC per block (after the April 2024 halving), with blocks mined approximately every 10 minutes, equaling roughly 144 blocks per day. At $45,000 per BTC, this represents about $20.25 million in daily network mining rewards distributed among all miners. Your share of these rewards depends on your hash power relative to total network hash rate; this calculator helps you project earnings by factoring in your miner's TH/s against the current network total of approximately 680 EH/s.",
+    },
+    {
+      question: "How does cryptocurrency price volatility affect the electricity cost vs. revenue calculation?",
+      answer: "Mining revenue is directly tied to the price of the cryptocurrency being mined, which can fluctuate 10-20% monthly or more. A Bitcoin priced at $45,000 might generate 2x the revenue compared to $22,500, but your electricity costs remain fixed, dramatically improving profitability during price upswings. This calculator allows you to model different price scenarios to understand your profit margins across bull and bear market conditions.",
+    },
+    {
+      question: "Should I consider the useful lifespan of mining hardware when comparing costs and revenue?",
+      answer: "Yes, mining hardware typically remains profitable for 2-4 years before becoming obsolete due to network difficulty increases and newer, more efficient models entering the market. An ASIC miner costing $2,000 that generates $4,000 in revenue annually appears profitable until you factor in 3-4 years of electricity, maintenance, and facility costs that could total $8,000-$12,000 over its lifespan. This calculator helps you determine if your mining operation will generate cumulative profit over the expected hardware lifespan before reinvestment in newer equipment becomes necessary.",
     }
   ];
 
@@ -301,250 +317,327 @@ export default function ElectricityCostVsMiningRevenueCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Electricity Cost vs Mining Revenue
-        </h2>
-        
-        <p className="mb-6">
-          In the world of cryptocurrency mining, understanding the balance between electricity costs and mining revenue is crucial for maintaining profitability. This calculator is designed to help miners evaluate their operations by comparing the daily costs of electricity against the revenue generated from mining activities. Whether you're a hobbyist miner or managing a large-scale operation, this tool provides valuable insights into your financial performance.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in this domain as they directly impact your bottom line. With fluctuating electricity rates and variable mining outputs, having a reliable method to assess your profitability is essential. This calculator uses industry-standard formulas to ensure you get precise results, helping you make informed decisions about your mining activities. For more insights into financial calculations, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information on your daily electricity costs, expected mining revenue, and the number of operational days. Enter these values into the respective fields to calculate your net profit. This tool also provides a detailed daily breakdown of costs and revenues, allowing you to analyze your financial performance over time. For additional resources, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Ensure you regularly update your electricity rates and mining revenue estimates to maintain accuracy. Market conditions can change rapidly, affecting both costs and profits. Staying informed and adaptable is key to successful mining operations.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Electricity Cost vs Mining Revenue Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator compares your mining operation's total electricity expenses against your expected mining revenue to determine profitability and break-even points. By modeling the relationship between power consumption, electricity rates, and mining output, you can make informed decisions about hardware purchases, location selection, and operational scaling. Whether you're evaluating a single ASIC miner or a large-scale mining farm, this tool helps you understand if your operation will generate profit under current and projected network conditions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The key inputs required are your miner's power consumption (in watts), hash rate output (in TH/s for Bitcoin), local electricity rate (in ¢/kWh), and the cryptocurrency's current market price. You'll also need to consider mining difficulty—either current difficulty or projected future adjustments—which affects the time required to earn mining rewards. Pool fees (typically 1-3%), hardware lifespan expectations, and operational overhead should also be factored into your analysis, though this calculator focuses on the core electricity-to-revenue comparison.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret the results by comparing daily, weekly, or monthly net profit figures; if electricity costs exceed mining revenue, your operation runs at a loss and requires either higher cryptocurrency prices, lower electricity rates, or more efficient hardware to achieve profitability. The calculator also helps you identify break-even prices—the minimum cryptocurrency price required to cover electricity costs—and stress-test your operation under various scenarios like difficulty increases or price drops. Use these outputs to decide whether to continue mining, upgrade hardware, relocate to cheaper power regions, or suspend operations during low-profitability periods.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices include monitoring your electricity usage closely and optimizing your mining setup for efficiency. Consider factors such as hardware performance, cooling requirements, and local electricity tariffs. By understanding these elements, you can maximize your profitability and reduce unnecessary expenses.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Electricity Cost vs Mining Revenue Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is designed to provide a clear picture of your mining operation's financial health. It calculates the net profit by subtracting the total electricity cost from the total mining revenue over a specified period. This straightforward approach allows you to quickly assess whether your mining activities are profitable.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Net Profit = (Mining Revenue per Day × Operational Days) - (Electricity Cost per Day × Operational Days)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Mining Revenue per Day = Expected earnings from mining each day</li>
-              <li>Electricity Cost per Day = Cost of electricity consumed each day</li>
-              <li>Operational Days = Total number of days the mining operation runs</li>
-            </ul>
+      {/* TABLE: Average Electricity Rates by Region (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Electricity Rates by Region (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Regional electricity costs significantly impact mining profitability, with rates varying from $0.04/kWh in industrial areas to $0.24/kWh in expensive residential markets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Region</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Rate (¢/kWh)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Mining Cost (24hrs, 1,500W)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Iceland</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.04–$0.06</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.44–$2.16</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">El Salvador</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.05–$0.07</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.80–$2.52</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Texas (Industrial)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.06–$0.08</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.16–$2.88</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">U.S. Average (Residential)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.14–$0.16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5.04–$5.76</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">New York (Residential)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.17–$0.20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.12–$7.20</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">California (Peak)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.20–$0.24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7.20–$8.64</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">United Kingdom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.18–$0.22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.48–$7.92</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Germany</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.22–$0.28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7.92–$10.08</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates vary by season, contract type, and time-of-use pricing; consult your utility provider for exact rates. Industrial mining operations can negotiate bulk rates 50-70% lower than residential rates.</p>
+      </section>
+
+      {/* TABLE: Popular ASIC Miners: Power Consumption vs. Hash Rate */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Popular ASIC Miners: Power Consumption vs. Hash Rate</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Modern ASIC miners vary significantly in power efficiency, measured as watts per terahash per second (W/TH/s), which directly impacts the electricity cost per unit of mining output.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Miner Model</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Power (watts)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hash Rate (TH/s)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Efficiency (W/TH)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Antminer S21 Pro</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3410</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.05</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Antminer S21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.8</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Antminer S19 Pro</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29.5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Antminer T21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3850</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19.25</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">IceRiver KS0 Pro</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">210</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.14</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Whatsminer M63S</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3710</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">210</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.67</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Canaan Avalon A1566 Pro</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3276</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19.85</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Braiins Dragonmint T1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1480</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">92.5</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Efficiency (W/TH) = Power ÷ Hash Rate; lower values indicate better efficiency and lower operating costs per unit of hash power. Prices typically range $3,500–$6,000 per unit as of 2024.</p>
+      </section>
+
+      {/* TABLE: Mining Profitability Scenarios: Daily Revenue vs. Electricity Cost */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Mining Profitability Scenarios: Daily Revenue vs. Electricity Cost</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how mining profitability varies based on Bitcoin price, electricity rate, and miner efficiency, showing daily net profit or loss scenarios.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bitcoin Price</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Miner Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Gross Revenue</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Electricity Cost ($0.12/kWh)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Net Profit/(Loss)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$35,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S21 Pro (200 TH/s)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9.84</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.66</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$35,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S19 Pro (110 TH/s)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.88</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9.36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">($2.48)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$45,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S21 Pro (200 TH/s)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16.05</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9.84</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.21</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$45,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S19 Pro (110 TH/s)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8.85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9.36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">($0.51)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$65,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S21 Pro (200 TH/s)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$23.20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9.84</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$13.36</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$65,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S19 Pro (110 TH/s)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12.80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9.36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3.44</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$45,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S21 Pro @ $0.08/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16.05</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6.56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9.49</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$45,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S21 Pro @ $0.16/kWh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16.05</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$13.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.93</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume current network difficulty of ~680 EH/s and 3.125 BTC block reward. Mining pool fees (1-3%) not included; subtract from gross revenue for net figures.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your electricity rate in real-time by reviewing your utility bills monthly; rates can vary seasonally and by time-of-use, so use your actual average rate rather than advertised rates for accurate profitability projections.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare your miner's efficiency rating (W/TH/s) across models before purchasing; a $500 price difference for a 10% more efficient miner can save $1,000-$2,000 annually in electricity costs for a 24/7 operation.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Recalculate profitability every 2 weeks when Bitcoin mining difficulty adjusts; a 5-10% difficulty increase can reduce daily revenue by the same percentage, potentially pushing marginal operations into loss territory.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in cooling and infrastructure costs as an additional 20-30% overhead for large operations; this calculator's electricity costs represent only direct ASIC consumption, not the full environmental conditioning required for optimal performance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Negotiate bulk electricity rates with your utility if operating 5+ kilowatts continuously; many providers offer industrial rates 30-50% lower than standard residential rates, significantly improving your cost basis.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using advertised electricity rates instead of actual rates from your bill</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Utility companies often advertise base rates that don't reflect taxes, delivery charges, and demand fees that can increase your effective rate by 20-40%. Always calculate your actual ¢/kWh by dividing total monthly cost by kWh used to ensure accurate profitability modeling.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring mining pool fees in revenue calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Mining pool fees of 1-3% directly reduce your net revenue and can turn a barely-profitable operation into a loss-making one. Always subtract pool fees from gross mining revenue before comparing against electricity costs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Failing to account for difficulty adjustments and price volatility</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Mining revenue depends on both network difficulty (which rises every 2 weeks) and cryptocurrency price (which fluctuates daily), yet many miners calculate profitability based on static assumptions. Use this calculator to model multiple scenarios—including pessimistic price drops and difficulty increases—to test whether your operation survives market downturns.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not including hardware depreciation and replacement costs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">ASIC miners typically remain profitable for only 2-4 years before network difficulty makes them obsolete, yet many operators treat hardware as a one-time cost without planning for replacement. Calculate cumulative profitability over 3-5 years to determine if your operation generates enough surplus to fund hardware upgrades.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role in determining your net profit. The Mining Revenue per Day is influenced by factors such as the cryptocurrency's market value and your mining hardware's efficiency. Electricity Cost per Day depends on your local electricity rates and the power consumption of your mining equipment. Operational Days should reflect the actual time your setup is running, accounting for any downtime due to maintenance or other issues.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your mining operation's profitability is essential for optimizing performance. These factors interact with each other, and changes in one can significantly impact your overall results.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Electricity Rates
-        </h3>
-        <p className="mb-4">
-          Electricity rates are a major cost driver in mining operations. High rates can quickly erode profits, making it crucial to secure the best possible rates. Consider negotiating with your provider or exploring alternative energy sources like solar power.
-        </p>
-        <p className="mb-6">
-          Monitoring rate fluctuations and adjusting your operation accordingly can help maintain profitability. For more strategies on managing costs, see our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Mining Hardware Efficiency
-        </h3>
-        <p className="mb-4">
-          The efficiency of your mining hardware directly affects your revenue. More efficient hardware can generate more cryptocurrency for the same amount of electricity, improving your profit margins.
-        </p>
-        <p className="mb-6">
-          Regularly upgrading your hardware and optimizing settings can enhance performance. Consider the long-term benefits of investing in newer, more efficient equipment.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Cryptocurrency Market Value
-        </h3>
-        <p className="mb-4">
-          The market value of the cryptocurrency you're mining significantly impacts your revenue. Prices can be volatile, so staying informed and ready to adapt your strategy is crucial.
-        </p>
-        <p className="mb-6">
-          Diversifying your mining portfolio and hedging against market fluctuations can mitigate risks. Keep an eye on market trends and adjust your operations as needed.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Operational Efficiency
-        </h3>
-        <p className="mb-6">
-          Efficient operations minimize downtime and maximize output. Regular maintenance, effective cooling systems, and strategic scheduling can enhance your setup's efficiency. Ensure your operation runs smoothly to avoid unnecessary losses.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Regulatory Environment
-        </h3>
-        <p className="mb-6">
-          Regulations can affect mining operations, from environmental laws to financial regulations. Staying compliant is essential to avoid fines and disruptions. Keep abreast of changes in the regulatory landscape and adjust your operations accordingly.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the break-even point between electricity costs and mining revenue?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The break-even point occurs when your total electricity costs equal your mining revenue over a specific period. For example, if you're mining Bitcoin with an ASIC miner consuming 1,500 watts at $0.12 per kWh, you'd need to generate approximately $5.40 daily in revenue just to cover electricity costs. Using this calculator, you can input your specific wattage, local electricity rate, and expected hash rate to find your exact break-even mining difficulty or price point.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I find my local electricity rate for mining calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your electricity rate is listed on your monthly utility bill, typically shown in cents per kilowatt-hour (¢/kWh). In the U.S., residential rates average $0.14/kWh, while commercial rates average $0.11/kWh, and industrial mining operations may negotiate rates as low as $0.04-$0.08/kWh. If you're unsure, contact your utility provider directly, as rates vary significantly by region and can affect your mining profitability by 50% or more.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What hardware specifications do I need to input into this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You'll need your mining hardware's power consumption (in watts), hash rate (measured in TH/s for Bitcoin or MH/s for Ethereum), and operational efficiency rating. For example, an Antminer S21 Pro consumes 3,410 watts and produces 200 TH/s, while a more efficient model like the S21 uses 3,360 watts for slightly less output. These specifications determine how much electricity your operation uses relative to the mining revenue it generates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often do mining difficulty and block rewards change?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Bitcoin mining difficulty adjusts approximately every 2 weeks (every 2,016 blocks) to maintain a 10-minute average block time, while block rewards halve every 210,000 blocks (approximately every 4 years, with the most recent halving in April 2024 reducing rewards from 6.25 to 3.125 BTC). Ethereum, which transitioned to proof-of-stake in 2022, no longer has traditional mining, but other coins like Litecoin and Dogecoin have different adjustment schedules. This calculator helps you project earnings under various difficulty scenarios to stress-test your operation's viability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the impact of mining pool fees on net revenue?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mining pools typically charge 1-3% in fees (with popular pools like Stratum V2 offering lower fees), which directly reduces your net revenue from mining. For example, if you generate $100 daily in mining rewards and your pool charges 2%, your net revenue drops to $98, equivalent to losing $730 monthly. When using this calculator, subtract your pool fee percentage from projected revenue to get a realistic picture of actual take-home profit after electricity costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do cooling and infrastructure costs factor into total operating expenses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cooling costs typically add 20-30% to your base electricity bill for large-scale mining operations, as ASIC miners generate significant heat requiring industrial ventilation systems. For a 100 kW mining operation at $0.10/kWh base rate ($10/hour), cooling could add $2-$3 per hour in additional costs, totaling $48-$72 daily. While this calculator focuses on direct electricity costs, professional miners should account for infrastructure overhead, facility leasing, and cooling expenses separately to calculate true profitability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the current Bitcoin mining reward and how does it affect profitability calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As of 2024-2025, the Bitcoin block reward is 3.125 BTC per block (after the April 2024 halving), with blocks mined approximately every 10 minutes, equaling roughly 144 blocks per day. At $45,000 per BTC, this represents about $20.25 million in daily network mining rewards distributed among all miners. Your share of these rewards depends on your hash power relative to total network hash rate; this calculator helps you project earnings by factoring in your miner's TH/s against the current network total of approximately 680 EH/s.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does cryptocurrency price volatility affect the electricity cost vs. revenue calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mining revenue is directly tied to the price of the cryptocurrency being mined, which can fluctuate 10-20% monthly or more. A Bitcoin priced at $45,000 might generate 2x the revenue compared to $22,500, but your electricity costs remain fixed, dramatically improving profitability during price upswings. This calculator allows you to model different price scenarios to understand your profit margins across bull and bear market conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I consider the useful lifespan of mining hardware when comparing costs and revenue?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, mining hardware typically remains profitable for 2-4 years before becoming obsolete due to network difficulty increases and newer, more efficient models entering the market. An ASIC miner costing $2,000 that generates $4,000 in revenue annually appears profitable until you factor in 3-4 years of electricity, maintenance, and facility costs that could total $8,000-$12,000 over its lifespan. This calculator helps you determine if your mining operation will generate cumulative profit over the expected hardware lifespan before reinvestment in newer equipment becomes necessary.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.eia.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                U.S. Energy Information Administration
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive data on electricity rates and energy consumption trends.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.eia.gov/electricity/state/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Energy Information Administration — Average Electricity Rates by State</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official U.S. government source providing current and historical electricity rates by state, sector, and pricing type.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.coinmarketcap.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                CoinMarketCap
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Real-time cryptocurrency market data and historical price charts.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/bitcoin-mining-how-to-calculate-profitability-5114873" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia — Bitcoin Mining Profitability Calculator and Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to calculating mining profitability, including electricity costs, hardware efficiency, and break-even analysis.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.blockchain.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Blockchain.com
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Explore blockchain data and cryptocurrency transaction insights.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.blockchain.com/en/charts/difficulty" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Blockchain.com — Bitcoin Network Hash Rate and Difficulty</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Real-time tracking of Bitcoin network difficulty and hash rate metrics essential for accurate mining revenue projections.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.energy.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                U.S. Department of Energy
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Information on energy policies, regulations, and innovations.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.cryptocompare.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                CryptoCompare
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Cryptocurrency comparison and market analysis tools.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Cryptocurrency
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Educational resources on cryptocurrency and blockchain technology.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/news/press-release/2023-120" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Securities and Exchange Commission — Cryptocurrency Disclosure Guidance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">SEC guidance on cryptocurrency mining as a taxable business activity and reporting requirements for mining operations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

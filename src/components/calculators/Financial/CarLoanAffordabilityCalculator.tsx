@@ -20,28 +20,40 @@ export default function CarLoanAffordabilityCalculator() {
 
   const faqs = [
     {
-      question: "What is the 20/4/10 rule for buying a car?",
-      answer: "The 20/4/10 rule is the most widely cited car-buying guideline: put at least 20% down, finance for no more than 4 years, and keep total vehicle costs (payment + insurance) under 10% of gross monthly income. Example: if you earn $6,000/month, your car costs should stay under $600/month. The 20% down prevents being immediately 'underwater' on the loan (owing more than the car is worth), since new cars lose 15-25% of value in the first year. The 4-year term minimizes total interest while keeping monthly payments manageable."
+      question: "What is the 28/36 debt-to-income rule and how does it apply to car loans?",
+      answer: "The 28/36 rule is a lending guideline where your car payment should not exceed 15-20% of your gross monthly income, and your total debt payments (including car, mortgage, credit cards, and student loans) should not exceed 36% of gross income. For example, if you earn $5,000 per month, your car payment should ideally stay under $750-$1,000. Most lenders use this benchmark to determine how much you can borrow for a vehicle.",
     },
     {
-      question: "How does my credit score affect the car loan APR I'll be offered?",
-      answer: "Credit score is the single biggest factor in your auto loan rate. Typical 2024 new-car loan APR by FICO tier: 750+ (Super Prime) = 5.0-6.5%; 700-749 (Prime) = 6.5-8.5%; 650-699 (Near Prime) = 9-13%; 600-649 (Subprime) = 14-18%; below 600 = 18-25%+. The difference is enormous in dollars: on a $30,000, 60-month loan, 6% APR costs $2,995 in total interest vs. 18% APR costing $9,445 — a $6,450 gap. Improving your score by 50-100 points before applying can save thousands."
+      question: "How does the down payment affect my monthly car loan payment?",
+      answer: "A larger down payment directly reduces the amount you need to finance, which lowers your monthly payment proportionally. For instance, on a $30,000 vehicle at 6.5% APR over 60 months, a $5,000 down payment reduces your monthly payment from $589 to $472—a $117 monthly savings. Most lenders recommend putting down at least 10-20% to improve loan terms and reduce interest costs.",
     },
     {
-      question: "What is the true cost of extending a loan term from 48 to 72 months?",
-      answer: "Longer loan terms mean lower monthly payments but significantly more total interest. Example on a $25,000 loan at 7% APR: 48-month term = $597/month, $3,660 total interest. 72-month term = $423/month, $5,468 total interest — $1,808 more for the convenience of $174 lower monthly payments. Worse, with a 72-month loan, you are likely 'underwater' (owe more than car value) for the first 3+ years. If you need to sell or the car is totaled, you may owe thousands more than you receive."
+      question: "What is a typical car loan interest rate in 2024-2025?",
+      answer: "As of 2024-2025, average car loan rates range from 5.5% to 8.5% depending on credit score, loan term, and vehicle type. Borrowers with excellent credit (750+) typically qualify for rates around 5.5-6.5%, while those with fair credit (650-699) may see rates of 8-9%. Used car rates are typically 1-2% higher than new car rates.",
     },
     {
-      question: "How much should I put down on a car, and does it matter?",
-      answer: "A larger down payment reduces your loan principal, which lowers both the monthly payment and total interest paid. It also protects against negative equity (being underwater). For new cars, 20% down is recommended; for used cars, 10% is a common minimum. Concrete example: $5,000 down on a $30,000 car at 7% APR over 60 months saves $665 in interest compared to $1,000 down. Down payments also matter for approval — lenders see them as commitment, and a larger down payment can help borrowers with lower credit scores qualify for better terms."
+      question: "How does loan term length affect my total interest paid?",
+      answer: "Longer loan terms result in lower monthly payments but significantly higher total interest. A $25,000 car loan at 6.5% APR costs $4,266 in total interest over 48 months ($527/month) versus $6,862 in interest over 72 months ($390/month). While the 72-month option saves $137 monthly, you'll pay $2,596 more in total interest, making it important to find a balance between affordability and cost.",
     },
     {
-      question: "Should I finance through the dealer or get a loan from my bank or credit union?",
-      answer: "Both options have advantages. Dealer financing is convenient and sometimes offers manufacturer incentives (0% or 1.9% APR promotions on new cars). However, dealers mark up the rate they receive from lenders — if the bank approves you at 6%, the dealer may offer 8% and pocket the difference. Bank/credit union pre-approval gives you a firm rate to use as a negotiating baseline. Credit unions typically offer the lowest rates (0.5-2% below banks) because they are non-profit. Best practice: get pre-approved by your credit union before going to the dealer, then let the dealer try to beat it."
+      question: "What credit score do I need to get approved for a car loan?",
+      answer: "Most lenders require a minimum credit score of 620 to qualify for a car loan, though approval is easier with a score of 660+. Borrowers with scores below 620 may still find lenders but will face higher interest rates (10-15%). Those with scores of 720+ typically receive the most competitive rates and better loan terms.",
     },
     {
-      question: "What costs beyond the monthly payment should I budget for when buying a car?",
-      answer: "The monthly loan payment is only part of the true cost of car ownership. Budget for: (1) Auto insurance — average $1,765/year nationally in 2024, much higher for newer or luxury vehicles; (2) Registration and taxes — typically 2-10% of purchase price at purchase, then annual fees; (3) Maintenance — AAA estimates $0.10/mile for routine maintenance ($1,200/year at 12,000 miles); (4) Fuel — averages $2,000-$3,000/year; (5) Depreciation — a $30,000 new car may be worth $18,000 after 3 years. Total annual cost of ownership for an average new car exceeds $12,000/year including all expenses."
+      question: "How much should I budget for insurance, maintenance, and fuel when calculating car affordability?",
+      answer: "Beyond the monthly loan payment, budget an additional 15-25% of your car payment for insurance, maintenance, and fuel costs. For a $500 monthly car payment, plan for an extra $75-$125 monthly for these expenses, bringing your total monthly car cost to $575-$625. This ensures your overall transportation budget doesn't strain your finances.",
+    },
+    {
+      question: "What is gap insurance and should I include it in my affordability calculation?",
+      answer: "Gap insurance covers the difference between what you owe on your car loan and its actual value if the vehicle is totaled, typically costing $15-$25 per month. While not required, it's recommended if you're putting down less than 20% on a new vehicle or financing a depreciating asset. Add this cost to your monthly affordability estimate if you plan to purchase it.",
+    },
+    {
+      question: "How does my trade-in value impact my car loan affordability?",
+      answer: "A trade-in reduces the amount you need to finance, effectively acting as a down payment. Trading in a vehicle worth $8,000 toward a $32,000 purchase reduces your loan amount to $24,000 instead of $32,000, lowering your monthly payment by approximately $113 on a 60-month loan at 6.5% APR. Always get your trade-in appraised before calculating affordability.",
+    },
+    {
+      question: "What is pre-qualification versus pre-approval for a car loan?",
+      answer: "Pre-qualification is an informal estimate of how much you can borrow based on self-reported information, while pre-approval is a formal commitment after the lender verifies your credit and finances. Pre-approval typically gives you a firm interest rate and loan amount, helping you understand your true affordability and negotiating power at the dealership. Pre-approval is strongly recommended before shopping for a vehicle.",
     }
   ];
 
@@ -304,255 +316,272 @@ export default function CarLoanAffordabilityCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Car Loan Affordability Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Car Loan Affordability Calculator is an essential tool for anyone considering purchasing a vehicle. It helps you determine the maximum car price you can afford based on your monthly budget, down payment, and loan term. By inputting these values, you gain a clear picture of your financial limits, ensuring you don't overextend yourself financially. This calculator is particularly useful for first-time car buyers who may not be familiar with the intricacies of auto financing.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in the realm of car financing. A miscalculation can lead to financial strain, impacting your ability to meet other financial obligations. According to recent data, a significant percentage of car buyers end up with loans that exceed their repayment capacity, leading to defaults. This tool helps mitigate such risks by providing a realistic assessment of what you can afford. For more insights into loan calculations, you might find our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> useful.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information about your monthly budget, the amount you can put down as a down payment, and the desired loan term. Enter these details into the calculator, and it will compute the maximum car price you can afford. Ensure that the values you enter are accurate to get the most reliable results. For further guidance on budgeting, check out our <a href="/financial/budget-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">Budget Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always consider additional costs such as insurance, maintenance, and taxes when calculating car affordability. These can significantly impact your monthly budget and overall affordability.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Car Loan Affordability Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Car Loan Affordability Calculator helps you determine how much you can realistically spend on a vehicle without overextending your finances. By inputting key financial information, the calculator estimates your maximum affordable monthly payment and total loan amount based on industry lending standards. This tool is essential for understanding your budget before visiting a dealership and helps prevent taking on a loan you cannot comfortably repay.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator requires several key inputs: your gross monthly income, existing monthly debt obligations (credit cards, student loans, mortgage), down payment amount, desired loan term (typically 48-72 months), and expected interest rate based on your credit score. Each input affects your affordability differently—higher income increases borrowing capacity, while existing debt reduces it. Understanding how these factors interact ensures your affordability estimate is realistic and aligned with your financial situation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results will show your maximum recommended monthly payment, total loan amount you can afford, and total interest you'll pay over the loan term. Compare this against your actual vehicle preferences to see if your dream car fits your budget, or adjust your down payment and loan term to find the right balance. Use these results as a ceiling—not a target—and consider adding extra cushion for insurance, maintenance, and fuel costs beyond your monthly payment.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices include regularly updating your budget to reflect changes in income or expenses. Consider various loan terms to see how they affect affordability. Remember, a longer loan term might lower monthly payments but increase the total interest paid. For more on optimizing your car loan, visit our <a href="/financial/auto-loan-optimization" className="text-blue-600 dark:text-blue-400 hover:underline">Auto Loan Optimization Guide</a>.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Car Loan Affordability Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Car Loan Affordability Calculator is designed to provide a straightforward calculation of the maximum car price you can afford. It considers your monthly budget, down payment, and loan term to compute the total loan amount and subsequently the maximum car price. This formula is a standard approach in financial planning, ensuring a balance between affordability and financial responsibility.
-        </p>
-        
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Max Car Price = (Monthly Budget × Loan Term) + Down Payment
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Monthly Budget = Your monthly budget for car payments</li>
-              <li>Loan Term = The duration of the loan in months</li>
-              <li>Down Payment = The amount you can pay upfront</li>
-            </ul>
+      {/* TABLE: Monthly Car Payment Examples by Loan Amount, Term, and Interest Rate */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Car Payment Examples by Loan Amount, Term, and Interest Rate</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how monthly payments vary based on loan principal, term length, and interest rates typical for 2024-2025.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">48-Month at 5.5%</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">60-Month at 6.5%</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">72-Month at 7.5%</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$455</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$395</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$328</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$25,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$569</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$494</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$410</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$682</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$593</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$492</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$35,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$796</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$691</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$574</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$40,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$910</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$790</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$656</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Payments calculated using standard amortization formula. Actual payments may vary based on lender fees, taxes, and insurance.</p>
+      </section>
+
+      {/* TABLE: Recommended Maximum Car Payment by Gross Monthly Income */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Maximum Car Payment by Gross Monthly Income</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Based on the 15-20% affordability rule, this table shows maximum recommended monthly car payments at different income levels.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gross Monthly Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Conservative (15%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate (17.5%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum (20%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$525</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$800</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$6,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$7,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,225</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,400</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These guidelines assume you have manageable existing debt and stable income. Lenders may require stricter ratios if your debt-to-income ratio is already elevated.</p>
+      </section>
+
+      {/* TABLE: Average Auto Loan Interest Rates by Credit Score (2024-2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Auto Loan Interest Rates by Credit Score (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Interest rates vary significantly based on credit score; this table reflects typical rates offered by major lenders for new vehicles with a 20% down payment.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Credit Score Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Credit Rating</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average APR (New Car)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average APR (Used Car)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">750+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5%-6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%-7.5%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">700-749</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Good</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%-7.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5%-8.5%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">650-699</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5%-8.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.0%-10.5%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">600-649</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fair</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.0%-10.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.0%-13.0%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Below 600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Poor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.0%-15.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.0%-18.0%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates are approximate and based on Federal Reserve and Experian data. Actual rates depend on lender, down payment size, loan term, and employment history.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Get pre-approved before shopping to know your exact borrowing power and interest rate, which strengthens your negotiating position at the dealership and prevents impulse decisions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Aim for a down payment of at least 20% ($6,000 on a $30,000 vehicle) to reduce interest costs, improve loan terms, and avoid being underwater on your loan if the car depreciates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider a shorter loan term (48 months instead of 72) if possible—you'll save thousands in interest even though your monthly payment is higher, leaving you debt-free sooner.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in the total cost of ownership beyond your monthly payment, including insurance premiums, maintenance, registration, and fuel, which typically add 15-25% to your car payment cost.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the Total Debt-to-Income Ratio</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many borrowers focus only on whether they can afford the car payment itself and ignore their total monthly debt obligations. If you have a $400 mortgage, $150 student loan, $200 credit card payments, and want a $600 car payment, your total debt is $1,350—which may exceed the recommended 36% threshold even if the car payment alone seems manageable.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Including Additional Vehicle Costs in the Budget</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating affordability based only on the loan payment ignores insurance, maintenance, fuel, and registration costs, which can total $150-$300 monthly depending on the vehicle. A $500 monthly car payment that balloons to $700 when these costs are included may no longer fit your true budget.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Teaser Rates Without Verifying Actual Approval</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculators that use advertised rates like 3.9% APR may not reflect the rate you'll actually qualify for, especially if your credit score is below 700. Always use your actual pre-approval rate or a realistic rate based on your credit tier to avoid overestimating your affordability.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overextending Loan Terms to Lower Payments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Extending a loan from 60 to 84 months lowers the monthly payment but increases total interest paid by thousands and keeps you paying for a depreciating asset longer. A $30,000 loan at 6.5% costs $4,266 more in interest over 84 months versus 60 months, making the lower payment a false economy.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role. The Monthly Budget determines how much you can allocate towards car payments without affecting your other financial commitments. The Loan Term affects the total interest paid and the monthly payment size. A longer term reduces monthly payments but increases total interest. The Down Payment reduces the loan amount, thereby decreasing the total interest paid. Adjusting these variables allows you to see how different scenarios affect affordability.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your car loan affordability is crucial for making informed decisions. These factors interact in complex ways, affecting the overall affordability of a car loan. By analyzing these elements, you can better manage your finances and optimize your car purchase.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Monthly Budget
-        </h3>
-        <p className="mb-4">
-          Your monthly budget is the cornerstone of car affordability. It dictates how much you can comfortably spend on car payments each month without compromising other financial obligations. A well-planned budget ensures that you can manage your car loan alongside other expenses.
-        </p>
-        <p className="mb-6">
-          To optimize your budget, consider all sources of income and necessary expenses. Allocate a portion of your income to savings and emergencies before determining your car payment budget. For more budgeting tips, visit our <a href="/financial/budget-planning" className="text-blue-600 dark:text-blue-400 hover:underline">Budget Planning Guide</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Term
-        </h3>
-        <p className="mb-4">
-          The loan term significantly impacts the affordability of a car loan. A longer term reduces monthly payments, making the loan more manageable in the short term. However, it increases the total interest paid over the life of the loan.
-        </p>
-        <p className="mb-6">
-          Consider your long-term financial goals when choosing a loan term. A shorter term might be more challenging monthly but saves money in the long run. For insights on choosing the right loan term, see our <a href="/financial/loan-term-guide" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Term Guide</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Down Payment
-        </h3>
-        <p className="mb-4">
-          A larger down payment reduces the loan amount, which in turn decreases the total interest paid. It also lowers the monthly payment, making the loan more affordable.
-        </p>
-        <p className="mb-6">
-          Aim to save a substantial down payment before purchasing a car. This not only improves affordability but also strengthens your negotiating position with lenders. For more on saving for a down payment, check out our <a href="/financial/saving-tips" className="text-blue-600 dark:text-blue-400 hover:underline">Saving Tips</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-6">
-          The interest rate directly affects the total cost of the loan. A lower rate reduces the total interest paid, making the loan more affordable. Interest rates are influenced by your credit score, loan term, and economic conditions.
-        </p>
-        <p className="mb-6">
-          To secure the best rate, maintain a good credit score and shop around for the best offers. Consider fixed-rate loans for stability or variable rates if you anticipate rate drops. For more on interest rates, visit our <a href="/financial/interest-rate-guide" className="text-blue-600 dark:text-blue-400 hover:underline">Interest Rate Guide</a>.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Additional Costs
-        </h3>
-        <p className="mb-6">
-          Additional costs such as insurance, maintenance, and taxes can significantly impact your car affordability. These costs are often overlooked but are essential for a comprehensive affordability assessment.
-        </p>
-        <p className="mb-6">
-          Include these costs in your budget to avoid financial strain. Research insurance rates and maintenance costs for different car models to make informed decisions. For more on managing additional costs, see our <a href="/financial/additional-costs-guide" className="text-blue-600 dark:text-blue-400 hover:underline">Additional Costs Guide</a>.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the 28/36 debt-to-income rule and how does it apply to car loans?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The 28/36 rule is a lending guideline where your car payment should not exceed 15-20% of your gross monthly income, and your total debt payments (including car, mortgage, credit cards, and student loans) should not exceed 36% of gross income. For example, if you earn $5,000 per month, your car payment should ideally stay under $750-$1,000. Most lenders use this benchmark to determine how much you can borrow for a vehicle.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the down payment affect my monthly car loan payment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A larger down payment directly reduces the amount you need to finance, which lowers your monthly payment proportionally. For instance, on a $30,000 vehicle at 6.5% APR over 60 months, a $5,000 down payment reduces your monthly payment from $589 to $472—a $117 monthly savings. Most lenders recommend putting down at least 10-20% to improve loan terms and reduce interest costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a typical car loan interest rate in 2024-2025?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As of 2024-2025, average car loan rates range from 5.5% to 8.5% depending on credit score, loan term, and vehicle type. Borrowers with excellent credit (750+) typically qualify for rates around 5.5-6.5%, while those with fair credit (650-699) may see rates of 8-9%. Used car rates are typically 1-2% higher than new car rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does loan term length affect my total interest paid?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Longer loan terms result in lower monthly payments but significantly higher total interest. A $25,000 car loan at 6.5% APR costs $4,266 in total interest over 48 months ($527/month) versus $6,862 in interest over 72 months ($390/month). While the 72-month option saves $137 monthly, you'll pay $2,596 more in total interest, making it important to find a balance between affordability and cost.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What credit score do I need to get approved for a car loan?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most lenders require a minimum credit score of 620 to qualify for a car loan, though approval is easier with a score of 660+. Borrowers with scores below 620 may still find lenders but will face higher interest rates (10-15%). Those with scores of 720+ typically receive the most competitive rates and better loan terms.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much should I budget for insurance, maintenance, and fuel when calculating car affordability?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Beyond the monthly loan payment, budget an additional 15-25% of your car payment for insurance, maintenance, and fuel costs. For a $500 monthly car payment, plan for an extra $75-$125 monthly for these expenses, bringing your total monthly car cost to $575-$625. This ensures your overall transportation budget doesn't strain your finances.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is gap insurance and should I include it in my affordability calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gap insurance covers the difference between what you owe on your car loan and its actual value if the vehicle is totaled, typically costing $15-$25 per month. While not required, it's recommended if you're putting down less than 20% on a new vehicle or financing a depreciating asset. Add this cost to your monthly affordability estimate if you plan to purchase it.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does my trade-in value impact my car loan affordability?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A trade-in reduces the amount you need to finance, effectively acting as a down payment. Trading in a vehicle worth $8,000 toward a $32,000 purchase reduces your loan amount to $24,000 instead of $32,000, lowering your monthly payment by approximately $113 on a 60-month loan at 6.5% APR. Always get your trade-in appraised before calculating affordability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is pre-qualification versus pre-approval for a car loan?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pre-qualification is an informal estimate of how much you can borrow based on self-reported information, while pre-approval is a formal commitment after the lender verifies your credit and finances. Pre-approval typically gives you a firm interest rate and loan amount, helping you understand your true affordability and negotiating power at the dealership. Pre-approval is strongly recommended before shopping for a vehicle.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Auto Loan Market Trends
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on auto loan trends and economic indicators affecting car affordability.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/autoloan" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau - Auto Loans Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB's comprehensive guide to understanding auto loans, comparing offers, and protecting yourself from predatory lending practices.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Auto Loans
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on auto loans.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.newyorkfed.org/microeconomics/cci" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve - Household Debt and Credit Report</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Reserve data on consumer credit trends, auto loan statistics, and average borrowing patterns across income levels.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Auto Loan Guidelines
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and guidelines for auto loans and financing.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.experian.com/blogs/insights/auto-finance/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Experian - State of the Automotive Finance Market</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Current auto loan rates, credit score impacts on financing, and industry benchmarks updated quarterly by Experian.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Vehicle Deductions
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information related to vehicle purchases.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Car Loan Basics
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts related to car loans.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Car Buying Guide
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers considering car purchases.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/auto-loans/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate - Auto Loan Calculator and Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Bankrate's auto loan comparison tools, current rate listings, and expert guides to calculating true affordability and total loan costs.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

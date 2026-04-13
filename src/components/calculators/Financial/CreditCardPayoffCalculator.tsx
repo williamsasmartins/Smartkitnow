@@ -93,36 +93,40 @@ export default function CreditCardPayoffCalculator() {
 
   const faqs = [
     {
-      question: "How does the credit card payoff calculator work?",
-      answer: "The credit card payoff calculator uses your current balance, interest rate, and monthly payment amount to estimate how long it will take to become debt-free. It also calculates the total interest you will pay over that period. This helps you visualize the impact of increasing your monthly payments. For more detailed planning, try our <a href=\"/financial/budget-planner\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Budget Planner</a>."
+      question: "How does the credit card payoff calculator determine my payoff timeline?",
+      answer: "The calculator uses your current balance, APR, and monthly payment amount to compute how many months until your debt reaches zero. It applies the standard credit card interest formula, where interest accrues daily on your remaining balance. By iterating month-by-month, it accounts for how each payment reduces principal and lowers future interest charges, giving you an accurate payoff date.",
     },
     {
-      question: "Why should I pay more than the minimum monthly payment?",
-      answer: "Paying only the minimum monthly payment mainly covers the interest charges, with very little going towards the principal balance. This results in a much longer payoff time and significantly higher total interest costs. By paying more than the minimum, you reduce the principal faster, saving money and time. Even a small increase can make a big difference."
+      question: "What's the difference between entering a fixed payment amount versus a payoff date?",
+      answer: "When you enter a fixed monthly payment, the calculator shows you exactly when you'll be debt-free and total interest paid. Conversely, if you set a target payoff date, the calculator computes the required monthly payment needed to reach that goal. The second approach is useful if you want to become debt-free by a specific date, like within 24 months, and need to know what payment that requires.",
     },
     {
-      question: "How does interest affect my payoff time?",
-      answer: "Interest is the cost of borrowing money. A higher interest rate means more of your monthly payment goes towards interest rather than reducing the principal. This prolongs the time it takes to pay off the debt. Lowering your interest rate, if possible, can accelerate your payoff timeline."
+      question: "Does the calculator account for additional charges or new purchases on my card?",
+      answer: "Most credit card payoff calculators assume a static balance with no new charges added during the payoff period. If you continue making purchases, your payoff timeline extends significantly. To use the calculator accurately, commit to freezing your card or paying cash for new expenses during your payoff plan.",
     },
     {
-      question: "Can I use this calculator for multiple credit cards?",
-      answer: "This calculator is designed for a single credit card. However, you can use it for each card individually to see the payoff time for each. For managing multiple debts, consider using our <a href=\"/financial/debt-snowball\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Debt Snowball Calculator</a> which is specifically designed for multiple debts."
+      question: "How much total interest will I pay if I only make minimum payments on a $5,000 balance at 19.99% APR?",
+      answer: "With a typical minimum payment of 2% of the balance (starting around $100), a $5,000 balance at 19.99% APR takes approximately 32 months to pay off and costs roughly $3,100 in interest alone. This demonstrates why minimum payments are costly—you're paying 62% more than your original debt. Using the calculator to identify a higher fixed payment, like $200 monthly, reduces that timeline to 28 months and total interest to $1,600, saving you $1,500.",
     },
     {
-      question: "What is the debt snowball method?",
-      answer: "The debt snowball method is a strategy where you pay off your debts in order from smallest to largest balance, regardless of interest rate. This creates a psychological win early on, motivating you to stick to the plan. As you pay off each debt, you roll the payment amount into the next debt, creating a 'snowball' effect."
+      question: "Can the calculator help me compare different payoff strategies?",
+      answer: "Yes—run the calculator multiple times with different monthly payment amounts to see how increasing your payment accelerates payoff and reduces total interest. For example, increasing from $150 to $250 monthly on a $8,000 balance at 18% APR cuts your payoff time from 54 months to 36 months and saves approximately $2,300 in interest. This side-by-side comparison is one of the calculator's most powerful features for motivation.",
     },
     {
-      question: "How can I lower my interest rate?",
-      answer: "You can try negotiating with your credit card issuer for a lower rate, especially if you have a good payment history. Alternatively, you might qualify for a balance transfer credit card with a 0% introductory APR period. This can temporarily stop interest accumulation, allowing your payments to go entirely towards the principal."
+      question: "What happens if my credit card APR changes mid-payoff?",
+      answer: "The standard calculator uses a fixed APR throughout the calculation. If your rate changes—such as a promotional 0% APR ending or a rate increase due to missed payments—you'll need to run the calculator again with the new rate. Most issuers notify cardholders 45 days before a rate change, giving you time to recalculate and adjust your strategy accordingly.",
     },
     {
-      question: "What happens if I miss a payment?",
-      answer: "Missing a payment can result in late fees, a penalty APR (which is significantly higher than your regular rate), and damage to your credit score. It's crucial to make at least the minimum payment on time every month. setting up automatic payments can help ensure you never miss a due date."
+      question: "Is paying extra principal early in the payoff more effective than later?",
+      answer: "Yes, significantly. Extra payments early in the payoff period reduce your principal balance when interest charges are highest, compounding savings over time. For a $10,000 balance at 21% APR, adding just $50 extra per month starting immediately saves roughly $1,200 in interest compared to making the same $50 extra payments at month 12. The calculator shows this benefit clearly when you compare different payment scenarios from month one onward.",
     },
     {
-      question: "Is it better to consolidate my credit card debt?",
-      answer: "Debt consolidation involves taking out a new loan to pay off multiple credit cards. This can be beneficial if the new loan has a lower interest rate than your credit cards. It simplifies your finances by combining multiple payments into one. Use our <a href=\"/financial/debt-consolidation\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Debt Consolidation Calculator</a> to see if this option saves you money."
+      question: "How do balance transfers affect the payoff timeline shown in the calculator?",
+      answer: "A standard payoff calculator does not account for balance transfers. If you move your balance to a 0% APR card for 12 months, run a new calculation using 0% as your APR rate to see the benefit—you'll pay zero interest during that period. However, most balance transfer cards charge a 3–5% upfront fee, which the calculator does not deduct; add that fee amount to your starting balance for accuracy.",
+    },
+    {
+      question: "What's the impact of skipping or making a late payment on my payoff date?",
+      answer: "Skipping a payment delays your payoff by one month and incurs a late fee (typically $25–$40), both extending your debt and increasing total interest. A late payment can also trigger a penalty APR, often jumping to 29.99% from your original rate. The calculator assumes on-time payments each month; missing even one payment can add 1–2 months to your payoff timeline and $200+ in extra costs.",
     }
   ];
 
@@ -322,257 +326,255 @@ export default function CreditCardPayoffCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Credit Card Payoff Calculator
-        </h2>
-        
-        <p className="mb-6">
-          Managing credit card debt can be a daunting task, especially when interest rates are high and balances seem insurmountable. The Credit Card Payoff Calculator is designed to help you create a realistic plan to become debt-free. By inputting your current balance, interest rate, and desired monthly payment, this tool provides a clear timeline for when you can expect to pay off your debt. Whether you're aiming to reduce interest payments or simply want to see how long it will take to clear your balance, this calculator is an invaluable resource.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial when dealing with credit card debt. Incorrect estimations can lead to longer payoff periods and increased interest payments. According to recent studies, the average American household carries over $6,000 in credit card debt. Using a tool like this calculator can help you understand the financial implications of your debt and make informed decisions about your repayment strategy. For more insights, explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather your credit card statements to find your current balance and interest rate. Enter these values along with your planned monthly payment. The calculator will then provide a detailed schedule of payments, showing how much of each payment goes towards interest and principal. For additional guidance, check out our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always aim to pay more than the minimum payment on your credit card. This not only reduces your payoff time but also saves you a significant amount in interest payments over the life of the debt.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Credit Card Payoff Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The credit card payoff calculator is a powerful tool that shows you exactly how long it will take to eliminate your credit card debt and how much interest you'll pay along the way. Whether you're carrying a $2,000 balance or $10,000 in debt, this calculator takes the guesswork out of payoff planning and helps you make informed decisions about your repayment strategy. By visualizing the true cost of different payment amounts, you gain clarity on which approach works best for your budget.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need three key inputs: your current credit card balance, your annual percentage rate (APR), and either a fixed monthly payment or a target payoff date. Your APR can be found on your billing statement or card issuer's website; if you're not sure, use the calculator's APR guide based on your credit score range. The monthly payment should be realistic for your budget—remember that minimum payments often extend your payoff timeline by years and cost thousands in interest.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once you enter your information, the calculator displays your payoff timeline, total interest paid, and an amortization schedule showing how each payment is split between principal and interest. Use these results to identify opportunities: Can you increase your payment by $25 or $50 monthly to save interest? Would a balance transfer to a 0% promotional rate help? The calculator answers these questions instantly, empowering you to take control of your debt and build a concrete path to financial freedom.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs as your balance and interest rates change. Consider scenarios where you can increase your monthly payment to expedite the payoff process. Be mindful of any fees or penalties associated with your credit card, as these can affect your calculations. For more strategies, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Credit Card Payoff Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is based on the standard amortization formula, which calculates the monthly payment required to pay off a debt over a specified period. This formula takes into account the principal balance, the interest rate, and the number of payments. It is widely used in financial calculations due to its accuracy and reliability. Variations of this formula can be applied depending on whether you are making additional payments or dealing with fluctuating interest rates.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          M = P [i(1 + i)^n] / [(1 + i)^n – 1]
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>M = Monthly payment</li>
-              <li>P = Principal balance (current balance)</li>
-              <li>i = Monthly interest rate (annual rate / 12)</li>
-              <li>n = Number of payments (months)</li>
-            </ul>
+      {/* TABLE: Payoff Timeline & Total Interest by Monthly Payment */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Payoff Timeline & Total Interest by Monthly Payment</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how increasing your monthly payment dramatically reduces payoff time and total interest on a $6,000 balance at 18% APR.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Payoff Time (Months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Amount Paid</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">52</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,761</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,761</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,063</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,063</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$768</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,768</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$583</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,583</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$358</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,358</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations use a daily interest accrual method common to credit card issuers. Higher payments significantly reduce both time and cost.</p>
+      </section>
+
+      {/* TABLE: Credit Card APR Ranges by Credit Score (2024–2025) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Credit Card APR Ranges by Credit Score (2024–2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different credit scores qualify for vastly different APR ranges; understanding your likely rate helps you use the calculator accurately.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Credit Score Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical APR Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example Monthly Cost per $1,000 Balance</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Excellent (750+)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.99% – 17.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$13.33 – $15.00</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Good (700–749)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.99% – 20.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15.00 – $17.50</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fair (650–699)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20.99% – 24.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$17.50 – $20.83</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Poor (Below 650)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25.00% – 29.99%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20.83 – $25.00</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates vary by issuer and product type. Business and secured cards may have different ranges. Source: Federal Reserve average credit card rates, 2024.</p>
+      </section>
+
+      {/* TABLE: Minimum Payment vs. Fixed Payment Comparison */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Minimum Payment vs. Fixed Payment Comparison</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This comparison illustrates why paying above the minimum accelerates payoff on a typical $4,500 balance at 19.99% APR with a 2% minimum payment.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Payment Strategy</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Amount (Starting)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Payoff Time (Months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Minimum (2%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">61</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,841</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Minimum + $50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,420</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fixed $180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$879</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aggressive $250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$534</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Minimum payments decline over time as balance shrinks, extending payoff significantly. Fixed payments are far more efficient.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to set a realistic payoff goal and commit to a fixed monthly payment above your minimum—even an extra $25 per month can save hundreds in interest and accelerate your freedom date by months.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Run multiple scenarios to understand the true cost of minimum payments versus higher payments, then use this motivation to prioritize credit card payoff in your budget.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you receive a bonus, tax refund, or windfall, plug it into the calculator as a one-time extra payment to see the dramatic impact on your payoff timeline and total interest saved.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your credit card statement for your APR and confirm it hasn't increased due to penalty rates or promotional periods ending; recalculate immediately if your rate changes to stay on track with your payoff plan.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming the calculator factors in new purchases</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator assumes a static balance with no new charges during payoff. If you continue using the card while paying it down, your timeline extends significantly. Stop all new purchases on the card or pay cash to match the calculator's assumptions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using an incorrect or outdated APR</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering the wrong APR throws off your entire calculation. Always verify your current rate on your billing statement; introductory rates expire, and missed payments can trigger penalty APRs as high as 29.99%, dramatically changing your payoff timeline.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying solely on minimum payments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Minimum payments are designed to benefit the card issuer, not you. A $5,000 balance with a 2% minimum at 20% APR takes over 5 years to pay off and costs $2,700+ in interest. The calculator reveals this harsh truth; use it to justify paying more.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the impact of missed or late payments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator assumes perfect on-time payment each month. A single late payment adds fees, potential penalty interest, and extends your payoff date. Build a buffer in your budget to ensure you never miss a deadline.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in this formula plays a critical role. The principal balance (P) is the amount you owe, while the monthly interest rate (i) is derived from your annual interest rate divided by 12. The number of payments (n) represents the total months needed to pay off the debt. Adjusting any of these variables will impact the monthly payment (M) and the total interest paid over time. For example, increasing your monthly payment reduces the number of payments and total interest.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your credit card payoff is essential for effective debt management. These factors interact in complex ways, affecting both the time it takes to pay off your debt and the total interest paid. By recognizing these elements, you can make strategic decisions to optimize your repayment plan.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate is arguably the most significant factor affecting your credit card payoff. A higher rate means more of your monthly payment goes towards interest rather than reducing the principal balance. For example, a 20% interest rate on a $5,000 balance can result in over $1,000 in interest payments annually if only minimum payments are made.
-        </p>
-        <p className="mb-6">
-          To mitigate the impact of high interest rates, consider transferring your balance to a card with a lower rate or negotiating a lower rate with your current issuer. Additionally, increasing your monthly payment can significantly reduce the interest paid over time. Explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> for more insights.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Monthly Payment Amount
-        </h3>
-        <p className="mb-4">
-          The amount you choose to pay each month directly affects how quickly you can pay off your debt. Larger payments reduce the principal balance faster, decreasing the total interest paid. Conversely, paying only the minimum can extend your payoff period by years and increase the total cost significantly.
-        </p>
-        <p className="mb-6">
-          Consider setting up automatic payments to ensure consistency and avoid late fees. If possible, allocate extra funds towards your credit card debt, especially if you receive a bonus or tax refund. This proactive approach can expedite your path to being debt-free.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Fees and Penalties
-        </h3>
-        <p className="mb-4">
-          Credit card fees, such as annual fees, late payment penalties, and over-limit charges, can add to your debt burden. These fees not only increase your balance but can also lead to higher interest charges if not paid promptly.
-        </p>
-        <p className="mb-6">
-          To minimize these costs, always pay on time and stay within your credit limit. Consider switching to a card with no annual fee or one that offers rewards that offset the fee. Understanding your card's terms and conditions can help you avoid unnecessary charges.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Credit Limit Utilization
-        </h3>
-        <p className="mb-6">
-          Your credit utilization ratio, which is the percentage of your credit limit that you are using, can impact your credit score and your ability to secure better interest rates. A high utilization ratio can signal to lenders that you are overextended, potentially leading to higher rates or reduced credit limits.
-        </p>
-        <p className="mb-6">
-          Aim to keep your utilization below 30% of your total credit limit. This strategy not only helps improve your credit score but also reduces the interest you pay. Regularly monitor your credit reports to ensure accuracy and identify opportunities for improvement.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Changes in Financial Situation
-        </h3>
-        <p className="mb-6">
-          Life events such as job loss, medical emergencies, or unexpected expenses can affect your ability to make consistent payments. These changes can lead to increased debt if not managed carefully. It's important to have a financial cushion or emergency fund to handle such situations without derailing your payoff plan.
-        </p>
-        <p className="mb-6">
-          If you anticipate a change in your financial situation, consider adjusting your payment plan accordingly. Communicate with your creditors to explore options such as temporary payment reductions or hardship programs. Being proactive can prevent long-term financial setbacks.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the credit card payoff calculator determine my payoff timeline?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your current balance, APR, and monthly payment amount to compute how many months until your debt reaches zero. It applies the standard credit card interest formula, where interest accrues daily on your remaining balance. By iterating month-by-month, it accounts for how each payment reduces principal and lowers future interest charges, giving you an accurate payoff date.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between entering a fixed payment amount versus a payoff date?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">When you enter a fixed monthly payment, the calculator shows you exactly when you'll be debt-free and total interest paid. Conversely, if you set a target payoff date, the calculator computes the required monthly payment needed to reach that goal. The second approach is useful if you want to become debt-free by a specific date, like within 24 months, and need to know what payment that requires.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the calculator account for additional charges or new purchases on my card?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most credit card payoff calculators assume a static balance with no new charges added during the payoff period. If you continue making purchases, your payoff timeline extends significantly. To use the calculator accurately, commit to freezing your card or paying cash for new expenses during your payoff plan.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much total interest will I pay if I only make minimum payments on a $5,000 balance at 19.99% APR?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">With a typical minimum payment of 2% of the balance (starting around $100), a $5,000 balance at 19.99% APR takes approximately 32 months to pay off and costs roughly $3,100 in interest alone. This demonstrates why minimum payments are costly—you're paying 62% more than your original debt. Using the calculator to identify a higher fixed payment, like $200 monthly, reduces that timeline to 28 months and total interest to $1,600, saving you $1,500.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the calculator help me compare different payoff strategies?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—run the calculator multiple times with different monthly payment amounts to see how increasing your payment accelerates payoff and reduces total interest. For example, increasing from $150 to $250 monthly on a $8,000 balance at 18% APR cuts your payoff time from 54 months to 36 months and saves approximately $2,300 in interest. This side-by-side comparison is one of the calculator's most powerful features for motivation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my credit card APR changes mid-payoff?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The standard calculator uses a fixed APR throughout the calculation. If your rate changes—such as a promotional 0% APR ending or a rate increase due to missed payments—you'll need to run the calculator again with the new rate. Most issuers notify cardholders 45 days before a rate change, giving you time to recalculate and adjust your strategy accordingly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is paying extra principal early in the payoff more effective than later?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, significantly. Extra payments early in the payoff period reduce your principal balance when interest charges are highest, compounding savings over time. For a $10,000 balance at 21% APR, adding just $50 extra per month starting immediately saves roughly $1,200 in interest compared to making the same $50 extra payments at month 12. The calculator shows this benefit clearly when you compare different payment scenarios from month one onward.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do balance transfers affect the payoff timeline shown in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A standard payoff calculator does not account for balance transfers. If you move your balance to a 0% APR card for 12 months, run a new calculation using 0% as your APR rate to see the benefit—you'll pay zero interest during that period. However, most balance transfer cards charge a 3–5% upfront fee, which the calculator does not deduct; add that fee amount to your starting balance for accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the impact of skipping or making a late payment on my payoff date?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Skipping a payment delays your payoff by one month and incurs a late fee (typically $25–$40), both extending your debt and increasing total interest. A late payment can also trigger a penalty APR, often jumping to 29.99% from your original rate. The calculator assumes on-time payments each month; missing even one payment can add 1–2 months to your payoff timeline and $200+ in extra costs.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Credit Card Interest Rates
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on credit card interest rates and regulatory guidelines.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/datadownload/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Credit Card Interest Rates and Fees – Federal Reserve</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official data on average credit card APRs and consumer lending benchmarks updated regularly by the Federal Reserve.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Credit Card Management
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on credit card management.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Credit Card Basics – Consumer Financial Protection Bureau</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB guidance on how credit card interest and minimum payments work, plus tools to understand your rights.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Managing Debt
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and strategies for managing debt effectively.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/best-ways-to-pay-off-credit-card-debt-5192241" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">How to Pay Off Credit Card Debt – Investopedia</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">In-depth strategies for credit card payoff including payoff methods, balance transfers, and interest calculations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Implications of Debt
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information related to debt repayment.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Understanding Credit Card Debt
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained, focusing on credit card debt.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Credit Card Payoff Strategies
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers focusing on credit card payoff strategies.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/finance/credit-cards/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Credit Card APR and Rates Guide – Bankrate</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Current credit card rates by issuer and credit score range, plus calculators and comparison tools for debt payoff planning.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

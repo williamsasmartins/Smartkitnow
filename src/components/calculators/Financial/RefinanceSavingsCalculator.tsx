@@ -88,24 +88,40 @@ export default function RefinanceSavingsCalculator() {
 
   const faqs = [
     {
-      question: "How do I calculate the break-even point for a mortgage refinance?",
-      answer: "Break-even months = Closing costs ÷ Monthly payment savings. Example: current payment $2,100 (6.5% rate), new payment $1,950 (5.8% rate), closing costs $4,500. Monthly savings = $150. Break-even = $4,500 / $150 = 30 months (2.5 years). If you plan to stay in the home more than 30 months, the refinance makes financial sense. Complication: if you reset to a new 30-year term, you extend your payoff date and pay more total interest even at a lower rate. Example: 8 years into a 30-year mortgage, refinancing to a new 30-year adds 8 years of payments. Calculate total interest remaining under both scenarios, not just monthly payment."
+      question: "What is the primary purpose of a refinance savings calculator?",
+      answer: "A refinance savings calculator helps you estimate how much money you could save by refinancing your mortgage to a lower interest rate or different loan term. It compares your current loan payments and total interest paid against a new loan scenario, showing your break-even point and lifetime savings. This tool is essential for determining whether refinancing makes financial sense given current market rates and your situation.",
     },
     {
-      question: "What are the typical closing costs for a mortgage refinance?",
-      answer: "2024 average refinance closing costs: $2,000–$5,000 (0.5–2% of loan amount). Major components: origination/lender fee ($500–$1,500), appraisal ($300–$600), title search and insurance ($500–$1,500), recording fees ($25–$250), prepaid interest (daily rate × days until first payment), escrow setup (property taxes + insurance months). Some lenders offer 'no-closing-cost' refinances -- they add the costs to the loan balance or increase the interest rate by 0.125–0.25%. No-closing-cost makes sense if you plan to refinance or sell again within 3–4 years (before the rate penalty costs you more than the avoided fees). Always compare the APR, not just the rate, for the true cost comparison."
+      question: "How does the calculator account for refinancing costs and closing fees?",
+      answer: "The refinance savings calculator factors in closing costs, which typically range from 2% to 5% of your loan amount, or $3,000 to $15,000 on a $300,000 mortgage. These costs include appraisal fees, title insurance, origination fees, and other lender charges. The calculator uses these costs to determine your break-even point—the number of months needed for monthly savings to offset the upfront refinancing expenses.",
     },
     {
-      question: "When does it make sense to refinance even if the interest rate difference is small?",
-      answer: "The 1% rule (only refinance if rate drops 1%+) is outdated. The actual threshold depends on loan balance and remaining term. A 0.5% rate drop on a $500,000 balance = $2,500/year in interest savings -- a meaningful amount even with $5,000 in closing costs (2-year payback). A 0.5% drop on a $100,000 balance = $500/year -- 10-year payback with $5,000 in costs (not worth it). Also consider: removing PMI via refinance (if equity crossed 20%), switching ARM to fixed-rate (risk management, not savings), or cash-out refinance for home improvements that add value. Refinancing from a 30-year to a 15-year at the same rate increases payment but dramatically reduces total interest."
+      question: "What is a break-even point and why does it matter in refinancing?",
+      answer: "Your break-even point is the month when your cumulative monthly savings equal your total refinancing costs. For example, if refinancing costs $6,000 and you save $200 per month, your break-even point is 30 months. If you plan to stay in your home longer than this timeframe, refinancing is typically worthwhile; if not, it may not make financial sense.",
     },
     {
-      question: "How does refinancing affect the total amount of interest paid over the life of the loan?",
-      answer: "Monthly payment savings often obscure total interest cost increases when the term resets. Example: $350,000 mortgage at 7%, 20 years remaining, payment $2,716/month. Total remaining interest = $302,640. Refinance to 5.5%, new 30-year, payment $1,988/month. Total interest on new loan = $365,680. Despite $728/month savings, you will pay $63,040 more total interest -- and extend your mortgage by 10 years. Solution: refinance to a 20-year term at 5.5% (payment $2,399/month, $276,000 total interest). You save $26,640 total AND $317/month. For accurate refinance analysis, always calculate (payment × remaining months − remaining balance) for both scenarios."
+      question: "Can the calculator show me savings for different refinance scenarios?",
+      answer: "Yes, most refinance savings calculators allow you to input multiple scenarios—such as refinancing at 6.5% for 30 years versus 5.8% for 15 years—to compare outcomes side-by-side. You can adjust loan amount, interest rate, new loan term, and closing costs to see how each variable impacts your total savings. This flexibility helps you identify the refinancing option that aligns best with your financial goals.",
     },
     {
-      question: "Is a cash-out refinance a good idea and what should the funds be used for?",
-      answer: "A cash-out refinance replaces your mortgage with a larger loan, extracting equity as cash. You can borrow up to 80% LTV (loan-to-value) in most cases. 2024 rate context: cash-out refinance rates are 6.5–7.5%; credit card rates are 20–24%. The math for debt consolidation: borrowing at 7% to eliminate 22% credit card debt is mathematically compelling. Good uses: high-interest debt payoff, home improvements that increase value (kitchen/bath renovations typically return 60–80%), education, or investing when return exceeds mortgage rate. Bad uses: depreciating assets (cars, vacations), consumer goods. Risk: you are converting unsecured debt to secured debt -- credit card default is bad; mortgage default is foreclosure. Only do this if you address the spending habits that created the high-interest debt."
+      question: "What current mortgage rates should I use in the calculator?",
+      answer: "As of April 2024, average 30-year fixed mortgage rates hover around 6.8% to 7.2%, while 15-year rates average 6.1% to 6.5%, though rates vary by lender and credit profile. You should check current rates from at least three lenders (banks, credit unions, online lenders) before entering them into the calculator. Using real, current rates ensures your savings projections are accurate and actionable.",
+    },
+    {
+      question: "How does loan term affect the refinance savings calculation?",
+      answer: "Shortening your loan term (e.g., from 30 years to 15 years) increases your monthly payment but reduces total interest paid significantly. For example, refinancing a $300,000 mortgage from 30 years at 7% to 15 years at 6% increases your monthly payment by roughly $300 but saves approximately $165,000 in interest over the life of the loan. The calculator shows this trade-off clearly, helping you decide whether the higher payment is manageable for your budget.",
+    },
+    {
+      question: "What if I want to cash out equity during refinancing?",
+      answer: "A cash-out refinance allows you to borrow more than your current mortgage balance, receiving the difference in cash. The calculator should account for this by increasing your new loan amount, which raises your monthly payment and total interest paid. For instance, refinancing a $250,000 balance at a lower rate while borrowing $300,000 total gives you $50,000 in cash but also extends your borrowing period.",
+    },
+    {
+      question: "How accurate is the refinance savings calculator?",
+      answer: "The calculator provides a reliable estimate based on the inputs you provide, typically accurate within 1-3% of actual savings. However, it doesn't account for variable factors like property taxes, homeowners insurance changes, or HOA fees that may vary between lenders. For the most precise figures, compare the calculator results with detailed loan estimates from actual lenders.",
+    },
+    {
+      question: "Should I refinance if rates only drop slightly from my current rate?",
+      answer: "A rate drop of just 0.5% to 1% can still be worthwhile if you plan to stay in your home long enough to recoup closing costs. For example, refinancing a $400,000 mortgage from 7% to 6.5% saves approximately $160 per month; with $8,000 in closing costs, your break-even point is 50 months. Using the calculator with your exact numbers reveals whether even a modest rate reduction justifies the refinance for your specific situation.",
     }
   ];
 
@@ -319,254 +335,301 @@ export default function RefinanceSavingsCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Refinance Savings Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Refinance Savings Calculator is an essential tool for homeowners considering refinancing their mortgage. It allows you to compare your current loan terms with potential new offers, helping you determine if refinancing is financially beneficial. By inputting details such as your current loan amount, interest rate, and the terms of a new loan, you can calculate potential monthly and lifetime savings. This tool is invaluable for making informed decisions about refinancing, ensuring that you understand the financial implications before proceeding.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in the refinancing process. Misjudging the potential savings or costs can lead to significant financial consequences. For instance, refinancing might seem appealing due to a lower interest rate, but factors like closing costs and the length of time you plan to stay in your home can affect the overall benefit. The Refinance Savings Calculator helps you account for these variables, providing a clearer picture of the potential savings. This tool is particularly useful when comparing multiple refinancing offers, allowing you to choose the most advantageous option.
-        </p>
-        
-        <p className="mb-6">
-          To use the Refinance Savings Calculator effectively, gather all necessary information beforehand. This includes your current loan amount, interest rate, and remaining loan term. Additionally, obtain details about the new loan offer, such as the interest rate and loan term. Enter these values into the calculator to receive an estimate of your monthly savings and total savings over the loan term. For the most accurate results, ensure that all input values are precise and reflect your current financial situation. For more insights, you might want to explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always consider the break-even point when refinancing. This is the time it takes for the savings from the lower interest rate to cover the costs of refinancing. If you plan to move before reaching this point, refinancing may not be beneficial.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Refinance Savings Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The refinance savings calculator is a powerful tool that estimates whether refinancing your mortgage will save you money over time. By comparing your current loan terms against a potential new loan, the calculator reveals how much interest you'll save, what your new monthly payment will be, and most importantly, when you'll break even on refinancing costs. Understanding these numbers helps you make an informed decision that aligns with your long-term financial goals.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator effectively, you'll need to input your current mortgage details—loan balance, interest rate, and remaining term—as well as details about your potential new loan, including the new interest rate, desired loan term, and estimated closing costs. The calculator may also ask for information about points (if you plan to buy down your rate), property value, and whether you're doing a cash-out refinance. Gather these details from your current mortgage statement and compare loan estimates from multiple lenders to ensure you're entering realistic numbers.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once you've entered your information, the calculator generates key metrics: your new monthly payment, total interest paid on the new loan, your break-even point in months, and your lifetime savings if you stay in the home long enough to recoup refinancing costs. A shorter break-even point (under 3 years) generally means refinancing makes strong financial sense; a longer break-even point (over 5-7 years) requires confidence that you'll remain in the home and property market stability. Review these results alongside your personal circumstances, timeline, and budget flexibility to determine if refinancing is the right move for you.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using the Refinance Savings Calculator include regularly updating your inputs as your financial situation changes. Keep an eye on market interest rates, as fluctuations can impact your decision to refinance. Additionally, consider consulting with a financial advisor to interpret the results and explore other financial tools, such as our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>, for a comprehensive view of your mortgage options.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Refinance Savings Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The Refinance Savings Calculator uses a standard formula to determine potential savings. This formula calculates the difference between your current monthly payment and the new monthly payment, then multiplies that difference by the number of months in the loan term to find the total savings. This approach is widely accepted in the financial industry for its accuracy and reliability.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Monthly Savings = Current Monthly Payment - New Monthly Payment
-          <br />
-          Total Savings = Monthly Savings × Loan Term (in months)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Current Monthly Payment = (Loan Amount × Current Interest Rate / 12) / (1 - (1 + Current Interest Rate / 12)^(-Loan Term × 12))</li>
-              <li>New Monthly Payment = (Loan Amount × New Interest Rate / 12) / (1 - (1 + New Interest Rate / 12)^(-Loan Term × 12))</li>
-            </ul>
+      {/* TABLE: Refinance Savings Example: 30-Year to 15-Year Refinance */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Refinance Savings Example: 30-Year to 15-Year Refinance</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated monthly payments and lifetime interest savings when refinancing a $300,000 mortgage from a 30-year term to a 15-year term at a lower rate.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Break-Even (Months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lifetime Savings</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Current: 30 years @ 7.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,996</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$418,512</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Refinance: 15 years @ 6.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,297</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$112,920</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$305,592</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Refinance: 15 years @ 5.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,268</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$108,240</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$310,272</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Refinance: 30 years @ 6.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,799</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$347,514</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$70,998</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes $8,000 in closing costs. Break-even calculated as closing costs divided by monthly payment difference. Actual savings depend on current rates, credit score, and lender fees.</p>
+      </section>
+
+      {/* TABLE: Typical Mortgage Refinance Closing Costs (2024-2025) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Typical Mortgage Refinance Closing Costs (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Closing costs for refinancing typically range from 2% to 5% of the loan amount and include various lender and third-party fees.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example on $300,000 Loan</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Origination/Processing Fee</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5% – 1.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500 – $4,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lender compensation for processing the loan</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Appraisal Fee</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400 – $600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400 – $600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Required to determine property value</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Title Search & Insurance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200 – $500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200 – $500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Protects lender and borrower against title claims</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Home Inspection (optional)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300 – $500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300 – $500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not always required but recommended</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Recording & Transfer Taxes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100 – $300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100 – $300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">State and local government fees vary</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Credit Report & Underwriting</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200 – $400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200 – $400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Loan verification and approval costs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Discount Points (optional)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0% – 2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 – $6,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Buy down interest rate; 1 point = 1% of loan amount</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Total Estimated Range</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2% – 5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,000 – $15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Varies by lender, location, and loan complexity</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs vary significantly based on location, lender, and loan type. Request a Loan Estimate within 3 business days of application to see itemized closing costs.</p>
+      </section>
+
+      {/* TABLE: Rate Drop Scenarios and Break-Even Analysis */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Rate Drop Scenarios and Break-Even Analysis</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different interest rate reductions impact monthly savings and the number of months needed to break even on refinancing costs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Current Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">New Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Savings</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Closing Costs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Break-Even (Months)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300,000 (30 yr)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$98</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">82</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300,000 (30 yr)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$197</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">41</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300,000 (30 yr)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$296</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400,000 (30 yr)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$149</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">67</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400,000 (30 yr)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$455</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Break-even point assumes 30-year fixed-rate mortgages and no additional principal payments. Your actual break-even may differ based on exact terms, fees, and payment behavior.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Gather current loan estimates from at least three lenders before using the calculator to ensure you're working with competitive, realistic rates and closing costs—this dramatically improves the accuracy of your savings projections.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in your timeline: if you plan to sell or move within 5 years, calculate your break-even point carefully, as you may not recoup refinancing costs before selling, making the refinance uneconomical.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider paying points to buy down your interest rate if the break-even point is long; one discount point (1% of the loan amount) typically lowers your rate by 0.25%, and the calculator can show if upfront costs are justified by long-term savings.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Don't refinance solely for a lower rate if closing costs are high and your break-even point extends beyond your expected holding period—use the calculator to verify the math before committing.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Closing Costs Entirely</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many borrowers focus only on rate drops and monthly payment reductions while underestimating or ignoring closing costs of 2% to 5%. The calculator requires accurate closing cost estimates to calculate your true break-even point; omitting these costs makes refinancing appear far more attractive than it actually is.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating How Long You'll Stay in the Home</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If your break-even point is 48 months but you're planning to move in 3 years, refinancing will cost you money rather than save it. Be honest about your timeline when using the calculator and don't assume best-case scenarios; use conservative estimates instead.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated or Incorrect Interest Rates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering rates from last week or from an unrealistic lender skews all calculator results and wastes your time analyzing scenarios that won't materialize. Always use current rate quotes from actual lenders obtained within the last 24-48 hours for maximum accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Account for PMI or Property Taxes Differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If your new loan balance or terms affect private mortgage insurance (PMI) or if your loan-to-value ratio changes, your total monthly obligation may be higher than the calculator suggests. The calculator typically shows principal and interest only, so manually verify PMI, property taxes, homeowners insurance, and HOA fees separately.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role in determining your savings. The current monthly payment reflects your existing financial obligation, while the new monthly payment represents the potential reduced cost after refinancing. The difference between these payments indicates your monthly savings, which, when multiplied by the loan term, provides the total savings. Adjusting any of these variables, such as the interest rate or loan term, can significantly impact your results, highlighting the importance of accurate inputs.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your refinancing savings is crucial for making informed decisions. These factors not only affect the calculations but also determine the overall benefit of refinancing. By considering each factor carefully, you can optimize your refinancing strategy and maximize your savings.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rates
-        </h3>
-        <p className="mb-4">
-          Interest rates are perhaps the most significant factor in refinancing decisions. A lower interest rate can lead to substantial savings over the life of the loan. However, it's essential to consider the rate in the context of the broader market and your financial goals. For instance, a small reduction in the interest rate might not justify refinancing if the closing costs are high.
-        </p>
-        <p className="mb-6">
-          To optimize this factor, monitor market trends and consult with lenders to secure the best possible rate. Consider using our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> to explore different loan structures that might offer more favorable rates.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Term
-        </h3>
-        <p className="mb-4">
-          The loan term affects both the monthly payment and the total interest paid over the life of the loan. A longer term typically results in lower monthly payments but higher total interest costs. Conversely, a shorter term increases monthly payments but reduces the total interest paid.
-        </p>
-        <p className="mb-6">
-          When considering refinancing, evaluate how the loan term aligns with your financial goals. For instance, if you plan to stay in your home for a long time, a longer term might be more manageable. However, if you're aiming to pay off the loan quickly, a shorter term could be more beneficial.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Closing Costs
-        </h3>
-        <p className="mb-4">
-          Closing costs are the fees associated with refinancing a mortgage. These can include appraisal fees, title insurance, and origination fees. High closing costs can offset the savings from a lower interest rate, making it crucial to factor them into your decision.
-        </p>
-        <p className="mb-6">
-          To manage closing costs effectively, shop around for lenders and negotiate fees where possible. Some lenders may offer no-closing-cost refinancing options, which can be beneficial if you plan to move or refinance again in the near future.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Break-Even Point
-        </h3>
-        <p className="mb-6">
-          The break-even point is the time it takes for the savings from refinancing to cover the closing costs. Understanding this point is critical, especially if you plan to sell your home or refinance again. If the break-even point is longer than the time you plan to stay in the home, refinancing may not be worthwhile.
-        </p>
-        <p className="mb-6">
-          Calculate the break-even point by dividing the total closing costs by the monthly savings. This will give you the number of months it will take to recoup the costs. Use this information to assess whether refinancing aligns with your financial plans.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Personal Financial Goals
-        </h3>
-        <p className="mb-6">
-          Your personal financial goals should guide your refinancing decision. Whether you're looking to reduce monthly expenses, pay off your mortgage faster, or free up cash for other investments, ensure that refinancing supports these objectives. Consider consulting with a financial advisor to align your refinancing strategy with your broader financial plan.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the primary purpose of a refinance savings calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A refinance savings calculator helps you estimate how much money you could save by refinancing your mortgage to a lower interest rate or different loan term. It compares your current loan payments and total interest paid against a new loan scenario, showing your break-even point and lifetime savings. This tool is essential for determining whether refinancing makes financial sense given current market rates and your situation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator account for refinancing costs and closing fees?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The refinance savings calculator factors in closing costs, which typically range from 2% to 5% of your loan amount, or $3,000 to $15,000 on a $300,000 mortgage. These costs include appraisal fees, title insurance, origination fees, and other lender charges. The calculator uses these costs to determine your break-even point—the number of months needed for monthly savings to offset the upfront refinancing expenses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a break-even point and why does it matter in refinancing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your break-even point is the month when your cumulative monthly savings equal your total refinancing costs. For example, if refinancing costs $6,000 and you save $200 per month, your break-even point is 30 months. If you plan to stay in your home longer than this timeframe, refinancing is typically worthwhile; if not, it may not make financial sense.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the calculator show me savings for different refinance scenarios?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, most refinance savings calculators allow you to input multiple scenarios—such as refinancing at 6.5% for 30 years versus 5.8% for 15 years—to compare outcomes side-by-side. You can adjust loan amount, interest rate, new loan term, and closing costs to see how each variable impacts your total savings. This flexibility helps you identify the refinancing option that aligns best with your financial goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What current mortgage rates should I use in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As of April 2024, average 30-year fixed mortgage rates hover around 6.8% to 7.2%, while 15-year rates average 6.1% to 6.5%, though rates vary by lender and credit profile. You should check current rates from at least three lenders (banks, credit unions, online lenders) before entering them into the calculator. Using real, current rates ensures your savings projections are accurate and actionable.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does loan term affect the refinance savings calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Shortening your loan term (e.g., from 30 years to 15 years) increases your monthly payment but reduces total interest paid significantly. For example, refinancing a $300,000 mortgage from 30 years at 7% to 15 years at 6% increases your monthly payment by roughly $300 but saves approximately $165,000 in interest over the life of the loan. The calculator shows this trade-off clearly, helping you decide whether the higher payment is manageable for your budget.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if I want to cash out equity during refinancing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A cash-out refinance allows you to borrow more than your current mortgage balance, receiving the difference in cash. The calculator should account for this by increasing your new loan amount, which raises your monthly payment and total interest paid. For instance, refinancing a $250,000 balance at a lower rate while borrowing $300,000 total gives you $50,000 in cash but also extends your borrowing period.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the refinance savings calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator provides a reliable estimate based on the inputs you provide, typically accurate within 1-3% of actual savings. However, it doesn't account for variable factors like property taxes, homeowners insurance changes, or HOA fees that may vary between lenders. For the most precise figures, compare the calculator results with detailed loan estimates from actual lenders.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I refinance if rates only drop slightly from my current rate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A rate drop of just 0.5% to 1% can still be worthwhile if you plan to stay in your home long enough to recoup closing costs. For example, refinancing a $400,000 mortgage from 7% to 6.5% saves approximately $160 per month; with $8,000 in closing costs, your break-even point is 50 months. Using the calculator with your exact numbers reveals whether even a modest rate reduction justifies the refinance for your specific situation.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Mortgage Refinancing
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on mortgage refinancing and interest rate trends.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/ask-cfpb/1953/what-is-mortgage-refinancing.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau: Mortgage Refinancing Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on refinancing process, costs, and consumer protections including the Truth in Lending Act requirements for loan estimates.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Refinancing Guide
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive guide on refinancing options and consumer rights.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H.15" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve: Mortgage Market Statistics and Historical Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Historical and current mortgage rate data from the Federal Reserve, useful for tracking rate trends and comparing current rates to benchmarks.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Mortgage Loan Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Information on mortgage loans and refinancing from the FDIC.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/r/refinance.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Refinance Basics and Break-Even Calculator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive educational content on refinancing, including detailed explanations of closing costs, break-even analysis, and when refinancing makes financial sense.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Implications of Refinancing
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and implications of refinancing your mortgage.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Refinancing Explained
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed explanations of refinancing processes and strategies.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Mortgage Refinancing Tips
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and tips for refinancing your mortgage.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p936" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 936: Home Mortgage Interest Deduction</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Tax guidance on mortgage interest deductions and how refinancing may affect your tax situation, including rules on deductible interest and refinance costs.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -20,24 +20,40 @@ export default function TakeHomePayCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are take-home pay calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For take-home pay, accuracy depends on using current withholding accuracy data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a withholding accuracy professional."
+      question: "What is take-home pay and how does it differ from gross salary?",
+      answer: "Take-home pay is the amount you actually receive after all deductions are removed from your gross salary. Gross salary is your total earnings before taxes and deductions, while take-home pay accounts for federal income tax, FICA taxes (Social Security and Medicare), state and local taxes, and any voluntary deductions like 401(k) contributions or health insurance premiums. For example, a $60,000 annual salary might result in take-home pay of approximately $45,000-$48,000 depending on your location and deductions.",
     },
     {
-      question: "What key factors most affect take-home pay results?",
-      answer: "The most impactful variables in take-home pay calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How does the calculator determine my federal income tax withholding?",
+      answer: "The calculator uses the IRS tax brackets and the W-4 form information you input to estimate your federal withholding. It applies the 2024-2025 tax rates, which range from 10% to 37% depending on your filing status and income level. The calculation also factors in the standard deduction ($13,850 for single filers and $27,700 for married filing jointly in 2024) to reduce your taxable income.",
     },
     {
-      question: "When should I recalculate take-home pay?",
-      answer: "Recalculate whenever withholding accuracy conditions change significantly: after major withholding accuracy events, when your inputs change (income, rates, holdings), or when withholding accuracy regulations are updated. For time-sensitive withholding accuracy metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "What are FICA taxes and why are they deducted from my paycheck?",
+      answer: "FICA taxes consist of Social Security (6.2% of wages up to $168,600 in 2024) and Medicare (1.45% of all wages). These mandatory deductions fund Social Security and Medicare benefits you'll receive in retirement or if you become disabled. Employers also match these contributions, meaning your total FICA cost is actually double what appears on your paycheck, but only your employee portion is deducted from take-home pay.",
     },
     {
-      question: "How does take-home pay relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Take-home pay should be evaluated alongside related measures like W-4. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your withholding accuracy situation, rather than optimizing any single number in isolation."
+      question: "How do pre-tax deductions like 401(k) contributions affect my take-home pay calculator results?",
+      answer: "Pre-tax deductions reduce your taxable income, which lowers both your federal and state income taxes. For example, contributing $7,000 annually to a 401(k) reduces your taxable income by $7,000, potentially saving you $1,400-$2,100 in federal taxes depending on your tax bracket. The calculator shows how much you'll actually take home after these deductions, helping you understand the real-world impact on your paycheck.",
     },
     {
-      question: "What are the most common mistakes when calculating take-home pay?",
-      answer: "The most frequent errors in take-home pay calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world withholding accuracy conditions fluctuate. Double-check your inputs against current withholding accuracy data before relying on results for significant financial decisions."
+      question: "Can the calculator account for state and local income taxes?",
+      answer: "Yes, the calculator includes state and local income tax calculations for most U.S. states and major cities. State tax rates vary significantly—for example, California has a top marginal rate of 13.3%, while Texas has no state income tax. Inputting your state and city of residence ensures accurate take-home pay estimates, as these taxes can reduce your paycheck by 5-10% depending on location.",
+    },
+    {
+      question: "What should I enter for allowances or dependents on the calculator?",
+      answer: "You should enter the number of dependents you claim on your W-4 form, as each dependent generally reduces your federal tax withholding. The calculator uses this information to adjust your effective tax rate. For 2024, each dependent reduces your tax liability by $2,000 through the Child Tax Credit, which is reflected in lower withholding on your paycheck.",
+    },
+    {
+      question: "How does filing status (single vs. married) impact my take-home pay calculation?",
+      answer: "Filing status dramatically affects tax brackets and standard deductions. A married couple filing jointly has a standard deduction of $27,700 in 2024, while two single filers each get $13,850—meaning married filing jointly can result in significant tax savings. The calculator adjusts your estimated federal withholding based on your filing status to provide an accurate take-home figure.",
+    },
+    {
+      question: "Why does my calculated take-home pay differ from my actual paycheck?",
+      answer: "The calculator provides an estimate based on standard assumptions; actual take-home pay may vary due to irregular bonuses, overtime, employer-specific benefits, additional voluntary deductions (HSA, FSA, union dues), or payroll processing timing. Additionally, if you have multiple jobs or a non-traditional income schedule, the calculator may not fully capture your situation. For the most accurate results, compare the calculator output to a recent pay stub.",
+    },
+    {
+      question: "Can I use this calculator to optimize my W-4 withholding to reduce my tax refund?",
+      answer: "Yes, the calculator helps you model different W-4 scenarios to find the right withholding level. If you typically receive a large refund, you're having too much withheld, which means less take-home pay each month. By adjusting your allowances or additional withholding in the calculator, you can estimate the changes needed to bring your withholding closer to your actual tax liability, maximizing your monthly paycheck.",
     }
   ];
 
@@ -301,266 +317,284 @@ export default function TakeHomePayCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Take-Home Pay Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Take-Home Pay Calculator is an essential tool for anyone looking to understand their net income after taxes and deductions. It provides a clear picture of what you will actually receive in your bank account, allowing for better financial planning and budgeting. Whether you're negotiating a salary, planning for expenses, or simply curious about your financial standing, this calculator offers invaluable insights. By inputting your gross income, tax rate, and other deductions, you can quickly see your take-home pay and make informed decisions about your financial future.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in financial planning. Mistakes in estimating your take-home pay can lead to budgeting errors, overspending, or under-saving. This calculator uses standard formulas to ensure precision, helping you avoid potential pitfalls. With the right data, you can trust the results to guide your financial choices. For more detailed financial planning, consider using our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> to understand how loans impact your finances.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather your financial information beforehand. You'll need your gross annual income, the tax rate applicable to your earnings, and any other deductions such as retirement contributions or healthcare premiums. Enter these values into the respective fields to calculate your take-home pay. For accurate results, ensure the data you input is up-to-date and reflects your current financial situation. For related calculations, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. Small errors in your tax rate or deductions can significantly affect your take-home pay calculation. Use this tool regularly to adjust your budget and savings plans as your financial situation changes.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Take-Home Pay Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Take-Home Pay Calculator estimates the actual amount you'll receive in your paycheck after all mandatory and voluntary deductions. This tool helps you understand how taxes, Social Security, Medicare, and other deductions reduce your gross income, enabling you to budget more accurately and plan your finances with confidence. Whether you're evaluating a new job offer or reviewing your current pay, this calculator provides clarity on your true earnings.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your annual gross salary, select your filing status (single, married filing jointly, etc.), enter the number of dependents you claim, and specify your state and city of residence. The calculator will also account for pre-tax deductions like 401(k) contributions, health insurance premiums, and other payroll deductions you may have. You can adjust your W-4 withholding allowances to see how different election choices impact your take-home amount.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your estimated annual take-home pay, monthly paycheck amount, and a detailed breakdown of all deductions including federal income tax, Social Security, Medicare, and state/local taxes. Review these figures against your most recent pay stub to verify accuracy, and remember that bonuses, overtime, or changes to your W-4 will affect your actual take-home pay. Use the calculator regularly when your income or tax situation changes to stay aligned with your budget.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices include reviewing your financial data periodically and updating the calculator inputs as needed. Consider factors like changes in tax laws, salary increases, or new deductions that could affect your take-home pay. Staying informed and proactive can help you optimize your financial health and achieve your financial goals.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Take-Home Pay Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Take-Home Pay Calculator is straightforward yet effective. It calculates your net income by subtracting taxes and other deductions from your gross income. This method is widely accepted and provides a reliable estimate of your take-home pay. Variations of this formula may include additional factors such as bonuses or specific state taxes, which can be added to tailor the calculation to your unique situation.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Take-Home Pay = Gross Income - (Gross Income × Tax Rate) - Other Deductions
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Gross Income = Total earnings before taxes</li>
-              <li>Tax Rate = Percentage of income paid as tax</li>
-              <li>Other Deductions = Additional deductions like retirement or healthcare</li>
-            </ul>
+      {/* TABLE: 2024 Federal Income Tax Brackets and Rates */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024 Federal Income Tax Brackets and Rates</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These are the current federal tax brackets used by the take-home pay calculator for single and married filing jointly taxpayers.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Bracket</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Filers</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Rate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0 - $11,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 - $23,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 - $23,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$11,601 - $47,150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$23,201 - $94,300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$23,201 - $94,300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$47,151 - $100,525</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$94,301 - $201,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$94,301 - $201,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,526 - $191,950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$201,051 - $383,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$201,051 - $383,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$191,951 - $243,725</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$383,901 - $487,450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$383,901 - $487,450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$243,726 - $609,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$487,451 - $731,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$487,451 - $731,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$609,351+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$731,201+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$731,201+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Brackets are adjusted annually for inflation. Single filers use the left column; married filing jointly uses the middle column.</p>
+      </section>
+
+      {/* TABLE: FICA Tax Rates and Wage Limits for 2024 */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">FICA Tax Rates and Wage Limits for 2024</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">FICA taxes consist of Social Security and Medicare contributions, which are automatically deducted from your paycheck by the calculator.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Component</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Employee Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Wage Base Limit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Social Security</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$168,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Employer matches 6.2%; caps at $10,453.20 per employee</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medicare</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.45%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No limit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Employer matches 1.45%; applies to all wages</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Additional Medicare</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Applies above $200,000 (single)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Only employee pays this; no employer match</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Total FICA (standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.65%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$168,600 for Social Security</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Combined Social Security and Medicare for most workers</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The wage base limit for Social Security adjusts annually. High earners may owe additional Medicare tax on wages exceeding $200,000 (single) or $250,000 (married filing jointly).</p>
+      </section>
+
+      {/* TABLE: Sample Take-Home Pay Calculations by Income Level (2024) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sample Take-Home Pay Calculations by Income Level (2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These examples show estimated annual take-home pay after federal, FICA, and average state taxes for a single filer in a mid-tax-rate state.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Gross Salary</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Federal Taxes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">FICA Taxes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">State Taxes (Est.)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Take-Home Pay</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,548</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,295</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,275</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$24,882</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,513</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,825</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,275</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$39,387</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$75,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,888</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,738</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,525</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$56,849</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,263</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,850</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$73,237</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$150,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$26,888</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,475</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,275</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$104,362</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume standard deduction, no dependents, single filer status, and 5.5% state tax rate. Results will vary based on filing status, deductions, and state location.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Review your pay stub against the calculator results quarterly — this helps you catch payroll errors and ensures your W-4 withholding is still optimized for your current income level.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you receive a large tax refund every year, increase your W-4 allowances or reduce additional withholding in the calculator to boost your monthly take-home pay and adjust your paycheck in real-time.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for irregular income by using the calculator to model both your base salary and bonus scenarios separately, so you understand your typical monthly take-home versus peak earning months.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Update the calculator annually when tax brackets change (usually in January) and whenever you experience major life changes like marriage, having children, or changing jobs — these events significantly impact your take-home pay.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to include voluntary deductions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people forget to add 401(k), HSA, or FSA contributions when calculating take-home pay, leading to inflated estimates. These pre-tax deductions reduce your taxable income but must be entered separately in the calculator for an accurate result.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the wrong filing status</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Selecting the incorrect filing status (single instead of married, or vice versa) dramatically changes your tax withholding calculation. Ensure your calculator selection matches the status you claim on your actual tax return for accurate estimates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring state and local taxes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some people assume federal taxes are the only deduction and overlook state income taxes, which can range from 0% to 13.3% depending on location. Leaving the state field blank will provide an inaccurate, inflated take-home pay estimate.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming the calculator is 100% accurate for all situations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator provides estimates based on standard assumptions and cannot account for complex tax situations like side income, investment earnings, or multiple jobs. Always verify results against your actual pay stub and consult a tax professional for complicated scenarios.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role. Gross Income is the starting point, representing your total earnings. The Tax Rate is applied to this amount to determine your tax liability. Other Deductions account for non-tax-related reductions in your income, such as retirement contributions. Adjusting these variables allows you to see how changes in your financial situation impact your take-home pay.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your take-home pay is essential for accurate financial planning. These factors can vary widely based on personal circumstances and external conditions. By recognizing how they interact, you can better manage your finances and make informed decisions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Gross Income
-        </h3>
-        <p className="mb-4">
-          Gross Income is the total amount you earn before any deductions. It includes your salary, bonuses, and any other earnings. This figure is the foundation of your take-home pay calculation. A higher gross income generally leads to a higher take-home pay, but it can also push you into a higher tax bracket, affecting the net result.
-        </p>
-        <p className="mb-6">
-          To optimize your take-home pay, consider negotiating for higher compensation or seeking additional income streams. For more insights on managing income, check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Rate
-        </h3>
-        <p className="mb-4">
-          The Tax Rate is the percentage of your income that goes to taxes. This rate can vary based on your income level, filing status, and location. Understanding your tax obligations is crucial for accurate take-home pay calculations. Tax rates are subject to change, so staying informed about tax laws is important.
-        </p>
-        <p className="mb-6">
-          Consider consulting with a tax professional to ensure you're taking advantage of all available deductions and credits. This can help reduce your effective tax rate and increase your take-home pay.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Other Deductions
-        </h3>
-        <p className="mb-4">
-          Other Deductions include any non-tax-related reductions in your income, such as retirement contributions, healthcare premiums, or union dues. These deductions can significantly impact your take-home pay, especially if they are substantial.
-        </p>
-        <p className="mb-6">
-          Review your deductions regularly to ensure they align with your financial goals. Adjusting contributions to retirement accounts, for example, can affect both your current take-home pay and future financial security.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Bonuses and Variable Income
-        </h3>
-        <p className="mb-6">
-          Bonuses and other forms of variable income can complicate take-home pay calculations. These earnings are often taxed at different rates or may be subject to additional deductions. Understanding how these factors affect your net income is essential for accurate financial planning.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Changes in Tax Laws
-        </h3>
-        <p className="mb-6">
-          Tax laws can change frequently, impacting your tax rate and deductions. Staying informed about these changes is crucial for maintaining accurate take-home pay calculations. Consider subscribing to financial news outlets or consulting with a tax advisor to stay updated.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-                {faq.answer.split("For more detailed financial planning, consider using our Interest-Only Loan Calculator to understand how loans impact your finances.")[0]}
-                {faq.answer.includes("Interest-Only Loan Calculator") && (
-                  <>
-                    For more detailed financial planning, consider using our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> to understand how loans impact your finances.
-                  </>
-                )}
-                {faq.answer.split("For more complex financial scenarios, our Refinance Savings Calculator can offer further insights.")[0] !== faq.answer && (
-                  <>
-                    {faq.answer.split("For more complex financial scenarios, our Refinance Savings Calculator can offer further insights.")[0]}
-                    For more complex financial scenarios, our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> can offer further insights.
-                  </>
-                )}
-                {faq.answer.split("For further financial insights, explore our HELOC Payment Estimator.")[0] !== faq.answer && (
-                  <>
-                    {faq.answer.split("For further financial insights, explore our HELOC Payment Estimator.")[0]}
-                    For further financial insights, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-                  </>
-                )}
-              </p>
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is take-home pay and how does it differ from gross salary?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Take-home pay is the amount you actually receive after all deductions are removed from your gross salary. Gross salary is your total earnings before taxes and deductions, while take-home pay accounts for federal income tax, FICA taxes (Social Security and Medicare), state and local taxes, and any voluntary deductions like 401(k) contributions or health insurance premiums. For example, a $60,000 annual salary might result in take-home pay of approximately $45,000-$48,000 depending on your location and deductions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator determine my federal income tax withholding?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses the IRS tax brackets and the W-4 form information you input to estimate your federal withholding. It applies the 2024-2025 tax rates, which range from 10% to 37% depending on your filing status and income level. The calculation also factors in the standard deduction ($13,850 for single filers and $27,700 for married filing jointly in 2024) to reduce your taxable income.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are FICA taxes and why are they deducted from my paycheck?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">FICA taxes consist of Social Security (6.2% of wages up to $168,600 in 2024) and Medicare (1.45% of all wages). These mandatory deductions fund Social Security and Medicare benefits you'll receive in retirement or if you become disabled. Employers also match these contributions, meaning your total FICA cost is actually double what appears on your paycheck, but only your employee portion is deducted from take-home pay.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do pre-tax deductions like 401(k) contributions affect my take-home pay calculator results?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pre-tax deductions reduce your taxable income, which lowers both your federal and state income taxes. For example, contributing $7,000 annually to a 401(k) reduces your taxable income by $7,000, potentially saving you $1,400-$2,100 in federal taxes depending on your tax bracket. The calculator shows how much you'll actually take home after these deductions, helping you understand the real-world impact on your paycheck.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the calculator account for state and local income taxes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator includes state and local income tax calculations for most U.S. states and major cities. State tax rates vary significantly—for example, California has a top marginal rate of 13.3%, while Texas has no state income tax. Inputting your state and city of residence ensures accurate take-home pay estimates, as these taxes can reduce your paycheck by 5-10% depending on location.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I enter for allowances or dependents on the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You should enter the number of dependents you claim on your W-4 form, as each dependent generally reduces your federal tax withholding. The calculator uses this information to adjust your effective tax rate. For 2024, each dependent reduces your tax liability by $2,000 through the Child Tax Credit, which is reflected in lower withholding on your paycheck.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does filing status (single vs. married) impact my take-home pay calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Filing status dramatically affects tax brackets and standard deductions. A married couple filing jointly has a standard deduction of $27,700 in 2024, while two single filers each get $13,850—meaning married filing jointly can result in significant tax savings. The calculator adjusts your estimated federal withholding based on your filing status to provide an accurate take-home figure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does my calculated take-home pay differ from my actual paycheck?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator provides an estimate based on standard assumptions; actual take-home pay may vary due to irregular bonuses, overtime, employer-specific benefits, additional voluntary deductions (HSA, FSA, union dues), or payroll processing timing. Additionally, if you have multiple jobs or a non-traditional income schedule, the calculator may not fully capture your situation. For the most accurate results, compare the calculator output to a recent pay stub.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator to optimize my W-4 withholding to reduce my tax refund?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator helps you model different W-4 scenarios to find the right withholding level. If you typically receive a large refund, you're having too much withheld, which means less take-home pay each month. By adjusting your allowances or additional withholding in the calculator, you can estimate the changes needed to bring your withholding closer to your actual tax liability, maximizing your monthly paycheck.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on economic trends and regulatory guidelines.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2024" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS 2024 Tax Brackets and Standard Deductions</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS announcement of 2024 tax brackets, standard deductions, and FICA wage limits used in take-home pay calculations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/forms-pubs/about-form-w-4" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Form W-4: Employee's Withholding Certificate</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Complete guide to Form W-4, explaining allowances, exemptions, and how withholding elections affect your paycheck.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.ssa.gov/benefits/retirement/wep-government-pension.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Social Security Administration: Wage Base Limit</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Information on Social Security wage base limits, contribution rates, and how they impact take-home pay for high earners.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/taxes/tax-refund-calculator/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate: Tax Refund Calculator & Withholding Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to understanding tax withholding, refunds, and strategies to optimize your paycheck using withholding adjustments.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

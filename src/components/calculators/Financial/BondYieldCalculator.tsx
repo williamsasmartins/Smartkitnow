@@ -81,24 +81,40 @@ export default function BondYieldCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are bond yield calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For bond yield, accuracy depends on using current fixed income data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a fixed income professional."
+      question: "What is the difference between current yield and yield to maturity in a bond yield calculator?",
+      answer: "Current yield measures the annual income from a bond relative to its current market price, calculated as (annual coupon payment ÷ current price) × 100. Yield to maturity (YTM) is the total return if you hold the bond until maturity, accounting for capital gains or losses and reinvested coupons. For example, a $1,000 par bond with a 5% coupon trading at $950 has a current yield of 5.26% but a higher YTM of approximately 5.67%.",
     },
     {
-      question: "What key factors most affect bond yield results?",
-      answer: "The most impactful variables in bond yield calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How do I input bond information into the calculator?",
+      answer: "You'll need to enter the bond's par value (typically $1,000), annual coupon rate (as a percentage), current market price, and years to maturity. Some calculators also ask for the compounding frequency (usually semi-annual for corporate bonds). For example, if you own a 10-year Treasury bond with a 4.5% coupon trading at $980, enter these values to calculate the precise YTM.",
     },
     {
-      question: "When should I recalculate bond yield?",
-      answer: "Recalculate whenever fixed income conditions change significantly: after major fixed income events, when your inputs change (income, rates, holdings), or when fixed income regulations are updated. For time-sensitive fixed income metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "Can the bond yield calculator account for different coupon payment frequencies?",
+      answer: "Yes, most advanced bond yield calculators allow you to select payment frequency—typically monthly, quarterly, or semi-annual. U.S. Treasury and corporate bonds usually pay semi-annually, while some municipal and international bonds may pay differently. Selecting the correct frequency is critical because it affects the compounding calculation and final yield result.",
     },
     {
-      question: "How does bond yield relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Bond yield should be evaluated alongside related measures like coupon rate. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your fixed income situation, rather than optimizing any single number in isolation."
+      question: "What is a realistic bond yield for 2024 based on current market conditions?",
+      answer: "As of 2024, 10-year U.S. Treasury yields range from approximately 3.8% to 4.5% depending on market conditions and economic outlook. Investment-grade corporate bonds typically yield 4.5% to 6.5%, while high-yield (junk) bonds range from 7% to 10% or higher. Using the calculator with real current bond prices will help you compare these benchmarks to specific securities you're considering.",
     },
     {
-      question: "What are the most common mistakes when calculating bond yield?",
-      answer: "The most frequent errors in bond yield calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world fixed income conditions fluctuate. Double-check your inputs against current fixed income data before relying on results for significant financial decisions."
+      question: "How does call risk affect bond yield calculations?",
+      answer: "Callable bonds can be redeemed by the issuer before maturity, which limits your upside yield potential. A bond yield calculator should allow you to calculate yield-to-call (YTC) in addition to YTM. For instance, if a 5% coupon bond is callable in 3 years at $1,020, the YTC will typically be lower than the YTM, which is important for accurate return projections.",
+    },
+    {
+      question: "What happens to bond yield when the purchase price changes?",
+      answer: "Bond yields move inversely to price; when you buy a bond at a discount (below par), the yield increases, and when you buy at a premium (above par), the yield decreases. For example, a bond with a 4% coupon purchased at $950 will have a higher yield than the same bond purchased at $1,050. The bond yield calculator instantly shows this relationship when you adjust the price input.",
+    },
+    {
+      question: "How do I interpret negative yield scenarios in the calculator?",
+      answer: "Negative yields occur in some sovereign bonds, particularly European and Japanese government bonds in recent years, though U.S. bonds rarely show negative yields. A negative yield means you'll lose money if you hold the bond to maturity, which may happen if you buy a bond at a significant premium above par value. The calculator will alert you to this scenario so you can reassess your investment decision.",
+    },
+    {
+      question: "Can I use the bond yield calculator to compare bonds with different maturities?",
+      answer: "Yes, by calculating the YTM for multiple bonds with different maturities, you can build a yield curve comparison. For example, you might calculate that a 2-year Treasury yields 4.2% while a 10-year Treasury yields 4.1%, indicating a flattening yield curve. The calculator helps you visualize whether longer-term bonds are compensating you adequately for extended duration risk.",
+    },
+    {
+      question: "What is the relationship between credit rating and bond yield on this calculator?",
+      answer: "While the calculator doesn't assign credit ratings, bond yields directly reflect default risk—higher-yielding bonds typically have lower credit ratings. For instance, a AAA-rated corporate bond might yield 5.2%, while a BBB-rated bond yields 6.8%, and a B-rated high-yield bond yields 8.5%. Using the calculator with bonds across different rating categories helps you quantify the risk premium you're receiving for lower-quality credit.",
     }
   ];
 
@@ -291,260 +307,284 @@ export default function BondYieldCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Bond Yield Calculator
-        </h2>
-        
-        <p className="mb-6">
-          Investing in bonds can be a stable and rewarding addition to your financial portfolio, but understanding the yield on these investments is crucial for making informed decisions. The Bond Yield Calculator is designed to help you determine both the current yield and the yield to maturity (YTM) of your bond investments. This tool is essential for investors looking to assess the true performance of their fixed-income investments, allowing them to compare different bonds and make strategic decisions based on accurate yield calculations.
-        </p>
-        
-        <p className="mb-6">
-          Accurate bond yield calculations are vital because they directly impact your investment returns. Incorrect calculations can lead to misguided investment decisions, potentially resulting in financial losses. By using this calculator, you can ensure that your yield calculations are precise, helping you to optimize your investment strategy. This tool is particularly useful for comparing bonds with different coupon rates and maturities, allowing you to choose the best options for your financial goals. For more insights on financial calculations, you might find our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> helpful.
-        </p>
-        
-        <p className="mb-6">
-          To use the Bond Yield Calculator effectively, gather the necessary information about the bond, including its face value, coupon rate, market price, and years to maturity. Enter these values into the calculator to receive instant results. Each input field is clearly labeled to guide you through the process, ensuring that you enter the correct data. For additional guidance on using financial calculators, consider exploring our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            When using the Bond Yield Calculator, ensure that you have the most recent market price of the bond. Market prices can fluctuate, and using outdated information may lead to inaccurate yield calculations. Regularly updating your inputs will help you maintain a clear picture of your investment's performance.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Bond Yield Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Bond Yield Calculator is an essential tool for investors who want to accurately measure the total return of a bond investment. Whether you're evaluating Treasury securities, corporate bonds, or municipal bonds, this calculator helps you compare yield metrics like yield-to-maturity (YTM) and current yield. Understanding these returns is critical because they reveal the true income potential of your bond holding and help you make informed portfolio decisions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator effectively, gather four key pieces of information about your bond: the par (face) value (usually $1,000 for corporate and Treasury bonds), the annual coupon rate as a percentage, the current market price you'll pay, and the years remaining until maturity. You may also need to specify the coupon payment frequency—most U.S. bonds pay semi-annually, but some pay quarterly or monthly. Entering accurate data is essential because even small price or rate variations significantly impact your yield calculations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once you've entered your bond information, the calculator delivers both current yield and yield-to-maturity. Current yield shows the annual income as a percentage of today's price, while YTM represents your total annualized return if you hold until maturity, accounting for any price appreciation or depreciation. Use YTM as your primary decision metric since it reflects the complete picture of your investment returns, and compare the results against benchmark yields for similar bonds to determine if the security offers adequate compensation for its risk.</p>
         </div>
-        
-        <p className="mb-6">
-          For optimal results, consider the impact of interest rate changes on your bond yields. As interest rates rise, the market price of existing bonds typically falls, affecting the yield to maturity. Understanding these dynamics can help you make more informed investment decisions. Additionally, be aware of any fees or taxes that may apply to your bond investments, as these can also influence your overall returns.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Bond Yield Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The Bond Yield Calculator utilizes two primary formulas to determine the current yield and yield to maturity (YTM) of a bond. The current yield is calculated by dividing the annual coupon payment by the bond's market price. This formula provides a straightforward measure of the income generated by the bond relative to its current market value. The yield to maturity, on the other hand, is a more comprehensive measure that considers the total returns expected from the bond if held until maturity, accounting for both coupon payments and any capital gains or losses.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
+      {/* TABLE: 2024 Average Bond Yields by Type and Rating */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024 Average Bond Yields by Type and Rating</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows representative yields across major bond categories as of Q4 2024, useful benchmarks when using the bond yield calculator.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bond Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Rating</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Yield Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Par Value</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">U.S. Treasury Bond (10-year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">AAA</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.8% - 4.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Investment-Grade Corporate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">AAA</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5% - 5.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Investment-Grade Corporate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">BBB</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.8% - 6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Yield Corporate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">B</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5% - 9.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Municipal Bond (10-year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.2% - 4.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">I-Bond (Series I)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.27% (fixed)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50 - $10,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Yields fluctuate daily based on market conditions; use the calculator with current prices for real-time accuracy.</p>
+      </section>
+
+      {/* TABLE: Bond Yield Calculator Inputs and Their Impact on Results */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Bond Yield Calculator Inputs and Their Impact on Results</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Understanding how each input affects your yield calculation ensures accurate projections of bond returns.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Input Variable</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example Value</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Effect on Yield</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sample Calculation</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Par Value</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Denominator for coupon percentage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4% coupon = $40 annual payment</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Coupon Rate (%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Direct proportional impact on yield</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Higher coupon → higher yield (if price constant)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Current Price</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Inverse relationship with yield</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$950 price → yield increases above coupon rate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Years to Maturity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Longer duration increases YTM sensitivity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-year bond more price-sensitive than 2-year</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Payment Frequency</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Semi-annual</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Affects compounding calculation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Semi-annual compounds twice yearly</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">A $1,000 bond with 4% coupon at $950 price and 10-year maturity yields approximately 4.42% (semi-annual).</p>
+      </section>
+
+      {/* TABLE: Yield-to-Maturity vs. Current Yield Comparison */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Yield-to-Maturity vs. Current Yield Comparison</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This comparison shows how YTM and current yield diverge based on purchase price, illustrating the importance of using the correct metric.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bond Price</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Par Value</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coupon Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Current Yield</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Yield to Maturity (5-yr)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.44%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.12%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.21%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.63%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.00%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.00%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$1,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.81%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.42%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$1,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.64%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.89%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">YTM accounts for the capital loss/gain at maturity, making it the more complete return measure than current yield.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always use yield-to-maturity (YTM) rather than current yield when comparing bonds, because YTM accounts for capital gains or losses at maturity and provides a complete picture of your total return.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Enter the exact current market price from your broker or bond platform, not the par value, since even $10 differences significantly affect yield calculations on bonds.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If considering callable bonds, calculate both yield-to-maturity and yield-to-call using the calculator, then assume the issuer will call the bond if yields fall, limiting your upside potential.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to build a yield curve by entering Treasury bonds of different maturities (2-year, 5-year, 10-year, 30-year), which helps you visualize term structure and identify attractive entry points.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
           <div>
-            <p>Current Yield = (Coupon Payment / Market Price) × 100</p>
-            <p>Yield to Maturity ≈ [(Coupon Payment + (Face Value - Market Price) / Years to Maturity) / ((Face Value + Market Price) / 2)] × 100</p>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Current Yield with Yield-to-Maturity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many investors rely solely on current yield, which only measures annual coupon payments divided by price and ignores capital gains or losses at maturity. This omission can lead to significantly overestimating returns on premium bonds or underestimating returns on discount bonds. Always prioritize YTM as your decision metric.</p>
           </div>
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Coupon Payment = Annual interest payment from the bond</li>
-              <li>Market Price = Current trading price of the bond</li>
-              <li>Face Value = Original value of the bond at issuance</li>
-              <li>Years to Maturity = Number of years until the bond matures</li>
-            </ul>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Entering Par Value Instead of Market Price</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A common error is inputting the bond's par value ($1,000) rather than the current market price you'll actually pay. This completely invalidates the yield calculation—a bond trading at $950 has a different yield than one at par, even with identical coupon rates. Double-check your broker statement for the actual purchase price.</p>
           </div>
-        </div>
-        
-        <p className="mb-4">
-          Each variable in these formulas plays a critical role in determining the bond's yield. The coupon payment reflects the bond's annual income, while the market price provides a snapshot of its current value in the market. The face value is essential for calculating the capital gain or loss expected at maturity, and the years to maturity help spread this gain or loss over the bond's remaining life. By understanding these variables, investors can better assess the potential returns from their bond investments and make more informed decisions.
-        </p>
-      </section>
-
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence bond yields is crucial for making informed investment decisions. These factors can significantly impact the returns you receive from your bond investments, and being aware of them can help you optimize your portfolio.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rates
-        </h3>
-        <p className="mb-4">
-          Interest rates are one of the most significant factors affecting bond yields. When interest rates rise, the market price of existing bonds typically falls, leading to higher yields. Conversely, when interest rates decline, bond prices increase, resulting in lower yields. This inverse relationship is crucial for bond investors to understand, as it affects both the current yield and the yield to maturity.
-        </p>
-        <p className="mb-6">
-          To optimize your bond investments, consider the current interest rate environment and how it might change in the future. By anticipating interest rate movements, you can adjust your bond portfolio to maximize returns. For more insights on managing interest rate risk, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Inflation
-        </h3>
-        <p className="mb-4">
-          Inflation erodes the purchasing power of fixed-income payments, making it a critical factor for bond investors. If inflation rises, the real value of a bond's coupon payments decreases, reducing the bond's attractiveness. Investors must consider the inflation outlook when evaluating bond yields, as higher inflation expectations can lead to higher required yields.
-        </p>
-        <p className="mb-6">
-          To mitigate inflation risk, consider investing in bonds with inflation protection, such as Treasury Inflation-Protected Securities (TIPS). These bonds adjust their principal value based on inflation, helping to preserve purchasing power. Understanding the impact of inflation on bond yields can help you make more informed investment decisions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Credit Risk
-        </h3>
-        <p className="mb-4">
-          Credit risk refers to the possibility that a bond issuer may default on its payments. Bonds with higher credit risk typically offer higher yields to compensate investors for the increased risk. Assessing the creditworthiness of a bond issuer is essential for understanding the potential risks and rewards of a bond investment.
-        </p>
-        <p className="mb-6">
-          To manage credit risk, consider diversifying your bond portfolio across issuers with varying credit ratings. This approach can help balance risk and return, providing a more stable investment experience. For more on managing credit risk, consult our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Bond Duration
-        </h3>
-        <p className="mb-6">
-          Bond duration measures the sensitivity of a bond's price to changes in interest rates. Bonds with longer durations are more sensitive to interest rate changes, leading to greater price volatility. Understanding a bond's duration can help investors assess the potential impact of interest rate fluctuations on their bond investments.
-        </p>
-        <p className="mb-6">
-          To manage duration risk, consider balancing your bond portfolio with a mix of short- and long-duration bonds. This strategy can help mitigate the impact of interest rate changes on your overall portfolio. By understanding bond duration, you can make more informed decisions about your bond investments.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Considerations
-        </h3>
-        <p className="mb-6">
-          Taxes can significantly impact the returns from bond investments. Interest income from bonds is typically subject to federal and state taxes, which can reduce the effective yield. Investors should consider the tax implications of their bond investments and explore tax-advantaged options, such as municipal bonds, which may offer tax-free interest income.
-        </p>
-        <p className="mb-6">
-          Understanding the tax treatment of bond income can help investors optimize their after-tax returns. By considering tax implications, you can make more informed decisions about your bond investments and maximize your overall returns.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the Impact of Coupon Payment Frequency</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Bonds with different payment frequencies (annual, semi-annual, quarterly, monthly) have different effective yields due to compounding effects. Failing to select the correct frequency in the calculator results in YTM calculations that are slightly off. U.S. corporate and Treasury bonds typically pay semi-annually, so ensure this setting matches your security.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Callable Bonds and Early Redemption Risk</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many bond investors calculate standard YTM without considering that high-quality bonds trading at a premium may be called early by the issuer, cutting off your returns. The calculator should allow you to compute yield-to-call for these securities. Always ask whether your bond is callable and at what price before relying solely on YTM.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between current yield and yield to maturity in a bond yield calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Current yield measures the annual income from a bond relative to its current market price, calculated as (annual coupon payment ÷ current price) × 100. Yield to maturity (YTM) is the total return if you hold the bond until maturity, accounting for capital gains or losses and reinvested coupons. For example, a $1,000 par bond with a 5% coupon trading at $950 has a current yield of 5.26% but a higher YTM of approximately 5.67%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I input bond information into the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You'll need to enter the bond's par value (typically $1,000), annual coupon rate (as a percentage), current market price, and years to maturity. Some calculators also ask for the compounding frequency (usually semi-annual for corporate bonds). For example, if you own a 10-year Treasury bond with a 4.5% coupon trading at $980, enter these values to calculate the precise YTM.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the bond yield calculator account for different coupon payment frequencies?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, most advanced bond yield calculators allow you to select payment frequency—typically monthly, quarterly, or semi-annual. U.S. Treasury and corporate bonds usually pay semi-annually, while some municipal and international bonds may pay differently. Selecting the correct frequency is critical because it affects the compounding calculation and final yield result.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a realistic bond yield for 2024 based on current market conditions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">As of 2024, 10-year U.S. Treasury yields range from approximately 3.8% to 4.5% depending on market conditions and economic outlook. Investment-grade corporate bonds typically yield 4.5% to 6.5%, while high-yield (junk) bonds range from 7% to 10% or higher. Using the calculator with real current bond prices will help you compare these benchmarks to specific securities you're considering.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does call risk affect bond yield calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Callable bonds can be redeemed by the issuer before maturity, which limits your upside yield potential. A bond yield calculator should allow you to calculate yield-to-call (YTC) in addition to YTM. For instance, if a 5% coupon bond is callable in 3 years at $1,020, the YTC will typically be lower than the YTM, which is important for accurate return projections.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens to bond yield when the purchase price changes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Bond yields move inversely to price; when you buy a bond at a discount (below par), the yield increases, and when you buy at a premium (above par), the yield decreases. For example, a bond with a 4% coupon purchased at $950 will have a higher yield than the same bond purchased at $1,050. The bond yield calculator instantly shows this relationship when you adjust the price input.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I interpret negative yield scenarios in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Negative yields occur in some sovereign bonds, particularly European and Japanese government bonds in recent years, though U.S. bonds rarely show negative yields. A negative yield means you'll lose money if you hold the bond to maturity, which may happen if you buy a bond at a significant premium above par value. The calculator will alert you to this scenario so you can reassess your investment decision.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the bond yield calculator to compare bonds with different maturities?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, by calculating the YTM for multiple bonds with different maturities, you can build a yield curve comparison. For example, you might calculate that a 2-year Treasury yields 4.2% while a 10-year Treasury yields 4.1%, indicating a flattening yield curve. The calculator helps you visualize whether longer-term bonds are compensating you adequately for extended duration risk.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the relationship between credit rating and bond yield on this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While the calculator doesn't assign credit ratings, bond yields directly reflect default risk—higher-yielding bonds typically have lower credit ratings. For instance, a AAA-rated corporate bond might yield 5.2%, while a BBB-rated bond yields 6.8%, and a B-rated high-yield bond yields 8.5%. Using the calculator with bonds across different rating categories helps you quantify the risk premium you're receiving for lower-quality credit.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Bond Market Overview
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on the bond market and interest rate policies.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/bonds" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Division of Investor Education: Bonds</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The SEC provides comprehensive educational resources on bond types, risk factors, and how to evaluate bond investments.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Investment Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.treasurydirect.gov/indiv/research/indiv_research.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Treasury Bonds Information and Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The official Treasury Direct website offers current Treasury bond yields, pricing information, and comprehensive bond data for yield calculations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Bond Investment Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/y/yieldtomaturity.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Yield to Maturity (YTM) Definition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Investopedia's detailed explanation of yield-to-maturity, including formulas and real-world examples of how YTM differs from current yield.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Bond Yield Concepts
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Bond Investment Tips
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.finra.org/investors/learn-to-invest/types-investments/bonds" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FINRA Bond Market Data Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">FINRA provides educational content on bond investing, yield metrics, and tools for researching bond performance and comparing yields.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

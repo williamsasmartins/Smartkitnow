@@ -31,24 +31,40 @@ export default function InvestmentBreakEvenPointCalculator() {
   // FAQ STRUCTURED DATA
   const faqs = [
     {
-      question: "How do I calculate the break-even point for an investment with upfront fees?",
-      answer: "Break-even years = ln(Cost / (Cost − Fee)) / ln(1 + annual return). Example: $10,000 investment with $500 upfront fee (5%) at 7% annual return. Break-even = ln(10000 / 9500) / ln(1.07) = 0.0513 / 0.0677 ≈ 0.76 years (about 9 months). Without the fee, you start ahead; with the fee, you need 9 months of 7% growth just to recover the 5% charge. This calculation is especially important when comparing load mutual funds (5.75% front-end load) against no-load equivalents -- the load fund needs nearly a full year of performance advantage just to break even on fees."
+      question: "What is an investment break-even point?",
+      answer: "The investment break-even point is the point at which your total investment returns equal your initial capital outlay, meaning you've recovered your investment without any net gain or loss. For example, if you invested $10,000 and earned $10,000 in returns, your break-even point has been reached. This calculator helps you determine how long it typically takes to reach this milestone based on your expected annual return rate.",
     },
     {
-      question: "What is the break-even analysis for real estate investment including all costs?",
-      answer: "Real estate break-even includes: purchase price + closing costs (2–5%) + renovation costs + carrying costs (mortgage, taxes, insurance) − rental income. Break-even on a rental: if your all-in cost is $250,000 and monthly net cash flow is $500, payback period = 250,000 / (500 × 12) = 41.7 years (without appreciation). With 4% annual appreciation: use an amortizing model. The 1% rule (monthly rent ≥ 1% of purchase price) is a quick filter -- a $250,000 property should generate $2,500/month to break even in under 15 years. Most markets no longer support the 1% rule; evaluate total return (cash flow + appreciation) rather than cash flow alone."
+      question: "How do I calculate break-even with this calculator?",
+      answer: "Input your initial investment amount, expected annual return percentage, and any additional periodic contributions. The calculator uses the compound interest formula to determine the exact time period needed to recover your initial investment. For instance, a $5,000 investment at 8% annual return will break even in approximately 9 years without additional contributions.",
     },
     {
-      question: "How does the break-even point change when comparing two investment options with different fees?",
-      answer: "Compare two ETFs: Fund A with 0.03% expense ratio, Fund B with 0.75% expense ratio, both returning 8% nominal. After 1 year: A = $10,797, B = $10,725. Differential = $72. The break-even concept here is when Fund B would need to outperform to justify its higher fees: never, since expense ratios are a guaranteed drag. Over 30 years: Fund A = $100,627, Fund B = $80,635 -- a $19,992 difference on a $10,000 investment solely from the 0.72% fee difference. Use break-even analysis when evaluating: load vs. no-load funds, advisor-managed vs. self-directed portfolios, and actively managed vs. index funds."
+      question: "Does the break-even calculator account for inflation?",
+      answer: "This calculator shows nominal break-even in terms of absolute dollars, but for real purchasing power, you should subtract inflation from your expected return rate. If you expect 7% annual returns and inflation averages 2.5% annually, your real return is approximately 4.5%, which will extend your break-even timeline accordingly.",
     },
     {
-      question: "What is the break-even return rate needed to justify investment risk?",
-      answer: "The break-even return is the minimum rate that makes an investment worth doing versus a risk-free alternative. If the risk-free rate (US Treasury yield) is 4.5% (2024), a stock investment must deliver at least 4.5% just to match -- and typically requires a 3–5% equity risk premium (ERP) to compensate for volatility, putting the required return at 7.5–9.5%. Break-even risk-adjusted return = risk-free rate + (beta × ERP). For a crypto investment with high volatility, the required return is much higher -- many investors implicitly require 20%+ annualized to justify crypto's volatility versus holding stocks. If your expected return does not exceed this threshold, the investment destroys risk-adjusted value even if it technically gains."
+      question: "What's a realistic annual return rate to use?",
+      answer: "Historical stock market returns average around 10% annually, while bonds typically return 4-5%, and savings accounts currently yield 4-5.5% as of 2024. Your expected return depends on your asset allocation and risk tolerance. Conservative portfolios may target 5-6%, while aggressive portfolios might assume 8-10% annual growth.",
     },
     {
-      question: "How long does it take for an investment in index funds to break even after a market crash?",
-      answer: "Historical S&P 500 recovery periods after major crashes: 2000–2002 dot-com crash (−49%): 7 years to nominal break-even (2007). 2008–2009 financial crisis (−57%): 5.4 years to nominal break-even (2013). 2020 COVID crash (−34%): 5 months to break-even. A 50% loss requires 100% gain to recover -- this asymmetry is why drawdown control matters. With dividends reinvested, break-even periods shorten by 1–2 years. Dollar-cost averaging during the crash (rather than sitting in cash) significantly shortens recovery because you buy units at lower prices, reducing your effective cost basis below the pre-crash level."
+      question: "How does adding regular contributions affect break-even timing?",
+      answer: "Regular monthly or annual contributions significantly accelerate your break-even point. For example, an initial $10,000 investment at 7% return with $500 monthly contributions will reach break-even in approximately 3-4 years, compared to 10+ years with no additional investments. The calculator factors in both the growth of your contributions and compound returns on all invested amounts.",
+    },
+    {
+      question: "Should I include dividend income in my expected return percentage?",
+      answer: "Yes, dividend income should be included in your total expected annual return if you're reinvesting dividends. Many dividend-paying stocks return 2-3% in dividends plus 5-7% in capital appreciation for a combined 7-10% return. Make sure to use your total expected return, not just capital appreciation, for the most accurate break-even calculation.",
+    },
+    {
+      question: "What if my investment has negative returns in some years?",
+      answer: "This calculator assumes a consistent annual return rate based on your input. Real investments experience volatility, so actual results will vary year to year. If you're concerned about downside risk, you might reduce your expected return assumption by 1-2% to be more conservative, or model different scenarios by running the calculator multiple times with different return rates.",
+    },
+    {
+      question: "Can this calculator help me compare investment options?",
+      answer: "Absolutely—run the calculator with different expected return rates to compare scenarios. For example, comparing a stock mutual fund at 8% annual return versus a bond fund at 4.5% will show you the break-even timing difference, helping you understand the trade-off between higher returns and lower risk. You can also adjust initial investment amounts to see how that impacts your timeline.",
+    },
+    {
+      question: "How does tax impact my break-even calculation?",
+      answer: "This calculator uses gross returns before taxes, but your actual break-even point depends on whether you're investing in a taxable account or tax-advantaged account like an IRA or 401(k). In taxable accounts, capital gains taxes and dividend taxes can reduce your net return by 15-37% depending on your tax bracket, potentially extending your break-even timeline by 1-3 years.",
     }
   ];
 
@@ -296,250 +312,317 @@ export default function InvestmentBreakEvenPointCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Investment Break-Even Point Calculator
-        </h2>
-        
-        <p className="mb-6">
-          Investing in cryptocurrencies can be both exciting and daunting due to the volatile nature of the market. One of the crucial aspects of investing is understanding when your investment will break even, meaning when the value of your investment equals the initial amount you put in, accounting for any fees. The Investment Break-Even Point Calculator is a tool designed to help investors determine this critical point, allowing them to make informed decisions about their trades. By knowing the break-even price, investors can strategize their entry and exit points more effectively.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in the world of investments. A miscalculation can lead to significant financial losses or missed opportunities. This calculator provides a reliable way to compute the break-even point by considering initial investment, current price, and associated fees. With the right data, investors can avoid the pitfalls of guesswork and make data-driven decisions. For those interested in further financial planning, our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> offers insights into managing loan repayments effectively.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator, gather information about your initial investment amount, the current price of the asset, and any fees incurred during the transaction. Enter these values into the respective fields to calculate your break-even point. This tool is intuitive and user-friendly, designed to provide results quickly and accurately. For a comprehensive understanding of your financial commitments, consider using our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check the fees associated with your investments. These can significantly impact your break-even point. Ensure you are aware of both upfront and hidden fees to avoid unexpected costs that could affect your investment strategy.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Investment Break-Even Point Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Investment Break-Even Point Calculator helps you determine exactly how long it will take for your investment to recover its initial capital outlay through returns and growth. This is a crucial metric for understanding your investment timeline and setting realistic expectations for wealth accumulation. Whether you're starting your first investment or comparing different portfolio strategies, knowing your break-even point provides clarity on your path to profitability.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, you'll need to input three key values: your initial investment amount (the lump sum you're starting with), your expected annual return rate (based on your asset allocation and historical benchmarks), and any regular periodic contributions (monthly or annual additions to your investment). The annual return rate should reflect your entire portfolio's expected performance—for example, a 60/40 stocks-to-bonds portfolio historically returns around 6-7% annually, while an aggressive 80/20 portfolio typically returns 8-9% annually.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator will show you the exact number of years until your investment breaks even, along with the projected total value at that break-even point. You can interpret this result as your 'payback period'—the time it takes to get your money back plus zero additional profit. Use this information to compare different scenarios: try adjusting your monthly contributions to see how that accelerates your timeline, or compare different expected return rates to understand the impact of choosing a more conservative versus aggressive portfolio strategy.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs as market conditions change. This ensures that your calculations remain relevant and accurate. Additionally, consider the impact of market volatility on your investments and adjust your strategy accordingly. Understanding these dynamics can help you optimize your investment outcomes.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Investment Break-Even Point Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Investment Break-Even Point Calculator is straightforward yet powerful. It calculates the break-even price by dividing the sum of the initial investment and fees by the current price of the asset. This formula is widely accepted in financial circles for its simplicity and effectiveness in determining the point at which an investment becomes profitable.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Break-Even Price = (Initial Investment + Fees) / Current Price
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Initial Investment = The amount of money initially invested</li>
-              <li>Fees = Total fees associated with the investment</li>
-              <li>Current Price = The current market price of the asset</li>
-            </ul>
+      {/* TABLE: Break-Even Timeline by Annual Return Rate */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Break-Even Timeline by Annual Return Rate</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how long it takes to reach break-even on a $10,000 initial investment with no additional contributions, based on different annual return percentages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Return Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Years to Break-Even</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Value at Break-Even</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Implied Portfolio Type</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33.4 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Conservative (High Bonds)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.7 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate Conservative (60% Bonds)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.9 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Balanced (50/50)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate Growth (60% Stocks)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.0 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Growth (80% Stocks)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.3 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Aggressive (90%+ Stocks)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.1 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Aggressive</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes annual compound growth with no withdrawals or additional contributions. Actual results will vary based on market conditions and volatility.</p>
+      </section>
+
+      {/* TABLE: Impact of Regular Monthly Contributions on Break-Even */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Regular Monthly Contributions on Break-Even</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how adding consistent monthly contributions to a $10,000 initial investment accelerates the break-even point at a 7% annual return rate.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Contribution</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Years to Break-Even</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Contributed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Investment Growth</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Break-Even Acceleration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0 (no contributions)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Baseline</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$250/month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.1 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22,300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.9 years faster</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$500/month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.9 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$28,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.3 years faster</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$750/month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$32,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0 years faster</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$1,000/month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.8 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$36,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$26,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.4 years faster</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume consistent monthly contributions and 7% annual compound returns. Results will vary with different return rates and contribution schedules.</p>
+      </section>
+
+      {/* TABLE: Break-Even Comparison: Different Investment Scenarios */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Break-Even Comparison: Different Investment Scenarios</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares break-even timelines across realistic investment scenarios to help you understand how strategy affects your timeline.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Initial Investment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Return</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Contribution</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Years to Break-Even</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Conservative Portfolio (Bonds/CDs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.7 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Conservative Portfolio (Bonds/CDs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Balanced Index Fund Portfolio</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Balanced Index Fund Portfolio</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.9 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Growth Stock Portfolio</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Growth Stock Portfolio</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.1 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Target-Date Fund (Age 40)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.0 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Target-Date Fund (Age 40)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.9 years</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Return rates reflect historical 10-year averages as of 2024. Actual returns vary yearly; past performance does not guarantee future results.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Run multiple scenarios with different return rates to understand best-case and worst-case break-even timelines—use 6% for a conservative estimate and 8% for an optimistic one based on your risk tolerance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Include dividend reinvestment in your expected return rate; reinvested dividends from stock funds (typically 2-3% annually) significantly accelerate break-even compared to portfolios that don't generate income.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this calculator alongside a compound interest calculator to project your total wealth at break-even, not just the recovery of your initial investment—you'll see how much additional profit you'll have earned by that milestone.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Adjust your expected return downward by 1-2% if you're investing in a taxable brokerage account to account for capital gains taxes, which can extend your break-even timeline by several months to over a year depending on your tax bracket.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using overly optimistic return rates without basis</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming 12-15% annual returns when historical stock market averages are closer to 10% can dramatically underestimate your actual break-even timeline. Stick to data-backed return assumptions: 4-5% for bonds, 8-10% for stocks, and 6-7% for balanced portfolios based on recent 20-year historical averages.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for inflation on your purchasing power</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Breaking even in nominal dollars doesn't mean your money has the same purchasing power as when you started. If you earn 5% returns but inflation averages 2.5%, your real return is only 2.5%, which will extend your break-even point for actual wealth accumulation significantly longer.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not including fees and expenses in expected returns</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many investors fail to subtract investment fees (expense ratios, advisory fees, trading costs) from their expected returns. An 8% expected return minus 1% in annual fees is really a 7% net return, which adds 1-2 years to your break-even timeline—a meaningful difference over decades.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Treating break-even as a profit target</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Break-even means you've recovered your initial investment with zero net gain, not that you've become wealthy. Many investors mistakenly believe reaching break-even is a stopping point, when it's actually just the beginning of accumulating real wealth and should be viewed as a milestone toward your larger financial goals.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in this formula plays a crucial role in determining the break-even point. The initial investment represents the capital you have put into the asset, while fees cover any costs incurred during the transaction. The current price reflects the market value of the asset, which can fluctuate based on market conditions. Understanding how these variables interact can help you make more informed investment decisions.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Several factors can influence the results of your break-even point calculation. Understanding these factors is essential for accurate and meaningful results. They interact in complex ways, and being aware of them can help you optimize your investment strategy.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-4">
-          Market volatility refers to the rapid and significant price changes in the market. It can greatly affect your break-even point as the current price of the asset fluctuates. High volatility can lead to unexpected changes in your investment's value, impacting your strategy.
-        </p>
-        <p className="mb-6">
-          To manage volatility, consider diversifying your portfolio and setting stop-loss orders to minimize potential losses. Additionally, stay informed about market trends and news that could impact asset prices. For more insights, check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Fees and Commissions
-        </h3>
-        <p className="mb-4">
-          Fees and commissions are costs associated with buying, selling, or holding an asset. They can significantly impact your break-even point by increasing the amount needed to cover your initial investment. Understanding the fee structure of your investments is crucial.
-        </p>
-        <p className="mb-6">
-          Different platforms and brokers have varying fee structures. Always read the fine print and compare fees across different services to ensure you are getting the best deal. This can help you minimize costs and improve your investment returns.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Investment Time Horizon
-        </h3>
-        <p className="mb-4">
-          The investment time horizon is the period you plan to hold your investment before selling it. A longer time horizon can allow for more market fluctuations, potentially smoothing out short-term volatility. However, it also requires patience and a long-term perspective.
-        </p>
-        <p className="mb-6">
-          Consider your financial goals and risk tolerance when determining your investment time horizon. Long-term investments may benefit from compound growth, while short-term investments might require more active management. Consult our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> for more financial planning tools.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Asset Liquidity
-        </h3>
-        <p className="mb-6">
-          Liquidity refers to how easily an asset can be bought or sold in the market without affecting its price. Highly liquid assets can be quickly converted to cash, while illiquid assets may take longer to sell and could incur additional costs. Liquidity can impact your ability to reach the break-even point, especially if you need to sell quickly.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Economic Conditions
-        </h3>
-        <p className="mb-6">
-          Economic conditions, such as inflation rates, interest rates, and overall economic growth, can influence asset prices and investment returns. Staying informed about economic trends can help you anticipate changes in market conditions and adjust your strategy accordingly. Consider consulting financial news sources and economic reports for the latest updates.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is an investment break-even point?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The investment break-even point is the point at which your total investment returns equal your initial capital outlay, meaning you've recovered your investment without any net gain or loss. For example, if you invested $10,000 and earned $10,000 in returns, your break-even point has been reached. This calculator helps you determine how long it typically takes to reach this milestone based on your expected annual return rate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate break-even with this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Input your initial investment amount, expected annual return percentage, and any additional periodic contributions. The calculator uses the compound interest formula to determine the exact time period needed to recover your initial investment. For instance, a $5,000 investment at 8% annual return will break even in approximately 9 years without additional contributions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the break-even calculator account for inflation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator shows nominal break-even in terms of absolute dollars, but for real purchasing power, you should subtract inflation from your expected return rate. If you expect 7% annual returns and inflation averages 2.5% annually, your real return is approximately 4.5%, which will extend your break-even timeline accordingly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's a realistic annual return rate to use?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Historical stock market returns average around 10% annually, while bonds typically return 4-5%, and savings accounts currently yield 4-5.5% as of 2024. Your expected return depends on your asset allocation and risk tolerance. Conservative portfolios may target 5-6%, while aggressive portfolios might assume 8-10% annual growth.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does adding regular contributions affect break-even timing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Regular monthly or annual contributions significantly accelerate your break-even point. For example, an initial $10,000 investment at 7% return with $500 monthly contributions will reach break-even in approximately 3-4 years, compared to 10+ years with no additional investments. The calculator factors in both the growth of your contributions and compound returns on all invested amounts.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include dividend income in my expected return percentage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, dividend income should be included in your total expected annual return if you're reinvesting dividends. Many dividend-paying stocks return 2-3% in dividends plus 5-7% in capital appreciation for a combined 7-10% return. Make sure to use your total expected return, not just capital appreciation, for the most accurate break-even calculation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my investment has negative returns in some years?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator assumes a consistent annual return rate based on your input. Real investments experience volatility, so actual results will vary year to year. If you're concerned about downside risk, you might reduce your expected return assumption by 1-2% to be more conservative, or model different scenarios by running the calculator multiple times with different return rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator help me compare investment options?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absolutely—run the calculator with different expected return rates to compare scenarios. For example, comparing a stock mutual fund at 8% annual return versus a bond fund at 4.5% will show you the break-even timing difference, helping you understand the trade-off between higher returns and lower risk. You can also adjust initial investment amounts to see how that impacts your timeline.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does tax impact my break-even calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator uses gross returns before taxes, but your actual break-even point depends on whether you're investing in a taxable account or tax-advantaged account like an IRA or 401(k). In taxable accounts, capital gains taxes and dividend taxes can reduce your net return by 15-37% depending on your tax bracket, potentially extending your break-even timeline by 1-3 years.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Research
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access comprehensive data and analysis on economic conditions and trends.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investor.gov/introduction-investing" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC Office of Investor Education and Advocacy - Investment Options Overview</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The SEC provides guidance on investment fundamentals, expected return rates, and how to evaluate different asset classes and their historical performance.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Investment Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Explore educational resources and guides on making informed investment decisions.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p550" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 550 - Investment Income and Expenses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on how investment income, capital gains, and losses are taxed, helping you understand the after-tax impact on your break-even calculation.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking and Investment Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Learn about banking regulations and investment protections available to consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/investing/average-stock-market-return/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate - Historical Stock Market Returns and Asset Allocation</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Bankrate provides current data on average annual stock returns by asset class, market conditions, and portfolio allocation types for accurate break-even modeling.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information for Investors
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Find official tax guidelines and information relevant to investment income.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Investment Strategies
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access detailed articles and tutorials on various investment strategies and concepts.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance and Investment Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Discover tools and resources to help manage your personal finances and investments.
-              </p>
-            </div>
+          <li>
+            <a href="https://retirementplans.vanguard.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Vanguard - How America Saves 2024 Investment Report</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Vanguard's research on retirement savings and investment returns provides realistic benchmarks for expected annual returns across different portfolio allocations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

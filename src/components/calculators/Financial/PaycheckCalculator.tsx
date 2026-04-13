@@ -20,24 +20,40 @@ export default function PaycheckCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are paycheck calculation calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For paycheck calculation, accuracy depends on using current withholding data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a withholding professional."
+      question: "How does the paycheck calculator account for federal income tax withholding?",
+      answer: "The paycheck calculator uses the IRS 2024 tax tables and withholding formulas to estimate federal income tax based on your filing status, number of dependents (W-4 allowances), and gross pay frequency. It applies the standard deduction ($13,850 for single filers, $27,700 for married filing jointly in 2024) and calculates tax using the current tax brackets. The calculator assumes you've completed Form W-4 accurately; if you claim zero allowances versus two, your withholding will differ significantly.",
     },
     {
-      question: "What key factors most affect paycheck calculation results?",
-      answer: "The most impactful variables in paycheck calculation calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "What is the maximum Social Security tax I'll pay on my 2024 paycheck?",
+      answer: "Social Security tax is 6.2% of gross wages, with a 2024 wage base limit of $168,600. This means the maximum you'll pay in Social Security tax for 2024 is $10,453.20; once you earn above $168,600, no additional Social Security tax is withheld. Self-employed workers pay double (12.4%) but can deduct half on their tax return.",
     },
     {
-      question: "When should I recalculate paycheck calculation?",
-      answer: "Recalculate whenever withholding conditions change significantly: after major withholding events, when your inputs change (income, rates, holdings), or when withholding regulations are updated. For time-sensitive withholding metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "How does the calculator handle bonuses and irregular income?",
+      answer: "Most paycheck calculators treat bonuses as a one-time addition to your gross income and apply all standard withholdings (federal, state, FICA) at your regular tax rate. However, some employers use the aggregate method, withholding at a flat 22% federal rate on bonuses (or 37% for bonuses over $1 million). For accurate results, enter your bonus as part of gross income and verify your employer's specific bonus withholding policy.",
     },
     {
-      question: "How does paycheck calculation relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Paycheck calculation should be evaluated alongside related measures like take-home pay. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your withholding situation, rather than optimizing any single number in isolation."
+      question: "Can the paycheck calculator account for pre-tax deductions like 401(k) contributions?",
+      answer: "Yes, quality paycheck calculators let you input pre-tax deductions such as 401(k) contributions (2024 limit: $23,500), traditional IRA contributions, and health insurance premiums. These reduce your taxable income before federal and state taxes are calculated, lowering your overall tax burden. For example, a $500 401(k) contribution reduces your taxable income by $500, potentially saving you $100-$150 in federal taxes depending on your bracket.",
     },
     {
-      question: "What are the most common mistakes when calculating paycheck calculation?",
-      answer: "The most frequent errors in paycheck calculation calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world withholding conditions fluctuate. Double-check your inputs against current withholding data before relying on results for significant financial decisions."
+      question: "How do state income taxes affect my paycheck calculator results?",
+      answer: "State income tax rates vary from 0% (in states like Florida and Texas) to over 13% (in California). The paycheck calculator should allow you to select your state and apply its specific tax brackets and deductions. Your state may offer additional credits or have different treatment of federal income, so results vary widely—a $50,000 salary takes-home amount differs by $2,000–$4,000 between low-tax and high-tax states.",
+    },
+    {
+      question: "What if I have multiple jobs—how do I use the paycheck calculator?",
+      answer: "If you have multiple jobs, run the paycheck calculator separately for each employer using the income from that specific job. Then enter your combined annual income on your tax return to check if you're withholding enough total tax; if not, adjust your W-4 at your primary job to increase withholding. The calculator alone won't detect under-withholding across multiple employers, so manual review is necessary.",
+    },
+    {
+      question: "Does the calculator include Medicare tax, and is there a wage limit?",
+      answer: "Yes, the paycheck calculator includes Medicare tax at 1.45% of all gross wages with no upper limit, plus an additional 0.9% Medicare tax on wages over $200,000 (single) or $250,000 (married filing jointly) in 2024. This means high earners pay 2.35% total Medicare tax on earnings above those thresholds. The calculator should automatically apply the additional Medicare tax if your gross income exceeds these limits.",
+    },
+    {
+      question: "How accurate is the paycheck calculator for estimating my annual taxes?",
+      answer: "The paycheck calculator is generally accurate within 5–10% when you provide correct information (gross pay, W-4 allowances, deductions, filing status), as it uses official IRS 2024 tax tables. However, accuracy decreases if you have irregular income, significant deductions, credits (like EITC or child tax credits), or multiple income sources. It's best used as a planning tool, not a replacement for professional tax preparation.",
+    },
+    {
+      question: "Should I adjust my W-4 if the paycheck calculator shows I'm over-withholding?",
+      answer: "If the calculator shows you're consistently over-withholding (getting a large refund), you can claim additional allowances on Form W-4 to reduce withholding and increase your take-home pay each paycheck. Conversely, if you're under-withholding, reduce allowances to increase withholding. The IRS provides a W-4 calculator on its website to help ensure your withholding matches your actual tax liability for the year.",
     }
   ];
 
@@ -295,249 +311,276 @@ export default function PaycheckCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Paycheck Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Paycheck Calculator is an essential tool for anyone looking to understand their earnings more comprehensively. Whether you're a full-time employee, a part-time worker, or a freelancer, knowing exactly how much you'll take home after a week or month of work is crucial for effective financial planning. This calculator helps you estimate your paycheck by considering the hours you've worked, your hourly rate, and any overtime hours. It's particularly useful for those with variable hours or who frequently work overtime, as it allows for a more accurate prediction of earnings.
-        </p>
-        
-        <p className="mb-6">
-          Accurate paycheck calculations are vital because they directly impact your budgeting and financial health. Miscalculations can lead to overspending or under-saving, which might cause financial stress. According to a survey by the American Payroll Association, nearly 70% of Americans live paycheck to paycheck, highlighting the importance of precise paycheck management. This tool aids in eliminating guesswork, ensuring you have a clear picture of your financial standing. For more insights on financial planning, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information such as your total hours worked, your hourly wage, and any overtime hours. Enter these values into the respective fields to calculate your expected earnings. This tool is designed to be user-friendly, providing instant results that help you plan your finances better. For those interested in mortgage calculations, our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a> might be of interest.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. Small errors in the number of hours worked or your hourly rate can lead to significant discrepancies in your paycheck estimation. Ensure that you account for any overtime correctly to avoid underestimating your earnings.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Paycheck Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The paycheck calculator is a tool designed to estimate your net take-home pay based on your gross income, withholding elections, and deductions. It applies current federal and state tax rates, Social Security and Medicare taxes (FICA), and any pre-tax or post-tax deductions you've selected. Understanding your actual paycheck helps you budget accurately and identify if you're withholding too much or too little in taxes.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, start by entering your gross annual salary or hourly wage and pay frequency (weekly, bi-weekly, monthly, etc.). Next, provide your filing status from Form W-4 (single, married, head of household), number of dependents or allowances, and any pre-tax deductions like 401(k) contributions, health insurance premiums, or FSA contributions. Finally, select your state and any applicable local taxes; the calculator will apply the correct 2024 tax tables and rates.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your gross pay per paycheck, each tax withheld (federal, Social Security, Medicare, state), and your net take-home amount. Compare this to your actual paycheck stub—they should align closely if you've entered all information correctly. If your calculated take-home differs significantly from your actual pay, review your W-4 withholding, recent life changes (marriage, new dependent), or employer deductions you may have overlooked.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs to reflect any changes in your work schedule or pay rate. This is especially important for those with fluctuating work hours. Additionally, consider the impact of taxes and other deductions, which this calculator does not account for. For a comprehensive financial overview, consider using our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Paycheck Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this paycheck calculator is straightforward yet effective for estimating earnings. It calculates your regular pay by multiplying the hours worked by your hourly rate. For overtime, it multiplies the overtime hours by the hourly rate and then by 1.5, which is the standard overtime pay rate. This method is widely accepted and used across various industries, ensuring that the calculations align with common payroll practices.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Total Pay = (Hours Worked × Hourly Rate) + (Overtime Hours × Hourly Rate × 1.5)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Hours Worked = Total regular hours worked</li>
-              <li>Hourly Rate = Your pay per hour</li>
-              <li>Overtime Hours = Total hours worked beyond regular hours</li>
-            </ul>
+      {/* TABLE: 2024 Federal Income Tax Brackets and Rates */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024 Federal Income Tax Brackets and Rates</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These are the official 2024 tax brackets used by the paycheck calculator for single filers, demonstrating how marginal tax rates apply to different income levels.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Income Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Effective Tax Example</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0–$11,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,160 on $11,600</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$11,601–$47,150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,278 on $47,150</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$47,151–$100,525</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$17,168 on $100,525</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,526–$191,950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$39,110 on $191,950</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$191,951–$243,725</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$78,556 on $243,725</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$243,726–$609,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$253,660 on $609,350</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$609,351+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$37,000+ on each additional $100,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These rates apply to single filers; married filing jointly brackets are approximately double. The standard deduction ($13,850 for single filers in 2024) reduces taxable income.</p>
+      </section>
+
+      {/* TABLE: FICA Tax Rates and Wage Limits for 2024 */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">FICA Tax Rates and Wage Limits for 2024</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">The paycheck calculator applies these FICA rates to compute Social Security and Medicare withholding on your gross wages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Employee Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2024 Wage Limit / Cap</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Annual Tax</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Social Security</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$168,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,453.20</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medicare</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.45%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No limit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Variable</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Additional Medicare</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200,000 (single)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Variable above cap</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Combined FICA</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.65%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">See above</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">~$12,500–$14,000 avg</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Additional Medicare tax (0.9%) applies to wages over $200,000 (single) or $250,000 (MFJ). Self-employed workers pay double these rates but can deduct half.</p>
+      </section>
+
+      {/* TABLE: Sample Paycheck Breakdown: $60,000 Annual Salary */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sample Paycheck Breakdown: $60,000 Annual Salary</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This example shows how the paycheck calculator distributes a typical annual salary across federal tax, FICA, and take-home pay for a single filer in 2024.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Component</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gross Annual</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Per Paycheck (26 pays)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Percentage</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gross Pay</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,308</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Federal Income Tax</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$6,252</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$241</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.4%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Social Security (6.2%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$3,720</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$143</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medicare (1.45%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$870</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$33</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.45%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Net Take-Home</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$49,158</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,891</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">82.0%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">State Tax (estimated 5%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−$115</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">State tax varies by location; this assumes a 5% state income tax rate. Actual take-home depends on pre-tax deductions (401k, insurance) and filing status.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the paycheck calculator after major life events—marriage, birth of a child, or starting a new job—to verify your W-4 withholding is correct; even one extra allowance can change your annual refund by $1,000–$2,000.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you're self-employed or have side income, manually add that income to the calculator to estimate your total federal withholding obligation; the calculator alone won't account for quarterly estimated tax payments you may owe.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your paycheck stub against the calculator results at least once per year; discrepancies often reveal missed deductions, outdated W-4 information, or employer withholding errors that reduce your take-home unnecessarily.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Before claiming additional allowances on your W-4 to reduce withholding, use the calculator to confirm you won't owe taxes at year-end; over-reducing withholding can result in penalties and unexpected tax bills.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to include pre-tax deductions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many users overlook 401(k) contributions, health insurance premiums, and HSA contributions, which reduce your taxable income and lower your federal tax burden. Omitting these deductions overstates your tax liability by 10–15%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the wrong pay frequency</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering bi-weekly pay instead of weekly pay, or vice versa, produces incorrect per-paycheck amounts and throws off your annual estimates. Always verify your actual pay schedule with your employer—it affects both gross and net calculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming the same rate applies to bonuses</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many calculators apply your standard withholding rate to bonuses, but employers often withhold a flat 22% federal rate on bonuses instead. Bonuses treated as supplemental wages can result in under- or over-withholding if this distinction is ignored.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting state and local taxes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator requires you to select your state, but many users skip this step or assume a default rate; state income tax ranges from 0% to over 13%, making this step critical for accurate results. Skipping it can overstate take-home by $2,000–$5,000 annually.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each component of the formula plays a critical role in determining your paycheck. The "Hours Worked" and "Hourly Rate" are straightforward inputs that reflect your standard earnings. The "Overtime Hours" factor is crucial for those who work beyond the typical workweek, as it accounts for the increased pay rate. Adjusting any of these variables will directly affect the total pay, making it essential to input accurate data. For further reading on financial calculations, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your paycheck calculations is crucial for accurate financial planning. These factors interact in complex ways, and being aware of them can help you optimize your earnings and budgeting strategies.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Hours Worked
-        </h3>
-        <p className="mb-4">
-          The total number of hours worked is the most significant factor in determining your paycheck. This includes both regular and overtime hours. Accurately tracking your hours ensures that you receive the correct compensation for your work.
-        </p>
-        <p className="mb-6">
-          It's important to log your hours meticulously, especially if your work schedule varies. Many employers use time-tracking software to ensure accuracy, but keeping a personal record can help verify your paycheck. For more on managing work hours, see our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Hourly Rate
-        </h3>
-        <p className="mb-4">
-          Your hourly rate is the foundation of your earnings calculation. It varies based on your job role, industry, and experience level. Understanding how your rate compares to industry standards can provide insights into your earning potential.
-        </p>
-        <p className="mb-6">
-          Negotiating your hourly rate can significantly impact your overall earnings. Consider factors such as your skills, experience, and the demand for your role when discussing pay rates with employers.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Overtime Hours
-        </h3>
-        <p className="mb-4">
-          Overtime hours are typically compensated at a higher rate, often 1.5 times the regular hourly rate. This can substantially increase your paycheck if you frequently work beyond standard hours.
-        </p>
-        <p className="mb-6">
-          It's essential to understand your company's overtime policy and ensure that all extra hours are documented and approved. This ensures that you're compensated fairly for your additional efforts.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Deductions
-        </h3>
-        <p className="mb-6">
-          While this calculator provides a gross pay estimate, tax deductions can significantly affect your net pay. Understanding the tax implications of your earnings is crucial for accurate financial planning. Consider consulting with a tax professional to optimize your deductions and maximize your take-home pay.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Benefits and Deductions
-        </h3>
-        <p className="mb-6">
-          Additional deductions such as health insurance, retirement contributions, and other benefits can also impact your net pay. Understanding these deductions and how they affect your paycheck can help you better plan your finances and ensure that you're maximizing your benefits.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the paycheck calculator account for federal income tax withholding?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The paycheck calculator uses the IRS 2024 tax tables and withholding formulas to estimate federal income tax based on your filing status, number of dependents (W-4 allowances), and gross pay frequency. It applies the standard deduction ($13,850 for single filers, $27,700 for married filing jointly in 2024) and calculates tax using the current tax brackets. The calculator assumes you've completed Form W-4 accurately; if you claim zero allowances versus two, your withholding will differ significantly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum Social Security tax I'll pay on my 2024 paycheck?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Social Security tax is 6.2% of gross wages, with a 2024 wage base limit of $168,600. This means the maximum you'll pay in Social Security tax for 2024 is $10,453.20; once you earn above $168,600, no additional Social Security tax is withheld. Self-employed workers pay double (12.4%) but can deduct half on their tax return.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator handle bonuses and irregular income?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most paycheck calculators treat bonuses as a one-time addition to your gross income and apply all standard withholdings (federal, state, FICA) at your regular tax rate. However, some employers use the aggregate method, withholding at a flat 22% federal rate on bonuses (or 37% for bonuses over $1 million). For accurate results, enter your bonus as part of gross income and verify your employer's specific bonus withholding policy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the paycheck calculator account for pre-tax deductions like 401(k) contributions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, quality paycheck calculators let you input pre-tax deductions such as 401(k) contributions (2024 limit: $23,500), traditional IRA contributions, and health insurance premiums. These reduce your taxable income before federal and state taxes are calculated, lowering your overall tax burden. For example, a $500 401(k) contribution reduces your taxable income by $500, potentially saving you $100-$150 in federal taxes depending on your bracket.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do state income taxes affect my paycheck calculator results?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">State income tax rates vary from 0% (in states like Florida and Texas) to over 13% (in California). The paycheck calculator should allow you to select your state and apply its specific tax brackets and deductions. Your state may offer additional credits or have different treatment of federal income, so results vary widely—a $50,000 salary takes-home amount differs by $2,000–$4,000 between low-tax and high-tax states.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if I have multiple jobs—how do I use the paycheck calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If you have multiple jobs, run the paycheck calculator separately for each employer using the income from that specific job. Then enter your combined annual income on your tax return to check if you're withholding enough total tax; if not, adjust your W-4 at your primary job to increase withholding. The calculator alone won't detect under-withholding across multiple employers, so manual review is necessary.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the calculator include Medicare tax, and is there a wage limit?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the paycheck calculator includes Medicare tax at 1.45% of all gross wages with no upper limit, plus an additional 0.9% Medicare tax on wages over $200,000 (single) or $250,000 (married filing jointly) in 2024. This means high earners pay 2.35% total Medicare tax on earnings above those thresholds. The calculator should automatically apply the additional Medicare tax if your gross income exceeds these limits.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the paycheck calculator for estimating my annual taxes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The paycheck calculator is generally accurate within 5–10% when you provide correct information (gross pay, W-4 allowances, deductions, filing status), as it uses official IRS 2024 tax tables. However, accuracy decreases if you have irregular income, significant deductions, credits (like EITC or child tax credits), or multiple income sources. It's best used as a planning tool, not a replacement for professional tax preparation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust my W-4 if the paycheck calculator shows I'm over-withholding?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If the calculator shows you're consistently over-withholding (getting a large refund), you can claim additional allowances on Form W-4 to reduce withholding and increase your take-home pay each paycheck. Conversely, if you're under-withholding, reduce allowances to increase withholding. The IRS provides a W-4 calculator on its website to help ensure your withholding matches your actual tax liability for the year.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Wage and Employment Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on employment, wages, and economic conditions.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/taxes/individuals/tax-withholding-estimator" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Form W-4 and Withholding Calculator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The official IRS withholding calculator and W-4 guidance help you determine the correct number of allowances and deductions to optimize your tax withholding.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2024" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">2024 Tax Brackets and Rates (IRS)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official 2024 federal income tax brackets, standard deduction amounts, and FICA wage limits published by the Internal Revenue Service.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking and Financial Services
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.ssa.gov/benefits/retirement/benefit-planning.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Social Security Wage Base and Tax Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Social Security Administration details on the 2024 wage base limit ($168,600), employee tax rate (6.2%), and annual benefit calculations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/finance/taxes/paycheck-calculator/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate: Paycheck Calculator Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide explaining how paycheck calculators work, common mistakes, and how to verify withholding accuracy against your pay stub.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

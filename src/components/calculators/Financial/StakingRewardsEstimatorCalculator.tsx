@@ -20,24 +20,40 @@ export default function StakingRewardsEstimatorCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are staking rewards calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For staking rewards, accuracy depends on using current APY vs APR data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a APY vs APR professional."
+      question: "What is staking and how does the rewards estimator calculate returns?",
+      answer: "Staking is the process of locking cryptocurrency in a blockchain network to validate transactions and earn rewards. The Staking Rewards Estimator calculates your annual percentage yield (APY) by multiplying your initial stake amount by the network's current reward rate, accounting for compound interest if rewards are automatically reinvested. For example, staking 10 ETH at a 3.5% APY would generate approximately 0.35 ETH in annual rewards, or about 0.029 ETH monthly.",
     },
     {
-      question: "What key factors most affect staking rewards results?",
-      answer: "The most impactful variables in staking rewards calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How often are staking rewards paid out?",
+      answer: "Staking reward frequency varies by blockchain network. Ethereum distributes rewards continuously, with new rewards added roughly every 12 seconds; Solana distributes rewards approximately every 4 seconds; Cardano distributes rewards weekly. The calculator's timeline projections will reflect your specific network's distribution schedule, allowing you to see daily, weekly, monthly, and annual accumulations.",
     },
     {
-      question: "When should I recalculate staking rewards?",
-      answer: "Recalculate whenever APY vs APR conditions change significantly: after major APY vs APR events, when your inputs change (income, rates, holdings), or when APY vs APR regulations are updated. For time-sensitive APY vs APR metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "Does the staking rewards estimator account for inflation and devaluation?",
+      answer: "The basic calculator estimates nominal rewards in cryptocurrency terms only—it does not factor in inflation or token price fluctuations. To understand real purchasing power gains, you should independently monitor the token's USD or fiat value alongside your rewards calculation. For example, if ETH rewards grow 3.5% annually but the token's value declines 10%, your real return would be approximately -6.5%.",
     },
     {
-      question: "How does staking rewards relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Staking rewards should be evaluated alongside related measures like validator risk. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your APY vs APR situation, rather than optimizing any single number in isolation."
+      question: "What happens to my staked assets if I need to withdraw early?",
+      answer: "Withdrawal timelines depend on your staking method and network. Solo stakers on Ethereum typically face 4-8 day unstaking periods; centralized exchange staking (like Coinbase or Kraken) often allows immediate unstaking. The estimator assumes your full stake remains locked for the entire calculation period; early withdrawals will reduce your actual rewards proportionally. Always verify the unstaking timeline before committing funds you may need sooner.",
     },
     {
-      question: "What are the most common mistakes when calculating staking rewards?",
-      answer: "The most frequent errors in staking rewards calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world APY vs APR conditions fluctuate. Double-check your inputs against current APY vs APR data before relying on results for significant financial decisions."
+      question: "How does compounding affect staking rewards over multiple years?",
+      answer: "Compounding reinvests your earned rewards back into staking, earning returns on both principal and accumulated rewards. The Staking Rewards Estimator typically includes a compounding toggle—enabling it shows exponential growth over time. For instance, staking $10,000 at 5% APY with monthly compounding yields $12,833 after 5 years, compared to $12,500 with simple interest—a $333 difference purely from reinvestment.",
+    },
+    {
+      question: "What factors cause staking APY rates to fluctuate?",
+      answer: "Staking APY depends on network inflation rates, total stake amount, validator count, and transaction volume. As more validators join a network (like Ethereum), rewards dilute across more participants, lowering individual APY. Conversely, if staking participation declines, remaining validators earn higher rewards. The calculator reflects current rates; you should monitor network trends weekly, as rates for major networks typically shift 0.5-2% quarterly.",
+    },
+    {
+      question: "Are staking rewards taxable, and does the calculator account for taxes?",
+      answer: "Yes, staking rewards are taxable as ordinary income in the United States and most jurisdictions. The IRS treats rewards as taxable in the year received at their fair market value on receipt date, not when you later sell the token. The Staking Rewards Estimator does not calculate tax liability; you must independently set aside 20-37% of estimated rewards (depending on your tax bracket) for federal taxes plus state and local obligations.",
+    },
+    {
+      question: "What is the difference between solo staking and pool/exchange staking rewards?",
+      answer: "Solo staking directly validates blocks and earns full network rewards minus only 0.5-1% operational costs; current solo staking on Ethereum yields approximately 3.2-3.5% APY. Pool and exchange staking involve delegating funds to validators who take 10-25% commission fees; Coinbase and Kraken staking typically returns 3.0-3.2% APY after fees. The calculator should allow you to input your specific fee structure to reflect net rewards accurately.",
+    },
+    {
+      question: "How should I validate that the calculator's reward estimates are accurate?",
+      answer: "Cross-reference the calculator's APY input with real-time data from Staking Rewards (stakingrewards.com), which tracks 100+ networks, or your chosen staking provider's dashboard. Manually verify monthly calculations: multiply stake × (APY/12) to confirm monthly rewards. Test with historical data—if you staked $1,000 six months ago at the calculator's stated APY, your actual rewards should match within 2-3%, accounting for rate fluctuations during that period.",
     }
   ];
 
@@ -291,261 +307,309 @@ export default function StakingRewardsEstimatorCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Staking Rewards Estimator
-        </h2>
-        
-        <p className="mb-6">
-          Staking has become an increasingly popular method for cryptocurrency holders to earn passive income. By participating in the staking process, individuals can contribute to the network's security and operations while earning rewards. This calculator is designed to help you estimate the potential rewards you can earn from staking your Proof-of-Stake (PoS) coins. Whether you're a seasoned investor or new to the crypto space, understanding your potential earnings is crucial for making informed decisions.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in the world of staking. With fluctuating interest rates and varying lock-up durations, it's easy to miscalculate potential earnings. This tool provides a reliable way to project your staking rewards, helping you plan your investments more effectively. By inputting your staked amount, expected annual interest rate, and lock-up duration, you can quickly see how much you might earn. This is especially useful for those looking to diversify their investment portfolio or maximize their crypto holdings. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator, you'll need to gather some basic information. Start by determining the amount of cryptocurrency you plan to stake. Next, research the annual interest rate offered by the staking platform or network. Finally, decide on the lock-up duration, which is the period your funds will be inaccessible. Once you have this data, enter it into the respective fields of the calculator. This will provide you with an estimate of your monthly and total rewards. For a deeper understanding, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Ensure you are aware of the lock-up duration and any potential penalties for early withdrawal. Staking can be a lucrative investment, but it's important to understand the terms and conditions of your chosen platform to avoid unexpected losses.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Staking Rewards Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Staking Rewards Estimator is a financial planning tool that projects your cryptocurrency earnings from blockchain staking activities. By entering your initial stake amount, the network's APY rate, and your staking timeline, the calculator shows you potential growth through daily, monthly, and annual compounding. Understanding these projections helps you set realistic expectations and compare staking opportunities across different blockchains and platforms.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator effectively, you'll need three key inputs: your cryptocurrency stake amount (in coins or USD equivalent), the annual percentage yield (APY) for your chosen network or staking provider, and your intended holding period (days, months, or years). APY rates fluctuate weekly based on network conditions—check your staking provider's dashboard or Staking Rewards' website for current rates before calculating. Be sure to select the correct compounding frequency (daily, monthly, or annually) and factor in any fees charged by pools or exchanges, which typically range from 5-20% of gross rewards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator's output shows your projected total balance and accumulated rewards broken down by time period. Compare the 'with compounding' versus 'without compounding' scenarios to understand reinvestment impact—compounding can add 5-15% extra gains over 5+ years. Remember that results are nominal and don't account for token price volatility, tax obligations, or inflation; also verify that your staking method's actual unstaking timeline matches your withdrawal assumptions to avoid miscalculating liquidity needs.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for optimizing your staking rewards include regularly monitoring interest rates and staying informed about network updates. Some platforms offer higher rates for longer lock-up periods, while others might provide bonuses for staking larger amounts. By staying proactive and adjusting your strategy as needed, you can maximize your earnings. Always consider the risk factors and potential changes in the market that could affect your returns.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Staking Rewards Estimator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is based on the compound interest model, which is a standard approach for calculating staking rewards. This model considers the initial staked amount, the annual interest rate, and the lock-up duration to project the total value of your investment over time. The compound interest formula is widely recognized for its accuracy in financial calculations, making it a reliable choice for estimating staking rewards.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          A = P(1 + r/n)^(nt)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>P = Initial staked amount</li>
-              <li>r = Annual interest rate (decimal)</li>
-              <li>n = Number of times interest is compounded per year</li>
-              <li>t = Time in years</li>
-            </ul>
+      {/* TABLE: Current Staking APY Rates by Major Blockchain (April 2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Current Staking APY Rates by Major Blockchain (April 2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows real-time annual percentage yield across the largest proof-of-stake networks to help calibrate your estimator inputs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Blockchain Network</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Current APY (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Solo Staking Min. Stake</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Pool Fee (%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ethereum (ETH)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.2-3.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32 ETH (~$128,000)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Solana (SOL)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5-8.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.01 SOL (no minimum)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cardano (ADA)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.8-4.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 ADA (no fixed minimum)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Polkadot (DOT)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5-13.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 DOT (no minimum)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Avalanche (AVAX)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.5-10.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000 AVAX (~$80,000)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cosmos (ATOM)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.0-20.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 ATOM (no minimum)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Polygon (MATIC)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5-3.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 MATIC (delegated)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-20</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Litecoin (LTC)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">PoW (no staking)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates as of April 2025 and subject to change based on network conditions. APY figures exclude validator fees; pool fees reduce effective returns. Solo staking minimums vary; consult your chosen network's documentation.</p>
+      </section>
+
+      {/* TABLE: Staking Rewards Growth: $10,000 Principal Over Time */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Staking Rewards Growth: $10,000 Principal Over Time</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This projection shows how $10,000 grows with monthly compounding at various APY rates typical of current staking platforms.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time Period</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">3% APY</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5% APY</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">8% APY</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">12% APY</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1 month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,025</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,042</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,067</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,100</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,151</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,253</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,402</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,617</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1 year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,304</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,512</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,830</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,268</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,927</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,592</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,704</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,049</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,614</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,833</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,898</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$17,623</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$13,494</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$16,470</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22,196</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$31,058</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume monthly compounding of rewards and stable APY throughout the period. Actual results vary based on rate fluctuations, validator changes, and network conditions. Does not account for transaction fees or taxes.</p>
+      </section>
+
+      {/* TABLE: Tax Implications of Staking Rewards (U.S. Federal Rates) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tax Implications of Staking Rewards (U.S. Federal Rates)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This guide estimates federal tax liability on annual staking rewards by filing status and income bracket, helping you plan for tax obligations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Staking Rewards</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Filer (22% Bracket)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Filer (35% Bracket)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly (22%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly (35%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$350</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,750</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$17,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$17,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are federal income tax estimates only; add 0-13% for state/local taxes depending on your jurisdiction. Rewards are taxed in the year received at fair market value. Always consult a tax professional for personalized guidance.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Lock in your current APY rate by noting the exact percentage when you begin staking—screenshot your provider's dashboard weekly to track rate changes and understand how network participation affects your future earnings.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Maximize compounding returns by enabling automatic reward reinvestment if your staking provider offers it; this can increase 5-year gains by $500-$2,000+ per $10,000 staked versus manually claiming rewards periodically.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Subtract validator or pool fees from the calculator's base APY before projecting—if APY is 8% but fees are 15%, your actual return is approximately 6.8%; enter this adjusted rate for realistic estimates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the estimator's timeline feature to stress-test different lockup periods and identify your break-even point; for example, if unstaking takes 7 days and you need emergency access, calculate 6-month projections instead of 1-year to stay conservative.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing APY with APR</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">APY (annual percentage yield) includes compounding effects, while APR (annual percentage rate) does not. Staking rewards are typically quoted as APY, so using APR calculations will underestimate your actual earnings by 0.2-0.5% annually depending on compounding frequency.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring fee drag over time</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Validator or exchange fees of 10-15% seem minor but compound into significant losses over years. A $10,000 stake at 7% APY with 12% fees yields only $5,800 after 5 years instead of $7,400—a $1,600 difference that many calculators don't automatically deduct.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming rates remain constant</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Staking APY fluctuates 1-3% annually as network participation changes. The calculator shows static projections, but relying on today's 8% rate for a 5-year plan could overestimate returns by 15-20% if rates drop to 5-6% as more validators join.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to reserve for taxes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Staking rewards are taxed as ordinary income the moment you receive them, not when you sell. Many users assume they'll cover taxes later but face penalties; reserve 20-37% of projected rewards now to avoid year-end surprises.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining your final earnings. The initial staked amount (P) is the principal investment, while the annual interest rate (r) reflects the percentage gain on your investment. The number of compounding periods per year (n) can vary depending on the platform, but monthly compounding is common in staking. Finally, the time (t) is the lock-up duration expressed in years. Adjusting any of these variables will impact the total value of your staked coins.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your staking rewards is essential for optimizing your investment strategy. These factors interact in complex ways, and being aware of them can help you make more informed decisions.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Staked Amount
-        </h3>
-        <p className="mb-4">
-          The amount of cryptocurrency you choose to stake directly affects your potential rewards. Larger staked amounts typically yield higher returns due to the nature of compound interest. For example, staking $10,000 at a 5% annual interest rate will generate more rewards than staking $1,000 at the same rate.
-        </p>
-        <p className="mb-6">
-          To maximize your earnings, consider staking as much as you can comfortably afford. However, always ensure you have enough liquidity for other investments or expenses. For more strategies, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The annual interest rate offered by the staking platform is a critical factor in determining your rewards. Higher rates lead to greater earnings, but they may also come with increased risk. It's important to research and compare rates across different platforms to find the best option for your needs.
-        </p>
-        <p className="mb-6">
-          Keep in mind that interest rates can fluctuate based on market conditions and network performance. Regularly reviewing your staking strategy and adjusting your investments accordingly can help you take advantage of favorable rates.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Lock-up Duration
-        </h3>
-        <p className="mb-4">
-          The lock-up duration is the period during which your staked funds are inaccessible. Longer durations often result in higher rewards due to the extended compounding period. However, they also increase the risk of market volatility affecting your investment.
-        </p>
-        <p className="mb-6">
-          Consider your financial goals and risk tolerance when choosing a lock-up duration. If you anticipate needing access to your funds in the near future, opt for a shorter duration. For more insights, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Network Performance
-        </h3>
-        <p className="mb-6">
-          The overall performance of the blockchain network can impact your staking rewards. Factors such as network congestion, security, and governance decisions can influence interest rates and reward distribution. Staying informed about network updates and developments is crucial for managing your staking strategy effectively.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Platform Fees
-        </h3>
-        <p className="mb-6">
-          Many staking platforms charge fees for their services, which can reduce your overall earnings. These fees may be a flat rate or a percentage of your rewards. It's important to factor in these costs when calculating your potential returns. Look for platforms with competitive fees and transparent policies to maximize your profits.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-                {faq.answer.split("For more financial tools, explore our Refinance Savings Calculator.")[0]}
-                {faq.answer.includes("Refinance Savings Calculator") && (
-                  <>
-                    For more financial tools, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-                  </>
-                )}
-                {faq.answer.split("For further guidance, consult a financial advisor or explore our HELOC Payment Estimator for additional insights.")[0] !== faq.answer && (
-                  <>
-                    {faq.answer.split("For further guidance, consult a financial advisor or explore our HELOC Payment Estimator for additional insights.")[0]}
-                    For further guidance, consult a financial advisor or explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> for additional insights.
-                  </>
-                )}
-              </p>
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is staking and how does the rewards estimator calculate returns?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Staking is the process of locking cryptocurrency in a blockchain network to validate transactions and earn rewards. The Staking Rewards Estimator calculates your annual percentage yield (APY) by multiplying your initial stake amount by the network's current reward rate, accounting for compound interest if rewards are automatically reinvested. For example, staking 10 ETH at a 3.5% APY would generate approximately 0.35 ETH in annual rewards, or about 0.029 ETH monthly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often are staking rewards paid out?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Staking reward frequency varies by blockchain network. Ethereum distributes rewards continuously, with new rewards added roughly every 12 seconds; Solana distributes rewards approximately every 4 seconds; Cardano distributes rewards weekly. The calculator's timeline projections will reflect your specific network's distribution schedule, allowing you to see daily, weekly, monthly, and annual accumulations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the staking rewards estimator account for inflation and devaluation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The basic calculator estimates nominal rewards in cryptocurrency terms only—it does not factor in inflation or token price fluctuations. To understand real purchasing power gains, you should independently monitor the token's USD or fiat value alongside your rewards calculation. For example, if ETH rewards grow 3.5% annually but the token's value declines 10%, your real return would be approximately -6.5%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens to my staked assets if I need to withdraw early?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Withdrawal timelines depend on your staking method and network. Solo stakers on Ethereum typically face 4-8 day unstaking periods; centralized exchange staking (like Coinbase or Kraken) often allows immediate unstaking. The estimator assumes your full stake remains locked for the entire calculation period; early withdrawals will reduce your actual rewards proportionally. Always verify the unstaking timeline before committing funds you may need sooner.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does compounding affect staking rewards over multiple years?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Compounding reinvests your earned rewards back into staking, earning returns on both principal and accumulated rewards. The Staking Rewards Estimator typically includes a compounding toggle—enabling it shows exponential growth over time. For instance, staking $10,000 at 5% APY with monthly compounding yields $12,833 after 5 years, compared to $12,500 with simple interest—a $333 difference purely from reinvestment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors cause staking APY rates to fluctuate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Staking APY depends on network inflation rates, total stake amount, validator count, and transaction volume. As more validators join a network (like Ethereum), rewards dilute across more participants, lowering individual APY. Conversely, if staking participation declines, remaining validators earn higher rewards. The calculator reflects current rates; you should monitor network trends weekly, as rates for major networks typically shift 0.5-2% quarterly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are staking rewards taxable, and does the calculator account for taxes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, staking rewards are taxable as ordinary income in the United States and most jurisdictions. The IRS treats rewards as taxable in the year received at their fair market value on receipt date, not when you later sell the token. The Staking Rewards Estimator does not calculate tax liability; you must independently set aside 20-37% of estimated rewards (depending on your tax bracket) for federal taxes plus state and local obligations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between solo staking and pool/exchange staking rewards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Solo staking directly validates blocks and earns full network rewards minus only 0.5-1% operational costs; current solo staking on Ethereum yields approximately 3.2-3.5% APY. Pool and exchange staking involve delegating funds to validators who take 10-25% commission fees; Coinbase and Kraken staking typically returns 3.0-3.2% APY after fees. The calculator should allow you to input your specific fee structure to reflect net rewards accurately.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I validate that the calculator's reward estimates are accurate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cross-reference the calculator's APY input with real-time data from Staking Rewards (stakingrewards.com), which tracks 100+ networks, or your chosen staking provider's dashboard. Manually verify monthly calculations: multiply stake × (APY/12) to confirm monthly rewards. Test with historical data—if you staked $1,000 six months ago at the calculator's stated APY, your actual rewards should match within 2-3%, accounting for rate fluctuations during that period.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Cryptocurrency Insights
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on cryptocurrency regulations and economic impacts.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/pub/irs-drop/n-14-21.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Notice 2014-21: Virtual Currency Taxation</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The IRS guidance establishing that cryptocurrency rewards, including staking income, are taxable as ordinary income in the year received.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Investment Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.stakingrewards.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Staking Rewards — Live APY Tracker</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Real-time staking APY rates, validator information, and risk assessments across 100+ blockchain networks updated continuously.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking and Investment Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/cryptocurrency-bitcoin-and-blockchain" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC's Investor Alert on Staking Services</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The SEC's guidance on cryptocurrency staking risks, including custody concerns and potential securities law implications of certain staking platforms.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Cryptocurrency Tax Guidelines
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information for cryptocurrency.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Staking and Investment Strategies
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Cryptocurrency Investment Tips
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://ethereum.org/en/staking/faq/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Ethereum 2.0 Staking FAQs — Ethereum.org</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official Ethereum Foundation documentation on staking mechanics, APY calculations, unstaking timelines, and technical requirements for solo and pool staking.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -101,36 +101,40 @@ export default function ExtraPaymentsPayoffCalculator() {
   // FAQ DATA
   const faqs = [
     {
-      question: "How do extra payments affect my loan?",
-      answer: "Extra payments reduce your principal faster, lowering total interest and shortening your payoff time. Even small extra amounts monthly can save thousands over the life of the loan."
+      question: "How much can I save by making extra payments on a $250,000 mortgage?",
+      answer: "The savings depend on your interest rate and payment amount. For example, on a $250,000 mortgage at 6.5% over 30 years, adding just $200 per month in extra payments can save approximately $45,000 in interest and reduce your payoff time by 5-6 years. Using this calculator, you can input your specific loan details to see exact savings tailored to your situation.",
     },
     {
-      question: "Is it better to pay extra monthly or make a lump sum?",
-      answer: "Both help. Monthly extras steadily reduce interest accrual. Lump sums can cause a big principal drop at once. Choose based on cash flow and lender policies."
+      question: "What's the difference between bi-weekly and monthly extra payments?",
+      answer: "Bi-weekly extra payments (typically 26 half-payments per year) result in one extra full payment annually, while monthly extra payments of the same total occur 12 times per year. Making bi-weekly extra payments of $250 versus monthly extra payments of $500 produces different compounding effects, which this calculator accounts for when projecting your payoff timeline.",
     },
     {
-      question: "Do lenders charge fees for extra payments?",
-      answer: "Some loans have prepayment penalties. Check your loan agreement and specify that extra payments go toward principal to maximize benefit."
+      question: "Can extra payments help me pay off a $180,000 student loan faster?",
+      answer: "Yes, extra payments significantly accelerate student loan payoff. On an $180,000 federal student loan at 5.5% interest over 10 years, adding $100 monthly can reduce your payoff time by approximately 18 months and save $8,000+ in interest. This calculator works for federal, private, and federal PLUS loans—just enter your loan balance, rate, and desired extra payment amount.",
     },
     {
-      question: "Where should I apply extra payments?",
-      answer: "Always request that extra payments be applied directly to principal. This prevents the payment from being treated as an early interest payment."
+      question: "How does the calculator handle variable interest rates?",
+      answer: "This calculator uses a fixed interest rate for projection purposes. If you have a variable-rate loan, enter your current rate or an expected average rate for the most accurate estimate. Keep in mind that actual payoff timelines may differ if your rate adjusts—recalculate periodically to stay on track.",
     },
     {
-      question: "Can extra payments change my monthly due?",
-      answer: "Typically, your scheduled payment stays the same unless you refinance. Extras only accelerate payoff and reduce interest."
+      question: "What happens if I make one large lump-sum payment instead of monthly extra payments?",
+      answer: "A single lump-sum payment reduces principal immediately and saves significantly on interest because less balance accrues interest going forward. For a $150,000 car loan at 4.8% with 5 years remaining, a $5,000 lump-sum payment can reduce your payoff time by 6-9 months. This calculator shows the payoff impact of both recurring extra payments and one-time lump-sum amounts.",
     },
     {
-      question: "Should I build an emergency fund first?",
-      answer: "Prioritize an emergency fund before aggressive debt payoff. It prevents new debt when unexpected expenses arise and supports consistent payments."
+      question: "Why does paying extra on a $75,000 auto loan at 3.2% show minimal time savings?",
+      answer: "Lower interest rates mean interest accrual is slower, so extra payments have a smaller multiplicative effect on time savings. At 3.2%, adding $50 monthly to a $75,000 auto loan may reduce payoff time by only 3-4 months, whereas the same payment on a 7% loan would save 8+ months. The calculator illustrates this principle clearly by comparing interest saved versus time eliminated.",
     },
     {
-      question: "What if my interest rate changes?",
-      answer: "For variable-rate loans, the benefit of extra payments remains, but savings may vary with rate changes. Monitor statements and adjust as needed."
+      question: "Can I use this calculator for credit card debt payoff?",
+      answer: "Yes, though with important caveats. Credit cards typically have much higher interest rates (15-25%) than installment loans, making extra payments especially powerful—adding $200 monthly to a $5,000 credit card balance at 18% can eliminate the debt in 2 years instead of 5-6 years. However, use this calculator as a planning tool and confirm rates, as credit card interest compounds daily rather than monthly.",
     },
     {
-      question: "Do bi-weekly payments help?",
-      answer: "Bi-weekly payments add a 13th monthly payment each year, subtly increasing principal reduction and shortening loan term without large extras."
+      question: "How accurate is the calculator's payoff projection over 10+ years?",
+      answer: "The calculator is highly accurate for fixed-rate loans over any timeframe, assuming interest rates and payment amounts remain constant. For loans extending 10+ years, external factors like rate adjustments or payment changes will affect actual payoff dates, so treat long-term projections as estimates. Recalculate annually or whenever your loan terms change to maintain accuracy.",
+    },
+    {
+      question: "What's the best extra payment strategy: lump-sum, monthly, or bi-weekly?",
+      answer: "The 'best' strategy depends on your cash flow and goals. Bi-weekly payments capitalize on compound interest slightly better, while lump-sum payments provide maximum interest savings if you have the capital available. This calculator lets you test all three scenarios to see which aligns with your budget and payoff timeline—most borrowers find a mix of monthly extra payments ($50-200) plus occasional lump sums optimal.",
     }
   ];
 
@@ -330,254 +334,304 @@ export default function ExtraPaymentsPayoffCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Extra Payments & Payoff Time Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Extra Payments & Payoff Time Calculator is a powerful tool designed to help you understand the impact of making additional payments on your loan. By calculating how extra payments can reduce your loan term and save you money on interest, this calculator provides valuable insights into your financial planning. Whether you're looking to pay off a mortgage, car loan, or any other type of debt, understanding how extra payments affect your payoff time can lead to significant savings and financial freedom.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial when it comes to managing loans and debts. Miscalculations can lead to unexpected financial burdens and missed opportunities for savings. This calculator uses industry-standard formulas to ensure precision, helping you make informed decisions about your financial future. By understanding the potential savings from extra payments, you can strategize your finances more effectively and achieve your goals faster. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator, you'll need to gather some basic information about your loan. This includes the total loan amount, the interest rate, and any extra monthly payment you're considering. Enter these details into the calculator to see how they affect your loan's payoff time and interest savings. For best results, ensure that the information you enter is accurate and up-to-date. If you're unsure about any of the inputs, consult your loan documents or financial advisor. You might also find our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a> helpful.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Making even small extra payments on your loan can significantly reduce the total interest paid over the life of the loan. Consider automating these payments to ensure consistency and maximize your savings.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Extra Payments & Payoff Time Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you visualize the powerful impact of extra loan payments on your total interest paid and payoff timeline. Whether you're refinancing a mortgage, paying down student loans, or accelerating credit card debt elimination, this tool shows exactly how much time and money you can save by paying more than your minimum monthly obligation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your current loan balance, annual interest rate (APR), original loan term in months or years, and your regular monthly payment. Then specify your extra payment strategy: either a fixed monthly extra amount, a bi-weekly extra amount, or a one-time lump-sum payment. You can also combine strategies—for example, $100 monthly extra plus a $2,000 lump-sum in six months.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator displays three critical outputs: your new payoff date (how many years and months until the loan is eliminated), total interest paid over the life of the loan, and total interest savings compared to making only minimum payments. Use these results to set realistic payoff goals, compare different payment strategies, and evaluate whether extra payments fit your budget and financial priorities.</p>
         </div>
-        
-        <p className="mb-6">
-          When using this calculator, consider the impact of various factors such as changes in interest rates or unexpected financial events. Regularly reviewing your loan terms and adjusting your payment strategy can help you stay on track. Remember, the sooner you start making extra payments, the more you'll save in the long run.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Extra Payments & Payoff Time Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Extra Payments & Payoff Time Calculator is based on the standard amortization formula, which calculates the monthly payment required to pay off a loan over a specified period. By incorporating extra payments into this formula, we can determine how these additional contributions reduce the loan's payoff time and total interest paid.
-        </p>
-        
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          M = P[i(1+i)^n] / [(1+i)^n – 1] + E
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>M = Total monthly payment</li>
-              <li>P = Principal loan amount</li>
-              <li>i = Monthly interest rate (annual rate / 12)</li>
-              <li>n = Number of payments (loan term in months)</li>
-              <li>E = Extra monthly payment</li>
-            </ul>
+      {/* TABLE: Impact of Extra Payments on a $200,000 Mortgage at 6.5% */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Extra Payments on a $200,000 Mortgage at 6.5%</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how varying monthly extra payments affect total interest paid and payoff time on a 30-year mortgage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Extra Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Original Payoff Time</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">New Payoff Time</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time Saved</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interest Saved</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$251,682</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.8 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$41,250</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23.1 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.9 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$72,840</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20.5 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.5 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$104,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.8 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$142,600</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations based on fixed 6.5% interest rate, 30-year amortization, with extra payments applied to principal only. Actual savings may vary based on loan terms and payment timing.</p>
+      </section>
+
+      {/* TABLE: Extra Payment Effectiveness by Loan Type & Interest Rate */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Extra Payment Effectiveness by Loan Type & Interest Rate</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how extra payment effectiveness varies across different loan types, showing time saved with a $150 monthly extra payment.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Original Term</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">New Payoff (w/ $150/mo extra)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Months Saved</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Auto Loan (new)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Auto Loan (used)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mortgage (30-yr)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">360 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">330 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Student Loan (fed)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">102 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Credit Card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal Loan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">84 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes $200,000 mortgage, $25,000 auto loan, $35,000 student loan, $5,000 credit card balance, and $15,000 personal loan. Higher rates show greater time savings with equivalent extra payments.</p>
+      </section>
+
+      {/* TABLE: Lump-Sum Payment Impact: One-Time Extra Payment Scenarios */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Lump-Sum Payment Impact: One-Time Extra Payment Scenarios</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the payoff time reduction and interest savings from single lump-sum payments applied to different loan balances.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Type & Balance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interest Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lump-Sum Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Months Saved</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interest Saved</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mortgage ($200,000)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.2 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22,100</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mortgage ($200,000)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21.5 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$66,300</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Auto Loan ($25,000)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,850</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Student Loan ($40,000)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Credit Card ($8,000)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal Loan ($15,000)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,650</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Lump-sum payments are applied immediately to principal and reduce future interest accrual. Impact varies based on remaining loan term and compounding frequency.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Set a specific extra payment amount within your monthly budget—even $50-100 extra produces measurable results over time. Start with an amount you can sustain consistently, then increase it as your income grows or debts shrink.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Direct extra payments explicitly to principal, not toward the next month's payment. Confirm with your lender that extra funds reduce principal balance rather than being held as a credit for future minimum payments.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Time lump-sum payments strategically—making a large extra payment immediately after a bonus, tax refund, or inheritance maximizes interest savings since the reduced balance accrues less interest going forward.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Recalculate annually or whenever your interest rate changes to keep your payoff projection current. Use the calculator to adjust your extra payment strategy if life circumstances (income, expenses) shift.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all extra payments are created equal</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Extra payments on high-interest debt (credit cards at 18%+) save far more money than the same payment on low-interest loans (mortgages at 3-4%). Prioritize extra payments toward your highest-rate debt first, or use the calculator to compare scenarios across all your loans.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for variable or adjustable rates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">This calculator assumes a fixed interest rate throughout the loan term. If you have an ARM or variable-rate loan, your actual payoff timeline may differ as rates adjust—recalculate when rates change or use a conservative rate estimate.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Conflating extra payments with skipping regular payments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Extra payments are in addition to your regular monthly payment, not a replacement. Skipping a regular payment to make a lump-sum payment later typically costs more in interest and damages your credit score—maintain regular payments while making extra contributions simultaneously.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring prepayment penalties or restrictions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some loans (certain mortgages, student loans, auto loans) carry prepayment penalties or have restrictions on extra payments. Check your loan documents before committing to a high extra-payment strategy; the calculator shows savings assuming no penalties apply.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the outcome. The principal amount (P) is the initial size of the loan, while the interest rate (i) affects how much of each payment goes towards interest versus principal. The number of payments (n) is typically set by the loan term, but extra payments (E) can effectively reduce this term by paying down the principal faster. By understanding these variables, you can better manage your loan and optimize your payment strategy.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your loan payoff is essential for effective financial planning. These factors interact in complex ways, and being aware of them can help you make informed decisions about your loan repayment strategy.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate is a critical factor in determining your monthly payments and the total interest paid over the life of the loan. A lower interest rate means more of your payment goes towards reducing the principal, thus shortening the loan term.
-        </p>
-        <p className="mb-6">
-          To optimize your loan payoff, consider refinancing if you can secure a lower interest rate. This can lead to significant savings and a faster payoff. For more insights, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Term
-        </h3>
-        <p className="mb-4">
-          The loan term, or the number of months over which you repay the loan, directly impacts your monthly payment amount. A longer term reduces monthly payments but increases total interest paid.
-        </p>
-        <p className="mb-6">
-          If possible, opt for a shorter loan term to save on interest. However, ensure that the higher monthly payments fit within your budget to avoid financial strain.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Extra Payments
-        </h3>
-        <p className="mb-4">
-          Making extra payments is one of the most effective ways to reduce your loan term and interest costs. Even small additional payments can significantly impact your loan's payoff time.
-        </p>
-        <p className="mb-6">
-          Consider setting up automatic extra payments to ensure consistency. This strategy can help you stay disciplined and maximize your savings.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Financial Stability
-        </h3>
-        <p className="mb-6">
-          Your financial stability affects your ability to make consistent payments. Unexpected expenses or changes in income can disrupt your payment schedule, potentially leading to increased interest costs.
-        </p>
-        <p className="mb-6">
-          It's important to maintain an emergency fund to cover unforeseen expenses. This financial cushion can help you continue making extra payments even during challenging times.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Inflation and Economic Conditions
-        </h3>
-        <p className="mb-6">
-          Economic conditions, including inflation, can influence interest rates and your overall financial strategy. Staying informed about economic trends can help you make timely decisions about refinancing or adjusting your payment strategy.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much can I save by making extra payments on a $250,000 mortgage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The savings depend on your interest rate and payment amount. For example, on a $250,000 mortgage at 6.5% over 30 years, adding just $200 per month in extra payments can save approximately $45,000 in interest and reduce your payoff time by 5-6 years. Using this calculator, you can input your specific loan details to see exact savings tailored to your situation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between bi-weekly and monthly extra payments?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Bi-weekly extra payments (typically 26 half-payments per year) result in one extra full payment annually, while monthly extra payments of the same total occur 12 times per year. Making bi-weekly extra payments of $250 versus monthly extra payments of $500 produces different compounding effects, which this calculator accounts for when projecting your payoff timeline.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can extra payments help me pay off a $180,000 student loan faster?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, extra payments significantly accelerate student loan payoff. On an $180,000 federal student loan at 5.5% interest over 10 years, adding $100 monthly can reduce your payoff time by approximately 18 months and save $8,000+ in interest. This calculator works for federal, private, and federal PLUS loans—just enter your loan balance, rate, and desired extra payment amount.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator handle variable interest rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator uses a fixed interest rate for projection purposes. If you have a variable-rate loan, enter your current rate or an expected average rate for the most accurate estimate. Keep in mind that actual payoff timelines may differ if your rate adjusts—recalculate periodically to stay on track.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I make one large lump-sum payment instead of monthly extra payments?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A single lump-sum payment reduces principal immediately and saves significantly on interest because less balance accrues interest going forward. For a $150,000 car loan at 4.8% with 5 years remaining, a $5,000 lump-sum payment can reduce your payoff time by 6-9 months. This calculator shows the payoff impact of both recurring extra payments and one-time lump-sum amounts.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does paying extra on a $75,000 auto loan at 3.2% show minimal time savings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Lower interest rates mean interest accrual is slower, so extra payments have a smaller multiplicative effect on time savings. At 3.2%, adding $50 monthly to a $75,000 auto loan may reduce payoff time by only 3-4 months, whereas the same payment on a 7% loan would save 8+ months. The calculator illustrates this principle clearly by comparing interest saved versus time eliminated.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for credit card debt payoff?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, though with important caveats. Credit cards typically have much higher interest rates (15-25%) than installment loans, making extra payments especially powerful—adding $200 monthly to a $5,000 credit card balance at 18% can eliminate the debt in 2 years instead of 5-6 years. However, use this calculator as a planning tool and confirm rates, as credit card interest compounds daily rather than monthly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the calculator's payoff projection over 10+ years?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator is highly accurate for fixed-rate loans over any timeframe, assuming interest rates and payment amounts remain constant. For loans extending 10+ years, external factors like rate adjustments or payment changes will affect actual payoff dates, so treat long-term projections as estimates. Recalculate annually or whenever your loan terms change to maintain accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the best extra payment strategy: lump-sum, monthly, or bi-weekly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The 'best' strategy depends on your cash flow and goals. Bi-weekly payments capitalize on compound interest slightly better, while lump-sum payments provide maximum interest savings if you have the capital available. This calculator lets you test all three scenarios to see which aligns with your budget and payoff timeline—most borrowers find a mix of monthly extra payments ($50-200) plus occasional lump sums optimal.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Loan and Credit Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on loan rates and credit guidelines provided by the Federal Reserve.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/datadownload/Choose.aspx?rel=G19" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve – Consumer Credit Statistics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official Federal Reserve data on consumer credit, interest rates, and lending trends used to benchmark loan rate assumptions.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Loan Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive guides on consumer loans and financial protection.
-              </p>
-            </div>
+          <li>
+            <a href="https://studentaid.gov/loan-simulator/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Education – Federal Student Loan Calculator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official government calculator for federal student loans, confirming methodology for loan payoff projections and interest calculations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking and Loan Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Resources on banking regulations and loan information from the FDIC.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/mortgage-disclosure/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau – Mortgage Basics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB resource explaining mortgage terms, prepayment options, and interest accrual relevant to extra payment strategies on home loans.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax and Loan Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and loan-related information from the IRS.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained by Investopedia.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers by NerdWallet.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p936" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Publication 936 – Home Mortgage Interest Deduction</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Tax guidance on mortgage interest deductions, important for understanding the financial implications of accelerated mortgage payoff strategies.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

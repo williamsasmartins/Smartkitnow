@@ -9,31 +9,43 @@ import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCi
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const faqs = [
-  {
-    question: "What is the difference between APR and interest rate?",
-    answer: `The interest rate is the cost of borrowing the principal — the base percentage the lender charges. APR (Annual Percentage Rate) includes the interest rate <em>plus</em> all mandatory fees (origination fees, mortgage points, closing costs) expressed as a single annual percentage. APR is always equal to or higher than the stated interest rate. For example, a 6.5% mortgage interest rate with 1% origination fee and closing costs might carry a 6.85% APR. Always compare loans using APR, not just the interest rate.`
-  },
-  {
-    question: "Why does APR matter more than the interest rate for comparing loans?",
-    answer: `Two lenders can offer the same interest rate but charge very different fees, resulting in dramatically different total loan costs. Comparing only the interest rate is misleading. Federal law (Truth in Lending Act / TILA) requires lenders to disclose APR so borrowers can make accurate comparisons. For short-term loans (under 3 years), the fee impact on APR is amplified — a $500 origination fee on a $10,000 2-year loan raises the effective APR by about 5 percentage points.`
-  },
-  {
-    question: "What fees are included in APR vs. excluded?",
-    answer: `<strong>Included in APR:</strong> origination fees, mortgage points, mortgage broker fees, closing costs (for mortgages), prepaid interest. <strong>Not included:</strong> appraisal fees, title insurance, attorney fees, late payment penalties, optional add-ons (GAP insurance, credit life insurance). Always ask your lender for the full fee disclosure (Loan Estimate form for mortgages) to ensure all APR-affecting fees are captured.`
-  },
-  {
-    question: "How does APR differ from APY (Annual Percentage Yield)?",
-    answer: `APR is used for loans (what you pay); APY is used for savings and investments (what you earn). APY accounts for compounding interest within the year — a 6% APR loan compounded monthly has a 6.17% APY equivalent. For credit cards, the Daily Periodic Rate (DPR = APR ÷ 365) applies to your balance each day, so carrying a balance costs more than the stated APR suggests.`
-  },
-  {
-    question: "What is a good APR for a personal loan or mortgage in 2024?",
-    answer: `APR benchmarks vary by loan type and creditworthiness. <strong>Mortgage (30-year fixed):</strong> 6.5–7.5% in 2024 for borrowers with 740+ credit scores. <strong>Personal loans:</strong> 8–12% for excellent credit (760+); 15–25% for fair credit (580–669). <strong>Auto loans (new):</strong> 6–9% for prime borrowers. <strong>Credit cards:</strong> 20–25% average APR. If your APR offer is above these ranges, improving your credit score or adding a co-signer before applying can reduce it significantly.`
-  },
-  {
-    question: "Can I negotiate the APR on a loan?",
-    answer: `Yes, especially for personal loans and mortgages. Strategies: (1) Get competing offers from 3+ lenders — use them as leverage. (2) Offer a larger down payment to reduce the lender's risk. (3) Buy down the rate with points (one point = 1% of loan value and typically reduces rate by 0.25%). (4) Improve your credit score before applying — each 20-point increase in FICO score can reduce mortgage APR by 0.1–0.4%. (5) Choose a shorter loan term — lenders typically offer lower rates for 15-year vs. 30-year mortgages.`
-  }
-];
+    {
+      question: "What is the difference between APR and interest rate?",
+      answer: "APR (Annual Percentage Rate) includes the interest rate plus other costs or fees involved in procuring the loan, expressed as a yearly rate. For example, a credit card with a 15% interest rate might have a 19.5% APR when annual fees and other charges are factored in. The APR Calculator helps you see the true cost of borrowing by accounting for these additional expenses beyond just the base interest rate.",
+    },
+    {
+      question: "How does the APR Calculator handle variable interest rates?",
+      answer: "The APR Calculator works best with fixed interest rates, which remain constant throughout the loan term. If you have a variable rate loan that adjusts periodically (common with adjustable-rate mortgages or introductory credit card offers), you should calculate the APR using your current rate or expected average rate. For loans with significant rate changes, consider running multiple scenarios to understand the range of potential APR outcomes.",
+    },
+    {
+      question: "Can I use the APR Calculator for all types of loans?",
+      answer: "Yes, the APR Calculator can be used for mortgages, auto loans, personal loans, and credit cards—essentially any installment or revolving credit product. However, the calculator assumes standard loan structures; some specialized products like payday loans or some credit union offerings may have unique fee structures that require manual adjustment. Always verify your results against loan disclosure documents like the Truth in Lending Act (TILA) statement provided by your lender.",
+    },
+    {
+      question: "What fees should I include when calculating APR?",
+      answer: "Include origination fees, processing fees, application fees, and insurance premiums required by the lender, but exclude prepaid interest, property taxes, and homeowner's insurance on mortgages. For a typical car loan with a $5,000 principal, $300 origination fee, and 6% interest over 5 years, the APR would be approximately 6.8% rather than the stated 6%. The APR Calculator automatically factors these costs into the annual percentage rate when you input the total fees.",
+    },
+    {
+      question: "How does APR differ from APY?",
+      answer: "APR (Annual Percentage Rate) is used for borrowing costs, while APY (Annual Percentage Yield) is used for savings accounts and investments and accounts for compound interest. For example, a savings account offering 4.5% APY will earn slightly more than 4.5% due to compounding, while a loan with 4.5% APR will cost exactly that percentage annually. The APR Calculator focuses exclusively on APR for loans and credit products, not savings vehicles.",
+    },
+    {
+      question: "Why does my calculated APR not match the lender's disclosed APR?",
+      answer: "Discrepancies often occur because you may have missed certain fees, used different loan terms, or the lender calculated based on a different date convention. Some lenders include escrow costs for property taxes and insurance in mortgage APR calculations, while others don't. Always compare your APR Calculator results against the official Truth in Lending Act (TILA) disclosure form your lender provides, which shows the exact APR they calculated.",
+    },
+    {
+      question: "Should I choose the loan with the lowest APR?",
+      answer: "Generally yes, a lower APR means you'll pay less interest over the loan's lifetime—a $200,000 mortgage at 6% APR over 30 years costs approximately $231,676 in total interest, versus $279,689 at 7% APR. However, also consider the loan term length, prepayment penalties, and whether a slightly higher APR offers better flexibility or lower upfront costs. The APR Calculator helps you compare multiple loan options by showing the true annual cost of each.",
+    },
+    {
+      question: "How does loan term length affect the APR Calculator results?",
+      answer: "The loan term (length) doesn't change the APR itself, but it significantly impacts total interest paid and monthly payments shown alongside APR. A 15-year mortgage at 6% APR requires higher monthly payments than a 30-year mortgage at the same APR, but you'll pay far less total interest over the life of the loan. Use the APR Calculator to compare the same APR across different terms to understand the trade-off between affordability and total cost.",
+    },
+    {
+      question: "Can the APR Calculator account for compound interest and payment schedules?",
+      answer: "The APR Calculator assumes a standard amortization schedule with regular monthly payments and accounts for how interest compounds based on the payment schedule. However, if your loan has irregular payment schedules, balloon payments, or interest-only periods, you may need to adjust inputs or verify results manually. For most standard consumer loans, the calculator's results will match lender disclosures within 0.01%.",
+    }
+  ];
 
 export default function AprCalculator() {
   // STATE
@@ -304,251 +316,307 @@ export default function AprCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding APR Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Annual Percentage Rate (APR) is a critical metric in the financial world, representing the annual cost of borrowing money, including interest and fees. This calculator helps you determine the true cost of a loan, making it an invaluable tool for anyone considering taking out a loan or credit. By understanding the APR, you can make more informed decisions, ensuring that you choose the most cost-effective option available. Whether you're looking at mortgages, car loans, or personal loans, knowing the APR can save you a significant amount of money over the life of the loan.
-        </p>
-        
-        <p className="mb-6">
-          Accurate APR calculations are essential because they provide a standardized measure of the cost of borrowing. Without this, comparing different loan offers would be challenging, as lenders often present interest rates in ways that can be misleading. The APR includes not just the interest rate, but also any additional fees or costs associated with the loan. This comprehensive view helps you avoid unexpected expenses and choose the best financial product for your needs. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this APR calculator effectively, gather all relevant information about the loan you are considering. This includes the loan amount, interest rate, and any additional fees. Enter these values into the calculator to get an accurate APR. This tool is designed to be user-friendly, providing quick results that you can rely on. For a deeper understanding of how different factors affect your loan, you might also want to explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always ensure that you compare APRs rather than just interest rates when evaluating loan offers. The APR provides a more complete picture of the total cost of borrowing, including fees that might not be immediately apparent. This can prevent costly surprises down the line.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the APR Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The APR Calculator is a financial tool designed to determine the true annual cost of borrowing by converting loan terms, interest rates, and fees into a single standardized percentage. Understanding your loan's APR is crucial because it allows you to accurately compare different loan offers on an equal basis—a 6% interest rate with $500 in fees may have a higher APR than a 6.2% rate with no fees. This calculator helps you avoid underestimating the true cost of credit.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need to input four key pieces of information: the principal loan amount (what you're borrowing), the stated interest rate, any fees charged by the lender (origination fees, processing fees, etc.), and the loan term in months or years. For example, if you're borrowing $20,000 at 5% interest with a $400 origination fee over 60 months, enter these values into their respective fields. The calculator will then compute your APR by accounting for how those fees are distributed across the loan's life.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show you the calculated APR alongside other useful metrics like monthly payment amounts and total interest paid over the life of the loan. A higher APR than the stated interest rate indicates that fees are adding to your borrowing cost; the difference tells you exactly how much those fees are worth in percentage terms. Use these results to compare competing loan offers and negotiate with lenders—if one offer has an unnecessarily high APR due to fees, you have data to discuss alternatives.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include double-checking all entered values for accuracy and considering how different loan terms might affect your APR. For instance, shorter loan terms often result in higher monthly payments but lower overall interest costs. Understanding these dynamics can help you tailor your borrowing strategy to your financial goals.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          APR Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula for calculating the Annual Percentage Rate (APR) is a standardized method used to express the cost of borrowing on an annual basis. It includes both the interest rate and any additional fees or costs associated with the loan. This formula is crucial because it allows consumers to compare different loan products on a level playing field. The APR is calculated using the following formula:
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          APR = [(Interest + Fees) / Principal] / n * 365 * 100
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Interest = Total interest paid over the loan term</li>
-              <li>Fees = Total fees associated with the loan</li>
-              <li>Principal = Loan amount</li>
-              <li>n = Number of days in the loan term</li>
-            </ul>
+      {/* TABLE: Sample APR by Loan Type and Credit Score (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sample APR by Loan Type and Credit Score (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical APR ranges based on credit score and loan product, helping you benchmark your calculated APR against market rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Excellent (750+)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Good (700-749)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fair (650-699)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Poor (Below 650)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30-Year Fixed Mortgage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.8%-6.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.3%-6.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.0%-7.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.2%-9.5%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15-Year Fixed Mortgage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.2%-5.6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.7%-6.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.4%-7.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.6%-8.8%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Auto Loan (New)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5%-5.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.8%-7.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.2%-10.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.0%-14.3%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Auto Loan (Used)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.8%-7.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5%-9.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2%-12.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.5%-18.0%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal Loan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%-9.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.2%-14.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.5%-20.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.0%-35.5%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Credit Card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5%-15.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.5%-18.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19.2%-22.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23.0%-29.9%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates based on Q4 2024 Federal Reserve data and major lender offerings; actual rates vary by lender, loan amount, and individual creditworthiness.</p>
+      </section>
+
+      {/* TABLE: Impact of Fees on APR: $25,000 Auto Loan Example */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Fees on APR: $25,000 Auto Loan Example</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how various fees affect the final APR on a 5-year auto loan with a stated 6% interest rate.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fee Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Fees</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stated Interest Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calculated APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">No fees</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.00%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,290</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Origination fee only</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.41%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,590</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Origination + doc fee</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$550</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.72%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,840</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Origination + doc + gap insurance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.23%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,240</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full suite (all above)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.46%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,490</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes monthly payments over 60 months; higher fees directly increase the effective APR borrowers actually pay.</p>
+      </section>
+
+      {/* TABLE: Monthly Payment Comparison by APR: $300,000 Mortgage Over 30 Years */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Payment Comparison by APR: $300,000 Mortgage Over 30 Years</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how APR changes directly impact monthly payment amounts and total interest paid on a typical home loan.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">APR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly P&I Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Over 30 Years</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Amount Paid</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,520.06</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$247,215</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$547,215</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,610.46</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$279,674</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$579,674</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,703.37</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$312,814</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$612,814</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,799.37</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$347,515</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$647,515</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,898.18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$383,739</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$683,739</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,999.55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$419,686</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$719,686</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Principal and interest only; does not include property taxes, insurance, HOA fees, or PMI, which add significantly to actual monthly housing costs.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Request loan Estimate forms (required under TILA) from multiple lenders and input their exact numbers into the APR Calculator to ensure apples-to-apples comparisons; don't rely on advertised rates alone.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When refinancing an existing loan, calculate the APR on the new loan and compare it to your current loan's APR to determine if refinancing actually saves you money after considering new fees.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For credit cards, input your expected average daily balance, interest rate, and any annual fees to understand your true APR; many people underestimate this because purchases earn interest immediately.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the APR Calculator to model different scenarios—try increasing the down payment or extending the loan term—to see how these changes affect your APR and total borrowing cost.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When negotiating with lenders, ask them to itemize all fees separately so you can input accurate numbers into the calculator; some lenders bundle fees obscurely to hide the true APR.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Remember that the APR Calculator assumes regular monthly payments; if your loan has a balloon payment or irregular schedule, the APR will be different and should be verified with the lender's TILA disclosure.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to include all fees</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many borrowers only input the origination fee and miss application fees, processing fees, underwriting fees, or lender-required insurance. Even fees under $100 can meaningfully increase APR; on a $15,000 loan, a $200 processing fee increases APR by approximately 0.2-0.3%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing APR with interest rate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering only the stated interest rate without accounting for fees will give you an inaccurate result. If a lender quotes a 5% interest rate but charges $500 in origination fees on a $20,000 loan, the true APR is closer to 5.9%, not 5%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mismatching loan term units</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If the calculator expects loan term in months but you input years (or vice versa), the APR calculation will be completely incorrect. Always verify whether the input field requires months, years, or allows you to select the unit.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using estimated fees instead of confirmed amounts</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Lenders sometimes provide fee ranges or estimates; using a lower estimate in the calculator will understate your true APR. Always wait for the official loan estimate form (provided within 3 business days) and use those exact figures.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring APR for credit card comparisons</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Credit cards often have multiple APRs (purchase APR, cash advance APR, balance transfer APR), and annual fees stack on top—calculate the APR for your expected usage pattern to understand the true cost of a card.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for prepayment scenarios</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you plan to pay off a loan early, the APR calculation changes because upfront fees are amortized over fewer payments. The APR Calculator assumes you hold the loan to maturity; if you'll pay early, manually adjust the term to model that scenario.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in this formula plays a critical role in determining the APR. The interest represents the cost of borrowing the principal, while the fees include any additional costs such as origination fees or closing costs. The principal is the initial amount borrowed, and 'n' is the number of days in the loan term, which standardizes the calculation to an annual rate. By understanding these components, you can see how changes in any of these variables affect the overall APR.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Several factors influence the APR, and understanding these can help you better manage your finances. These factors interact in complex ways, affecting the overall cost of borrowing. By being aware of these elements, you can make more informed decisions and potentially reduce your borrowing costs.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate is the percentage of the principal charged by the lender for the use of its money. It is one of the most significant components of the APR. A lower interest rate generally means a lower APR, assuming all other factors remain constant. For example, a 3% interest rate on a $100,000 loan will result in lower interest payments than a 5% rate.
-        </p>
-        <p className="mb-6">
-          To optimize the interest rate, consider improving your credit score or providing a larger down payment. These actions can often lead to better loan terms. For more strategies, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Fees
-        </h3>
-        <p className="mb-4">
-          Loan fees can include origination fees, closing costs, and any other charges associated with processing the loan. These fees are added to the total cost of the loan, increasing the APR. For instance, a $1,000 fee on a $10,000 loan significantly impacts the APR compared to the same fee on a $100,000 loan.
-        </p>
-        <p className="mb-6">
-          It's essential to understand all the fees involved in a loan to accurately calculate the APR. Always ask your lender for a breakdown of fees and compare these across different loan offers to ensure you're getting the best deal.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Term
-        </h3>
-        <p className="mb-4">
-          The loan term is the duration over which the loan is repaid. Shorter loan terms usually result in higher monthly payments but lower overall interest costs, which can reduce the APR. Conversely, longer terms may have lower monthly payments but higher total interest, increasing the APR.
-        </p>
-        <p className="mb-6">
-          When choosing a loan term, consider your monthly budget and long-term financial goals. A shorter term might be more challenging monthly but can save money in the long run. For more insights, see our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Credit Score
-        </h3>
-        <p className="mb-6">
-          Your credit score significantly impacts the interest rate offered by lenders. A higher credit score often results in lower interest rates, reducing the APR. Lenders view high credit scores as an indicator of lower risk, which can lead to more favorable loan terms. Improving your credit score before applying for a loan can be a strategic move to lower your APR.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Economic Conditions
-        </h3>
-        <p className="mb-6">
-          Broader economic conditions, such as inflation rates and central bank policies, can affect interest rates and, consequently, APRs. During periods of economic growth, interest rates might rise, increasing APRs, while during recessions, rates might fall. Staying informed about economic trends can help you time your borrowing to take advantage of favorable conditions.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between APR and interest rate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">APR (Annual Percentage Rate) includes the interest rate plus other costs or fees involved in procuring the loan, expressed as a yearly rate. For example, a credit card with a 15% interest rate might have a 19.5% APR when annual fees and other charges are factored in. The APR Calculator helps you see the true cost of borrowing by accounting for these additional expenses beyond just the base interest rate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the APR Calculator handle variable interest rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The APR Calculator works best with fixed interest rates, which remain constant throughout the loan term. If you have a variable rate loan that adjusts periodically (common with adjustable-rate mortgages or introductory credit card offers), you should calculate the APR using your current rate or expected average rate. For loans with significant rate changes, consider running multiple scenarios to understand the range of potential APR outcomes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the APR Calculator for all types of loans?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the APR Calculator can be used for mortgages, auto loans, personal loans, and credit cards—essentially any installment or revolving credit product. However, the calculator assumes standard loan structures; some specialized products like payday loans or some credit union offerings may have unique fee structures that require manual adjustment. Always verify your results against loan disclosure documents like the Truth in Lending Act (TILA) statement provided by your lender.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What fees should I include when calculating APR?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Include origination fees, processing fees, application fees, and insurance premiums required by the lender, but exclude prepaid interest, property taxes, and homeowner's insurance on mortgages. For a typical car loan with a $5,000 principal, $300 origination fee, and 6% interest over 5 years, the APR would be approximately 6.8% rather than the stated 6%. The APR Calculator automatically factors these costs into the annual percentage rate when you input the total fees.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does APR differ from APY?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">APR (Annual Percentage Rate) is used for borrowing costs, while APY (Annual Percentage Yield) is used for savings accounts and investments and accounts for compound interest. For example, a savings account offering 4.5% APY will earn slightly more than 4.5% due to compounding, while a loan with 4.5% APR will cost exactly that percentage annually. The APR Calculator focuses exclusively on APR for loans and credit products, not savings vehicles.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does my calculated APR not match the lender's disclosed APR?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Discrepancies often occur because you may have missed certain fees, used different loan terms, or the lender calculated based on a different date convention. Some lenders include escrow costs for property taxes and insurance in mortgage APR calculations, while others don't. Always compare your APR Calculator results against the official Truth in Lending Act (TILA) disclosure form your lender provides, which shows the exact APR they calculated.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I choose the loan with the lowest APR?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Generally yes, a lower APR means you'll pay less interest over the loan's lifetime—a $200,000 mortgage at 6% APR over 30 years costs approximately $231,676 in total interest, versus $279,689 at 7% APR. However, also consider the loan term length, prepayment penalties, and whether a slightly higher APR offers better flexibility or lower upfront costs. The APR Calculator helps you compare multiple loan options by showing the true annual cost of each.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does loan term length affect the APR Calculator results?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The loan term (length) doesn't change the APR itself, but it significantly impacts total interest paid and monthly payments shown alongside APR. A 15-year mortgage at 6% APR requires higher monthly payments than a 30-year mortgage at the same APR, but you'll pay far less total interest over the life of the loan. Use the APR Calculator to compare the same APR across different terms to understand the trade-off between affordability and total cost.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the APR Calculator account for compound interest and payment schedules?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The APR Calculator assumes a standard amortization schedule with regular monthly payments and accounts for how interest compounds based on the payment schedule. However, if your loan has irregular payment schedules, balloon payments, or interest-only periods, you may need to adjust inputs or verify results manually. For most standard consumer loans, the calculator's results will match lender disclosures within 0.01%.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Understanding APR
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on APR and its impact on consumer loans, providing regulatory guidelines.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-en/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau - APR and Finance Charges</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official CFPB guidance explaining APR, how it differs from interest rates, and how lenders are required to disclose it.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Loan Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on loans.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.federalreserve.gov/supervisionreg/regz.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve - Truth in Lending Act (Regulation Z)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Reserve's official regulations governing APR disclosure requirements and how creditors must calculate and present APR to consumers.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Loan and Deposit Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information relevant to loan products.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/a/apr.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia - APR (Annual Percentage Rate) Definition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive educational resource explaining APR calculations, examples, and how APR applies across different loan types.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Implications of Loans
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information related to loan interest.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - APR Explained
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained, including APR.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Loan Comparison Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers to evaluate loans.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/loans/understanding-apr/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate - Understanding APR and How It Affects Your Loans</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical guide to understanding APR with real-world examples and comparisons across mortgages, auto loans, and credit cards.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

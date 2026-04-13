@@ -20,24 +20,40 @@ export default function TaxBracketCalculator() {
 
   const faqs = [
     {
-      question: "Does entering a higher tax bracket mean all my income gets taxed at the higher rate?",
-      answer: "No -- this is one of the most common tax misconceptions. The US uses a marginal tax system where only the income within each bracket is taxed at that bracket's rate. Example for 2024 (single filer): the first $11,600 is taxed at 10%, the next $35,550 at 12%, income from $47,150 to $100,525 at 22%. If you earn $50,000, you do not owe 22% × $50,000 = $11,000. You owe: (11,600 × 10%) + (35,550 × 12%) + (2,850 × 22%) = $1,160 + $4,266 + $627 = $6,053. Effective rate = 12.1%. Moving from the 22% to the 24% bracket by earning an extra $100 means only that $100 is taxed at 24% -- you keep $76 of it."
+      question: "What is a tax bracket and how does the calculator use it?",
+      answer: "A tax bracket is the range of income taxed at a specific rate. The Tax Bracket Calculator uses your total income to determine which bracket(s) you fall into for federal income tax purposes. For 2024, single filers with income between $11,600 and $47,150 fall in the 12% bracket. The calculator shows your effective tax rate (total tax divided by total income) versus your marginal rate (the rate on your last dollar earned).",
     },
     {
-      question: "What are the 2024 federal income tax brackets and standard deductions?",
-      answer: "2024 brackets (single filer): 10% (up to $11,600), 12% ($11,601–$47,150), 22% ($47,151–$100,525), 24% ($100,526–$191,950), 32% ($191,951–$243,725), 35% ($243,726–$609,350), 37% (above $609,350). Standard deduction: $14,600 (single), $29,200 (married filing jointly), $21,900 (head of household). Taxable income = gross income − above-the-line deductions − standard or itemized deduction. For a single filer with $80,000 gross income and no above-the-line adjustments: taxable income = $80,000 − $14,600 = $65,400. Tax = $1,160 + $4,266 + $4,026 = $9,452. Effective rate = 11.8%."
+      question: "How do filing status and tax brackets relate in the calculator?",
+      answer: "Filing status dramatically affects which bracket you're in because income ranges differ by status. For 2024, a married couple filing jointly doesn't hit the 24% bracket until $191,950, but a single filer hits it at $100,525. The Tax Bracket Calculator automatically adjusts bracket ranges based on whether you're single, married filing jointly, married filing separately, or head of household.",
     },
     {
-      question: "What is bracket creep and how do inflation adjustments prevent it?",
-      answer: "Bracket creep occurs when inflation pushes wages into higher tax brackets without any real income increase. Example: in a non-indexed system, a $50,000 salary with 5% inflation becomes $52,500 -- but the worker's real purchasing power is unchanged, yet they now owe more tax. The IRS adjusts tax brackets annually for inflation (using Chained CPI). For 2024, brackets were adjusted up ~5.4% from 2023. Without indexing, a middle-class taxpayer would face a permanent, silent tax increase every year inflation exceeds 0%. Bracket indexing is one reason why real tax burdens haven't automatically grown despite rising nominal wages. States vary -- some index brackets, others (like California) do not, leading to progressive bracket creep at the state level."
+      question: "Why is my effective tax rate lower than my marginal tax rate?",
+      answer: "The U.S. uses a progressive tax system where only income within each bracket is taxed at that rate. Your effective rate is your total tax bill divided by total income, which is always lower than your marginal rate (the rate on your highest dollar earned). For example, a single filer earning $75,000 in 2024 has a marginal rate of 22% but an effective rate of about 9.2%.",
     },
     {
-      question: "How do tax brackets affect the decision to take a bonus or extra income at year-end?",
-      answer: "Marginal rate analysis should drive timing decisions for discretionary income. If you are in the 22% bracket in December and your bonus would push income into the 24% bracket, only the amount in the new bracket is taxed at 24% -- the 'penalty' for crossing is just the 2% difference on the incremental income ($100 bonus crossing into 24% costs an extra $2, not $24). The real timing decision: if you can defer income to next year (self-employed, deferred compensation), ask whether next year's rate will be lower. Alternatively, accelerating deductions (charitable contributions, 401k contributions before year-end) reduces current-year taxable income. Marginal rate, not bracket, is what drives every year-end tax optimization."
+      question: "Does the tax bracket calculator include standard deductions?",
+      answer: "Yes, the calculator factors in standard deductions, which reduce your taxable income before brackets are applied. For 2024, the standard deduction is $14,600 for single filers and $29,200 for married filing jointly. By default, the calculator applies these deductions unless you specify itemized deductions instead.",
     },
     {
-      question: "How do capital gains and qualified dividends interact with the regular tax brackets?",
-      answer: "Long-term capital gains (LTCG) and qualified dividends have their own rate schedule that overlays the regular brackets. The LTCG rates (0%, 15%, 20%) apply at specific income thresholds, not the same thresholds as ordinary income. For 2024 (single): 0% LTCG on taxable income up to $47,025 -- even if your ordinary income bracket is 22%, gains below this threshold face no federal tax. 15% LTCG from $47,026–$518,900. 20% above $518,900. Strategy: a retired person with $40,000 in qualified dividends and Social Security may owe $0 federal tax on those dividends. Non-qualified dividends are taxed as ordinary income at marginal rates. Understanding this overlay is essential for tax-efficient portfolio withdrawals."
+      question: "How do capital gains and qualified dividends affect my tax bracket calculation?",
+      answer: "Capital gains and qualified dividends are taxed at preferential rates (0%, 15%, or 20% for 2024) separate from ordinary income brackets. The Tax Bracket Calculator should allow you to input these separately because they don't follow the same bracket structure as wages and salaries. A single filer could have $100,000 in ordinary income (taxed at 24%) and $50,000 in long-term capital gains (taxed at 15%).",
+    },
+    {
+      question: "Can the calculator help me understand the impact of a bonus on my taxes?",
+      answer: "Absolutely. By entering your current income plus an expected bonus, the calculator shows exactly which bracket you'll enter and your new effective tax rate. For instance, if you earn $95,000 and receive a $15,000 bonus, you'll jump from the 22% bracket into the 24% bracket for 2024, changing your total tax liability. This helps you understand whether the raise actually moves you into a higher bracket.",
+    },
+    {
+      question: "Are self-employment taxes included in the tax bracket calculator?",
+      answer: "Most Tax Bracket Calculators focus on federal income tax brackets and don't include self-employment tax (15.3% for Social Security and Medicare). If you're self-employed, you'll need to calculate self-employment tax separately, as it's not part of the standard bracket system. However, you can deduct half of self-employment tax, which does affect your adjusted gross income.",
+    },
+    {
+      question: "What's the difference between tax brackets for 2024 and 2025?",
+      answer: "Tax brackets are adjusted annually for inflation using the Chained Consumer Price Index. For 2025, brackets have shifted slightly higher than 2024 across all filing statuses. A single filer's 12% bracket for 2025 is $11,901 to $48,475, compared to $11,600 to $47,150 in 2024—a modest adjustment reflecting inflation.",
+    },
+    {
+      question: "How can I use this calculator for tax planning and minimizing my bracket creep?",
+      answer: "Use the calculator to test scenarios like contributing to a 401(k), IRA, or HSA to lower your taxable income before you hit a higher bracket. For example, a single filer earning $100,000 could contribute $7,000 to a traditional IRA to drop to $93,000 and stay in the 22% bracket instead of moving to 24%. The calculator lets you adjust deductions and contributions to find the optimal tax outcome.",
     }
   ];
 
@@ -338,269 +354,291 @@ export default function TaxBracketCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Tax Bracket Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Tax Bracket Calculator is an essential tool for anyone looking to understand their federal tax obligations. By inputting your annual income, filing status, and deductions, this calculator provides a clear estimate of your tax bracket and effective tax rate. This is particularly useful for financial planning, allowing you to anticipate your tax liabilities and make informed decisions about your finances. Whether you're preparing for tax season or simply want to understand your financial standing, this calculator offers valuable insights.
-        </p>
-        
-        <p className="mb-6">
-          Accurate tax calculations are crucial because they directly affect your financial well-being. An incorrect calculation could lead to underpayment or overpayment of taxes, both of which have significant consequences. Underpayment might result in penalties and interest charges, while overpayment means you're giving the government an interest-free loan. Using this calculator helps you avoid these pitfalls by providing precise calculations based on current tax laws. For more detailed financial planning, consider using our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use the Tax Bracket Calculator effectively, gather your financial documents such as pay stubs, tax returns, and any information on deductions. Enter your annual income, select your filing status, and input any deductions you qualify for. The calculator will then compute your tax bracket and effective tax rate. For best results, ensure that all data entered is accurate and up-to-date. This will provide you with the most reliable estimate of your tax obligations. You might also find our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a> helpful for understanding long-term financial commitments.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. A small error in your income or deductions can lead to a significant difference in your tax calculations. Ensure that your filing status is correctly selected to avoid miscalculations.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Tax Bracket Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Tax Bracket Calculator helps you understand exactly how much federal income tax you'll owe based on your income and filing status. By identifying your tax bracket and calculating your effective tax rate, you can plan ahead for tax season and make informed financial decisions about raises, bonuses, and deductions. This tool removes the guesswork from understanding the progressive tax system.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your total gross income (wages, salary, self-employment income, interest, and dividends), select your filing status (single, married filing jointly, head of household, or married filing separately), and indicate whether you'll use the standard deduction or itemize deductions. If you have capital gains or qualified dividends, input those separately since they're taxed at different rates than ordinary income. You can also adjust for retirement contributions, dependent exemptions, and other tax-advantaged items that lower your taxable income.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator will display your taxable income after deductions, your total federal income tax liability, your marginal tax rate (the rate applied to your last dollar of income), and your effective tax rate (total tax divided by gross income). Use these numbers to understand how much of each additional dollar you earn goes to taxes, and identify opportunities to reduce your tax burden through deductions and retirement savings. Remember that this calculator only covers federal income tax—state income tax, self-employment tax, and other levies may apply separately.</p>
         </div>
-        
-        <p className="mb-6">
-          For optimal use of the Tax Bracket Calculator, consider the timing of your calculations. Tax laws can change annually, so it's important to use the most current data available. Additionally, if you experience a significant change in income or deductions, recalculate your tax bracket to ensure you remain compliant with tax regulations. Understanding these nuances can help you optimize your tax strategy and potentially save money.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Tax Bracket Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The Tax Bracket Calculator uses a tiered formula to determine your federal tax obligations. This formula is based on the progressive tax system employed by the IRS, where different portions of your income are taxed at different rates. The calculator takes into account your taxable income, which is your total income minus any deductions, and applies the appropriate tax rates to each portion of your income.
-        </p>
-        
-        <p className="mb-6">
-          This formula is the standard approach used by tax professionals and is updated annually to reflect changes in tax laws. Variations of this formula may exist for specific situations, such as alternative minimum tax calculations or state-specific tax brackets. However, for federal tax purposes, this calculator provides a reliable estimate based on the most current federal tax brackets.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Tax = Σ (Income Portion × Tax Rate)
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Income Portion = Segments of taxable income</li>
-              <li>Tax Rate = Corresponding rate for each segment</li>
-            </ul>
+      {/* TABLE: 2024 Federal Income Tax Brackets by Filing Status */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024 Federal Income Tax Brackets by Filing Status</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These are the official IRS tax bracket ranges for 2024, showing the income thresholds and corresponding tax rates for each filing status.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tax Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Head of Household</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 – $11,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 – $23,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 – $17,400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,601 – $47,150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$23,201 – $94,300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$17,401 – $65,900</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47,151 – $100,525</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$94,301 – $201,050</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$65,901 – $176,550</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100,526 – $191,950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$201,051 – $383,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$176,551 – $240,700</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">32%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$191,951 – $243,725</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$383,901 – $487,450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$240,701 – $304,700</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$243,726 – $609,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$487,451 – $731,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$304,701 – $731,200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">37%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$609,351+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$731,201+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$731,201+</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These brackets apply to ordinary income (wages, salary, interest). Long-term capital gains and qualified dividends are taxed at preferential rates (0%, 15%, or 20%).</p>
+      </section>
+
+      {/* TABLE: 2024 Standard Deductions and Income Phase-Out Ranges */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2024 Standard Deductions and Income Phase-Out Ranges</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard deductions reduce taxable income before tax brackets are applied; higher incomes lose tax benefits through phase-out limits.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Filing Status</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Standard Deduction</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dependent Exemption Phase-Out Start</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$578,750</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Jointly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$29,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$868,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Married Filing Separately</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$14,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$434,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Head of Household</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$21,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$578,750</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Qualifying Widow(er)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$29,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$868,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The standard deduction is indexed annually for inflation. High-income taxpayers may lose deductions through phase-out rules for dependent exemptions and other credits.</p>
+      </section>
+
+      {/* TABLE: Effective Tax Rate Examples for 2024 (Single Filer with Standard Deduction) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Effective Tax Rate Examples for 2024 (Single Filer with Standard Deduction)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These examples show how effective tax rates compare to marginal rates at different income levels for single filers claiming the standard deduction.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gross Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Taxable Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Tax Owed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Effective Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Marginal Rate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,840</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,448</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$75,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,704</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$85,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$13,216</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$150,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$135,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$23,968</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$185,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40,304</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Effective tax rate = total tax ÷ gross income. Marginal rate is the rate on the next dollar earned. These calculations assume only the standard deduction and no other credits or deductions.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to model 'what-if' scenarios: Test the tax impact of a potential raise, bonus, or side gig income before you commit to it, so you understand your actual take-home pay.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Max out retirement contributions strategically: A traditional 401(k) or IRA contribution directly reduces your taxable income. Use the calculator to see how a $7,000 or $23,500 contribution can push you into a lower bracket.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Time income recognition if self-employed: If you control when you invoice or receive payment, use the calculator to determine the optimal year to recognize income and avoid bracket creep between two years.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Separate capital gains from ordinary income: Run the calculator twice—once with and once without long-term capital gains—to see how preferential rates (0%, 15%, or 20%) minimize your overall tax liability compared to ordinary income rates.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing marginal rate with effective rate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people think they owe tax at their entire marginal rate, but your effective rate is much lower because only income within each bracket is taxed at that rate. If you're in the 24% bracket, you don't pay 24% on all income—you pay 10% on the first portion, then 12%, then 22%, then 24% on just the top slice.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to include all income sources</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator needs your total income to work correctly, which includes wages, self-employment income, investment interest, rental income, and taxable retirement distributions. Omitting even one income source can significantly underestimate your tax bracket and tax liability.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for the standard deduction</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people enter their gross income without subtracting the standard deduction first, which distorts their bracket placement. Your taxable income—not gross income—determines your bracket, so if you earn $50,000 as a single filer, your taxable income is $35,400 after the $14,600 standard deduction.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Treating all capital gains the same as ordinary income</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Long-term capital gains and qualified dividends (held over 1 year) are taxed at 0%, 15%, or 20%—not at your ordinary income bracket rates. Failing to separate these in the calculator can overstate your tax bill by thousands of dollars.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining your tax liability. The "Income Portion" refers to segments of your income that fall within specific tax brackets. The "Tax Rate" is the percentage applied to each segment. For example, if you are single with a taxable income of $50,000, the first $9,875 would be taxed at 10%, the next $30,250 at 12%, and the remainder at 22%. Understanding how these variables interact helps you anticipate your tax obligations and plan accordingly.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Several factors can influence the results of your tax calculations. Understanding these factors is essential for accurate tax planning and can help you optimize your financial strategy. These factors interact in complex ways, so it's important to consider each one carefully.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Filing Status
-        </h3>
-        <p className="mb-4">
-          Your filing status significantly impacts your tax bracket and overall tax liability. Common statuses include single, married filing jointly, married filing separately, and head of household. Each status has different tax brackets and standard deductions, which can affect your taxable income and tax rate.
-        </p>
-        <p className="mb-6">
-          For example, married couples filing jointly often benefit from higher income thresholds before reaching higher tax brackets compared to single filers. Choosing the correct filing status is crucial for accurate tax calculations. For more information, check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Income Level
-        </h3>
-        <p className="mb-4">
-          Your total income level determines which tax brackets apply to you. Higher income levels generally lead to higher tax rates, as the U.S. tax system is progressive. Understanding where your income falls within the tax brackets helps you anticipate your tax obligations.
-        </p>
-        <p className="mb-6">
-          For instance, if your income increases significantly, you may move into a higher tax bracket, resulting in a higher effective tax rate. Conversely, a decrease in income could lower your tax rate. It's important to monitor your income level throughout the year to avoid surprises at tax time.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Deductions and Credits
-        </h3>
-        <p className="mb-4">
-          Deductions and credits can significantly reduce your taxable income and overall tax liability. Common deductions include mortgage interest, student loan interest, and charitable contributions. Tax credits, such as the Child Tax Credit, directly reduce the amount of tax you owe.
-        </p>
-        <p className="mb-6">
-          Maximizing your deductions and credits can lead to substantial tax savings. Be sure to keep accurate records and consult with a tax professional to ensure you're taking advantage of all available options. Understanding these opportunities can help you optimize your tax strategy.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Tax Law Changes
-        </h3>
-        <p className="mb-6">
-          Tax laws can change annually, affecting tax rates, brackets, and available deductions. Staying informed about these changes is crucial for accurate tax planning. For example, recent tax reforms have altered standard deductions and personal exemptions, impacting how taxes are calculated.
-        </p>
-        <p className="mb-6">
-          Keeping abreast of tax law changes ensures that you remain compliant and can take advantage of new opportunities. Consulting with a tax professional or using reliable tax software can help you navigate these changes effectively.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Life Events
-        </h3>
-        <p className="mb-6">
-          Major life events such as marriage, divorce, the birth of a child, or retirement can significantly impact your tax situation. These events may change your filing status, income level, or eligibility for certain deductions and credits.
-        </p>
-        <p className="mb-6">
-          It's important to consider these events when planning your taxes and to update your calculations accordingly. For instance, getting married might allow you to file jointly, potentially lowering your tax rate. Conversely, a divorce might require you to file as single or head of household.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-                {faq.answer.split("For more insights, explore our Interest-Only Loan Calculator.")[0]}
-                {faq.answer.includes("Interest-Only Loan Calculator") && (
-                  <>
-                    For more insights, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-                  </>
-                )}
-                {faq.answer.split("For more detailed planning, explore our Refinance Savings Calculator.")[0] !== faq.answer && (
-                  <>
-                    {faq.answer.split("For more detailed planning, explore our Refinance Savings Calculator.")[0]}
-                    For more detailed planning, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-                  </>
-                )}
-              </p>
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a tax bracket and how does the calculator use it?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A tax bracket is the range of income taxed at a specific rate. The Tax Bracket Calculator uses your total income to determine which bracket(s) you fall into for federal income tax purposes. For 2024, single filers with income between $11,600 and $47,150 fall in the 12% bracket. The calculator shows your effective tax rate (total tax divided by total income) versus your marginal rate (the rate on your last dollar earned).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do filing status and tax brackets relate in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Filing status dramatically affects which bracket you're in because income ranges differ by status. For 2024, a married couple filing jointly doesn't hit the 24% bracket until $191,950, but a single filer hits it at $100,525. The Tax Bracket Calculator automatically adjusts bracket ranges based on whether you're single, married filing jointly, married filing separately, or head of household.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is my effective tax rate lower than my marginal tax rate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The U.S. uses a progressive tax system where only income within each bracket is taxed at that rate. Your effective rate is your total tax bill divided by total income, which is always lower than your marginal rate (the rate on your highest dollar earned). For example, a single filer earning $75,000 in 2024 has a marginal rate of 22% but an effective rate of about 9.2%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the tax bracket calculator include standard deductions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator factors in standard deductions, which reduce your taxable income before brackets are applied. For 2024, the standard deduction is $14,600 for single filers and $29,200 for married filing jointly. By default, the calculator applies these deductions unless you specify itemized deductions instead.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do capital gains and qualified dividends affect my tax bracket calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Capital gains and qualified dividends are taxed at preferential rates (0%, 15%, or 20% for 2024) separate from ordinary income brackets. The Tax Bracket Calculator should allow you to input these separately because they don't follow the same bracket structure as wages and salaries. A single filer could have $100,000 in ordinary income (taxed at 24%) and $50,000 in long-term capital gains (taxed at 15%).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the calculator help me understand the impact of a bonus on my taxes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absolutely. By entering your current income plus an expected bonus, the calculator shows exactly which bracket you'll enter and your new effective tax rate. For instance, if you earn $95,000 and receive a $15,000 bonus, you'll jump from the 22% bracket into the 24% bracket for 2024, changing your total tax liability. This helps you understand whether the raise actually moves you into a higher bracket.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are self-employment taxes included in the tax bracket calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most Tax Bracket Calculators focus on federal income tax brackets and don't include self-employment tax (15.3% for Social Security and Medicare). If you're self-employed, you'll need to calculate self-employment tax separately, as it's not part of the standard bracket system. However, you can deduct half of self-employment tax, which does affect your adjusted gross income.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between tax brackets for 2024 and 2025?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Tax brackets are adjusted annually for inflation using the Chained Consumer Price Index. For 2025, brackets have shifted slightly higher than 2024 across all filing statuses. A single filer's 12% bracket for 2025 is $11,901 to $48,475, compared to $11,600 to $47,150 in 2024—a modest adjustment reflecting inflation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How can I use this calculator for tax planning and minimizing my bracket creep?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use the calculator to test scenarios like contributing to a 401(k), IRA, or HSA to lower your taxable income before you hit a higher bracket. For example, a single filer earning $100,000 could contribute $7,000 to a traditional IRA to drop to $93,000 and stay in the 22% bracket instead of moving to 24%. The calculator lets you adjust deductions and contributions to find the optimal tax outcome.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access comprehensive economic data and analysis from the Federal Reserve.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2024" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Tax Brackets for 2024</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS announcement of 2024 tax brackets, standard deductions, and inflation adjustments for all filing statuses.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Tax Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Explore consumer protection information and educational resources on taxes.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/pub/irs-pdf/p17.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Publication 17: Your Federal Income Tax (IRS)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive IRS guide to federal income tax, including detailed explanations of brackets, deductions, credits, and how to calculate tax liability.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Learn about banking regulations and deposit insurance information.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/t/taxbracket.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Understanding Tax Brackets – Investopedia</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clear explanation of how tax brackets work, the difference between marginal and effective rates, and common bracket misconceptions.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Access official tax guidelines and deduction information from the IRS.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Explore detailed financial education and investment concepts.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Discover personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.nerdwallet.com/article/taxes/long-term-capital-gains-tax" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Capital Gains Tax Rates – NerdWallet</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed guide to long-term and short-term capital gains tax rates, how they differ from ordinary income brackets, and tax-saving strategies.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

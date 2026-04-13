@@ -20,24 +20,40 @@ export default function ExpenseSplitterSharedBillsCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are expense splitting calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For expense splitting, accuracy depends on using current shared bills data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a shared bills professional."
+      question: "How does the Expense Splitter Calculator handle unequal contributions?",
+      answer: "The calculator tracks each person's total spending and compares it against their fair share of the total expenses. If Person A paid $450 of a $1,200 total bill and owes $400, they are owed $50. The calculator automatically balances these differences to show exactly who owes whom and how much, eliminating guesswork.",
     },
     {
-      question: "What key factors most affect expense splitting results?",
-      answer: "The most impactful variables in expense splitting calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "Can I use this calculator for splitting rent and utilities among roommates?",
+      answer: "Yes, this calculator is ideal for roommate situations. For example, if three roommates split a $1,500 monthly rent plus $180 in utilities ($1,680 total), each owes $560. If one roommate paid the full amount upfront, the calculator shows the other two owe $560 each to that person.",
     },
     {
-      question: "When should I recalculate expense splitting?",
-      answer: "Recalculate whenever shared bills conditions change significantly: after major shared bills events, when your inputs change (income, rates, holdings), or when shared bills regulations are updated. For time-sensitive shared bills metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "What's the best way to handle expenses where people contributed different amounts?",
+      answer: "Use the calculator's weighted contribution feature to enter each person's actual payment. If a group dinner costs $240 and Person A paid $100, Person B paid $80, and Person C paid $60, the calculator divides the $240 equally ($80 each) and automatically determines who owes or is owed money based on their actual contribution versus their fair share.",
     },
     {
-      question: "How does expense splitting relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Expense splitting should be evaluated alongside related measures like equal vs proportional. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your shared bills situation, rather than optimizing any single number in isolation."
+      question: "How do I calculate who owes money when there are more than two people splitting bills?",
+      answer: "The calculator handles any number of participants by dividing the total expense equally among all people and tracking individual contributions. For a $900 bill split four ways ($225 each), if Person A paid $450, they're owed $225 by the group. The calculator identifies the net settlement needed between each pair.",
     },
     {
-      question: "What are the most common mistakes when calculating expense splitting?",
-      answer: "The most frequent errors in expense splitting calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world shared bills conditions fluctuate. Double-check your inputs against current shared bills data before relying on results for significant financial decisions."
+      question: "Should I include tips when splitting restaurant bills with this calculator?",
+      answer: "Yes, add the tip to your total bill amount before calculating. If a restaurant bill is $180 with a $36 tip (20%), enter $216 as the total. This ensures each person's fair share includes their proportional contribution to gratuity.",
+    },
+    {
+      question: "Can the calculator help track ongoing shared expenses throughout the month?",
+      answer: "Absolutely. Add expenses as they occur—groceries on day 3, utilities on day 15, entertainment on day 20—and the calculator maintains a running tally. By month's end, you'll see a complete settlement summary showing exactly how much each person owes based on all accumulated shared costs.",
+    },
+    {
+      question: "What's the most efficient way to settle debts after using the expense splitter?",
+      answer: "The calculator shows all debts owed. Rather than having everyone pay everyone else, consolidate payments: if Person A owes Person B $50 and Person B owes Person A $30, one payment of $20 from A to B settles both. Venmo, PayPal, or bank transfers work well for these settlements.",
+    },
+    {
+      question: "How accurate is the calculator when rounding cents in shared expenses?",
+      answer: "The calculator uses precise decimal calculations and typically rounds to the nearest cent. For a $100 bill split three ways, each person owes $33.33 with one person owing $33.34 to account for the $0.01 difference. Most modern payment apps handle these micro-adjustments automatically.",
+    },
+    {
+      question: "Can I use this calculator to split household bills with a partner or spouse?",
+      answer: "Yes, many couples use it for household management. If a couple's monthly expenses total $3,200 (mortgage, utilities, groceries, insurance) and one partner earns significantly more, you can input unequal split percentages—for example, 60/40 instead of 50/50—to fairly distribute costs based on income.",
     }
   ];
 
@@ -297,249 +313,292 @@ export default function ExpenseSplitterSharedBillsCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Expense Splitter (Shared Bills) Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Expense Splitter (Shared Bills) Calculator is an essential tool for anyone living with roommates or sharing expenses with friends. It simplifies the process of dividing bills such as rent, utilities, and groceries, ensuring that each person pays their fair share. This calculator is particularly useful in situations where expenses are not equally shared or when additional costs need to be accounted for. By using this tool, you can avoid misunderstandings and ensure transparency in financial arrangements.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in shared living situations to prevent disputes and maintain harmony. Incorrect calculations can lead to one person paying more than their fair share, causing tension and financial strain. The Expense Splitter Calculator helps you avoid these issues by providing precise calculations based on the inputs you provide. This tool is designed to help you make informed decisions about your shared expenses, allowing you to plan your budget effectively. For more insights into financial planning, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use the Expense Splitter Calculator effectively, gather all necessary information before you begin. You will need the total amount of the shared bills, the number of people sharing the expenses, and any additional costs that need to be divided. Enter these values into the calculator, and it will compute the amount each person owes. For the most accurate results, ensure that all inputs are correct and up-to-date. You can also explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a> for related calculations.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check the number of people sharing the expenses and any additional costs. Miscounting or forgetting to include certain costs can lead to inaccurate results. This tool is designed to provide clarity, so ensure all data is accurate for the best outcome.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Expense Splitter (Shared Bills) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Expense Splitter Calculator simplifies the process of dividing shared bills and group expenses fairly among friends, roommates, family members, or colleagues. Whether you're splitting rent with roommates, splitting a vacation with friends, or managing household expenses with a partner, this calculator eliminates confusion and ensures everyone pays their fair share based on actual expenses and contributions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter the names of all participants, the total amount to be split, and how much each person actually paid. You can choose to split expenses equally among all participants or use custom percentages if contributions should be unequal (such as 60/40 for partners with different incomes). The calculator automatically tracks who paid what and compares it to what each person owes.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show a clear settlement summary indicating exactly how much each person is owed or owes. Look for the net balances at the bottom—these represent the final payments needed to settle all debts with minimal transactions. For example, if Person A is owed $150 and Person B owes $100, the calculator may recommend Person B pays Person A $100, simplifying the overall settlement process.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating the inputs as expenses and the number of people sharing costs change. Consider factors such as seasonal variations in utility bills or unexpected repairs that might affect the total amount. By staying proactive and adjusting the inputs as needed, you can maintain fairness and transparency in your financial arrangements.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Expense Splitter (Shared Bills) Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Expense Splitter Calculator is straightforward yet effective. It calculates the total cost by adding any additional expenses to the main bill amount and then divides this total by the number of people sharing the expenses. This method ensures that each person pays an equal share of the total cost, including any extra charges that might apply.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Total Cost Per Person = (Total Amount + Additional Costs) / Number of People
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Total Amount = The main bill amount</li>
-              <li>Additional Costs = Any extra expenses to be shared</li>
-              <li>Number of People = Total number of people sharing the costs</li>
-            </ul>
+      {/* TABLE: Common Shared Expense Splitting Scenarios */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Shared Expense Splitting Scenarios</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These real-world examples show how the Expense Splitter Calculator handles typical situations among roommates, friends, and families.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Number of People</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Equal Share Per Person</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calculator Use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Group dinner out</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$240</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Track who paid what; calculate settlements</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Monthly rent split</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 roommates</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Divide equally; show who owes landlord's share</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Weekend trip</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 friends</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$160</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Account for shared gas, lodging, meals</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Grocery shopping</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 people</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Split household food costs monthly</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Utility bills</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 roommates</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Distribute electric, water, internet equally</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wedding expenses</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 people</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$833.33</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Track contributions; manage collective costs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vacation accommodation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 people</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Split hotel, flights, car rental</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Equal shares assume all participants benefit equally; adjust percentages for unequal contributions or income-based splits.</p>
+      </section>
+
+      {/* TABLE: How Payment Imbalances Resolve Using the Calculator */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">How Payment Imbalances Resolve Using the Calculator</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how the calculator identifies net settlements when contributions don't match fair shares.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Person</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Paid Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fair Share</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Owed To/From Group</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Person A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Owed $150</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Person B</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Owes $100</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Person C</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Owes $150</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">TOTAL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Person A is owed $150 total; Persons B and C together owe $250. The calculator identifies optimal settlement paths to minimize transactions.</p>
+      </section>
+
+      {/* TABLE: Percentage-Based Expense Splitting for Roommates */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Percentage-Based Expense Splitting for Roommates</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">When roommates have different usage levels or incomes, percentage-based splitting offers fairness beyond equal division.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expense Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Equal Split (3 Ways)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">70/20/10 Split</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">When to Use Unequal Split</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500 each</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,050 / $300 / $150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Different room sizes or income levels</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Utilities</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60 each</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$126 / $36 / $18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Roommate has higher AC/heating usage</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Internet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$26.67 each</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$56 / $16 / $8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">One person streams; others minimal use</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Shared groceries</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$240</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$80 each</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$168 / $48 / $24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Different eating schedules/dietary needs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cleaning supplies</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20 each</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$42 / $12 / $6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">One roommate maintains common areas</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Adjust percentages to reflect actual usage, income disparity, or benefit levels for fairness.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always include all expenses in one calculation rather than settling multiple times per month—running the calculator once monthly on all accumulated shared costs provides a clearer, more accurate final settlement than settling weekly, which can result in circular debts.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When splitting bills with variable participants (some people skip certain expenses), input only the people who actually benefited from that specific expense—don't force equal division across the entire group if one roommate wasn't present for a shared meal.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator's rounding feature to handle odd cents: for a $100 split three ways, assign the extra $0.01 to the person who typically pays expenses first to minimize friction and manual adjustments.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Export or screenshot your final calculator results before settling payments; this creates documentation that prevents disputes and provides proof of who owed whom and when settlements occurred.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Including solo expenses in a group split</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Only include expenses that everyone in the group actually shared or agreed to split. Adding one person's individual purchases (like their personal groceries or subscription services) to the shared expense pool unfairly penalizes others and skews the entire calculation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for deposits and reimbursements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If one roommate paid a security deposit or received a utility refund, these one-time payments should not be split equally. Input them separately in the calculator so they affect only the relevant person's balance and don't inflate the monthly settlement amounts.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing multiple billing cycles together</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Combining expenses from different months (January groceries with February rent) makes it harder to track recurring costs and identify payment deadlines. Run the calculator separately for each billing cycle to maintain clarity and prevent confusion about due dates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking shared expenses paid by credit card rewards or gift cards</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If someone covers a group dinner using a gift card or earned rewards, the calculator should still value it at full cost. Using the discounted or zero cost the payer actually incurred creates an inaccurate settlement and isn't fair to others who would pay full price.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the final result. The Total Amount represents the primary bill that needs to be divided, such as rent or a utility bill. Additional Costs include any extra charges that should be shared, like service fees or tips. The Number of People is the total count of individuals sharing the expenses. Changes in any of these variables will directly affect the cost per person, highlighting the importance of accurate data entry.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your expense splitting results is essential for ensuring fairness and accuracy. These factors can vary widely based on individual circumstances and should be considered carefully when using the calculator.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Number of People Sharing
-        </h3>
-        <p className="mb-4">
-          The number of people sharing the expenses is a critical factor. A larger group means each person pays less, while a smaller group increases the cost per person. It's important to accurately count everyone involved to ensure fair distribution.
-        </p>
-        <p className="mb-6">
-          If someone moves in or out, update the calculator to reflect these changes. This ensures that everyone pays their fair share based on the current living arrangement. For more on managing shared finances, see our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Additional Costs
-        </h3>
-        <p className="mb-4">
-          Additional costs like service fees, tips, or unexpected expenses can significantly impact the total amount each person owes. These should be included in the calculation to ensure everyone contributes fairly.
-        </p>
-        <p className="mb-6">
-          Consider setting aside a small contingency fund to cover unexpected costs. This can prevent disputes and ensure that everyone is prepared for any additional expenses that arise.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Fluctuating Utility Bills
-        </h3>
-        <p className="mb-4">
-          Utility bills can fluctuate based on usage and season. It's important to account for these changes when calculating shared expenses. Higher usage during certain months may increase the total amount owed.
-        </p>
-        <p className="mb-6">
-          To manage this, consider averaging the utility costs over several months to smooth out any spikes. This approach can help maintain consistent payments and avoid surprises.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Rent Increases
-        </h3>
-        <p className="mb-6">
-          Rent increases can affect the total amount that needs to be divided among roommates. It's important to update the calculator with any changes in rent to ensure accurate calculations. Discuss potential rent increases with your landlord and plan accordingly to avoid financial strain.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Special Arrangements
-        </h3>
-        <p className="mb-6">
-          In some cases, special arrangements might affect how expenses are split. For example, if one roommate uses more utilities or has a larger room, they might agree to pay a higher share. These arrangements should be clearly communicated and reflected in the calculator to ensure transparency and fairness.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the Expense Splitter Calculator handle unequal contributions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator tracks each person's total spending and compares it against their fair share of the total expenses. If Person A paid $450 of a $1,200 total bill and owes $400, they are owed $50. The calculator automatically balances these differences to show exactly who owes whom and how much, eliminating guesswork.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for splitting rent and utilities among roommates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator is ideal for roommate situations. For example, if three roommates split a $1,500 monthly rent plus $180 in utilities ($1,680 total), each owes $560. If one roommate paid the full amount upfront, the calculator shows the other two owe $560 each to that person.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the best way to handle expenses where people contributed different amounts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use the calculator's weighted contribution feature to enter each person's actual payment. If a group dinner costs $240 and Person A paid $100, Person B paid $80, and Person C paid $60, the calculator divides the $240 equally ($80 each) and automatically determines who owes or is owed money based on their actual contribution versus their fair share.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate who owes money when there are more than two people splitting bills?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator handles any number of participants by dividing the total expense equally among all people and tracking individual contributions. For a $900 bill split four ways ($225 each), if Person A paid $450, they're owed $225 by the group. The calculator identifies the net settlement needed between each pair.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include tips when splitting restaurant bills with this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, add the tip to your total bill amount before calculating. If a restaurant bill is $180 with a $36 tip (20%), enter $216 as the total. This ensures each person's fair share includes their proportional contribution to gratuity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the calculator help track ongoing shared expenses throughout the month?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absolutely. Add expenses as they occur—groceries on day 3, utilities on day 15, entertainment on day 20—and the calculator maintains a running tally. By month's end, you'll see a complete settlement summary showing exactly how much each person owes based on all accumulated shared costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the most efficient way to settle debts after using the expense splitter?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator shows all debts owed. Rather than having everyone pay everyone else, consolidate payments: if Person A owes Person B $50 and Person B owes Person A $30, one payment of $20 from A to B settles both. Venmo, PayPal, or bank transfers work well for these settlements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the calculator when rounding cents in shared expenses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses precise decimal calculations and typically rounds to the nearest cent. For a $100 bill split three ways, each person owes $33.33 with one person owing $33.34 to account for the $0.01 difference. Most modern payment apps handle these micro-adjustments automatically.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator to split household bills with a partner or spouse?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, many couples use it for household management. If a couple's monthly expenses total $3,200 (mortgage, utilities, groceries, insurance) and one partner earns significantly more, you can input unequal split percentages—for example, 60/40 instead of 50/50—to fairly distribute costs based on income.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Shared Financial Responsibilities
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on managing shared financial responsibilities and guidelines for fair practices.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/consumer-tools/managing-someone-elses-money/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau: Managing Shared Finances</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Guidance on managing shared finances responsibly, including bill splitting and expense tracking among household members.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Budgeting Tips
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on budgeting and expense sharing.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/businesses/small-businesses-self-employed/recordkeeping" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS: Record Keeping Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on maintaining accurate records of expenses and payments, important for documenting shared expense settlements.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Financial Literacy Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information with a focus on financial literacy.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/articles/personal-finance/090415/how-split-rent-fairly-roommates.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: How to Split Rent Fairly with Roommates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed article on fair methods for splitting housing costs including equal, percentage-based, and room-size-adjusted approaches.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Implications of Shared Living
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information relevant to shared living arrangements.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Managing Shared Expenses
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained, including managing shared expenses.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Shared Financial Planning
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers focusing on shared financial planning.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/real-estate/renting/roommate-finances/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate: Managing Finances with a Roommate</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Best practices for handling shared expenses, bill splitting agreements, and preventing financial conflicts between roommates.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -80,24 +80,40 @@ export default function DebtToIncomeRatioCalculator() {
 
   const faqs = [
     {
-      question: "What is the maximum debt-to-income ratio to qualify for a mortgage?",
-      answer: "Conventional mortgage (Fannie Mae/Freddie Mac): maximum DTI typically 45% (back-end), though 50% is allowed with compensating factors (high credit score, large down payment, significant reserves). FHA loans: 43% DTI limit, but some lenders allow up to 50% with compensating factors. VA loans: no strict DTI cap, but 41% is the guideline; exceeding requires residual income analysis. Jumbo loans (over conforming limit $766,550 in 2024): typically 43–45% maximum, stricter requirements. A front-end DTI (housing expenses only) under 28% is preferred. With DTI of 45%+ and only 3% down, you are at maximum risk tolerance for lenders -- any income disruption creates default risk."
+      question: "What is a good debt-to-income ratio?",
+      answer: "A debt-to-income ratio below 36% is generally considered excellent by most lenders, while ratios between 36% and 49% are acceptable for many mortgage and auto loan applications. Anything above 50% is typically viewed as high risk and may disqualify you from conventional financing. The lower your ratio, the more financial flexibility and borrowing capacity you have.",
     },
     {
-      question: "What is included in debt-to-income calculations for mortgage underwriting?",
-      answer: "Included (back-end DTI): proposed housing payment (PITI: principal, interest, taxes, insurance + HOA), car loans, student loans (even in deferment -- lender uses 0.5–1% of balance as payment), credit card minimum payments, personal loans, child support, alimony. Not included: utilities, phone, subscriptions, food, transportation costs (other than car payment). Student loans in deferment are particularly impactful: a $50,000 balance uses $500/month as assumed payment even if you currently pay $0. This reduces buying power by approximately $85,000 in mortgage amount. Income counts: verified W-2 income, 2-year self-employment average (Schedule C), documented investment/rental income, child support received."
+      question: "Does the debt-to-income calculator include student loans?",
+      answer: "Yes, student loan payments should be included in your total monthly debt obligations for an accurate calculation. Even if you're on an income-driven repayment plan, use your actual monthly payment amount. Federal student loans, private student loans, and any outstanding education debt must all be factored into your DTI ratio.",
     },
     {
-      question: "How do I reduce my DTI quickly before applying for a mortgage?",
-      answer: "Most effective short-term strategies: (1) Pay off the highest-minimum-payment debt first (credit cards, personal loans -- car loans are harder). A $5,000 credit card with $100/month minimum, if paid off, improves DTI by $100/month -- equivalent to eliminating $12,000–$15,000 in mortgage payment capacity. (2) Increase documented income: if you have side income, ensure it's 2-year documented and tax-filed. (3) Add a co-borrower with income and no debt. (4) Request a credit limit increase (reduces utilization AND DTI if you don't carry more balance). What doesn't work: lowering 401k contributions (after-tax income doesn't change DTI calculation). Time to impact: lenders require 30 days of updated statements; plan 60–90 days ahead."
+      question: "How do credit card balances affect my debt-to-income ratio?",
+      answer: "Credit card debt is included in your DTI calculation based on your minimum monthly payment, not your total balance. If you carry a $5,000 balance with a minimum payment of $150 per month, use the $150 figure in the calculator. To improve your DTI, paying down credit card balances or requesting higher credit limits can lower your required minimum payments.",
     },
     {
-      question: "What is the difference between front-end and back-end debt-to-income ratio?",
-      answer: "Front-end DTI (housing ratio) = (proposed housing costs) / (gross monthly income). Includes only: principal, interest, property taxes, homeowners insurance, PMI (if applicable), HOA fees. Target: below 28%. Example: $2,000 housing payment on $7,000/month gross income = 28.6% front-end DTI. Back-end DTI (total debt ratio) = (all monthly debt obligations including housing) / (gross monthly income). Includes housing + all other debt minimums. Target: below 36% (conservative), 43% (standard), 45% (maximum for most conventional). Lenders primarily use back-end DTI for qualification. Front-end DTI matters for jumbo/portfolio loans and some government programs. Rule of thumb: keep back-end DTI under 36% for financial stability; above 40% and you have little buffer for financial shocks."
+      question: "What monthly debts should I include in this calculator?",
+      answer: "Include all recurring monthly debt obligations: mortgage or rent, car loans, student loans, personal loans, credit card minimum payments, child support, alimony, and any other loans or payment plans. Do not include utilities, groceries, insurance premiums, or other variable living expenses, as DTI focuses strictly on debt obligations.",
     },
     {
-      question: "How does student loan debt affect buying a home with high DTI?",
-      answer: "Student loans cause disproportionate DTI impact because lenders use the payment even during deferment or income-driven repayment. Fannie Mae rule (conventional): uses the actual IDR payment if $0, uses $0 -- a favorable change from 2021. Freddie Mac: uses 0.5% of loan balance OR actual payment, whichever is greater. FHA: uses 1% of balance OR actual payment OR fully amortized payment over remaining term -- the most punitive. Example: $80,000 in student loans. Fannie Mae: may use $0 (if IDR payment is $0). Freddie Mac: $400/month. FHA: $800/month. This $800/month FHA payment reduces mortgage qualification by approximately $110,000 in home buying power. For first-time buyers with student loans, a conventional Fannie Mae loan often allows the highest DTI and most generous student loan treatment."
+      question: "Can I improve my debt-to-income ratio for a mortgage application?",
+      answer: "Yes, you can improve your DTI by increasing your gross monthly income through a raise or second job, or by paying down existing debt before applying for a mortgage. Most lenders prefer a DTI of 43% or lower for mortgage qualification, so even reducing your ratio to 45% can significantly improve your approval chances. Many borrowers successfully lower their DTI by 5-10 percentage points within 3-6 months of focused debt repayment.",
+    },
+    {
+      question: "Is rent included in the debt-to-income ratio calculation?",
+      answer: "Rent is sometimes included depending on the type of loan you're applying for. For mortgage applications, lenders typically do not count current rent in your DTI, but they will count your projected mortgage payment as a debt obligation. For other types of loans like personal loans or auto loans, rent may or may not be included depending on the lender's policy.",
+    },
+    {
+      question: "What income should I use in the debt-to-income calculator?",
+      answer: "Use your gross monthly income before taxes, which includes salary, wages, bonuses, commissions, investment income, rental income, and alimony or child support received. Do not include overtime or bonuses unless they are guaranteed and documented for at least 2 years. For self-employed individuals, use your average net income over the past 2 years.",
+    },
+    {
+      question: "What's the difference between front-end and back-end DTI ratios?",
+      answer: "The front-end ratio (housing ratio) divides only housing-related debt by gross income and should not exceed 28% for most lenders. The back-end ratio (total DTI) includes all monthly debts and typically should not exceed 36% to 43%, depending on the lender. Most debt-to-income calculators compute the back-end ratio, which is more comprehensive for assessing overall financial health.",
+    },
+    {
+      question: "How often should I recalculate my debt-to-income ratio?",
+      answer: "Recalculate your DTI quarterly or whenever you experience a significant change in income or debt levels, such as a raise, job loss, paying off a loan, or taking on new debt. If you're planning to apply for major financing within the next 6-12 months, track your DTI monthly to monitor your progress toward your target ratio. This helps you understand when you'll be in the best position to qualify for favorable loan terms.",
     }
   ];
 
@@ -279,252 +295,339 @@ export default function DebtToIncomeRatioCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Debt-to-Income Ratio Calculator
-        </h2>
-        
-        <p className="mb-6">
-          The Debt-to-Income (DTI) Ratio Calculator is an essential tool for anyone looking to understand their financial health and assess mortgage eligibility. This calculator helps you determine the percentage of your income that goes towards paying debts, which is a critical factor for lenders when evaluating loan applications. By calculating your DTI ratio, you can gain insights into your financial standing and make informed decisions about future financial commitments. Whether you're planning to buy a home, refinance an existing loan, or simply want to manage your finances better, knowing your DTI ratio is crucial.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in the financial domain, as they can significantly impact your financial planning and decision-making. An incorrect DTI ratio could lead to misjudging your affordability and potentially overextending your finances. According to financial experts, a DTI ratio below 36% is generally considered healthy, while anything above 43% might indicate financial stress. This calculator ensures you have precise data to evaluate your financial situation and make strategic decisions. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather your monthly income and total monthly debt payments. Enter these values into the respective fields to calculate your DTI ratio. Ensure that the income includes all sources, such as salary, bonuses, and rental income, while the debt payments should cover all recurring obligations like loans, credit card payments, and other liabilities. For a comprehensive understanding, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Ensure that all income and debt figures are accurate and up-to-date. Inaccurate data can lead to misleading results, affecting your financial decisions. Regularly update your figures to reflect any changes in your financial situation.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Debt-to-Income Ratio Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Debt-to-Income Ratio Calculator helps you understand your financial leverage by measuring the percentage of your gross monthly income that goes toward debt payments. This metric is crucial for lenders evaluating your creditworthiness and is one of the primary factors determining your eligibility for mortgages, auto loans, and personal loans. Knowing your DTI ratio empowers you to make informed borrowing decisions and identify opportunities to improve your financial profile.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, gather your gross monthly income (salary, bonuses, investment income, etc.) and list all recurring monthly debt payments, including mortgage or rent, car loans, student loans, credit cards (minimum payments only), personal loans, child support, and alimony. The calculator divides your total monthly debt obligations by your gross monthly income and multiplies by 100 to generate your DTI percentage. Accuracy is essential—use actual payment amounts and current income figures to get a precise result.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpreting your results depends on your financial goals and the type of loan you're seeking. A DTI below 36% is considered excellent and qualifies you for favorable loan terms with most lenders. Ratios between 36% and 43% are acceptable for mortgages but may result in slightly higher interest rates or additional requirements. If your DTI exceeds 43%, focus on either increasing your income or paying down existing debt before applying for major loans, as lenders view higher ratios as increased financial risk.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for optimizing your DTI ratio include reducing unnecessary debt, increasing income through side hustles or investments, and maintaining a disciplined budget. Understanding the factors that affect your DTI ratio can help you manage it effectively. For more tips, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Debt-to-Income Ratio Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The Debt-to-Income (DTI) ratio is calculated using a straightforward formula that divides your total monthly debt payments by your gross monthly income. This formula is widely accepted in the financial industry as a standard measure of financial health. It provides a clear picture of how much of your income is dedicated to servicing debts, which is crucial for lenders assessing your creditworthiness.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          DTI Ratio = (Total Monthly Debt Payments / Gross Monthly Income) × 100
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Total Monthly Debt Payments = Sum of all monthly debt obligations</li>
-              <li>Gross Monthly Income = Total income before taxes and deductions</li>
-            </ul>
+      {/* TABLE: Debt-to-Income Ratio Standards by Loan Type (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Debt-to-Income Ratio Standards by Loan Type (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different lenders and loan types have varying DTI requirements; here are the typical benchmarks used by major financial institutions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Preferred DTI Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum DTI Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Conventional Mortgage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below 36%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">FHA loans may allow up to 50% under certain conditions</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">FHA Mortgage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below 43%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Requires mortgage insurance premium (MIP) at higher ratios</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">VA Mortgage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below 41%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">VA loans offer more flexibility; lending varies by lender</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">USDA Rural Loan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below 43%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Guaranteed rural development loans with flexible qualification</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Auto Loan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below 20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Combined with all other debts; primary consideration is payment history</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal Loan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below 40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Online lenders often more flexible than traditional banks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Credit Card Approval</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below 35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Based on minimum monthly payments, not total balances</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Home Equity Line (HELOC)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below 40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Includes existing mortgage payment in calculation</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Standards vary by individual lender, credit score, and economic conditions. These represent 2024-2025 industry norms from major institutional lenders.</p>
+      </section>
+
+      {/* TABLE: Sample Debt-to-Income Ratio Calculations */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sample Debt-to-Income Ratio Calculations</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Real-world examples showing how monthly debts and income affect your final DTI ratio.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mortgage Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Auto Loan</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Student Loans</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Credit Cards</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Debts</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">DTI Ratio</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$6,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$7,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,075</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$5,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$175</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">39%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These examples assume gross monthly income and include all recurring monthly debt obligations. Ratios above 43% typically reduce mortgage approval chances with conventional lenders.</p>
+      </section>
+
+      {/* TABLE: Impact of Debt Paydown on DTI Ratio */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Debt Paydown on DTI Ratio</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">See how paying down specific debts can lower your DTI and improve your lending qualification.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Debts</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Income</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Current DTI</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">DTI After Payoff</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Impact</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pay off $200/month credit card</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Decrease of 4 percentage points</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pay off auto loan ($350/month)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Decrease of 7 percentage points</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pay off personal loan ($250/month)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Decrease of 5 percentage points</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Reduce 3 credit cards by $75/month each</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Decrease of 4 percentage points</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Refinance student loan payment ($300→$150)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Decrease of 2 percentage points</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">This demonstrates the significant impact debt reduction has on DTI. Even small monthly payments add up; reducing total monthly obligations by $500 lowers a 40% DTI to approximately 30% for a $5,000 monthly income.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your DTI quarterly using this calculator to monitor progress toward your target ratio, especially if you're planning a major purchase like a home or car within the next 12 months.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Prioritize paying down high-interest credit card debt first, as it typically has minimum payments that disproportionately impact your DTI ratio compared to your actual balance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Request increases to your credit card limits without opening new accounts—this can lower your minimum payment requirement and improve your overall DTI without new debt.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If self-employed, calculate your gross income using your average net profit over the past 2 years, as lenders require documented history rather than projected future earnings.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Avoid taking on new debt or making major purchases 3-6 months before applying for a mortgage, as even small new debts can push your DTI above a lender's threshold.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Including Taxes and Deductions as Income Reduction</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using net income (after-tax) instead of gross income understates your actual DTI ratio. Always use your gross monthly income before taxes and deductions, as lenders assess your ability to service debt based on total earnings, not take-home pay.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Include Minimum Credit Card Payments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people calculate DTI without including credit card minimum payments because they only focus on loan payments. Even small minimum payments of $50-100 per card add up quickly; omitting them can understate your true DTI by 3-5 percentage points.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Projected Income Before It's Documented</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Counting on a promised raise or bonus that hasn't been officially documented won't improve your DTI in a lender's eyes. Most lenders require 2 years of documented history for bonuses or commissions, so only include income you can prove with recent tax returns or pay stubs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Updating DTI After Recent Debt Payoff</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating your DTI with outdated information, such as debts you've already paid off, inflates your ratio and misrepresents your actual borrowing capacity. Recalculate using only active monthly debt obligations to get an accurate picture of your current financial standing.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role in determining your DTI ratio. Total Monthly Debt Payments include all recurring debt obligations such as mortgages, car loans, student loans, and credit card payments. Gross Monthly Income encompasses all sources of income, including salaries, bonuses, and rental income. Changes in either variable can significantly impact your DTI ratio, influencing your financial decisions and loan eligibility.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that affect your Debt-to-Income (DTI) ratio is crucial for effective financial planning. These factors can influence your DTI ratio and, consequently, your financial health and loan eligibility. By managing these factors, you can optimize your DTI ratio and improve your financial standing.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Income Stability
-        </h3>
-        <p className="mb-4">
-          Income stability is a significant factor affecting your DTI ratio. A stable and consistent income ensures that you can meet your debt obligations without financial strain. Lenders often prefer borrowers with steady income sources, as it indicates reliability and reduces the risk of default.
-        </p>
-        <p className="mb-6">
-          To optimize this factor, consider diversifying your income streams or securing a stable job with consistent pay. This can help improve your DTI ratio and make you a more attractive candidate for loans. For more insights, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Debt Management
-        </h3>
-        <p className="mb-4">
-          Effective debt management is crucial for maintaining a healthy DTI ratio. High levels of debt can increase your DTI ratio, making it difficult to qualify for loans or secure favorable interest rates. Managing your debt involves timely payments and strategic debt reduction.
-        </p>
-        <p className="mb-6">
-          Consider consolidating high-interest debts or negotiating better terms with creditors. Reducing unnecessary expenses and prioritizing debt repayment can also help lower your DTI ratio. Explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> for more strategies.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Credit Utilization
-        </h3>
-        <p className="mb-4">
-          Credit utilization refers to the percentage of your credit limit that you're currently using. High credit utilization can negatively impact your DTI ratio and credit score. It's essential to maintain a low credit utilization rate to improve your financial health.
-        </p>
-        <p className="mb-6">
-          Aim to keep your credit utilization below 30% of your total credit limit. Regularly monitor your credit usage and pay off balances promptly to maintain a healthy DTI ratio. For more tips, check out our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Economic Conditions
-        </h3>
-        <p className="mb-6">
-          Economic conditions can significantly influence your DTI ratio. During economic downturns, income stability may be threatened, and debt levels can increase due to financial strain. It's crucial to be aware of economic trends and adjust your financial strategies accordingly.
-        </p>
-        <p className="mb-6">
-          Stay informed about economic indicators and consider building an emergency fund to cushion against economic uncertainties. This proactive approach can help you maintain a healthy DTI ratio even during challenging times.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Lifestyle Choices
-        </h3>
-        <p className="mb-6">
-          Your lifestyle choices, including spending habits and financial priorities, can affect your DTI ratio. Overspending or living beyond your means can increase debt levels and negatively impact your financial health. It's essential to make conscious financial decisions and prioritize long-term stability over short-term gratification.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a good debt-to-income ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A debt-to-income ratio below 36% is generally considered excellent by most lenders, while ratios between 36% and 49% are acceptable for many mortgage and auto loan applications. Anything above 50% is typically viewed as high risk and may disqualify you from conventional financing. The lower your ratio, the more financial flexibility and borrowing capacity you have.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the debt-to-income calculator include student loans?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, student loan payments should be included in your total monthly debt obligations for an accurate calculation. Even if you're on an income-driven repayment plan, use your actual monthly payment amount. Federal student loans, private student loans, and any outstanding education debt must all be factored into your DTI ratio.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do credit card balances affect my debt-to-income ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Credit card debt is included in your DTI calculation based on your minimum monthly payment, not your total balance. If you carry a $5,000 balance with a minimum payment of $150 per month, use the $150 figure in the calculator. To improve your DTI, paying down credit card balances or requesting higher credit limits can lower your required minimum payments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What monthly debts should I include in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Include all recurring monthly debt obligations: mortgage or rent, car loans, student loans, personal loans, credit card minimum payments, child support, alimony, and any other loans or payment plans. Do not include utilities, groceries, insurance premiums, or other variable living expenses, as DTI focuses strictly on debt obligations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I improve my debt-to-income ratio for a mortgage application?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, you can improve your DTI by increasing your gross monthly income through a raise or second job, or by paying down existing debt before applying for a mortgage. Most lenders prefer a DTI of 43% or lower for mortgage qualification, so even reducing your ratio to 45% can significantly improve your approval chances. Many borrowers successfully lower their DTI by 5-10 percentage points within 3-6 months of focused debt repayment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is rent included in the debt-to-income ratio calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rent is sometimes included depending on the type of loan you're applying for. For mortgage applications, lenders typically do not count current rent in your DTI, but they will count your projected mortgage payment as a debt obligation. For other types of loans like personal loans or auto loans, rent may or may not be included depending on the lender's policy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What income should I use in the debt-to-income calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use your gross monthly income before taxes, which includes salary, wages, bonuses, commissions, investment income, rental income, and alimony or child support received. Do not include overtime or bonuses unless they are guaranteed and documented for at least 2 years. For self-employed individuals, use your average net income over the past 2 years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between front-end and back-end DTI ratios?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The front-end ratio (housing ratio) divides only housing-related debt by gross income and should not exceed 28% for most lenders. The back-end ratio (total DTI) includes all monthly debts and typically should not exceed 36% to 43%, depending on the lender. Most debt-to-income calculators compute the back-end ratio, which is more comprehensive for assessing overall financial health.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my debt-to-income ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate your DTI quarterly or whenever you experience a significant change in income or debt levels, such as a raise, job loss, paying off a loan, or taking on new debt. If you're planning to apply for major financing within the next 6-12 months, track your DTI monthly to monitor your progress toward your target ratio. This helps you understand when you'll be in the best position to qualify for favorable loan terms.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Debt-to-Income Ratios
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on debt-to-income ratios and their impact on financial stability.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau - Mortgage Debt-to-Income Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal resource explaining DTI standards, mortgage qualification, and consumer lending regulations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Managing Debt
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources on managing debt.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.hud.gov/program_offices/public_indian_housing/programs/ph/phr/about/faq" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Housing Administration - FHA Loan Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official FHA guidelines on debt-to-income ratios and mortgage insurance requirements for government-backed loans.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Personal Finance Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information relevant to personal finance.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate - Debt-to-Income Ratio Explained</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to understanding DTI ratios, lender standards, and how to improve your qualification chances.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Financial Planning
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and financial planning resources from the IRS.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Debt Management
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts related to debt management.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers seeking financial advice.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia - Debt-to-Income Ratio Definition and Calculator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Educational resource defining DTI ratios, explaining calculation methods, and providing context for different lending scenarios.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

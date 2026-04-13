@@ -82,24 +82,40 @@ export default function PortfolioValueTrackerCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are portfolio tracking calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For portfolio tracking, accuracy depends on using current asset allocation data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a asset allocation professional."
+      question: "What is the Portfolio Value Tracker calculator used for?",
+      answer: "The Portfolio Value Tracker helps investors monitor and calculate the current total value of their investment portfolio across multiple asset classes and accounts. By inputting your holdings—stocks, bonds, mutual funds, ETFs, and cash—you can see real-time snapshots of your net worth and track performance over time. This tool is essential for rebalancing decisions, tax planning, and understanding your overall financial position at a glance.",
     },
     {
-      question: "What key factors most affect portfolio tracking results?",
-      answer: "The most impactful variables in portfolio tracking calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "How do I input my stock holdings into the Portfolio Value Tracker?",
+      answer: "Enter each stock position by inputting the ticker symbol, number of shares owned, and the current price per share. The calculator will automatically multiply shares × price to show your position value. For example, if you own 50 shares of Apple (AAPL) at $215 per share, your position value would be $10,750. You can add as many individual stock positions as needed.",
     },
     {
-      question: "When should I recalculate portfolio tracking?",
-      answer: "Recalculate whenever asset allocation conditions change significantly: after major asset allocation events, when your inputs change (income, rates, holdings), or when asset allocation regulations are updated. For time-sensitive asset allocation metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "Can the Portfolio Value Tracker handle multiple investment accounts?",
+      answer: "Yes, the Portfolio Value Tracker is designed to aggregate holdings across multiple accounts such as brokerage accounts, 401(k)s, IRAs, and taxable accounts. Simply input each holding with its current market value, and the calculator will sum them into a comprehensive portfolio total. This is particularly useful for investors with assets spread across different financial institutions.",
     },
     {
-      question: "How does portfolio tracking relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Portfolio tracking should be evaluated alongside related measures like rebalancing. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your asset allocation situation, rather than optimizing any single number in isolation."
+      question: "How should I calculate the current value of mutual funds and ETFs?",
+      answer: "For mutual funds and ETFs, multiply the number of shares you own by the current Net Asset Value (NAV) or market price per share. For instance, if you hold 100 shares of the Vanguard S&P 500 ETF (VOO) at $445 per share, your position value is $44,500. You can find current NAV prices on your brokerage statement or financial websites like Yahoo Finance or your fund provider's site.",
     },
     {
-      question: "What are the most common mistakes when calculating portfolio tracking?",
-      answer: "The most frequent errors in portfolio tracking calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world asset allocation conditions fluctuate. Double-check your inputs against current asset allocation data before relying on results for significant financial decisions."
+      question: "What is the average annual return I should expect from a diversified portfolio?",
+      answer: "Historical data shows that a diversified portfolio with 60% stocks and 40% bonds has averaged approximately 8–9% annually over the past 30 years, while an all-stock portfolio averages 10–11% annually. However, returns vary significantly by year; the S&P 500 returned -18.1% in 2022 but +26.3% in 2023. Your actual returns will depend on your specific asset allocation, investment choices, and market conditions.",
+    },
+    {
+      question: "How often should I update my Portfolio Value Tracker?",
+      answer: "Most investors benefit from updating their portfolio tracker quarterly or at least semi-annually to monitor progress toward financial goals. However, active traders or those managing large portfolios may update weekly or monthly. Avoid checking too frequently, as daily market fluctuations can cause emotional decision-making; instead, focus on long-term trends and rebalancing needs.",
+    },
+    {
+      question: "Can the Portfolio Value Tracker help me identify asset allocation drift?",
+      answer: "Absolutely. By tracking your holdings and their percentage of total portfolio value, the Portfolio Value Tracker reveals when your allocation drifts from your target. For example, if your target is 70% stocks and 30% bonds, but market gains push stocks to 75%, the tracker shows this shift. This information helps you determine when rebalancing is necessary to maintain your desired risk level.",
+    },
+    {
+      question: "What's a reasonable portfolio size to start tracking with this calculator?",
+      answer: "You can track any portfolio size, but most financial advisors recommend active tracking once your investments exceed $10,000–$25,000. Below that threshold, tracking can feel granular given lower fees and simpler structures. That said, starting good habits early is valuable; even tracking a $5,000 starter portfolio builds discipline for future wealth accumulation.",
+    },
+    {
+      question: "How does inflation impact my Portfolio Value Tracker calculations?",
+      answer: "While the Portfolio Value Tracker shows nominal (dollar) values, inflation erodes purchasing power. With U.S. inflation averaging 3.4% annually from 2020–2024, a portfolio nominally growing 7% annually is really gaining only about 3.6% in real purchasing power. To assess true wealth growth, subtract the inflation rate from your portfolio's return; this is especially important for long-term retirement planning.",
     }
   ];
 
@@ -295,250 +311,291 @@ export default function PortfolioValueTrackerCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Portfolio Value Tracker
-        </h2>
-        
-        <p className="mb-6">
-          The Portfolio Value Tracker is an essential tool for anyone invested in the cryptocurrency market. It allows users to monitor the total value of their digital asset holdings, providing insights into gains and losses over time. This calculator is particularly useful for investors who hold a diverse range of cryptocurrencies, as it consolidates data into a single, easy-to-understand format. By tracking your portfolio's performance, you can make informed decisions about buying, selling, or holding assets, ultimately optimizing your investment strategy.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in the volatile world of cryptocurrencies. A small error in tracking could lead to significant financial consequences, such as missed opportunities or unexpected losses. This tool helps mitigate such risks by providing precise and up-to-date information about your portfolio's value. According to recent studies, investors who regularly monitor their portfolios are more likely to achieve their financial goals. By using this calculator, you can ensure that your investment decisions are based on reliable data. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use the Portfolio Value Tracker effectively, gather information about your initial investment, the current value of your assets, and any additional investments made. Enter these values into the calculator to receive a comprehensive analysis of your portfolio's performance. Each input field is designed to capture specific data points, ensuring accurate results. For instance, the initial investment field should reflect the total amount invested at the start, while the current value field should represent the latest market valuation of your holdings. For more detailed guidance, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Regularly updating your portfolio data is crucial for maintaining accuracy. Market conditions can change rapidly, affecting the value of your investments. By keeping your data current, you can make timely decisions that align with your financial objectives. Consider setting a reminder to update your portfolio tracker weekly or after significant market events.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Portfolio Value Tracker</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Portfolio Value Tracker is designed to give you a comprehensive snapshot of your total investment wealth across all accounts and asset types. Whether you hold stocks, bonds, mutual funds, ETFs, or alternative investments, this calculator consolidates everything into one unified view. Knowing your exact portfolio value is the foundation for informed financial decisions, including rebalancing, tax-loss harvesting, and retirement planning.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, gather current market values for each holding in your portfolio. Input the asset type (stock, bond, fund, etc.), the quantity or number of shares, and the current price or NAV per unit. The calculator will automatically compute each position's value and aggregate them into your total portfolio value. You can organize holdings by account type (401k, IRA, brokerage, taxable) or by asset class (equities, fixed income, alternatives) depending on your preference.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once calculated, use your total portfolio value to assess progress toward goals, determine your actual asset allocation, and identify rebalancing opportunities. Compare your portfolio value growth to relevant benchmarks—such as the S&P 500 or a target allocation—to gauge performance. Review results at least quarterly to catch significant drift from your intended allocation and ensure your investment strategy remains aligned with your time horizon and risk tolerance.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using the Portfolio Value Tracker include setting realistic financial goals and regularly reviewing your investment strategy. Consider factors such as market trends, economic indicators, and personal financial objectives when analyzing your results. By understanding these elements, you can make informed decisions that enhance your portfolio's performance. Remember, the key to successful investing is staying informed and adaptable.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Portfolio Value Tracker Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in the Portfolio Value Tracker is designed to provide a clear picture of your investment's performance. It calculates the total value of your portfolio by summing the initial investment and any additional investments, then subtracting this total from the current market value of your holdings. This approach allows for a straightforward assessment of gains or losses, expressed both in absolute terms and as a percentage change. The formula is widely recognized in the financial industry for its accuracy and reliability.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Current Value = Initial Investment + Additional Investment + Gain/Loss
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>Initial Investment = The amount initially invested in the portfolio</li>
-              <li>Additional Investment = Any subsequent investments made</li>
-              <li>Gain/Loss = The difference between the current value and the total investment</li>
-            </ul>
+      {/* TABLE: Historical Average Annual Returns by Asset Class (1994–2024) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Historical Average Annual Returns by Asset Class (1994–2024)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These long-term returns illustrate what different asset classes have historically delivered, helping you benchmark your portfolio performance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Asset Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Annual Return</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best Year</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Worst Year</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">S&P 500 (U.S. Stocks)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+37.3% (1995)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-37.0% (2008)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Nasdaq-100 (Growth Stocks)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+85.6% (1999)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-39.1% (2002)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aggregate Bond Index</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+14.8% (2023)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-13.1% (2022)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">International Stocks (EAFE)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+32.5% (2003)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-43.4% (2008)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Real Estate (REITs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+37.3% (2009)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-37.3% (2008)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commodities</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+32.1% (2021)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-36.2% (2015)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Money Market / T-Bills</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+5.3% (2023)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.0% (2010)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data sourced from Morningstar and MSCI. Past performance does not guarantee future results. Returns are annualized and do not include fees or taxes.</p>
+      </section>
+
+      {/* TABLE: Recommended Asset Allocation by Age and Risk Profile */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Asset Allocation by Age and Risk Profile</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this guide to ensure your Portfolio Value Tracker reflects an allocation appropriate for your age and risk tolerance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Aggressive (%)  Stocks/Bonds</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate (%)  Stocks/Bonds</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Conservative (%)  Stocks/Bonds</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20–30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90/10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80/20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70/30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30–40 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85/15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75/25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60/40</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40–50 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75/25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">65/35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50/50</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50–60 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70/30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60/40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40/60</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60–70 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60/40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50/50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30/70</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">70+ years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50/50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40/60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20/80</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are illustrative allocations. Consult a financial advisor to personalize your asset allocation based on goals, time horizon, and individual circumstances.</p>
+      </section>
+
+      {/* TABLE: Fee Impact on $100,000 Portfolio Over 30 Years (7% Annual Return) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Fee Impact on $100,000 Portfolio Over 30 Years (7% Annual Return)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how investment fees compound, reducing long-term wealth even when portfolio returns appear similar.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Fee %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Fees Paid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Portfolio Value After 30 Years</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Reduction vs. 0.25% Fee</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0.25% (Low-cost index funds)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$872,650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0.50% (Average ETF)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$845,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$27,450</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1.00% (Active mutual fund)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$46,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$793,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$79,550</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1.50% (High-cost advisor)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$70,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$744,900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$127,750</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.00% (Premium advisors)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$96,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$701,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-$171,450</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes $100,000 initial investment, 7% gross return, annual rebalancing, and fees deducted from returns. Higher fees can significantly reduce retirement wealth.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Update your Portfolio Value Tracker immediately after any major transaction—such as a large deposit, withdrawal, or rebalancing trade—to keep values accurate for decision-making.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the tracker to monitor asset allocation drift; if your target is 70/30 stocks/bonds but market moves push you to 76/24, that's a signal to rebalance back to your target.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Include cash reserves and money market funds in your portfolio total; neglecting emergency funds or cash positions gives you an incomplete picture of investable assets.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your portfolio alongside inflation rates (currently 3.4% annually as of 2024); a 5% nominal portfolio gain is really only 1.6% real gain when inflation is considered.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Set annual review dates (e.g., January 1st or your birthday) to input fresh market prices and assess whether your allocation still matches your risk profile and time horizon.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Include All Accounts</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many investors only track their primary brokerage account while ignoring smaller retirement accounts, spousal accounts, or old 401(k)s from previous employers. This creates a fragmented picture that misrepresents your true net worth and asset allocation. Always consolidate every investment account for an accurate total portfolio value.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated or Stale Prices</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering stock prices from a week ago or last month gives misleading results, especially in volatile markets. Always use the most recent market close or current NAV when updating your tracker, ensuring your decisions are based on present conditions, not old data.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Failing to Account for Fees and Expenses</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Seeing a portfolio value of $500,000 doesn't mean you'll keep all of it; annual fees of 1% will strip away $5,000 yearly, compounding to significant losses over decades. Include expense ratios and advisory fees in your expectations to avoid overestimating true wealth accumulation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Obsessing Over Short-Term Fluctuations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Updating your tracker daily and reacting emotionally to every 1–2% dip can lead to panic selling at the worst time. Instead, view your portfolio value as a long-term trend over months and years, not daily noise. Historical data shows that buy-and-hold investors who ignore short-term volatility outperform frequent traders by 2–3% annually.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role in determining the portfolio's value. The initial investment represents the starting point of your financial journey, providing a baseline for measuring growth. Additional investments reflect your ongoing commitment to building wealth, while the gain/loss component captures the real-time performance of your assets. By understanding how these variables interact, you can better manage your portfolio and make strategic decisions that align with your financial goals.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your portfolio's value is essential for effective financial management. These factors can vary widely, impacting your results in different ways. By recognizing how they interact, you can take proactive steps to optimize your investment strategy and achieve your financial objectives.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Market Volatility
-        </h3>
-        <p className="mb-4">
-          Market volatility refers to the rapid and unpredictable changes in asset prices. It is a significant factor affecting portfolio value, as it can lead to substantial gains or losses. Understanding market trends and staying informed about economic indicators can help you navigate volatility effectively. For instance, during periods of high volatility, you might consider diversifying your investments to mitigate risk.
-        </p>
-        <p className="mb-6">
-          To manage market volatility, consider adopting a long-term investment perspective. This approach allows you to ride out short-term fluctuations and focus on the overall growth of your portfolio. Additionally, regularly reviewing your investment strategy and adjusting it based on market conditions can help you stay on track. Explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a> for more insights.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Asset Allocation
-        </h3>
-        <p className="mb-4">
-          Asset allocation involves distributing your investments across different asset classes, such as stocks, bonds, and cryptocurrencies. This strategy helps balance risk and reward, as different assets perform differently under various market conditions. A well-diversified portfolio can enhance returns while reducing overall risk.
-        </p>
-        <p className="mb-6">
-          When determining your asset allocation, consider factors such as your risk tolerance, investment goals, and time horizon. For example, younger investors with a longer time horizon may opt for a more aggressive allocation, while those nearing retirement might prefer a conservative approach. Regularly reassessing your asset allocation ensures it aligns with your evolving financial objectives.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Economic Indicators
-        </h3>
-        <p className="mb-4">
-          Economic indicators, such as inflation rates, interest rates, and GDP growth, provide valuable insights into the overall health of the economy. These indicators can influence asset prices and, consequently, your portfolio's value. Staying informed about economic trends can help you anticipate market movements and adjust your investment strategy accordingly.
-        </p>
-        <p className="mb-6">
-          To effectively incorporate economic indicators into your investment strategy, consider subscribing to financial news outlets and reports. This information can guide your decision-making process and help you identify opportunities for growth. Additionally, consulting with financial advisors can provide expert insights tailored to your specific needs.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Regulatory Changes
-        </h3>
-        <p className="mb-6">
-          Regulatory changes can significantly impact the financial markets and, by extension, your portfolio's value. These changes may include new tax laws, financial regulations, or government policies. Staying informed about regulatory developments is crucial for making informed investment decisions. For example, changes in cryptocurrency regulations could affect the value and liquidity of your digital assets.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Technological Advancements
-        </h3>
-        <p className="mb-6">
-          Technological advancements can create new investment opportunities and disrupt existing markets. Innovations such as blockchain technology and artificial intelligence are transforming the financial landscape, offering new ways to invest and manage portfolios. Staying abreast of technological trends can help you capitalize on emerging opportunities and enhance your investment strategy.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the Portfolio Value Tracker calculator used for?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Portfolio Value Tracker helps investors monitor and calculate the current total value of their investment portfolio across multiple asset classes and accounts. By inputting your holdings—stocks, bonds, mutual funds, ETFs, and cash—you can see real-time snapshots of your net worth and track performance over time. This tool is essential for rebalancing decisions, tax planning, and understanding your overall financial position at a glance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I input my stock holdings into the Portfolio Value Tracker?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter each stock position by inputting the ticker symbol, number of shares owned, and the current price per share. The calculator will automatically multiply shares × price to show your position value. For example, if you own 50 shares of Apple (AAPL) at $215 per share, your position value would be $10,750. You can add as many individual stock positions as needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the Portfolio Value Tracker handle multiple investment accounts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the Portfolio Value Tracker is designed to aggregate holdings across multiple accounts such as brokerage accounts, 401(k)s, IRAs, and taxable accounts. Simply input each holding with its current market value, and the calculator will sum them into a comprehensive portfolio total. This is particularly useful for investors with assets spread across different financial institutions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I calculate the current value of mutual funds and ETFs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For mutual funds and ETFs, multiply the number of shares you own by the current Net Asset Value (NAV) or market price per share. For instance, if you hold 100 shares of the Vanguard S&P 500 ETF (VOO) at $445 per share, your position value is $44,500. You can find current NAV prices on your brokerage statement or financial websites like Yahoo Finance or your fund provider's site.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the average annual return I should expect from a diversified portfolio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Historical data shows that a diversified portfolio with 60% stocks and 40% bonds has averaged approximately 8–9% annually over the past 30 years, while an all-stock portfolio averages 10–11% annually. However, returns vary significantly by year; the S&P 500 returned -18.1% in 2022 but +26.3% in 2023. Your actual returns will depend on your specific asset allocation, investment choices, and market conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I update my Portfolio Value Tracker?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most investors benefit from updating their portfolio tracker quarterly or at least semi-annually to monitor progress toward financial goals. However, active traders or those managing large portfolios may update weekly or monthly. Avoid checking too frequently, as daily market fluctuations can cause emotional decision-making; instead, focus on long-term trends and rebalancing needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the Portfolio Value Tracker help me identify asset allocation drift?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absolutely. By tracking your holdings and their percentage of total portfolio value, the Portfolio Value Tracker reveals when your allocation drifts from your target. For example, if your target is 70% stocks and 30% bonds, but market gains push stocks to 75%, the tracker shows this shift. This information helps you determine when rebalancing is necessary to maintain your desired risk level.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's a reasonable portfolio size to start tracking with this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You can track any portfolio size, but most financial advisors recommend active tracking once your investments exceed $10,000–$25,000. Below that threshold, tracking can feel granular given lower fees and simpler structures. That said, starting good habits early is valuable; even tracking a $5,000 starter portfolio builds discipline for future wealth accumulation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does inflation impact my Portfolio Value Tracker calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While the Portfolio Value Tracker shows nominal (dollar) values, inflation erodes purchasing power. With U.S. inflation averaging 3.4% annually from 2020–2024, a portfolio nominally growing 7% annually is really gaining only about 3.6% in real purchasing power. To assess true wealth growth, subtract the inflation rate from your portfolio's return; this is especially important for long-term retirement planning.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Federal Reserve - Economic Data
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on economic indicators and financial regulations.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.sec.gov/investor/pubs/assetallocation.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC: Investor Bulletin on Asset Allocation</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official SEC guidance on constructing a diversified portfolio and understanding asset allocation strategies.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Financial Guides
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/publications/p550" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS: Publication 550 (Investment Income and Expenses)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive IRS resource covering investment income taxation and portfolio tracking for tax purposes.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Banking Regulations
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/terms/r/rebalancing.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia: Portfolio Rebalancing Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed explanation of portfolio rebalancing strategies and how to maintain target asset allocations.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Tax Guidelines
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Financial Education
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Personal Finance
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for consumers.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.consumerfinance.gov/about-us/newsroom/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau: Building an Investment Strategy</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB resources and articles on developing a personal investment strategy and monitoring portfolio performance.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

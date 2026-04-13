@@ -20,24 +20,40 @@ export default function SocialSecurityBenefitEstimatorCalculator() {
 
   const faqs = [
     {
-      question: "How accurate are Social Security benefits calculations and what limitations should I be aware of?",
-      answer: "This calculator provides estimates based on the inputs you provide. For Social Security benefits, accuracy depends on using current full retirement age data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a full retirement age professional."
+      question: "At what age can I start claiming Social Security benefits?",
+      answer: "You can claim Social Security as early as age 62, but your benefit amount will be permanently reduced by approximately 30% compared to your full retirement age (FRA). If your FRA is 67, claiming at 62 results in a 35% reduction. Waiting until your FRA allows you to receive 100% of your primary insurance amount (PIA), and delaying until age 70 increases benefits by 24-32% depending on your FRA.",
     },
     {
-      question: "What key factors most affect Social Security benefits results?",
-      answer: "The most impactful variables in Social Security benefits calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
+      question: "What is my Full Retirement Age (FRA) for Social Security?",
+      answer: "Your FRA depends on your birth year: those born in 1943–1954 have an FRA of 66, while those born in 1955 have an FRA of 66 and 2 months, gradually increasing to 67 for those born in 1960 or later. The Social Security Administration uses your birth date to automatically calculate your FRA in the estimator. Knowing your FRA is critical because benefits increase by 8% annually if you delay claiming past this age.",
     },
     {
-      question: "When should I recalculate Social Security benefits?",
-      answer: "Recalculate whenever full retirement age conditions change significantly: after major full retirement age events, when your inputs change (income, rates, holdings), or when full retirement age regulations are updated. For time-sensitive full retirement age metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
+      question: "How does my earnings history affect my Social Security estimate?",
+      answer: "Social Security calculates your benefit based on your 35 highest-earning years; if you have fewer than 35 years of earnings, zeros are added for missing years, which lowers your average. The estimator uses your actual earnings record from the Social Security Administration to compute your Primary Insurance Amount (PIA). Earning more in later years can boost your benefit if those years replace lower-earning years in your top 35.",
     },
     {
-      question: "How does Social Security benefits relate to other financial planning metrics?",
-      answer: "No single metric tells the complete financial picture. Social security benefits should be evaluated alongside related measures like claiming strategy. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your full retirement age situation, rather than optimizing any single number in isolation."
+      question: "What is the maximum Social Security benefit for 2025?",
+      answer: "The maximum monthly Social Security benefit in 2025 is $3,822 for someone claiming at their full retirement age, up from $3,822 in 2024. This applies only to high earners who have paid the maximum payroll tax throughout their career. The maximum benefit increases annually based on the Cost of Living Adjustment (COLA), which was 3.2% for 2025.",
     },
     {
-      question: "What are the most common mistakes when calculating Social Security benefits?",
-      answer: "The most frequent errors in Social Security benefits calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world full retirement age conditions fluctuate. Double-check your inputs against current full retirement age data before relying on results for significant financial decisions."
+      question: "How does the earnings test affect my benefits before FRA?",
+      answer: "If you claim Social Security before your full retirement age and continue working, $1 in benefits is withheld for every $2 earned above the 2025 limit of $23,400. In the year you reach FRA, the limit increases to $62,400, and only earnings before the month you reach FRA count. The estimator accounts for this reduction if you input current or projected earnings.",
+    },
+    {
+      question: "What happens to my Social Security if I become disabled before retirement age?",
+      answer: "If you become disabled and unable to work before reaching FRA, you may qualify for Social Security Disability Insurance (SSDI), which provides the same benefit calculation as retirement benefits. The estimator provides estimates assuming retirement claiming, but SSDI has the same PIA formula based on your earnings record. Once you reach FRA, SSDI benefits automatically convert to retirement benefits at the same amount.",
+    },
+    {
+      question: "Does the estimator account for spousal and survivor benefits?",
+      answer: "The standard Social Security Benefit Estimator focuses on your own retirement benefits, but many tools include tabs or sections for spousal benefits (up to 50% of your FRA benefit for eligible spouses) and survivor benefits. A spouse age 62+ or caring for a child under 16 may receive benefits, and your children and widow(er) receive survivor benefits based on your earnings record. You should review spousal and survivor benefit estimates separately or use the detailed calculator on ssa.gov.",
+    },
+    {
+      question: "How accurate is the Social Security Benefit Estimator?",
+      answer: "The estimator is highly accurate because it uses your actual earnings record directly from the Social Security Administration database. The margin of error is typically within 1-2% of your actual benefit, assuming no future earnings changes or policy modifications. For the most precise estimate, ensure your earnings history is current by checking your Social Security statement annually.",
+    },
+    {
+      question: "How does life expectancy affect when I should claim Social Security?",
+      answer: "The 'break-even' age when delayed claiming benefits overtake early claiming is approximately age 80–82, depending on your FRA; if you expect to live significantly past 82, delaying is usually more advantageous. If you have a shorter life expectancy or family history of longevity, claiming earlier may maximize lifetime benefits. The estimator helps project lifetime benefit totals at different claiming ages to support this decision.",
     }
   ];
 
@@ -291,257 +307,266 @@ export default function SocialSecurityBenefitEstimatorCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Social Security Benefit Estimator
-        </h2>
-        
-        <p className="mb-6">
-          The Social Security Benefit Estimator is a crucial tool for anyone planning their retirement. It helps you estimate your future Social Security benefits based on your earnings history and anticipated retirement age. This calculator is particularly useful for individuals who want to understand how different retirement ages can impact their monthly benefits. By providing a clear picture of potential benefits, it aids in making informed decisions about when to retire and how much to save.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in retirement planning. Misestimating your benefits could lead to financial shortfalls in your retirement years. According to the Social Security Administration, benefits are designed to replace about 40% of pre-retirement income for average earners. This tool helps ensure you have realistic expectations and can plan accordingly. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather your annual earnings history, current age, and desired retirement age. Enter these details into the calculator to see your estimated monthly benefits. This tool also allows you to explore how retiring earlier or later can affect your benefits. For additional guidance, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Consider delaying retirement to increase your monthly benefits. Each year you delay past your full retirement age can increase your benefits by up to 8%. This strategy can significantly enhance your financial security during retirement.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Social Security Benefit Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Social Security Benefit Estimator is a free online tool provided by the Social Security Administration that projects your monthly and annual retirement benefits based on your actual earnings history and claiming age. This calculator is essential for retirement planning because it helps you understand how much income you can expect from Social Security and how your claiming strategy—whether early at 62, at full retirement age, or delayed to 70—affects your lifetime benefits. By using accurate projections, you can make informed decisions about when to claim and how to coordinate Social Security with other retirement income sources.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the estimator, you'll need your birth date, earnings history (which is automatically pulled from your Social Security account if you create one), and your projected claiming age or retirement date. The key inputs include your current age, full retirement age, and whether you plan to continue working before claiming benefits. The tool also asks about any periods of non-employment or zero earnings to ensure accurate calculations. Understanding these inputs helps you see how factors like early work interruptions, career earnings growth, or continued employment affect your final benefit amount.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The estimator displays your projected monthly benefit at different claiming ages (typically 62, your FRA, and 70), allowing you to compare lifetime benefit totals and break-even ages. The results also show your primary insurance amount (PIA), the earnings test impact if you claim before FRA and continue working, and estimates of spousal or survivor benefits where applicable. Use these results to determine your optimal claiming age based on your health, longevity expectations, and household financial needs—delaying benefits usually increases your lifetime total if you live significantly past age 80–82.</p>
         </div>
-        
-        <p className="mb-6">
-          When using this calculator, remember that factors such as changes in earnings, inflation, and legislative adjustments can affect your benefits. Regularly updating your inputs ensures you have the most accurate estimates. For more tips, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Social Security Benefit Estimator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is based on the Social Security Administration's guidelines for calculating benefits. The primary formula considers your average indexed monthly earnings (AIME) and applies a specific percentage to determine your primary insurance amount (PIA). This PIA is then adjusted based on your retirement age to calculate your monthly benefit.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          Monthly Benefit = AIME × PIA Factor
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>AIME = Average Indexed Monthly Earnings</li>
-              <li>PIA Factor = Percentage based on retirement age</li>
-            </ul>
+      {/* TABLE: Social Security Full Retirement Age (FRA) by Birth Year */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Social Security Full Retirement Age (FRA) by Birth Year</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Your full retirement age determines the age at which you receive 100% of your primary insurance amount and affects early and delayed claiming reductions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Birth Year</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Full Retirement Age</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age 62 Reduction</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age 70 Increase</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1943–1954</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1955</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66 and 2 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31.2%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1956</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66 and 4 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30.4%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1957</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66 and 6 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29.6%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1958</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66 and 8 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31.7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28.8%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1959</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66 and 10 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1960 and later</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">67</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages represent the reduction from FRA benefit (age 62) and increase from FRA benefit (age 70). Source: Social Security Administration.</p>
+      </section>
+
+      {/* TABLE: 2025 Social Security Benefit Estimates by Claiming Age */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2025 Social Security Benefit Estimates by Claiming Age</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows sample monthly benefits at different claiming ages for a worker with average earnings reaching FRA at 67.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Claiming Age</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Benefit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Benefit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lifetime Total (to age 90)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">62</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,106</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25,272</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$595,572</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">67 (FRA)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,009</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$36,108</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$680,908</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,711</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$44,532</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$734,148</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Example assumes $50,000 average annual earnings and no future earnings. Actual benefits vary based on individual earnings history. Lifetime totals assume no mortality before age 90.</p>
+      </section>
+
+      {/* TABLE: 2025 Social Security Payroll Tax and Wage Base */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">2025 Social Security Payroll Tax and Wage Base</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">The Social Security payroll tax applies to earnings up to the annual wage base, which increases annually based on average wage growth.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Component</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2024</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2025</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Employee Tax Rate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Employer Tax Rate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.2%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Self-Employed Tax Rate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.4%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wage Base Limit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$168,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$176,100</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cost of Living Adjustment (COLA)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.2%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The wage base limit increases annually to keep pace with average wage growth. Earnings above the wage base are not subject to Social Security tax or credited toward benefits.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Create a my Social Security account on ssa.gov to access your actual earnings record before using the estimator; this ensures accuracy and allows you to verify that all your work history is properly credited.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare benefit amounts at ages 62, your full retirement age, and 70 to calculate your personal break-even age; if family history suggests longevity past 82, delaying to age 70 typically maximizes lifetime benefits.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in the earnings test reduction if you claim before FRA and plan to keep working; benefits are reduced by $1 for every $2 earned above $23,400 in 2025, which significantly impacts early claimers.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the estimator to explore multiple scenarios: try adjusting your claiming age, expected retirement date, and continued earnings to see how each affects your lifetime benefits and develop a flexible claiming strategy.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Claiming at 62 without comparing lifetime totals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people claim at 62 without realizing their benefit is permanently reduced by 30%, and waiting just 5 years to FRA increases monthly benefits by 43%. Using the estimator to compare lifetime totals at different ages reveals whether early claiming truly maximizes your household benefit.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the earnings test while working</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you claim before FRA and earn above $23,400 in 2025, your benefits are withheld—reducing or even eliminating your checks for that year. The estimator helps project this impact, showing why delaying until FRA or beyond if you plan to work can be more effective.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not updating your earnings record before estimating</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If your earnings record is missing recent years or contains errors, your estimated benefit will be inaccurate and likely too low. Always verify your my Social Security account and correct any discrepancies with the Social Security Administration before relying on the estimator.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming benefits will be higher due to future salary increases</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The estimator bases your benefit on your actual 35 highest-earning years; future earnings improvements only help if they replace lower-earning years in your top 35. Unless you're still building your work record, future raises have minimal impact on your Social Security benefit.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role. AIME reflects your lifetime earnings adjusted for inflation, ensuring that your benefits are proportional to your earnings history. The PIA factor varies depending on whether you retire early, at full retirement age, or delay retirement. For example, retiring at 62 will reduce your PIA factor, while delaying retirement past 67 will increase it. Understanding these variables helps you strategize your retirement planning effectively.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Several factors influence the calculation of your Social Security benefits. Understanding these factors is essential for accurate estimations and strategic retirement planning. Each factor interacts with others, affecting your overall benefits.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Average Indexed Monthly Earnings (AIME)
-        </h3>
-        <p className="mb-4">
-          AIME is calculated by averaging your highest 35 years of earnings, adjusted for inflation. This figure is crucial because it directly impacts your Primary Insurance Amount (PIA). Higher AIME results in higher benefits.
-        </p>
-        <p className="mb-6">
-          To optimize your AIME, aim to maximize your earnings throughout your career. Consider strategies like pursuing promotions or additional certifications. For more on optimizing earnings, see our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Retirement Age
-        </h3>
-        <p className="mb-4">
-          The age at which you choose to retire significantly affects your benefits. Retiring early reduces your monthly benefits, while delaying retirement increases them. This factor is crucial for planning your retirement timeline.
-        </p>
-        <p className="mb-6">
-          Consider your health, financial needs, and life expectancy when deciding your retirement age. Delaying retirement can lead to substantially higher benefits, providing greater financial security.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Cost of Living Adjustments (COLA)
-        </h3>
-        <p className="mb-4">
-          Social Security benefits are adjusted annually for inflation through COLA. This ensures that your purchasing power remains stable despite rising prices. Understanding COLA is essential for long-term financial planning.
-        </p>
-        <p className="mb-6">
-          Stay informed about annual COLA changes and how they affect your benefits. This knowledge helps you adjust your budget and savings plan accordingly.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Earnings Test
-        </h3>
-        <p className="mb-6">
-          If you work while receiving Social Security benefits before reaching full retirement age, your benefits may be temporarily reduced based on your earnings. This test ensures that benefits are distributed fairly among retirees.
-        </p>
-        <p className="mb-6">
-          Plan your work and retirement strategy to minimize the impact of the earnings test. Consider part-time work or consulting to balance income and benefits.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Spousal and Survivor Benefits
-        </h3>
-        <p className="mb-6">
-          Spousal and survivor benefits can significantly impact your retirement income. Understanding eligibility and maximizing these benefits is crucial for married couples and surviving spouses.
-        </p>
-        <p className="mb-6">
-          Explore strategies like claiming spousal benefits while delaying your own to maximize household income. Consult with a financial advisor to navigate complex scenarios.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {/* FAQ SECTION */}
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what age can I start claiming Social Security benefits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You can claim Social Security as early as age 62, but your benefit amount will be permanently reduced by approximately 30% compared to your full retirement age (FRA). If your FRA is 67, claiming at 62 results in a 35% reduction. Waiting until your FRA allows you to receive 100% of your primary insurance amount (PIA), and delaying until age 70 increases benefits by 24-32% depending on your FRA.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is my Full Retirement Age (FRA) for Social Security?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your FRA depends on your birth year: those born in 1943–1954 have an FRA of 66, while those born in 1955 have an FRA of 66 and 2 months, gradually increasing to 67 for those born in 1960 or later. The Social Security Administration uses your birth date to automatically calculate your FRA in the estimator. Knowing your FRA is critical because benefits increase by 8% annually if you delay claiming past this age.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does my earnings history affect my Social Security estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Social Security calculates your benefit based on your 35 highest-earning years; if you have fewer than 35 years of earnings, zeros are added for missing years, which lowers your average. The estimator uses your actual earnings record from the Social Security Administration to compute your Primary Insurance Amount (PIA). Earning more in later years can boost your benefit if those years replace lower-earning years in your top 35.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum Social Security benefit for 2025?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The maximum monthly Social Security benefit in 2025 is $3,822 for someone claiming at their full retirement age, up from $3,822 in 2024. This applies only to high earners who have paid the maximum payroll tax throughout their career. The maximum benefit increases annually based on the Cost of Living Adjustment (COLA), which was 3.2% for 2025.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the earnings test affect my benefits before FRA?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If you claim Social Security before your full retirement age and continue working, $1 in benefits is withheld for every $2 earned above the 2025 limit of $23,400. In the year you reach FRA, the limit increases to $62,400, and only earnings before the month you reach FRA count. The estimator accounts for this reduction if you input current or projected earnings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens to my Social Security if I become disabled before retirement age?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If you become disabled and unable to work before reaching FRA, you may qualify for Social Security Disability Insurance (SSDI), which provides the same benefit calculation as retirement benefits. The estimator provides estimates assuming retirement claiming, but SSDI has the same PIA formula based on your earnings record. Once you reach FRA, SSDI benefits automatically convert to retirement benefits at the same amount.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the estimator account for spousal and survivor benefits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The standard Social Security Benefit Estimator focuses on your own retirement benefits, but many tools include tabs or sections for spousal benefits (up to 50% of your FRA benefit for eligible spouses) and survivor benefits. A spouse age 62+ or caring for a child under 16 may receive benefits, and your children and widow(er) receive survivor benefits based on your earnings record. You should review spousal and survivor benefit estimates separately or use the detailed calculator on ssa.gov.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the Social Security Benefit Estimator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The estimator is highly accurate because it uses your actual earnings record directly from the Social Security Administration database. The margin of error is typically within 1-2% of your actual benefit, assuming no future earnings changes or policy modifications. For the most precise estimate, ensure your earnings history is current by checking your Social Security statement annually.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does life expectancy affect when I should claim Social Security?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The 'break-even' age when delayed claiming benefits overtake early claiming is approximately age 80–82, depending on your FRA; if you expect to live significantly past 82, delaying is usually more advantageous. If you have a shorter life expectancy or family history of longevity, claiming earlier may maximize lifetime benefits. The estimator helps project lifetime benefit totals at different claiming ages to support this decision.</p>
+          </div>
         </div>
-
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.ssa.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Social Security Administration - Benefits Information
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official source for Social Security benefits, including calculators and guidelines.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.ssa.gov/benefits/retirement/estimator.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Social Security Administration – Benefits Estimator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The official Social Security Benefit Estimator tool that provides personalized projections based on your actual earnings record.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Consumer Financial Protection Bureau - Retirement Planning
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive resources for retirement planning and financial security.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.ssa.gov/benefits/retirement/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Social Security Administration – Retirement Benefits</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to Social Security retirement benefits, full retirement age, claiming strategies, and how benefits are calculated.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fidelity.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Fidelity - Retirement Planning Tools
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Tools and advice for planning a secure retirement, including calculators and guides.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investopedia.com/articles/personal-finance/081614/when-claim-social-security.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia – When to Claim Social Security</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Educational article explaining the break-even analysis, claiming strategies, and factors to consider when deciding when to claim Social Security.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.aarp.org" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                AARP - Social Security Resource Center
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Information and resources for understanding Social Security benefits and planning.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Social Security Explained
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed explanations of Social Security benefits and related financial concepts.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Social Security Benefits Guide
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Guides and tools for understanding and maximizing Social Security benefits.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/retirement/social-security/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate – Social Security Maximization Strategies</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Resource covering spousal benefits, survivor benefits, and strategies to maximize lifetime Social Security income based on life expectancy.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

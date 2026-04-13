@@ -76,38 +76,303 @@ export default function TipSplitBillCalculator() {
   }, [inputs.billAmount, inputs.tipPercent, inputs.people]);
 
   const editorial = (
-    <div className="space-y-8">
-      <section>
-        <h2 className="text-2xl font-bold mb-3">Tipping Standards in the US</h2>
-        <p className="text-muted-foreground leading-relaxed">
-          Tipping customs vary by service type and region, but the following US standards
-          are widely accepted:
-        </p>
-        <ul className="mt-3 space-y-2 text-muted-foreground list-disc ml-6">
-          <li><strong>Sit-down restaurants:</strong> 18–20% for good service; 15% minimum; 25%+ for exceptional</li>
-          <li><strong>Bars (drinks):</strong> $1–$2 per drink, or 15–20% of tab</li>
-          <li><strong>Food delivery:</strong> 15–20% of order (minimum $3–$5 for small orders)</li>
-          <li><strong>Takeout/counter service:</strong> 10% if they provide table service, optional otherwise</li>
-          <li><strong>Hotel housekeeping:</strong> $2–$5 per night</li>
-          <li><strong>Taxi/rideshare:</strong> 15–20%</li>
+    <div className="space-y-12">
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Tip & Split Bill Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">A tip and split bill calculator automates the mental math required to fairly divide restaurant checks and calculate appropriate gratuities. Whether you're dining alone and want to verify the math, or splitting a complex group bill with multiple diners, this tool eliminates rounding errors and disputes over who owes what. Most importantly, it ensures service workers receive the customary 15-20% gratuity while keeping your finances transparent and organized.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, start by entering your bill subtotal (the pre-tax amount from your receipt), then select a tip percentage or input a custom tip amount in dollars. Next, specify how many people are splitting the bill—the calculator will divide both the subtotal and tip equally among all participants. If you need to account for different orders or amounts per person, enter those individual subtotals separately before selecting your tipping preference.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator displays your results in clear breakdowns: the per-person subtotal, the per-person tip at your chosen percentage, and the final per-person total (before or after tax, depending on the tool). Use this information to determine exactly how much each diner should contribute or to verify the split is fair. Most calculators also round to the nearest cent and show the full group total, helping you confirm the math matches your original receipt.</p>
+        </div>
+      </section>
+
+      {/* TABLE: Tip Amounts by Percentage on Common Bill Totals */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tip Amounts by Percentage on Common Bill Totals</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how tip amounts vary across standard percentages for typical restaurant bills.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bill Subtotal</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15% Tip</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">18% Tip</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">20% Tip</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total at 18%</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$25.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$29.50</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$50.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$59.00</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$75.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11.25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$13.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$88.50</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$100.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$118.00</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$150.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$27.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$30.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$177.00</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$200.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$30.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$36.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$236.00</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Amounts shown are pre-tax. Actual totals will be higher when sales tax is added.</p>
+      </section>
+
+      {/* TABLE: Per-Person Cost When Splitting Bills Equally */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Per-Person Cost When Splitting Bills Equally</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how bill and tip costs are divided among group sizes for a $120 pre-tax bill at 18% tip.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Number of People</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Subtotal Per Person</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tip Per Person (18%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Per Person</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2 people</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10.80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$70.80</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 people</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7.20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$47.20</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4 people</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$30.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5.40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35.40</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 people</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$24.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4.32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$28.32</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6 people</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3.60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$23.60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8 people</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$17.70</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Individual totals exclude sales tax; add local tax rate to each person's final amount.</p>
+      </section>
+
+      {/* TABLE: Recommended Tip Percentages by Service Type (2024-2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Tip Percentages by Service Type (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Industry-standard tipping ranges vary by service category and quality of service.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Service Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Tip</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Standard Tip</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Excellent Service Tip</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sit-Down Restaurant</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Casual/Fast Casual</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Food Delivery</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Takeout Order</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bar/Cocktails</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1-2 per drink</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hair Salon/Barber</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hotel Housekeeping</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2-5 per night</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3-5 per night</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5+ per night</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages apply to pre-tax subtotal; dollar amounts are fixed gratuities per service.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always tip on the pre-tax subtotal unless local custom strongly suggests otherwise—this is the industry standard and what most service workers expect, saving you 5-10% on your tip compared to including sales tax.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the 'custom tip amount' feature when you want to round up to a clean number (like tipping $25 on an $87 bill instead of exactly $15.66) or when you're splitting cash and need bills that divide evenly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When splitting with a group, enter everyone's individual subtotals if orders vary significantly in price—this prevents someone who ordered a cheap appetizer from subsidizing someone else's expensive entrée.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Take a photo of your receipt before using the calculator to verify the subtotal and tax separately, ensuring you're tipping on the correct amount and catching any pricing errors from the restaurant.</li>
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-bold mb-3">How to Split a Bill Fairly</h2>
-        <p className="text-muted-foreground leading-relaxed">
-          Equal splits work best when the group ordered similarly. For mixed groups
-          (one person had a $12 salad, another had a $45 steak), the fairest approach is
-          to calculate each person's individual subtotal + their proportional tip, then
-          sum. This calculator uses equal splitting — divide by the number of people after
-          adding the full tip to the total bill.
-        </p>
-        <p className="text-muted-foreground leading-relaxed mt-3">
-          When paying as a group, use one card or app (Venmo, Splitwise) to pay the full
-          amount, then settle among yourselves. Splitting the check into many small payments
-          frustrates servers and slows table turnover.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Tipping on the post-tax total by default</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people accidentally tip on the final bill amount including sales tax, which inflates the gratuity by 5-10% depending on location. Always use the pre-tax subtotal as your base—this is what service industry professionals expect and is the standard in hospitality etiquette.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for discounts or promotions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you used a coupon, had a groupon, or received a special discount, calculate your tip based on the discounted subtotal, not the original menu prices. Using the full pre-discount amount means you're over-tipping relative to what you actually paid.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Splitting equally when orders are significantly different</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dividing a $200 bill equally among 4 people ($50 each) is unfair if one person ordered a $15 salad and another ordered a $75 steak. Use the per-person subtotal feature to ensure each diner's tip is proportional to what they actually consumed.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not adjusting tip percentage for delivery or takeout</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Delivery and takeout tipping norms are lower (10-15%) than sit-down restaurant standards (18-20%) because servers aren't providing table service. Using your restaurant default of 20% for a takeout order means you're over-tipping relative to the service provided.</p>
+          </div>
+        </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the standard tip percentage I should use with this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard tip percentages in the U.S. typically range from 15% to 20% for good service, with 18% being a common baseline for most restaurants. The IRS recognizes tipping as taxable income for service workers, and many point-of-sale systems now default to 15%, 18%, or 20% suggestions. This calculator lets you input any percentage, but these benchmarks help you decide quickly without overthinking the math.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I use this calculator to split a bill between friends?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter the total bill amount, select your desired tip percentage (or enter a custom amount), then specify how many people are splitting. The calculator divides both the subtotal and tip equally among all participants, showing each person's exact share to the nearest cent. This eliminates confusion about who owes what and ensures fair distribution.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I tip on the pre-tax or post-tax amount?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Industry standard practice is to calculate tips on the pre-tax subtotal, not the final total with sales tax included. Most etiquette guides and this calculator's default approach uses the pre-tax amount, which typically saves you 5-10% on your tip depending on local tax rates. However, some people prefer tipping on the full post-tax amount—this calculator allows both options.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if I want to add a custom tip amount instead of a percentage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most tip calculators allow you to toggle between percentage-based and fixed-amount tipping. Simply enter your desired tip in dollars (for example, $5.00 or $15.50), and the calculator will divide that amount among all diners along with their share of the bill. This is useful when you want to tip a specific amount or have a cash-only situation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator handle unequal bill splits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Basic tip calculators split everything equally, but advanced versions let you assign different subtotals to each person before calculating tips. If one person ordered a $30 entree and another ordered a $15 appetizer, you can input those amounts separately so each person's tip is proportional to what they consumed. This ensures fairness when orders vary significantly in price.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I see the breakdown of tax, subtotal, tip, and total separately?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, a well-designed tip calculator displays each component clearly: the pre-tax subtotal, calculated sales tax (if applicable), the tip amount, and the final total. This transparency helps you understand exactly where your money is going and verify the math independently. Many calculators also show the per-person breakdown in the same format.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between tipping 18% versus 20%?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">On a $100 pre-tax bill, 18% equals $18 while 20% equals $20—a $2 difference per person. For larger groups or bills, this gap increases: on a $200 bill, the difference is $4 total. Use this calculator to compare tipping scenarios and decide which percentage aligns with your service experience and budget.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for a group discount or promotion when splitting the bill?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter the final subtotal after any discounts or promotions have been applied—this becomes your starting point for tip calculations. Most restaurants apply discounts before the bill total, so if you received $20 off, subtract that from the original amount first. The calculator then distributes this discounted amount and the appropriate tip equally among all diners.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is there a standard tip percentage for different service types like delivery or takeout?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Tipping norms vary: restaurants typically expect 15-20%, delivery services 15-18%, takeout 10-15%, and bartenders $1-2 per drink or 18-20% of the tab. This calculator works for all scenarios—just adjust the percentage based on the service type and quality you received. Many experts recommend tipping delivery drivers at least $2-3 per order plus 10-15%, depending on distance and order complexity.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.irs.gov/publications/p15b" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS Guidance on Tipping and Taxable Income</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS publication explaining how tips are treated as taxable income for service workers and employers' responsibilities.</p>
+          </li>
+          <li>
+            <a href="https://emilypost.com/advice/tipping-guide" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Etiquette of Tipping by The Emily Post Institute</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative guide to tipping standards across various service industries and situations in modern America.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerfinance.gov/about-us/blog/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau: Understanding Your Receipt</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal agency resources on understanding itemized receipts and calculating accurate gratuities and bill splits.</p>
+          </li>
+          <li>
+            <a href="https://www.restaurant.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Restaurant Association: Gratuity and Compensation Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards and best practices for tipping and compensation in food service from the leading U.S. restaurant trade organization.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 
