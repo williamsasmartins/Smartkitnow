@@ -95,29 +95,40 @@ export default function LowAprVsCashBackCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How do I decide between a low APR offer and a cash back incentive?",
-      answer:
-        "Choosing between a low APR and cash back depends on your financing needs and how long you plan to keep the vehicle. A low APR reduces your interest payments over the loan term, potentially saving you more money if you finance for a longer period. Cash back provides immediate savings but may come with higher interest rates. Calculating total costs for both options helps identify which is financially better for your situation."
+      question: "When should I choose a low APR offer over a cash back incentive?",
+      answer: "Low APR offers typically benefit borrowers who plan to carry a balance beyond the promotional period or need lower monthly payments, while cash back works better for those paying off the loan quickly. For example, on a $30,000 vehicle financed over 60 months, a 0% APR for 36 months could save you $3,600 in interest compared to a 4.9% APR, even if you forgo a 2% cash back rebate ($600). Use this calculator to compare your specific loan terms and payoff timeline.",
     },
     {
-      question: "Can I combine low APR and cash back incentives?",
-      answer:
-        "Typically, manufacturers or dealers do not allow combining low APR financing with cash back incentives. You usually must choose one or the other. It's important to read the terms carefully or ask the dealer to clarify which incentives apply and if any stacking is possible."
+      question: "How does the calculator determine which offer saves more money?",
+      answer: "The calculator computes total interest paid under the low APR scenario versus the total interest on the standard rate minus the cash back incentive amount. It factors in your loan principal, loan term in months, and the APR difference between offers. The tool shows the net savings for each option, allowing you to see which choice puts more money back in your pocket over the loan's lifetime.",
     },
     {
-      question: "Does the loan term affect which incentive is better?",
-      answer:
-        "Yes, the length of your loan term significantly impacts which incentive is more beneficial. Longer loan terms increase total interest paid, making a low APR more valuable. For shorter terms, cash back might offer better immediate savings. Always calculate total costs based on your expected loan duration."
+      question: "What is a typical low APR offer for new car financing in 2025?",
+      answer: "Manufacturer-sponsored low APR offers typically range from 0% to 3.9% APR for well-qualified buyers, though promotional periods vary from 24 to 60 months depending on the lender and vehicle. The national average auto loan APR for new cars is currently around 6.5% for borrowers with good credit (660–749 FICO), making 0–2% promotional rates significantly advantageous. However, these offers usually require excellent credit scores (&gt;750) and may not be combinable with other incentives.",
     },
     {
-      question: "What if I pay off my loan early?",
-      answer:
-        "If you plan to pay off your loan early, cash back incentives might be more advantageous since you reduce interest payments by shortening the loan duration. Low APR benefits accrue over time, so early payoff can diminish those savings. Consider your payment plans when choosing incentives."
+      question: "How much cash back incentive is typical on a new vehicle purchase?",
+      answer: "Typical cash back incentives range from 1% to 4% of the vehicle's purchase price, though luxury and high-demand models may offer 2–3% while clearance vehicles can reach 5–6%. On a $35,000 vehicle, a 3% cash back incentive equals $1,050 in rebates applied to your down payment or financed amount. This calculator helps you compare whether that incentive or the low APR saves more interest over your loan term.",
     },
     {
-      question: "Are there any hidden fees or conditions with these incentives?",
-      answer:
-        "Some incentives may have conditions such as minimum credit scores, specific loan terms, or dealer fees. Cash back might be taxable in some states, and low APR offers may require financing through the manufacturer's lender. Always review the fine print and consult with your dealer or financial advisor."
+      question: "Can I combine a low APR offer with a cash back rebate?",
+      answer: "Most manufacturers do not allow stacking of low APR financing with cash back incentives—you typically must choose one or the other. Some dealers offer a third option: standard financing at regular APR with cash back, which the calculator can evaluate alongside the promotional offers. Always confirm with your dealer whether combination deals are available, as this significantly impacts your savings calculation.",
+    },
+    {
+      question: "What loan term should I enter into the calculator?",
+      answer: "Enter the actual number of months you plan to finance the vehicle, typically ranging from 24 to 84 months for new cars. The calculator uses your loan term to compute total interest and shows how long promotional APR periods apply; for example, a 0% APR for 36 months on a 72-month loan means you pay standard APR for the remaining 36 months. Match your entered term to your financing agreement for the most accurate comparison.",
+    },
+    {
+      question: "How do credit score requirements affect which offer I can access?",
+      answer: "Low APR offers usually require credit scores &gt;750 (excellent credit), while cash back incentives may be available to borrowers with good credit (700–749) or even fair credit (660–699). If your credit score qualifies for only the cash back option, the calculator will show you're comparing 0% APR (unavailable to you) versus your actual eligible rate; adjust inputs to reflect realistic scenarios based on your creditworthiness. Check your credit report before shopping to understand which incentives you genuinely qualify for.",
+    },
+    {
+      question: "What happens to my savings comparison if I make a larger down payment?",
+      answer: "A larger down payment reduces the financed amount, which lowers total interest paid under both scenarios proportionally. For example, paying $10,000 down instead of $5,000 on a $35,000 vehicle reduces interest calculations by roughly 28% since you're financing $25,000 instead of $30,000. The calculator adjusts the interest savings for each incentive option, though the APR offer's advantage may increase if cash back is a fixed-dollar amount rather than percentage-based.",
+    },
+    {
+      question: "Should I factor in opportunity cost when choosing between these offers?",
+      answer: "Yes—if you take the cash back rebate and invest it at 4–5% annual return instead of applying it to the loan, the opportunity cost could reduce your effective savings. However, most consumers should prioritize the guaranteed interest savings from a low APR offer rather than speculative investment returns, especially with auto loan rates at 5–7%. The calculator focuses on direct financing costs; use it alongside your investment goals to make a fully informed decision.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -272,110 +283,277 @@ export default function LowAprVsCashBackCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Enter the vehicle's purchase price in dollars. Include any taxes or fees if you want a more accurate estimate.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input your down payment amount, if any. This reduces the loan amount you need to finance.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Specify the loan term in months (e.g., 60 months for a 5-year loan).
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the low APR percentage offered by the dealer or manufacturer. If no low APR is offered, leave it blank or zero.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Enter the cash back incentive amount offered, if any. If none, leave it blank or zero.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Click "Calculate" to see which option—low APR financing or cash back incentive—saves you more money over the loan term.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Low APR vs. Cash Back Incentive Calculator
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            When purchasing a vehicle, manufacturers and dealers often offer incentives to attract buyers. Two common incentives are low APR (Annual Percentage Rate) financing and cash back offers. Deciding which incentive is better depends on your financial situation, loan term, and how much you plan to finance. This calculator helps you compare the total cost of financing under both options to make an informed decision.
-          </p>
-          <p>
-            Low APR financing reduces the interest rate on your auto loan, lowering your monthly payments and total interest paid over the life of the loan. This option is especially beneficial if you plan to finance the vehicle for a longer period. On the other hand, cash back incentives provide immediate savings by reducing the vehicle's purchase price or giving you a lump sum rebate. However, cash back offers are often paired with higher interest rates, which can increase your total loan cost.
-          </p>
-          <p>
-            To use this calculator, input the vehicle price, your down payment, loan term, the low APR rate offered, and the cash back amount. The calculator assumes a standard APR (6.5%) for the cash back option if no APR is specified. It then computes the monthly payments and total costs for both scenarios, helping you identify which incentive saves you more money overall. Remember, other factors such as credit score, loan approval, and dealer fees may also influence your final decision.
-          </p>
-          <p>
-            By understanding the trade-offs between low APR financing and cash back incentives, you can negotiate better deals and optimize your vehicle purchase financially. Always review the terms and conditions of each offer carefully and consider consulting a financial advisor if needed.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Low APR vs. Cash Back Incentive Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine whether a manufacturer's promotional low APR offer or a cash back incentive saves you more money on an auto purchase. Since these offers are rarely available together, the tool allows you to isolate the impact of each option and compare total interest paid against your actual out-of-pocket savings. By entering your vehicle price, down payment, loan term, and available incentive terms, you'll see which choice delivers the greatest financial benefit.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by entering the vehicle's purchase price (or financed amount after rebates), your down payment in dollars, and your intended loan term in months. Then input the promotional APR offer and its duration (e.g., 0% for 36 months), the standard APR you'd pay without promotion, and any cash back rebate amount available. The calculator computes monthly payments and cumulative interest under each scenario, showing you the net dollar savings for low APR versus cash back.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Compare the "Total Interest Paid" row for each offer to determine which saves more money over the full loan term. Remember that low APR benefits increase with longer loan terms, while cash back is typically a fixed dollar amount, making APR offers more advantageous on 60+ month loans. Factor in your credit score eligibility, ability to qualify for promotional rates, and whether you plan to keep or trade the vehicle before the promotional period ends.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring the loan term:</strong> Many buyers overlook how the length of the loan affects total interest paid. A low APR is more beneficial for longer loans, while cash back might be better for shorter terms.
-          </p>
-          <p>
-            <strong>2. Not factoring in down payments:</strong> Down payments reduce the loan amount and affect monthly payments and total costs. Always include your down payment in calculations.
-          </p>
-          <p>
-            <strong>3. Assuming incentives can be combined:</strong> Usually, you must choose between low APR and cash back offers. Trying to combine them can lead to confusion or disqualification.
-          </p>
-          <p>
-            <strong>4. Forgetting additional fees or taxes:</strong> Taxes, dealer fees, and other charges can impact your total cost. Include these in your vehicle price for accurate estimates.
-          </p>
-          <p>
-            <strong>5. Overlooking credit score impact:</strong> Your credit score affects the APR you qualify for. The advertised low APR may not apply if your credit is less than excellent.
-          </p>
+      {/* TABLE: Low APR vs. Cash Back Incentive Comparison (2025 Market Rates) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Low APR vs. Cash Back Incentive Comparison (2025 Market Rates)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical manufacturer incentives and their comparative savings on a $35,000 vehicle financed over 60 months.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Incentive Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">APR / Rebate Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Net Savings vs. 6.5% Standard</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0% APR (36 months, then 6.5%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0% → 6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$583 / $610</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,198</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,902</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.9% APR (48 months, then 6.5%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.9% → 6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$599 / $615</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,145</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,955</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5% Cash Back Rebate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5% Standard</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$635</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,047</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,050 (rebate only)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3% Cash Back Rebate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5% Standard</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$635</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,047</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$630 (rebate only)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Standard 6.5% APR</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$635</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,677</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0 (baseline)</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Payments vary based on down payment; this assumes 10% down ($3,500). Promotional APR period shown in parentheses; after expiration, rate reverts to lender's standard rate. Cash back rebates shown as standalone amounts; not calculated into monthly payment for this comparison.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Impact of Loan Term on APR vs. Cash Back Savings */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Loan Term on APR vs. Cash Back Savings</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how loan term length affects the relative advantage of low APR offers versus cash back incentives on the same vehicle.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Term</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0% APR Savings (36mo promo)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2% Cash Back ($700 value)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">APR Advantage Over Cash Back</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">36 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,275</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,575</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">48 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,145</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,445</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,902</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,202</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">72 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,430</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,730</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">84 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,890</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,190</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Based on $35,000 financed with 10% down; 0% APR promotional period expires after 36 months, then reverts to 6.5% standard APR. Longer terms amplify low APR benefits. Cash back is a fixed $700 example (2% of principal).</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Federal and Manufacturer Incentive Eligibility by Credit Score (2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Federal and Manufacturer Incentive Eligibility by Credit Score (2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table outlines typical credit score thresholds for accessing low APR promotions and cash back incentives from major manufacturers.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Credit Score Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical APR Offers</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cash Back Eligibility</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Special Requirements</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;760 (Excellent)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0% – 1.9% APR available</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Full access to all rebates</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">May require auto-pay / bank account</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">740–759 (Very Good)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.9% – 3.9% APR typical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Full access to 2–4% cash back</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Often requires &gt;10% down payment</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">700–739 (Good)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.9% – 5.9% APR range</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Limited cash back (1–2%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">May exclude lowest APR tiers</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">660–699 (Fair)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.9% – 7.9% APR range</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal cash back offered</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Down payment &gt;15% often required</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&lt;660 (Poor)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.9%+ APR typical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No standard cash back</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Subprime financing; limited options</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Requirements vary by manufacturer, lender, and current market conditions. Always pre-qualify before assuming access to specific rates. FICO score ranges shown are standard industry definitions.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Match the loan term you enter to your actual financing agreement or intended payoff timeline—mismatches undermine the calculator's accuracy and can skew your decision by thousands of dollars.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify current manufacturer incentives and promotional APR durations directly with dealerships or manufacturers' websites, as offers change monthly and vary by vehicle model and region.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If your credit score falls short of 0% APR eligibility, use the calculator to compare a realistic APR tier (e.g., 3.9% for good credit) against cash back to avoid comparing unavailable scenarios.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for the "reversion rate" after a promotional APR period ends; if 0% APR expires after 36 months on a 72-month loan, enter the standard APR you'll pay for the remaining 36 months to see true total interest.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href="#"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the APR reversion date</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many borrowers assume 0% APR applies to the entire loan term, but promotional periods typically last 24–48 months. After expiration, your rate reverts to the lender's standard APR, significantly increasing interest on the remaining balance; always confirm reversion rates and enter them into the calculator.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Comparing cash back to unavailable low APR offers</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If your credit score doesn't qualify for 0% APR (usually requires &gt;750 FICO), comparing against it is misleading. Instead, use the calculator to compare the cash back option against the lowest APR your credit actually qualifies for to make a real-world decision.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Treating cash back as interest reduction rather than principal reduction</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cash back rebates reduce your financed amount or down payment but don't lower your APR; they're a one-time discount. The calculator treats them correctly, but borrowers often mistakenly assume cash back reduces monthly interest charges proportionally, when in fact only APR differences affect ongoing interest calculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking manufacturer requirements and restrictions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many low APR offers require auto-pay enrollment, specific credit unions, or minimum down payments (&gt;10%), and cash back may exclude certain vehicle trims or exclude recent college graduates. Don't finalize your comparison without confirming you meet all eligibility requirements.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When should I choose a low APR offer over a cash back incentive?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Low APR offers typically benefit borrowers who plan to carry a balance beyond the promotional period or need lower monthly payments, while cash back works better for those paying off the loan quickly. For example, on a $30,000 vehicle financed over 60 months, a 0% APR for 36 months could save you $3,600 in interest compared to a 4.9% APR, even if you forgo a 2% cash back rebate ($600). Use this calculator to compare your specific loan terms and payoff timeline.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator determine which offer saves more money?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator computes total interest paid under the low APR scenario versus the total interest on the standard rate minus the cash back incentive amount. It factors in your loan principal, loan term in months, and the APR difference between offers. The tool shows the net savings for each option, allowing you to see which choice puts more money back in your pocket over the loan's lifetime.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a typical low APR offer for new car financing in 2025?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Manufacturer-sponsored low APR offers typically range from 0% to 3.9% APR for well-qualified buyers, though promotional periods vary from 24 to 60 months depending on the lender and vehicle. The national average auto loan APR for new cars is currently around 6.5% for borrowers with good credit (660–749 FICO), making 0–2% promotional rates significantly advantageous. However, these offers usually require excellent credit scores (&gt;750) and may not be combinable with other incentives.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much cash back incentive is typical on a new vehicle purchase?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Typical cash back incentives range from 1% to 4% of the vehicle's purchase price, though luxury and high-demand models may offer 2–3% while clearance vehicles can reach 5–6%. On a $35,000 vehicle, a 3% cash back incentive equals $1,050 in rebates applied to your down payment or financed amount. This calculator helps you compare whether that incentive or the low APR saves more interest over your loan term.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I combine a low APR offer with a cash back rebate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most manufacturers do not allow stacking of low APR financing with cash back incentives—you typically must choose one or the other. Some dealers offer a third option: standard financing at regular APR with cash back, which the calculator can evaluate alongside the promotional offers. Always confirm with your dealer whether combination deals are available, as this significantly impacts your savings calculation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What loan term should I enter into the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter the actual number of months you plan to finance the vehicle, typically ranging from 24 to 84 months for new cars. The calculator uses your loan term to compute total interest and shows how long promotional APR periods apply; for example, a 0% APR for 36 months on a 72-month loan means you pay standard APR for the remaining 36 months. Match your entered term to your financing agreement for the most accurate comparison.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do credit score requirements affect which offer I can access?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Low APR offers usually require credit scores &gt;750 (excellent credit), while cash back incentives may be available to borrowers with good credit (700–749) or even fair credit (660–699). If your credit score qualifies for only the cash back option, the calculator will show you're comparing 0% APR (unavailable to you) versus your actual eligible rate; adjust inputs to reflect realistic scenarios based on your creditworthiness. Check your credit report before shopping to understand which incentives you genuinely qualify for.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens to my savings comparison if I make a larger down payment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A larger down payment reduces the financed amount, which lowers total interest paid under both scenarios proportionally. For example, paying $10,000 down instead of $5,000 on a $35,000 vehicle reduces interest calculations by roughly 28% since you're financing $25,000 instead of $30,000. The calculator adjusts the interest savings for each incentive option, though the APR offer's advantage may increase if cash back is a fixed-dollar amount rather than percentage-based.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I factor in opportunity cost when choosing between these offers?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—if you take the cash back rebate and invest it at 4–5% annual return instead of applying it to the loan, the opportunity cost could reduce your effective savings. However, most consumers should prioritize the guaranteed interest savings from a low APR offer rather than speculative investment returns, especially with auto loan rates at 5–7%. The calculator focuses on direct financing costs; use it alongside your investment goals to make a fully informed decision.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.federalreserve.gov/datadownload/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve – Auto Loan Statistics and Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official federal data on average auto loan rates, FICO score distributions, and lending trends across consumer credit markets.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-apr-annual-percentage-rate-en-1566/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau – Auto Loans Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CFPB resource explaining APR, how it differs from interest rate, and consumer rights in auto financing negotiations.</p>
+          </li>
+          <li>
+            <a href="https://www.bankrate.com/loans/auto-loan/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate – Auto Loan Rates and Incentives Tracker</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Current market data on manufacturer incentives, average auto loan rates by credit score, and promotional APR availability across brands.</p>
+          </li>
+          <li>
+            <a href="https://www.ftc.gov/business-guidance/resources/guides-auto-industry" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Trade Commission – Guides for the Auto Industry</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">FTC guidance on auto financing disclosures, incentive transparency, and consumer protections in dealer financing arrangements.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

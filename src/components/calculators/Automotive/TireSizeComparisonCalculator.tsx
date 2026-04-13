@@ -109,29 +109,40 @@ export default function TireSizeComparisonCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How do I interpret the percentage difference in tire size?",
-      answer:
-        "The percentage difference represents how much larger or smaller the overall diameter of Tire 2 is compared to Tire 1. A positive value means Tire 2 is larger, while a negative value means it is smaller. Differences beyond 3-5% can affect your vehicle's speedometer accuracy, handling, and clearance."
+      question: "What does tire size comparison tell me about my vehicle's performance?",
+      answer: "A tire size comparison calculator helps you understand how changing tire dimensions affects your vehicle's speedometer accuracy, fuel economy, and handling characteristics. By comparing your current tire size to alternatives, you can see exact differences in rolling circumference, which directly impacts your vehicle's speed readings and odometer accuracy. For example, upgrading from 205/55R16 to 215/55R16 increases your rolling circumference by approximately 1.5%, meaning your actual speed is 1.5% faster than your speedometer indicates.",
     },
     {
-      question: "Why is it important to compare tire sizes before changing tires?",
-      answer:
-        "Tire size affects vehicle dynamics, speedometer readings, and safety. Using tires with significantly different diameters can cause inaccurate speed readings, affect ABS and traction control systems, and potentially cause rubbing or clearance issues. Always ensure new tires are compatible with your vehicle."
+      question: "How do tire width and aspect ratio affect the comparison results?",
+      answer: "Tire width (the first number in the tire code) and aspect ratio (the second number) are the primary factors that determine overall tire diameter and rolling circumference. The aspect ratio represents the sidewall height as a percentage of the tire width; for instance, a 225/65R17 has a sidewall height of 65% of 225mm. When comparing a 225/65R17 to a 225/55R17, the aspect ratio difference creates a tire diameter variance of approximately 1.6 inches, significantly affecting speedometer readings and fuel efficiency.",
     },
     {
-      question: "Can I mix tire sizes on the front and rear wheels?",
-      answer:
-        "Mixing tire sizes is common in performance or staggered setups but should be done carefully. The difference in diameter should be minimal to avoid handling issues. Always consult your vehicle manufacturer or a tire professional before mixing sizes."
+      question: "What is rolling circumference and why does it matter in tire comparison?",
+      answer: "Rolling circumference is the distance your tire travels in one complete rotation, measured in inches or millimeters. This measurement directly affects your vehicle's speedometer, odometer, and transmission shift points; a tire with a larger circumference travels farther per rotation, causing your speedometer to read lower than your actual speed. For example, a tire with a 75-inch circumference versus a 72-inch circumference will cause approximately 4% speed reading differences.",
     },
     {
-      question: "What units are used in this calculator?",
-      answer:
-        "This calculator uses tire width in millimeters, aspect ratio as a percentage, and wheel diameter in inches, which is the standard tire size notation (e.g., 225/45R17). The output diameter is in inches for easy comparison."
+      question: "How much larger can I go with tire size without affecting my vehicle's warranty?",
+      answer: "Most vehicle manufacturers allow tire size changes within a 3% variance of the original equipment tire's overall diameter without voiding the drivetrain warranty. A common guideline permits staying within a ±0.5-inch diameter difference from the factory tire size. Exceeding this threshold may void warranties and can cause transmission issues, suspension problems, and speedometer inaccuracies; always consult your vehicle's manual before upsizing.",
     },
     {
-      question: "How can I use this calculator for metric or imperial units?",
-      answer:
-        "Tire sizes are standardized globally with width in millimeters and diameter in inches. This calculator assumes this standard format. If you have tire sizes in other units, convert width to millimeters and diameter to inches before using the calculator."
+      question: "Does increasing tire size improve fuel economy?",
+      answer: "Increasing tire size typically worsens fuel economy because larger tires have higher rolling resistance and increased weight. Upgrading from a 205/55R16 (approximately 24.9 inches in diameter) to a 225/65R17 (approximately 27.4 inches in diameter) can reduce fuel efficiency by 2-5% due to increased rotational mass and rolling resistance. Conversely, properly inflated tires at the manufacturer's recommended pressure improve fuel economy by 3-5%.",
+    },
+    {
+      question: "What's the difference between load index and speed rating in tire size comparisons?",
+      answer: "The load index is a numerical code representing the maximum weight a tire can support at its maximum recommended pressure, while the speed rating (a letter code like H, V, or Z) indicates the maximum speed the tire is safely rated for. For example, a tire with a load index of 91 can carry 1,356 pounds, and a V-rated tire is safe up to 149 mph. When comparing tire sizes, you must ensure the new tire's load and speed ratings meet or exceed your vehicle manufacturer's specifications to maintain safety and warranty coverage.",
+    },
+    {
+      question: "How does changing tire size affect my speedometer accuracy?",
+      answer: "Your speedometer is calibrated to your factory tire size's rolling circumference; larger tires cause your speedometer to read lower than your actual speed, while smaller tires cause it to read higher. A 5% increase in tire diameter (like switching from 215/60R16 to 225/60R17) results in approximately 5% speedometer error; at 60 mph, you'd actually be traveling about 63 mph. This inaccuracy can lead to unintentional speeding, affecting both safety and legal compliance.",
+    },
+    {
+      question: "Can I use different tire sizes on my vehicle if I have all-wheel drive?",
+      answer: "All-wheel drive (AWD) vehicles are more sensitive to tire size differences than two-wheel drive vehicles because mismatched tire diameters cause binding and increased stress on the differential and transfer case. Most manufacturers recommend that all four tires have matching sizes and tread depths within 2/32 inch of each other; a diameter variance exceeding 0.5 inches can damage AWD components and void warranty coverage. Always use identical tire sizes on AWD vehicles to prevent mechanical damage.",
+    },
+    {
+      question: "What does the load index number mean when comparing tire sizes?",
+      answer: "The load index is a two or three-digit number (typically ranging from 75 to 126+) that indicates the maximum weight capacity of a tire at its rated pressure. For example, a load index of 95 supports 1,521 pounds per tire, while a 105 rating supports 2,039 pounds per tire. When upgrading tire sizes, confirm the new tire's load index matches or exceeds the vehicle manufacturer's requirement, which is printed on the driver's side doorjamb; insufficient load rating can cause tire failure and safety hazards.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -273,101 +284,304 @@ export default function TireSizeComparisonCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Enter the tire width (in millimeters), aspect ratio (percentage), and wheel diameter (in inches) for Tire 1.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the same specifications for Tire 2 that you want to compare against Tire 1.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the "Calculate" button to see the percentage difference in overall tire diameter.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the results and feedback to understand if the size difference is within a safe and recommended range.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Tire Size Comparison
-        </h2>
-        <div className="prose prose-slate dark:prose-invert max-w-none">
-          <p>
-            Tire size comparison is a crucial step when considering new tires for your vehicle. Tires are typically specified by three key numbers: width, aspect ratio, and wheel diameter. The width is the tire's cross-sectional width in millimeters, the aspect ratio is the height of the sidewall expressed as a percentage of the width, and the wheel diameter is the size of the wheel the tire fits, measured in inches. Understanding these numbers helps you calculate the overall diameter of the tire, which affects your vehicle's speedometer accuracy, handling, and clearance.
-          </p>
-          <p>
-            To calculate the overall tire diameter, you add the wheel diameter to twice the sidewall height (since the tire has sidewalls on both top and bottom). The sidewall height is derived by multiplying the tire width by the aspect ratio and converting from millimeters to inches. This calculation provides a direct comparison between two tire sizes, allowing you to see how much larger or smaller one tire is relative to another.
-          </p>
-          <p>
-            When the diameter difference exceeds 3-5%, it can lead to issues such as inaccurate speedometer readings, altered gear ratios, and potential rubbing against the vehicle’s body or suspension components. Therefore, it is essential to use this calculator to ensure that any new tire size you consider is compatible with your vehicle’s specifications and driving safety.
-          </p>
-          <p>
-            This calculator is designed for standard tire size notation and assumes inputs in millimeters for width and aspect ratio, and inches for wheel diameter. Always consult your vehicle’s manual or a tire professional if you are unsure about changing tire sizes, especially if the difference is significant.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Tire Size Comparison Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The tire size comparison calculator is a powerful tool that allows you to evaluate how changing your vehicle's tires affects critical performance metrics including speedometer accuracy, rolling circumference, overall diameter, and fuel efficiency. This calculator helps you make informed decisions before purchasing new tires, ensuring that your upgrade choices comply with manufacturer specifications and maintain your vehicle's warranty coverage. Understanding these metrics is essential for maintaining safety, legal compliance with speed limits, and optimal vehicle performance.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your original tire size (found on your doorjamb placard, owner's manual, or current tire sidewall) and your desired replacement tire size using the standard tire code format (width/aspect ratio/diameter). The calculator processes the load index, speed rating, and dimensional data to generate precise comparisons. These inputs determine the rolling circumference, which is the foundation for all other comparison metrics including speedometer error calculations and odometer accuracy projections.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results display your tire diameter change in inches, circumference change in inches, and the resulting speedometer error percentage at various speeds (typically 30, 60, and 80 mph). Use these results to determine if the size change falls within your vehicle manufacturer's acceptable variance range (usually ±0.5 inches for standard vehicles, ±0.25 inches for AWD). If your comparison shows excessive variance, consider alternative tire sizes that better match your original equipment specifications to maintain warranty coverage and optimal vehicle performance.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring the aspect ratio:</strong> Many users only compare wheel diameters or widths, forgetting that the aspect ratio significantly affects the overall tire diameter.
-          </p>
-          <p>
-            <strong>2. Mixing units:</strong> Tire width is in millimeters, but wheel diameter is in inches. Mixing these units without proper conversion leads to incorrect calculations.
-          </p>
-          <p>
-            <strong>3. Overlooking vehicle compatibility:</strong> Even if the size difference seems small, it may not fit your vehicle due to clearance or suspension limitations.
-          </p>
-          <p>
-            <strong>4. Assuming all tires with the same diameter are equal:</strong> Different tire brands and models may have slight variations in actual size despite identical nominal sizes.
-          </p>
+      {/* TABLE: Common Tire Size Conversions and Diameter Changes */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Tire Size Conversions and Diameter Changes</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how common tire size upgrades affect overall tire diameter and rolling circumference.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Original Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">New Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Diameter Change (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Circumference Change (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speedometer Error at 60 mph</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">205/55R16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">215/55R16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.39</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1.22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.4 mph</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">225/60R17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">235/60R17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.39</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1.22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.4 mph</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">205/60R15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">215/65R15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.97</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+3.05</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1.0 mph</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">235/65R17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">245/70R17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1.18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+3.71</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1.2 mph</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">225/55R18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">235/55R18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.39</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1.22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.4 mph</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">195/65R15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">205/75R15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1.77</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+5.56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1.8 mph</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">245/60R18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">255/60R18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.39</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1.22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0.4 mph</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Speedometer error calculations based on standard tire pressure and construction. Always verify fitment with your vehicle manufacturer's specifications before purchasing new tires.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Tire Load Index and Speed Rating Reference Chart */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tire Load Index and Speed Rating Reference Chart</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This reference shows how load index numbers and speed ratings relate to tire weight capacity and maximum safe speeds.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Load Index</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Weight (lbs per tire)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speed Rating</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Speed (mph)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">853</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">L</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">82</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,047</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">S</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">112</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">91</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,356</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">H</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">130</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,521</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">T</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">118</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,764</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">V</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">149</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">105</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,039</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">168</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,337</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Y</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">186</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,086</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Z</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">149+</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Load index and speed rating are always marked on the tire's sidewall. Ensure replacement tires meet or exceed the original equipment specifications found on your vehicle's doorjamb placard.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Tire Size Variance Limits by Vehicle Type */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tire Size Variance Limits by Vehicle Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the manufacturer-recommended maximum tire diameter variance for different vehicle configurations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vehicle Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Diameter Variance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Rolling Circumference Variance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Warranty Impact</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Two-Wheel Drive (FWD/RWD)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±3% circumference</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Generally covered</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">All-Wheel Drive (AWD)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.25 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±1.5% circumference</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">May void drivetrain warranty</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Four-Wheel Drive (4WD)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±3% circumference</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Generally covered if matched</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Luxury/Performance Vehicles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.3 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±2% circumference</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Often stricter than standard</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always consult your vehicle's owner's manual and doorjamb placard for specific tire size approval. Exceeding manufacturer variance limits can affect speedometer accuracy, fuel economy, and transmission programming.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify the load index and speed rating of your replacement tires match or exceed the factory specifications listed on your driver's side doorjamb placard; insufficient ratings can cause tire failure and safety hazards.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to stay within the manufacturer's recommended ±3% diameter variance for two-wheel drive vehicles and ±1.5% for all-wheel drive vehicles to avoid warranty issues and transmission recalibration needs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider sidewall appearance and comfort when comparing tire sizes; larger diameter tires with lower aspect ratios (like 225/45R18) provide sportier handling but a harsher ride compared to sizes with higher aspect ratios (like 225/65R17).</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Recalibrate your vehicle's speedometer after an extreme tire size change exceeding ±5%; many modern vehicles store speedometer corrections that may need adjustment at your dealership if you significantly change tire dimensions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check clearance with your wheel and suspension components before purchasing plus-sized tires; a 1-inch diameter increase may cause rubbing on the suspension, fenders, or bumper at full lock turns.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href={ref.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Load Index Requirements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many drivers upgrade to larger tire sizes without confirming the load index meets their vehicle's weight requirements, risking tire failure and blowouts. Always match or exceed the load index specification from your doorjamb placard to maintain safety and warranty coverage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Exceeding Manufacturer Diameter Variance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Changing tire diameter by more than 3% on standard vehicles or 1.5% on AWD vehicles can void drivetrain warranties, cause transmission shift point errors, and damage the differential. Use the calculator to ensure your size change stays within recommended tolerances.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming All-Wheel Drive Tolerates Size Mismatches</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">AWD vehicles are significantly more sensitive to tire diameter differences than two-wheel drive vehicles because mismatches cause differential binding and accelerated wear. Always use identical tire sizes on AWD vehicles, even if FWD vehicles would tolerate slight variations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Speedometer Accuracy Impact</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Larger tires cause your speedometer to read lower than your actual speed; upgrading from a 205/55R16 to a 225/60R17 can result in actual speeds 2-3% faster than displayed. This can inadvertently cause speeding violations and safety issues, so account for speedometer error in your comparison.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does tire size comparison tell me about my vehicle's performance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A tire size comparison calculator helps you understand how changing tire dimensions affects your vehicle's speedometer accuracy, fuel economy, and handling characteristics. By comparing your current tire size to alternatives, you can see exact differences in rolling circumference, which directly impacts your vehicle's speed readings and odometer accuracy. For example, upgrading from 205/55R16 to 215/55R16 increases your rolling circumference by approximately 1.5%, meaning your actual speed is 1.5% faster than your speedometer indicates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do tire width and aspect ratio affect the comparison results?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Tire width (the first number in the tire code) and aspect ratio (the second number) are the primary factors that determine overall tire diameter and rolling circumference. The aspect ratio represents the sidewall height as a percentage of the tire width; for instance, a 225/65R17 has a sidewall height of 65% of 225mm. When comparing a 225/65R17 to a 225/55R17, the aspect ratio difference creates a tire diameter variance of approximately 1.6 inches, significantly affecting speedometer readings and fuel efficiency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is rolling circumference and why does it matter in tire comparison?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rolling circumference is the distance your tire travels in one complete rotation, measured in inches or millimeters. This measurement directly affects your vehicle's speedometer, odometer, and transmission shift points; a tire with a larger circumference travels farther per rotation, causing your speedometer to read lower than your actual speed. For example, a tire with a 75-inch circumference versus a 72-inch circumference will cause approximately 4% speed reading differences.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much larger can I go with tire size without affecting my vehicle's warranty?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most vehicle manufacturers allow tire size changes within a 3% variance of the original equipment tire's overall diameter without voiding the drivetrain warranty. A common guideline permits staying within a ±0.5-inch diameter difference from the factory tire size. Exceeding this threshold may void warranties and can cause transmission issues, suspension problems, and speedometer inaccuracies; always consult your vehicle's manual before upsizing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does increasing tire size improve fuel economy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Increasing tire size typically worsens fuel economy because larger tires have higher rolling resistance and increased weight. Upgrading from a 205/55R16 (approximately 24.9 inches in diameter) to a 225/65R17 (approximately 27.4 inches in diameter) can reduce fuel efficiency by 2-5% due to increased rotational mass and rolling resistance. Conversely, properly inflated tires at the manufacturer's recommended pressure improve fuel economy by 3-5%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between load index and speed rating in tire size comparisons?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The load index is a numerical code representing the maximum weight a tire can support at its maximum recommended pressure, while the speed rating (a letter code like H, V, or Z) indicates the maximum speed the tire is safely rated for. For example, a tire with a load index of 91 can carry 1,356 pounds, and a V-rated tire is safe up to 149 mph. When comparing tire sizes, you must ensure the new tire's load and speed ratings meet or exceed your vehicle manufacturer's specifications to maintain safety and warranty coverage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does changing tire size affect my speedometer accuracy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your speedometer is calibrated to your factory tire size's rolling circumference; larger tires cause your speedometer to read lower than your actual speed, while smaller tires cause it to read higher. A 5% increase in tire diameter (like switching from 215/60R16 to 225/60R17) results in approximately 5% speedometer error; at 60 mph, you'd actually be traveling about 63 mph. This inaccuracy can lead to unintentional speeding, affecting both safety and legal compliance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use different tire sizes on my vehicle if I have all-wheel drive?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">All-wheel drive (AWD) vehicles are more sensitive to tire size differences than two-wheel drive vehicles because mismatched tire diameters cause binding and increased stress on the differential and transfer case. Most manufacturers recommend that all four tires have matching sizes and tread depths within 2/32 inch of each other; a diameter variance exceeding 0.5 inches can damage AWD components and void warranty coverage. Always use identical tire sizes on AWD vehicles to prevent mechanical damage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does the load index number mean when comparing tire sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The load index is a two or three-digit number (typically ranging from 75 to 126+) that indicates the maximum weight capacity of a tire at its rated pressure. For example, a load index of 95 supports 1,521 pounds per tire, while a 105 rating supports 2,039 pounds per tire. When upgrading tire sizes, confirm the new tire's load index matches or exceeds the vehicle manufacturer's requirement, which is printed on the driver's side doorjamb; insufficient load rating can cause tire failure and safety hazards.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.nhtsa.gov/vehicle-owners/tires" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Highway Traffic Safety Administration (NHTSA) Tire Specification Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official NHTSA resource providing tire safety standards, load index regulations, and speed rating requirements for all vehicle types.</p>
+          </li>
+          <li>
+            <a href="https://www.tireandrimmassociation.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Tire and Rim Association Official Yearbook</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The authoritative source for standardized tire dimensions, load indices, speed ratings, and manufacturer specifications used in tire engineering.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerreports.org/tires/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Reports Tire Buying Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to tire selection, sizing considerations, and performance impacts of tire upgrades on vehicle safety and efficiency.</p>
+          </li>
+          <li>
+            <a href="https://www.ftc.gov/business-guidance/resources/fueled-facts-ftc-act-tire-fuel-efficiency-labeling-rule" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Trade Commission (FTC) Tire Labeling Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">FTC regulations governing tire labeling standards, including treadwear ratings, traction grades, and temperature resistance classifications.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

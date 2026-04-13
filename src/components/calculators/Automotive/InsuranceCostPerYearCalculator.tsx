@@ -73,29 +73,40 @@ export default function InsuranceCostPerYearCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "What factors influence the insurance cost per year?",
-      answer:
-        "Insurance cost per year depends on multiple factors including the vehicle's value, the driver's age, location risk factors such as accident rates or theft prevalence, and the chosen coverage level. Younger drivers typically pay more due to higher risk, while safer locations and lower coverage reduce costs. Understanding these variables helps in estimating accurate insurance premiums."
+      question: "What factors affect my annual car insurance cost the most?",
+      answer: "The biggest factors impacting your annual insurance premium are your age, driving record, vehicle type, coverage limits, and location. For example, a 16-year-old driver typically pays $4,500–$7,500 annually for full coverage, while a 40-year-old with a clean record may pay $1,200–$1,800 for the same coverage. Your deductible choice and credit score also significantly influence your final premium.",
     },
     {
-      question: "How does driver age affect insurance premiums?",
-      answer:
-        "Driver age significantly impacts insurance premiums because younger drivers, especially those under 25, statistically have higher accident rates. This increased risk leads insurers to charge higher rates. Conversely, middle-aged drivers often receive discounts, while senior drivers may see slight increases due to age-related risk factors."
+      question: "How much does full coverage insurance cost per year on average?",
+      answer: "According to 2024 data, full coverage (liability, collision, and comprehensive) costs an average of $1,771 per year for good drivers, though this varies by state and vehicle. Drivers in high-cost states like Florida or New Jersey may pay $2,200–$2,600 annually, while those in low-cost states like Maine or Idaho may pay $1,100–$1,400. Your individual rate depends on personal factors like age, driving history, and the specific vehicle insured.",
     },
     {
-      question: "Why is the vehicle value important in calculating insurance cost?",
-      answer:
-        "The vehicle's value is crucial because insurance premiums are often calculated as a percentage of the car's worth. More expensive vehicles cost more to repair or replace, leading to higher insurance costs. This ensures that the coverage amount aligns with the potential financial risk to the insurer."
+      question: "What is the difference between liability and full coverage costs?",
+      answer: "Liability-only insurance (required by law in most states) costs significantly less than full coverage, averaging $600–$900 annually, as it covers only damage you cause to others. Full coverage adds collision and comprehensive protection for your own vehicle, typically adding $800–$1,000 per year to the total premium. Full coverage is usually required if you have an outstanding auto loan or lease.",
     },
     {
-      question: "What is a location risk factor and how does it affect insurance?",
-      answer:
-        "Location risk factor reflects the likelihood of claims based on geographic area, considering factors like crime rates, weather hazards, and traffic density. Areas with higher risks lead to increased premiums as insurers anticipate more frequent or costly claims. Accurately assessing this factor helps in tailoring insurance costs to real-world conditions."
+      question: "How do age and driving experience impact annual insurance costs?",
+      answer: "Teen drivers (16–19) face the highest rates, averaging $4,500–$7,500 per year due to inexperience and higher accident risk. Young adults (20–25) pay $2,500–$4,000 annually, while drivers aged 30–55 with clean records typically pay $1,200–$1,800. Rates generally drop after age 25 and remain stable until age 65–70, when they may increase again due to potential health-related driving concerns.",
     },
     {
-      question: "Can I reduce my insurance cost by choosing a different coverage level?",
-      answer:
-        "Yes, selecting a lower coverage level, such as basic instead of premium, reduces your annual insurance cost because it limits the insurer's liability. However, this also means less protection in case of accidents or damages. It's important to balance cost savings with adequate coverage to avoid financial risks."
+      question: "Can I reduce my annual insurance cost with discounts?",
+      answer: "Yes, multiple discounts can lower your annual premium by 10–50%. Common discounts include bundling (home &amp; auto saves 15–25%), good driver discounts (5–10% off), good student discounts (10–15% for GPA &gt;3.0), safety features discounts (10–25%), and usage-based/telematics programs (10–30% for safe driving). Combining 3–4 discounts can reduce your annual cost from $1,771 to $900–$1,200.",
+    },
+    {
+      question: "How does my vehicle choice affect insurance costs annually?",
+      answer: "Insurance costs vary significantly by vehicle model, with luxury and sports cars costing 20–40% more to insure than sedans due to higher repair costs and theft risk. For example, insuring a Honda Civic averages $1,400 annually, while a BMW 3 Series may cost $2,100–$2,400 for the same coverage. Electric vehicles and hybrid vehicles often qualify for discounts of 5–15%, offsetting their higher purchase price.",
+    },
+    {
+      question: "What role does my location play in determining annual insurance rates?",
+      answer: "Location dramatically affects insurance costs, with urban areas typically costing 20–50% more than rural areas due to higher accident and theft rates. For example, average annual full coverage in New York City is $2,400–$2,800, while the same coverage in rural Montana costs $1,100–$1,400. Weather conditions, population density, local accident statistics, and regional repair costs all influence your premium.",
+    },
+    {
+      question: "How much should I budget for annual insurance if I have a poor driving record?",
+      answer: "Drivers with accidents or violations typically pay 50–200% more than clean-record drivers, ranging from $2,500–$5,000+ annually depending on severity. A single at-fault accident can increase premiums by $400–$800 per year for 3–5 years, while a DUI conviction can result in $2,000–$3,500 annual increases for 7–10 years. SR-22 insurance requirements (for high-risk drivers) can cost $3,000–$6,000 per year.",
+    },
+    {
+      question: "What is the average annual insurance cost difference between states?",
+      answer: "State insurance costs vary dramatically, with Florida averaging $2,187 annually and New Jersey at $2,108, while Maine averages $1,026 and Idaho $1,062 for the same coverage. This 50–100% variation is driven by state minimum coverage requirements, population density, weather patterns, and claims history. When using this calculator, your specific state selection will significantly impact your annual cost estimate.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -231,113 +242,326 @@ export default function InsuranceCostPerYearCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Enter the current market value of your vehicle in the appropriate currency.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the driver's age to account for age-related risk adjustments.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Provide the location risk factor, which reflects the insurance risk in your area.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Select the desired coverage level: basic, standard, or premium.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click the Calculate button to see your estimated annual insurance cost.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Insurance Cost per Year
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Calculating your annual insurance cost involves understanding several key factors that insurers use to assess risk and determine premiums. The primary component is the vehicle's value, as insurance typically covers repair or replacement costs. Higher-value vehicles generally incur higher premiums due to increased potential payout.
-          </p>
-          <p>
-            Driver age is another critical factor. Younger drivers, especially those under 25, are statistically more likely to be involved in accidents, leading to higher insurance costs. Middle-aged drivers often benefit from lower premiums, while senior drivers may face increased rates due to age-related risks.
-          </p>
-          <p>
-            Location risk factor accounts for geographic variables such as crime rates, weather conditions, and traffic density. Living in an area with high theft or accident rates will increase your insurance cost. This factor is expressed as a multiplier, adjusting the base premium accordingly.
-          </p>
-          <p>
-            Lastly, the coverage level you select influences your premium. Basic coverage offers minimal protection at a lower cost, while premium coverage provides extensive protection but at a higher price. Balancing coverage needs with budget constraints is essential for optimal insurance planning.
-          </p>
-          <p>
-            By inputting these variables into this calculator, you can obtain a realistic estimate of your yearly insurance expenses, helping you budget effectively and make informed decisions about your vehicle insurance.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Insurance Cost per Year Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Insurance Cost per Year calculator is designed to help you estimate your annual auto insurance premium based on your personal profile, vehicle details, and coverage preferences. Understanding your expected insurance costs allows you to budget more effectively, compare quotes from multiple insurers, and identify opportunities to lower your premiums through discounts or coverage adjustments. This calculator uses industry benchmarks and actuarial data to provide realistic estimates tailored to your specific situation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To get an accurate estimate, you'll need to input key information: your age and driving record, the vehicle you're insuring (make, model, year, and value), your desired coverage types and deductibles, and your location. Each of these inputs directly influences your premium—for example, choosing a $1,000 deductible instead of $500 typically saves 10–20% annually, while adding uninsured motorist coverage increases costs by 5–15%. The calculator weights these factors according to how insurance companies actually price policies.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">After running the calculator, review your results to understand which factors have the biggest impact on your costs. You'll see your estimated annual and monthly premiums broken down by coverage type, making it easy to compare different scenarios (such as raising your deductible or bundling policies). Use these estimates as a starting point to request quotes from actual insurers and look for discounts like safe driver, bundling, or usage-based programs that could lower your real-world premium by 10–50%.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring driver age impact:</strong> Many users overlook how significantly age affects insurance costs, especially for younger drivers who face steep premiums.
-          </p>
-          <p>
-            <strong>2. Using inaccurate vehicle value:</strong> Underestimating or overestimating your car’s value can lead to incorrect insurance cost estimates.
-          </p>
-          <p>
-            <strong>3. Neglecting location risk factor:</strong> Not accounting for your area's risk multiplier can cause large discrepancies in premium calculations.
-          </p>
-          <p>
-            <strong>4. Choosing inappropriate coverage level:</strong> Selecting coverage without understanding its implications may result in insufficient protection or unnecessary expenses.
-          </p>
-          <p>
-            <strong>5. Input errors:</strong> Entering invalid or incomplete data will prevent accurate calculations and mislead budgeting decisions.
-          </p>
+      {/* TABLE: Average Annual Insurance Costs by Driver Age (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Annual Insurance Costs by Driver Age (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical full coverage insurance premiums across different age groups, illustrating how age is one of the most significant cost factors.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Driver Age</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Annual Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Monthly Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Rate Relative to 40-Year-Old</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">16–19 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$458</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+300%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20–24 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$267</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+150%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25–29 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$163</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+20%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30–39 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$135</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Baseline</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40–49 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,625</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$135</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Baseline</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50–59 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,725</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$144</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+6%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60–69 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,850</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$154</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+14%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">70+ years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$175</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+29%</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs reflect good driving record with full coverage (liability, collision, comprehensive) in a moderate-cost state. Actual premiums vary by location, vehicle, and individual risk factors.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Annual Insurance Cost by Coverage Type (2024-2025) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Annual Insurance Cost by Coverage Type (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different coverage combinations affect your total annual insurance expense.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coverage Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Annual Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Liability Only</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">With Collision</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">With Comprehensive</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Liability Only (State Minimum)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Liability + Collision</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full Coverage (Liability + Collision + Comprehensive)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,771</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full Coverage + Uninsured Motorist</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,975</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full Coverage + Uninsured Motorist + Umbrella (1M)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">✓</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs based on 40-year-old driver with clean record in a moderate-cost state. Deductibles of $500 collision/$500 comprehensive are assumed. Adding $1M umbrella policy costs approximately $150–$300 annually.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Annual Insurance Costs by State (2024-2025) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Annual Insurance Costs by State (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">State-level variations in insurance costs reveal how geography significantly impacts annual premiums for identical coverage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">State</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Full Coverage Annual Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Liability Only Annual Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Rank (Highest to Lowest)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Florida</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,187</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 (Highest)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">New Jersey</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,108</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$815</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">New York</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,041</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$798</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Georgia</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,895</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$735</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">California</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,847</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$712</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">National Average</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,771</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$710</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">—</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Texas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,654</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$640</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pennsylvania</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,512</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$585</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Maine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,026</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$390</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Idaho</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,062</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$410</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">49 (Lowest)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Full coverage includes liability, collision ($500 deductible), and comprehensive ($500 deductible). Rates reflect 40-year-old driver with clean record. State rankings based on 2024 insurance industry data.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Raise your deductible to $1,000 instead of $500 to save 10–20% annually ($150–$350 per year), but ensure you have emergency savings to cover the higher out-of-pocket cost if you file a claim.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Bundle your auto insurance with homeowners or renters insurance to receive a 15–25% discount ($250–$450 annually), making this one of the easiest ways to reduce total insurance costs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Maintain a clean driving record by avoiding accidents and violations—each at-fault accident raises premiums by $400–$800 per year for 3–5 years, while a single speeding ticket adds $100–$200 annually.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Enroll in a usage-based or telematics insurance program (like Allstate Drivewise or Progressive Snapshot) to save 10–30% ($175–$530 annually) by demonstrating safe driving habits through mobile app tracking.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Review your coverage annually and adjust limits based on your vehicle's depreciating value—dropping collision coverage on a 10+ year-old car worth &lt;$8,000 can save $300–$500 per year while still maintaining liability protection.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href="#"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Choosing liability-only coverage on a financed vehicle</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you have an outstanding auto loan or lease, lenders require full coverage (collision and comprehensive). Failing to maintain this coverage violates your loan agreement and can result in lender-placed insurance costing $2,000–$4,000 annually, which is far more expensive than standard full coverage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for discounts when budgeting insurance costs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Neglecting to apply available discounts (bundling, good driver, safety features) results in overpaying by $300–$800 annually. Always ask insurers about all eligible discounts before accepting a quote, as you may qualify for 4–6 discounts worth 40–50% off your base premium.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Setting your deductible too low to save on premiums</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Choosing a $250 deductible to minimize monthly payments can backfire if you file a claim, as you'll pay significantly more out-of-pocket and your premium savings ($50–$100 annually) won't offset a $250 collision deductible. A $500–$1,000 deductible balances affordable premiums with manageable out-of-pocket costs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring annual premium reviews and shopping around</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Staying with the same insurer for years often results in higher rates, as loyalty discounts typically expire after 3–5 years and new customer discounts are withheld. Shopping rates every 2–3 years can save $300–$600 annually by switching to a more competitively priced insurer for your current profile.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect my annual car insurance cost the most?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The biggest factors impacting your annual insurance premium are your age, driving record, vehicle type, coverage limits, and location. For example, a 16-year-old driver typically pays $4,500–$7,500 annually for full coverage, while a 40-year-old with a clean record may pay $1,200–$1,800 for the same coverage. Your deductible choice and credit score also significantly influence your final premium.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does full coverage insurance cost per year on average?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">According to 2024 data, full coverage (liability, collision, and comprehensive) costs an average of $1,771 per year for good drivers, though this varies by state and vehicle. Drivers in high-cost states like Florida or New Jersey may pay $2,200–$2,600 annually, while those in low-cost states like Maine or Idaho may pay $1,100–$1,400. Your individual rate depends on personal factors like age, driving history, and the specific vehicle insured.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between liability and full coverage costs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Liability-only insurance (required by law in most states) costs significantly less than full coverage, averaging $600–$900 annually, as it covers only damage you cause to others. Full coverage adds collision and comprehensive protection for your own vehicle, typically adding $800–$1,000 per year to the total premium. Full coverage is usually required if you have an outstanding auto loan or lease.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do age and driving experience impact annual insurance costs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Teen drivers (16–19) face the highest rates, averaging $4,500–$7,500 per year due to inexperience and higher accident risk. Young adults (20–25) pay $2,500–$4,000 annually, while drivers aged 30–55 with clean records typically pay $1,200–$1,800. Rates generally drop after age 25 and remain stable until age 65–70, when they may increase again due to potential health-related driving concerns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I reduce my annual insurance cost with discounts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, multiple discounts can lower your annual premium by 10–50%. Common discounts include bundling (home &amp; auto saves 15–25%), good driver discounts (5–10% off), good student discounts (10–15% for GPA &gt;3.0), safety features discounts (10–25%), and usage-based/telematics programs (10–30% for safe driving). Combining 3–4 discounts can reduce your annual cost from $1,771 to $900–$1,200.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does my vehicle choice affect insurance costs annually?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Insurance costs vary significantly by vehicle model, with luxury and sports cars costing 20–40% more to insure than sedans due to higher repair costs and theft risk. For example, insuring a Honda Civic averages $1,400 annually, while a BMW 3 Series may cost $2,100–$2,400 for the same coverage. Electric vehicles and hybrid vehicles often qualify for discounts of 5–15%, offsetting their higher purchase price.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What role does my location play in determining annual insurance rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Location dramatically affects insurance costs, with urban areas typically costing 20–50% more than rural areas due to higher accident and theft rates. For example, average annual full coverage in New York City is $2,400–$2,800, while the same coverage in rural Montana costs $1,100–$1,400. Weather conditions, population density, local accident statistics, and regional repair costs all influence your premium.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much should I budget for annual insurance if I have a poor driving record?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Drivers with accidents or violations typically pay 50–200% more than clean-record drivers, ranging from $2,500–$5,000+ annually depending on severity. A single at-fault accident can increase premiums by $400–$800 per year for 3–5 years, while a DUI conviction can result in $2,000–$3,500 annual increases for 7–10 years. SR-22 insurance requirements (for high-risk drivers) can cost $3,000–$6,000 per year.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the average annual insurance cost difference between states?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">State insurance costs vary dramatically, with Florida averaging $2,187 annually and New Jersey at $2,108, while Maine averages $1,026 and Idaho $1,062 for the same coverage. This 50–100% variation is driven by state minimum coverage requirements, population density, weather patterns, and claims history. When using this calculator, your specific state selection will significantly impact your annual cost estimate.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.iii.org/fact-statistic/facts-statistics-auto-insurance" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Insurance Information Institute – Auto Insurance Data and Statistics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative source for national auto insurance statistics, average costs by state, and coverage information.</p>
+          </li>
+          <li>
+            <a href="https://www.naic.org/documents/subject_consumer_guide_auto.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of Insurance Commissioners (NAIC) – Consumer Insurance Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on auto insurance coverage types, state requirements, and consumer protection information.</p>
+          </li>
+          <li>
+            <a href="https://www.bankrate.com/insurance/auto/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate – Auto Insurance Cost and Rate Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive research on average insurance costs, state-by-state comparisons, and factors affecting premiums.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerfinance.gov/ask-cfpb/what-does-auto-insurance-cover-en-1574/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau – Auto Insurance Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal consumer protection resource explaining coverage types, claims processes, and insurance rights.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

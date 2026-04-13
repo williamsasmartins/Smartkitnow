@@ -70,29 +70,40 @@ export default function TowingCapacitySafetyMarginCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "What is towing capacity safety margin and why is it important?",
-      answer:
-        "Towing capacity safety margin is the extra buffer between your vehicle's maximum towing capacity and the actual weight of the trailer you intend to tow. This margin accounts for dynamic forces such as acceleration, braking, road conditions, and cargo shifts. Maintaining an adequate safety margin helps prevent vehicle strain, overheating, and potential accidents, ensuring safer towing performance and prolonging vehicle lifespan."
+      question: "What is a towing capacity safety margin and why does it matter?",
+      answer: "A towing capacity safety margin is the difference between your vehicle's maximum towing capacity and the actual weight you plan to tow, expressed as a percentage or buffer. Safety experts recommend maintaining at least a 10-20% safety margin to account for cargo shifting, road conditions, and equipment wear. Exceeding your vehicle's rated capacity without this margin significantly increases brake failure risk, transmission damage, and loss of vehicle control.",
     },
     {
-      question: "How do I determine the correct safety margin percentage for towing?",
-      answer:
-        "A common recommended safety margin is between 10% to 20% above the trailer's actual weight. This range provides a balance between safety and practicality. Factors influencing the margin include trailer type, terrain, driving conditions, and vehicle specifications. Always consult your vehicle's owner's manual and consider professional advice to select an appropriate safety margin."
+      question: "How do I find my vehicle's maximum towing capacity?",
+      answer: "Your vehicle's maximum towing capacity is listed in your owner's manual, on the driver's side door jamb label, or on the manufacturer's website using your VIN. Most pickup trucks range from 5,000 to 14,000 lbs, while SUVs typically range from 3,500 to 8,500 lbs. Always consult your specific vehicle's documentation rather than relying on model estimates, as capacity varies by engine type, transmission, and year.",
     },
     {
-      question: "Can I exceed my vehicle's maximum towing capacity if I have a safety margin?",
-      answer:
-        "No, the safety margin is meant to ensure you stay well within your vehicle's towing limits, not to exceed them. Exceeding the maximum towing capacity can lead to severe mechanical failures, compromised braking, and dangerous driving conditions. Always ensure the trailer weight plus the safety margin does not surpass your vehicle's rated towing capacity."
+      question: "What weight should I use when calculating my safety margin—dry weight or loaded weight?",
+      answer: "Always use the fully loaded weight of your trailer or cargo for safety margin calculations, including passengers, fuel, equipment, and any additions to the trailer itself. A dry trailer weighing 5,000 lbs can easily reach 7,500 lbs when loaded with cargo, which significantly impacts your safety margin. This realistic approach prevents the dangerous mistake of assuming worst-case scenarios won't occur.",
     },
     {
-      question: "Does the calculator consider tongue weight or payload capacity?",
-      answer:
-        "This calculator focuses on the towing capacity safety margin related to trailer weight. Tongue weight and payload capacity are separate but equally important factors to consider when towing. Tongue weight is the downward force the trailer exerts on the hitch, and payload capacity is the maximum weight your vehicle can carry including passengers and cargo. Always verify these values to ensure safe towing."
+      question: "Can I exceed my vehicle's towing capacity if I drive carefully?",
+      answer: "No, exceeding your vehicle's rated towing capacity is unsafe regardless of driving skill, as it compromises braking performance, suspension integrity, and steering response. Manufacturers calculate towing limits based on vehicle engineering and safety testing, not driver ability. Overloading increases stopping distance, jackknife risk, and potential liability if an accident occurs.",
     },
     {
-      question: "How do unit conversions affect towing capacity calculations?",
-      answer:
-        "Towing capacity and trailer weight can be measured in pounds (lbs) or kilograms (kg). This calculator supports both imperial and metric units and converts values accordingly. It's crucial to use consistent units when inputting data to avoid errors. Always double-check unit settings before calculating to ensure accurate results."
+      question: "What is a hitch weight limit and how does it affect my safety margin?",
+      answer: "Hitch weight (tongue weight) typically represents 10-15% of total trailer weight and is limited by your vehicle's hitch class and receiver rating. If your trailer's tongue weight is 1,200 lbs and your hitch is rated for 1,000 lbs, you've exceeded capacity at the connection point, regardless of overall towing capacity. Always verify both your vehicle's towing capacity AND your hitch rating are sufficient for your loaded trailer.",
+    },
+    {
+      question: "How does payload capacity affect my towing capacity safety margin?",
+      answer: "Your vehicle's payload capacity and towing capacity are separate ratings, but both are reduced when you carry passengers and cargo in the cab. If your truck has a 10,000 lb towing capacity and 1,500 lb payload capacity, adding 800 lbs of cargo in the truck bed leaves only 700 lbs of payload for passengers. This combined load reduction effectively cuts your safe towing margin, so factor in all vehicle weight when calculating your available capacity.",
+    },
+    {
+      question: "What safety features should I verify before towing at or near my vehicle's maximum capacity?",
+      answer: "Confirm your vehicle has integrated trailer brake control, an appropriately rated hitch with weight-distribution capabilities, and functional backup/sway control systems. Weight-distribution hitches can increase safe towing capacity by helping balance the load across multiple axles and reducing tongue weight impact. Additionally, ensure your tires are properly inflated, brakes are in excellent condition, and your mirrors provide adequate visibility of the trailer.",
+    },
+    {
+      question: "What is the relationship between GVWR and towing capacity?",
+      answer: "Gross Vehicle Weight Rating (GVWR) is your vehicle's maximum operating weight including fuel, passengers, cargo, and trailers—not the same as towing capacity alone. If your truck's GVWR is 12,000 lbs and the vehicle itself weighs 6,500 lbs with 500 lbs of passengers and cargo, you have 5,000 lbs remaining for trailer weight. Exceeding GVWR can damage your suspension and compromise safety, making it a critical constraint alongside towing capacity limits.",
+    },
+    {
+      question: "How do weather and road conditions impact my effective towing safety margin?",
+      answer: "Rain, snow, and mountainous terrain reduce your effective braking power and traction, effectively tightening your safety margin despite maintaining the same vehicle and load weights. In adverse conditions, increase your safety margin from 10-20% to 25-30% to account for reduced stopping ability and longer braking distances. Similarly, towing at high elevation or with significant uphill grades reduces engine power and braking effectiveness, requiring larger safety buffers.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -218,110 +229,289 @@ export default function TowingCapacitySafetyMarginCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) from the dropdown menu.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your vehicle's maximum towing capacity as specified in the owner's manual or manufacturer specifications.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the actual weight of the trailer you plan to tow, including cargo and fluids.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Specify your desired safety margin percentage to ensure extra buffer for safe towing (default is 15%).
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click the "Calculate" button to see the required towing capacity with safety margin and feedback on your setup.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Towing Capacity Safety Margin Checker
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Towing a trailer safely requires understanding not only your vehicle's maximum towing capacity but also maintaining a safety margin to account for dynamic driving conditions. The towing capacity is the maximum weight your vehicle can safely tow as specified by the manufacturer. However, real-world conditions such as hills, acceleration, braking, and road surface irregularities impose additional stresses on your vehicle and trailer.
-          </p>
-          <p>
-            The safety margin is a percentage buffer added on top of the trailer's actual weight to ensure your vehicle is not operating at its absolute limit. This margin helps prevent mechanical strain, overheating, and loss of control. For example, a 15% safety margin means your vehicle should be capable of towing 15% more than the trailer's weight, providing a cushion for unexpected forces.
-          </p>
-          <p>
-            This calculator allows you to input your vehicle's towing capacity, the trailer weight, and your desired safety margin. It then calculates the required towing capacity to maintain that margin and compares it to your vehicle's rating. If your vehicle's capacity is insufficient or the margin is too low, the calculator provides warnings and advice. Always consult your vehicle's manual and consider professional guidance when planning to tow.
-          </p>
-          <p>
-            Remember, towing beyond your vehicle's limits can lead to dangerous situations, including brake failure, loss of control, and damage to your vehicle's drivetrain. Properly calculating and respecting towing capacity with a safety margin ensures safer trips and prolongs the life of your vehicle.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Towing Capacity Safety Margin Checker</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Towing Capacity Safety Margin Checker helps you determine whether your vehicle can safely tow your trailer or cargo while maintaining an adequate safety buffer. By comparing your vehicle's maximum towing capacity against your actual loaded weight, this calculator reveals how much margin you have—and whether you're operating within safe parameters. Maintaining proper safety margins is critical for preventing brake failure, transmission damage, and loss of vehicle control during emergency maneuvers.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator accurately, gather three key pieces of information: your vehicle's maximum towing capacity (found in your owner's manual or door jamb label), the fully loaded weight of your trailer or cargo (including all passengers, fuel, and equipment), and your hitch class rating. The calculator will also ask for your vehicle's Gross Vehicle Weight Rating (GVWR) to ensure you're not exceeding overall vehicle limits. These inputs create a comprehensive safety assessment that accounts for both towing and payload constraints.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator displays your remaining towing capacity, safety margin percentage, and a risk assessment showing whether you're safely within limits or dangerously exceeding them. A result showing a 15-20% safety margin on highway conditions indicates safe operation, while results below 10% warrant serious concern. Use the detailed breakdown to adjust your load weight or reconsider your towing plan if the safety margin is inadequate for your intended driving conditions.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section
-        id="mistakes"
-        className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
-      >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring the safety margin:</strong> Many drivers tow trailers close to or at their vehicle's maximum capacity without any buffer, increasing the risk of mechanical failure and accidents.
-          </p>
-          <p>
-            <strong>2. Using inconsistent units:</strong> Mixing pounds and kilograms without proper conversion can lead to incorrect calculations and unsafe towing setups.
-          </p>
-          <p>
-            <strong>3. Forgetting additional trailer weight:</strong> Trailer weight should include cargo, fluids, and any additional equipment, not just the trailer's empty weight.
-          </p>
-          <p>
-            <strong>4. Overlooking tongue weight and payload:</strong> These factors affect vehicle handling and should be considered alongside towing capacity.
-          </p>
-          <p>
-            <strong>5. Not consulting the vehicle manual:</strong> Manufacturer guidelines provide critical information on towing limits and safety recommendations.
-          </p>
+      {/* TABLE: Typical Towing Capacity by Vehicle Class (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Typical Towing Capacity by Vehicle Class (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows representative maximum towing capacities for common vehicle types, though actual capacity varies significantly by engine, transmission, and model year.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vehicle Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Dry Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Max Towing Capacity (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Safety Margin (lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Compact SUV (Honda CR-V, Toyota RAV4)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500-4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500-3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-700</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mid-Size SUV (Ford Explorer, Chevy Tahoe)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,500-5,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,600-8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,120-1,600</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full-Size Pickup (F-150, Silverado 1500)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,500-5,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,000-14,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,600-2,800</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Heavy-Duty Pickup (F-350, Silverado 3500)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6,000-7,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15,000-35,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000-7,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Minivan (Honda Odyssey, Toyota Sienna)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,300-4,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500-5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">700-1,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sedan (Toyota Camry, Honda Accord)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000-3,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000-1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-300</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual capacities vary based on engine displacement, transmission type, and trim level. Always consult your vehicle's owner manual for precise specifications.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Hitch Class Ratings and Weight Limits (2024 Standards) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Hitch Class Ratings and Weight Limits (2024 Standards)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Hitch classes are standardized ratings that define maximum towing and tongue weight capacity for receiver hitches.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hitch Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Receiver Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Towing Capacity (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Tongue Weight (lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Class I</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Class II</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Class III</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Class IV (Heavy-Duty)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Class V (Commercial)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20,000+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000+</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Weight-distribution hitches can increase capacity by 25-50% beyond rated Class limits. Verify your vehicle manufacturer's hitch rating matches your Class selection.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Safety Margin Reduction Factors Under Adverse Conditions */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Safety Margin Reduction Factors Under Adverse Conditions</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Environmental and load factors reduce your effective towing safety margin below ideal highway conditions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Base Safety Margin</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjusted Safety Margin</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Impact</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dry, level highway at sea level</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No reduction</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wet roads or light rain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduced braking grip</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Snow, ice, or winter conditions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Significantly reduced traction</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mountain driving or sustained grades &gt;5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduced engine power, brake stress</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High elevation (&gt;5,000 ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduced air density, engine power</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Heavy crosswinds (&gt;20 mph)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Trailer sway risk</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Towing at maximum capacity rating</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40%+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multiple risk factors compound</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are cumulative factors; multiple adverse conditions require larger safety margins. Conservative drivers should maintain &gt;20% margins in all conditions.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always use your trailer's fully loaded weight when entering data—not the dry weight—since cargo can add 25-50% to the empty weight, dramatically reducing your safety margin.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for hitch weight capacity separately from overall towing capacity; exceeding your hitch rating at the connection point can cause catastrophic failure regardless of vehicle towing limits.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase your required safety margin to 25-35% when towing in rain, snow, mountains, or at high elevation, as these conditions reduce braking power and effective towing capacity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your vehicle's door jamb label for combined payload and towing capacity limits; adding passengers and cargo in the cab directly reduces the weight available for trailer towing.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href={ref.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Dry Trailer Weight Instead of Loaded Weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people enter their trailer's dry weight but fail to account for cargo, gear, and fuel, underestimating actual weight by 30-40%. This inflates your perceived safety margin and can lead to unsafe operating conditions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Hitch Class Ratings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Your vehicle's towing capacity and your hitch rating are independent limits; exceeding either one creates unsafe conditions. A Class II hitch maxes out at 3,500 lbs towing even if your truck is rated for 8,000 lbs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking GVWR Constraints</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Gross Vehicle Weight Rating limits your total vehicle weight including passengers and cargo in the cab. Exceeding GVWR damages suspension and compromises braking regardless of towing capacity.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Safe Operation in All Weather Conditions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Safety margins that work on dry highways shrink dramatically in rain, snow, or mountains. Maintaining a 20% margin in ideal conditions requires 35% or more in adverse weather.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a towing capacity safety margin and why does it matter?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A towing capacity safety margin is the difference between your vehicle's maximum towing capacity and the actual weight you plan to tow, expressed as a percentage or buffer. Safety experts recommend maintaining at least a 10-20% safety margin to account for cargo shifting, road conditions, and equipment wear. Exceeding your vehicle's rated capacity without this margin significantly increases brake failure risk, transmission damage, and loss of vehicle control.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I find my vehicle's maximum towing capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your vehicle's maximum towing capacity is listed in your owner's manual, on the driver's side door jamb label, or on the manufacturer's website using your VIN. Most pickup trucks range from 5,000 to 14,000 lbs, while SUVs typically range from 3,500 to 8,500 lbs. Always consult your specific vehicle's documentation rather than relying on model estimates, as capacity varies by engine type, transmission, and year.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What weight should I use when calculating my safety margin—dry weight or loaded weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Always use the fully loaded weight of your trailer or cargo for safety margin calculations, including passengers, fuel, equipment, and any additions to the trailer itself. A dry trailer weighing 5,000 lbs can easily reach 7,500 lbs when loaded with cargo, which significantly impacts your safety margin. This realistic approach prevents the dangerous mistake of assuming worst-case scenarios won't occur.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I exceed my vehicle's towing capacity if I drive carefully?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, exceeding your vehicle's rated towing capacity is unsafe regardless of driving skill, as it compromises braking performance, suspension integrity, and steering response. Manufacturers calculate towing limits based on vehicle engineering and safety testing, not driver ability. Overloading increases stopping distance, jackknife risk, and potential liability if an accident occurs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a hitch weight limit and how does it affect my safety margin?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Hitch weight (tongue weight) typically represents 10-15% of total trailer weight and is limited by your vehicle's hitch class and receiver rating. If your trailer's tongue weight is 1,200 lbs and your hitch is rated for 1,000 lbs, you've exceeded capacity at the connection point, regardless of overall towing capacity. Always verify both your vehicle's towing capacity AND your hitch rating are sufficient for your loaded trailer.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does payload capacity affect my towing capacity safety margin?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your vehicle's payload capacity and towing capacity are separate ratings, but both are reduced when you carry passengers and cargo in the cab. If your truck has a 10,000 lb towing capacity and 1,500 lb payload capacity, adding 800 lbs of cargo in the truck bed leaves only 700 lbs of payload for passengers. This combined load reduction effectively cuts your safe towing margin, so factor in all vehicle weight when calculating your available capacity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What safety features should I verify before towing at or near my vehicle's maximum capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Confirm your vehicle has integrated trailer brake control, an appropriately rated hitch with weight-distribution capabilities, and functional backup/sway control systems. Weight-distribution hitches can increase safe towing capacity by helping balance the load across multiple axles and reducing tongue weight impact. Additionally, ensure your tires are properly inflated, brakes are in excellent condition, and your mirrors provide adequate visibility of the trailer.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the relationship between GVWR and towing capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gross Vehicle Weight Rating (GVWR) is your vehicle's maximum operating weight including fuel, passengers, cargo, and trailers—not the same as towing capacity alone. If your truck's GVWR is 12,000 lbs and the vehicle itself weighs 6,500 lbs with 500 lbs of passengers and cargo, you have 5,000 lbs remaining for trailer weight. Exceeding GVWR can damage your suspension and compromise safety, making it a critical constraint alongside towing capacity limits.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do weather and road conditions impact my effective towing safety margin?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rain, snow, and mountainous terrain reduce your effective braking power and traction, effectively tightening your safety margin despite maintaining the same vehicle and load weights. In adverse conditions, increase your safety margin from 10-20% to 25-30% to account for reduced stopping ability and longer braking distances. Similarly, towing at high elevation or with significant uphill grades reduces engine power and braking effectiveness, requiring larger safety buffers.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.nhtsa.gov/vehicle-owners/towing-safety" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Highway Traffic Safety Administration (NHTSA) - Towing Safety Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official government guidance on safe towing practices and manufacturer capacity ratings.</p>
+          </li>
+          <li>
+            <a href="https://www.sae.org/standards/content/j2807_202407/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Society of Automotive Engineers (SAE) - Towing Capacity Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical standards and benchmarks defining how manufacturers calculate and rate towing capacity.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerreports.org/towing/towing-capacity-and-safety/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Reports - Towing Capacity and Safety Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Independent analysis of towing capacity ratings and real-world safety recommendations.</p>
+          </li>
+          <li>
+            <a href="https://www.aaa.com/automotive/safe-towing" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Automobile Association (AAA) - Towing Vehicle Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Best practices for safe towing including weight distribution, brake systems, and vehicle maintenance.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

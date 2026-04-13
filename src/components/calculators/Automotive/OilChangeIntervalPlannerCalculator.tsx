@@ -97,29 +97,40 @@ export default function OilChangeIntervalPlannerCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How often should I change my car's oil?",
-      answer:
-        "Oil change intervals vary depending on the vehicle, oil type, and driving conditions. Most manufacturers recommend changing oil every 3,000 to 7,500 miles (or 5,000 to 12,000 kilometers). Synthetic oils often allow longer intervals. Always consult your owner's manual for the recommended interval specific to your car."
+      question: "What is the recommended oil change interval for modern vehicles?",
+      answer: "Most modern vehicles with synthetic oil can go 7,500 to 10,000 miles between oil changes, while some newer models can extend to 15,000 miles or more. Conventional oil typically requires changes every 3,000 to 5,000 miles. Always consult your vehicle's owner manual for the manufacturer's specific recommendations, as intervals vary based on engine type, driving conditions, and oil quality.",
     },
     {
-      question: "Can I extend the oil change interval to save money?",
-      answer:
-        "While extending oil change intervals can save money upfront, it may risk engine wear if done excessively. Modern synthetic oils and advanced engines allow longer intervals, but ignoring manufacturer recommendations can lead to costly repairs. Use this planner to balance cost savings with engine health."
+      question: "How does driving habit affect my oil change schedule?",
+      answer: "Severe driving conditions—such as frequent short trips, towing, idling, or driving in dusty environments—can reduce oil change intervals by 25% to 50%. If you frequently drive in these conditions, consider changing your oil every 3,000 to 5,000 miles even with synthetic oil. The Oil Change Interval Planner accounts for these factors to provide a personalized schedule based on your driving patterns.",
     },
     {
-      question: "What factors affect oil change intervals?",
-      answer:
-        "Driving habits, climate, and vehicle type affect oil change frequency. Frequent short trips, stop-and-go traffic, towing, or extreme temperatures can degrade oil faster. Adjust intervals accordingly and monitor oil condition regularly."
+      question: "What's the difference between synthetic and conventional oil intervals?",
+      answer: "Synthetic oil typically lasts 2 to 3 times longer than conventional oil due to superior heat resistance and oxidation stability. Conventional oil breaks down faster and loses effectiveness around 3,000 to 5,000 miles, while synthetic oil can maintain protection for 7,500 to 15,000 miles or more. Synthetic blends offer a middle ground, usually lasting 5,000 to 7,500 miles between changes.",
     },
     {
-      question: "Is it safe to use synthetic oil for longer intervals?",
-      answer:
-        "Yes, synthetic oils are designed to last longer and provide better engine protection under various conditions. They resist breakdown and maintain viscosity better than conventional oils, allowing extended oil change intervals recommended by many manufacturers."
+      question: "Can I extend my oil change interval if I use premium synthetic oil?",
+      answer: "Yes, premium synthetic oils like PAO (polyalphaolefin) or Group III synthetics can extend intervals to 12,000 to 15,000 miles under normal driving conditions. However, severe conditions, high-mileage vehicles, or manufacturer specifications may still require shorter intervals. Always verify your vehicle's maximum recommended interval before extending beyond the owner's manual guidelines.",
     },
     {
-      question: "How does oil change cost impact overall vehicle maintenance?",
-      answer:
-        "Regular oil changes are a relatively low-cost maintenance task that prevents expensive engine damage. Skipping or delaying oil changes can lead to sludge buildup, reduced engine efficiency, and costly repairs. Budgeting for timely oil changes helps maintain vehicle reliability and resale value."
+      question: "How do temperature and climate impact oil change frequency?",
+      answer: "Cold climates increase engine stress during startup, which can shorten oil life by 10% to 20%, while extreme heat accelerates oil degradation and requires more frequent changes. Hot climates may reduce intervals by 500 to 1,000 miles compared to moderate climates. The Oil Change Interval Planner factors in your local temperature range to adjust recommendations accordingly.",
+    },
+    {
+      question: "What happens if I skip or delay an oil change?",
+      answer: "Skipping scheduled oil changes allows sludge and contaminants to accumulate, increasing engine wear and reducing performance. Delaying changes by just 1,000 miles can reduce engine protection by 15% to 25%, potentially leading to costly repairs or engine failure. Regular oil changes are the cheapest form of preventive maintenance, costing $30 to $75 per change versus thousands for engine damage.",
+    },
+    {
+      question: "How do I know if my vehicle uses 4, 5, or 6 quarts of oil?",
+      answer: "Check your vehicle's owner manual under 'Fluid Capacities' or 'Specifications'—this is the most accurate source. Most compact cars use 4 to 5 quarts, sedans use 5 to 6 quarts, and SUVs/trucks often require 6 to 8 quarts. You can also check the dipstick markings or ask your mechanic; using the correct amount ensures proper lubrication and engine protection.",
+    },
+    {
+      question: "Should high-mileage vehicles follow a different oil change schedule?",
+      answer: "Vehicles with &gt;75,000 miles should typically use high-mileage oil formulas and follow intervals at the shorter end of the manufacturer's recommendation, usually every 5,000 to 7,500 miles. High-mileage oils contain additives that reduce leaks and restore seals in aging engines. Switching to synthetic high-mileage oil can extend intervals to 7,500 to 10,000 miles while providing better protection against wear.",
+    },
+    {
+      question: "How often should I check my oil level between changes?",
+      answer: "Check your oil level every 2 to 4 weeks or before long road trips, regardless of your oil change interval. Modern engines can consume 500 to 1,000 miles worth of oil between changes due to normal combustion and evaporation. Monitoring levels helps catch leaks or burning oil early, preventing engine damage and ensuring you maintain adequate lubrication.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -249,102 +260,271 @@ export default function OilChangeIntervalPlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system: Imperial (miles) or Metric (kilometers).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your vehicle's current mileage or kilometers driven.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the mileage or kilometers at which you last changed your oil.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the recommended oil change interval as specified by your vehicle manufacturer.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Provide the cost you typically pay for an oil change.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Click "Calculate" to see the remaining distance until your next oil change and the estimated cost.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Oil Change Interval Planner
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Regular oil changes are critical to maintaining your vehicle's engine health and performance. Oil lubricates engine components, reduces friction, and helps dissipate heat. Over time, oil degrades and becomes contaminated, reducing its effectiveness. Changing oil at recommended intervals ensures your engine runs smoothly and prevents costly repairs.
-          </p>
-          <p>
-            This planner helps you determine how far you can drive before your next oil change based on your current mileage, last oil change, and manufacturer recommendations. It also estimates the cost you will incur for the upcoming oil change, helping you budget maintenance expenses effectively. Remember, driving conditions such as frequent short trips, extreme temperatures, or heavy towing may require more frequent oil changes.
-          </p>
-          <p>
-            Always refer to your vehicle’s owner manual for specific oil change intervals and oil type recommendations. Using synthetic oil can extend intervals, but never exceed the maximum recommended mileage. This tool empowers you to plan maintenance proactively, ensuring your vehicle remains reliable and efficient.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Oil Change Interval Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Oil Change Interval Planner is a personalized scheduling tool that calculates when you should change your oil based on your specific vehicle, driving habits, and environmental conditions. Regular oil changes are essential to engine longevity, fuel efficiency, and performance—they remove contaminants and maintain proper lubrication. This calculator takes the guesswork out of maintenance planning and helps you avoid costly engine damage from missed services.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the planner, input key information: your vehicle's make, model, and year; the type of oil your manufacturer recommends (conventional, synthetic blend, or full synthetic); your average monthly mileage; and your typical driving conditions (normal, severe, or mixed). The calculator also considers climate factors like average temperature and weather patterns in your region. These inputs allow the tool to generate an accurate, personalized oil change schedule tailored to your unique driving situation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your recommended oil change date and mileage milestone, along with a visual timeline for upcoming maintenance windows. Use this schedule to set calendar reminders or integrate the dates into your vehicle maintenance log. The planner also highlights cost estimates and explains why your interval differs from the standard recommendation, helping you make informed decisions about oil quality and maintenance budgeting.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring manufacturer recommendations:</strong> Using generic intervals without consulting your vehicle’s manual can lead to premature engine wear or unnecessary oil changes.
-          </p>
-          <p>
-            <strong>2. Using incorrect units:</strong> Mixing miles and kilometers in inputs causes inaccurate calculations. Always select and use consistent units.
-          </p>
-          <p>
-            <strong>3. Forgetting to update mileage:</strong> Not updating current or last oil change mileage results in misleading interval estimates.
-          </p>
-          <p>
-            <strong>4. Overextending oil change intervals:</strong> Driving beyond recommended intervals can cause sludge buildup and engine damage.
-          </p>
-          <p>
-            <strong>5. Neglecting oil quality:</strong> Using low-quality or incorrect oil type reduces protection and shortens oil life.
-          </p>
+      {/* TABLE: Oil Change Intervals by Oil Type and Driving Conditions */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Oil Change Intervals by Oil Type and Driving Conditions</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows recommended oil change intervals in miles for different oil types under normal and severe driving conditions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Oil Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Normal Driving</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severe Driving</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Highway Driving</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Conventional (Mineral)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000–5,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,500–3,500 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,000–5,000 miles</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Synthetic Blend</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000–7,500 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500–5,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6,000–7,500 miles</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full Synthetic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,500–10,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000–7,500 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,000–12,000 miles</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Premium Full Synthetic (PAO)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000–15,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,500–10,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,000–15,000 miles</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Mileage Oil (&gt;75K miles)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000–7,500 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000–5,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6,000–8,000 miles</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Severe driving includes frequent short trips, towing, idling, dusty conditions, and cold starts. Always consult your vehicle's owner manual for manufacturer-recommended intervals.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Engine Oil Viscosity Grades and Temperature Ranges */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Engine Oil Viscosity Grades and Temperature Ranges</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows common SAE oil viscosity grades and their optimal operating temperature ranges.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Oil Grade</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cold Temperature Performance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hot Temperature Performance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best Use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0W-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;-40°F startup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100°C flow at moderate temps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Modern fuel-efficient engines</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0W-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;-35°F startup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100°C flow at higher temps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Some turbocharged engines</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5W-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;-25°F startup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100°C flow at moderate temps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Most common grade, 4-cylinder engines</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5W-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;-25°F startup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100°C flow at high temps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High-performance and diesel engines</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10W-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;-15°F startup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100°C flow at high temps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Older vehicles, warm climates</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The 'W' (Winter) rating indicates cold-start viscosity. Always use the SAE grade specified in your vehicle's owner manual.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Annual Oil Change Costs by Oil Type */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Annual Oil Change Costs by Oil Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table estimates annual maintenance costs based on typical oil change intervals and prices per service.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Oil Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Per Change</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interval (Miles)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Est. Annual Cost (15K miles/year)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Conventional</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$30–$45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$90–$135</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Synthetic Blend</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50–$65</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,500 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100–$130</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full Synthetic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$65–$85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$97.50–$127.50</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Premium Full Synthetic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$85–$110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,500 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$102–$132</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Mileage Synthetic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75–$95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,500 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150–$190</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs vary by location, vehicle model, and service provider. These estimates include oil and filter replacement only.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Set phone reminders 500 miles before your scheduled oil change to allow adequate planning time and avoid running past your interval, which can compromise engine protection.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep a maintenance log documenting each oil change date, mileage, oil type used, and the service provider—this record helps verify warranty claims and proves regular maintenance to potential buyers.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider upgrading to full synthetic oil if you drive in severe conditions, tow frequently, or experience extreme temperatures, as the extended intervals save money despite higher per-service costs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Replace your oil filter every time you change oil without exception; a clogged filter restricts flow and reduces the protective properties of even premium synthetic oil by 30% to 50%.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a href="#" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1" target="_blank" rel="noopener noreferrer">
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring manufacturer recommendations in favor of online advice</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Your vehicle's owner manual contains the only interval guarantee recognized by manufacturers and may void warranty claims if ignored. Generic online recommendations don't account for your specific engine type, transmission, or climate conditions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing oil change intervals with tire rotation or filter replacement</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Oil changes, tire rotations, and filter replacements are separate maintenance tasks with different intervals. Oil changes are typically due every 5,000 to 15,000 miles, while tire rotations occur every 6,000 to 8,000 miles and cabin air filters every 12,000 to 15,000 miles.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the wrong oil viscosity grade for your engine</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using 10W-40 in an engine that requires 0W-20 can reduce fuel efficiency by 3% to 5% and compromise cold-start protection in winter. Always match the exact SAE viscosity grade specified in your owner manual.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Extending intervals beyond manufacturer limits based on oil quality alone</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even premium synthetic oils have maximum interval limits set by manufacturers to ensure engine protection and emission control system health. Pushing beyond these limits increases wear rates and can damage catalytic converters.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended oil change interval for modern vehicles?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most modern vehicles with synthetic oil can go 7,500 to 10,000 miles between oil changes, while some newer models can extend to 15,000 miles or more. Conventional oil typically requires changes every 3,000 to 5,000 miles. Always consult your vehicle's owner manual for the manufacturer's specific recommendations, as intervals vary based on engine type, driving conditions, and oil quality.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does driving habit affect my oil change schedule?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Severe driving conditions—such as frequent short trips, towing, idling, or driving in dusty environments—can reduce oil change intervals by 25% to 50%. If you frequently drive in these conditions, consider changing your oil every 3,000 to 5,000 miles even with synthetic oil. The Oil Change Interval Planner accounts for these factors to provide a personalized schedule based on your driving patterns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between synthetic and conventional oil intervals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Synthetic oil typically lasts 2 to 3 times longer than conventional oil due to superior heat resistance and oxidation stability. Conventional oil breaks down faster and loses effectiveness around 3,000 to 5,000 miles, while synthetic oil can maintain protection for 7,500 to 15,000 miles or more. Synthetic blends offer a middle ground, usually lasting 5,000 to 7,500 miles between changes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I extend my oil change interval if I use premium synthetic oil?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, premium synthetic oils like PAO (polyalphaolefin) or Group III synthetics can extend intervals to 12,000 to 15,000 miles under normal driving conditions. However, severe conditions, high-mileage vehicles, or manufacturer specifications may still require shorter intervals. Always verify your vehicle's maximum recommended interval before extending beyond the owner's manual guidelines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do temperature and climate impact oil change frequency?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cold climates increase engine stress during startup, which can shorten oil life by 10% to 20%, while extreme heat accelerates oil degradation and requires more frequent changes. Hot climates may reduce intervals by 500 to 1,000 miles compared to moderate climates. The Oil Change Interval Planner factors in your local temperature range to adjust recommendations accordingly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I skip or delay an oil change?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Skipping scheduled oil changes allows sludge and contaminants to accumulate, increasing engine wear and reducing performance. Delaying changes by just 1,000 miles can reduce engine protection by 15% to 25%, potentially leading to costly repairs or engine failure. Regular oil changes are the cheapest form of preventive maintenance, costing $30 to $75 per change versus thousands for engine damage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my vehicle uses 4, 5, or 6 quarts of oil?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check your vehicle's owner manual under 'Fluid Capacities' or 'Specifications'—this is the most accurate source. Most compact cars use 4 to 5 quarts, sedans use 5 to 6 quarts, and SUVs/trucks often require 6 to 8 quarts. You can also check the dipstick markings or ask your mechanic; using the correct amount ensures proper lubrication and engine protection.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should high-mileage vehicles follow a different oil change schedule?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Vehicles with &gt;75,000 miles should typically use high-mileage oil formulas and follow intervals at the shorter end of the manufacturer's recommendation, usually every 5,000 to 7,500 miles. High-mileage oils contain additives that reduce leaks and restore seals in aging engines. Switching to synthetic high-mileage oil can extend intervals to 7,500 to 10,000 miles while providing better protection against wear.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I check my oil level between changes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check your oil level every 2 to 4 weeks or before long road trips, regardless of your oil change interval. Modern engines can consume 500 to 1,000 miles worth of oil between changes due to normal combustion and evaporation. Monitoring levels helps catch leaks or burning oil early, preventing engine damage and ensuring you maintain adequate lubrication.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.fueleconomy.gov/feg/maintain.shtml" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Your Car's Maintenance Schedule</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official U.S. EPA resource explaining the importance of following manufacturer maintenance schedules and how proper oil changes affect fuel economy.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerreports.org/cars/car-maintenance/motor-oil-selection-and-use/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Motor Oil Selection and Use</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Consumer Reports comprehensive guide covering oil types, viscosity grades, and how to choose the right oil for your vehicle.</p>
+          </li>
+          <li>
+            <a href="https://www.aaa.com/automotive/articles/motor-oil-101" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Guide to Motor Oil Maintenance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AAA's detailed explanation of oil types, change intervals, and common misconceptions about automotive lubrication.</p>
+          </li>
+          <li>
+            <a href="https://www.sae.org/standards/content/j183_202301/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Engine Oil Specifications and Performance Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Society of Automotive Engineers official standard defining SAE viscosity grades and oil performance classifications used worldwide.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

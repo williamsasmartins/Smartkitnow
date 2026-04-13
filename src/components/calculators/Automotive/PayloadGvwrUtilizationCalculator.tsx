@@ -86,29 +86,40 @@ export default function PayloadGvwrUtilizationCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "What is payload capacity and why is it important?",
-      answer:
-        "Payload capacity is the maximum weight a vehicle can safely carry, including passengers and cargo. It is crucial because exceeding this limit can compromise vehicle handling, braking, and safety. Properly understanding payload capacity helps prevent damage and ensures compliance with safety regulations."
+      question: "What is the difference between payload capacity and GVWR?",
+      answer: "Payload capacity is the maximum weight your vehicle can carry in cargo and passengers, while GVWR (Gross Vehicle Weight Rating) is the maximum total weight the vehicle is designed to support, including the vehicle itself. For example, a truck with a GVWR of 10,000 lbs and a curb weight of 6,500 lbs has a payload capacity of 3,500 lbs. Understanding this distinction is critical for safe loading and legal compliance.",
     },
     {
-      question: "How does GVWR relate to payload capacity?",
-      answer:
-        "GVWR (Gross Vehicle Weight Rating) is the maximum total weight a vehicle can safely handle, including its own weight (curb weight) plus payload. Payload capacity is essentially the difference between GVWR and curb weight. Staying within GVWR ensures the vehicle operates safely without overloading."
+      question: "How do I calculate my remaining payload capacity?",
+      answer: "Subtract your vehicle's current weight from its GVWR rating. If your pickup truck has a GVWR of 12,000 lbs and currently weighs 7,800 lbs (including passengers), your remaining payload capacity is 4,200 lbs. Always account for all passengers, fuel, and accessories when calculating current weight to ensure accurate results.",
     },
     {
-      question: "Can I convert payload and GVWR between imperial and metric units?",
-      answer:
-        "Yes, payload and GVWR can be converted between pounds and kilograms. 1 pound equals approximately 0.4536 kilograms. This calculator supports both unit systems, allowing you to input and view results in your preferred measurement system."
+      question: "What happens if I exceed my vehicle's GVWR?",
+      answer: "Exceeding GVWR can cause brake failure, tire blowouts, suspension damage, and loss of vehicle control, creating serious safety hazards and potential legal liability. Most insurance policies do not cover accidents resulting from exceeding GVWR limits. Heavy fines ranging from $100 to $500 can also be imposed during inspections in many jurisdictions.",
     },
     {
-      question: "What happens if I exceed the GVWR or payload capacity?",
-      answer:
-        "Exceeding GVWR or payload capacity can lead to severe safety risks such as reduced braking efficiency, tire failure, suspension damage, and loss of vehicle control. It also may void warranties and violate legal weight limits, potentially resulting in fines or penalties."
+      question: "How does trailer weight affect my vehicle's payload capacity?",
+      answer: "Trailer tongue weight (typically 10-15% of total trailer weight) counts against your vehicle's payload capacity, not your GVWR directly. For example, if you're towing a 5,000 lb trailer with 600 lbs tongue weight, that 600 lbs reduces your available payload capacity by exactly that amount. Never confuse towing capacity with payload capacity when loading your vehicle.",
     },
     {
-      question: "How can I use this calculator to make financial decisions?",
-      answer:
-        "By inputting the vehicle price and payload capacity, this calculator estimates the cost per unit of payload capacity. This helps you evaluate the value proposition of different vehicles or configurations, aiding in budgeting and purchasing decisions based on payload efficiency."
+      question: "What is the typical GVWR for common vehicle types?",
+      answer: "Half-ton pickup trucks typically have GVWRs between 9,200 and 10,500 lbs, three-quarter-ton trucks range from 12,000 to 14,000 lbs, and one-ton trucks can reach 16,000 to 19,500 lbs. Full-size SUVs generally fall between 10,000 and 12,500 lbs, while compact vehicles are typically rated under 8,500 lbs. Always verify your specific vehicle's GVWR on the driver's door jamb placard.",
+    },
+    {
+      question: "Where can I find my vehicle's GVWR and payload capacity?",
+      answer: "Your vehicle's GVWR and payload capacity are printed on a safety placard located on the driver's side door jamb. You can also find this information in your owner's manual, on the manufacturer's website, or by calling your vehicle's dealer with your VIN. Never rely on assumptions or estimates—always reference the official manufacturer specifications for your exact vehicle year and configuration.",
+    },
+    {
+      question: "Does fuel weight count toward my payload capacity?",
+      answer: "Yes, fuel weight is included in your vehicle's current weight calculation and directly reduces available payload capacity. A full tank of gasoline weighs approximately 150-200 lbs depending on vehicle type, while diesel fuel weighs about 175-225 lbs. When maximizing payload, account for fuel consumption throughout your trip to better understand your actual carrying capacity at any given time.",
+    },
+    {
+      question: "How do I calculate payload utilization percentage?",
+      answer: "Divide your current cargo weight by your maximum payload capacity and multiply by 100. For example, if you're carrying 2,000 lbs of cargo with a 3,500 lb payload capacity, your utilization is 57%. Most safety experts recommend staying below 85% utilization to maintain adequate braking performance and vehicle control, with 70-80% being optimal for heavy-duty work.",
+    },
+    {
+      question: "Can upgrading my suspension increase my GVWR?",
+      answer: "No, GVWR is a manufacturer rating based on the vehicle's frame, brakes, and structural design and cannot be legally increased through aftermarket upgrades. Upgrades like heavier springs or air suspensions can improve ride quality and load distribution, but they don't change the GVWR legal limit. Exceeding manufacturer GVWR is illegal regardless of suspension modifications and will void your vehicle's warranty.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -238,110 +249,302 @@ export default function PayloadGvwrUtilizationCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) from the dropdown at the top right.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your vehicle's curb weight, which is the weight of the vehicle without passengers or cargo.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the payload capacity, representing the maximum weight of passengers and cargo your vehicle can carry.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the GVWR (Gross Vehicle Weight Rating), the maximum total weight your vehicle can safely handle.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Optionally, enter the vehicle price to calculate cost efficiency per unit of payload.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Click the "Calculate" button to see your payload and GVWR utilization percentages along with financial insights.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Payload & GVWR Utilization Helper
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Understanding your vehicle's payload and GVWR utilization is essential for safe and efficient operation. The payload capacity indicates how much weight your vehicle can carry in terms of passengers and cargo, while the GVWR represents the maximum total weight including the vehicle itself. By calculating the utilization percentages, you can ensure that you are not overloading your vehicle, which could lead to mechanical failures, unsafe driving conditions, and legal issues.
-          </p>
-          <p>
-            This calculator helps you analyze these critical parameters by taking your vehicle's curb weight, payload capacity, and GVWR as inputs. It computes the payload utilization as a percentage of the maximum allowable payload (GVWR minus curb weight) and the GVWR utilization as a percentage of the total loaded weight relative to the GVWR. Additionally, if you provide the vehicle price, it calculates the cost per unit of payload capacity, offering financial insight into the value you are getting for your investment.
-          </p>
-          <p>
-            Whether you are a fleet manager, automotive engineer, or a vehicle buyer, this tool aids in making informed decisions about vehicle loading and purchasing. It helps prevent common mistakes such as overloading, which can cause premature wear and safety hazards. By regularly assessing your payload and GVWR utilization, you maintain vehicle integrity, comply with regulations, and optimize operational costs.
-          </p>
-          <p>
-            Remember to always consult your vehicle’s manual or manufacturer specifications for exact weight ratings and limits. This calculator is a helpful guide but should be used alongside professional advice and real-world measurements.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Payload & GVWR Utilization Helper</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Payload & GVWR Utilization Helper is designed to help vehicle owners accurately calculate how much weight they can safely carry based on their specific vehicle's specifications. This calculator prevents dangerous overloading situations that can lead to brake failure, tire blowouts, suspension damage, and potential legal penalties ranging from $100 to $500. Whether you're hauling construction materials, camping gear, or recreational equipment, understanding your vehicle's weight limits is essential for safety and compliance.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, you'll need three key pieces of information: your vehicle's GVWR (found on the driver's side door jamb placard), your vehicle's current curb weight (dry weight without cargo), and the combined weight of all passengers and cargo you plan to carry. The calculator also accommodates trailer tongue weight for those towing equipment, which is typically 10-15% of the trailer's total weight. Accuracy in these inputs is critical—estimate conservatively and weigh items when possible rather than guessing.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs your remaining payload capacity and your utilization percentage, which indicates how fully you're using your vehicle's weight budget. Most safety experts recommend staying below 85% utilization to maintain optimal braking performance and vehicle handling, with 70-80% being ideal for heavy-duty work or longer trips. If your calculation shows utilization above 100%, you must redistribute or remove cargo immediately—exceeding GVWR is illegal, violates your warranty, and creates serious safety hazards.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Ignoring GVWR limits:</strong> Many users mistakenly assume payload capacity alone is sufficient, but exceeding GVWR can cause serious safety issues even if payload is within limits.
-          </p>
-          <p>
-            <strong>2. Confusing curb weight with gross weight:</strong> Curb weight is the vehicle’s weight without load; mixing these values leads to incorrect calculations.
-          </p>
-          <p>
-            <strong>3. Not converting units properly:</strong> Mixing imperial and metric units without proper conversion can cause errors in payload and GVWR assessments.
-          </p>
-          <p>
-            <strong>4. Overlooking optional equipment weight:</strong> Additional accessories or modifications add weight and reduce payload capacity but are often forgotten.
-          </p>
-          <p>
-            <strong>5. Using outdated or incorrect vehicle data:</strong> Always verify your vehicle’s specifications from reliable sources to ensure accurate calculations.
-          </p>
+      {/* TABLE: GVWR & Payload Capacity by Vehicle Class (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">GVWR & Payload Capacity by Vehicle Class (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical GVWR and payload capacity ranges for common vehicle classes according to manufacturer specifications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vehicle Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical GVWR Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Payload Capacity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Curb Weight Range</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Compact Sedan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,500–8,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600–1,200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6,900–7,400 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full-Size Sedan</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,200–9,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800–1,600 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,400–8,200 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Compact SUV</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,800–10,200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,200–2,100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,600–8,900 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full-Size SUV</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000–12,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800–3,200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,200–10,100 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Half-Ton Pickup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9,200–10,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,500–3,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6,700–7,400 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Three-Quarter-Ton Pickup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,000–14,000 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500–5,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,500–9,200 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">One-Ton Pickup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16,000–19,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000–8,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11,000–12,500 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full-Size Van</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9,500–11,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000–3,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7,500–8,500 lbs</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">GVWR and payload values vary significantly based on engine, transmission, drivetrain, and equipment packages. Always verify exact specifications on your vehicle's door jamb placard.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Weight Distribution Impact on Payload Utilization */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Weight Distribution Impact on Payload Utilization</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different loading configurations affect payload utilization percentage and vehicle performance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Cargo Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Payload Capacity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Utilization %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safety Rating</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Light Load (Day Trip)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate Load (Typical Use)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,750 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Heavy Load (Recommended Max)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,975 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Acceptable</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overload (Unsafe)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,850 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dangerous</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Utilization above 85% increases braking distance, tire wear, and suspension stress. Exceeding 100% is illegal and voids manufacturer warranty.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Common Items & Their Weight Impact on Payload */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Items & Their Weight Impact on Payload</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This reference table shows the weight of frequently transported items to help you calculate accurate payload utilization.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Item Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Impact on Payload %</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full Tank of Gasoline</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150–200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–6% (3,500 lb capacity)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full Tank of Diesel</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">175–225 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–6% (3,500 lb capacity)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Passenger (Average)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–6% (3,500 lb capacity)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pickup Bed Tonneau Cover</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80–150 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–4% (3,500 lb capacity)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gravel or Sand (1 cubic yard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000–2,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">57–71% (3,500 lb capacity)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Construction Materials (Mixed Load)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85% (3,500 lb capacity)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">ATV or Motorcycle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400–800 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11–23% (3,500 lb capacity)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Camping Gear & Equipment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300–600 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8–17% (3,500 lb capacity)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are approximate weights; actual values vary by product, brand, and material. Always weigh loads when possible for precise calculations.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always locate and record your vehicle's GVWR from the driver's side door jamb placard before using the calculator—never assume or estimate based on vehicle class or year. The placard also shows your vehicle's front and rear GAWR (Gross Axle Weight Rating), which provides additional safety constraints beyond total GVWR.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for all weight when calculating current vehicle weight, including fuel (typically 150-200 lbs for gasoline, 175-225 lbs for diesel), passengers, and permanent accessories like tonneau covers, racks, or toolboxes. Many owners overlook these additions and miscalculate their actual payload capacity by 200-400 lbs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For towing situations, remember that tongue weight (10-15% of trailer weight) counts directly against your payload capacity, not your towing capacity. A 5,000 lb trailer with 600 lbs tongue weight reduces your available payload by exactly 600 lbs, so plan your vehicle's cargo accordingly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Distribute cargo weight evenly front-to-back and side-to-side within your vehicle's bed or cargo area to avoid exceeding individual axle weight limits. Even if total GVWR is within limits, exceeding front or rear GAWR can cause handling issues and brake imbalance. Check your door jamb placard for GAWR limits before finalizing your load configuration.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your utilization percentage regularly during the trip—if you start at 75% utilization and consume 100 lbs of fuel, your utilization drops to approximately 72%, giving you additional safety margin. Plan fuel consumption into longer trips to understand how your effective payload capacity changes throughout your journey.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href="#"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Towing Capacity with Payload Capacity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many vehicle owners believe their truck's towing capacity (15,000+ lbs) also represents payload capacity, when in fact payload is typically only 3,500-5,500 lbs for the same vehicle. Trailer tongue weight counts against payload, not just towing limits, so exceeding payload capacity is common when both towing and loading cargo simultaneously.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Include Fuel Weight in Calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A full tank of fuel adds 150-225 lbs to your vehicle's current weight and directly reduces available payload capacity. Owners frequently calculate payload based on 'empty fuel tank' assumptions, then add cargo and exceed GVWR when they refuel, creating a dangerous overweight condition.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Estimated or Assumed GVWR Instead of Official Specs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">GVWR varies significantly within the same vehicle model based on engine, transmission, wheelbase, and optional packages. Relying on internet estimates or 'typical' GVWR for your vehicle class instead of reading your door jamb placard can result in overloading by 500+ lbs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Individual Axle Weight Limits (GAWR)</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even if your total GVWR is not exceeded, exceeding front or rear GAWR (shown on the door jamb placard) can cause serious handling and braking problems. Loading all cargo toward the rear axle while staying under GVWR can still violate rear GAWR limits and create unsafe conditions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Permanent Accessory Weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Tonneau covers, bed racks, toolboxes, and other aftermarket additions weigh 80-300 lbs and are part of your vehicle's curb weight. Owners often forget these additions when calculating payload, leading to overloading situations that sneak up gradually with added equipment.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between payload capacity and GVWR?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Payload capacity is the maximum weight your vehicle can carry in cargo and passengers, while GVWR (Gross Vehicle Weight Rating) is the maximum total weight the vehicle is designed to support, including the vehicle itself. For example, a truck with a GVWR of 10,000 lbs and a curb weight of 6,500 lbs has a payload capacity of 3,500 lbs. Understanding this distinction is critical for safe loading and legal compliance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my remaining payload capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Subtract your vehicle's current weight from its GVWR rating. If your pickup truck has a GVWR of 12,000 lbs and currently weighs 7,800 lbs (including passengers), your remaining payload capacity is 4,200 lbs. Always account for all passengers, fuel, and accessories when calculating current weight to ensure accurate results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I exceed my vehicle's GVWR?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Exceeding GVWR can cause brake failure, tire blowouts, suspension damage, and loss of vehicle control, creating serious safety hazards and potential legal liability. Most insurance policies do not cover accidents resulting from exceeding GVWR limits. Heavy fines ranging from $100 to $500 can also be imposed during inspections in many jurisdictions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does trailer weight affect my vehicle's payload capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Trailer tongue weight (typically 10-15% of total trailer weight) counts against your vehicle's payload capacity, not your GVWR directly. For example, if you're towing a 5,000 lb trailer with 600 lbs tongue weight, that 600 lbs reduces your available payload capacity by exactly that amount. Never confuse towing capacity with payload capacity when loading your vehicle.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the typical GVWR for common vehicle types?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Half-ton pickup trucks typically have GVWRs between 9,200 and 10,500 lbs, three-quarter-ton trucks range from 12,000 to 14,000 lbs, and one-ton trucks can reach 16,000 to 19,500 lbs. Full-size SUVs generally fall between 10,000 and 12,500 lbs, while compact vehicles are typically rated under 8,500 lbs. Always verify your specific vehicle's GVWR on the driver's door jamb placard.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Where can I find my vehicle's GVWR and payload capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your vehicle's GVWR and payload capacity are printed on a safety placard located on the driver's side door jamb. You can also find this information in your owner's manual, on the manufacturer's website, or by calling your vehicle's dealer with your VIN. Never rely on assumptions or estimates—always reference the official manufacturer specifications for your exact vehicle year and configuration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does fuel weight count toward my payload capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, fuel weight is included in your vehicle's current weight calculation and directly reduces available payload capacity. A full tank of gasoline weighs approximately 150-200 lbs depending on vehicle type, while diesel fuel weighs about 175-225 lbs. When maximizing payload, account for fuel consumption throughout your trip to better understand your actual carrying capacity at any given time.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate payload utilization percentage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Divide your current cargo weight by your maximum payload capacity and multiply by 100. For example, if you're carrying 2,000 lbs of cargo with a 3,500 lb payload capacity, your utilization is 57%. Most safety experts recommend staying below 85% utilization to maintain adequate braking performance and vehicle control, with 70-80% being optimal for heavy-duty work.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can upgrading my suspension increase my GVWR?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, GVWR is a manufacturer rating based on the vehicle's frame, brakes, and structural design and cannot be legally increased through aftermarket upgrades. Upgrades like heavier springs or air suspensions can improve ride quality and load distribution, but they don't change the GVWR legal limit. Exceeding manufacturer GVWR is illegal regardless of suspension modifications and will void your vehicle's warranty.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.nhtsa.gov/vehicle-owners/vehicle-information-label-vin" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NHTSA - Vehicle Information Label Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance from the National Highway Traffic Safety Administration on reading and interpreting GVWR and payload capacity information on vehicle door jambs.</p>
+          </li>
+          <li>
+            <a href="https://www.fmcsa.dot.gov/regulations/title-49-transportation/part-658-over-dimensional-overweight-vehicles" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Motor Carrier Safety Administration (FMCSA) - Weight & Dimension Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive regulations on vehicle weight limits, penalties for overloading, and compliance requirements for commercial and personal vehicle operations.</p>
+          </li>
+          <li>
+            <a href="https://www.consumerreports.org/car-safety/how-to-load-your-vehicle-safely/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Reports - Safe Vehicle Loading Practices</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical guidance on safe vehicle loading, weight distribution, and how exceeding GVWR affects braking, handling, and tire performance.</p>
+          </li>
+          <li>
+            <a href="https://www.sae.org/standards/content/j2030/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SAE International - Vehicle Weight Specifications Standard J2030</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standard for how manufacturers calculate and display GVWR, payload capacity, and axle weight ratings on all passenger vehicles and light trucks.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

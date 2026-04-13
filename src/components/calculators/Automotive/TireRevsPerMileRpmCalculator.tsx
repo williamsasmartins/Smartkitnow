@@ -123,29 +123,40 @@ export default function TireRevsPerMileRpmCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How do tire revolutions per mile affect vehicle speedometer accuracy?",
-      answer:
-        "Tire revolutions per mile directly influence the accuracy of your vehicle's speedometer and odometer. If you change tire sizes, the number of revolutions per mile changes, causing your speedometer to read faster or slower than your actual speed. This calculator helps you understand the difference so you can adjust or recalibrate your speedometer accordingly."
+      question: "How many times does a tire revolve per mile?",
+      answer: "Tire revolutions per mile depend on tire diameter and circumference. A standard 26-inch diameter tire completes approximately 770 revolutions per mile, while a 35-inch tire completes about 570 revolutions per mile. The calculation uses the formula: revolutions per mile = 63,360 inches ÷ tire circumference in inches. Larger tires always complete fewer revolutions to cover the same distance.",
     },
     {
-      question: "Why is RPM at speed important for tire comparison?",
-      answer:
-        "RPM at a given speed indicates how many times the tire rotates per minute when the vehicle is moving at that speed. Comparing RPMs between two tires helps assess how the change in tire size affects engine load, gearing, and speedometer readings, which is crucial for performance tuning and vehicle safety."
+      question: "What is the relationship between tire size and RPM at highway speeds?",
+      answer: "RPM at a given speed is directly proportional to tire revolutions per mile. A vehicle with 28-inch tires turning 1,000 RPM at 40 mph will have lower RPM at the same speed compared to a vehicle with 24-inch tires. For example, 28-inch tires achieve approximately 2,240 RPM at 60 mph, while 26-inch tires reach about 2,420 RPM at the same speed.",
     },
     {
-      question: "Can I use this calculator for metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric and imperial units. Enter tire width in millimeters and speed in km/h for metric, or width in inches and speed in mph for imperial. The calculator automatically converts measurements to provide accurate comparisons."
+      question: "How do I calculate RPM if I change my tire size?",
+      answer: "RPM changes inversely with tire diameter when vehicle speed remains constant. If you upgrade from 25-inch to 30-inch tires, your RPM at any given speed will decrease by approximately 17%. Use the calculator by entering your new tire diameter, desired speed, and gear ratio to see the exact RPM impact before making wheel changes.",
     },
     {
-      question: "What inputs do I need to provide for each tire?",
-      answer:
-        "You need to input three key specifications for each tire: the width (in mm or inches), the aspect ratio (percentage of width), and the wheel diameter (in inches). Additionally, input the vehicle speed to calculate RPM at that speed."
+      question: "Why does RPM matter for fuel economy?",
+      answer: "Higher RPM at cruising speeds typically increases fuel consumption because the engine works harder to maintain velocity. A vehicle maintaining 2,000 RPM on the highway generally achieves better fuel economy than the same vehicle at 2,500 RPM. Larger tires reduce engine RPM at highway speeds, potentially improving fuel efficiency by 3-5% depending on driving conditions and engine characteristics.",
     },
     {
-      question: "What does a large percentage difference in revolutions per mile indicate?",
-      answer:
-        "A large percentage difference means the two tires have significantly different diameters, which can affect vehicle handling, speedometer accuracy, and transmission performance. It's generally recommended to keep tire size differences within 3% to avoid adverse effects."
+      question: "What tire diameter is standard for most passenger cars?",
+      answer: "Most passenger vehicles use tires with diameters between 24 and 28 inches, with 26-27 inches being very common for sedans. A typical 2024 sedan tire size of 225/45R18 has an overall diameter of approximately 25.6 inches. The calculator helps determine the exact revolutions and RPM for your specific tire size, as even small diameter variations affect engine RPM significantly.",
+    },
+    {
+      question: "How does gear ratio affect the RPM calculation?",
+      answer: "Gear ratio multiplies tire revolutions to determine engine RPM; a 3.5:1 final drive ratio means the engine turns 3.5 times for every tire revolution. At 60 mph with 26-inch tires and a 3.5:1 ratio, RPM reaches approximately 2,420 × 3.5 ÷ 60 = 1,414 RPM. Different gear ratios dramatically change engine RPM at the same speed, affecting performance, fuel economy, and engine longevity.",
+    },
+    {
+      question: "Can lifting my truck change tire revolutions per mile?",
+      answer: "Lifting your truck and installing larger tires reduces revolutions per mile proportionally to the increase in tire diameter. Installing 33-inch tires instead of stock 28-inch tires decreases revolutions per mile from about 720 to 610, a 15% reduction. This directly lowers engine RPM at highway speeds, which can affect speedometer accuracy and require recalibration of engine computer settings.",
+    },
+    {
+      question: "What RPM range is optimal for highway driving?",
+      answer: "Most engines operate most efficiently between 1,500 and 2,500 RPM during highway cruising at 55-70 mph. Modern fuel-injected engines with overdrive transmissions are designed to maintain around 1,800-2,000 RPM at 65 mph for optimal fuel economy. Operating consistently above 3,000 RPM on the highway reduces fuel efficiency and increases engine wear.",
+    },
+    {
+      question: "How accurate is the tire revolutions calculator for speedometer verification?",
+      answer: "The calculator is highly accurate when you input the exact tire diameter and final drive ratio, typically within 1-2% of actual values. Worn tires that are 0.5 inches smaller in diameter will show your actual speed 2-3% slower than the speedometer displays. Use this calculator before and after tire changes to verify if your speedometer needs professional recalibration by a dealership.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -311,107 +322,295 @@ export default function TireRevsPerMileRpmCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system: Imperial (inches, mph) or Metric (millimeters, km/h).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the tire specifications for Tire 1: width, aspect ratio, and wheel diameter.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the tire specifications for Tire 2 in the same units.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Input the vehicle speed at which you want to calculate the RPM.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click the "Calculate" button to see the percentage difference in revolutions per mile and RPM values.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to Tire Revolutions per Mile & RPM @ Speed
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Understanding tire revolutions per mile is crucial for vehicle performance, speedometer accuracy, and overall driving experience. The number of revolutions a tire makes per mile depends on its circumference, which is determined by the tire's diameter. The diameter itself is a combination of the wheel diameter and the tire's sidewall height, which is calculated from the tire width and aspect ratio.
-          </p>
-          <p>
-            This calculator allows you to compare two different tire sizes by calculating their revolutions per mile and the RPM at a given speed. By inputting the tire width, aspect ratio, and wheel diameter for each tire, the calculator computes the overall diameter and circumference, then determines how many times the tire rotates per mile. It also calculates the RPM at your specified speed, which helps you understand how changing tire sizes affects engine and drivetrain behavior.
-          </p>
-          <p>
-            When changing tire sizes, even small differences in diameter can lead to significant changes in speedometer readings and vehicle dynamics. A difference greater than 3% in revolutions per mile can cause inaccurate speedometer readings and may affect transmission shift points or ABS system calibration. This tool helps you quantify those differences so you can make informed decisions about tire upgrades or replacements.
-          </p>
-          <p>
-            Additionally, the calculator supports both imperial and metric units, making it versatile for users worldwide. By understanding these calculations, automotive enthusiasts and professionals can ensure optimal vehicle performance and safety.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Tire Revolutions per Mile & RPM @ Speed Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine how many times your tire completes a full rotation per mile of driving and what engine RPM you'll experience at any given speed. Understanding these values is essential for optimizing fuel economy, verifying speedometer accuracy after tire changes, and diagnosing engine performance issues. Whether you're upgrading to larger wheels, verifying manufacturer specifications, or troubleshooting drivetrain problems, this tool provides precise calculations based on tire diameter and transmission ratios.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you need three key inputs: your tire's outer diameter in inches (commonly ranging from 22 to 37 inches for vehicles), your vehicle's final drive ratio (typically between 2.5:1 and 4.5:1 depending on transmission type), and the speed in mph at which you want to calculate RPM. The tire diameter can be found on your sidewall markings or measured directly; the final drive ratio is available in your vehicle's owner manual or from the manufacturer specification sheet. The calculator converts these inputs into tire revolutions per minute and engine RPM, accounting for the mechanical advantage provided by your transmission's gear ratio.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret the results by comparing your calculated RPM to your engine's optimal operating range—most modern engines achieve best fuel efficiency between 1,500 and 2,500 RPM during highway cruising. If your RPM at highway speeds (65-70 mph) falls below 1,500, your transmission may not downshift properly; if it exceeds 3,000 RPM, you may be experiencing unnecessary engine load. Use the revolutions-per-mile figure to verify speedometer accuracy: if your actual odometer reading differs from GPS-calculated distance by more than 3%, your tire size may have changed or your speedometer needs professional calibration.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Mixing units:</strong> Entering tire width in millimeters but wheel diameter in centimeters or inches without conversion leads to incorrect results. Always ensure consistent units based on the selected system.
-          </p>
-          <p>
-            <strong>2. Ignoring aspect ratio:</strong> The aspect ratio is critical for calculating sidewall height. Omitting or entering incorrect values will skew diameter and circumference calculations.
-          </p>
-          <p>
-            <strong>3. Using tire diameter instead of wheel diameter:</strong> The wheel diameter is the rim size, not the overall tire diameter. Using the wrong value will produce inaccurate revolutions per mile.
-          </p>
-          <p>
-            <strong>4. Not considering speed units:</strong> Speed must be entered in mph for imperial or km/h for metric. Incorrect speed units will affect RPM calculations.
-          </p>
-          <p>
-            <strong>5. Large tire size differences:</strong> Installing tires with more than 3% difference in revolutions per mile can cause speedometer errors and affect vehicle safety systems.
-          </p>
+      {/* TABLE: Tire Revolutions Per Mile by Tire Diameter */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tire Revolutions Per Mile by Tire Diameter</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how many times different tire sizes complete a full revolution over one mile of driving.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tire Diameter (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tire Circumference (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Revolutions Per Mile</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Vehicle Type</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">69.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">917</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sports cars</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">840</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Compact sedans</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">81.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">775</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sedans</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">88.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">720</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Crossovers</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">94.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">673</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">SUVs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">631</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light trucks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">109.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">576</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lifted trucks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">37</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">116.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">546</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Off-road trucks</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations based on tire diameter measurement from rim edge to rim edge. Actual circumference may vary slightly based on tire sidewall construction and load.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Engine RPM at Common Highway Speeds (26-inch tires, 3.55:1 ratio) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Engine RPM at Common Highway Speeds (26-inch tires, 3.55:1 ratio)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how engine RPM changes with vehicle speed using a typical sedan tire and transmission ratio.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speed (mph)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tire Revolutions Per Minute</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Engine RPM @ 3.55:1 Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fuel Economy Impact</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">808</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Optimal efficiency</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,040</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,466</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very efficient</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,271</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,793</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Efficient</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">65</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,502</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard cruising</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,733</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,446</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Higher load</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,848</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,607</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increased consumption</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">RPM values assume a 5-speed automatic transmission in overdrive. Actual values vary with transmission type and final drive ratio.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TABLE: Impact of Tire Upsizing on Engine RPM (at 65 mph) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Tire Upsizing on Engine RPM (at 65 mph)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Upgrading to larger tires reduces engine RPM at constant speeds, which typically improves fuel economy but may affect acceleration.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Original Tire Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Upgraded Tire Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">RPM Reduction</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speedometer Error</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Approximate Fuel Economy Gain</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">26-inch stock</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-inch upgrade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.3% lower</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3% slow</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">26-inch stock</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-inch upgrade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.7% lower</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6% slow</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">28-inch stock</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33-inch upgrade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.2% lower</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5% slow</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30-inch stock</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-inch upgrade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.2% lower</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4% slow</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Speedometer errors occur because the instrument cluster is calibrated for stock tire diameter. Professional recalibration is recommended for safety and legal compliance.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Verify tire diameter accuracy before using the calculator—measure the full sidewall height including the rubber, not just the rim diameter, as this directly affects revolutions per mile calculations and RPM accuracy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your vehicle's door jamb or owner manual for the exact final drive ratio before calculating RPM; using an incorrect ratio can produce calculations that are off by 20% or more.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Run this calculator before and after a tire change to determine if your speedometer will read high or low with the new tires, helping you decide if professional recalibration is necessary for legal compliance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use RPM calculations at multiple speeds (35 mph, 55 mph, and 75 mph) to identify which speeds your transmission downshifts; this helps diagnose transmission problems and optimize gear selection for towing.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Compare your calculated revolutions per mile to manufacturer specs in your owner's manual; significant differences may indicate worn tires that are reducing effective diameter and affecting speedometer and odometer accuracy.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a
-                href={ref.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using rim diameter instead of tire diameter</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people mistakenly use wheel rim size (such as 18 inches) instead of the complete tire diameter, which includes the sidewall height. This error produces RPM calculations that are 15-25% too low and gives incorrect revolutions per mile figures.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for tire sidewall changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">When changing tire aspect ratios (such as from 45-series to 40-series), the overall diameter changes significantly even if the rim size stays the same. A 225/45R18 tire has a different diameter than a 225/40R18 tire, requiring precise recalculation to avoid speedometer errors.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming speedometer accuracy with stock tires</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even with factory tires, speedometers can be off by 3-5% due to manufacturing tolerances and tire wear over time. Do not assume your speedometer is accurate without verifying it against GPS measurements or this calculator.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring transmission gear ratio in RPM calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">RPM depends heavily on whether your transmission is in overdrive, direct drive, or lower gears—forgetting this multiplier can cause calculations to be completely wrong and lead to incorrect fuel economy expectations.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many times does a tire revolve per mile?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Tire revolutions per mile depend on tire diameter and circumference. A standard 26-inch diameter tire completes approximately 770 revolutions per mile, while a 35-inch tire completes about 570 revolutions per mile. The calculation uses the formula: revolutions per mile = 63,360 inches ÷ tire circumference in inches. Larger tires always complete fewer revolutions to cover the same distance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the relationship between tire size and RPM at highway speeds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">RPM at a given speed is directly proportional to tire revolutions per mile. A vehicle with 28-inch tires turning 1,000 RPM at 40 mph will have lower RPM at the same speed compared to a vehicle with 24-inch tires. For example, 28-inch tires achieve approximately 2,240 RPM at 60 mph, while 26-inch tires reach about 2,420 RPM at the same speed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate RPM if I change my tire size?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">RPM changes inversely with tire diameter when vehicle speed remains constant. If you upgrade from 25-inch to 30-inch tires, your RPM at any given speed will decrease by approximately 17%. Use the calculator by entering your new tire diameter, desired speed, and gear ratio to see the exact RPM impact before making wheel changes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does RPM matter for fuel economy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Higher RPM at cruising speeds typically increases fuel consumption because the engine works harder to maintain velocity. A vehicle maintaining 2,000 RPM on the highway generally achieves better fuel economy than the same vehicle at 2,500 RPM. Larger tires reduce engine RPM at highway speeds, potentially improving fuel efficiency by 3-5% depending on driving conditions and engine characteristics.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What tire diameter is standard for most passenger cars?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most passenger vehicles use tires with diameters between 24 and 28 inches, with 26-27 inches being very common for sedans. A typical 2024 sedan tire size of 225/45R18 has an overall diameter of approximately 25.6 inches. The calculator helps determine the exact revolutions and RPM for your specific tire size, as even small diameter variations affect engine RPM significantly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does gear ratio affect the RPM calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gear ratio multiplies tire revolutions to determine engine RPM; a 3.5:1 final drive ratio means the engine turns 3.5 times for every tire revolution. At 60 mph with 26-inch tires and a 3.5:1 ratio, RPM reaches approximately 2,420 × 3.5 ÷ 60 = 1,414 RPM. Different gear ratios dramatically change engine RPM at the same speed, affecting performance, fuel economy, and engine longevity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can lifting my truck change tire revolutions per mile?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Lifting your truck and installing larger tires reduces revolutions per mile proportionally to the increase in tire diameter. Installing 33-inch tires instead of stock 28-inch tires decreases revolutions per mile from about 720 to 610, a 15% reduction. This directly lowers engine RPM at highway speeds, which can affect speedometer accuracy and require recalibration of engine computer settings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What RPM range is optimal for highway driving?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most engines operate most efficiently between 1,500 and 2,500 RPM during highway cruising at 55-70 mph. Modern fuel-injected engines with overdrive transmissions are designed to maintain around 1,800-2,000 RPM at 65 mph for optimal fuel economy. Operating consistently above 3,000 RPM on the highway reduces fuel efficiency and increases engine wear.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the tire revolutions calculator for speedometer verification?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator is highly accurate when you input the exact tire diameter and final drive ratio, typically within 1-2% of actual values. Worn tires that are 0.5 inches smaller in diameter will show your actual speed 2-3% slower than the speedometer displays. Use this calculator before and after tire changes to verify if your speedometer needs professional recalibration by a dealership.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.ti-cert.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Tire and Rim Association Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official tire industry standards and specifications for accurate tire diameter measurements and classifications.</p>
+          </li>
+          <li>
+            <a href="https://www.nhtsa.gov/vehicle-owners/tires" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Highway Traffic Safety Administration — Tire Specifications</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal guidelines on tire sizing, safety ratings, and how tire changes affect vehicle speedometer accuracy.</p>
+          </li>
+          <li>
+            <a href="https://www.sae.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SAE International — Engine RPM Performance Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Engineering standards for engine efficiency ranges and optimal RPM operating parameters for different vehicle classes.</p>
+          </li>
+          <li>
+            <a href="https://www.edmunds.com/car-buying/tire-size-guide" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Edmunds — Tire Size Guide and Speedometer Impact</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Consumer-focused guidance on how different tire diameters affect speedometer readings, fuel economy, and engine performance.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 
