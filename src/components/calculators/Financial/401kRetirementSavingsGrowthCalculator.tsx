@@ -9,39 +9,43 @@ import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCi
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const faqs = [
-  {
-    question: "How does a 401(k) work?",
-    answer: "A 401(k) is a retirement savings plan sponsored by an employer. It lets workers save and invest a piece of their paycheck before taxes are taken out. Taxes aren't paid until the money is withdrawn from the account."
-  },
-  {
-    question: "What is an employer match?",
-    answer: "An employer match is essentially free money. Many employers will match a portion of your contributions to your 401(k), up to a certain percentage of your salary. Always try to contribute enough to get the full match."
-  },
-  {
-    question: "What is the contribution limit for 401(k)?",
-    answer: "The IRS sets annual contribution limits for 401(k) plans. For 2023, the limit is $22,500 for those under 50, and $30,000 for those 50 and older (including catch-up contributions). These limits are subject to change annually."
-  },
-  {
-    question: "How does compound interest help my 401(k) grow?",
-    answer: "Compound interest allows you to earn interest on your interest. Over time, this can significantly increase the value of your retirement savings, especially if you start early and contribute consistently."
-  },
-  {
-    question: "Should I max out my 401(k)?",
-    answer: "Maxing out your 401(k) is a great way to build retirement wealth and reduce your taxable income. However, you should also consider other financial goals, such as paying off high-interest debt or building an emergency fund."
-  },
-  {
-    question: "What happens to my 401(k) if I change jobs?",
-    answer: "If you change jobs, you can usually roll over your 401(k) into an IRA or your new employer's plan, or leave it with your old employer if allowed. Cashing it out is generally not recommended due to taxes and penalties."
-  },
-  {
-    question: "Can I withdraw from my 401(k) early?",
-    answer: "Generally, if you withdraw funds before age 59½, you will owe income taxes on the amount plus a 10% early withdrawal penalty. There are some exceptions, such as for certain hardships or first-time home purchases."
-  },
-  {
-    question: "How does the annual growth rate affect my savings?",
-    answer: "The annual growth rate is the estimated return on your investments. A higher growth rate leads to larger savings over time, but typically comes with higher risk. It's important to choose an investment mix that matches your risk tolerance."
-  }
-];
+    {
+      question: "What is the maximum I can contribute to my 401(k) in 2024?",
+      answer: "For 2024, the IRS contribution limit is $23,500 for individuals under age 50, and $31,000 for those 50 and older (including the $7,500 catch-up contribution). These limits increase to $24,000 and $32,000 respectively for 2025. The calculator uses these limits to help you project maximum growth scenarios based on your age and contribution strategy.",
+    },
+    {
+      question: "How does employer matching affect my 401(k) growth projection?",
+      answer: "Employer matching is typically 50% to 100% of your contributions up to 3-6% of salary. If you contribute $5,000 annually and your employer matches 50% up to 6% of salary, you receive an additional $2,500 in free money. This calculator multiplies your projected balance significantly—a $5,000 annual contribution with 100% matching could grow to approximately $472,000 over 30 years at 7% annual returns, versus $328,000 without matching.",
+    },
+    {
+      question: "What average annual return should I assume for my projections?",
+      answer: "Historical stock market returns average 10% annually before inflation, while a balanced portfolio (60% stocks/40% bonds) averages 7-8% annually. Most retirement calculators use 7% as a conservative estimate for mixed portfolios. The calculator allows you to input your expected return based on your asset allocation—higher risk portfolios may assume 8-10%, while conservative portfolios might use 5-6%.",
+    },
+    {
+      question: "How does inflation impact my 401(k) projections on this calculator?",
+      answer: "The calculator shows nominal (pre-inflation) growth by default. If inflation averages 3% annually, your $500,000 projected balance in future dollars has less purchasing power than in today's dollars. Some calculators offer an inflation-adjusted view; for example, that $500,000 balance becomes approximately $276,000 in today's dollars over 20 years with 3% inflation.",
+    },
+    {
+      question: "Can I use this calculator to model different retirement ages?",
+      answer: "Yes, the calculator typically allows you to input your current age and desired retirement age to model different scenarios. If you're 35 and retire at 65, you have 30 years of growth; retiring at 67 gives you 32 years. This additional 2 years could add $50,000-$100,000+ to your balance depending on contributions and returns, demonstrating the significant impact of working a few extra years.",
+    },
+    {
+      question: "What happens to my 401(k) if I change jobs?",
+      answer: "This calculator typically projects continuous contributions to a single 401(k). In reality, you can roll your balance to a new employer's plan, an IRA, or leave it with your former employer. A $200,000 balance rolled to an IRA with the same 7% returns continues growing uninterrupted, but if left idle or in a low-yield account, growth slows significantly. The calculator helps you understand the cost of contribution gaps during job transitions.",
+    },
+    {
+      question: "How much should I have saved by age 35 according to retirement experts?",
+      answer: "Fidelity recommends having 1x your annual salary saved by age 35. If you earn $75,000, you should have $75,000 saved. This calculator helps you backtest whether your historical contributions align with this benchmark and project whether your current path meets it for future milestones (3x salary by 40, 6x by 50, 10x by 67).",
+    },
+    {
+      question: "Does this calculator account for Required Minimum Distributions (RMDs)?",
+      answer: "Most 401(k) growth calculators project pre-RMD balances and don't automatically reduce them. At age 73, the IRS requires you to withdraw roughly 3.65-8.87% of your balance annually depending on life expectancy tables. This calculator typically shows your maximum balance; actual usable balance will be reduced by required withdrawals in retirement, though you can model manual withdrawals in advanced versions.",
+    },
+    {
+      question: "What's the difference between traditional and Roth 401(k) projections?",
+      answer: "Both grow tax-free within the account, so this calculator's growth projections are identical. The difference appears in retirement: traditional 401(k) withdrawals are taxed as ordinary income (if you're in a 24% bracket, a $500,000 withdrawal nets $380,000), while Roth withdrawals are tax-free. Use this calculator to model the pre-tax balance, then adjust for your expected retirement tax bracket to calculate after-tax income.",
+    }
+  ];
 
 export default function RetirementSavingsGrowthCalculator() {
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -347,257 +351,269 @@ export default function RetirementSavingsGrowthCalculator() {
 
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding 401(k) / Retirement Savings Growth Calculator
-        </h2>
-        
-        <p className="mb-6">
-          Planning for retirement is a critical aspect of financial management, and understanding how your savings will grow over time is essential. The 401(k) / Retirement Savings Growth Calculator is a powerful tool designed to help you estimate the future value of your retirement savings. By inputting key details such as your initial balance, annual contributions, employer match, and expected growth rate, you can visualize how your retirement nest egg will evolve over the years. This calculator is particularly useful for those who want to ensure they are on track to meet their retirement goals, providing a clear picture of potential future savings.
-        </p>
-        
-        <p className="mb-6">
-          Accurate calculations are vital in retirement planning as they directly influence your financial security in later years. Misestimating your savings growth can lead to significant shortfalls, affecting your lifestyle post-retirement. According to financial experts, a common mistake is underestimating the impact of compound interest and employer matching contributions. This calculator helps mitigate such risks by providing precise estimates based on your inputs, allowing you to make informed decisions about your savings strategy. For more insights on managing your finances, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information about your current 401(k) balance, your annual contribution amount, the percentage your employer matches, and your expected annual growth rate. Enter these values into the respective fields to see how your savings will grow over time. It's important to use realistic assumptions for growth rates, typically ranging from 5% to 8% annually, depending on your investment strategy. For a comprehensive understanding of how different factors can affect your savings, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-        </p>
+    <div className="space-y-12">
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Remember, the earlier you start saving for retirement, the more time your money has to grow. Even small contributions can lead to significant savings over time due to the power of compounding interest. Ensure you maximize your employer's matching contributions to boost your savings effectively.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the 401(k) Retirement Savings Growth Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The 401(k) Retirement Savings Growth Calculator projects how your retirement account will grow over time based on your contributions, employer matching, and investment returns. This tool is essential for understanding whether your current savings strategy will sustain your retirement lifestyle and identifying gaps early enough to adjust contributions. By modeling different scenarios, you can see the real impact of delaying contributions, increasing savings rates, or benefiting from employer matching.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your current age, expected retirement age, current 401(k) balance, annual contribution amount, employer match percentage (if available), and expected annual investment return. The calculator will also account for annual contribution limits ($23,500 for 2024, $24,000 for 2025) and automatically cap your inputs if they exceed IRS maximums. Your expected annual return depends on your asset allocation—a stock-heavy portfolio might assume 8-10%, while a balanced portfolio typically uses 6-7%.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the calculator's output in two ways: the total projected balance at retirement and comparison to retirement spending benchmarks (financial advisors suggest having 25x your annual spending saved). If your projection falls short, adjust variables upward—increasing contributions by $100/month or extending your working years by 2-3 years can substantially close retirement gaps. Use the "what-if" features to model scenarios like job changes (reduced match), market downturns (lower returns), or earlier retirement to make informed decisions today.</p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for optimizing your retirement savings include regularly reviewing your contribution levels and adjusting them as your income grows. Consider increasing your contributions whenever you receive a raise or bonus. Additionally, periodically reassess your investment strategy to ensure it aligns with your retirement goals and risk tolerance. For more strategies on financial optimization, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
       </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          401(k) / Retirement Savings Growth Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is based on the compound interest formula, which is a standard method for calculating the future value of an investment. The formula takes into account your initial balance, annual contributions, employer match, and the annual growth rate. This approach allows for a comprehensive estimation of your retirement savings over a specified period. Variations of this formula can be applied depending on specific scenarios, such as different contribution frequencies or growth rates.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          FV = P(1 + r)^n + C[((1 + r)^n - 1) / r]
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>P = Initial balance</li>
-              <li>r = Annual growth rate (as a decimal)</li>
-              <li>n = Number of years</li>
-              <li>C = Annual contribution (including employer match)</li>
-            </ul>
+      {/* TABLE: 401(k) Growth Projection by Contribution Level (30-Year Horizon, 7% Annual Return) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">401(k) Growth Projection by Contribution Level (30-Year Horizon, 7% Annual Return)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how different annual contribution amounts compound over 30 years with a 7% average annual return and no employer match.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Contribution</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Contributions</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Investment Growth</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Final Balance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Growth as % of Balance</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$445,926</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$595,926</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">74.8%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$891,852</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,191,852</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">74.8%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,337,778</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,787,778</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">74.8%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$23,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$705,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,975,370</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,680,370</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">73.7%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume consistent annual contributions at the start of each year and no employer match. Investment growth includes compound interest on both contributions and gains.</p>
+      </section>
+
+      {/* TABLE: Impact of Employer Matching on 401(k) Balance (20-Year Horizon, 7% Return) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Employer Matching on 401(k) Balance (20-Year Horizon, 7% Return)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different employer matching formulas multiply your retirement savings when you contribute 6% of a $75,000 salary.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Employer Match Formula</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Employee Contributions</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Employer Contributions</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Investment Growth</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Final Balance</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">No match (0%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$90,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$222,962</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$312,962</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50% of 3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$90,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$302,231</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$403,481</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100% of 3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$90,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$22,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$381,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$494,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100% of 6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$90,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$45,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$540,038</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$675,038</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All scenarios assume $4,500 annual employee contribution (6% of $75,000 salary), consistent annual contributions, and 7% annual returns. Employer match amounts are calculated on matching formulas applied to employee contributions.</p>
+      </section>
+
+      {/* TABLE: 401(k) Balance Milestones and Recommended Benchmarks */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">401(k) Balance Milestones and Recommended Benchmarks</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares projected balances at key ages against Fidelity's recommended retirement savings benchmarks for a consistent saver with 7% annual returns.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Years of Saving</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Projected Balance ($50K Annual Contribution)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fidelity Benchmark (Multiples of Salary)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Benchmark Balance (at $75K Salary)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$715,700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1x salary</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$75,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,832,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6x salary</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$450,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,153,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10x salary</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">67</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,285,700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12x salary</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750,000-$900,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Projected balances assume $50,000 annual contributions starting at age 25 with 7% annual returns. Fidelity benchmarks are industry-standard retirement savings targets assuming retirement at age 67.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Maximize employer matching before anything else—a 100% match on 3% of salary is an immediate 100% return on investment with zero market risk. If your employer offers this benefit and you skip it, you're leaving free money on the table that could compound to $50,000+ over 20 years.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase contributions by at least 1% annually or with each raise—this 'set and forget' strategy prevents contribution stagnation. Someone who increases by 1% annually starting at $5,000 could reach $7,500+ contributions within 10 years while barely noticing the impact on take-home pay.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Model a conservative return rate (6-7%) rather than historical averages (10%)—using realistic assumptions prevents overconfidence and retirement shortfalls. The calculator shows that a 1% difference in annual returns creates $200,000+ variance over 30 years, making conservative projections safer planning anchors.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator to backtest your savings progress against Fidelity benchmarks (1x salary by 35, 6x by 50)—if you're behind, the tool shows exactly how much to increase contributions to catch up. Someone at age 40 with only $150,000 saved (needing $300,000) can see that boosting contributions by $500/month closes the gap in 2-3 years.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Employer Match in Projections</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many savers use the calculator without inputting their employer match, leading to underestimated final balances. This error can mask the fact that you're on track for retirement when you actually need higher personal contributions if matching is limited or unavailable at a future job.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Unrealistic Return Assumptions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming 10-12% average annual returns (recent market peaks) overstates retirement readiness by 20-30%. When markets inevitably correct, savers find themselves with balances $100,000-$300,000 lower than projected, forcing uncomfortable retirement adjustments.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting About Inflation Adjustment</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Seeing a $1 million projected balance feels secure until you realize inflation erodes purchasing power by 50% or more over 30 years. A $1 million balance in 2055 is worth roughly $370,000 in today's dollars at 3% inflation, requiring double-checking whether your actual income replacement is sufficient.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Updating Contributions After Job Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator projects continuous contributions, but job transitions often interrupt savings momentum or reduce employer match benefits. Failing to model contribution gaps or new match formulas can create false confidence; a 6-month break in contributions costs $50,000+ in long-term growth at 7% returns.</p>
           </div>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a critical role in determining the final savings amount. The initial balance (P) is your starting point, while the annual growth rate (r) reflects the expected increase in your investment value each year. The number of years (n) represents the time horizon for your investment, and the annual contribution (C) includes both your personal contributions and any employer matching. Adjusting these variables can significantly impact your retirement savings, highlighting the importance of strategic planning and regular reviews.
-        </p>
       </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that influence your retirement savings growth is crucial for effective planning. These factors interact in complex ways, and being aware of them can help you optimize your savings strategy. Here, we explore the primary elements that can impact your 401(k) growth.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Initial Balance
-        </h3>
-        <p className="mb-4">
-          The initial balance is the amount you have in your 401(k) at the start of the calculation period. A higher initial balance provides a larger base for compound growth, which can significantly increase your total savings over time. For example, starting with $50,000 instead of $10,000 can result in a much larger nest egg due to the effects of compounding.
-        </p>
-        <p className="mb-6">
-          To optimize your initial balance, consider rolling over any previous retirement accounts into your current 401(k) plan. This consolidation can enhance your growth potential by increasing the amount subject to compound interest. For more on managing initial balances, see our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Annual Contribution
-        </h3>
-        <p className="mb-4">
-          Your annual contribution is a critical factor in building your retirement savings. Consistently contributing the maximum allowed by your plan can significantly boost your savings. For instance, contributing $6,000 annually with a 5% employer match can add up quickly, especially when combined with compound interest.
-        </p>
-        <p className="mb-6">
-          It's important to review your contribution levels regularly and adjust them as your financial situation changes. Increasing your contributions by even a small percentage each year can have a substantial impact over time. For strategies on increasing contributions, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Employer Match
-        </h3>
-        <p className="mb-4">
-          Employer matching is a valuable benefit that can significantly enhance your retirement savings. Many employers match a percentage of your contributions, effectively providing free money to boost your savings. For example, a 5% match on a $50,000 salary adds an extra $2,500 to your annual contributions.
-        </p>
-        <p className="mb-6">
-          To maximize this benefit, ensure you contribute enough to receive the full match. Failing to do so is akin to leaving money on the table. For more on leveraging employer matches, consult our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Annual Growth Rate
-        </h3>
-        <p className="mb-6">
-          The annual growth rate reflects the expected return on your investments. This rate can vary based on your investment strategy and market conditions. A higher growth rate can dramatically increase your savings, but it also comes with increased risk. For instance, a 7% growth rate over 30 years can more than double your savings compared to a 5% rate.
-        </p>
-        <p className="mb-6">
-          It's crucial to choose a growth rate that aligns with your risk tolerance and retirement goals. Diversifying your investments can help manage risk while aiming for higher returns. For guidance on selecting growth rates, see our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-        </p>
-
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Time Horizon
-        </h3>
-        <p className="mb-6">
-          The time horizon is the period over which your investments will grow. A longer time horizon allows for more compounding periods, which can significantly increase your savings. For example, starting to save at age 25 instead of 35 can result in a much larger retirement fund due to the additional years of growth.
-        </p>
-        <p className="mb-6">
-          Starting early is one of the most effective strategies for building substantial retirement savings. Even if you start with small contributions, the power of compounding over a long period can lead to impressive results. For more on the importance of time horizons, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <p 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum I can contribute to my 401(k) in 2024?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For 2024, the IRS contribution limit is $23,500 for individuals under age 50, and $31,000 for those 50 and older (including the $7,500 catch-up contribution). These limits increase to $24,000 and $32,000 respectively for 2025. The calculator uses these limits to help you project maximum growth scenarios based on your age and contribution strategy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does employer matching affect my 401(k) growth projection?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Employer matching is typically 50% to 100% of your contributions up to 3-6% of salary. If you contribute $5,000 annually and your employer matches 50% up to 6% of salary, you receive an additional $2,500 in free money. This calculator multiplies your projected balance significantly—a $5,000 annual contribution with 100% matching could grow to approximately $472,000 over 30 years at 7% annual returns, versus $328,000 without matching.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What average annual return should I assume for my projections?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Historical stock market returns average 10% annually before inflation, while a balanced portfolio (60% stocks/40% bonds) averages 7-8% annually. Most retirement calculators use 7% as a conservative estimate for mixed portfolios. The calculator allows you to input your expected return based on your asset allocation—higher risk portfolios may assume 8-10%, while conservative portfolios might use 5-6%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does inflation impact my 401(k) projections on this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator shows nominal (pre-inflation) growth by default. If inflation averages 3% annually, your $500,000 projected balance in future dollars has less purchasing power than in today's dollars. Some calculators offer an inflation-adjusted view; for example, that $500,000 balance becomes approximately $276,000 in today's dollars over 20 years with 3% inflation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator to model different retirement ages?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator typically allows you to input your current age and desired retirement age to model different scenarios. If you're 35 and retire at 65, you have 30 years of growth; retiring at 67 gives you 32 years. This additional 2 years could add $50,000-$100,000+ to your balance depending on contributions and returns, demonstrating the significant impact of working a few extra years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens to my 401(k) if I change jobs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator typically projects continuous contributions to a single 401(k). In reality, you can roll your balance to a new employer's plan, an IRA, or leave it with your former employer. A $200,000 balance rolled to an IRA with the same 7% returns continues growing uninterrupted, but if left idle or in a low-yield account, growth slows significantly. The calculator helps you understand the cost of contribution gaps during job transitions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much should I have saved by age 35 according to retirement experts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Fidelity recommends having 1x your annual salary saved by age 35. If you earn $75,000, you should have $75,000 saved. This calculator helps you backtest whether your historical contributions align with this benchmark and project whether your current path meets it for future milestones (3x salary by 40, 6x by 50, 10x by 67).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does this calculator account for Required Minimum Distributions (RMDs)?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most 401(k) growth calculators project pre-RMD balances and don't automatically reduce them. At age 73, the IRS requires you to withdraw roughly 3.65-8.87% of your balance annually depending on life expectancy tables. This calculator typically shows your maximum balance; actual usable balance will be reduced by required withdrawals in retirement, though you can model manual withdrawals in advanced versions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between traditional and Roth 401(k) projections?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Both grow tax-free within the account, so this calculator's growth projections are identical. The difference appears in retirement: traditional 401(k) withdrawals are taxed as ordinary income (if you're in a 24% bracket, a $500,000 withdrawal nets $380,000), while Roth withdrawals are tax-free. Use this calculator to model the pre-tax balance, then adjust for your expected retirement tax bracket to calculate after-tax income.</p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
-        </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fidelity.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Fidelity - Retirement Planning
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive guides and tools for retirement planning and investment strategies.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-401k-and-roth-401k-contribution-limits" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IRS 401(k) Contribution Limits and Rules</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official IRS guidance on annual contribution limits, catch-up contributions for those 50+, and eligibility rules for 401(k) plans.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.vanguard.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Vanguard - Retirement Resources
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Offers insights and tools for managing retirement accounts and maximizing savings.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.fidelity.com/learning-center/personal-finance/retirement-savings-guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Fidelity Retirement Score and Savings Benchmarks</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Fidelity's recommended retirement savings targets by age (1x salary by 35, 6x by 50, 10x by 67) based on industry research and longevity data.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.schwab.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Charles Schwab - Retirement Planning
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Provides educational resources and planning tools for retirement savings.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.investor.gov/introduction-investing/investing-basics/retirement/401k-plans" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SEC: 401(k) Plans Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">SEC guidance on how 401(k) plans work, investment options, rollovers, and withdrawal rules including Required Minimum Distributions.</p>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Retirement Plans
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official guidelines and information on retirement plan contributions and tax implications.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Retirement Planning
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                In-depth articles and tutorials on retirement planning and investment strategies.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Retirement Savings
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Offers practical advice and comparison tools for optimizing retirement savings.
-              </p>
-            </div>
+          <li>
+            <a href="https://www.bankrate.com/retirement/401k/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bankrate 401(k) Calculator and Retirement Planning Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive overview of 401(k) features, employer matching strategies, and how to use retirement calculators for planning.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 
