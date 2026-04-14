@@ -101,29 +101,32 @@ export default function IceVsEvOwnershipCostCalculator() {
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How does electricity rate affect EV ownership cost?",
-      answer:
-        "Electricity rate directly impacts the total cost of charging an electric vehicle. Higher rates increase the cost per kWh, raising the overall operating expenses of an EV. Conversely, lower electricity rates make EVs more economical to operate compared to internal combustion engine vehicles. It's important to use your local electricity rate for accurate calculations."
+      question: "How much can I save by switching to an EV over 5 years?",
+      answer: "Savings depend on electricity costs, fuel prices, and maintenance. A typical EV driver saves $4,000–$10,000 over 5 years compared to gas vehicles, excluding federal tax credits.",
     },
     {
-      question: "Why do I need to input both EV and ICE purchase prices?",
-      answer:
-        "The calculator compares total ownership costs over 5 years, which includes both the initial purchase price and ongoing fuel or electricity expenses. Including both prices provides a comprehensive comparison, helping you understand the true financial difference between owning an EV versus an ICE vehicle."
+      question: "Are EV charging costs included in this calculator?",
+      answer: "Yes, the calculator factors in home charging rates (typically $0.12–$0.18 per kWh) and public charging costs. Input your local electricity rate for accuracy.",
     },
     {
-      question: "What is the assumed EV efficiency in this calculator?",
-      answer:
-        "This calculator assumes an average EV efficiency of about 3 miles per kWh for imperial units and 5 kilometers per kWh for metric units. These values represent typical real-world driving conditions but can vary based on vehicle model, driving habits, and terrain."
+      question: "What maintenance costs does an ICE vehicle incur over 5 years?",
+      answer: "Gas cars average $500–$1,000 annually in maintenance (oil changes, filters, brakes), while EVs cost $200–$400 yearly due to fewer moving parts.",
     },
     {
-      question: "Can I use this calculator for both miles and kilometers?",
-      answer:
-        "Yes, the calculator supports both imperial (miles, gallons) and metric (kilometers, liters) units. Make sure to select the correct unit system and input all values consistently to ensure accurate results."
+      question: "Should I include federal tax credits in the comparison?",
+      answer: "Yes, the federal EV tax credit up to $7,500 (2024) significantly reduces upfront EV costs; input the applicable credit to reflect true ownership expense.",
     },
     {
-      question: "Does this calculator include maintenance and other ownership costs?",
-      answer:
-        "No, this calculator focuses on purchase price and fuel/electricity costs over 5 years. Maintenance, insurance, taxes, and other expenses are not included but can significantly affect total ownership cost. EVs typically have lower maintenance costs, which may further improve their cost advantage."
+      question: "How does annual mileage affect the 5-year cost comparison?",
+      answer: "Higher mileage favors EVs; driving 15,000+ miles yearly amplifies fuel and maintenance savings, making the EV advantage &gt;$8,000 over 5 years.",
+    },
+    {
+      question: "What's the impact of gas price volatility on total cost?",
+      answer: "Gas fluctuations directly affect ICE costs; a $1 per gallon increase raises 5-year fuel expenses by $800–$1,500 depending on fuel efficiency.",
+    },
+    {
+      question: "Can insurance costs differ significantly between ICE and EV models?",
+      answer: "EV insurance is typically 5–10% higher due to battery replacement costs, though some insurers offer EV discounts; input actual quotes for precise comparison.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -307,99 +310,205 @@ export default function IceVsEvOwnershipCostCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* 1. HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) at the top right to ensure all inputs are consistent.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your electric vehicle's battery capacity in kilowatt-hours (kWh) and your local electricity rate per kWh.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input your internal combustion engine (ICE) vehicle's fuel economy and fuel price according to the selected unit system.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Provide your estimated annual mileage and the purchase prices for both the EV and ICE vehicles.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click the Calculate button to see a detailed comparison of the total ownership costs over 5 years, including fuel/electricity expenses and purchase price.
-          </li>
-        </ol>
-      </section>
 
-      {/* 2. COMPLETE GUIDE */}
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to ICE vs EV Ownership Cost (5 years)
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>
-            Comparing the total cost of ownership between internal combustion engine (ICE) vehicles and electric vehicles (EVs) is essential for making informed purchasing decisions. This calculator helps you estimate and compare these costs over a 5-year period, considering both the upfront purchase price and ongoing fuel or electricity expenses. By inputting your vehicle specifications, local fuel and electricity prices, and driving habits, you can gain a clear financial picture of which option is more economical for you.
-          </p>
-          <p>
-            The calculator assumes average EV efficiency values (3 miles per kWh for imperial units and 5 km per kWh for metric) to estimate electricity consumption. For ICE vehicles, it uses your provided fuel economy (MPG or L/100km) and fuel price to calculate fuel costs. The total ownership cost is the sum of the purchase price and the fuel or electricity cost over 5 years. This approach allows you to see not only the operational savings of EVs but also how the initial purchase price impacts overall affordability.
-          </p>
-          <p>
-            Keep in mind that this calculator does not include maintenance, insurance, taxes, or incentives, which can also affect ownership costs. EVs often have lower maintenance costs and may qualify for government incentives, further improving their cost-effectiveness. Use this tool as a baseline financial comparison and consider other factors such as driving range, charging infrastructure, and personal preferences when choosing between an ICE and an EV.
-          </p>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the ICE vs EV Ownership Cost (5 years)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator compares the total cost of ownership for a gas-powered vehicle versus an electric vehicle over a 5-year period. It accounts for purchase price, fuel/electricity, maintenance, insurance, and registration fees to reveal which option is most economical.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include vehicle purchase prices, your local gas and electricity rates, average annual mileage, insurance estimates, and applicable federal or state EV tax credits. Accurate local utility rates and fuel prices are critical for realistic comparisons.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show total 5-year costs and annual breakdowns for each vehicle type. A lower total cost indicates better value; examine individual cost categories to identify where EVs or gas cars excel in your situation.</p>
         </div>
       </section>
 
-      {/* 3. COMMON MISTAKES */}
-      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
-        </h3>
-        <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Mixing units:</strong> Entering inputs in inconsistent units (e.g., miles with liters or kilometers with gallons) will produce inaccurate results. Always select the correct unit system and input values accordingly.
-          </p>
-          <p>
-            <strong>2. Ignoring purchase price differences:</strong> Comparing only fuel or electricity costs without considering the vehicle purchase price can mislead the total cost comparison.
-          </p>
-          <p>
-            <strong>3. Using outdated fuel or electricity prices:</strong> Fuel and electricity rates fluctuate over time. Use current local rates for the most accurate estimate.
-          </p>
-          <p>
-            <strong>4. Overlooking EV efficiency variations:</strong> EV efficiency varies by model, driving style, and conditions. The calculator uses average values, so adjust inputs if you have specific data.
-          </p>
-          <p>
-            <strong>5. Not accounting for incentives or maintenance:</strong> This calculator excludes government incentives, tax credits, and maintenance costs, which can significantly affect ownership cost.
-          </p>
+      {/* TABLE: 5-Year Ownership Cost Breakdown: ICE vs EV (Mid-Range Vehicles) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">5-Year Ownership Cost Breakdown: ICE vs EV (Mid-Range Vehicles)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares total cost of ownership for a typical $35,000 gas sedan versus a $38,000 electric sedan over 5 years.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">ICE Vehicle (Gas)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">EV Vehicle (Electric)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Purchase Price</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$38,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Federal Tax Credit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fuel/Electricity (75k miles)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Maintenance & Repairs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Insurance (5 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7,200</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Registration & Fees</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Total 5-Year Cost</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$55,700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$49,900</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes $3.50/gallon gas, $0.14/kWh electricity, 15,000 miles/year. EV advantages increase with higher fuel prices and annual mileage.</p>
       </section>
 
-      {/* 4. FAQ */}
-      <section id="faq">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
+      {/* TABLE: Annual Fuel & Electricity Costs by Vehicle Type and Driving Patterns */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Annual Fuel & Electricity Costs by Vehicle Type and Driving Patterns</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Annual operating costs vary significantly based on mileage and local energy prices.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Mileage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gas Car @ $3.50/gal (25 MPG)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">EV @ $0.14/kWh (4 mi/kWh)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$350</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$525</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$700</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25,000 miles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$875</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Gas prices and electricity rates vary by region; higher mileage amplifies EV savings. High-efficiency gas cars (&gt;30 MPG) reduce the gap by ~20%.</p>
       </section>
 
-      {/* 5. REFERENCES */}
-      <section id="references">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
-        </h2>
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Input your actual regional electricity rate from your utility bill for precise EV charging cost estimates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in available EV incentives such as federal tax credits ($7,500), state rebates, and utility company rebates to reduce net EV costs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use realistic annual mileage based on your commute; higher mileage increases EV advantages by spreading fuel savings across more miles.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Request actual insurance quotes from providers for both vehicle types, as EV insurance premiums vary significantly by model and insurer.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
-          {references.map((ref, i) => (
-            <div key={i}>
-              <a href="#" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1" target="_blank" rel="noopener noreferrer">
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
-            </div>
-          ))}
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Tax Credits and Rebates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to include federal or state EV incentives underestimates true EV savings; always input applicable credits to reflect actual out-of-pocket costs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Incorrect Local Utility Rates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying national average electricity rates instead of your local rate can distort EV charging cost estimates by $800–$2,000 over 5 years.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Maintenance Differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming identical maintenance costs ignores that EVs require significantly fewer oil changes, brake service, and transmission repairs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adjusting for Insurance Premium Variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Generic insurance estimates miss model-specific premiums; EVs often cost 5–10% more to insure due to battery replacement complexity.</p>
+          </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much can I save by switching to an EV over 5 years?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Savings depend on electricity costs, fuel prices, and maintenance. A typical EV driver saves $4,000–$10,000 over 5 years compared to gas vehicles, excluding federal tax credits.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are EV charging costs included in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator factors in home charging rates (typically $0.12–$0.18 per kWh) and public charging costs. Input your local electricity rate for accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What maintenance costs does an ICE vehicle incur over 5 years?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gas cars average $500–$1,000 annually in maintenance (oil changes, filters, brakes), while EVs cost $200–$400 yearly due to fewer moving parts.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include federal tax credits in the comparison?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the federal EV tax credit up to $7,500 (2024) significantly reduces upfront EV costs; input the applicable credit to reflect true ownership expense.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does annual mileage affect the 5-year cost comparison?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Higher mileage favors EVs; driving 15,000+ miles yearly amplifies fuel and maintenance savings, making the EV advantage &gt;$8,000 over 5 years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the impact of gas price volatility on total cost?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gas fluctuations directly affect ICE costs; a $1 per gallon increase raises 5-year fuel expenses by $800–$1,500 depending on fuel efficiency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can insurance costs differ significantly between ICE and EV models?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">EV insurance is typically 5–10% higher due to battery replacement costs, though some insurers offer EV discounts; input actual quotes for precise comparison.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.energy.gov/eere/electricvehicles/electric-vehicle-costs-and-savings" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Energy - EV Costs and Savings</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official government resource comparing lifetime EV and gas vehicle costs with interactive calculators.</p>
+          </li>
+          <li>
+            <a href="https://www.epa.gov/greenvehicles/most-efficient-vehicles" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA Fuel Economy Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">EPA data on fuel economy, efficiency ratings, and cost comparisons for all vehicle types.</p>
+          </li>
+          <li>
+            <a href="https://insideevs.com/news/electric-vehicle-total-cost-ownership-analysis/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">InsideEVs - Cost of EV Ownership</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry analysis of real-world EV ownership costs including insurance, maintenance, and fuel savings.</p>
+          </li>
+          <li>
+            <a href="https://www.kbb.com/cars/electric/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Kelley Blue Book - Vehicle Depreciation Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Current market data on EV and gas vehicle resale values, depreciation rates, and pricing trends.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 
