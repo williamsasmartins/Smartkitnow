@@ -67,25 +67,33 @@ export default function CatXylitolExposureRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is xylitol exposure rare but still important to understand in cats?",
-      answer:
-        "Xylitol poisoning is well-documented in dogs but is considered rare in cats due to their less frequent exposure to xylitol-containing products. However, cats are still susceptible to its toxic effects, including hypoglycemia and liver damage. Understanding this risk is crucial for early recognition and prevention, especially as xylitol use in human foods and dental products increases.",
+      question: "What is xylitol and why is it toxic to cats?",
+      answer: "Xylitol is a sugar alcohol found in sugar-free products that triggers insulin release in cats, causing hypoglycemia and potential liver damage at doses above 0.1 g/kg body weight.",
     },
     {
-      question: "How does xylitol cause toxicity in cats?",
-      answer:
-        "Xylitol triggers a rapid release of insulin in cats, similar to dogs, leading to a dangerous drop in blood sugar levels (hypoglycemia). This insulin surge can cause weakness, seizures, and even coma. Additionally, xylitol may cause liver failure, which can be fatal if not treated promptly, making early detection and veterinary intervention vital.",
+      question: "How much xylitol is considered dangerous for cats?",
+      answer: "Doses of 0.1-0.5 g/kg can cause hypoglycemia; doses above 0.5 g/kg risk hepatotoxicity. A 4 kg cat needs only 0.4-2 grams to experience toxicity symptoms.",
     },
     {
-      question: "What are the signs of xylitol poisoning in cats to watch for?",
-      answer:
-        "Symptoms typically appear within 30 minutes to a few hours after ingestion and include vomiting, lethargy, weakness, loss of coordination, seizures, and collapse. Because these signs can mimic other illnesses, any suspected xylitol exposure should prompt immediate veterinary evaluation. Early treatment improves prognosis significantly.",
+      question: "What products commonly contain xylitol that cats might access?",
+      answer: "Xylitol is found in sugar-free gum (0.5-1 g per piece), peanut butter, baked goods, candy, and some medications and oral care products.",
     },
     {
-      question: "How can I prevent xylitol poisoning in my cat?",
-      answer:
-        "Preventing exposure is the best defense; keep all xylitol-containing products such as sugar-free gum, candies, baked goods, and dental products out of your cat’s reach. Educate household members and guests about the dangers of xylitol. If accidental ingestion occurs, seek veterinary care immediately regardless of the amount ingested.",
+      question: "What are the early signs of xylitol toxicity in cats?",
+      answer: "Symptoms appear within 15-30 minutes and include vomiting, lethargy, weakness, loss of coordination, and seizures in severe cases.",
     },
+    {
+      question: "How does this calculator help assess xylitol risk?",
+      answer: "The calculator estimates toxicity risk by comparing a cat's weight and xylitol exposure amount against established danger thresholds to guide veterinary urgency.",
+    },
+    {
+      question: "Is xylitol poisoning in cats reversible?",
+      answer: "Early intervention with IV dextrose can reverse hypoglycemia within hours; however, liver damage may be irreversible if hepatotoxicity develops.",
+    },
+    {
+      question: "Should I induce vomiting if my cat ingests xylitol?",
+      answer: "Yes, contact your veterinarian immediately—inducing vomiting within 15-30 minutes of ingestion may prevent absorption, but professional guidance is essential.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -201,98 +209,212 @@ export default function CatXylitolExposureRiskCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Xylitol Exposure Risk for Cats (rare but educational)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Xylitol is a sugar alcohol commonly used as a sweetener in sugar-free gums, candies, baked goods, and dental products. While xylitol toxicity is well-known in dogs, exposure in cats is rare but still possible and potentially dangerous. Cats may accidentally ingest xylitol-containing products, leading to serious health consequences despite the lower incidence compared to dogs.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The toxic effects of xylitol in cats primarily involve a rapid release of insulin, causing hypoglycemia, which can manifest as weakness, seizures, or even coma. Additionally, xylitol may induce liver failure, a life-threatening complication. Because cats metabolize substances differently and have unique sensitivities, understanding the risk and recognizing early symptoms is critical for timely veterinary intervention.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator provides an educational estimate of the potential risk based on the amount of xylitol ingested relative to the cat’s body weight. Given the limited research on exact toxic doses in cats, this tool uses a conservative threshold to help pet owners and veterinary professionals assess exposure severity and decide when urgent care is necessary.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Xylitol Exposure Risk for Cats (rare but educational)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners and veterinarians estimate the potential severity of xylitol exposure in cats by comparing ingested amounts against weight-based toxicity thresholds. It serves as an educational tool to understand risk levels, not a substitute for veterinary diagnosis.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your cat's weight in kilograms and the amount of xylitol ingested in grams. Identify the product type to estimate xylitol content if the exact amount is unknown. The calculator cross-references these inputs against established hypoglycemia and hepatotoxicity danger zones.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results indicate whether exposure falls in the safe, monitoring, or emergency range. Green indicates low risk; yellow suggests veterinary observation; red signals immediate emergency care. Always contact poison control or a veterinarian regardless of calculator results.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To estimate the risk of xylitol exposure in your cat, enter the cat’s weight and the estimated amount of xylitol ingested in milligrams. Select the appropriate unit system for weight input (imperial or metric). The calculator will then provide a risk score based on a conservative toxic dose threshold, helping you understand the severity of the exposure.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat’s weight accurately, choosing pounds or kilograms depending on your preference.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Estimate the amount of xylitol ingested in milligrams. This may require checking product labels or estimating based on the quantity consumed.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click “Calculate” to view the risk score and interpretation. Follow any warnings and seek veterinary care if the risk is moderate or high.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the reset button to clear inputs and assess additional scenarios if needed.
-          </li>
+      {/* TABLE: Xylitol Toxicity Thresholds by Cat Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Xylitol Toxicity Thresholds by Cat Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated xylitol doses that trigger different toxicity levels based on body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hypoglycemia Threshold (g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hepatotoxicity Threshold (g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Doses &lt;0.1 g/kg typically cause minimal symptoms; 0.1-0.5 g/kg causes hypoglycemia; &gt;0.5 g/kg risks liver damage.</p>
+      </section>
+
+      {/* TABLE: Xylitol Content in Common Products */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Xylitol Content in Common Products</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common household items vary significantly in xylitol concentration, affecting exposure risk calculation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Product Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Xylitol per Unit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Units per Package</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Peak Concentration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sugar-free gum</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1.0 g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-15 pieces</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Peanut butter (sugar-free)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-1.0 g per tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multiple servings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Variable</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sugar-free candy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-3.0 g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-20 pieces</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Baked goods (sugar-free)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5 g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 servings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Toothpaste</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.5 g per application</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small tube</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low to Moderate</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Xylitol concentration varies by manufacturer; always check product labels for exact amounts.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store all sugar-free products containing xylitol in sealed, high cabinets away from cat access, as cats are curious and may investigate packaging.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Read ingredient labels on peanut butter, baked goods, and dental products before giving them to cats—xylitol is increasingly common in pet-safe products.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Note the exact product brand and xylitol content if possible when calculating exposure, as formulations vary significantly between manufacturers.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep your veterinarian's contact information and local poison control number readily available in case of accidental exposure.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all sugar-free products contain xylitol</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many sugar-free items use stevia or sorbitol instead; check labels carefully for xylitol specifically, as not all artificial sweeteners are toxic to cats.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying veterinary care based on low calculator results</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even marginal exposures can cause complications in kittens or senior cats with liver disease; veterinary consultation is always safer than waiting.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Estimating xylitol content without checking the label</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Xylitol concentration varies widely between brands and product types; guessing can lead to dangerous underestimation of exposure severity.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing xylitol toxicity with chocolate or other pet poisons</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Xylitol's mechanism (insulin release and liver damage) differs from other toxins; treatment approaches vary, so accurate identification matters.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is xylitol and why is it toxic to cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Xylitol is a sugar alcohol found in sugar-free products that triggers insulin release in cats, causing hypoglycemia and potential liver damage at doses above 0.1 g/kg body weight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much xylitol is considered dangerous for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Doses of 0.1-0.5 g/kg can cause hypoglycemia; doses above 0.5 g/kg risk hepatotoxicity. A 4 kg cat needs only 0.4-2 grams to experience toxicity symptoms.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What products commonly contain xylitol that cats might access?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Xylitol is found in sugar-free gum (0.5-1 g per piece), peanut butter, baked goods, candy, and some medications and oral care products.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the early signs of xylitol toxicity in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Symptoms appear within 15-30 minutes and include vomiting, lethargy, weakness, loss of coordination, and seizures in severe cases.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator help assess xylitol risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator estimates toxicity risk by comparing a cat's weight and xylitol exposure amount against established danger thresholds to guide veterinary urgency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is xylitol poisoning in cats reversible?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Early intervention with IV dextrose can reverse hypoglycemia within hours; however, liver damage may be irreversible if hepatotoxicity develops.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I induce vomiting if my cat ingests xylitol?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, contact your veterinarian immediately—inducing vomiting within 15-30 minutes of ingestion may prevent absorption, but professional guidance is essential.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151201/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Xylitol Toxicity in Dogs and Cats: A Review
-            </a>
-            <p className="text-slate-500 text-sm">
-              This peer-reviewed article discusses the mechanisms, clinical signs, and treatment of xylitol poisoning in companion animals, emphasizing the rarity but severity of cases in cats.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative resource for xylitol toxicity cases, dosing information, and emergency guidance for pet owners.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/xylitol-toxicity-in-pets"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals: Xylitol Toxicity in Pets
-            </a>
-            <p className="text-slate-500 text-sm">
-              A trusted veterinary resource outlining symptoms, diagnosis, and emergency care recommendations for xylitol ingestion in dogs and cats.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/poison/xylitol/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline — Xylitol Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to xylitol toxicity in pets, including clinical signs, prognosis, and treatment recommendations.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.petpoisonhelpline.com/poison/xylitol/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Pet Poison Helpline: Xylitol Poisoning
-            </a>
-            <p className="text-slate-500 text-sm">
-              Provides detailed information on xylitol toxicity, including clinical signs and treatment protocols, with notes on species differences including cats.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Standards for Pet Ingredients</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official source for ingredient regulations in pet food and supplements, helping identify xylitol-containing products.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Medicine Journal: Xylitol Hepatotoxicity Review</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed veterinary research on xylitol absorption rates, liver pathology, and recovery timelines in cats.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

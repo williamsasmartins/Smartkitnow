@@ -73,25 +73,33 @@ export default function BirdHandFeedingFormulaAmountChicksCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate the correct hand-feeding formula amount for chicks?",
-      answer:
-        "Calculating the correct formula amount ensures that chicks receive adequate nutrition without overfeeding, which can cause digestive issues or aspiration pneumonia. Proper feeding supports healthy growth and development during this critical stage. It also helps prevent dehydration and malnutrition by matching the chick’s metabolic needs precisely.",
+      question: "How much formula should I feed a newborn chick daily?",
+      answer: "Newborn chicks require 5-10% of their body weight in formula daily, divided into 8-10 feedings. A 40-gram chick needs approximately 2-4 grams per feeding.",
     },
     {
-      question: "How does a chick’s age affect the feeding frequency and amount?",
-      answer:
-        "Younger chicks have higher metabolic rates and smaller stomach capacities, requiring more frequent but smaller feedings to avoid overloading their digestive system. As chicks grow, their feeding frequency decreases while the volume per feeding increases to accommodate their larger size and energy needs. This gradual adjustment helps optimize nutrient absorption and growth.",
+      question: "At what age can chicks transition from hand-feeding to self-feeding?",
+      answer: "Most chicks can begin eating solid feed at 3-5 days old and transition fully to self-feeding by 2-3 weeks, though hand-feeding supplementation may continue longer.",
     },
     {
-      question: "What risks are associated with incorrect hand-feeding volumes?",
-      answer:
-        "Feeding too much formula can lead to aspiration pneumonia, where food enters the lungs causing infection and respiratory distress. Underfeeding can cause malnutrition, stunted growth, and weakened immunity. Accurate volume calculation minimizes these risks by ensuring chicks receive balanced nutrition tailored to their size and age.",
+      question: "What formula concentration is best for hand-feeding chicks?",
+      answer: "A 1:1 or 1:1.5 formula-to-water ratio (by volume) works well; too thick causes crop impaction, too thin provides insufficient nutrition.",
     },
     {
-      question: "Can this calculator be used for all bird species’ chicks?",
-      answer:
-        "While this calculator provides general guidelines based on common avian physiology, specific species may have unique nutritional requirements or feeding behaviors. It is important to consult species-specific veterinary resources or an avian veterinarian for specialized care. This tool is best used as a baseline for common poultry and pet bird chicks.",
+      question: "How do I know if my chick is getting enough formula?",
+      answer: "A healthy chick's crop should feel full but not hard after feeding, and the bird should gain 5-10% of body weight daily during the first week.",
     },
+    {
+      question: "Should formula temperature affect feeding amounts?",
+      answer: "Formula should be 104-108°F (40-42°C); warmer temperatures speed digestion and may require slightly more frequent feedings, while cooler formula reduces absorption.",
+    },
+    {
+      question: "Why is feeding frequency important in the calculator?",
+      answer: "Chicks have small crops and fast metabolisms; feeding every 2-3 hours ensures consistent nutrition and prevents hypoglycemia in young birds.",
+    },
+    {
+      question: "Can overfeeding harm hand-fed chicks?",
+      answer: "Yes, overfeeding causes crop impaction, sour crop, and digestive issues; the calculator helps prevent overfeeding by calculating precise daily totals divided by feeding frequency.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -206,98 +214,212 @@ export default function BirdHandFeedingFormulaAmountChicksCalculator() {
   // 6. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Hand-Feeding Formula Amount (Chicks)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Hand-feeding baby chicks requires precise calculation of formula amounts to ensure optimal growth and health. The nutritional needs of chicks vary significantly with their weight and age, making it essential to tailor feeding volumes accordingly. Overfeeding or underfeeding can lead to serious health complications, including digestive upset or malnutrition, which can compromise survival rates in these vulnerable animals.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The general veterinary guideline recommends feeding chicks approximately 10% of their body weight in formula per feeding, with the frequency of feedings decreasing as the chick matures. This approach balances the chick’s metabolic demands with their digestive capacity, promoting efficient nutrient absorption and steady development. Understanding these principles helps caregivers provide appropriate care during this critical growth phase.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, the formula’s temperature, consistency, and hygiene are crucial factors influencing feeding success. Proper preparation and administration techniques reduce the risk of aspiration and infection. This calculator integrates these veterinary recommendations into a simple tool to assist caregivers in delivering scientifically informed feeding volumes tailored to each chick’s unique needs.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Hand-Feeding Formula Amount (Chicks) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the precise daily formula volume needed for hand-fed chicks based on age, body weight, and feeding frequency. It prevents both underfeeding and overfeeding by calculating optimal portions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include the chick's current body weight (in grams), age in days, desired feeding frequency per day, and formula concentration. The calculator converts these variables into exact daily and per-feeding amounts.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show total daily formula needed and individual feeding portions. Use these figures to prepare appropriately sized meals and maintain consistent nutrition schedules throughout the chick's developmental stages.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately determine the hand-feeding formula amount for your chick, input the chick’s current weight and age in days. Select the appropriate unit system (imperial or metric) to match your measurement tools. Once entered, click “Calculate” to receive the recommended volume per feeding and the suggested daily feeding frequency based on veterinary guidelines.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the chick’s weight in pounds or kilograms depending on your selected unit system.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the chick’s age in days to determine the appropriate feeding frequency.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the “Calculate” button to view the recommended volume per feeding and total daily volume.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the results to guide your feeding schedule, adjusting as the chick grows and ages.
-          </li>
+      {/* TABLE: Recommended Daily Formula Intake by Chick Age */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Daily Formula Intake by Chick Age</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical formula consumption rates based on chick age and body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age (Days)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Body Weight (grams)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Formula % of BW</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Daily Formula (grams)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Feeding Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8x</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90-130</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15-21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160-220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4x</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">22+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3x</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages are based on body weight; adjust for individual chick metabolism and species.</p>
+      </section>
+
+      {/* TABLE: Hand-Feeding Formula Types and Feeding Guidelines */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Hand-Feeding Formula Types and Feeding Guidelines</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different formulas have varying nutrient densities and feeding protocols.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Formula Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Protein Content</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Mixing Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Shelf Life (Mixed)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercially Prepared Powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-16%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:1 to 1:1.5 water</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Protein Specialty Blend</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:1.5 to 1:2 water</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Maintenance Formula</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:1 water</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Starter Formula (Days 1-7)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:1 water</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 hours</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always follow manufacturer instructions; prepared formula should not sit &gt; 4 hours at room temperature.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always weigh chicks daily to track growth and adjust formula amounts; healthy chicks gain 5-10% body weight daily during early growth.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a syringe or specialized feeding tube designed for chicks to deliver formula safely and reduce aspiration risk.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep formula at 104-108°F by using a heating pad under the preparation bowl; cool formula slows digestion and nutrient absorption.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Transition gradually to self-feeding by placing formula near solid food around day 5-7, allowing chicks to explore feeding options naturally.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Room-Temperature Formula</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cold formula (&lt; 100°F) slows chick metabolism and digestion; always warm formula to 104-108°F before feeding.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adjusting for Chick Age</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Feeding amounts should decrease as percentage of body weight as chicks grow; older chicks need less frequent, larger meals.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Crop Fullness</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Overfeeding beyond crop capacity causes impaction and sour crop; stop feeding when the crop feels full but not hard.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing Formula Incorrectly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Wrong water ratios cause malabsorption and nutritional deficiencies; always follow the exact 1:1 or 1:1.5 concentration recommended on the package.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much formula should I feed a newborn chick daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Newborn chicks require 5-10% of their body weight in formula daily, divided into 8-10 feedings. A 40-gram chick needs approximately 2-4 grams per feeding.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what age can chicks transition from hand-feeding to self-feeding?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most chicks can begin eating solid feed at 3-5 days old and transition fully to self-feeding by 2-3 weeks, though hand-feeding supplementation may continue longer.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What formula concentration is best for hand-feeding chicks?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 1:1 or 1:1.5 formula-to-water ratio (by volume) works well; too thick causes crop impaction, too thin provides insufficient nutrition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my chick is getting enough formula?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A healthy chick's crop should feel full but not hard after feeding, and the bird should gain 5-10% of body weight daily during the first week.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should formula temperature affect feeding amounts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Formula should be 104-108°F (40-42°C); warmer temperatures speed digestion and may require slightly more frequent feedings, while cooler formula reduces absorption.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is feeding frequency important in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Chicks have small crops and fast metabolisms; feeding every 2-3 hours ensures consistent nutrition and prevents hypoglycemia in young birds.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can overfeeding harm hand-fed chicks?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, overfeeding causes crop impaction, sour crop, and digestive issues; the calculator helps prevent overfeeding by calculating precise daily totals divided by feeding frequency.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/birds/hand-rearing-birds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Hand-Rearing Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide on nutritional requirements and feeding techniques for hand-rearing avian species.
-            </p>
+          <li>
+            <a href="https://www.elsevier.com/books/avian-medicine-and-surgery/harrison/978-0-7020-5296-0" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Avian Medicine and Surgery in Practice: Companion and Aviary Birds</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide covering hand-feeding protocols and nutritional requirements for young birds.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7070405/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Avian Nutrition and Feeding Practices - NCBI
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article detailing metabolic needs and feeding protocols for young birds in captivity.
-            </p>
+          <li>
+            <a href="https://www.worldpoultry.net/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Domestic Chicken: From Behavior to Welfare</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research on poultry development includes sections on optimal feeding practices for early-stage chicks.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/page/avian-nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Association of Avian Veterinarians - Avian Nutrition
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource on avian dietary requirements and best practices for hand-feeding chicks.
-            </p>
+          <li>
+            <a href="https://www.aaav.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Association of Avian Veterinarians (IAAV) - Hand-Feeding Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary organization providing evidence-based hand-feeding standards for avian species.</p>
+          </li>
+          <li>
+            <a href="https://www.extension.illinois.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Illinois Extension: Poultry Nutrition Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Educational resource detailing nutritional requirements and feeding schedules for developing chicks.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

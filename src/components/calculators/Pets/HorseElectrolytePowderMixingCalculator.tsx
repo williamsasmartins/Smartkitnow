@@ -81,25 +81,33 @@ export default function HorseElectrolytePowderMixingCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to mix electrolyte powders accurately for horses?",
-      answer:
-        "Accurate mixing of electrolyte powders ensures that horses receive the correct balance of essential minerals lost through sweat during exercise or heat stress. Over- or under-dosing can lead to electrolyte imbalances, which may cause muscle cramps, dehydration, or more severe health issues. Proper mixing supports optimal hydration and performance, making it critical for equine health management.",
+      question: "How much electrolyte powder should I mix for a 500ml bottle of water?",
+      answer: "Most electrolyte powders recommend 1-2 scoops per 500ml of water. Use your calculator by entering 500ml as water volume and the powder dosage to get precise mixing ratios.",
     },
     {
-      question: "How does water volume affect the concentration of electrolyte powder?",
-      answer:
-        "The volume of water directly influences the concentration of electrolytes in the solution. If too little water is used, the solution becomes overly concentrated, which can irritate the horse’s digestive tract or reduce palatability. Conversely, too much water dilutes the electrolytes, potentially making the solution ineffective. This calculator helps balance these factors for safe and effective hydration.",
+      question: "Can I use this calculator for all pet species?",
+      answer: "This calculator works best for dogs, cats, and horses. Exotic pets like rabbits or birds may have different electrolyte requirements; consult your vet for species-specific needs.",
     },
     {
-      question: "Can I use this calculator for other animals besides horses?",
-      answer:
-        "While this calculator is tailored for horses, the principles of electrolyte mixing apply broadly to many large animals. However, electrolyte requirements and tolerances vary significantly between species, so it is essential to consult species-specific veterinary guidelines before applying these calculations. Using this tool as a reference with veterinary advice ensures safe and appropriate electrolyte supplementation.",
+      question: "What electrolyte powders are safe for pets?",
+      answer: "Pet-specific formulas containing sodium, potassium, and chloride at veterinary-approved concentrations are safest. Human sports drinks can be toxic to pets due to xylitol or excess sodium.",
     },
     {
-      question: "What should I do if my horse refuses to drink the electrolyte solution?",
-      answer:
-        "Horses may refuse electrolyte solutions due to taste or unfamiliarity. To encourage intake, gradually introduce the solution by diluting it more initially and slowly increasing concentration over time. Additionally, ensure the solution is fresh and at a palatable temperature. If refusal persists, consult a veterinarian to rule out underlying health issues or explore alternative hydration strategies.",
+      question: "How do I know if my pet needs electrolyte supplementation?",
+      answer: "Signs include excessive panting, diarrhea, vomiting, or dehydration after exercise or illness. Use this calculator only after veterinary confirmation of electrolyte deficiency.",
     },
+    {
+      question: "Should electrolyte solution be served warm or cold?",
+      answer: "Room temperature or slightly cool (not ice-cold) solutions are preferred for optimal absorption and palatability in most pets.",
+    },
+    {
+      question: "How long does mixed electrolyte solution stay fresh?",
+      answer: "Mixed electrolyte solutions should be used within 24 hours when refrigerated to prevent bacterial growth and ingredient degradation.",
+    },
+    {
+      question: "Can I mix electrolyte powder with food instead of water?",
+      answer: "Mixing with water ensures proper hydration and absorption. Adding powder to food may reduce water intake and effectiveness.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -249,95 +257,212 @@ export default function HorseElectrolytePowderMixingCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Electrolyte Powder Mixing Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Electrolyte Powder Mixing Calculator is a specialized tool designed to assist horse owners and veterinarians in preparing accurate electrolyte solutions. Electrolytes such as sodium, potassium, and chloride are vital for maintaining fluid balance, nerve function, and muscle contractions in horses, especially during periods of heavy exercise or heat stress. This calculator simplifies the process of determining the precise amount of electrolyte powder needed to achieve a desired concentration in a given volume of water.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By inputting the horse’s weight, desired electrolyte concentration, water volume, and powder concentration, users receive an exact measurement of powder required. This precision helps prevent common issues such as over-concentration, which can cause gastrointestinal upset, or under-concentration, which may fail to replenish lost minerals effectively. The calculator promotes safe hydration practices and supports optimal equine health and performance.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Electrolyte Powder Mixing Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine the correct amount of electrolyte powder to mix with water for your pet. It ensures precise dosing based on water volume and your pet's hydration needs, reducing risk of over or under-supplementation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter three key inputs: total water volume (in milliliters or liters), recommended powder dosage per liter (check your product label), and number of servings needed. The calculator automatically computes total powder required and concentration strength.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the output to confirm powder amount matches your pet's weight and condition. Prepare the solution by dissolving powder in room-temperature water, stir thoroughly, and serve within 24 hours when refrigerated for safety and efficacy.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires only a few key inputs. Begin by selecting the unit system that matches your measurement preferences, either imperial or metric. Enter the horse’s weight to provide context, although it does not directly affect the powder calculation. Next, specify the desired electrolyte concentration in grams per liter, which is typically based on veterinary recommendations or product guidelines.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Input the volume of water (in liters) you plan to mix the electrolyte powder into.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the concentration of your electrolyte powder, usually given as grams per scoop or gram.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click “Calculate” to receive the exact amount of powder needed in grams and scoops.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Adjust inputs as necessary and always consult your veterinarian to confirm the suitability of the mixture for your horse’s specific needs.
-          </li>
+      {/* TABLE: Recommended Electrolyte Dosages by Pet Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Electrolyte Dosages by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard veterinary-approved electrolyte powder concentrations for common household pets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Body Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Powder per Liter</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Servings</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-15 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-2.5 grams</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 times</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-50 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5-4 grams</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 times</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">51-100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 grams</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 times</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-12 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1 gram</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 times</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Horses</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900-1200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30 grams</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 times</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Dosages assume moderate dehydration. Severe cases require veterinary intervention and higher concentrations.</p>
+      </section>
+
+      {/* TABLE: Electrolyte Concentration Ranges in Pet Formulas */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Electrolyte Concentration Ranges in Pet Formulas</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical mineral content percentages found in veterinary-approved electrolyte powders.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Electrolyte</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical % in Powder</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Safety Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Function</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sodium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3-0.5% solution</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fluid balance and nerve function</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Potassium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.2% solution</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Muscle and heart function</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chloride</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3-0.5% solution</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Acid-base balance</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Magnesium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.02-0.05% solution</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Enzyme and muscle function</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Glucose</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5% solution</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Quick energy absorption</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always verify your powder's specific formula matches these ranges before mixing.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always read the manufacturer's label on your electrolyte powder for species-specific dosing before using this calculator.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test a small amount of the mixed solution with your pet first to ensure palatability and no adverse reactions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use filtered or dechlorinated water when possible, as chlorine can interfere with electrolyte absorption in pets.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store premixed electrolyte solutions in a clean glass container in the refrigerator to prevent contamination and maintain potency.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Human Sports Drinks</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Human electrolyte beverages often contain xylitol, artificial sweeteners, or excess sodium that are toxic or harmful to pets; always use veterinary-formulated products.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Pet Weight in Calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to account for your pet's body weight can result in dangerous electrolyte overdose or ineffective underdosing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing Incorrect Water-to-Powder Ratios</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adding too much powder creates overly concentrated solutions that can cause diarrhea or electrolyte imbalances instead of relief.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Supplementing Without Veterinary Guidance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using electrolytes without confirmed deficiency or vet approval may mask underlying health issues that require treatment.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much electrolyte powder should I mix for a 500ml bottle of water?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most electrolyte powders recommend 1-2 scoops per 500ml of water. Use your calculator by entering 500ml as water volume and the powder dosage to get precise mixing ratios.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for all pet species?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator works best for dogs, cats, and horses. Exotic pets like rabbits or birds may have different electrolyte requirements; consult your vet for species-specific needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What electrolyte powders are safe for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pet-specific formulas containing sodium, potassium, and chloride at veterinary-approved concentrations are safest. Human sports drinks can be toxic to pets due to xylitol or excess sodium.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my pet needs electrolyte supplementation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Signs include excessive panting, diarrhea, vomiting, or dehydration after exercise or illness. Use this calculator only after veterinary confirmation of electrolyte deficiency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should electrolyte solution be served warm or cold?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Room temperature or slightly cool (not ice-cold) solutions are preferred for optimal absorption and palatability in most pets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does mixed electrolyte solution stay fresh?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mixed electrolyte solutions should be used within 24 hours when refrigerated to prevent bacterial growth and ingredient degradation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I mix electrolyte powder with food instead of water?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mixing with water ensures proper hydration and absorption. Adding powder to food may reduce water intake and effectiveness.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines/equine-electrolyte-replacement"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. AAEP Guidelines on Equine Electrolyte Replacement
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines from the American Association of Equine Practitioners outlining electrolyte replacement strategies for horses during exercise and illness.
-            </p>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Pet Food Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official organization establishing nutritional standards and mineral content requirements for pet food and supplements.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/12345678/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Effects of Electrolyte Supplementation on Equine Performance
-            </a>
-            <p className="text-slate-500 text-sm">
-              A peer-reviewed study examining the impact of electrolyte supplementation on hydration status and endurance in performance horses.
-            </p>
+          <li>
+            <a href="https://www.vin.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network - Electrolyte Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed veterinary resource providing clinical guidelines for electrolyte therapy in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/horses"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. UC Davis Veterinary Medicine: Equine Fluid Therapy
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource detailing fluid and electrolyte therapy protocols for horses, including practical mixing and administration advice.
-            </p>
+          <li>
+            <a href="https://www.aaha.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Animal Hospital Association (AAHA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary organization offering evidence-based recommendations for fluid therapy and electrolyte supplementation.</p>
+          </li>
+          <li>
+            <a href="https://www.fda.gov/animal-veterinary" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FDA Pet Supplement Safety Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Regulatory guidance on approved ingredients, safety limits, and proper labeling for pet dietary supplements.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

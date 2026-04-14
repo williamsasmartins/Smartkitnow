@@ -64,25 +64,33 @@ export default function AquariumWaterChangeVolumePlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to plan water change volume based on nitrate levels?",
-      answer:
-        "Planning water changes based on nitrate levels helps maintain a healthy aquatic environment by preventing toxic buildup. Excess nitrates can stress fish and promote harmful algae growth. By calculating the exact volume needed, you avoid unnecessary water waste and ensure optimal water quality for your aquatic pets.",
+      question: "How do I calculate the correct water change volume for my aquarium?",
+      answer: "Enter your tank size in gallons, current water condition (nitrate level), and desired water quality improvement. The calculator divides recommended change percentage by tank volume to show exact gallons needed.",
     },
     {
-      question: "How does the nitrate concentration affect the volume of water to change?",
-      answer:
-        "The volume of water to change is directly related to the difference between current and target nitrate concentrations. A higher current nitrate level or a lower target level increases the volume needed to dilute nitrates effectively. This calculation ensures that water changes are efficient and tailored to your aquarium’s specific needs.",
+      question: "What percentage of water should I change weekly?",
+      answer: "Most freshwater tanks need 25–30% weekly changes; heavily stocked or high-bioload tanks may need 40–50%, while lightly stocked tanks can manage 20% changes.",
     },
     {
-      question: "Can I use this calculator for other water parameters besides nitrates?",
-      answer:
-        "While this calculator is designed for nitrate reduction, the underlying principle applies to other soluble parameters that dilute proportionally with water changes. However, some parameters may require different approaches due to chemical interactions or biological factors. Always consult veterinary or aquatic specialist advice for complex water chemistry issues.",
+      question: "Does tank size affect how much water I should change?",
+      answer: "Yes—larger tanks dilute waste more effectively, so a 100-gallon tank may need only 25% changes while a 20-gallon requires 30–40% to maintain similar water quality.",
     },
     {
-      question: "What should I do if my target nitrate level is very low or zero?",
-      answer:
-        "Setting a target nitrate level near zero may require very large or complete water changes, which can stress aquatic life. It’s generally safer to aim for a realistic target based on species tolerance and tank conditions. Gradual reductions with partial water changes help maintain stability and prevent sudden environmental shifts.",
+      question: "Should I adjust water change volume based on fish type?",
+      answer: "Absolutely; goldfish and plecos produce more waste and need 40–50% weekly changes, while bettas and smaller fish may thrive on 20–25% changes.",
     },
+    {
+      question: "How often should I perform water changes of the calculated volume?",
+      answer: "Most aquariums benefit from one full change weekly at the calculated volume, though heavily populated tanks may require two smaller changes per week.",
+    },
+    {
+      question: "Can I use this calculator for saltwater or brackish tanks?",
+      answer: "Yes, but saltwater reef tanks often need smaller, more frequent changes (10–20% twice weekly) due to sensitive chemistry, while fish-only saltwater can follow freshwater guidelines.",
+    },
+    {
+      question: "What if my nitrate levels are very high?",
+      answer: "If nitrates exceed 80 ppm, perform the calculated change, then retest after 3 days and repeat; you may temporarily need larger or more frequent changes until levels drop below 40 ppm.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -206,101 +214,224 @@ export default function AquariumWaterChangeVolumePlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Water Change Volume Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Maintaining optimal water quality is essential for the health and wellbeing of aquatic animals. One of the primary concerns in aquarium management is controlling nitrate levels, which accumulate as a byproduct of fish waste and organic decomposition. Elevated nitrates can cause stress, disease susceptibility, and poor growth in aquatic species, making regular water changes a critical maintenance task.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Water Change Volume Planner is a veterinary-grade tool designed to calculate the precise volume of water that needs to be replaced to achieve a desired reduction in nitrate concentration. By inputting your tank’s current volume and nitrate levels, along with your target nitrate concentration, this calculator provides an evidence-based recommendation to optimize water changes without unnecessary water waste or stress to aquatic life.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This approach ensures that water changes are both effective and efficient, promoting a stable and healthy aquatic environment. It also helps hobbyists and professionals alike to make informed decisions based on scientific principles rather than guesswork, ultimately supporting better animal care and sustainability in aquarium management.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Water Change Volume Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Water Change Volume Planner calculates the exact amount of water to remove and replace during maintenance, based on tank size, fish bioload, and water quality parameters. This ensures your aquarium stays healthy without unnecessary water waste or incomplete waste removal.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your total tank volume in gallons, select your tank type (freshwater, saltwater, planted, or high-bioload), and optionally enter current nitrate or ammonia levels if you've tested your water. The calculator uses these factors to recommend a weekly change percentage and volume.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result shows gallons to change per week, frequency recommendations, and next testing date. Use this guidance to maintain nitrate levels below 40 ppm and sustain a stable, healthy aquatic environment for your fish and plants.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed to provide accurate water change volume recommendations quickly. Begin by selecting your preferred unit system—Imperial for gallons or Metric for liters—to match your aquarium setup. Then, enter the current total volume of your tank, the current nitrate concentration measured in parts per million (ppm), and your target nitrate concentration after the water change.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure or estimate your aquarium’s total water volume accurately.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Test your water to determine the current nitrate concentration using reliable test kits.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Decide on a safe and realistic target nitrate level based on species requirements and water quality guidelines.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Input these values into the calculator and press “Calculate” to receive the recommended volume of water to change.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Perform the water change gradually to avoid stressing your aquatic animals, and retest nitrate levels regularly.
-          </li>
+      {/* TABLE: Recommended Weekly Water Change Volumes by Tank Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Weekly Water Change Volumes by Tank Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these benchmarks with your tank size to determine appropriate change percentages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tank Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stock Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weekly Change %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Change Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Freshwater Community</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once weekly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Goldfish/Plecos</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Any</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40–50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once or twice weekly</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Betta/Small Fish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once weekly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cichlid/High Bioload</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35–40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once to twice weekly</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Planted Tank</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once weekly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Saltwater Reef</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice weekly</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Adjust based on nitrate levels (target &lt;40 ppm) and filter capacity.</p>
+      </section>
+
+      {/* TABLE: Water Change Volume Examples by Tank Size */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Water Change Volume Examples by Tank Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Quick reference for common aquarium sizes at standard 25% and 40% change rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tank Size (gallons)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">25% Change Volume</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">40% Change Volume</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">50% Change Volume</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 gal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 gal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 gal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.75 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27.5 gal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.75 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37.5 gal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 gal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These volumes assume standard percentage-based changes; adjust for bioload and test results.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always match your change volume to actual test results—rising nitrates mean you need larger or more frequent changes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a gravel vacuum during water changes to remove settled waste from the substrate, increasing overall tank health.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Temperature-match replacement water to your tank (within 2°C) to prevent stress and shock to fish.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Schedule water changes on the same day each week to build a consistent maintenance habit and monitor trends.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Tank Bioload</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using a generic 25% change for all tanks ignores stocking density; heavily populated tanks need 40–50% changes to prevent ammonia and nitrate spikes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Changing Water Too Frequently</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Over-changing water removes beneficial bacteria and destabilizes the nitrogen cycle, leading to ammonia swings even with proper filtration.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Testing Before Calculating</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Skipping nitrate or ammonia tests means your calculated volume may be too small or too large for your actual water chemistry needs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Tap Water Without Dechlorinator</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Chlorine in municipal tap water damages fish gills and kills beneficial bacteria; always treat replacement water with a dechlorinator before adding it.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the correct water change volume for my aquarium?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your tank size in gallons, current water condition (nitrate level), and desired water quality improvement. The calculator divides recommended change percentage by tank volume to show exact gallons needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What percentage of water should I change weekly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most freshwater tanks need 25–30% weekly changes; heavily stocked or high-bioload tanks may need 40–50%, while lightly stocked tanks can manage 20% changes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does tank size affect how much water I should change?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—larger tanks dilute waste more effectively, so a 100-gallon tank may need only 25% changes while a 20-gallon requires 30–40% to maintain similar water quality.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust water change volume based on fish type?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absolutely; goldfish and plecos produce more waste and need 40–50% weekly changes, while bettas and smaller fish may thrive on 20–25% changes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I perform water changes of the calculated volume?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most aquariums benefit from one full change weekly at the calculated volume, though heavily populated tanks may require two smaller changes per week.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for saltwater or brackish tanks?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, but saltwater reef tanks often need smaller, more frequent changes (10–20% twice weekly) due to sensitive chemistry, while fish-only saltwater can follow freshwater guidelines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my nitrate levels are very high?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If nitrates exceed 80 ppm, perform the calculated change, then retest after 3 days and repeat; you may temporarily need larger or more frequent changes until levels drop below 40 ppm.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aquaticcommunity.com/aquariumwater/nitrate.php"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Aquatic Community: Understanding Nitrate in Aquariums
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of nitrate sources, effects on aquatic life, and water change strategies to maintain healthy aquarium conditions.
-            </p>
+          <li>
+            <a href="https://www.aquariumcoop.com/blogs/aquarium/aquarium-water-change" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Aquarium Products: Water Change Frequency</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide on water change schedules, percentages, and best practices for freshwater and saltwater tanks.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/hospital/small-animal/clinical-pathology/aquatic-animal-medicine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Veterinary Medicine: Aquatic Animal Medicine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary insights into aquatic animal health, emphasizing water quality parameters and their impact on disease prevention and management.
-            </p>
+          <li>
+            <a href="https://www.fishkeepingworld.com/nitrogen-cycle/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FishKeeping World: Nitrogen Cycle and Water Quality</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Explains how nitrate accumulates, why regular water changes remove it, and target levels for different tank types.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aquariumcarebasics.com/water-changes/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Aquarium Care Basics: Water Changes and Nitrate Control
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guidelines for aquarium water changes, nitrate reduction, and maintaining stable aquatic environments for hobbyists and professionals.
-            </p>
+          <li>
+            <a href="https://www.thesprucepets.com/aquarium-maintenance-schedule-4797385" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce Pets: Aquarium Maintenance Schedule</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Details tank-specific maintenance timelines, including water change volumes and testing intervals for various setups.</p>
+          </li>
+          <li>
+            <a href="https://www.aquariumcoop.com/blogs/aquarium/aquarium-water-parameters" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Aquarium Co-op: Water Parameters and Fish Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Reference for safe ammonia, nitrite, nitrate, and pH ranges across freshwater, planted, and saltwater environments.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

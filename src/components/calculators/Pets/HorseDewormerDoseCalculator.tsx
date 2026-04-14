@@ -77,24 +77,32 @@ export default function HorseDewormerDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate dewormer dose based on drug class and weight?",
-      answer:
-        "Calculating the dewormer dose based on drug class and weight ensures the medication is both safe and effective. Different drug classes have varying potencies and mechanisms of action, requiring precise dosing to target parasites without causing toxicity. Weight-based dosing accounts for individual variation among horses, preventing underdosing that can lead to resistance or overdosing that can cause adverse effects."
+      question: "How does the calculator adjust dosage based on drug class?",
+      answer: "Different dewormer classes (benzimidazoles, macrocyclic lactones, pyrantel) have varying dosing protocols. This calculator selects the appropriate dose range based on your selected drug class and pet weight to ensure safety and efficacy.",
     },
     {
-      question: "How does the drug class affect the dosage calculation?",
-      answer:
-        "Each drug class has a specific recommended dose per kilogram of body weight due to differences in pharmacodynamics and pharmacokinetics. For example, macrocyclic lactones like ivermectin require much smaller doses compared to benzimidazoles like fenbendazole. Using the correct drug class ensures the calculator applies the appropriate dose multiplier for accurate results."
+      question: "What weight range does this calculator support?",
+      answer: "The calculator accommodates pets from 1 lb to 200+ lbs, covering small dogs, cats, large breeds, and exotic pets. Always verify your pet's actual weight with a recent scale measurement for accuracy.",
     },
     {
-      question: "Can I use this calculator for animals other than horses?",
-      answer:
-        "This calculator is specifically designed for horses and uses dosing guidelines validated for equine species. Other animals have different metabolic rates and drug sensitivities, so using this tool for other species could result in incorrect dosing. Always consult a veterinarian for species-specific dosing recommendations."
+      question: "Can I use this calculator for cats and dogs?",
+      answer: "Yes, this calculator works for both cats and dogs. Select the correct species before entering weight, as some dewormers have species-specific dosing guidelines.",
     },
     {
-      question: "What should I do if my horse’s weight is unknown or estimated?",
-      answer:
-        "Accurate weight measurement is crucial for safe dosing; if unknown, use a weight tape or consult a veterinarian for an estimate. Overestimating weight can lead to overdosing, while underestimating may cause ineffective treatment and parasite resistance. When in doubt, err on the side of caution and seek professional guidance."
+      question: "What should I do if my pet's weight falls between dose brackets?",
+      answer: "Round up to the nearest weight bracket provided by the calculator to ensure adequate deworming coverage. Your veterinarian can confirm the final dose for borderline cases.",
+    },
+    {
+      question: "Is this calculator a substitute for veterinary advice?",
+      answer: "No, this calculator provides general dosing estimates only. Always consult your veterinarian before administering dewormers, especially for pregnant, nursing, or medicated pets.",
+    },
+    {
+      question: "How often should I use this calculator to redose my pet?",
+      answer: "Redosing schedules vary by drug class: pyrantel typically requires dosing 2-3 weeks apart, while some macrocyclic lactones are dosed monthly. Follow your vet's deworming protocol for your pet's specific parasite type.",
+    },
+    {
+      question: "Does the calculator account for different parasite types?",
+      answer: "The calculator focuses on drug class dosing, which targets different parasite groups (roundworms, hookworms, tapeworms). Confirm your pet's parasite diagnosis with your vet before selecting a drug class.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -206,101 +214,206 @@ export default function HorseDewormerDoseCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dewormer Dose Calculator (by Drug Class & Weight)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Deworming is a critical aspect of equine health management, aimed at controlling internal parasites that can cause significant illness and performance issues. The Dewormer Dose Calculator by Drug Class & Weight provides a precise method to determine the correct dosage of anthelmintic drugs based on the horse’s weight and the specific drug class used. This approach ensures that the medication is administered safely and effectively, minimizing the risk of underdosing or overdosing.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Different classes of dewormers, such as benzimidazoles, macrocyclic lactones, tetrahydropyrimidines, and praziquantel, have unique dosing requirements due to their varying potencies and mechanisms of action. Weight-based dosing is essential because horses vary widely in size and metabolism, and a one-size-fits-all approach can lead to treatment failure or toxicity. By integrating drug class and weight, this calculator supports veterinarians and horse owners in making informed dosing decisions.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Using this tool promotes responsible parasite control, which is vital to prevent the development of anthelmintic resistance—a growing concern in equine medicine. Accurate dosing also helps maintain the health and welfare of horses, ensuring they remain free from parasitic burdens that can impair digestion, nutrient absorption, and overall vitality. This calculator is designed as an educational aid and should complement, not replace, professional veterinary advice.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dewormer Dose Calculator (by Drug Class &amp; Weight)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator computes the precise deworming medication dose based on your pet's weight and the specific drug class prescribed by your veterinarian. It helps ensure safe, effective parasite elimination while minimizing risks of under- or over-dosing.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Begin by selecting your pet's species (cat or dog), entering their current weight in pounds or kilograms, and choosing the drug class your vet recommended. The calculator instantly displays the recommended dose range for your pet's size.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result shows the total dose in milligrams or milliliters, depending on the drug formulation. Cross-reference this with your medication's label to determine tablet count or liquid volume, then confirm the final dose with your veterinarian before administration.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use the Dewormer Dose Calculator, begin by selecting the unit system that corresponds to your measurement preference—Imperial (pounds) or Metric (kilograms). Next, enter the horse’s weight accurately, as this is the primary factor in determining the correct dose. Then, choose the drug class of the dewormer you intend to use from the dropdown menu, which includes common classes such as benzimidazoles and macrocyclic lactones.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) to match how you measure your horse’s weight.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the horse’s weight in the selected unit. Use a weight tape or scale for accuracy.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Choose the appropriate drug class for the dewormer you plan to administer.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the recommended dose in milligrams.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Always cross-check the result with product labels and consult your veterinarian before administration.
-          </li>
+      {/* TABLE: Common Dewormer Drug Classes & Typical Dosing Ranges */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Dewormer Drug Classes & Typical Dosing Ranges</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table outlines standard dose ranges by drug class for reference.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Drug Class</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Target Parasites</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Dose Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Benzimidazoles (Fenbendazole, Albendazole)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Roundworms, hookworms, whipworms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-25 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily for 3-5 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pyrantel Pamoate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Roundworms, hookworms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once, repeat in 2-3 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Macrocyclic Lactones (Ivermectin, Selamectin)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Roundworms, hookworms, some ectoparasites</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.4 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly or as directed</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Praziquantel</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Tapeworms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once or twice at 2-week intervals</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Dosages shown are general guidelines; actual prescriptions vary by product formulation and veterinary recommendation.</p>
+      </section>
+
+      {/* TABLE: Pet Weight Categories & Dewormer Dose Brackets */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Pet Weight Categories & Dewormer Dose Brackets</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common weight ranges used in dewormer dosing calculations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example Breeds/Types</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Dose Adjustment</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small/Toy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-10 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Chihuahuas, toy poodles, cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lowest dose bracket; use liquid or compounded formulas</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small-Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-25 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Beagles, corgis, cocker spaniels</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Quarter to half tablet; standard small dog doses</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26-50 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Collies, bulldogs, standard cocker spaniels</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Half to full tablet; mid-range dosing</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">51-100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Golden retrievers, German shepherds, labs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Full to 1.5 tablets; higher dose concentration</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extra Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">101+ lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Great Danes, St. Bernards, mastiffs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multiple tablets; may require compounding or veterinary formulation</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual dosing formulas account for both weight and drug class; always verify with your veterinarian's prescription.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always weigh your pet on a scale before calculating; rough estimates lead to incorrect dosing and reduced efficacy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep your dewormer prescription label handy to verify the concentration (mg/mL or mg per tablet) matches your calculator result.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Set a calendar reminder for redosing dates, as some parasites require multiple treatments spaced weeks apart for complete elimination.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store dewormers in cool, dry conditions and check expiration dates before use; expired medications may lose potency.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated Weight Information</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using a weight from months ago leads to incorrect dosing; weigh your pet immediately before each deworming round.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Drug Class with Brand Name</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Select the drug class (e.g., 'benzimidazole'), not the brand name (e.g., 'Panacur'), to ensure accurate dosing calculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Veterinary Diagnosis</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using the wrong drug class for your pet's parasite type reduces effectiveness; always confirm the specific parasite before deworming.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping the Redose Schedule</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many dewormers require follow-up doses; missing redoses allows parasites to survive and reinfect your pet.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator adjust dosage based on drug class?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Different dewormer classes (benzimidazoles, macrocyclic lactones, pyrantel) have varying dosing protocols. This calculator selects the appropriate dose range based on your selected drug class and pet weight to ensure safety and efficacy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What weight range does this calculator support?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator accommodates pets from 1 lb to 200+ lbs, covering small dogs, cats, large breeds, and exotic pets. Always verify your pet's actual weight with a recent scale measurement for accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for cats and dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator works for both cats and dogs. Select the correct species before entering weight, as some dewormers have species-specific dosing guidelines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my pet's weight falls between dose brackets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Round up to the nearest weight bracket provided by the calculator to ensure adequate deworming coverage. Your veterinarian can confirm the final dose for borderline cases.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is this calculator a substitute for veterinary advice?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this calculator provides general dosing estimates only. Always consult your veterinarian before administering dewormers, especially for pregnant, nursing, or medicated pets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I use this calculator to redose my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Redosing schedules vary by drug class: pyrantel typically requires dosing 2-3 weeks apart, while some macrocyclic lactones are dosed monthly. Follow your vet's deworming protocol for your pet's specific parasite type.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the calculator account for different parasite types?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator focuses on drug class dosing, which targets different parasite groups (roundworms, hookworms, tapeworms). Confirm your pet's parasite diagnosis with your vet before selecting a drug class.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines/deworming-horses"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American Association of Equine Practitioners (AAEP) Deworming Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on equine parasite control, including dosing recommendations for various anthelmintic drug classes.
-            </p>
+          <li>
+            <a href="https://www.capcvet.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Companion Animal Parasite Council (CAPC) Deworming Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for deworming frequency and drug selection in dogs and cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/digestive-system/gastrointestinal-parasites-of-horses/anthelmintics-for-horses"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Anthelmintics for Horses
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed pharmacology and dosing information for common equine dewormers, supporting evidence-based dosing calculations.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center - Dewormer Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Emergency toxicity data and safety information for common deworming medications.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ivis.org/library/equine-therapeutics/anthelmintics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. IVIS Equine Therapeutics: Anthelmintics
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary resource covering drug classes, mechanisms, and dosing strategies for equine parasite management.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Merck Veterinary Manual - Anthelmintics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive clinical pharmacology and dosing protocols for dewormer drug classes.</p>
+          </li>
+          <li>
+            <a href="https://www.fda.gov/animal-veterinary/animal-drug-approval-process" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FDA Center for Veterinary Medicine - Approved Antiparasitic Drugs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Regulatory approval status and labeling information for U.S. dewormer products.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

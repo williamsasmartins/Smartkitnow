@@ -54,29 +54,33 @@ export default function CatNailTrimIntervalPlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question:
-        "Why does a cat's activity level affect the recommended nail trim interval?",
-      answer:
-        "Cats with higher activity levels tend to wear down their nails more naturally through frequent movement and scratching. This natural abrasion reduces the need for frequent trims. Conversely, less active cats may require more frequent trims to prevent overgrowth and associated problems.",
+      question: "How does surface type affect nail trim frequency?",
+      answer: "Harder surfaces like concrete and tile naturally wear nails faster, requiring trims every 4-6 weeks, while softer surfaces like carpet and grass require trims every 8-12 weeks.",
     },
     {
-      question:
-        "How does the quality of scratching surfaces influence nail trim frequency?",
-      answer:
-        "High-quality scratching surfaces help cats maintain nail length by providing effective abrasion. When cats regularly use these surfaces, their nails stay shorter and healthier. Poor or insufficient scratching surfaces mean nails grow longer faster, necessitating more frequent trims.",
+      question: "What activity level should I select for my pet?",
+      answer: "High activity pets (running, jumping daily) need trims every 4-6 weeks; moderate activity pets every 6-8 weeks; low activity pets every 8-12 weeks depending on surface exposure.",
     },
     {
-      question:
-        "What are the risks of trimming a cat's nails too frequently or infrequently?",
-      answer:
-        "Trimming nails too frequently can cause discomfort or injury if done improperly, potentially leading to bleeding or infection. On the other hand, infrequent trims can result in overgrown nails that may curl into the paw pads, causing pain and mobility issues. Proper timing balances nail health and cat comfort.",
+      question: "Can indoor vs. outdoor environments change trim intervals?",
+      answer: "Yes—outdoor pets on hard surfaces need more frequent trims (4-5 weeks), while indoor-only pets on carpet may need trims only every 10-12 weeks.",
     },
     {
-      question:
-        "Can this planner replace regular veterinary check-ups for nail health?",
-      answer:
-        "While this planner provides a scientifically informed guideline, it does not replace professional veterinary advice. Regular vet visits ensure comprehensive health assessments, including nail condition. Always consult your veterinarian if you notice abnormalities or behavioral changes related to nail health.",
+      question: "How do I know if my pet's nails are too long?",
+      answer: "Nails touching the ground when standing, clicking sounds while walking, or visible curling indicate overgrowth and the need for immediate trimming.",
     },
+    {
+      question: "Why do some pets need more frequent nail trims than others?",
+      answer: "Breed size, nail growth rate, surface contact, and activity level all influence trim frequency; larger breeds and active dogs generally need more frequent trims.",
+    },
+    {
+      question: "What if my pet spends time on mixed surfaces?",
+      answer: "Average the trim intervals of your pet's primary surfaces; a pet on carpet 70% and tile 30% of the time should follow a schedule between those two intervals.",
+    },
+    {
+      question: "Should trim intervals change seasonally?",
+      answer: "Yes—pets active outdoors in winter may need more frequent trims due to increased hard surface contact, while summer indoor activity may extend intervals.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -185,104 +189,254 @@ export default function CatNailTrimIntervalPlannerCalculator() {
   // 5. EDITORIAL JSX
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Nail Trim Interval Planner (activity/surface based)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Nail health is a critical aspect of feline wellness, directly impacting mobility and comfort. The Nail Trim Interval Planner uses two primary factors—activity level and scratching surface quality—to estimate the optimal frequency for nail trims. Cats with higher activity levels naturally wear down their nails through movement and scratching, reducing the need for frequent trims. Conversely, less active cats or those with poor scratching surfaces may experience faster nail overgrowth, necessitating more regular maintenance.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Scratching surfaces play a vital role in maintaining nail length and health. High-quality, accessible scratching posts or pads provide effective abrasion, helping cats shed the outer nail layers naturally. This reduces the risk of painful overgrowth or ingrown nails. The planner balances these factors scientifically to recommend a personalized nail trim interval, promoting optimal feline paw health and preventing common complications associated with improper nail care.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool is designed to empower cat owners with evidence-based guidance, complementing regular veterinary care. It emphasizes the importance of environmental enrichment and physical activity in nail maintenance. By understanding and applying these principles, owners can ensure their cats maintain healthy nails, enhancing overall quality of life and preventing avoidable injuries or infections.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Nail Trim Interval Planner (activity/surface based)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the ideal nail trimming schedule based on your pet's activity level and the surfaces they contact daily. By accounting for natural wear patterns, it helps you maintain optimal nail health and prevent overgrowth complications.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's primary activity level (high, moderate, or low) and the main surfaces they walk on (carpet, tile, concrete, grass, wood, etc.). The calculator will generate a personalized trim interval tailored to your pet's lifestyle and wear patterns.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show recommended trim frequency in weeks along with warning signs of overgrowth. Use this schedule as a baseline, but monitor your pet's nails monthly and adjust if growth patterns differ from the estimate.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the recommended nail trim interval for your cat based on two key inputs: activity level and scratching surface quality. Both inputs should be rated on a scale from 1 to 5, where 1 represents the lowest and 5 the highest level. The tool then applies a veterinary-informed formula to provide a personalized interval in weeks, helping you plan nail trims effectively.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Assess your cat's daily activity level honestly, considering playtime, movement, and general liveliness.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Evaluate the quality and availability of your cat's scratching surfaces, including posts, pads, or furniture.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter these ratings into the respective fields and click "Calculate" to receive your recommended nail trim interval.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the result to schedule nail trims, adjusting as needed based on your cat's behavior and nail condition.
-          </li>
+      {/* TABLE: Recommended Nail Trim Intervals by Activity & Surface */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Nail Trim Intervals by Activity & Surface</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to find the optimal trimming schedule based on your pet's primary activity level and surface exposure.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Surface Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Trim Interval (weeks)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Signs of Overgrowth</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Concrete/Tile</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Clicking sounds, nails touching ground</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wood/Laminate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Clicking sounds, difficulty gripping</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Carpet/Grass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slight clicking, mild discomfort</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Concrete/Tile</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Nails slightly visible at rest</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wood/Laminate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild clicking when walking</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Carpet/Grass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Nails slightly long at rest</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Concrete/Tile</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Nails curling slightly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Carpet/Grass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overgrowth visible between paws</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Indoor Only</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Carpet/Rug</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Nails visibly long, curling</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Intervals may vary by individual pet; monitor nails monthly and adjust as needed.</p>
+      </section>
+
+      {/* TABLE: Nail Growth Rates by Pet Type & Surface Contact */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Nail Growth Rates by Pet Type & Surface Contact</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated monthly nail growth and recommended trim frequency for common pet scenarios.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Surface Exposure</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Growth (mm)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Optimal Trim Schedule</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High outdoor/concrete</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 4 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mixed indoor/outdoor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High outdoor/concrete</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 4-5 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mixed indoor/outdoor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-7 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Indoor carpet only</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8-10 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Indoor/outdoor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Pet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low activity indoor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 10-12 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Pet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate activity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8-10 weeks</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Growth rates depend on breed, age, nutrition, and nail health; consult your veterinarian for personalized schedules.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check nails monthly visually and by touch, even if trim day hasn't arrived—some pets grow nails faster than average.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Hard surfaces like concrete naturally file nails; pets on carpet may need more frequent trims despite lower activity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Senior pets and those with reduced mobility often need more frequent trims because they wear nails less through activity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Maintain consistent trim schedules to prevent overgrowth cycles and reduce stress during professional grooming sessions.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring indoor surface wear</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Wood and laminate floors cause significant nail wear similar to outdoor surfaces, so don't assume indoor pets always need less frequent trims.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using activity level alone</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A low-activity pet on concrete may still need frequent trims, while a high-activity pet on soft grass may need fewer—surface type matters equally.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping the visual inspection</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Relying solely on calendar schedules without checking nails risks overgrowth; always observe before and after the recommended trim date.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for seasonal changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Winter may increase hard surface contact and summer may change activity patterns, requiring temporary schedule adjustments.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does surface type affect nail trim frequency?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Harder surfaces like concrete and tile naturally wear nails faster, requiring trims every 4-6 weeks, while softer surfaces like carpet and grass require trims every 8-12 weeks.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What activity level should I select for my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High activity pets (running, jumping daily) need trims every 4-6 weeks; moderate activity pets every 6-8 weeks; low activity pets every 8-12 weeks depending on surface exposure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can indoor vs. outdoor environments change trim intervals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—outdoor pets on hard surfaces need more frequent trims (4-5 weeks), while indoor-only pets on carpet may need trims only every 10-12 weeks.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my pet's nails are too long?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Nails touching the ground when standing, clicking sounds while walking, or visible curling indicate overgrowth and the need for immediate trimming.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do some pets need more frequent nail trims than others?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Breed size, nail growth rate, surface contact, and activity level all influence trim frequency; larger breeds and active dogs generally need more frequent trims.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my pet spends time on mixed surfaces?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Average the trim intervals of your pet's primary surfaces; a pet on carpet 70% and tile 30% of the time should follow a schedule between those two intervals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should trim intervals change seasonally?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—pets active outdoors in winter may need more frequent trims due to increased hard surface contact, while summer indoor activity may extend intervals.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/cat-nail-care"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Cornell University Feline Health Center - Cat Nail Care
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide on feline nail health, trimming techniques, and the importance of scratching surfaces.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/dog-care/dog-nail-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Pet Care: Dog Nail Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on recognizing overgrown nails and establishing healthy trimming routines for dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/cat-nail-trimming"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals - Cat Nail Trimming Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary insights on nail trimming frequency, risks of improper trimming, and behavioral considerations.
-            </p>
+          <li>
+            <a href="https://www.humanesociety.org/resources/cat-nail-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Humane Society: Cat Nail Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive information on maintaining cat nail health and trim frequency recommendations.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.petmd.com/cat/care/evr_ct_how_trim_cat_nails"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. PetMD - How to Trim Your Cat's Nails Safely
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical advice on nail care routines, including the role of activity and environmental enrichment.
-            </p>
+          <li>
+            <a href="https://www.avma.org/pets/pet-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary-backed resources on pet grooming standards and nail health best practices.</p>
+          </li>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/nail-trimming" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals: Nail Trimming Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary guidelines for safe nail trimming techniques and interval planning.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

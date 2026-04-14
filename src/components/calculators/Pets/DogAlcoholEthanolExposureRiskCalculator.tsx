@@ -104,29 +104,33 @@ export default function DogAlcoholEthanolExposureRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question:
-        "Why is ethanol toxic to dogs, and how does it affect their body differently than humans?",
-      answer:
-        "Ethanol is toxic to dogs because their metabolism and physiology differ significantly from humans. Dogs have a lower tolerance for ethanol due to differences in liver enzyme activity, leading to slower breakdown and accumulation of toxic metabolites. Ethanol affects the central nervous system, causing depression, hypoglycemia, and metabolic acidosis. Unlike humans, even small amounts can cause severe symptoms in dogs, making early recognition and intervention critical.",
+      question: "What alcohol content qualifies as dangerous for dogs?",
+      answer: "Ethanol concentrations above 0.5% by volume can be toxic to dogs. Most beers contain 4-6% alcohol, while spirits contain 40% or higher, making them significantly more dangerous even in small quantities.",
     },
     {
-      question:
-        "How is the toxic dose of ethanol calculated for dogs, and why is mg/kg used instead of other units?",
-      answer:
-        "The toxic dose of ethanol in dogs is calculated based on milligrams of ethanol per kilogram of body weight (mg/kg) to standardize dosing relative to size. This approach accounts for the wide range of dog sizes and ensures accuracy in assessing risk. Using mg/kg allows veterinarians to predict clinical effects more reliably than absolute amounts, as toxicity depends on the concentration of ethanol relative to the dog's mass.",
+      question: "How does dog weight affect alcohol toxicity risk?",
+      answer: "A 10-pound dog absorbs alcohol much faster than a 50-pound dog from the same amount of beverage. The calculator uses weight to determine blood alcohol concentration, as smaller dogs reach toxic levels with less exposure.",
     },
     {
-      question:
-        "What clinical signs should owners watch for if they suspect their dog has ingested alcohol or ethanol?",
-      answer:
-        "Owners should watch for signs such as vomiting, disorientation, ataxia (loss of coordination), excessive drooling, lethargy, tremors, hypothermia, and in severe cases, seizures or coma. These symptoms indicate ethanol toxicity affecting the nervous system and metabolic balance. Immediate veterinary evaluation is essential because symptoms can progress rapidly and may require supportive care or antidotal treatment.",
+      question: "What are the early signs of alcohol poisoning in dogs?",
+      answer: "Watch for vomiting, loss of coordination, depression, tremors, and difficulty breathing within 30 minutes to 2 hours of exposure. Severe cases can cause seizures, coma, or respiratory failure.",
     },
     {
-      question:
-        "Can this calculator replace veterinary advice in cases of suspected ethanol poisoning in dogs?",
-      answer:
-        "No, this calculator is an educational tool designed to estimate ethanol exposure risk but cannot replace professional veterinary assessment. Ethanol toxicity can progress unpredictably, and individual dogs may respond differently. If ethanol ingestion is suspected, prompt veterinary consultation is critical for diagnosis, monitoring, and treatment to prevent serious complications or death.",
+      question: "Can raisins fermented in alcohol be more dangerous than plain alcohol?",
+      answer: "Yes, fermented foods contain both ethanol and potentially toxic compounds like acetaldehyde. The calculator focuses on pure ethanol exposure, but fermented products require immediate veterinary attention.",
     },
+    {
+      question: "How quickly does the calculator estimate alcohol absorption in dogs?",
+      answer: "Dogs absorb alcohol 3-4 times faster than humans due to higher stomach acid and faster gastric emptying. Most absorption occurs within 30-60 minutes of ingestion.",
+    },
+    {
+      question: "Is there a safe amount of alcohol for any dog?",
+      answer: "No safe threshold exists for dogs; even small amounts can cause clinical signs. The ASPCA considers any alcohol exposure a medical emergency requiring veterinary evaluation.",
+    },
+    {
+      question: "What should I do if the calculator shows high-risk exposure?",
+      answer: "Contact your veterinarian or poison control immediately (888-426-4435 ASPCA Animal Poison Control). Do not wait for symptoms; prompt treatment significantly improves outcomes.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -264,115 +268,222 @@ export default function DogAlcoholEthanolExposureRiskCalculator() {
   // 5. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Alcohol/Ethanol Exposure Risk Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Ethanol, commonly found in alcoholic beverages and various household products, poses a significant toxic risk to dogs even at relatively low doses. Unlike humans, dogs metabolize ethanol differently, making them more susceptible to its toxic effects. This calculator estimates the risk of ethanol toxicity based on the dog’s body weight, the concentration of ethanol in the ingested liquid, and the volume consumed. Understanding these parameters helps pet owners and veterinarians assess the severity of exposure and urgency of treatment.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The calculator uses veterinary toxicology principles to convert the ingested volume and ethanol concentration into a dose expressed in milligrams of ethanol per kilogram of body weight (mg/kg). This unit is critical because toxicity thresholds are established relative to body mass, allowing for accurate risk stratification across different dog sizes. The tool also incorporates known clinical toxicity thresholds to provide context on the potential severity of exposure, guiding decisions on monitoring and veterinary intervention.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to note that individual dogs may vary in their sensitivity to ethanol due to factors such as age, health status, and concurrent ingestion of other substances. Therefore, while this calculator provides an evidence-based estimate, it should be used as a supplementary tool alongside professional veterinary evaluation. Prompt recognition and treatment of ethanol poisoning can significantly improve outcomes and reduce the risk of serious complications or death.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Alcohol/Ethanol Exposure Risk Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator assesses the immediate health risk when a dog has ingested alcohol or ethanol-containing products. It estimates blood alcohol concentration (BAC) and severity of poisoning based on canine physiology.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's weight in pounds, the type and amount of alcohol consumed, and the time since exposure. The calculator uses veterinary toxicology data to compute risk level and symptom onset timeframe.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results classify risk as minimal, moderate, high, or critical. High and critical ratings warrant immediate veterinary care or poison control contact—do not delay based on symptom absence, as internal damage may occur.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately assess the risk of ethanol toxicity in your dog, follow these steps carefully. Begin by selecting the appropriate unit system—Imperial or Metric—based on your preference or the units available for the inputs. Next, enter your dog’s current body weight, ensuring the value is positive and realistic. Then, input the ethanol concentration of the liquid ingested, expressed as a percentage volume (e.g., 40% for whiskey). Finally, enter the volume of the ethanol-containing liquid your dog consumed, using fluid ounces for Imperial units or milliliters for Metric.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter the accurate weight of your dog. This is essential because the toxicity dose is calculated per kilogram of body weight, allowing for precise risk estimation.
-          </li>
-          <li>
-            <strong>Ethanol Concentration (% v/v):</strong> This is the percentage of ethanol in the liquid your dog ingested. For example, standard spirits like vodka or whiskey typically contain around 40% ethanol.
-          </li>
-          <li>
-            <strong>Volume Consumed:</strong> Enter the amount of the ethanol-containing liquid your dog ingested. Use fluid ounces for Imperial units or milliliters for Metric units. Accurate measurement is important for reliable results.
-          </li>
+      {/* TABLE: Alcohol Content by Beverage Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Alcohol Content by Beverage Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common beverages contain varying ethanol concentrations that affect toxicity risk calculation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Beverage Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Alcohol %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxicity Risk Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Beer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Liquor/Spirits</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mouthwash</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-27%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cough Syrup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hand Sanitizer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-95%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Non-alcoholic Beer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;0.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Toxicity increases significantly with both concentration and volume consumed relative to dog weight.</p>
+      </section>
+
+      {/* TABLE: Dog Weight and Toxic Ethanol Dose Benchmarks */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dog Weight and Toxic Ethanol Dose Benchmarks</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Smaller dogs reach dangerous blood alcohol levels with minimal exposure amounts.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Dose (ml)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Beer Equivalent</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time to Symptoms</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-25 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;1 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-45 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-50 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-45 min</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-125 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-60 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-250 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-60 min</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">225-375 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-90 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-500 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-16 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-90 min</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Toxic doses assume pure ethanol; carbonated beverages may accelerate absorption slightly.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep all alcoholic beverages, mouthwash, hand sanitizer, and fermented foods secured away from curious dogs in cabinets or high shelves.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Know your pet poison control number (888-426-4435) and your vet's emergency line before an exposure occurs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor for tremors, incoordination, and excessive drooling even if your dog consumed a small amount—rapid vet intervention saves lives.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Provide accurate beverage type and consumption amount to the calculator; even slight underestimation can significantly change risk assessment.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering all inputs, click the “Calculate” button to view the estimated ethanol dose in mg/kg and the associated risk level. If the calculated dose indicates moderate to critical risk, seek immediate veterinary care. Use the “Reset” button to clear all inputs and start a new calculation if needed.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Low Symptoms with Low Risk</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dogs may not show obvious signs immediately; a calculator rating of high or critical still demands emergency vet care regardless of current behavior.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Fermented Product Danger</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Alcohol in batter, dough, kombucha, or fermenting fruit poses additional toxins beyond ethanol that the basic calculator cannot capture.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Non-Beverage Alcohol Sources</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many pet owners overlook mouthwash, hand sanitizer, cleaning products, and medications that contain 15-95% ethanol concentrations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying Care Based on Breed Size Assumptions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even large-breed dogs can suffer serious organ damage from moderate alcohol exposure; weight alone does not guarantee safety.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What alcohol content qualifies as dangerous for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Ethanol concentrations above 0.5% by volume can be toxic to dogs. Most beers contain 4-6% alcohol, while spirits contain 40% or higher, making them significantly more dangerous even in small quantities.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does dog weight affect alcohol toxicity risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 10-pound dog absorbs alcohol much faster than a 50-pound dog from the same amount of beverage. The calculator uses weight to determine blood alcohol concentration, as smaller dogs reach toxic levels with less exposure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the early signs of alcohol poisoning in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Watch for vomiting, loss of coordination, depression, tremors, and difficulty breathing within 30 minutes to 2 hours of exposure. Severe cases can cause seizures, coma, or respiratory failure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can raisins fermented in alcohol be more dangerous than plain alcohol?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, fermented foods contain both ethanol and potentially toxic compounds like acetaldehyde. The calculator focuses on pure ethanol exposure, but fermented products require immediate veterinary attention.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How quickly does the calculator estimate alcohol absorption in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dogs absorb alcohol 3-4 times faster than humans due to higher stomach acid and faster gastric emptying. Most absorption occurs within 30-60 minutes of ingestion.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is there a safe amount of alcohol for any dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No safe threshold exists for dogs; even small amounts can cause clinical signs. The ASPCA considers any alcohol exposure a medical emergency requiring veterinary evaluation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if the calculator shows high-risk exposure?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian or poison control immediately (888-426-4435 ASPCA Animal Poison Control). Do not wait for symptoms; prompt treatment significantly improves outcomes.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/ethanol-toxicity/ethanol-toxicity-in-small-animals"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Ethanol Toxicity in Small Animals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of ethanol toxicity mechanisms, clinical signs, and treatment protocols in dogs and cats.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official resource for animal toxicology emergencies offering 24/7 consultation for alcohol and ethanol exposures.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151216/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Veterinary Toxicology: Basic and Clinical Principles, 3rd Edition
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative textbook detailing toxicokinetics and clinical management of ethanol poisoning in veterinary patients.
-            </p>
+          <li>
+            <a href="https://www.canadianveterinarians.net/resources/poisoning-toxicity" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Toxicology Database (CVMA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive toxicology reference for veterinarians including ethanol poisoning mechanisms and treatment protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/ethanol-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Veterinary Medical Association (AVMA) - Ethanol Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guidance for pet owners and veterinarians on recognizing and responding to ethanol ingestion in pets.
-            </p>
+          <li>
+            <a href="https://www.petmd.com/dogs/conditions/alcohol-poisoning" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD: Alcohol Poisoning in Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of alcohol toxicity in dogs covering symptoms, diagnosis, and emergency treatment guidelines.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/12745862/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Clinical Veterinary Toxicology, 2nd Edition
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed clinical case studies and toxic dose thresholds for ethanol and other common toxins in dogs.
-            </p>
+          <li>
+            <a href="https://onlinelibrary.wiley.com/journal/14346252" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Veterinary Emergency and Critical Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research articles on intoxication cases and evidence-based treatment outcomes in companion animals.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

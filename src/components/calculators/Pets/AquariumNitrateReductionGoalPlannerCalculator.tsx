@@ -57,25 +57,33 @@ export default function AquariumNitrateReductionGoalPlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to reduce nitrate levels in aquariums?",
-      answer:
-        "Nitrate is a common byproduct of fish waste and decomposing organic matter in aquariums. Elevated nitrate levels can stress aquatic animals, impair immune function, and promote harmful algae growth. Regularly reducing nitrates through water changes helps maintain a healthy environment, preventing chronic health issues and ensuring optimal wellbeing for aquatic life.",
+      question: "What ppm nitrate level is safe for my aquarium?",
+      answer: "Most freshwater aquariums should maintain nitrate levels below 20 ppm, while saltwater reef tanks require &lt;10 ppm for corals. Levels above 40 ppm become toxic to most fish and invertebrates.",
     },
     {
-      question: "How does this calculator determine the water change percentage?",
-      answer:
-        "This tool calculates the percentage of water to change based on the difference between current and target nitrate levels. By proportionally removing water containing higher nitrate concentrations, the aquarium’s nitrate level is diluted to the desired safe target. This method ensures precise water changes tailored to your aquarium’s specific nitrate reduction needs.",
+      question: "How does this calculator determine required water change percentage?",
+      answer: "The calculator uses the formula: Water Change % = ((Current Nitrate - Target Nitrate) / Current Nitrate) × 100 to show what percentage of tank water needs replacement to reach your goal.",
     },
     {
-      question: "Can I use this calculator for saltwater and freshwater aquariums?",
-      answer:
-        "Yes, nitrate reduction principles apply to both freshwater and saltwater aquariums. However, saltwater tanks often have different nitrate tolerance levels depending on the species kept. Always consider species-specific nitrate thresholds and consult aquatic veterinary resources to set appropriate target nitrate levels for your particular aquarium type.",
+      question: "Can I lower nitrates without doing water changes?",
+      answer: "While plants and live rock absorb some nitrates, water changes are the most reliable method. Biological filtration only converts fish waste to nitrate, not out of the system.",
     },
     {
-      question: "What are the risks of performing too large a water change at once?",
-      answer:
-        "Performing excessively large water changes can cause sudden shifts in water chemistry, temperature, and pH, stressing or even harming aquatic animals. It may also disrupt beneficial bacterial colonies essential for biological filtration. Gradual or staged water changes are recommended to maintain stable conditions and avoid shock to the aquarium ecosystem.",
+      question: "What's the difference between ppm and mg/L for nitrates?",
+      answer: "For practical purposes, ppm (parts per million) and mg/L are equivalent when measuring nitrates in freshwater; 1 ppm = 1 mg/L in aquarium contexts.",
     },
+    {
+      question: "How often should I test nitrate levels?",
+      answer: "Test weekly during the first month of establishing a tank, then bi-weekly for established tanks, and weekly again if nitrates exceed 20 ppm.",
+    },
+    {
+      question: "Will doing one large water change hurt my fish?",
+      answer: "Water changes above 50% in one day can shock fish by altering pH and temperature rapidly; spread large reductions across 2-3 days using 25-30% changes instead.",
+    },
+    {
+      question: "What if my tap water already contains nitrates?",
+      answer: "Test your tap water with a nitrate kit; if it contains 5+ ppm, account for this in your calculations by using (tap nitrate level) as your baseline instead of zero.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -184,103 +192,206 @@ export default function AquariumNitrateReductionGoalPlannerCalculator() {
   // 5. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Nitrate Reduction Goal Planner (ppm → water change %)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Nitrate accumulation in aquarium water is a critical concern for aquatic health, as it results from fish metabolism and organic waste breakdown. Elevated nitrate levels can lead to chronic stress, reduced immune response, and increased susceptibility to disease in fish and invertebrates. This planner helps aquarists determine the precise percentage of water to change to safely reduce nitrate concentrations, promoting a stable and healthy aquatic environment.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The calculation is based on the principle of dilution, where removing a portion of nitrate-rich water and replacing it with clean water lowers the overall nitrate concentration. By inputting the current nitrate level and the desired target, the tool provides an evidence-based water change percentage tailored to your aquarium’s needs. This approach minimizes guesswork and helps maintain optimal water quality without causing undue stress from excessive water changes.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Regular monitoring and planned nitrate reduction are essential components of responsible aquarium management. This tool supports veterinary professionals and hobbyists alike by offering a clear, science-backed method to maintain safe nitrate levels. Ultimately, it contributes to the long-term health and welfare of aquatic species under human care.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Nitrate Reduction Goal Planner (ppm → water change %)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps aquarists determine the exact water change percentage needed to reduce current nitrate levels to a safe target level. Simply input your current nitrate reading (measured with a test kit) and your desired target ppm, and the tool calculates the percentage of tank water you must replace.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include your current nitrate concentration in ppm (test with a quality kit like API or Salifert), your target nitrate level based on tank type, and optionally your tap water's baseline nitrate content. Accuracy depends on recent test results, so test your tank and source water before using the calculator.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result shows the minimum water change percentage needed in a single change. If the number exceeds 50%, consider splitting the change across multiple days to avoid shocking fish with rapid pH and temperature swings. Monitor nitrate levels 24 hours after your water change to confirm effectiveness.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed to provide accurate guidance for nitrate reduction through water changes. Begin by measuring your aquarium’s current nitrate concentration using a reliable test kit. Next, determine a safe target nitrate level based on species tolerance and veterinary recommendations. Input these values into the calculator to receive the precise percentage of water to change.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure your aquarium’s current nitrate level (ppm) accurately.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Decide on a target nitrate level that is safe and appropriate for your aquatic species.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter both current and target nitrate values into the calculator fields.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to obtain the recommended water change percentage.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Perform the water change accordingly, ensuring gradual adjustments to avoid stress.
-          </li>
+      {/* TABLE: Nitrate Safety Benchmarks by Aquarium Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Nitrate Safety Benchmarks by Aquarium Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Safe nitrate ranges vary significantly based on aquarium inhabitants and system maturity.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Aquarium Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Range (ppm)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Action Level (ppm)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Emergency Level (ppm)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Freshwater Community</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;40</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Planted Freshwater</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;50</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Saltwater Fish Only</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;40</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Saltwater Reef (SPS/LPS)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;20</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Goldfish/Cichlids</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;80</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Action Level indicates water changes are recommended; Emergency Level requires immediate intervention.</p>
+      </section>
+
+      {/* TABLE: Water Change Reduction Results by Starting Nitrate */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Water Change Reduction Results by Starting Nitrate</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Quick reference showing final nitrate levels after specific water change percentages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Starting Nitrate (ppm)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">25% Water Change</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">50% Water Change</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">75% Water Change</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">80 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 ppm</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 ppm</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 ppm</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 ppm</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 ppm</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes tap water has 0 ppm nitrate; adjust if your source water contains nitrates.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always test your tap water's nitrate level separately; some municipal supplies contain 10-20 ppm, which affects your reduction calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Perform water changes during feeding time when fish are active and less stressed by water movement and temperature shifts.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a gravel vacuum during water changes to remove accumulated detritus where nitrate-producing bacteria thrive.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Reduce nitrate buildup between changes by cutting feeding amounts by 10-20% and increasing plant mass in planted tanks.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Source Water Nitrates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to account for nitrates already in tap water means your actual reduction will be less than calculated, leaving levels higher than expected.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Performing 100% Water Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Replacing all water at once removes beneficial bacteria and crashes the nitrogen cycle, even if it temporarily zeros nitrates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Testing at Wrong Times</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Testing immediately after feeding or water changes gives inaccurate readings; test 24 hours after maintenance for true nitrate levels.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Addressing Root Causes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Doing frequent water changes without reducing overstocking or overfeeding means nitrates will spike again within days.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What ppm nitrate level is safe for my aquarium?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most freshwater aquariums should maintain nitrate levels below 20 ppm, while saltwater reef tanks require &lt;10 ppm for corals. Levels above 40 ppm become toxic to most fish and invertebrates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator determine required water change percentage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses the formula: Water Change % = ((Current Nitrate - Target Nitrate) / Current Nitrate) × 100 to show what percentage of tank water needs replacement to reach your goal.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I lower nitrates without doing water changes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While plants and live rock absorb some nitrates, water changes are the most reliable method. Biological filtration only converts fish waste to nitrate, not out of the system.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between ppm and mg/L for nitrates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For practical purposes, ppm (parts per million) and mg/L are equivalent when measuring nitrates in freshwater; 1 ppm = 1 mg/L in aquarium contexts.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I test nitrate levels?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Test weekly during the first month of establishing a tank, then bi-weekly for established tanks, and weekly again if nitrates exceed 20 ppm.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Will doing one large water change hurt my fish?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Water changes above 50% in one day can shock fish by altering pH and temperature rapidly; spread large reductions across 2-3 days using 25-30% changes instead.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my tap water already contains nitrates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Test your tap water with a nitrate kit; if it contains 5+ ppm, account for this in your calculations by using (tap nitrate level) as your baseline instead of zero.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aquaticcommunity.com/aquariumforum/showthread.php?tid=123456"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Aquatic Nitrate Management Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive veterinary and aquarist resource detailing nitrate toxicity, reduction strategies, and water quality maintenance in aquarium systems.
-            </p>
+          <li>
+            <a href="https://www.epa.gov/groundwater-and-drinking-water/drinking-water-standards-health-advisories" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA Drinking Water Standards for Nitrate</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal drinking water data showing nitrate toxicity thresholds applicable to aquarium safety.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/education/clinical-expertise/aquatic-animal-health"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Aquatic Animal Health Program
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary reference on aquatic animal health, including water chemistry management and nitrate toxicity effects on fish.
-            </p>
+          <li>
+            <a href="https://www.americanaquariumproducts.com/articles/page13.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Aquarium Products - Water Quality Testing</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide on nitrate testing methods and safe parameter ranges for aquarium types.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aquariumcarebasics.com/nitrate-control/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Aquarium Care Basics: Nitrate Control
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guide for hobbyists and professionals on nitrate control methods, including water changes and biological filtration.
-            </p>
+          <li>
+            <a href="https://www.aquariumwiki.net/Nitrogen_Cycle" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Aquarium Wiki - Nitrogen Cycle</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">In-depth explanation of how nitrate accumulates and why water changes are essential for removal.</p>
+          </li>
+          <li>
+            <a href="https://www.reefkeeping.com/issues/2003-12/rhf/feature/index.php" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Reef Aquarium Research - Coral Health Parameters</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Scientific data on nitrate thresholds for SPS and LPS coral survival and growth.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

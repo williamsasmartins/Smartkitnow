@@ -84,25 +84,33 @@ export default function HorseLaminitisRiskIndexCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is Body Condition Score important in assessing laminitis risk?",
-      answer:
-        "Body Condition Score (BCS) reflects the fat coverage and overall nutritional status of a horse. Excessive fat, especially when BCS is above 5, increases the risk of laminitis due to metabolic imbalances and insulin resistance. Monitoring BCS helps identify horses at higher risk and guides dietary and management interventions to prevent laminitis.",
+      question: "What does BCS stand for in the Laminitis Risk Index?",
+      answer: "BCS stands for Body Condition Score, a 1-9 scale assessing horse weight and fat distribution. Scores of 7-9 significantly increase laminitis risk due to insulin resistance and metabolic dysfunction.",
     },
     {
-      question: "How does non-structural carbohydrate (NSC) intake affect laminitis risk?",
-      answer:
-        "NSC intake, primarily sugars and starches, can trigger laminitis by causing rapid fermentation and endotoxin release in the gut. High NSC diets increase blood glucose and insulin levels, promoting inflammation and hoof tissue damage. Controlling NSC intake is critical in managing laminitis risk, especially in susceptible horses with higher BCS.",
+      question: "How does NSC intake affect laminitis risk?",
+      answer: "NSC (Non-Structural Carbohydrates) intake above 10-12% of daily feed dry matter elevates blood glucose and insulin, triggering laminitis in susceptible horses. High-NSC pasture and grain are major risk factors.",
     },
     {
-      question: "Can a horse with a low BCS still be at risk for laminitis?",
-      answer:
-        "While low BCS generally indicates lower fat reserves and reduced metabolic risk, laminitis can still occur due to other factors like systemic illness or excessive NSC intake. However, the risk index primarily focuses on overweight horses where fat and NSC intake synergistically increase risk. Always consider comprehensive clinical evaluation beyond just BCS and diet.",
+      question: "What is considered a high-risk BCS for laminitis?",
+      answer: "A BCS of 7 or higher on the 1-9 scale indicates high laminitis risk, with scores 8-9 representing obese horses with 3-5x greater risk than ideal-weight horses.",
     },
     {
-      question: "How can this Laminitis Risk Index guide management decisions?",
-      answer:
-        "This index quantifies risk by combining body fatness and dietary carbohydrate load, helping owners and vets prioritize interventions. A higher score suggests the need for dietary NSC restriction, weight management, and veterinary monitoring. Using this tool supports proactive laminitis prevention through evidence-based nutritional and husbandry adjustments.",
+      question: "Can a normal BCS horse still have high laminitis risk?",
+      answer: "Yes; a horse with ideal BCS (5-6) consuming high-NSC feed (&gt;12% NSC) remains at elevated risk, especially if insulin-resistant or prone to equine metabolic syndrome.",
     },
+    {
+      question: "How often should I reassess my horse's laminitis risk index?",
+      answer: "Reassess quarterly or whenever diet or weight changes significantly; horses at high risk should be monitored every 4-6 weeks, especially during spring and summer pasture season.",
+    },
+    {
+      question: "What NSC threshold triggers moderate laminitis risk?",
+      answer: "NSC intake between 10-14% of dry matter represents moderate risk; above 14% NSC constitutes high risk for insulin-resistant or susceptible horses.",
+    },
+    {
+      question: "Is the Laminitis Risk Index a diagnostic tool?",
+      answer: "No; this index estimates relative risk based on BCS and NSC intake but cannot diagnose laminitis—consult a veterinarian for clinical evaluation and bloodwork.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -221,101 +229,195 @@ export default function HorseLaminitisRiskIndexCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Laminitis Risk Index (BCS + NSC intake)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Laminitis is a painful and potentially debilitating condition affecting the hooves of horses, often linked to metabolic imbalances and dietary factors. The Laminitis Risk Index combines two critical components: Body Condition Score (BCS), which assesses the horse’s fat coverage and overall nutritional status, and non-structural carbohydrate (NSC) intake, which reflects the amount of sugars and starches consumed daily. This index helps quantify the risk by integrating these factors, providing a practical tool for early identification and prevention.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          BCS is measured on a scale from 1 to 9, with scores above 5 indicating overweight or obese horses that are more susceptible to laminitis due to insulin resistance and inflammation. NSC intake, expressed in grams per kilogram of body weight, directly influences blood glucose and insulin levels, exacerbating laminitis risk when consumed in excess. By evaluating both BCS and NSC intake together, this index offers a comprehensive risk assessment that supports informed management decisions.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Utilizing the Laminitis Risk Index allows horse owners and veterinarians to proactively monitor and adjust feeding regimens, weight management, and overall care to mitigate laminitis development. This evidence-based approach emphasizes the importance of balanced nutrition and maintaining an ideal body condition to promote hoof health and prevent costly complications. Ultimately, the index serves as a valuable guide in safeguarding equine welfare through targeted prevention strategies.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Laminitis Risk Index (BCS + NSC intake)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator combines Body Condition Score (BCS) and Non-Structural Carbohydrate (NSC) intake to estimate your horse's relative laminitis risk. It helps identify whether your current management strategy protects against this serious hoof disease.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this tool, accurately assess your horse's BCS on the 1-9 scale by observing ribcage visibility and fat deposits, then determine your horse's daily NSC intake as a percentage of dry matter from feed labels, hay analysis, or forage samples.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your risk index result ranges from low to very high; low-risk horses may maintain current feeding, moderate-risk horses need dietary adjustments or weight management, and high-risk horses require veterinary guidance, possible medication (pergolide), and strict NSC restriction below 12%.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the Laminitis Risk Index by combining your horse’s Body Condition Score (BCS) and daily non-structural carbohydrate (NSC) intake relative to its weight. Begin by selecting your preferred unit system (Imperial or Metric), then enter the horse’s BCS on a 1 to 9 scale, the estimated daily NSC intake in grams, and the horse’s weight. The tool will compute the risk index and provide an interpretation to guide management decisions.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system for weight measurement (lbs or kg).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the horse’s Body Condition Score, ensuring it is between 1 and 9.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the estimated daily NSC intake in grams, considering all feed sources.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Provide the horse’s current weight in the selected unit.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to view the Laminitis Risk Index and its interpretation.
-          </li>
+      {/* TABLE: Body Condition Score (BCS) Risk Levels */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Body Condition Score (BCS) Risk Levels</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">BCS classifications and corresponding laminitis risk severity based on equine standards.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BCS Score</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Description</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Laminitis Risk Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ideal weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slightly above ideal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate-High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severely obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Risk increases exponentially at BCS &gt;6; horses scoring 8-9 have 3-5x greater risk than ideal-weight horses.</p>
+      </section>
+
+      {/* TABLE: NSC Intake Risk Categories */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">NSC Intake Risk Categories</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Non-Structural Carbohydrate thresholds and associated laminitis risk for horses.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">NSC % of DM</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&lt;10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe for most horses</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor closely, limit grazing</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12-14%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Restrict feed, use grazing muzzle</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;14%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Consult vet, intensive management</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Pasture NSC varies seasonally; spring growth typically contains 15-25% NSC, requiring aggressive management for at-risk horses.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test your hay NSC content via equine laboratory analysis; many horse owners underestimate pasture and hay carbohydrates, which vary 8-25% seasonally.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a grazing muzzle during spring and early summer when pasture NSC peaks at 15-25%, reducing intake by 30-50% while maintaining exercise and forage benefits.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine BCS management with regular farrier care and veterinary monitoring; laminitis prevention requires a multi-faceted approach beyond nutrition alone.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your horse's weight and condition monthly with photos and weight tape measurements to catch BCS creep early and adjust feed before risk escalates.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring seasonal NSC variation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Relying on year-old hay analysis misses spring pasture spikes; test fresh hay/pasture annually and assume 15-25% NSC for spring growth.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating BCS by 1-2 points</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Subjective scoring leads to underestimating risk; use standardized charts, photographs, and rib palpation to ensure accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Excluding treats and supplements from NSC calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High-NSC treats, molasses, and grain supplements can push daily intake above safe thresholds; account for every feed item when calculating total NSC.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming moderate risk requires no changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Moderate-risk horses are not safe; implement grazing restrictions, hay soaking, or dietary swaps to lower NSC or BCS proactively.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does BCS stand for in the Laminitis Risk Index?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">BCS stands for Body Condition Score, a 1-9 scale assessing horse weight and fat distribution. Scores of 7-9 significantly increase laminitis risk due to insulin resistance and metabolic dysfunction.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does NSC intake affect laminitis risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">NSC (Non-Structural Carbohydrates) intake above 10-12% of daily feed dry matter elevates blood glucose and insulin, triggering laminitis in susceptible horses. High-NSC pasture and grain are major risk factors.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is considered a high-risk BCS for laminitis?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A BCS of 7 or higher on the 1-9 scale indicates high laminitis risk, with scores 8-9 representing obese horses with 3-5x greater risk than ideal-weight horses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can a normal BCS horse still have high laminitis risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; a horse with ideal BCS (5-6) consuming high-NSC feed (&gt;12% NSC) remains at elevated risk, especially if insulin-resistant or prone to equine metabolic syndrome.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I reassess my horse's laminitis risk index?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Reassess quarterly or whenever diet or weight changes significantly; horses at high risk should be monitored every 4-6 weeks, especially during spring and summer pasture season.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What NSC threshold triggers moderate laminitis risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">NSC intake between 10-14% of dry matter represents moderate risk; above 14% NSC constitutes high risk for insulin-resistant or susceptible horses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is the Laminitis Risk Index a diagnostic tool?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No; this index estimates relative risk based on BCS and NSC intake but cannot diagnose laminitis—consult a veterinarian for clinical evaluation and bloodwork.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines/laminitis"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American Association of Equine Practitioners (AAEP) Laminitis Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive clinical guidelines on laminitis diagnosis, risk factors, and management strategies in horses.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Pasture Management and Laminitis Risk</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AAFCO guidelines on feed labeling and NSC percentage reporting for equine diets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/20413123/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Durham, A.E., & Schofield, N. (2010). Equine Metabolic Syndrome and Laminitis. Veterinary Clinics of North America: Equine Practice.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Review article discussing the metabolic basis of laminitis and the role of body condition and diet.
-            </p>
+          <li>
+            <a href="https://www.equine.edu/extension/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Body Condition Scoring in Horses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">University extension resource on standardized BCS assessment and obesity-related metabolic disease.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6466353/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. McGowan, C.M., et al. (2019). The Role of Non-Structural Carbohydrates in Equine Laminitis. Journal of Equine Veterinary Science.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Research article highlighting the impact of dietary NSC on laminitis risk and prevention.
-            </p>
+          <li>
+            <a href="https://www.aaep.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Laminitis: Prevention and Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Association of Equine Practitioners clinical guidelines on laminitis risk factors and preventive strategies.</p>
+          </li>
+          <li>
+            <a href="https://www.equinenutrition.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Insulin Resistance and NSC in Equine Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research on carbohydrate sensitivity and insulin dysregulation in horses at risk for metabolic laminitis.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

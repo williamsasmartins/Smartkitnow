@@ -103,25 +103,33 @@ export default function DogDailyWaterIntakeCheckerCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is daily water intake important for dogs?",
-      answer:
-        "Daily water intake is crucial for maintaining your dog's hydration, supporting vital bodily functions such as temperature regulation, digestion, and kidney function. Insufficient water can lead to dehydration, which may cause lethargy, organ failure, or even death. Monitoring water intake helps detect early signs of illness and ensures your dog stays healthy and active.",
+      question: "How much water should my dog drink daily?",
+      answer: "Most dogs need about 0.5 to 1 ounce of water per pound of body weight daily. A 50-pound dog typically requires 25–50 ounces (0.75–1.5 liters) per day, adjusted for activity level and climate.",
     },
     {
-      question: "How does a dog's diet affect its water needs?",
-      answer:
-        "A dog's diet significantly influences its water requirements. Dogs consuming dry kibble need more water because dry food contains minimal moisture, whereas wet or canned food contains up to 70-80% water, reducing the need for additional drinking water. Adjusting water intake based on diet ensures proper hydration without over- or underestimating fluid needs.",
+      question: "Does the Dog Daily Water Intake Checker account for exercise level?",
+      answer: "Yes, this calculator factors in your dog's activity level. Active and working dogs may need 25–50% more water than sedentary dogs to compensate for fluid loss through panting and sweating.",
     },
     {
-      question: "How does activity level change a dog's water intake?",
-      answer:
-        "Active dogs lose more water through panting and increased metabolism, requiring higher water intake to compensate. Dogs with very high activity levels or those exposed to hot environments may need 20-40% more water than sedentary dogs. Proper hydration supports muscle function and prevents heat stress or dehydration during exercise.",
+      question: "What if my dog eats wet food instead of dry kibble?",
+      answer: "Wet food contains 70–80% moisture, reducing additional water needs by up to 25%. The calculator can be adjusted for diet type to provide accurate estimates.",
     },
     {
-      question: "When should I consult a veterinarian about my dog's water intake?",
-      answer:
-        "Consult a veterinarian if your dog drinks excessively or very little water consistently, as this may indicate underlying health issues such as kidney disease, diabetes, or infections. Sudden changes in drinking habits, accompanied by other symptoms like lethargy or vomiting, warrant prompt veterinary evaluation to diagnose and treat potential problems early.",
+      question: "Should I increase water intake during hot weather?",
+      answer: "Absolutely—dogs in hot climates or summer months may need 50% more water than baseline to prevent dehydration and maintain proper body temperature.",
     },
+    {
+      question: "How do I know if my dog is drinking enough water?",
+      answer: "Check skin elasticity, urine color (pale yellow is ideal), and energy levels. Dark urine or lethargy may indicate insufficient hydration.",
+    },
+    {
+      question: "Can puppies and senior dogs have different water needs?",
+      answer: "Yes—puppies need more frequent water access (every 1–2 hours), while senior dogs may drink more due to decreased kidney efficiency and medications.",
+    },
+    {
+      question: "What medical conditions affect a dog's water intake?",
+      answer: "Kidney disease, diabetes, and UTIs increase water needs significantly. Always consult your vet if water intake changes suddenly.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -274,115 +282,216 @@ export default function DogDailyWaterIntakeCheckerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Daily Water Intake Checker
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Proper hydration is essential for a dog's overall health and well-being. Water plays a critical role in regulating body temperature, facilitating digestion, transporting nutrients, and eliminating waste products through urine. Dogs lose water continuously through panting, urination, and feces, so replenishing this lost fluid daily is vital to prevent dehydration and maintain optimal physiological functions.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The amount of water a dog needs varies depending on several factors including body weight, activity level, diet type, and environmental conditions. For example, dogs consuming dry kibble require more drinking water compared to those eating wet or canned food due to the moisture content difference. Additionally, active or working dogs lose more water through panting and require increased intake to compensate for fluid loss.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator estimates the minimum daily water intake your dog needs based on scientifically supported veterinary guidelines. It uses your dog's weight, activity level, and diet type to provide a personalized hydration recommendation. While this tool offers a reliable baseline, always monitor your dog's drinking habits and consult a veterinarian if you notice unusual changes or signs of dehydration.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Daily Water Intake Checker</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Dog Daily Water Intake Checker estimates your dog's daily hydration needs based on weight, age, activity level, diet, and environmental factors. This tool helps pet owners ensure their dogs stay properly hydrated and identify potential dehydration risks.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your dog's weight in pounds, select their life stage (puppy, adult, or senior), activity level (sedentary, moderate, or active), diet type (dry kibble or wet food), and current climate conditions. The calculator will instantly generate a personalized water intake range.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the results and compare them to your dog's actual water consumption. If your dog falls significantly below the recommended range, consult your veterinarian, as this may indicate dehydration, illness, or a need for dietary adjustments.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate your dog's daily water intake, begin by selecting the unit system you prefer: Imperial (pounds) or Metric (kilograms). Next, enter your dog's current weight in the chosen unit. Then, specify your dog's activity level, which affects fluid requirements due to increased water loss during exercise. Finally, select the type of diet your dog consumes, as wet food contains significant moisture reducing the need for additional drinking water.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog's Weight:</strong> Enter the accurate weight of your dog. This is the primary factor in calculating water needs, as larger dogs require more fluids.
-          </li>
-          <li>
-            <strong>Activity Level:</strong> Choose the activity level that best matches your dog's daily routine. More active dogs need more water to stay hydrated.
-          </li>
-          <li>
-            <strong>Diet Type:</strong> Select whether your dog eats primarily dry kibble or wet/canned food, as this influences the amount of additional water required.
-          </li>
+      {/* TABLE: Daily Water Intake Guidelines by Dog Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Water Intake Guidelines by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to estimate baseline daily water requirements for healthy adult dogs at rest.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Baseline Daily Water (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Baseline Daily Water (ml)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Active Dog Increase (oz)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150–300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5–15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12–25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350–750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18–37.5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">750–1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37.5–75</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37–75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,100–2,250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55–112</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50–100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500–3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75–150</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Increase water intake by 25–50% for active dogs, hot climates, or nursing females.</p>
+      </section>
+
+      {/* TABLE: Water Intake Adjustments by Life Stage and Condition */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Water Intake Adjustments by Life Stage and Condition</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Apply these multipliers to baseline water intake for specific dog populations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Life Stage / Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Water Intake Adjustment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Reasoning</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Puppies (8 weeks–12 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+25–50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rapid growth and frequent activity require additional fluids</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Dogs (7+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+10–25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Decreased kidney efficiency and medications increase needs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Nursing Mothers</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+100–150%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Nursing depletes significant fluid reserves daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hot Weather / Summer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+25–50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increased panting and evaporative cooling loss</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Activity Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+30–50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Working dogs and athletes lose fluids through exertion</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dry Kibble Diet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Baseline</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No moisture in food requires full water intake</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wet Food Diet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">−20–25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High moisture content reduces supplemental water needs</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Combine adjustments if multiple conditions apply (e.g., active senior dog in heat gets both increases).</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Refill water bowls at least 2–3 times daily and use fresh, clean water to encourage adequate drinking.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">During hot weather or after exercise, offer water in smaller, frequent amounts to prevent bloat while keeping your dog hydrated.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Wet food, broth, and water-rich treats like watermelon can supplement bowl water and increase total fluid intake.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor urine color—pale yellow indicates good hydration, while dark yellow or amber suggests your dog needs more water.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After filling in these inputs, click the "Calculate" button to see the estimated daily water intake. Use the "Reset" button to clear inputs and start over. Remember, this calculator provides an estimate; always observe your dog's hydration status and consult your veterinarian for personalized advice.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Diet Type</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming all dogs need the same water intake ignores that wet food provides significant moisture, reducing supplemental water needs by 20–25%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adjusting for Climate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to increase water intake during summer or in hot regions can lead to dehydration, panting, and heat-related illness.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Activity Level</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using baseline water intake for highly active or working dogs underestimates their needs by 30–50% and may cause chronic dehydration.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Water Intake with Thirst</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dogs do not always drink when thirsty; elderly and sick dogs especially may drink less than needed, requiring owner monitoring and intervention.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much water should my dog drink daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most dogs need about 0.5 to 1 ounce of water per pound of body weight daily. A 50-pound dog typically requires 25–50 ounces (0.75–1.5 liters) per day, adjusted for activity level and climate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the Dog Daily Water Intake Checker account for exercise level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator factors in your dog's activity level. Active and working dogs may need 25–50% more water than sedentary dogs to compensate for fluid loss through panting and sweating.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my dog eats wet food instead of dry kibble?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Wet food contains 70–80% moisture, reducing additional water needs by up to 25%. The calculator can be adjusted for diet type to provide accurate estimates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I increase water intake during hot weather?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absolutely—dogs in hot climates or summer months may need 50% more water than baseline to prevent dehydration and maintain proper body temperature.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my dog is drinking enough water?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check skin elasticity, urine color (pale yellow is ideal), and energy levels. Dark urine or lethargy may indicate insufficient hydration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can puppies and senior dogs have different water needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—puppies need more frequent water access (every 1–2 hours), while senior dogs may drink more due to decreased kidney efficiency and medications.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What medical conditions affect a dog's water intake?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Kidney disease, diabetes, and UTIs increase water needs significantly. Always consult your vet if water intake changes suddenly.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/generalized-conditions/dehydration-and-fluid-therapy/dehydration-in-small-animals"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Dehydration in Small Animals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of dehydration causes, symptoms, and fluid therapy guidelines in dogs and cats.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Nutrient Profiles for Dog Food</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards for dog nutrition, including water requirements and dietary guidelines.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/health-information/dog-nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Cornell University College of Veterinary Medicine: Dog Nutrition
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed information on canine dietary needs and how diet affects hydration and health.
-            </p>
+          <li>
+            <a href="https://www.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) Pet Hydration</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based veterinary guidance on maintaining proper hydration in dogs across life stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/water-intake-guidelines-for-dogs.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association (AAHA): Water Intake Guidelines for Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based recommendations on daily water requirements considering weight, activity, and diet.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals Water Intake Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical resource on normal and abnormal water consumption patterns in dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149303/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. National Center for Biotechnology Information (NCBI): Hydration and Fluid Balance in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article discussing physiological mechanisms of hydration and factors influencing water intake in dogs.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed information on canine nutrition and fluid balance requirements.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

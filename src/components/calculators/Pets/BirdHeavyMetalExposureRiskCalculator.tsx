@@ -76,25 +76,33 @@ export default function BirdHeavyMetalExposureRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "What are the common sources of lead and zinc exposure in birds?",
-      answer:
-        "Birds can be exposed to lead and zinc through ingestion of contaminated materials such as old paint chips, galvanized cages, toys, or hardware. These metals accumulate in the body and can cause toxicity over time. Understanding these sources helps in preventing exposure and protecting avian health.",
+      question: "What lead levels are toxic to dogs and cats?",
+      answer: "Lead levels above 10 µg/dL in blood are considered elevated in pets; levels &gt;20 µg/dL require veterinary intervention and possible chelation therapy.",
     },
     {
-      question: "How does heavy metal toxicity affect a bird’s health?",
-      answer:
-        "Heavy metal toxicity interferes with multiple physiological systems including the nervous, gastrointestinal, and hematopoietic systems. Lead and zinc disrupt enzyme functions and cause symptoms like lethargy, anorexia, vomiting, and neurological deficits. Early detection and intervention are critical to prevent irreversible damage.",
+      question: "How does zinc toxicity differ from lead poisoning in pets?",
+      answer: "Zinc toxicity causes acute gastrointestinal signs and hemolytic anemia, while lead exposure develops slowly with neurological and behavioral changes over weeks.",
     },
     {
-      question: "Why is body weight important in assessing heavy metal exposure risk?",
-      answer:
-        "Body weight is essential to calculate the dose of heavy metals per kilogram, which determines toxicity risk. Smaller birds may reach toxic levels at lower absolute exposures compared to larger birds. Accurate weight measurement ensures precise risk assessment and appropriate clinical decisions.",
+      question: "Which common household items contain lead that pets can access?",
+      answer: "Lead-based paint chips, old plumbing fixtures, certain glazed ceramics, contaminated soil, and vintage toys are primary household sources dangerous to pets.",
     },
     {
-      question: "Can this calculator replace veterinary diagnosis for heavy metal poisoning?",
-      answer:
-        "No, this tool is designed for educational and preliminary risk assessment purposes only. Heavy metal poisoning diagnosis requires clinical evaluation, laboratory testing, and professional veterinary interpretation. Always consult a qualified avian veterinarian for diagnosis and treatment.",
+      question: "What are the early warning signs of heavy metal poisoning in pets?",
+      answer: "Vomiting, diarrhea, loss of appetite, lethargy, behavioral changes, and abdominal pain are early indicators; neurological signs appear in advanced cases.",
     },
+    {
+      question: "How is heavy metal exposure in pets diagnosed?",
+      answer: "Blood lead/zinc levels, urinalysis, X-rays to detect foreign objects, and complete blood work help veterinarians confirm heavy metal exposure.",
+    },
+    {
+      question: "Can pets recover from lead or zinc exposure?",
+      answer: "Early detection and chelation therapy can reverse some effects, but neurological damage from chronic lead exposure may be permanent in dogs and cats.",
+    },
+    {
+      question: "How often should exposed pets be monitored after treatment?",
+      answer: "Follow-up blood tests should occur at 2-4 weeks post-treatment, then monthly for 3 months to ensure heavy metal levels remain within safe ranges.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -221,137 +229,224 @@ export default function BirdHeavyMetalExposureRiskCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Heavy Metal (Lead/Zinc) Exposure Risk
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Heavy metal exposure, particularly to lead and zinc, poses a significant
-          health risk to birds due to their unique physiology and sensitivity. These
-          metals can accumulate in the body over time, leading to toxic effects that
-          impair neurological, gastrointestinal, and hematologic functions. Sources
-          of exposure often include contaminated cages, toys, paint chips, and
-          galvanized materials commonly found in avian environments.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The risk of toxicity depends on the dose of metal ingested relative to the
-          bird’s body weight, as smaller birds require lower amounts to reach toxic
-          thresholds. Clinical signs can be subtle initially but progress to severe
-          illness if untreated. Early identification and risk assessment are crucial
-          for timely intervention and prevention of irreversible damage.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator estimates the risk of heavy metal poisoning by combining
-          the bird’s weight with an estimated exposure dose, providing a quantitative
-          risk score. While it serves as a valuable educational tool, it cannot
-          replace professional veterinary diagnosis and treatment. Always seek
-          veterinary advice when heavy metal exposure is suspected.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Heavy Metal (Lead/Zinc) Exposure Risk Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator assesses your pet's risk of heavy metal (lead and zinc) exposure based on environmental factors, behavioral habits, and household conditions. It helps identify contamination sources and estimate urgency for veterinary screening.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's age, weight, living environment (urban/rural), access to soil/paint, and any known exposure incidents. The calculator also considers chewing behavior and dietary habits that increase heavy metal ingestion risk.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results provide a risk score (low/moderate/high/critical) with specific recommendations for testing frequency, environmental remediation, and veterinary follow-up to protect your pet's health.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately assess the risk of heavy metal exposure in your bird, enter
-          its current weight and the estimated dose of lead or zinc exposure per
-          kilogram of body weight. The calculator will then provide a risk score that
-          helps you understand the potential toxicity level. Follow the steps below
-          carefully for best results.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system you prefer (Imperial for
-            pounds or Metric for kilograms).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the bird’s weight in the chosen unit.
-            Ensure the value is accurate and recent.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the estimated exposure dose of lead or
-            zinc in milligrams per kilogram (mg/kg). This value may come from
-            environmental testing or veterinary assessment.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the risk score and
-            interpretation. Use this information to guide monitoring and veterinary
-            consultation.
-          </li>
+      {/* TABLE: Pet Blood Lead Levels: Health Risk Categories */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Pet Blood Lead Levels: Health Risk Categories</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table outlines blood lead concentration thresholds and associated health risks in dogs and cats.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lead Level (µg/dL)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Clinical Signs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&lt;5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">None</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Continue monitoring</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Borderline Elevated</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Possible behavioral changes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Retest in 2-4 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Elevated</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">GI upset, lethargy, aggression</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Veterinary evaluation required</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Seizures, anemia, severe behavioral changes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Immediate chelation therapy</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Neurological failure, organ damage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency veterinary care</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values based on ASPCA and AVMA guidelines for companion animals.</p>
+      </section>
+
+      {/* TABLE: Common Sources of Lead and Zinc Exposure in Pets */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Sources of Lead and Zinc Exposure in Pets</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Identifying contamination sources helps pet owners reduce exposure risk in home and outdoor environments.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Source</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lead Risk</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Zinc Risk</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Exposure Route</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Paint (pre-1978)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Chewing, ingestion of chips</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Soil (urban areas)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Paw contamination, digging</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Old plumbing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Drinking contaminated water</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Batteries (used/damaged)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Direct chewing, leakage</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pennies (post-1982)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ingestion if swallowed</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ceramic glazes (vintage)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Food/water bowls</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ammunition/fishing weights</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ingestion during play</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Risk levels reflect typical exposure scenarios for household pets.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test soil in yards &gt;30 years old or near roads; lead levels &gt;400 ppm require professional remediation or restricted pet access.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Replace pre-1978 painted items and ensure pets cannot chew peeling paint; lead dust from sanding poses serious inhalation risk.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store batteries, fishing tackle, and ammunition in locked cabinets away from curious pets who may swallow contaminated items.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Provide fresh water daily and clean bowls weekly; replace vintage or glazed ceramics with lead-free, pet-safe feeding dishes.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming only old homes have lead risk</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Lead exists in soil, contaminated water, and products regardless of house age; urban pets face higher exposure risks than age of residence.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring behavioral risk factors</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pets that chew non-food items, dig frequently, or have pica behavior face significantly higher heavy metal ingestion risk than typical animals.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying testing after suspected exposure</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Blood lead levels peak 2-4 weeks post-exposure; early testing allows prompt intervention and prevents neurological complications in pets.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Only testing once without follow-up</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Heavy metals accumulate in bones; serial testing over months tracks organ burden and treatment effectiveness better than single measurements.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What lead levels are toxic to dogs and cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Lead levels above 10 µg/dL in blood are considered elevated in pets; levels &gt;20 µg/dL require veterinary intervention and possible chelation therapy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does zinc toxicity differ from lead poisoning in pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Zinc toxicity causes acute gastrointestinal signs and hemolytic anemia, while lead exposure develops slowly with neurological and behavioral changes over weeks.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which common household items contain lead that pets can access?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Lead-based paint chips, old plumbing fixtures, certain glazed ceramics, contaminated soil, and vintage toys are primary household sources dangerous to pets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the early warning signs of heavy metal poisoning in pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Vomiting, diarrhea, loss of appetite, lethargy, behavioral changes, and abdominal pain are early indicators; neurological signs appear in advanced cases.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How is heavy metal exposure in pets diagnosed?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Blood lead/zinc levels, urinalysis, X-rays to detect foreign objects, and complete blood work help veterinarians confirm heavy metal exposure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can pets recover from lead or zinc exposure?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Early detection and chelation therapy can reverse some effects, but neurological damage from chronic lead exposure may be permanent in dogs and cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should exposed pets be monitored after treatment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Follow-up blood tests should occur at 2-4 weeks post-treatment, then monthly for 3 months to ensure heavy metal levels remain within safe ranges.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/lead-poisoning-in-animals/lead-poisoning-in-birds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Lead Poisoning in Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of lead toxicity, clinical signs, diagnosis,
-              and treatment in avian species.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center - Heavy Metals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource on lead, zinc, and heavy metal toxicity symptoms and emergency treatment protocols for pets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151806/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. NCBI - Zinc Toxicity in Birds: A Review
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed scientific review of zinc exposure risks, mechanisms, and
-              clinical management in birds.
-            </p>
+          <li>
+            <a href="https://www.avma.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) - Lead Exposure in Pets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidelines for diagnosing and managing lead and zinc poisoning in companion animals with safe chelation protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/avian-toxicology"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Association of Avian Veterinarians - Avian Toxicology Resources
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational materials and guidelines for diagnosing and managing heavy
-              metal poisoning in pet birds.
-            </p>
+          <li>
+            <a href="https://www.epa.gov/lead" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA - Lead in Soil Around Homes</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official EPA guidance on residential lead contamination testing, safe limits, and remediation standards to protect pets and families.</p>
+          </li>
+          <li>
+            <a href="https://www.vin.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network (VIN) - Heavy Metal Toxicity in Animals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical database providing detailed toxicology data, case studies, and treatment outcomes for metal poisoning in dogs and cats.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

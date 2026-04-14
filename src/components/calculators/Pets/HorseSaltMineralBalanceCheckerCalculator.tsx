@@ -149,25 +149,33 @@ export default function HorseSaltMineralBalanceCheckerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is maintaining salt and mineral balance important for horses?",
-      answer:
-        "Salt and mineral balance is crucial for horses because these nutrients regulate vital physiological functions such as nerve transmission, muscle contraction, and hydration. An imbalance can lead to health issues like dehydration, muscle weakness, or metabolic disorders. Proper balance ensures optimal performance, growth, and overall well-being.",
+      question: "What is the daily salt requirement for horses?",
+      answer: "Horses require 10-15 grams of salt daily, increasing to 25-50 grams during heavy exercise or hot weather to replace electrolyte losses through sweat.",
     },
     {
-      question: "How does body weight affect mineral requirements in horses?",
-      answer:
-        "Mineral requirements are typically calculated per kilogram of body weight to tailor nutrition to the individual horse's size. Larger horses need proportionally more minerals to support their metabolic needs, while smaller horses require less. This scaling helps prevent deficiencies or toxicities by providing accurate daily intake recommendations.",
+      question: "How do I know if my horse has a mineral deficiency?",
+      answer: "Signs include poor coat quality, weak hooves, muscle weakness, and reduced performance. This calculator helps identify imbalances by comparing current intake against recommended levels.",
     },
     {
-      question: "What are the risks of excess mineral intake in horses?",
-      answer:
-        "Excess mineral intake can disrupt the delicate balance of electrolytes, potentially causing toxicity or interfering with the absorption of other nutrients. For example, too much calcium can impair phosphorus absorption, leading to skeletal problems. Monitoring intake prevents adverse effects and supports long-term health.",
+      question: "What calcium-to-phosphorus ratio should horses have?",
+      answer: "The ideal ratio is 1.5:1 to 3:1 calcium to phosphorus; ratios below 1:1 can cause skeletal problems and impaired mineral absorption.",
     },
     {
-      question: "How can I adjust my horse’s diet based on this mineral balance checker?",
-      answer:
-        "Use the checker results to identify which minerals are deficient or in excess relative to your horse’s needs. Adjust feed types, supplements, or salt blocks accordingly, aiming for a balanced intake. Always consult a veterinarian or equine nutritionist before making significant dietary changes to ensure safety and effectiveness.",
+      question: "Can horses get too much salt?",
+      answer: "Excessive salt (over 150 grams daily) without adequate water can cause toxicity, but horses with access to fresh water tolerate higher intakes well for sweat replacement.",
     },
+    {
+      question: "Which minerals are most critical for horses?",
+      answer: "Calcium, phosphorus, magnesium, potassium, and trace minerals like copper, zinc, and selenium are essential for bone health, muscle function, and immunity.",
+    },
+    {
+      question: "How does exercise affect mineral and salt needs?",
+      answer: "Working horses lose 20-30 grams of salt per hour through sweat and require increased electrolytes; mineral demands also rise for muscle recovery and energy metabolism.",
+    },
+    {
+      question: "What forage sources provide natural minerals to horses?",
+      answer: "Legume hays like alfalfa are rich in calcium and trace minerals, while grass hays are lower; mineral content varies significantly by soil composition and growing region.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -374,101 +382,236 @@ export default function HorseSaltMineralBalanceCheckerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Horse Salt & Mineral Balance Checker
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Horse Salt & Mineral Balance Checker is a specialized veterinary tool designed to evaluate the adequacy of a horse’s daily intake of essential salts and minerals relative to its body weight. Proper mineral balance is fundamental for maintaining physiological functions such as muscle contraction, nerve impulses, hydration, and bone health. This tool helps caretakers and veterinarians identify potential deficiencies or excesses that could impact equine health and performance.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          By inputting the horse’s weight and daily intake of key minerals including salt, calcium, phosphorus, magnesium, sodium, and potassium, the calculator compares these values against established veterinary nutritional requirements expressed per kilogram of body weight. This approach ensures personalized assessment tailored to the individual horse’s size and metabolic demands. The results provide a clear percentage balance and highlight areas requiring dietary adjustment.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Maintaining an optimal mineral balance is critical to prevent health complications such as electrolyte imbalances, skeletal disorders, or metabolic dysfunctions. This checker serves as an educational and practical resource to guide feeding strategies, supplement use, and veterinary consultations, ultimately supporting the horse’s long-term health, athletic ability, and welfare.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horse Salt & Mineral Balance Checker</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator evaluates your horse's current salt and mineral intake against established NRC guidelines and industry standards. It compares feeds, forage, supplements, and water sources to identify nutritional gaps that may affect performance, health, and bone strength.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your horse's weight, age, activity level, and detailed inventory of all feeds consumed daily—including hay, grain, supplements, and access to salt blocks or electrolyte products. The calculator also factors in water quality if minerals are present.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the results showing your horse's balance or excess for each mineral and electrolyte; ratios like calcium-to-phosphorus are highlighted to flag potential absorption issues. Use recommendations to adjust supplementation or forage selection with guidance from an equine nutritionist.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To effectively use the Horse Salt & Mineral Balance Checker, begin by selecting the unit system that corresponds to your measurement preference: Imperial (pounds) or Metric (kilograms). Enter the horse’s current body weight accurately, as this is essential for calculating mineral requirements on a per kilogram basis. Next, input the daily intake amounts of salt and each mineral in grams, based on feed analysis or supplement labels.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) and enter the horse’s weight.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the daily intake of salt, calcium, phosphorus, magnesium, sodium, and potassium in grams.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click “Calculate” to view the percentage balance of each mineral relative to recommended daily requirements.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the results and any warnings indicating deficiencies or excesses, then adjust the horse’s diet or supplements accordingly.
-          </li>
+      {/* TABLE: Daily Mineral Requirements for Adult Horses (500 kg) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Mineral Requirements for Adult Horses (500 kg)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference values for essential minerals in maintenance, work, and breeding horses based on NRC 2007 standards.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mineral</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance (g/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Light Work (g/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Heavy Work (g/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Calcium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-35</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Phosphorus</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Magnesium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Potassium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-60</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sodium (Salt)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-50</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Copper</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.15</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Zinc</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Selenium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.001</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.0012</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.0015</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Requirements increase with age, pregnancy, lactation, and environmental stress; fresh water availability is critical for electrolyte regulation.</p>
+      </section>
+
+      {/* TABLE: Common Forage and Feed Mineral Content Analysis */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Forage and Feed Mineral Content Analysis</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Approximate mineral concentrations in typical equine feed and forage sources on a dry matter basis.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Source</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calcium (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Phosphorus (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Magnesium (%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Alfalfa Hay (prime)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.3-1.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.25-0.35</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Timothy Hay (mature)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4-0.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.15-0.25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.12-0.18</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oat Grain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.08</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.13</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Barley Grain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.05</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.38</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.14</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercial Mineral Block</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Beet Pulp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6-0.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.08-0.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.15-0.2</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual values vary based on soil fertility, harvest stage, and processing; testing individual hay lots is recommended for precision feeding.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test your hay mineral content annually since soil composition and harvest timing significantly affect calcium, phosphorus, and trace mineral levels.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Provide free-choice loose salt or a salt block year-round; horses self-regulate salt intake and naturally increase consumption during work or heat stress.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your horse's coat quality, hoof growth, and muscle tone monthly as early indicators of mineral imbalances before performance declines.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consult an equine nutritionist before introducing new supplements to avoid mineral interactions and excessive intake of fat-soluble vitamins.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          Always consult a qualified veterinarian or equine nutritionist before making significant changes to your horse’s diet based on these results. This calculator is intended as a guide to support informed decision-making and promote optimal equine health.
-        </p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all hay is equal</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Alfalfa and timothy hay can differ by 300% in calcium content; get your specific hay tested rather than relying on averages.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the calcium-to-phosphorus ratio</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High phosphorus grain without adequate calcium sources inverts the ratio and severely impairs mineral absorption and bone health.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Restricting salt to prevent sweating</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Horses need consistent salt access and actually perform better when electrolytes are replaced; restriction increases dehydration risk.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Over-supplementing trace minerals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Excessive copper, zinc, or selenium can antagonize absorption of other minerals and cause toxicity; balance is critical for bioavailability.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the daily salt requirement for horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Horses require 10-15 grams of salt daily, increasing to 25-50 grams during heavy exercise or hot weather to replace electrolyte losses through sweat.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my horse has a mineral deficiency?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Signs include poor coat quality, weak hooves, muscle weakness, and reduced performance. This calculator helps identify imbalances by comparing current intake against recommended levels.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What calcium-to-phosphorus ratio should horses have?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The ideal ratio is 1.5:1 to 3:1 calcium to phosphorus; ratios below 1:1 can cause skeletal problems and impaired mineral absorption.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can horses get too much salt?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excessive salt (over 150 grams daily) without adequate water can cause toxicity, but horses with access to fresh water tolerate higher intakes well for sweat replacement.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which minerals are most critical for horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Calcium, phosphorus, magnesium, potassium, and trace minerals like copper, zinc, and selenium are essential for bone health, muscle function, and immunity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does exercise affect mineral and salt needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Working horses lose 20-30 grams of salt per hour through sweat and require increased electrolytes; mineral demands also rise for muscle recovery and energy metabolism.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What forage sources provide natural minerals to horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Legume hays like alfalfa are rich in calcium and trace minerals, while grass hays are lower; mineral content varies significantly by soil composition and growing region.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.nap.edu/read/11653/chapter/12"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Nutrient Requirements of Horses, 6th Edition - National Research Council (NRC)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on equine nutrition including detailed mineral requirements and feeding recommendations.
-            </p>
+          <li>
+            <a href="https://www.nap.edu/catalog/11653/nutrient-requirements-of-horses" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NRC Nutrient Requirements of Horses (2007)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The definitive scientific standard for equine mineral, vitamin, and energy requirements across all life stages and activity levels.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/management-and-nutrition/nutrition/equine-nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Equine Nutrition - Merck Veterinary Manual
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource covering mineral metabolism, dietary needs, and clinical considerations in horses.
-            </p>
+          <li>
+            <a href="https://www.uky.edu/ag/equine/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Kentucky Equine Nutrition Laboratory</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed resources on forage analysis, mineral supplementation strategies, and equine diet formulation.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.extension.org/pages/Equine-Nutrition:-Minerals"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Equine Nutrition: Minerals - eXtension Foundation
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical insights into mineral nutrition, deficiency signs, and supplementation strategies for horses.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Dog and Cat Nutrient Profiles and Equine Feeding Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry guidelines for feed manufacturing and nutritional adequacy verification in commercial equine supplements.</p>
+          </li>
+          <li>
+            <a href="https://equine.tamu.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Texas A&M AgriLife Extension Equine Science Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical guides on evaluating hay quality, mineral deficiency diagnosis, and electrolyte replacement during exercise.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

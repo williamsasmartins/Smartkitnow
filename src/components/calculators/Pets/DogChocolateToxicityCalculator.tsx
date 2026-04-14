@@ -83,25 +83,33 @@ export default function DogChocolateToxicityCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is theobromine toxic to dogs but not humans?",
-      answer:
-        "Theobromine is metabolized much more slowly in dogs than in humans, leading to accumulation and toxic effects. Dogs lack the efficient enzymes to break down theobromine quickly, so even small amounts can cause symptoms. This difference in metabolism explains why chocolate is safe for humans but potentially dangerous for dogs, necessitating careful monitoring and prevention.",
+      question: "How does the calculator determine if chocolate is toxic to my dog?",
+      answer: "The calculator uses your dog's weight, chocolate type (dark, milk, or white), and amount consumed to estimate theobromine levels against the toxic threshold of 20 mg/kg body weight.",
     },
     {
-      question: "How does the type of chocolate affect toxicity risk in dogs?",
-      answer:
-        "Different chocolates contain varying levels of theobromine, the toxic compound for dogs. Dark and baking chocolates have much higher concentrations than milk or white chocolate. Therefore, ingestion of smaller amounts of dark chocolate can be more dangerous than larger amounts of milk chocolate. Understanding chocolate type is crucial for accurate toxicity risk assessment and timely veterinary intervention.",
+      question: "What's the difference between dark, milk, and white chocolate toxicity?",
+      answer: "Dark chocolate contains 130-450 mg theobromine per ounce, milk chocolate 3-12 mg per ounce, and white chocolate 0 mg since it contains no cocoa solids.",
     },
     {
-      question: "What symptoms indicate chocolate poisoning in dogs?",
-      answer:
-        "Symptoms typically appear within 6 to 12 hours and include vomiting, diarrhea, restlessness, increased heart rate, tremors, and seizures in severe cases. These signs result from theobromine’s stimulant effects on the central nervous and cardiovascular systems. Early recognition and veterinary care are essential to prevent progression to life-threatening complications.",
+      question: "At what theobromine dose does chocolate become dangerous for dogs?",
+      answer: "Mild signs appear at 20 mg/kg, moderate symptoms at 40-50 mg/kg, and severe toxicity occurs above 60 mg/kg of body weight.",
     },
     {
-      question: "Can all dogs tolerate the same amount of theobromine?",
-      answer:
-        "No, tolerance varies based on size, age, health status, and individual sensitivity. Smaller dogs are at higher risk because the toxic dose is calculated per kilogram of body weight. Puppies, elderly dogs, and those with pre-existing conditions may also be more vulnerable. This variability underscores the importance of calculating toxicity risk individually rather than using generic guidelines.",
+      question: "Can I use this calculator for all dog breeds and sizes?",
+      answer: "Yes, the calculator works for any dog weight from toy breeds to large dogs since toxicity is based on body weight and theobromine concentration.",
     },
+    {
+      question: "What should I do if the calculator shows toxic levels?",
+      answer: "Contact your veterinarian or pet poison control immediately; they may recommend induced vomiting or activated charcoal depending on timing and amount.",
+    },
+    {
+      question: "Is baking chocolate more dangerous than chocolate bars?",
+      answer: "Yes, baking chocolate contains 390-450 mg theobromine per ounce compared to 130-450 mg in dark chocolate, making it significantly more toxic.",
+    },
+    {
+      question: "How quickly do chocolate toxicity symptoms appear in dogs?",
+      answer: "Symptoms typically develop within 6-12 hours of ingestion and may include vomiting, diarrhea, restlessness, and rapid heart rate.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -245,109 +253,200 @@ export default function DogChocolateToxicityCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Chocolate Toxicity Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Chocolate toxicity in dogs is primarily caused by theobromine, a bitter alkaloid found in cacao plants. Unlike humans, dogs metabolize theobromine very slowly, which allows it to accumulate in their system and cause toxic effects. The severity of poisoning depends on the amount ingested relative to the dog’s weight, as well as the type of chocolate consumed, since theobromine concentration varies widely among chocolate types.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator estimates the dose of theobromine ingested per kilogram of the dog’s body weight, which is the key metric veterinarians use to assess toxicity risk. By inputting the dog’s weight, the type of chocolate, and the amount consumed, the tool provides an evidence-based risk level and guidance on urgency for veterinary care. This approach helps pet owners make informed decisions quickly in emergency situations.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Chocolate Toxicity Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates whether your dog has ingested a toxic amount of chocolate based on their weight, the chocolate type, and quantity consumed. It provides risk assessment to help you decide if veterinary care is needed.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's weight in pounds or kilograms, select the chocolate type (dark, milk, or white), and input the amount your dog ate. The calculator will compute total theobromine exposure and compare it against known toxicity thresholds.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results indicate safe, mild, moderate, or severe toxicity levels. Any result above the safe threshold warrants a veterinary consultation, especially if ingestion occurred recently.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately assess the risk of chocolate poisoning in your dog, follow these steps carefully. First, select the unit system you prefer—imperial (pounds) or metric (kilograms)—to enter your dog’s weight. Next, choose the type of chocolate your dog has ingested from the dropdown menu, as different chocolates contain varying levels of theobromine. Finally, enter the amount of chocolate consumed in grams.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter your dog’s current weight accurately. This is essential because toxicity thresholds are calculated per kilogram of body weight.
-          </li>
-          <li>
-            <strong>Chocolate Type:</strong> Select the exact type of chocolate ingested. Darker chocolates contain higher theobromine concentrations and pose greater risks.
-          </li>
-          <li>
-            <strong>Chocolate Amount:</strong> Input the estimated amount of chocolate your dog ate, measured in grams. Even small amounts of baking or dark chocolate can be dangerous.
-          </li>
+      {/* TABLE: Theobromine Content by Chocolate Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Theobromine Content by Chocolate Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different chocolate types contain varying concentrations of theobromine, the toxic compound affecting dogs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Chocolate Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Theobromine per Ounce</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxicity Risk Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">White Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">None</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Milk Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-12 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dark Chocolate (50-69%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">130-200 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dark Chocolate (70-85%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-350 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Baking Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">390-450 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cocoa Powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800-1,600 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Toxicity risk increases significantly with cocoa solids concentration.</p>
+      </section>
+
+      {/* TABLE: Chocolate Toxicity Dose Thresholds for Dogs */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Chocolate Toxicity Dose Thresholds for Dogs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These benchmarks show at what theobromine levels dogs experience different severity symptoms.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Theobromine Dose (mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expected Symptoms</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&lt;20 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No symptoms expected</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-40 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, diarrhea, tremors</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40-60 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Restlessness, rapid heart rate, muscle tremors</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;60 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Seizures, cardiac arrhythmia, possible death</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Smaller dogs reach toxic levels with smaller chocolate amounts than large dogs.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep chocolate products in sealed containers stored above counter height since dogs can't distinguish toxic from safe foods.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Cocoa mulch used in gardens contains theobromine and poses toxicity risk; use pet-safe alternatives like cedar chips.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Smaller dogs and toy breeds reach toxic theobromine levels much faster than large breeds with the same chocolate amount.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Contact your vet within 2-4 hours of chocolate ingestion for best treatment outcomes before symptoms develop.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all chocolate is equally dangerous</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">White and milk chocolate are far less toxic than dark chocolate; a 20-pound dog needs over 2 pounds of milk chocolate to reach dangerous levels but only 1 ounce of baking chocolate.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring dog weight in calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 5-pound Chihuahua reaches toxic levels 4 times faster than a 20-pound Beagle with the same chocolate amount.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Waiting for symptoms before seeking help</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Theobromine toxicity is cumulative; waiting 12-24 hours for symptoms reduces treatment effectiveness since absorption is already complete.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for chocolate in processed foods</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Brownies, chocolate chips in cookies, and chocolate-covered items contain concentrated chocolate that's more dangerous than plain candy bars.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator determine if chocolate is toxic to my dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your dog's weight, chocolate type (dark, milk, or white), and amount consumed to estimate theobromine levels against the toxic threshold of 20 mg/kg body weight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between dark, milk, and white chocolate toxicity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dark chocolate contains 130-450 mg theobromine per ounce, milk chocolate 3-12 mg per ounce, and white chocolate 0 mg since it contains no cocoa solids.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what theobromine dose does chocolate become dangerous for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mild signs appear at 20 mg/kg, moderate symptoms at 40-50 mg/kg, and severe toxicity occurs above 60 mg/kg of body weight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for all dog breeds and sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator works for any dog weight from toy breeds to large dogs since toxicity is based on body weight and theobromine concentration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if the calculator shows toxic levels?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian or pet poison control immediately; they may recommend induced vomiting or activated charcoal depending on timing and amount.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is baking chocolate more dangerous than chocolate bars?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, baking chocolate contains 390-450 mg theobromine per ounce compared to 130-450 mg in dark chocolate, making it significantly more toxic.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How quickly do chocolate toxicity symptoms appear in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Symptoms typically develop within 6-12 hours of ingestion and may include vomiting, diarrhea, restlessness, and rapid heart rate.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chocolate"
-              className="text-blue-600 font-bold hover:underline text-lg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              1. ASPCA Animal Poison Control Center - Chocolate Toxicity in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on chocolate poisoning symptoms, toxic doses, and emergency treatment protocols.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative U.S. resource for immediate pet toxicity guidance and emergency contacts.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/chocolate-toxicity/theobromine-and-caffeine-toxicity"
-              className="text-blue-600 font-bold hover:underline text-lg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              2. Merck Veterinary Manual - Theobromine and Caffeine Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed veterinary review of the pharmacology, clinical signs, and treatment of theobromine poisoning in dogs.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/poison/chocolate/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Provides detailed chocolate toxicity information with case-specific veterinary consultation available 24/7.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151208/"
-              className="text-blue-600 font-bold hover:underline text-lg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              3. National Institutes of Health - Pharmacokinetics of Theobromine in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific study analyzing the metabolism and toxicokinetics of theobromine in canine species.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources/pet-owners/petcare/chocolate-toxicity-dogs" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official veterinary guidance on chocolate poisoning symptoms, treatment, and prevention strategies.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/chocolate-toxicity-in-dogs"
-              className="text-blue-600 font-bold hover:underline text-lg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              4. VCA Hospitals - Chocolate Toxicity in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical veterinary advice on recognizing chocolate poisoning and recommended emergency responses.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/chocolate-toxicity-in-dogs" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals Chocolate Toxicity Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of theobromine metabolism in dogs and recommended emergency veterinary responses.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

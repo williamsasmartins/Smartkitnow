@@ -80,29 +80,33 @@ export default function CatRestingActiveHoursBalanceTrackerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question:
-        "Why is it important to balance resting and active hours for cats?",
-      answer:
-        "Cats require a healthy balance between resting and active hours to maintain optimal physical and mental health. Resting allows for tissue repair and energy conservation, while active hours promote muscle tone, cardiovascular health, and mental stimulation. An imbalance can indicate stress, illness, or behavioral issues that may require veterinary attention.",
+      question: "What is the ideal balance between resting and active hours for pets?",
+      answer: "Most adult pets need 12-16 hours of rest daily, with remaining hours split between active play, training, and socializing. Puppies and senior pets require more rest (16-18 hours), while young adults thrive on 4-6 active hours.",
     },
     {
-      question:
-        "How can owners accurately track their cat's resting and active hours?",
-      answer:
-        "Owners can observe their cat's daily routine by noting periods of sleep, rest, and play or movement throughout the day. Using a journal or digital tracker helps record these hours consistently over several days to identify patterns. Accurate tracking is essential to detect deviations from normal behavior that might signal health problems.",
+      question: "How does this tracker help me monitor my pet's daily routine?",
+      answer: "By logging resting and active hours, you can identify patterns in your pet's behavior and ensure they're meeting species-specific rest requirements for optimal health and mood.",
     },
     {
-      question:
-        "What does a low active to resting hours ratio indicate in cats?",
-      answer:
-        "A low ratio suggests the cat is spending much more time resting than being active, which could be a sign of lethargy, pain, or underlying illness. While cats naturally sleep a lot, significant decreases in activity warrant a veterinary evaluation to rule out medical or environmental causes. Early detection helps improve outcomes through timely intervention.",
+      question: "Should I count naps and short rest periods separately?",
+      answer: "Yes, log all rest periods including naps longer than 15 minutes to get an accurate picture of total rest time, which directly impacts your pet's energy levels and behavior.",
     },
     {
-      question:
-        "Can a very high active to resting hours ratio be harmful to cats?",
-      answer:
-        "Yes, excessive activity with insufficient rest can lead to fatigue, stress, and increased risk of injury in cats. While young or playful cats may have higher activity levels, sustained imbalance may indicate anxiety or environmental stressors. Monitoring and providing a calm environment with adequate rest opportunities is crucial for wellbeing.",
+      question: "What counts as 'active hours' in this tracker?",
+      answer: "Active hours include walking, playing, training, exploring, and any activity that elevates your pet's heart rate or mental engagement above baseline resting state.",
     },
+    {
+      question: "How often should I update the tracker for accuracy?",
+      answer: "Log entries daily or every few days to maintain accurate averages; weekly reviews help identify imbalances before behavioral or health issues develop.",
+    },
+    {
+      question: "Can this tracker work for multiple pets with different schedules?",
+      answer: "Yes, create separate entries for each pet since age, breed, and health status affect ideal rest-to-activity ratios significantly.",
+    },
+    {
+      question: "What should I do if my pet's active hours are consistently too low?",
+      answer: "Gradually increase activity with age-appropriate exercise, enrichment toys, and interactive play sessions; consult a vet if lethargy persists despite increased opportunities for activity.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -210,114 +214,218 @@ export default function CatRestingActiveHoursBalanceTrackerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Resting vs. Active Hours Balance Tracker (owner input)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Cats are known for their unique activity patterns, alternating between extended periods of rest and bursts of activity. Monitoring the balance between resting and active hours is crucial for understanding a cat’s overall health and wellbeing. This tracker allows owners to input observed resting and active hours to assess whether their cat maintains a healthy lifestyle or if there might be underlying concerns requiring attention.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Resting hours encompass sleep and calm inactivity, which are essential for tissue repair, immune function, and energy conservation. Active hours include play, exploration, and movement, which stimulate cardiovascular health, muscle tone, and mental engagement. An imbalance in these hours can indicate stress, illness, or behavioral issues, making this tracker a valuable tool for early detection and intervention.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By regularly tracking and evaluating the ratio of active to resting hours, owners can better understand their cat’s daily routine and identify deviations from normal behavior. This proactive approach supports timely veterinary consultations and tailored care plans, ultimately promoting a longer, healthier life for feline companions.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Resting vs. Active Hours Balance Tracker (owner input)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you track and balance your pet's daily resting and active hours to ensure they meet age-specific health and behavioral needs. By logging these hours consistently, you can identify patterns that indicate whether your pet is getting optimal exercise and recovery.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's age, species, and breed, then log the hours your pet spends at rest (sleeping, napping, quiet lounging) versus actively engaged (playing, training, walking, exploring). Be as precise as possible, including even short naps and play sessions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The tracker compares your logged hours against evidence-based benchmarks for your pet's life stage and size. Results show whether your pet is underactive, balanced, or overactive, helping you adjust routines to support better health, mood, and behavior.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps you determine the balance between your cat’s resting and active hours based on your observations. To use it effectively, you should monitor your cat’s behavior over a typical 24-hour period, noting the time spent resting and the time spent active. Input these values into the respective fields and click “Calculate” to receive an interpretation of the balance ratio.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Observe your cat for a full day, recording the hours spent resting (sleeping or calm inactivity).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Record the hours your cat spends active, including playing, exploring, and moving around.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the recorded resting and active hours into the calculator inputs.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the active to resting hours ratio and interpret the results.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the insights to monitor your cat’s health and consult a veterinarian if the balance indicates potential concerns.
-          </li>
+      {/* TABLE: Recommended Daily Rest vs. Active Hours by Pet Age */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Daily Rest vs. Active Hours by Pet Age</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these benchmarks to evaluate whether your pet's logged hours align with healthy development stages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Life Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Rest Hours (Minimum)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Active Hours (Target)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Key Considerations</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Puppies (0-6 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Growth and immunity development require extended rest</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Young Dogs (6-18 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High energy but still developing—avoid overexertion</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Dogs (1-7 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Peak activity capacity for most breeds</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Dogs (7+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Joint health and reduced stamina require more rest</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kittens (0-6 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Play sessions should be short and frequent</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Cats (1-10 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Indoor cats need structured activity time</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Cats (10+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Comfort and minimal stress are priorities</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rest hours should include nighttime sleep plus daytime naps. Active hours are cumulative across all activities.</p>
+      </section>
+
+      {/* TABLE: Activity Level Indicators and Rest-to-Activity Ratios */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Activity Level Indicators and Rest-to-Activity Ratios</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Monitor these signs to assess if your logged hours match your pet's actual behavior patterns.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Level Classification</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Rest:Active Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Behavioral Signs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Underactive</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18:4 or worse</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weight gain, lethargy, destructive behavior, excessive sleeping</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increase playtime gradually by 15-30 minutes daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Balanced</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14:8 to 16:6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Alertness, healthy weight, good mood, consistent sleep patterns</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maintain current routine with minor adjustments seasonally</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderately Active</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12:10 to 14:8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good energy without hyperactivity, responsive training, steady appetite</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor for overexertion in hot weather or with seniors</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overactive</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10:12 or more</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Restlessness, sleep disruption, jumping/nipping, difficulty focusing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add calming enrichment, reduce high-intensity sessions, check stress levels</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rest ratios are expressed as hours of rest to hours of activity. Ratios vary by breed, health status, and seasonal factors.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a simple notebook or phone timer during the day to log active sessions, then transfer cumulative hours to the tracker weekly for accuracy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Rainy days and seasonal changes affect activity levels—track patterns across seasons to identify when your pet needs supplemental indoor enrichment.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Puppies and senior pets need shorter, frequent activity bursts rather than one long session to prevent joint stress and overexertion.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If your pet shows sudden changes in rest or activity patterns, log them for 2-3 weeks before consulting a vet to provide concrete behavioral data.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Counting passive sitting as active time</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Watching out a window or sitting nearby while you play doesn't count as active hours; only logged movement and engagement qualify.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring overnight sleep differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pets sleeping 10 hours at night plus daytime naps may exceed recommended rest; don't overlook nighttime hours when calculating daily totals.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using one-time activity spikes to set weekly averages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A single long hike or play session shouldn't skew your weekly average; aim for consistent daily activity levels rather than boom-and-bust patterns.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Applying adult benchmarks to puppies or seniors</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using young-adult rest-to-activity ratios for puppies or elderly pets can lead to overexertion; always adjust expectations by life stage.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the ideal balance between resting and active hours for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most adult pets need 12-16 hours of rest daily, with remaining hours split between active play, training, and socializing. Puppies and senior pets require more rest (16-18 hours), while young adults thrive on 4-6 active hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this tracker help me monitor my pet's daily routine?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">By logging resting and active hours, you can identify patterns in your pet's behavior and ensure they're meeting species-specific rest requirements for optimal health and mood.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I count naps and short rest periods separately?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, log all rest periods including naps longer than 15 minutes to get an accurate picture of total rest time, which directly impacts your pet's energy levels and behavior.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What counts as 'active hours' in this tracker?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Active hours include walking, playing, training, exploring, and any activity that elevates your pet's heart rate or mental engagement above baseline resting state.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I update the tracker for accuracy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Log entries daily or every few days to maintain accurate averages; weekly reviews help identify imbalances before behavioral or health issues develop.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this tracker work for multiple pets with different schedules?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, create separate entries for each pet since age, breed, and health status affect ideal rest-to-activity ratios significantly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my pet's active hours are consistently too low?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gradually increase activity with age-appropriate exercise, enrichment toys, and interactive play sessions; consult a vet if lethargy persists despite increased opportunities for activity.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/cat-behavior"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Cornell University College of Veterinary Medicine - Cat Behavior
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource on feline behavior patterns including activity and rest cycles.
-            </p>
+          <li>
+            <a href="https://www.akc.org/dog-breeds/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Kennel Club – Exercise Needs by Breed</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official breed-specific exercise and activity recommendations to customize daily targets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/clinical-sciences/behavioral-medicine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Veterinary Medicine - Behavioral Medicine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Insights into feline activity, rest, and behavioral health assessments.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA – Pet Care and Behavior</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidelines on rest, activity, enrichment, and behavioral health for dogs and cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/cat-behavior-and-training"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Veterinary Medical Association - Cat Behavior and Training
-            </a>
-            <p className="text-slate-500 text-sm">
-              Guidelines on understanding and managing cat activity and rest for optimal health.
-            </p>
+          <li>
+            <a href="https://icatcare.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care – Activity and Enrichment</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed advice on feline rest patterns, play behavior, and age-related activity adjustments.</p>
+          </li>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/senior-pets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals – Senior Pet Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Medical guidance on rest requirements and safe activity modifications for aging dogs and cats.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

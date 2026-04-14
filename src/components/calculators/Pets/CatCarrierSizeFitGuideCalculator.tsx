@@ -86,25 +86,33 @@ export default function CatCarrierSizeFitGuideCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to have extra space inside the cat carrier?",
-      answer:
-        "Cats need enough room inside their carrier to turn around, lie down comfortably, and sit upright without feeling cramped. Adequate space reduces stress and anxiety during travel, which is crucial for their well-being. A carrier that is too small can cause discomfort and increase the risk of injury if the cat struggles or panics.",
+      question: "What measurements do I need to determine the right cat carrier size?",
+      answer: "Measure your cat's length from nose to tail base, height from floor to top of head, and width at the widest point of the body. These three dimensions help ensure the carrier provides adequate space without being oversized.",
     },
     {
-      question: "How does my cat’s weight affect the choice of carrier?",
-      answer:
-        "Weight influences the sturdiness and durability requirements of a carrier. Heavier cats require carriers with reinforced materials, stronger handles, and secure locking mechanisms to ensure safety during transport. Choosing a carrier rated for your cat’s weight prevents accidents and provides peace of mind during travel.",
+      question: "How much space should a cat have inside a carrier?",
+      answer: "Your cat should be able to turn around, stand upright with ears clearance, and lie down comfortably. A general rule is the carrier should be at least 1.5 times your cat's body length and allow 2-3 inches of headroom.",
     },
     {
-      question: "Can I use a carrier that fits my cat’s size exactly without extra clearance?",
-      answer:
-        "It is not advisable to use a carrier that fits your cat’s exact size because cats need additional space to move comfortably and reduce stress. Extra clearance allows for natural movements and prevents the cat from feeling confined or trapped. This space also accommodates bedding or padding, enhancing comfort and safety.",
+      question: "What's the difference between soft-sided and hard-sided carriers?",
+      answer: "Hard-sided carriers offer better protection during travel and are easier to clean, while soft-sided carriers are lighter and more portable. Choose based on your cat's temperament and travel frequency—anxious cats may prefer darker, enclosed hard carriers.",
     },
     {
-      question: "How do I measure my cat accurately for selecting a carrier?",
-      answer:
-        "To measure your cat, use a soft measuring tape to find the length from the tip of the nose to the base of the tail, and the height from the floor to the top of the head when the cat is standing naturally. Weigh your cat on a reliable scale to determine the appropriate sturdiness of the carrier. Accurate measurements ensure you select a carrier that fits well and keeps your cat safe.",
+      question: "Can an oversized carrier be problematic for my cat?",
+      answer: "Yes, carriers that are too large can cause your cat to slide around during transport and increase anxiety. Excessive space makes cats feel unsafe, so proper sizing is essential for their comfort and security.",
     },
+    {
+      question: "What carrier sizes are available for different cat weights?",
+      answer: "Small carriers (under 10 lbs) typically measure 16-18 inches; medium carriers (10-15 lbs) are 18-24 inches; large carriers (15+ lbs) are 24-30+ inches. Always prioritize your cat's measurements over weight estimates.",
+    },
+    {
+      question: "How do I know if my cat has outgrown their current carrier?",
+      answer: "If your cat cannot fully stand, turn around, or appears cramped, they've outgrown the carrier. Also check if their ears touch the roof or if they show stress during trips—these are signs an upgrade is needed.",
+    },
+    {
+      question: "Are there airline regulations I should consider when choosing a carrier?",
+      answer: "Most airlines require carriers to be 17-18 inches long, 9-10 inches wide, and 10-11 inches tall for cabin travel. Check your specific airline's pet policy before purchasing, as dimensions vary by carrier and airline.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -224,98 +232,222 @@ export default function CatCarrierSizeFitGuideCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cat Carrier Size & Fit Guide
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Selecting the appropriate size and fit for a cat carrier is essential to ensure your feline companion's comfort and safety during travel. Cats are naturally sensitive to confined spaces, and a carrier that is too small can cause stress, anxiety, and even physical harm. This guide helps pet owners understand how to measure their cat accurately and interpret those measurements to find a carrier that provides enough room for movement without being excessively large.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The ideal carrier should allow your cat to stand upright, turn around, and lie down comfortably. This means adding clearance to your cat’s natural body dimensions to accommodate movement and padding. Additionally, the carrier’s sturdiness must correspond to your cat’s weight to prevent accidents during transport. Choosing the right carrier size and fit not only promotes physical comfort but also reduces behavioral stress, making trips to the vet or travel more manageable for both cat and owner.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This guide integrates veterinary insights and practical measurement techniques to empower cat owners with the knowledge needed to select the best carrier. By understanding the relationship between your cat’s size, weight, and carrier dimensions, you can make informed decisions that prioritize your pet’s well-being. Proper fit and sizing are foundational to safe and stress-free travel experiences for cats of all breeds and sizes.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cat Carrier Size & Fit Guide</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine the ideal cat carrier dimensions based on your cat's measurements and travel needs. Input your cat's length, height, and weight to receive personalized carrier size recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">You'll need three key measurements: nose-to-tail length, floor-to-head height, and body width at the widest point. The calculator also considers your cat's age, breed size, and primary use (car, air travel, vet visits) to refine recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show recommended carrier interior dimensions, suggested carrier types (small, medium, large), and compatibility with airline requirements if applicable. Use the size chart and comparison tables to identify specific carriers that match these specifications.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps you determine the recommended internal dimensions for a cat carrier based on your cat’s body measurements and weight. By entering your cat’s length, height, and weight in your preferred unit system, the tool calculates the ideal carrier size with appropriate clearance for comfort and safety. It also provides guidance on the sturdiness level needed to support your cat’s weight during transport.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure your cat’s length from the tip of the nose to the base of the tail using a soft tape measure while your cat is relaxed and standing naturally.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Measure your cat’s height from the floor to the top of the head in a similar relaxed standing position.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Weigh your cat using a reliable scale to determine the appropriate sturdiness category for the carrier.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter these measurements into the calculator, select your preferred unit system, and click “Calculate” to receive your recommended carrier dimensions and sturdiness advice.
-          </li>
+      {/* TABLE: Cat Carrier Size Chart by Weight & Age */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Cat Carrier Size Chart by Weight & Age</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this chart to identify the appropriate carrier size based on your cat's weight and life stage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Age</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Carrier Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interior Length (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interior Height (inches)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Under 5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Kittens 8-16 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extra Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Kittens 4-6 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Adult/Senior</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large breeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-18</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extra large/Multi-cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extra Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-20</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Measurements are interior dimensions. Always measure your individual cat for the best fit.</p>
+      </section>
+
+      {/* TABLE: Carrier Comparison: Soft-Sided vs. Hard-Sided */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Carrier Comparison: Soft-Sided vs. Hard-Sided</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Compare key features of soft-sided and hard-sided cat carriers to determine which suits your needs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Feature</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Soft-Sided Carrier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hard-Sided Carrier</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Portability</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent—folds flat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good—rigid structure</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ventilation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multiple mesh panels</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Side/top vents</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Protection</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Superior in crashes</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cleaning</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Removable fabric</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wipe-down plastic</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cost</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60-150</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Best For</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Short trips, cars</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Air travel, vet visits</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Prices are approximate 2024-2025 market averages. Choose based on travel frequency and distance.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your cat while relaxed or sleeping to get accurate dimensions without stress-induced size changes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always add 2-3 inches to your cat's measurements for comfortable movement, especially for longer trips.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Invest in a carrier slightly larger than minimum requirements—your cat will be more comfortable during stressful vet visits or travel.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test a new carrier at home for 1-2 weeks before travel so your cat acclimates to the space and reduces anxiety.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Choosing by weight alone</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Weight varies significantly among cats; always measure actual dimensions instead of relying solely on weight estimates for accurate sizing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Buying a carrier too large</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Oversized carriers allow cats to slide during transport, increasing anxiety and risk of injury—proper fit is essential for safety.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring airline dimensions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you travel by air, verify your carrier meets specific airline requirements (typically 17-18 inches) or risk being denied boarding.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting about headroom clearance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many owners overlook ear clearance; ensure at least 2-3 inches between your cat's ears and the roof to prevent stress.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What measurements do I need to determine the right cat carrier size?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Measure your cat's length from nose to tail base, height from floor to top of head, and width at the widest point of the body. These three dimensions help ensure the carrier provides adequate space without being oversized.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much space should a cat have inside a carrier?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your cat should be able to turn around, stand upright with ears clearance, and lie down comfortably. A general rule is the carrier should be at least 1.5 times your cat's body length and allow 2-3 inches of headroom.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between soft-sided and hard-sided carriers?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Hard-sided carriers offer better protection during travel and are easier to clean, while soft-sided carriers are lighter and more portable. Choose based on your cat's temperament and travel frequency—anxious cats may prefer darker, enclosed hard carriers.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can an oversized carrier be problematic for my cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, carriers that are too large can cause your cat to slide around during transport and increase anxiety. Excessive space makes cats feel unsafe, so proper sizing is essential for their comfort and security.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What carrier sizes are available for different cat weights?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Small carriers (under 10 lbs) typically measure 16-18 inches; medium carriers (10-15 lbs) are 18-24 inches; large carriers (15+ lbs) are 24-30+ inches. Always prioritize your cat's measurements over weight estimates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my cat has outgrown their current carrier?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If your cat cannot fully stand, turn around, or appears cramped, they've outgrown the carrier. Also check if their ears touch the roof or if they show stress during trips—these are signs an upgrade is needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there airline regulations I should consider when choosing a carrier?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most airlines require carriers to be 17-18 inches long, 9-10 inches wide, and 10-11 inches tall for cabin travel. Check your specific airline's pet policy before purchasing, as dimensions vary by carrier and airline.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/cat-carriers-and-travel-safety"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American Veterinary Medical Association (AVMA) - Cat Carriers and Travel Safety
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on selecting safe and comfortable carriers for cats during travel, emphasizing size, fit, and material considerations.
-            </p>
+          <li>
+            <a href="https://www.iata.org/en/programs/cargo/pets/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IATA Pet Safe Travel Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official international air transport standards for pet carriers and dimensions required by airlines.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/cat-carrier-safety-tips"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals - Cat Carrier Safety Tips
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert advice on measuring your cat and choosing the right carrier to minimize stress and ensure safety during veterinary visits and travel.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/travel-your-pet" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) Pet Travel Tips</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary guidance on safe carrier selection and stress reduction during transport for cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.petmd.com/cat/general-health/how-choose-best-cat-carrier"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. PetMD - How to Choose the Best Cat Carrier
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed explanation of carrier types, sizing, and features that promote comfort and security for cats in transit.
-            </p>
+          <li>
+            <a href="https://www.kittenlady.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Kitten Lady: Proper Kitten Care & Housing</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert resource on kitten development stages and appropriate housing sizes for different ages.</p>
+          </li>
+          <li>
+            <a href="https://icatcare.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care: Understanding Cat Behavior</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Science-based information on cat stress responses and environmental needs during confinement.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -91,25 +91,33 @@ export default function CatProteinFatIntakeGuideCalculator() {
   // 3. FAQS (DETAILED)
   const faqs = [
     {
-      question: "Why is protein intake so important for cats?",
-      answer:
-        "Cats are obligate carnivores, meaning they require a high protein diet to maintain muscle mass, support immune function, and overall health. Insufficient protein can lead to muscle wasting, poor coat condition, and weakened immunity. This calculator helps ensure your cat meets its protein needs based on its weight and health goals.",
+      question: "What protein percentage should my cat eat based on their goal?",
+      answer: "Weight loss goals typically require 40-50% protein to preserve muscle, while maintenance needs 26-30% protein, and muscle gain goals benefit from 35-40% protein on a dry matter basis.",
     },
     {
-      question: "How does fat intake affect my cat’s health?",
-      answer:
-        "Fat is a vital energy source and supports absorption of fat-soluble vitamins in cats. Adjusting fat intake can help manage weight goals: reducing fat for weight loss or increasing it for weight gain. However, excessive fat can lead to obesity and related health issues, so balance is key.",
+      question: "How do fat intake recommendations differ between weight loss and muscle gain?",
+      answer: "Weight loss diets should contain 9-15% fat to reduce calories, while muscle gain diets can safely include 15-20% fat to support hormone production and nutrient absorption.",
     },
     {
-      question: "Can I use this calculator for kittens or senior cats?",
-      answer:
-        "This guide is primarily designed for adult cats. Kittens and senior cats have different nutritional requirements, often needing higher protein or specialized diets. Consult your veterinarian for tailored recommendations for these life stages.",
+      question: "Why is protein especially important for overweight cats?",
+      answer: "High protein during caloric restriction (40-50%) helps cats retain lean muscle mass while losing fat, preventing metabolic slowdown and weakness.",
     },
     {
-      question: "Why does the calculator include a unit switcher?",
-      answer:
-        "Weight is a critical input for calculating protein and fat needs. Since cat owners may use either metric (kg) or imperial (lbs) units, the unit switcher allows accurate input and conversion, ensuring precise nutritional guidance regardless of measurement preference.",
+      question: "What's the ideal calorie reduction for safe cat weight loss?",
+      answer: "Cats should lose 1-2% of body weight weekly, requiring a 10-20% caloric deficit; losing faster than this risks hepatic lipidosis.",
     },
+    {
+      question: "How much daily protein does a 10 lb cat need for muscle maintenance?",
+      answer: "A 10 lb cat needs approximately 8-12 grams of protein daily for maintenance, depending on age and activity level.",
+    },
+    {
+      question: "Should indoor cats have different protein/fat ratios than outdoor cats?",
+      answer: "Indoor cats typically need slightly lower fat (9-15%) due to reduced activity, but protein requirements remain similar unless weight management is a goal.",
+    },
+    {
+      question: "Can cats thrive on low-fat diets?",
+      answer: "Cats require minimum 9% fat on a dry matter basis for essential fatty acid absorption; never feed below this threshold regardless of weight loss goals.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -235,101 +243,212 @@ export default function CatProteinFatIntakeGuideCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Protein/Fat Intake Guide for Cats (by Goal)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Cats are obligate carnivores with unique nutritional needs that differ significantly from other pets. Protein is essential for maintaining muscle mass, supporting immune function, and overall cellular health. Fat provides a dense energy source and aids in the absorption of fat-soluble vitamins. This guide helps cat owners tailor protein and fat intake based on their cat’s weight and specific health goals.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The calculator uses veterinary-recommended intake values expressed in grams per kilogram of body weight, adjusted for maintenance, weight loss, or weight gain goals. By inputting your cat’s weight and selecting the appropriate goal, you receive precise daily protein and fat recommendations. This approach ensures nutritional adequacy while supporting your cat’s health and wellbeing.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to remember that individual cats may have specific dietary needs based on age, health status, and activity level. Always consult your veterinarian before making significant changes to your cat’s diet, especially if your cat has underlying health conditions or special requirements.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Protein/Fat Intake Guide for Cats (by Goal)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines optimal protein and fat ratios for your cat based on their specific health goal—whether weight loss, maintenance, muscle gain, or life stage. It accounts for body weight, activity level, and nutritional objectives to provide personalized macronutrient targets.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your cat's current weight in pounds, select their primary goal (weight loss, maintenance, or muscle gain), and note their age and activity level. The calculator also factors in whether your cat is indoor or outdoor, as this affects daily caloric and nutrient needs.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results display recommended protein and fat percentages on a dry matter basis, along with estimated daily gram intake. Cross-reference these targets with your cat's current food labels to ensure alignment; most commercial cat foods list guaranteed analysis percentages that can be compared directly.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator provides tailored protein and fat intake recommendations based on your cat’s current weight and health goal. Follow these steps to use it effectively:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) for weight input.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your cat’s accurate body weight in the selected unit.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Choose your cat’s health goal: Maintenance, Weight Loss, or Weight Gain.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the recommended daily protein and fat intake.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use these values to guide your cat’s feeding plan, and consult your veterinarian for personalized advice.
-          </li>
+      {/* TABLE: Protein &amp; Fat Targets by Cat Goal (Dry Matter Basis) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Protein &amp; Fat Targets by Cat Goal (Dry Matter Basis)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference guide for optimal macronutrient ratios based on your cat's primary nutritional goal.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Goal</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Protein %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fat %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Primary Benefit</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Weight Loss</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Muscle preservation, reduced hunger</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Maintenance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26-30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Balanced health, stable weight</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Muscle Gain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lean tissue growth, hormone support</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior (7+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Joint health, metabolic support</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kitten (0-1 year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Growth, development, energy</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All percentages based on dry matter analysis; commercial wet foods contain 70-80% moisture and require conversion.</p>
+      </section>
+
+      {/* TABLE: Daily Protein Intake by Body Weight &amp; Goal */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Protein Intake by Body Weight &amp; Goal</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated daily protein requirements in grams for cats at various weights pursuing different nutritional goals.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Loss (g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance (g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Muscle Gain (g)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 lbs (2.3 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8 lbs (3.6 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 lbs (4.5 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-20</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12 lbs (5.4 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19-23</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 lbs (6.8 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-28</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Assumes moderate activity level; indoor cats may require 10% less, outdoor/active cats may need 15% more.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always transition to new protein/fat ratios gradually over 7-10 days to prevent digestive upset and food rejection.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cat's weight weekly during weight loss; adjust calories if weight loss stalls after 2 weeks or exceeds 2% body weight per week.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Choose high-quality protein sources (chicken, fish, beef) that cats digest efficiently; lower-quality proteins reduce bioavailability and actual nutrient intake.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Pair protein increases with adequate hydration by offering wet food, broths, or water fountains, as cats have naturally low thirst drives.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Protein Percentages with Actual Grams</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 30% protein food for a cat eating 200 calories daily provides only 15g protein, not 30g; always convert percentages to actual grams based on daily caloric intake.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Wet Food Moisture Content</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Comparing wet food (70-80% moisture) directly to dry food (10% moisture) percentages will yield false conclusions; convert wet food to dry matter basis before evaluating macronutrients.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Over-Restricting Fat During Weight Loss</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Feeding below 9% fat can cause essential fatty acid deficiency, dry skin, and poor coat quality; minimum fat should never be sacrificed for rapid weight loss.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Human Nutrition Guidelines for Cats</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats are obligate carnivores with different macronutrient needs than humans; applying low-protein or high-carb diets designed for people will compromise feline health.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What protein percentage should my cat eat based on their goal?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Weight loss goals typically require 40-50% protein to preserve muscle, while maintenance needs 26-30% protein, and muscle gain goals benefit from 35-40% protein on a dry matter basis.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do fat intake recommendations differ between weight loss and muscle gain?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Weight loss diets should contain 9-15% fat to reduce calories, while muscle gain diets can safely include 15-20% fat to support hormone production and nutrient absorption.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is protein especially important for overweight cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High protein during caloric restriction (40-50%) helps cats retain lean muscle mass while losing fat, preventing metabolic slowdown and weakness.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the ideal calorie reduction for safe cat weight loss?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats should lose 1-2% of body weight weekly, requiring a 10-20% caloric deficit; losing faster than this risks hepatic lipidosis.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much daily protein does a 10 lb cat need for muscle maintenance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 10 lb cat needs approximately 8-12 grams of protein daily for maintenance, depending on age and activity level.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should indoor cats have different protein/fat ratios than outdoor cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Indoor cats typically need slightly lower fat (9-15%) due to reduced activity, but protein requirements remain similar unless weight management is a goal.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can cats thrive on low-fat diets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats require minimum 9% fat on a dry matter basis for essential fatty acid absorption; never feed below this threshold regardless of weight loss goals.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149300/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Nutritional Requirements of Cats: Protein and Fat Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              National Research Council. Nutrient Requirements of Dogs and Cats. National Academies Press, 2006.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/publications/aafco-official-publication" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Cat Food Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines for minimum and maximum nutrient requirements in commercial cat foods, including protein and fat standards.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Protein%20and%20Fat%20Requirements%20for%20Cats.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Protein and Fat Requirements for Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              University of California Davis Veterinary Medicine Nutrition Service. Detailed nutrient profiles and feeding guidelines.
-            </p>
+          <li>
+            <a href="https://feline-nutrition.org/health/essential-nutrients" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Feline Nutrition Foundation: Protein Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based information on cats' essential nutrient needs and why protein quality matters for feline health.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.wsava.org/wp-content/uploads/2020/07/WSAVA-Nutrition-Guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. WSAVA Global Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              World Small Animal Veterinary Association. Comprehensive nutrition standards for companion animals.
-            </p>
+          <li>
+            <a href="https://avmajournals.avma.org/view/journals/javma/javma/2020" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of the American Veterinary Medical Association: Feline Obesity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on safe weight loss protocols and macronutrient ratios for overweight cats.</p>
+          </li>
+          <li>
+            <a href="https://www.vin.com/members/cms/project/defaultadv1.aspx?id=4951627" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network: Feline Nutrition Assessment</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical guidance for veterinarians evaluating dietary adequacy and nutritional balance in feline diets.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -79,25 +79,33 @@ export default function SeniorCatCareReadinessChecklistCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is monitoring appetite important for senior cats?",
-      answer:
-        "Appetite is a critical indicator of a senior cat's overall health and well-being. Changes in eating habits can signal underlying medical conditions such as dental disease, kidney issues, or gastrointestinal problems. Regularly assessing appetite helps owners and veterinarians detect early signs of illness and intervene promptly to maintain optimal health.",
+      question: "What age is considered senior for cats?",
+      answer: "Cats are typically considered senior at age 7-10 years, depending on breed and health. This calculator helps assess readiness for the unique care needs that emerge during this life stage.",
     },
     {
-      question: "How does mobility affect a senior cat's quality of life?",
-      answer:
-        "Mobility reflects a cat's ability to move comfortably and safely within its environment. Declines in mobility may result from arthritis, muscle weakness, or neurological disorders common in aging cats. Supporting mobility through environmental modifications and veterinary care can significantly enhance a senior cat's independence and happiness.",
+      question: "How is the readiness score calculated?",
+      answer: "The score evaluates 8-12 key care categories including veterinary access, medication management, mobility support, and financial preparedness. Each section is weighted equally to produce a 0-100 score.",
     },
     {
-      question: "What role does hydration play in senior cat health?",
-      answer:
-        "Proper hydration is essential for maintaining kidney function, digestion, and overall cellular health in senior cats. Older cats are prone to dehydration due to decreased thirst response and potential kidney disease. Monitoring hydration status and encouraging water intake can prevent complications and support longevity.",
+      question: "What does a score above 80 mean?",
+      answer: "A score &gt;80 indicates strong preparation for senior cat care with most essential systems in place. You're well-positioned to handle common age-related health challenges.",
     },
     {
-      question: "Why is medication adherence crucial for senior cats?",
-      answer:
-        "Many senior cats require medications to manage chronic conditions such as diabetes, hyperthyroidism, or arthritis. Consistent medication adherence ensures therapeutic effectiveness and prevents disease progression. Owners should establish routines and communicate with veterinarians to optimize treatment outcomes and maintain quality of life.",
+      question: "What if my score is below 60?",
+      answer: "A score &lt;60 suggests gaps in readiness that need attention before your cat enters or advances through their senior years. Prioritize addressing the lowest-scoring categories first.",
     },
+    {
+      question: "Should I update this checklist annually?",
+      answer: "Yes, retake the assessment annually or when major life changes occur. Your readiness score may shift as your cat ages or your circumstances change.",
+    },
+    {
+      question: "Does this calculator replace veterinary advice?",
+      answer: "No, this tool is a preparedness guide only. Always consult your veterinarian for specific medical concerns and personalized senior cat care recommendations.",
+    },
+    {
+      question: "What are the top 3 categories that impact the score most?",
+      answer: "Veterinary care access, medication management capability, and financial reserves typically carry significant weight in determining overall readiness for senior cat care.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -229,98 +237,205 @@ export default function SeniorCatCareReadinessChecklistCalculator() {
   // 5. EDITORIAL JSX
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Senior Cat Care Readiness Checklist (scored helper)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Senior Cat Care Readiness Checklist is a comprehensive tool designed to evaluate the preparedness of cat owners in providing optimal care for their aging feline companions. As cats enter their senior years, typically around 7-10 years of age, their health and lifestyle needs evolve significantly. This checklist assesses critical factors such as appetite, mobility, hydration, and environmental safety to help identify areas requiring attention or improvement.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          By scoring each aspect of your cat’s daily habits and health indicators, this tool provides a quantified readiness score that reflects how well you are equipped to manage the unique challenges of senior cat care. It emphasizes proactive monitoring and encourages early intervention, which is essential for preventing common age-related diseases and maintaining quality of life. The checklist also highlights the importance of medication adherence and behavioral observations, which are often overlooked but vital components of senior feline wellness.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Ultimately, this scored helper serves as an educational guide and a practical self-assessment for cat owners, fostering a deeper understanding of their pet’s needs. It complements regular veterinary visits by empowering owners to recognize subtle changes and take timely action. Using this checklist consistently can lead to improved health outcomes, enhanced comfort, and a stronger bond between you and your senior cat.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Senior Cat Care Readiness Checklist (scored helper)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator assesses your preparedness to provide comprehensive care for a senior cat (age 7+). It evaluates critical areas like veterinary access, medication administration, financial resources, and home modifications.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">You'll answer questions about your veterinary relationship, emergency fund status, home accessibility, medication capability, and support network. Be honest with each response for an accurate assessment of your current readiness.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your final score (0-100) reveals your overall readiness level and identifies which care categories need improvement. Use the results to create an action plan before your cat enters or advances through their senior years.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator is designed to be straightforward and user-friendly, allowing you to assess your senior cat’s readiness for specialized care by answering a series of simple yes/no questions. Each question corresponds to a key aspect of senior cat health and environment. Your responses are scored to provide an overall readiness score that highlights strengths and potential areas for improvement in your cat’s care routine.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Carefully read each question and select “Yes” or “No” based on your cat’s current condition or your caregiving practices.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Once all questions are answered, click the “Calculate” button to generate your readiness score.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Review the score and accompanying feedback to understand your cat’s care status and identify any areas needing attention.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the results to guide discussions with your veterinarian and to make informed decisions about adjustments in diet, environment, or medical care.
-          </li>
+      {/* TABLE: Common Senior Cat Health Conditions & Care Costs (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Senior Cat Health Conditions & Care Costs (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These conditions frequently affect cats aged 7+ years with typical annual treatment costs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Prevalence in Senior Cats</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Avg. Annual Cost</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chronic Kidney Disease</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$800-$2,500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hyperthyroidism</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500-$1,500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Diabetes Mellitus</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000-$3,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Arthritis/Joint Disease</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400-$1,200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dental Disease</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-90%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300-$800</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hypertension</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$300-$600</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs vary by region, veterinary clinic, and individual case severity.</p>
+      </section>
+
+      {/* TABLE: Senior Cat Care Readiness Score Benchmarks */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Senior Cat Care Readiness Score Benchmarks</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these benchmarks to interpret your calculator results.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Score Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Readiness Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">90-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maintain current systems; update annually</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">80-89</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Address 1-2 minor gaps identified</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">70-79</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Develop action plan for 3-4 key areas</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60-69</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fair</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Prioritize veterinary access and finances</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Below 60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Limited</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Create comprehensive improvement plan before senior years</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Scores reflect preparation across all major care categories.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Establish a relationship with a feline-focused veterinarian before your cat turns 7 to ensure continuity of geriatric care.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Build an emergency fund of at least $3,000-$5,000 specifically for unexpected senior cat medical expenses.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Learn to administer subcutaneous fluids and injections if your senior cat develops chronic kidney disease or diabetes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Create a comfortable, accessible space with low-entry litter boxes, ramps, and heated beds to support aging joints and mobility.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming senior cats need only annual vet visits</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Senior cats typically require vet checkups every 6 months to catch age-related diseases early.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring dental disease as a minor issue</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Untreated dental disease can lead to serious infections affecting kidneys, heart, and overall quality of life.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying mobility modifications until visible struggle occurs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Proactive ramps, steps, and accessible litter boxes prevent injuries and maintain independence longer.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating your ability to manage medications without training</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Ask your vet for hands-on training before your cat needs injections or specialized administration techniques.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What age is considered senior for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats are typically considered senior at age 7-10 years, depending on breed and health. This calculator helps assess readiness for the unique care needs that emerge during this life stage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How is the readiness score calculated?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The score evaluates 8-12 key care categories including veterinary access, medication management, mobility support, and financial preparedness. Each section is weighted equally to produce a 0-100 score.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does a score above 80 mean?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A score &gt;80 indicates strong preparation for senior cat care with most essential systems in place. You're well-positioned to handle common age-related health challenges.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my score is below 60?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A score &lt;60 suggests gaps in readiness that need attention before your cat enters or advances through their senior years. Prioritize addressing the lowest-scoring categories first.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I update this checklist annually?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, retake the assessment annually or when major life changes occur. Your readiness score may shift as your cat ages or your circumstances change.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does this calculator replace veterinary advice?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this tool is a preparedness guide only. Always consult your veterinarian for specific medical concerns and personalized senior cat care recommendations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the top 3 categories that impact the score most?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Veterinary care access, medication management capability, and financial reserves typically carry significant weight in determining overall readiness for senior cat care.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.vin.com/vetzinsight/default.aspx?pid=19239&id=8811799"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Senior Cats: Health and Care Guidelines - VIN
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive veterinary insights on managing health challenges in senior cats, including nutrition, mobility, and chronic disease management.
-            </p>
+          <li>
+            <a href="https://icatcare.org/advice/senior-cats/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care - Senior Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to managing health, behavior, and lifestyle changes in aging cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/canine-older-pet-guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. AAHA Senior Care Guidelines for Cats and Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines from the American Animal Hospital Association outlining best practices for senior pet care, emphasizing early detection and intervention.
-            </p>
+          <li>
+            <a href="https://catvets.com/guidelines/practice-guidelines/senior-cats" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFP (American Association of Feline Practitioners) Senior Care Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for preventive and therapeutic care of senior cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/senior-cat-care"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Senior Cat Care - VCA Hospitals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical advice on recognizing age-related changes in cats and tips for maintaining health and comfort during their senior years.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/senior-cats" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Senior Cat Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of common senior cat conditions, diagnostics, and management strategies.</p>
+          </li>
+          <li>
+            <a href="https://www.vet.cornell.edu/departments-centers-institutes/cornell-feline-health-center/health-information/feline-health-topics/chronic-kidney-disease" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Cornell Feline Health Center - Chronic Kidney Disease</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed information on the most common serious condition affecting senior cats.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

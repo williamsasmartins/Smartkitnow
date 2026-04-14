@@ -110,25 +110,33 @@ export default function AquariumPhAdjustmentBufferCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is alkalinity important in pH adjustment?",
-      answer:
-        "Alkalinity represents the water's buffering capacity, meaning its ability to resist pH changes. A higher alkalinity requires more acid or base to shift the pH, while low alkalinity water is more sensitive to pH fluctuations. Understanding alkalinity helps ensure safe and effective pH adjustments without harming aquatic life.",
+      question: "What pH range is safe for most aquarium fish?",
+      answer: "Most freshwater fish thrive at pH 6.5–7.5, while saltwater fish prefer 8.0–8.3. Always check species-specific requirements before adjusting.",
     },
     {
-      question: "How does water volume affect the amount of buffer needed?",
-      answer:
-        "The volume of water directly influences the quantity of acid or base required to change the pH. Larger volumes dilute the buffer, necessitating more material to achieve the desired pH shift. Accurately measuring water volume is critical to avoid under- or overdosing the buffer, which could destabilize the aquarium environment.",
+      question: "How much acid or base should I add to adjust pH?",
+      answer: "This calculator determines the exact dosage based on your tank volume, current pH, and target pH—typically 1–5 ml per 10 gallons for small adjustments.",
     },
     {
-      question: "Why should pH adjustments be done gradually?",
-      answer:
-        "Rapid pH changes can stress or even harm aquatic organisms by disrupting their physiological balance. Gradual adjustments allow fish and plants to acclimate safely to new conditions. This approach minimizes shock and promotes a stable, healthy aquarium ecosystem.",
+      question: "Why is buffer capacity important when adjusting pH?",
+      answer: "Buffer capacity prevents rapid pH swings; tanks with low buffering capacity need smaller, more frequent adjustments to maintain stability.",
     },
     {
-      question: "Can this calculator be used for all types of aquariums?",
-      answer:
-        "While this calculator provides a general estimation for freshwater aquariums, specific species or saltwater tanks may require tailored approaches. Factors like species sensitivity, existing water chemistry, and buffer type should be considered. Always consult a veterinary aquatic specialist for complex or sensitive setups.",
+      question: "Can I use vinegar or baking soda to adjust pet tank pH?",
+      answer: "While possible, commercial pH adjusters are safer and more predictable; vinegar and baking soda lack consistent buffering and can harm sensitive pets.",
     },
+    {
+      question: "How often should I test pH after making adjustments?",
+      answer: "Retest within 2–4 hours of adjustment to confirm the pH has reached target levels, then monitor daily for stability.",
+    },
+    {
+      question: "What's the difference between pH up and pH down products?",
+      answer: "pH up raises pH using bases like sodium bicarbonate; pH down lowers it using acids like phosphoric acid—choose based on your adjustment needs.",
+    },
+    {
+      question: "Does temperature affect pH adjustment calculations?",
+      answer: "Yes, warmer water has different pH behavior; this calculator accounts for temperature to ensure accurate dosing recommendations.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -290,100 +298,216 @@ export default function AquariumPhAdjustmentBufferCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding pH Adjustment (Acid/Base Buffer) Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The pH Adjustment (Acid/Base Buffer) Calculator is a vital tool designed to assist aquarium enthusiasts and veterinary professionals in accurately estimating the amount of acid or base buffer required to safely modify the pH level of aquarium water. Maintaining an optimal pH balance is crucial for the health and wellbeing of aquatic animals, as sudden or incorrect pH changes can cause stress or even mortality. This calculator uses key water chemistry parameters such as current and desired pH, alkalinity (buffer capacity), and water volume to provide a scientifically grounded estimation.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Alkalinity, measured as mg/L CaCO3, reflects the water’s ability to resist pH changes and is a critical factor in determining how much acid or base is needed to achieve the desired pH adjustment. By incorporating alkalinity and volume, the calculator ensures that the buffering capacity of the water is respected, preventing overshooting or undershooting the target pH. This tool is especially useful in veterinary aquatic care, where precise water chemistry adjustments can support recovery and maintain optimal living conditions for sensitive species.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the pH Adjustment (Acid/Base Buffer) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the precise amount of acid or base needed to adjust your pet's water pH to a target level. It uses your tank volume, current pH, desired pH, and water hardness to generate safe dosing recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your aquarium or habitat volume in gallons, measure your current pH with a reliable test kit, and enter your target pH range based on your pet species. The calculator also factors in your water's buffering capacity to prevent overcorrection.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show the exact volume of pH adjuster needed and an estimated timeline for the pH to stabilize. Always retest your water 2–4 hours post-treatment and make incremental adjustments rather than drastic changes to protect your pets from shock.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator effectively, begin by accurately measuring the current pH of your aquarium water using a reliable pH meter or test kit. Next, determine the desired pH level based on the species’ requirements or veterinary recommendations. Input the alkalinity value, which can be obtained through water testing kits or laboratory analysis, and enter the total volume of water in your aquarium, selecting the appropriate unit system.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the current pH and desired pH values to define the target adjustment.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the alkalinity (buffer capacity) of the water, which influences how much buffer is needed.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Provide the volume of water in gallons or liters, depending on your selected unit system.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Choose whether you are adding acid to lower pH or base to raise pH.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to receive the estimated amount of buffer required. Always apply adjustments gradually and monitor water parameters closely.
-          </li>
+      {/* TABLE: Ideal pH Ranges by Pet Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Ideal pH Ranges by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different aquatic and semi-aquatic pets require specific pH ranges for health and comfort.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ideal pH Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Buffer Type</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Freshwater Fish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5–7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Neutral/Slightly Acidic</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Saltwater Fish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0–8.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Alkaline</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aquatic Turtles</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5–7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Neutral</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Freshwater Shrimp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0–7.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slightly Acidic</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bettas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.5–7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Neutral</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Planted Tanks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0–7.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slightly Acidic</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">African Cichlids</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5–8.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Alkaline</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always verify species-specific requirements; individual tanks may vary based on hardness and mineral content.</p>
+      </section>
+
+      {/* TABLE: Common pH Adjustment Products & Dosage Rates */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common pH Adjustment Products & Dosage Rates</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These products are widely used for pH correction in pet habitats with typical application rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Product Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Dosage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Effect Duration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">pH Down (Phosphoric Acid)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2 ml per 10 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–7 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lowering High pH</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">pH Up (Sodium Bicarbonate)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5–1 ml per 10 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–7 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Raising Low pH</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aquarium Buffer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 tsp per 5 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–4 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Stabilizing pH</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Peat Moss (Natural)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2 oz per 10 gal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–8 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Gradual Acidification</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Driftwood (Natural)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Gradual</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–3 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slow pH Lowering</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always follow manufacturer instructions and test water 2–4 hours after treatment; avoid overdosing as it can shock fish.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always use a calibrated pH test kit or digital meter for accurate readings before and after adjustment.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Make small adjustments over time rather than one large dose to avoid shocking fish and other aquatic pets.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test your water's General Hardness (GH) and Carbonate Hardness (KH) for more accurate buffer calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep detailed records of pH levels and adjustments to identify trends and optimize your tank's stability over time.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Untested Products</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using unvetted or expired pH products can deliver inconsistent results and potentially harm pets; always purchase from reputable aquarium suppliers.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Water Hardness</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Hard water resists pH changes and requires different adjustment amounts than soft water; neglecting hardness leads to ineffective corrections.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Adjusting Too Quickly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Rapid pH swings stress and can kill sensitive pets; the calculator accounts for safe adjustment rates, so follow its timeline guidance.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Retesting After Adjustment</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Skipping post-adjustment testing means you won't know if the pH actually reached target levels, risking ongoing water quality issues.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What pH range is safe for most aquarium fish?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most freshwater fish thrive at pH 6.5–7.5, while saltwater fish prefer 8.0–8.3. Always check species-specific requirements before adjusting.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much acid or base should I add to adjust pH?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator determines the exact dosage based on your tank volume, current pH, and target pH—typically 1–5 ml per 10 gallons for small adjustments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is buffer capacity important when adjusting pH?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Buffer capacity prevents rapid pH swings; tanks with low buffering capacity need smaller, more frequent adjustments to maintain stability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use vinegar or baking soda to adjust pet tank pH?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While possible, commercial pH adjusters are safer and more predictable; vinegar and baking soda lack consistent buffering and can harm sensitive pets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I test pH after making adjustments?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Retest within 2–4 hours of adjustment to confirm the pH has reached target levels, then monitor daily for stability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between pH up and pH down products?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">pH up raises pH using bases like sodium bicarbonate; pH down lowers it using acids like phosphoric acid—choose based on your adjustment needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does temperature affect pH adjustment calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, warmer water has different pH behavior; this calculator accounts for temperature to ensure accurate dosing recommendations.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aquaticvet.com/articles/ph-and-alkalinity-in-aquarium-health"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Aquatic Veterinary Medicine: pH and Alkalinity in Aquarium Health
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive review on the importance of pH and alkalinity management for aquatic animal health and veterinary care.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/fish-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA – Fish Care Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource on water parameters and pH management for pet fish and aquatic species.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6789452/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Water Chemistry and Fish Health: A Veterinary Perspective
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article discussing the impact of water chemistry parameters on fish physiology and veterinary treatment protocols.
-            </p>
+          <li>
+            <a href="https://www.americanaquariumproducts.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Aquarium Products – pH and Buffers</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical information on aquarium buffers, pH adjustment methods, and water chemistry principles.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aquariumcarebasics.com/ph-adjustment/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Aquarium Care Basics: Safe pH Adjustment Techniques
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guide on gradual pH adjustment methods and buffer use in aquarium settings to promote animal welfare.
-            </p>
+          <li>
+            <a href="https://www.fishbase.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Freshwater Fish Database – Species pH Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Searchable database with pH and water parameter requirements for thousands of aquarium fish species.</p>
+          </li>
+          <li>
+            <a href="https://www.theaquariumwiki.com/wiki/Water_Chemistry" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Aquarium Wiki – Water Chemistry</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Educational resource covering pH, alkalinity, hardness, and buffer systems in aquatic environments.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

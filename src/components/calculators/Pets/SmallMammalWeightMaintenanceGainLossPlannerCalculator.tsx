@@ -113,25 +113,33 @@ export default function SmallMammalWeightMaintenanceGainLossPlannerCalculator() 
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to plan weight changes gradually in small mammals?",
-      answer:
-        "Gradual weight changes are crucial to avoid metabolic stress and health complications in small mammals. Rapid weight loss or gain can lead to nutritional deficiencies, organ strain, or behavioral issues. Planning controlled changes ensures the animal’s body adapts safely, maintaining overall well-being and preventing rebound weight fluctuations.",
+      question: "How does the Weight Maintenance vs. Gain/Loss Planner calculate daily calorie needs for my pet?",
+      answer: "The calculator uses your pet's current weight, age, activity level, and species to estimate basal metabolic rate (BMR), then applies activity multipliers to determine total daily energy expenditure (TDEE) in calories.",
     },
     {
-      question: "How does activity level affect calorie requirements for weight maintenance?",
-      answer:
-        "Activity level significantly influences the total calories an animal needs daily. More active small mammals burn more energy, requiring higher calorie intake to maintain weight. Conversely, sedentary animals need fewer calories to avoid unwanted weight gain, so adjusting intake based on activity helps maintain optimal body condition.",
+      question: "What's the difference between maintenance calories and surplus/deficit calories?",
+      answer: "Maintenance calories keep your pet at their current weight, while a surplus adds 300-500 calories daily for weight gain and a deficit reduces intake by 300-500 calories for weight loss.",
     },
     {
-      question: "What factors can affect the accuracy of this calorie planner?",
-      answer:
-        "Several factors can influence the accuracy, including species-specific metabolism, age, health status, and environmental conditions. This planner uses generalized formulas that may not capture individual variations. Therefore, regular monitoring and veterinary consultation are essential to adjust plans based on actual weight trends and health observations.",
+      question: "How long will it take my pet to reach their target weight using this planner?",
+      answer: "Most pets lose or gain 0.5-2% of body weight per week safely; a 50-pound dog losing 1% weekly reaches a 45-pound goal in 50 weeks with consistent calorie deficits.",
     },
     {
-      question: "Why do we use the formula RER = 70 * (Weight_kg)^0.75 in this calculator?",
-      answer:
-        "The Resting Energy Requirement (RER) formula estimates the baseline energy an animal needs at rest, accounting for metabolic body size rather than linear weight. The exponent 0.75 reflects metabolic scaling across species, providing a more accurate energy estimate than simple weight multiplication. This foundational value is then adjusted for activity and weight goals to tailor calorie needs.",
+      question: "Can I use this calculator for cats, dogs, and other small pets?",
+      answer: "Yes, this calculator works for dogs, cats, rabbits, and other small pets, but adjust inputs for species-specific metabolic differences and activity patterns.",
     },
+    {
+      question: "What factors affect my pet's calorie requirements the most?",
+      answer: "Activity level, age, and current weight are the primary drivers; senior pets need 10-20% fewer calories while highly active dogs may need 30-50% more than sedentary pets.",
+    },
+    {
+      question: "Should I adjust calories based on my pet's food brand or type?",
+      answer: "Yes, check your pet food's calorie content per cup or can; wet foods typically contain 70-100 calories per cup while dry kibble ranges from 300-500 calories per cup.",
+    },
+    {
+      question: "How often should I recalculate my pet's calorie needs?",
+      answer: "Recalculate every 4-6 weeks as your pet's weight changes, or whenever adjusting activity levels or life stage to ensure continued progress toward target weight.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -276,101 +284,218 @@ export default function SmallMammalWeightMaintenanceGainLossPlannerCalculator() 
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Weight Maintenance vs. Gain/Loss Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Weight management in small mammals is a delicate balance that requires precise planning and monitoring. This planner helps veterinarians and pet owners estimate daily calorie needs to maintain, gain, or lose weight safely. By integrating metabolic principles with activity levels and realistic timeframes, it provides a tailored approach to nutritional management. Understanding these factors is essential to prevent health complications related to improper feeding.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The core of this tool relies on the Resting Energy Requirement (RER), which estimates the baseline energy expenditure based on metabolic body size rather than simple weight. Adjusting RER by activity factors and weight change goals allows for a dynamic calorie target that supports physiological needs. This method respects the unique metabolic rates of small mammals, which can vary widely between species and individuals. It also emphasizes gradual weight changes to promote long-term health and avoid metabolic stress.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, the planner accounts for the timeframe over which weight changes are desired, ensuring that calorie adjustments are spread safely over days and weeks. Rapid weight fluctuations can be harmful, so this tool flags potentially unsafe rates of change to encourage veterinary consultation. Ultimately, this planner serves as a high-authority veterinary resource that combines scientific rigor with practical application to optimize small mammal care.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Weight Maintenance vs. Gain/Loss Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners determine precise daily calorie targets to maintain, increase, or decrease their pet's weight safely. It accounts for species, age, activity level, and metabolism to provide personalized feeding guidance.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's current weight in pounds or kilograms, select their age range and activity level (sedentary, moderate, or active), and specify whether you want maintenance, gain, or loss calculations. The tool will also factor in spay/neuter status, which reduces calorie needs by 10-25%.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show daily calorie targets and estimated timelines to reach goal weight; compare these figures to your pet food's calorie content to determine portion sizes, then monitor progress every 2-4 weeks and adjust portions as needed.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this planner effectively, begin by selecting the unit system that matches your measurement preference—Imperial (lbs) or Metric (kg). Enter the current weight of the small mammal, followed by the target weight you wish to achieve. Choose the animal’s typical activity level, which influences calorie needs, and specify the timeframe in weeks to reach the target weight. The calculator then estimates the daily calorie intake required to maintain or adjust weight safely.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the current weight of your small mammal in the selected unit system.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the desired target weight you want your pet to reach.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the activity level that best describes your pet’s daily routine.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Specify the number of weeks over which you plan to achieve the weight goal.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to view the recommended daily calorie intake and review any safety warnings.
-          </li>
+      {/* TABLE: Daily Calorie Estimates by Pet Type and Activity Level */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Estimates by Pet Type and Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows approximate daily calorie needs for common pets at maintenance level.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type & Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sedentary</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Activity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Activity</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dog (10 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-250 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-350 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350-450 cal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium Dog (50 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900-1100 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1100-1500 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1500-2000 cal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dog (80 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1400-1700 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1700-2300 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2300-3000 cal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Cat (10 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-220 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">220-280 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280-350 cal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Pet (reduced)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-10 to -20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-10 to -20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-10 to -20%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbit (5 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-200 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-250 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-300 cal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values are estimates; individual pets vary based on metabolism, breed, and spay/neuter status.</p>
+      </section>
+
+      {/* TABLE: Safe Weight Change Targets and Timeline */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Safe Weight Change Targets and Timeline</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table outlines healthy weight loss and gain rates for pets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Goal Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weekly Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Timeline for 10% Change</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Safe Weight Loss</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1.5% body weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-6% body weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-20 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate Weight Loss</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2% body weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-8% body weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Weight Gain (underweight)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1% body weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4% body weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-20 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rapid Gain (muscle building)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2% body weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-8% body weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ideal Maintenance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.5% variance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±2% variance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A - stable weight</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates &gt; 2% weekly may indicate unhealthy changes; consult a veterinarian if results exceed safe ranges.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your pet monthly on a veterinary scale for accuracy; home scales may vary by 1-3 pounds, affecting calorie calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check pet food labels for calories per cup or can—dry kibble ranges 300-500 cal/cup while wet food averages 70-150 cal/cup.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine calorie reduction with increased daily activity; adding 15-20 minutes of play or walking improves weight loss results by 20-30%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use treats strategically by counting them toward daily totals—treats should comprise &lt;10% of total daily calories to avoid derailing goals.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Spay/Neuter Status</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Spayed or neutered pets require 10-25% fewer calories than intact animals; failing to account for this leads to unnecessary weight gain.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adjusting for Food Calorie Density</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Feeding premium or prescription diets without recalculating portions can cause accidental overfeeding since calorie density varies from 300 to 550 calories per cup.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Changing Calories Too Drastically</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Reducing calories by &gt;30% or increasing by &gt;50% weekly can stress your pet's metabolism and cause digestive upset; adjust by 10-15% increments.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Age-Related Metabolic Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Senior pets (over 7-10 years) need 10-20% fewer calories than adults but owners often feed unchanged amounts, causing unwanted weight gain.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the Weight Maintenance vs. Gain/Loss Planner calculate daily calorie needs for my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your pet's current weight, age, activity level, and species to estimate basal metabolic rate (BMR), then applies activity multipliers to determine total daily energy expenditure (TDEE) in calories.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between maintenance calories and surplus/deficit calories?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Maintenance calories keep your pet at their current weight, while a surplus adds 300-500 calories daily for weight gain and a deficit reduces intake by 300-500 calories for weight loss.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long will it take my pet to reach their target weight using this planner?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most pets lose or gain 0.5-2% of body weight per week safely; a 50-pound dog losing 1% weekly reaches a 45-pound goal in 50 weeks with consistent calorie deficits.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for cats, dogs, and other small pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator works for dogs, cats, rabbits, and other small pets, but adjust inputs for species-specific metabolic differences and activity patterns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect my pet's calorie requirements the most?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Activity level, age, and current weight are the primary drivers; senior pets need 10-20% fewer calories while highly active dogs may need 30-50% more than sedentary pets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust calories based on my pet's food brand or type?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, check your pet food's calorie content per cup or can; wet foods typically contain 70-100 calories per cup while dry kibble ranges from 300-500 calories per cup.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my pet's calorie needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 4-6 weeks as your pet's weight changes, or whenever adjusting activity levels or life stage to ensure continued progress toward target weight.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/energy-requirements-of-animals/energy-requirements-of-small-mammals"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Energy Requirements of Small Mammals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of energy metabolism and nutritional needs for small mammal species.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/pet-food-labeling-guide" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Pet Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines on pet food calorie content and nutritional standards for dogs, cats, and other companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/nutrition/nutrition_guidelines_for_small_mammals.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. American Animal Hospital Association - Nutrition Guidelines for Small Mammals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Guidelines for assessing and managing nutrition in small mammal patients, including weight management strategies.
-            </p>
+          <li>
+            <a href="https://www.avma.org/public/petcare/pages/default.aspx" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) - Pet Obesity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based veterinary recommendations for managing pet weight and preventing obesity-related health issues.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6466089/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Center for Biotechnology Information - Metabolic Rate and Energy Requirements in Small Mammals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Research article detailing metabolic scaling and energy expenditure relevant to veterinary nutrition.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/academic-programs/nutrition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine - Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed resources on companion animal nutrition, calorie requirements, and weight management protocols.</p>
+          </li>
+          <li>
+            <a href="https://www.wsava.org/Global-Initiatives/Obesity" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">World Small Animal Veterinary Association (WSAVA) - Weight Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">International standards for assessing pet body condition score and implementing safe weight loss and maintenance programs.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

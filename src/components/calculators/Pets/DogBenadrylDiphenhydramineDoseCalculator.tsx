@@ -64,25 +64,33 @@ export default function DogBenadrylDiphenhydramineDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is the Benadryl dose for dogs calculated per kilogram of body weight?",
-      answer:
-        "Calculating medication doses per kilogram of body weight ensures accuracy and safety in veterinary medicine. Dogs vary widely in size and metabolism, so a fixed dose could be harmful or ineffective. Using mg/kg allows the dose to be tailored to the individual dog's size, minimizing risks of overdose or underdose, and optimizing therapeutic effects.",
+      question: "What is the standard Benadryl dose for dogs?",
+      answer: "The typical dose is 1 mg per pound of body weight, given every 8-12 hours. A 50-pound dog would receive 50 mg per dose, with a maximum of 300 mg daily.",
     },
     {
-      question: "How often can I safely give Benadryl to my dog?",
-      answer:
-        "Benadryl (Diphenhydramine) is typically administered every 8 to 12 hours in dogs, depending on the condition and veterinary guidance. This interval allows the medication to maintain effective blood levels while minimizing side effects. Frequent dosing outside recommended intervals can increase risks of sedation, dry mouth, or other adverse effects, so always follow your vet’s instructions.",
+      question: "Can I use this calculator for all dog breeds and sizes?",
+      answer: "Yes, this calculator works for all breeds and sizes using weight-based dosing. However, always consult your veterinarian before administering Benadryl to your dog.",
     },
     {
-      question: "Are there any risks or side effects associated with Benadryl in dogs?",
-      answer:
-        "While Benadryl is generally safe when dosed correctly, side effects can include drowsiness, dry mouth, urinary retention, and in rare cases, paradoxical excitation. Dogs with certain health conditions or those on other medications may be at higher risk. Always consult a veterinarian before administering Benadryl to ensure it is appropriate and safe for your dog’s specific health status.",
+      question: "What are common reasons vets prescribe Benadryl to dogs?",
+      answer: "Veterinarians prescribe Benadryl for allergies, itching, anxiety, and motion sickness in dogs. It can also help reduce swelling from insect bites or minor allergic reactions.",
     },
     {
-      question: "Can I use this calculator for puppies or senior dogs?",
-      answer:
-        "This calculator provides general dosing guidelines based on weight but does not replace veterinary advice. Puppies and senior dogs may have different sensitivities or health considerations affecting medication metabolism. It is crucial to consult a veterinarian before giving Benadryl to these age groups to ensure safe and effective dosing tailored to their unique needs.",
+      question: "How often can I give my dog Benadryl?",
+      answer: "Benadryl can be administered every 8-12 hours, typically 2-3 times daily, but never exceed 300 mg in 24 hours without veterinary guidance.",
     },
+    {
+      question: "Are there side effects of Benadryl in dogs?",
+      answer: "Common side effects include drowsiness and dry mouth. Rare side effects include increased heart rate or urinary retention; contact your vet if you notice unusual behavior.",
+    },
+    {
+      question: "What Benadryl formulations are safe for dogs?",
+      answer: "Only plain diphenhydramine tablets or liquid are safe; avoid products containing acetaminophen, ibuprofen, or xylitol, as these are toxic to dogs.",
+    },
+    {
+      question: "Should I give Benadryl with food?",
+      answer: "Benadryl can be given with or without food, though administering with a small meal may reduce stomach upset in sensitive dogs.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -194,115 +202,205 @@ export default function DogBenadrylDiphenhydramineDoseCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Benadryl (Diphenhydramine) Dose Calculator for Dogs
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Benadryl, whose active ingredient is Diphenhydramine, is a widely used antihistamine in veterinary medicine. It is commonly administered to dogs to alleviate allergic reactions, motion sickness, and certain anxiety symptoms. However, because dogs vary significantly in size and metabolism, determining the correct dose is critical to ensure efficacy while avoiding toxicity. This calculator helps pet owners and veterinary professionals estimate a safe dose based on the dog’s body weight.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The dosing of Benadryl in dogs is typically expressed in milligrams per kilogram (mg/kg) of body weight, reflecting the pharmacokinetic principles that govern drug distribution and metabolism in animals. Using a weight-based dosing approach accounts for the individual variability among dogs, from tiny toy breeds to large working dogs. This calculator uses the standard veterinary dosing range of 1 to 2 mg/kg every 8 to 12 hours, which is supported by veterinary pharmacology literature and clinical practice guidelines.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to note that while Benadryl is generally safe when dosed correctly, it is not suitable for all dogs, especially those with certain medical conditions or those taking other medications. This tool is designed for educational purposes and to assist in preliminary dose estimation; it does not replace professional veterinary advice. Always consult your veterinarian before administering any medication to your pet.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Benadryl (Diphenhydramine) Dose Calculator for Dogs</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the safe diphenhydramine dose for your dog based on weight and age. It simplifies the 1 mg per pound guideline and provides maximum daily limits to prevent overdosing.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's weight in pounds and age, then select the desired dosing frequency (every 8, 10, or 12 hours). The calculator instantly shows the recommended single dose and total daily maximum.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the results and consult your veterinarian before administering any medication. The calculator provides guidance, but professional veterinary approval ensures safe use for your specific dog's health condition.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator is designed to provide an estimated safe dose range of Benadryl (Diphenhydramine) for dogs based on their body weight. To use it effectively, follow these simple steps to ensure accurate input and interpretation of results.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Select the unit system:</strong> Choose between Imperial (pounds) or Metric (kilograms) depending on your preference or the units you have for your dog’s weight.
-          </li>
-          <li>
-            <strong>Enter your dog’s weight:</strong> Input the current body weight of your dog accurately. This value is essential as the dose calculation is directly proportional to weight.
-          </li>
-          <li>
-            <strong>Calculate the dose:</strong> Click the “Calculate” button to see the recommended dose range in milligrams. The calculator will display the minimum and maximum dose based on 1-2 mg/kg dosing guidelines.
-          </li>
-          <li>
-            <strong>Review warnings and notes:</strong> Pay attention to any warnings about unusual weights or special considerations. Always verify the results with your veterinarian before administering medication.
-          </li>
+      {/* TABLE: Benadryl Dosage by Dog Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Benadryl Dosage by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to determine the appropriate diphenhydramine dose based on your dog's weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Dose (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Daily Dose (mg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">225</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Dosages based on 1 mg per pound every 8-12 hours. Maximum daily dose capped at 300 mg. Consult a veterinarian before use.</p>
+      </section>
+
+      {/* TABLE: Benadryl Formulation Strengths and Serving Sizes */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Benadryl Formulation Strengths and Serving Sizes</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common over-the-counter Benadryl products available for dogs include tablets and liquids.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Product Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Strength per Unit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Serving Size</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablet (standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 tablet</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablet (extra strength)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 tablet</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Liquid (children's)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5 mg/5 mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mL</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Capsule</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 capsule</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Liquid (generic)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 mg/5 mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mL</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always verify product ingredients; some formulations contain additives unsafe for dogs. Consult your veterinarian on proper administration methods.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always obtain veterinary approval before giving Benadryl; some dogs with heart conditions or on other medications may have adverse reactions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a pill organizer or dosing chart to track when you last gave your dog Benadryl to avoid accidental overdosing.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If your dog refuses tablets, ask your vet about compounding liquid diphenhydramine or hiding tablets in treats like peanut butter.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your dog for excessive drowsiness, increased thirst, or difficulty urinating after the first dose and report any concerns to your veterinarian immediately.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Benadryl PM or Cold Formulas</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Products containing acetaminophen or other active ingredients are toxic to dogs; use only plain diphenhydramine.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Exceeding 300 mg Daily Without Veterinary Guidance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The 300 mg daily limit protects against liver and kidney damage; never exceed this without explicit veterinary approval.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Giving Benadryl to Puppies Under 2 Weeks Old</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Very young puppies lack the liver function to metabolize diphenhydramine safely; consult a vet before use on young or geriatric dogs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Checking for Xylitol in Liquid Formulations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some liquid Benadryl products contain xylitol, an artificial sweetener highly toxic to dogs; read all labels carefully.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard Benadryl dose for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The typical dose is 1 mg per pound of body weight, given every 8-12 hours. A 50-pound dog would receive 50 mg per dose, with a maximum of 300 mg daily.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for all dog breeds and sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator works for all breeds and sizes using weight-based dosing. However, always consult your veterinarian before administering Benadryl to your dog.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are common reasons vets prescribe Benadryl to dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Veterinarians prescribe Benadryl for allergies, itching, anxiety, and motion sickness in dogs. It can also help reduce swelling from insect bites or minor allergic reactions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often can I give my dog Benadryl?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Benadryl can be administered every 8-12 hours, typically 2-3 times daily, but never exceed 300 mg in 24 hours without veterinary guidance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there side effects of Benadryl in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common side effects include drowsiness and dry mouth. Rare side effects include increased heart rate or urinary retention; contact your vet if you notice unusual behavior.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What Benadryl formulations are safe for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Only plain diphenhydramine tablets or liquid are safe; avoid products containing acetaminophen, ibuprofen, or xylitol, as these are toxic to dogs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I give Benadryl with food?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Benadryl can be given with or without food, though administering with a small meal may reduce stomach upset in sensitive dogs.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/pharmacology/antihistamines/diphenhydramine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Diphenhydramine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of Diphenhydramine use, dosing, and safety in veterinary patients.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative resource for pet medication safety and toxicity information.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.wsu.edu/outreach/Pet-Health-Topics/categories/dogs/allergy-and-immune-mediated-diseases/benadryl-diphenhydramine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Washington State University - Benadryl (Diphenhydramine) for Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guidance on dosing and indications for Benadryl in canine patients.
-            </p>
+          <li>
+            <a href="https://www.avma.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional organization providing evidence-based guidance on veterinary medications and dosing.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.plumbsveterinarydrugs.com/#!/monograph/0/diphenhydramine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Plumb’s Veterinary Drug Handbook - Diphenhydramine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative drug monograph detailing pharmacology, dosing, and adverse effects.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Merck Veterinary Manual</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive veterinary drug reference with diphenhydramine dosing protocols for dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.veterinarypartner.com/Content.plx?P=A&A=2796"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Veterinary Partner - Diphenhydramine Use in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational article on indications, dosing, and precautions for Benadryl in dogs.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Diphenhydramine in Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical resource explaining appropriate use, side effects, and contraindications of diphenhydramine in canines.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

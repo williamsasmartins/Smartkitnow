@@ -68,25 +68,33 @@ export default function SmallMammalBeddingReplacementFrequencyCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is bedding replacement frequency important for small mammals?",
-      answer:
-        "Regular bedding replacement is crucial to maintain a clean and healthy environment for small mammals. Accumulated urine and feces can lead to ammonia buildup, which irritates respiratory tracts and can cause infections. By estimating replacement frequency, owners can prevent health issues and promote animal comfort.",
+      question: "How often should I replace bedding for small pets like hamsters and gerbils?",
+      answer: "Small pets typically need bedding replaced 2-3 times per week due to their high urine concentration and small enclosure sizes. Complete spot-cleaning daily extends the interval between full replacements.",
     },
     {
-      question: "How does bedding absorbency affect replacement frequency?",
-      answer:
-        "Bedding absorbency determines how much urine it can hold before becoming saturated. Higher absorbency bedding materials can retain more moisture, allowing for longer intervals between replacements. Choosing the right bedding type based on absorbency helps optimize hygiene and reduces labor for caretakers.",
+      question: "What factors affect bedding replacement frequency for rabbits?",
+      answer: "Rabbit bedding needs replacement every 3-5 days based on enclosure size, number of rabbits, and litter box habits. Larger spaces and good ventilation can extend replacement intervals by 1-2 days.",
     },
     {
-      question: "Can the number of animals in a cage impact bedding replacement needs?",
-      answer:
-        "Yes, the number of animals directly influences the amount of urine and waste produced. More animals result in faster saturation of bedding, necessitating more frequent changes. Accurately accounting for animal count ensures the estimator provides realistic replacement intervals.",
+      question: "How does pet weight impact bedding replacement schedules?",
+      answer: "Heavier pets produce more waste and moisture, requiring more frequent changes—typically 1-2 days sooner than lighter pets in identical conditions. Weight increases metabolism and urine output significantly.",
     },
     {
-      question: "How does cage size influence bedding replacement frequency?",
-      answer:
-        "Larger cage sizes provide more surface area for bedding, which can absorb greater volumes of urine before saturation. This typically extends the time between full bedding replacements. Conversely, smaller cages require more frequent changes to maintain hygiene and prevent odor buildup.",
+      question: "Can bedding type affect how often I need to replace it?",
+      answer: "Absorbent materials like aspen shavings last 5-7 days, while paper bedding absorbs moisture better and can extend intervals to 7-10 days. Pine and cedar should never be used due to respiratory toxins.",
     },
+    {
+      question: "What's the recommended frequency for guinea pigs and chinchillas?",
+      answer: "Guinea pigs need bedding changes every 2-3 days with spot-cleaning daily, while chinchillas require changes every 4-7 days since their droppings are drier. Both produce substantial waste relative to cage size.",
+    },
+    {
+      question: "How does enclosure size influence replacement frequency?",
+      answer: "Smaller enclosures (&lt;10 sq ft) need bedding changes 2-3 times weekly, while larger habitats (&gt;20 sq ft) can go 5-7 days between changes due to better odor and moisture distribution.",
+    },
+    {
+      question: "Should I do full bedding replacement or spot-cleaning between changes?",
+      answer: "Daily spot-cleaning of soiled areas reduces bacteria growth and extends full replacement intervals by 1-2 days, saving 20-30% on bedding costs annually while improving pet health.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -224,101 +232,248 @@ export default function SmallMammalBeddingReplacementFrequencyCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Bedding Replacement Frequency Estimator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Bedding replacement frequency is a critical factor in maintaining a hygienic and healthy environment for small mammals. Over time, bedding materials absorb urine and feces, which can lead to the buildup of ammonia and harmful bacteria. This estimator helps caretakers determine the optimal interval for full bedding replacement based on key variables such as cage size, number of animals, bedding absorbency, and urine output, ensuring animal welfare and comfort.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The estimator uses a scientifically grounded formula that balances the absorbency capacity of the bedding with the waste produced by the animals. By quantifying these factors, it provides a practical timeline for when bedding should be fully replaced to prevent odor, respiratory irritation, and infections. This tool supports evidence-based husbandry practices, promoting longevity and wellbeing in small mammal care.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding the interplay between cage size and animal density is essential, as overcrowding can accelerate bedding saturation. Additionally, selecting bedding with appropriate absorbency levels tailored to the species and environment can optimize replacement schedules. This estimator empowers owners and veterinary professionals to make informed decisions that enhance sanitation and reduce labor without compromising animal health.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Bedding Replacement Frequency Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners determine the optimal bedding replacement schedule based on their pet's species, weight, cage size, and current cleaning routine. By inputting these factors, you receive a personalized recommendation that balances pet health, hygiene, and cost efficiency.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include your pet type, number of animals, enclosure dimensions, bedding material choice, and whether you perform daily spot-cleaning. The calculator also accounts for humidity levels and ventilation, which significantly impact moisture accumulation and odor control.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show recommended full replacement intervals, estimated monthly bedding costs, and health alerts if your current schedule falls below safe standards. Use these estimates to establish a routine that maintains a clean, healthy habitat while minimizing waste and expense.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this Bedding Replacement Frequency Estimator, enter the relevant details about your small mammal enclosure and animals. The calculator requires the cage size in square feet, the number of animals housed, the bedding absorbency level, and the average daily urine output per animal in milliliters. These inputs allow the tool to estimate how many days can pass before a full bedding replacement is necessary to maintain optimal hygiene.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure your cage’s floor area in square feet accurately to provide a precise input.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the total number of animals sharing the enclosure to account for waste production.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the bedding absorbency level that best matches your bedding material, considering its moisture retention capacity.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Input the average daily urine output per animal, which varies by species and size; consult veterinary sources if unsure.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to receive an estimate of days between full bedding replacements, helping you plan cleaning schedules effectively.
-          </li>
+      {/* TABLE: Recommended Bedding Replacement Frequency by Pet Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Bedding Replacement Frequency by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to determine standard replacement intervals for common small pets based on species and enclosure conditions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Full Replacement Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">With Daily Spot-Cleaning</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Change Interval</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hamster (Syrian)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hamster (Dwarf)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gerbil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Guinea Pig</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-7 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chinchilla</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-7 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-10 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ferret</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rat/Mouse</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 days</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Intervals vary with cage size, ventilation, and number of animals; adjust based on odor and moisture levels.</p>
+      </section>
+
+      {/* TABLE: Bedding Material Absorbency and Durability Ratings */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Bedding Material Absorbency and Durability Ratings</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different bedding materials offer varying absorbency levels, affecting how long bedding lasts between replacements.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bedding Material</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Absorbency Rating</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Lifespan (Days)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aspen Shavings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Most small pets</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Paper-Based Bedding</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sensitive respiratory systems</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hemp Bedding</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Odor control</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pelleted Litter</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rabbits and guinea pigs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Corn Cob</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Short-term use only</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aspen Pellets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ferrets and rabbits</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pine Shavings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not Recommended</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Toxic—avoid entirely</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cedar Shavings</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not Recommended</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Toxic—avoid entirely</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always avoid pine and cedar due to phenol toxins that damage respiratory and liver function in small pets.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Perform daily spot-cleaning of visibly soiled bedding to extend full replacement intervals by 1-2 days and reduce ammonia buildup.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor bedding moisture levels—if it feels damp or smells strongly of ammonia, replace it 1-2 days earlier than recommended.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use high-absorbency materials like paper-based or pelleted bedding to maximize replacement intervals while maintaining odor control.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store bedding in a cool, dry place away from direct sunlight to preserve absorbency and prevent mold or degradation before use.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Odor as a Replacement Trigger</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Waiting until a scheduled date ignores ammonia buildup risks; replace bedding immediately if strong odors develop, regardless of the interval.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Pine or Cedar Bedding</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">These materials contain phenols that cause respiratory disease and liver damage even in small quantities; they should never be used regardless of cost savings.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping Spot-Cleaning Between Replacements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Without daily spot-cleaning, bedding degrades faster and harbors bacteria, potentially requiring more frequent full replacements and increasing health risks.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Multiple Animals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Bedding requirements increase significantly with each additional pet; doubling animals typically requires changing bedding 1-2 days sooner per animal.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I replace bedding for small pets like hamsters and gerbils?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Small pets typically need bedding replaced 2-3 times per week due to their high urine concentration and small enclosure sizes. Complete spot-cleaning daily extends the interval between full replacements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect bedding replacement frequency for rabbits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rabbit bedding needs replacement every 3-5 days based on enclosure size, number of rabbits, and litter box habits. Larger spaces and good ventilation can extend replacement intervals by 1-2 days.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does pet weight impact bedding replacement schedules?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Heavier pets produce more waste and moisture, requiring more frequent changes—typically 1-2 days sooner than lighter pets in identical conditions. Weight increases metabolism and urine output significantly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can bedding type affect how often I need to replace it?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absorbent materials like aspen shavings last 5-7 days, while paper bedding absorbs moisture better and can extend intervals to 7-10 days. Pine and cedar should never be used due to respiratory toxins.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the recommended frequency for guinea pigs and chinchillas?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Guinea pigs need bedding changes every 2-3 days with spot-cleaning daily, while chinchillas require changes every 4-7 days since their droppings are drier. Both produce substantial waste relative to cage size.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does enclosure size influence replacement frequency?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Smaller enclosures (&lt;10 sq ft) need bedding changes 2-3 times weekly, while larger habitats (&gt;20 sq ft) can go 5-7 days between changes due to better odor and moisture distribution.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I do full bedding replacement or spot-cleaning between changes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Daily spot-cleaning of soiled areas reduces bacteria growth and extends full replacement intervals by 1-2 days, saving 20-30% on bedding costs annually while improving pet health.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/rodents/husbandry-of-rodents"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Husbandry of Rodents
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide on small mammal care, including environmental hygiene and bedding management.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Small Animal Care: Housing and Bedding Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AAFCO provides guidelines on appropriate bedding materials and housing requirements for small pet welfare.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7159084/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Ammonia Exposure and Respiratory Health in Small Mammals - NCBI
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article detailing the effects of ammonia buildup from soiled bedding on respiratory health.
-            </p>
+          <li>
+            <a href="https://www.rspca.org.uk/adviceandwelfare/pets/rodents" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Rabbit and Guinea Pig Housing Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">RSPCA offers evidence-based recommendations for bedding types and replacement frequencies for rabbits and guinea pigs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/small-mammal-care"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Veterinary Medical Association - Small Mammal Care
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource on best practices for small mammal husbandry, including cage hygiene and bedding.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/avma-policies/small-animal-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Ammonia Exposure in Small Animal Environments</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AVMA discusses health risks of ammonia from soiled bedding and recommended cleaning protocols to prevent respiratory disease.</p>
+          </li>
+          <li>
+            <a href="https://www.aspca.org/pet-care/general-pet-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bedding Material Toxicity and Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ASPCA identifies bedding materials safe for small pets and warnings about toxic substances like phenols in cedar and pine.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

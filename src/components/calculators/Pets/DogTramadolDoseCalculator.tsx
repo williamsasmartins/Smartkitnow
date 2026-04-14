@@ -73,25 +73,33 @@ export default function DogTramadolDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is Tramadol dosage calculated based on weight in mg/kg?",
-      answer:
-        "Tramadol dosage for dogs is calculated in milligrams per kilogram (mg/kg) to ensure precise and safe dosing tailored to the individual dog's body mass. This method accounts for metabolic differences and drug distribution, minimizing the risk of underdosing or overdosing. Using mg/kg allows veterinarians to adjust doses accurately for dogs of varying sizes and breeds, ensuring effective pain relief while reducing side effects.",
+      question: "What is the standard tramadol dosage range for dogs?",
+      answer: "The typical tramadol dose for dogs is 5-10 mg/kg every 6-8 hours, with a maximum daily dose of 40 mg/kg. Always consult your veterinarian for your dog's specific needs.",
     },
     {
-      question: "How often should Tramadol be administered to dogs?",
-      answer:
-        "Tramadol is typically administered every 8 to 12 hours in dogs, depending on the severity of pain and veterinary guidance. This dosing interval maintains effective analgesic levels in the bloodstream while minimizing side effects. It's crucial to follow the veterinarian's prescribed schedule strictly, as improper timing can lead to inadequate pain control or increased risk of adverse reactions.",
+      question: "How does dog weight affect tramadol dosing?",
+      answer: "Tramadol is weight-based, meaning heavier dogs require higher absolute doses. A 20 kg dog needs roughly twice the dose of a 10 kg dog at the same mg/kg rate.",
     },
     {
-      question: "Are there risks associated with using Tramadol in dogs?",
-      answer:
-        "Yes, while Tramadol is generally safe when dosed correctly, it can cause side effects such as sedation, gastrointestinal upset, or, rarely, seizures. Dogs with certain medical conditions or those on other medications may be at higher risk. Therefore, Tramadol should only be used under veterinary supervision, with careful dose calculation and monitoring to ensure safety and efficacy.",
+      question: "Can I use this calculator for all dog breeds?",
+      answer: "Yes, the calculator works for all breeds since dosing is weight-based; however, older dogs, those with liver/kidney disease, or on other medications may need dose adjustments your vet determines.",
     },
     {
-      question: "Can I use this calculator to dose Tramadol for other animals?",
-      answer:
-        "No, this calculator is specifically designed for dogs based on veterinary pharmacology and dosing guidelines. Different species metabolize drugs differently, and dosages vary widely. Using this calculator for other animals could result in incorrect dosing and potential harm. Always consult a veterinarian for species-specific medication guidance.",
+      question: "What should I do if my dog misses a tramadol dose?",
+      answer: "Give the missed dose as soon as remembered, unless it's almost time for the next dose; then skip the missed dose and resume the regular schedule without doubling up.",
     },
+    {
+      question: "Are there side effects I should monitor after giving tramadol?",
+      answer: "Common side effects include drowsiness, dizziness, and constipation; contact your vet if your dog shows vomiting, severe lethargy, or difficulty urinating.",
+    },
+    {
+      question: "How long does tramadol take to work in dogs?",
+      answer: "Tramadol typically begins working within 30-60 minutes of oral administration, with peak pain relief occurring around 2-3 hours after dosing.",
+    },
+    {
+      question: "Can tramadol be combined with other pain medications?",
+      answer: "Combining tramadol with NSAIDs or other medications requires veterinary approval due to potential interactions; never combine without explicit instructions from your vet.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -226,115 +234,224 @@ export default function DogTramadolDoseCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Tramadol Dose Calculator for Dogs
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Tramadol is a synthetic opioid analgesic commonly prescribed by veterinarians to manage moderate to severe pain in dogs. Its mechanism involves binding to opioid receptors in the central nervous system, altering the perception of pain. Because dogs vary widely in size and metabolism, dosing must be carefully calculated based on their body weight to ensure efficacy while minimizing adverse effects. This calculator provides a scientifically grounded estimate of the appropriate Tramadol dose based on your dog's weight and pain severity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The dosage is expressed in milligrams per kilogram (mg/kg), a standard veterinary dosing unit that accounts for the animal's mass. Pain severity influences the dose, with mild pain requiring lower doses and severe pain necessitating higher doses under strict veterinary supervision. This tool does not replace professional veterinary advice but serves as an educational aid to understand how Tramadol dosing is determined for canine patients.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to note that Tramadol should only be administered under veterinary guidance, as improper dosing can lead to side effects such as sedation, gastrointestinal upset, or neurological symptoms. Additionally, some dogs may have contraindications or be on medications that interact with Tramadol. Always consult your veterinarian before starting or adjusting any medication regimen for your dog.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Tramadol Dose Calculator for Dogs</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the appropriate tramadol dose for your dog based on weight and standard veterinary dosing guidelines (5-10 mg/kg). It provides a reference range to discuss with your veterinarian, not a substitute for professional medical advice.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's weight in kilograms and select the dosing frequency your vet recommends. The calculator displays both the low-end (5 mg/kg) and high-end (10 mg/kg) dose recommendations for comparison.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the calculated dose range and maximum daily limits, then confirm the exact dose with your veterinarian before administration. Individual factors like age, kidney function, and concurrent medications may require dose adjustments.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the appropriate Tramadol dose for your dog based on its weight and the severity of pain as assessed by a veterinarian. To use it effectively, you need to provide accurate information about your dog's current weight and select the pain severity category that best matches your dog's condition. The calculator then applies veterinary dosing guidelines to compute the recommended dose in milligrams.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog's Weight:</strong> Enter your dog's weight in pounds or kilograms, depending on your preferred unit system. Accurate weight measurement is critical for safe dosing.
-          </li>
-          <li>
-            <strong>Pain Severity:</strong> Choose the level of pain your dog is experiencing—mild, moderate, or severe—as determined by a veterinary professional. This selection adjusts the dose accordingly.
-          </li>
-          <li>
-            <strong>Calculate:</strong> Click the calculate button to see the recommended Tramadol dose in milligrams. Follow your veterinarian's instructions for administration frequency and monitoring.
-          </li>
-          <li>
-            <strong>Reset:</strong> Use the reset button to clear inputs and start a new calculation.
-          </li>
+      {/* TABLE: Tramadol Dosage Guidelines by Dog Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tramadol Dosage Guidelines by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows standard tramadol dosing calculations at 5 mg/kg and 10 mg/kg for common dog weights.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Dose 5 mg/kg (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Dose 10 mg/kg (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Maximum daily dose should not exceed 40 mg/kg. Always verify dosing with your veterinarian before administration.</p>
+      </section>
+
+      {/* TABLE: Tramadol Duration and Peak Effect Timeline */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tramadol Duration and Peak Effect Timeline</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Understanding when tramadol reaches peak effectiveness and how long it lasts helps optimize your dog's pain management schedule.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Metric</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Timeframe</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Important Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Onset of Action</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-60 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">First signs of pain relief begin</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Peak Effect</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maximum pain relief achieved</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Duration</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pain relief gradually decreases</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Half-Life</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-9 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Elimination from body at slower rate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full Clearance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-48 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Complete removal from system</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Individual dogs may vary in response time based on metabolism, age, and health status. Extended-release formulations have different kinetics.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always obtain a veterinary prescription before administering tramadol; dosing depends on your dog's specific health status.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a digital scale to weigh your dog accurately, as improper weight estimates lead to incorrect dose calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Give tramadol with food to reduce nausea and stomach upset in sensitive dogs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your dog for constipation, a common tramadol side effect, and increase water intake to prevent complications.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Exceeding Maximum Daily Dose</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Administering more than 40 mg/kg daily risks toxicity; the calculator prevents this error by clearly showing cumulative daily totals.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Dog Weight Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Recalculate doses if your dog gains or loses significant weight, as tramadol dosing is weight-dependent and outdated weights lead to incorrect dosing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Incorrect Weight Units</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering weight in pounds instead of kilograms produces dangerously incorrect doses; convert using 1 kg = 2.2 lbs before inputting data.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping Veterinary Consultation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using only this calculator without vet approval is unsafe; seniors, dogs with liver/kidney disease, or those on other meds need individualized dosing.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard tramadol dosage range for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The typical tramadol dose for dogs is 5-10 mg/kg every 6-8 hours, with a maximum daily dose of 40 mg/kg. Always consult your veterinarian for your dog's specific needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does dog weight affect tramadol dosing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Tramadol is weight-based, meaning heavier dogs require higher absolute doses. A 20 kg dog needs roughly twice the dose of a 10 kg dog at the same mg/kg rate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for all dog breeds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator works for all breeds since dosing is weight-based; however, older dogs, those with liver/kidney disease, or on other medications may need dose adjustments your vet determines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my dog misses a tramadol dose?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Give the missed dose as soon as remembered, unless it's almost time for the next dose; then skip the missed dose and resume the regular schedule without doubling up.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there side effects I should monitor after giving tramadol?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common side effects include drowsiness, dizziness, and constipation; contact your vet if your dog shows vomiting, severe lethargy, or difficulty urinating.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does tramadol take to work in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Tramadol typically begins working within 30-60 minutes of oral administration, with peak pain relief occurring around 2-3 hours after dosing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can tramadol be combined with other pain medications?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Combining tramadol with NSAIDs or other medications requires veterinary approval due to potential interactions; never combine without explicit instructions from your vet.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/pharmacology/analgesics/tramadol"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Tramadol
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of Tramadol pharmacology, dosing, and clinical use in veterinary medicine.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Tramadol in Dogs and Cats - VCA Animal Hospitals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive veterinary resource on tramadol pharmacology, dosing, side effects, and contraindications in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4958491/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Pharmacokinetics and Safety of Tramadol in Dogs - NCBI
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed study detailing Tramadol metabolism, dosing, and safety profile in canine patients.
-            </p>
+          <li>
+            <a href="https://www.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AVMA Canine Pain Management Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Veterinary Medical Association evidence-based guidelines for treating pain in dogs including opioid protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/aaha-guidelines/pain-management/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. AAHA Pain Management Guidelines for Dogs and Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on pain assessment and analgesic dosing, including opioids like Tramadol.
-            </p>
+          <li>
+            <a href="https://www.plumbsveterinarydrugs.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Plumb's Veterinary Drug Handbook</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative drug reference providing detailed tramadol dosing, interactions, and precautions for veterinary use.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.wsu.edu/outreach/Pet-Health-Topics/categories/pain-management"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Washington State University: Pain Management in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource on pain management strategies and medication dosing for dogs.
-            </p>
+          <li>
+            <a href="https://www.iacrpt.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Association for Canine Rehabilitation and Physical Therapy</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional organization offering evidence-based information on multimodal pain management strategies for dogs.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

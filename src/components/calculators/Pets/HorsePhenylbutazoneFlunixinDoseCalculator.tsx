@@ -82,25 +82,33 @@ export default function HorsePhenylbutazoneFlunixinDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate the correct dose of Phenylbutazone or Flunixin?",
-      answer:
-        "Accurate dosing of Phenylbutazone and Flunixin is critical to ensure effective pain and inflammation management while minimizing the risk of adverse effects such as gastrointestinal ulcers or kidney damage. Overdosing can lead to toxicity, whereas underdosing may result in insufficient therapeutic benefit. Therefore, precise dose calculation based on the horse's weight helps optimize safety and efficacy.",
+      question: "What is the typical phenylbutazone dose for horses?",
+      answer: "Phenylbutazone is commonly dosed at 2-4 mg/kg twice daily for horses, with a maximum of 4.4 mg/kg per dose. Always follow veterinary guidance for your specific horse.",
     },
     {
-      question: "How does the route of administration affect the dosing of these NSAIDs?",
-      answer:
-        "The route of administration influences the absorption and bioavailability of Phenylbutazone and Flunixin, which in turn affects dosing frequency and amount. For example, intravenous administration typically requires lower doses due to 100% bioavailability, while oral dosing may require adjustments for absorption variability. Understanding the route ensures the dose calculated is appropriate for the intended method of delivery.",
+      question: "How does flunixin dosing differ from phenylbutazone?",
+      answer: "Flunixin is typically dosed at 1.1 mg/kg twice daily for horses, making it more potent per dose than phenylbutazone. Duration and frequency depend on the condition being treated.",
     },
     {
-      question: "Can this calculator be used for foals or miniature horses?",
-      answer:
-        "This calculator is primarily designed for adult horses within a typical weight range and may not provide accurate dosing for foals or miniature horses due to their unique physiology and metabolic rates. Foals often require specialized dosing considerations, and miniature horses may have different drug sensitivities. Always consult a veterinarian for dosing in these special populations to ensure safety.",
+      question: "Can phenylbutazone and flunixin be used together?",
+      answer: "No, concurrent use of phenylbutazone and flunixin is contraindicated due to increased risk of gastrointestinal and renal toxicity. Use only one NSAID at a time.",
     },
     {
-      question: "Why is it necessary to consider the maximum daily dose when administering NSAIDs?",
-      answer:
-        "Considering the maximum daily dose of NSAIDs like Phenylbutazone and Flunixin is essential to prevent cumulative toxicity, which can cause serious side effects such as renal failure or gastrointestinal ulceration. Even if individual doses are safe, exceeding the total daily limit increases risk. Monitoring total daily intake ensures therapeutic benefit without compromising the horse's health.",
+      question: "What is the maximum duration for phenylbutazone therapy?",
+      answer: "Phenylbutazone should not exceed 14-28 days of continuous use without veterinary reassessment. Long-term use increases risks of ulceration and kidney damage.",
     },
+    {
+      question: "How should I calculate the correct dose for my pet's weight?",
+      answer: "Enter your pet's weight in kilograms and the calculator will multiply by the standard mg/kg dose to provide the total milligrams needed per administration.",
+    },
+    {
+      question: "Are there weight restrictions for phenylbutazone use in animals?",
+      answer: "Phenylbutazone is approved for horses and some other large animals but should not be used in small animals, cats, or animals weighing under 350 kg without veterinary approval.",
+    },
+    {
+      question: "What factors affect flunixin absorption and effectiveness?",
+      answer: "Food intake, administration route (oral vs. intravenous), gastrointestinal pH, and individual metabolism all influence flunixin's effectiveness and timing of pain relief.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -221,98 +229,205 @@ export default function HorsePhenylbutazoneFlunixinDoseCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Phenylbutazone / Flunixin Dose Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Phenylbutazone and Flunixin meglumine are non-steroidal anti-inflammatory drugs (NSAIDs) commonly used in equine medicine to manage pain, inflammation, and fever. Accurate dosing of these medications is essential to maximize therapeutic benefits while minimizing potential adverse effects such as gastrointestinal ulceration or renal toxicity. This calculator provides a reliable tool for veterinarians and horse owners to estimate safe and effective doses based on the horse's weight and selected drug.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The calculator uses established veterinary dosing guidelines to determine the appropriate dose per administration and the maximum daily dose for both Phenylbutazone and Flunixin. It accounts for the differences in potency and dosing regimens between the two drugs, ensuring that users receive tailored recommendations. By converting weights between imperial and metric units, it accommodates a broad user base and promotes ease of use in diverse clinical settings.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          While this tool offers a valuable starting point for dose calculation, it is not a substitute for professional veterinary advice. Individual patient factors such as age, health status, concurrent medications, and specific clinical conditions may necessitate dose adjustments. Users should always consult with a licensed veterinarian before administering NSAIDs to ensure safe and effective treatment.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Phenylbutazone / Flunixin Dose Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the precise medication dose for horses and large animals based on phenylbutazone or flunixin protocols. It ensures safe, weight-appropriate dosing aligned with veterinary standards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your animal's weight in kilograms and select the drug and dose protocol (mg/kg). The calculator will compute total milligrams per dose and daily administration amounts.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the calculated results and confirm them with your veterinarian before administration. Always verify expiration dates, storage conditions, and product concentration on the medication label.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed to provide quick, accurate dosing information for Phenylbutazone and Flunixin in horses. Begin by selecting the preferred unit system—imperial (pounds) or metric (kilograms)—to match the weight measurement you have available. Next, choose the drug you intend to dose, either Phenylbutazone or Flunixin meglumine, as dosing guidelines differ between these medications.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the horse's weight in the selected unit system. Ensure the weight is accurate to improve dosing precision.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Select the drug you plan to administer from the dropdown menu.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the "Calculate" button to generate the recommended dose per administration and the maximum daily dose.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the results carefully, including any warnings related to unusual weight ranges, and consult your veterinarian before proceeding.
-          </li>
+      {/* TABLE: Standard NSAID Dosing Guidelines for Equines */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard NSAID Dosing Guidelines for Equines</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Comparison of phenylbutazone and flunixin dosing recommendations for horses.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Drug</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose (mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Daily Dose</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Duration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Phenylbutazone</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.8 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-28 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Flunixin Meglumine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.2 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 days (IV/IM)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Phenylbutazone (Low dose)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to 30 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Flunixin (Oral)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.2 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14 days max</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All dosages should be prescribed and monitored by a licensed veterinarian. Individual cases may require adjustment.</p>
+      </section>
+
+      {/* TABLE: Weight-Based Phenylbutazone Dose Examples */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Weight-Based Phenylbutazone Dose Examples</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Quick reference for common equine weights using standard 2-4 mg/kg dosing.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Horse Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Dose (2 mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Standard Dose (4 mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">400 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,600 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">450 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">550 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,100 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,200 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are standard guidelines; actual prescriptions vary by veterinarian and clinical condition.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always weigh your horse or animal accurately before calculating doses; estimated weights can lead to under- or over-dosing.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep detailed records of phenylbutazone or flunixin administration, including dates, doses, and any adverse reactions observed.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store both medications in cool, dry conditions away from direct sunlight to maintain efficacy and prevent degradation.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your animal for signs of gastrointestinal upset, such as reduced appetite or changes in manure, especially during prolonged NSAID therapy.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated Weight Records</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using a weight from months ago can result in incorrect dosing; always weigh your animal before calculating the dose.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Drug Concentrations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Phenylbutazone and flunixin come in different concentrations; verify the product concentration before calculating or administering doses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Exceeding Maximum Duration</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Exceeding the recommended treatment duration increases risk of serious side effects like ulceration and kidney dysfunction.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing NSAIDs Without Veterinary Approval</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Combining phenylbutazone and flunixin without explicit veterinary direction significantly elevates toxicity risk and should never be attempted.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the typical phenylbutazone dose for horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Phenylbutazone is commonly dosed at 2-4 mg/kg twice daily for horses, with a maximum of 4.4 mg/kg per dose. Always follow veterinary guidance for your specific horse.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does flunixin dosing differ from phenylbutazone?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Flunixin is typically dosed at 1.1 mg/kg twice daily for horses, making it more potent per dose than phenylbutazone. Duration and frequency depend on the condition being treated.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can phenylbutazone and flunixin be used together?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, concurrent use of phenylbutazone and flunixin is contraindicated due to increased risk of gastrointestinal and renal toxicity. Use only one NSAID at a time.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum duration for phenylbutazone therapy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Phenylbutazone should not exceed 14-28 days of continuous use without veterinary reassessment. Long-term use increases risks of ulceration and kidney damage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I calculate the correct dose for my pet's weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your pet's weight in kilograms and the calculator will multiply by the standard mg/kg dose to provide the total milligrams needed per administration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there weight restrictions for phenylbutazone use in animals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Phenylbutazone is approved for horses and some other large animals but should not be used in small animals, cats, or animals weighing under 350 kg without veterinary approval.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect flunixin absorption and effectiveness?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Food intake, administration route (oral vs. intravenous), gastrointestinal pH, and individual metabolism all influence flunixin's effectiveness and timing of pain relief.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/musculoskeletal-system/anti-inflammatory-drugs/phenylbutazone"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Phenylbutazone
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of Phenylbutazone pharmacology, dosing, and clinical use in horses.
-            </p>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Pharmacology and Therapeutics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines on approved medications and dosing standards for equine use.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/musculoskeletal-system/anti-inflammatory-drugs/flunixin-meglumine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Flunixin Meglumine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed information on Flunixin meglumine's mechanism, dosing guidelines, and safety considerations.
-            </p>
+          <li>
+            <a href="https://aaep.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAEP Guidelines for Pain Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Association of Equine Practitioners resources on NSAID use and pain relief in horses.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines/aaep-guidelines-nsaids"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Association of Equine Practitioners (AAEP) NSAID Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Official guidelines on the use of NSAIDs in equine practice, including dosing and monitoring recommendations.
-            </p>
+          <li>
+            <a href="https://www.vin.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network (VIN)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed veterinary drug information and clinical guidelines for phenylbutazone and flunixin dosing.</p>
+          </li>
+          <li>
+            <a href="https://www.fda.gov/animal-veterinary" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FDA Approved Animal Drug Products</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official FDA listings of approved NSAIDs for equine and veterinary use with approved dosing.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

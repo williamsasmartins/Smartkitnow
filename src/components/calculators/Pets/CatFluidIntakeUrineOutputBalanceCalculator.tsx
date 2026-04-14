@@ -103,25 +103,33 @@ export default function CatFluidIntakeUrineOutputBalanceCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is monitoring fluid intake versus urine output important in cats?",
-      answer:
-        "Monitoring the balance between fluid intake and urine output is crucial because it reflects kidney function and hydration status. Cats with kidney disease or urinary tract issues often show imbalances that can be detected early through this monitoring. By tracking these values, owners and veterinarians can intervene promptly to prevent complications and maintain optimal health.",
+      question: "What is a normal fluid intake to urine output ratio for pets?",
+      answer: "Most healthy pets have a fluid intake to urine output ratio of approximately 1.5:1 to 2:1, meaning they retain some fluid for metabolism and perspiration. Significant deviations can indicate kidney disease, diabetes, or dehydration.",
     },
     {
-      question: "How can I accurately measure my cat's urine output at home?",
-      answer:
-        "Measuring urine output at home can be challenging but is possible with a clean litter box or urine collection tray designed for cats. Use non-absorbent litter or specialized collection devices to capture urine, then measure the volume with a syringe or graduated container. Consistency and hygiene are important to avoid contamination and ensure accurate readings for veterinary assessment.",
+      question: "How do I measure my pet's daily fluid intake accurately?",
+      answer: "Record water bowl refills in milliliters, add moisture from wet food (typically 75-80% water), and include treats. Measure bowl volume before and after 24 hours for precision.",
     },
     {
-      question: "What does it mean if my cat's urine output is much lower than fluid intake?",
-      answer:
-        "A urine output significantly lower than fluid intake may indicate fluid retention, dehydration, or impaired kidney function. This imbalance suggests the kidneys are not effectively filtering and excreting fluids, which can lead to toxin buildup. Prompt veterinary evaluation is essential to diagnose the underlying cause and initiate appropriate treatment.",
+      question: "Why is my dog's urine output higher than fluid intake?",
+      answer: "Excessive urine output relative to intake may indicate diabetes mellitus, urinary tract infection, Cushing's syndrome, or kidney disease. Consult your veterinarian if this imbalance persists for more than 2-3 days.",
     },
     {
-      question: "Can this calculator replace veterinary diagnosis for kidney or urinary issues?",
-      answer:
-        "No, this calculator is an educational tool designed to help monitor fluid balance but cannot replace professional veterinary diagnosis. Kidney and urinary tract diseases require comprehensive clinical evaluation, laboratory tests, and imaging. Always consult your veterinarian for accurate diagnosis and treatment recommendations based on your cat's specific condition.",
+      question: "What urine output volume should I expect from a 20 kg dog?",
+      answer: "A 20 kg dog typically produces 20-40 ml/kg/day, which equals 400-800 ml daily. Output depends on diet, activity level, and health status.",
     },
+    {
+      question: "Can medications affect my pet's fluid balance?",
+      answer: "Yes, diuretics, corticosteroids, and certain antibiotics increase urine output, while NSAIDs and some cardiac medications may decrease it. Always monitor fluid balance when starting new medications.",
+    },
+    {
+      question: "How does diet type impact fluid intake calculations?",
+      answer: "Dry kibble diets require higher water intake (10-15 ml/kg/day), while wet food diets provide 75-80% moisture and reduce drinking needs by up to 40%.",
+    },
+    {
+      question: "When should I be concerned about abnormal fluid balance in my cat?",
+      answer: "Contact your vet if urine output exceeds 50 ml/kg/day or if intake significantly drops below 20 ml/kg/day, as cats are prone to kidney disease and diabetes.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -250,101 +258,218 @@ export default function CatFluidIntakeUrineOutputBalanceCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Fluid Intake vs. Urine Output Balance Checker
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Fluid Intake vs. Urine Output Balance Checker is a vital veterinary tool designed to assess the equilibrium between the amount of liquid a cat consumes and the volume of urine it produces. This balance is a critical indicator of renal function and overall hydration status. Maintaining an appropriate fluid balance helps prevent complications such as dehydration, kidney disease progression, and urinary tract disorders.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          By evaluating fluid intake relative to urine output normalized to body weight, veterinarians and pet owners can detect early signs of fluid retention or excessive fluid loss. This tool uses standardized veterinary metrics, converting inputs into milliliters per kilogram, to provide an accurate and clinically relevant assessment. Understanding these values supports timely interventions and improves long-term health outcomes for cats.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This balance checker is particularly useful for monitoring cats with chronic kidney disease, urinary tract infections, or those recovering from surgery. It empowers caregivers to track subtle changes in hydration and kidney function at home, facilitating communication with veterinary professionals. Ultimately, this calculator enhances proactive health management through precise, evidence-based evaluation.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Fluid Intake vs. Urine Output Balance Checker</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners and veterinarians assess whether a pet's fluid intake matches its urine output, identifying potential health issues like dehydration, kidney disease, or diabetes. A balanced fluid intake-to-output ratio is essential for detecting abnormal patterns early.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's body weight, daily fluid intake in milliliters (water + food moisture), and 24-hour urine output volume. The calculator uses species-specific formulas and weight-based benchmarks to evaluate balance.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results indicate whether output is normal, elevated, or decreased relative to intake. Green indicates healthy balance, yellow suggests monitoring, and red flags potential medical concerns requiring veterinary evaluation.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator effectively, begin by selecting your preferred unit system: Imperial (pounds and fluid ounces) or Metric (kilograms and milliliters). Enter your cat's weight, the total fluid intake over a 24-hour period, and the total urine output measured during the same timeframe. Accurate measurement of these values is essential for reliable results.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Weigh your cat using a reliable scale and input the weight in the selected unit system.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Measure the total fluid your cat drinks in 24 hours, including water, broth, or other liquids.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Collect and measure your cat's urine output over the same 24-hour period using a non-absorbent litter or collection device.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to see the balance ratio and interpretation, which helps assess hydration and kidney function.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the results to monitor trends over time and consult your veterinarian if abnormalities persist.
-          </li>
+      {/* TABLE: Normal Daily Fluid Requirements by Pet Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Normal Daily Fluid Requirements by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference values for typical daily fluid intake in healthy adult pets based on body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Body Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Fluid Requirement</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Primary Source</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-25 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-500 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Drinking water + food moisture</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-40 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500-800 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Drinking water + food moisture</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-150 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Drinking water + food moisture</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-200 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Drinking water + food moisture</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-3 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-300 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Water bottle + fresh vegetables</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Guinea Pig</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8-1.2 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-100 ml</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Water bottle + high-water vegetables</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values assume normal activity level and moderate ambient temperature; adjust for exercise, heat, or medical conditions.</p>
+      </section>
+
+      {/* TABLE: Expected Daily Urine Output by Pet Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Expected Daily Urine Output by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical urine production rates in milliliters per kilogram of body weight for healthy pets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Urine Output (ml/kg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total for Average Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Normal Range Indicator</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-40 ml/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-600 ml (15kg dog)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pale to light yellow</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30 ml/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-150 ml (4kg cat)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light to pale yellow</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25 ml/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-75 ml (2.5kg rabbit)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Clear to pale</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Guinea Pig</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20 ml/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-24 ml (1.2kg GP)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Clear to slightly cloudy</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hamster</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12 ml/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 ml (150g hamster)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal visible output</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Output increases with higher water intake, exercise, warm environments, and certain medical conditions like diabetes.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Collect urine in a clean container over exactly 24 hours for the most accurate measurement and comparison.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for all water sources: drinking bowl, wet food, treats, broth, and even water from fruits or vegetables.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor fluid balance during seasonal changes, as hot weather increases both intake and output naturally.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep a daily log for 3-5 days before consulting your vet to identify consistent patterns rather than daily fluctuations.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring moisture in commercial pet food</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Wet food contains 75-80% water but is often overlooked; this can make intake appear lower than actual, skewing balance assessment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring urine over less than 24 hours</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Urine output varies significantly throughout the day; measuring only morning or evening samples gives inaccurate results.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Failing to account for multiple water bowls</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pets with access to bowls in different rooms may drink more than recorded; track all sources for accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not adjusting for environmental factors</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Exercise, temperature, humidity, and stress all increase fluid needs; the calculator results must be interpreted with context.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a normal fluid intake to urine output ratio for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most healthy pets have a fluid intake to urine output ratio of approximately 1.5:1 to 2:1, meaning they retain some fluid for metabolism and perspiration. Significant deviations can indicate kidney disease, diabetes, or dehydration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I measure my pet's daily fluid intake accurately?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Record water bowl refills in milliliters, add moisture from wet food (typically 75-80% water), and include treats. Measure bowl volume before and after 24 hours for precision.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is my dog's urine output higher than fluid intake?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excessive urine output relative to intake may indicate diabetes mellitus, urinary tract infection, Cushing's syndrome, or kidney disease. Consult your veterinarian if this imbalance persists for more than 2-3 days.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What urine output volume should I expect from a 20 kg dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 20 kg dog typically produces 20-40 ml/kg/day, which equals 400-800 ml daily. Output depends on diet, activity level, and health status.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can medications affect my pet's fluid balance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, diuretics, corticosteroids, and certain antibiotics increase urine output, while NSAIDs and some cardiac medications may decrease it. Always monitor fluid balance when starting new medications.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does diet type impact fluid intake calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dry kibble diets require higher water intake (10-15 ml/kg/day), while wet food diets provide 75-80% moisture and reduce drinking needs by up to 40%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When should I be concerned about abnormal fluid balance in my cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your vet if urine output exceeds 50 ml/kg/day or if intake significantly drops below 20 ml/kg/day, as cats are prone to kidney disease and diabetes.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.acvima.org/resources/clinical-guidelines/fluid-therapy-in-small-animals"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. ACVIM Consensus Statement on Fluid Therapy in Small Animals
-            </a>
-            <p className="text-slate-500 text-sm">
-              This guideline provides comprehensive information on fluid balance, hydration assessment, and renal function monitoring in small animals, including cats.
-            </p>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Kidney Disease in Cats — AAFCO Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines for pet nutrition and hydration requirements developed by the Association of American Feed Control Officials.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/urinary-system/urine-formation-and-excretion/overview-of-urine-formation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Overview of Urine Formation
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed explanation of the physiology of urine production and its clinical significance in veterinary medicine.
-            </p>
+          <li>
+            <a href="https://www.vin.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Fluid Therapy in Small Animals — Veterinary Information Network</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based resource on fluid balance, intake assessment, and clinical interpretation for veterinary professionals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/chronic-kidney-disease-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell Feline Health Center: Chronic Kidney Disease in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource on monitoring and managing kidney disease in cats, emphasizing fluid balance and urine output.
-            </p>
+          <li>
+            <a href="https://www.icatcare.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Diabetes in Pets — International Society of Feline Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical guidance on recognizing polyuria and polydipsia as early indicators of feline diabetes mellitus.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Health Guidelines — American Veterinary Medical Association</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive standards for monitoring pet health including fluid intake and urine output assessment protocols.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

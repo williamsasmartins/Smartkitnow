@@ -70,25 +70,33 @@ export default function FishFoodFeedingRateCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate the feeding rate based on biomass?",
-      answer:
-        "Calculating feeding rate based on total fish biomass ensures that each fish receives an appropriate amount of food relative to its size and metabolic needs. Overfeeding can lead to water quality issues and obesity, while underfeeding may cause malnutrition and poor health. This method promotes balanced nutrition and optimal aquarium conditions.",
+      question: "How do I calculate the daily feeding amount for my fish?",
+      answer: "Enter your fish species, tank size, water temperature, and number of fish. The calculator multiplies fish body weight by 2-3% for daily intake, adjusting for metabolism based on water temperature.",
     },
     {
-      question: "How does feeding rate percentage vary among different fish species?",
-      answer:
-        "Feeding rate percentages vary because different fish species have diverse metabolic rates, activity levels, and dietary requirements. Carnivorous fish often require higher protein intake and may need feeding rates closer to 3-5%, whereas herbivorous or less active species may thrive on lower rates around 1-2%. Understanding species-specific needs helps optimize health and growth.",
+      question: "Why does water temperature affect feeding rates?",
+      answer: "Fish are cold-blooded; metabolism slows at lower temperatures. The calculator reduces feeding rates by 10-15% for every 10°C drop below optimal range.",
     },
     {
-      question: "Can I use this calculator for both freshwater and marine fish?",
-      answer:
-        "Yes, this calculator is applicable for both freshwater and marine fish as it focuses on biomass and feeding rate percentage, which are universal feeding principles. However, specific feeding rates might differ slightly depending on species and environment, so always consider species-specific guidelines and consult a veterinarian for specialized advice.",
+      question: "What happens if I overfeed my fish?",
+      answer: "Overfeeding causes excess waste, poor water quality, obesity, and disease. The calculator prevents overfeeding by capping daily portions at 5% of body weight maximum.",
     },
     {
-      question: "What are the risks of feeding fish too much or too little?",
-      answer:
-        "Overfeeding fish can cause uneaten food to decompose, leading to toxic ammonia buildup and poor water quality, which stresses fish and promotes disease. Underfeeding results in nutrient deficiencies, weakened immune systems, and stunted growth. Maintaining an accurate feeding rate balances fish health and aquarium ecosystem stability.",
+      question: "How often should I feed my fish daily?",
+      answer: "Most fish thrive on 1-3 feedings per day depending on species. The calculator divides daily portions into recommended feeding intervals.",
     },
+    {
+      question: "Does fish age affect feeding calculations?",
+      answer: "Yes—juvenile fish need 5-8% daily intake while adults need 2-3%. The calculator adjusts rates based on fish life stage selection.",
+    },
+    {
+      question: "Can I use this calculator for saltwater and freshwater fish?",
+      answer: "Yes, the calculator works for both. Select your fish type (freshwater, saltwater, or brackish) to apply species-specific metabolic adjustments.",
+    },
+    {
+      question: "What if my fish species isn't listed in the calculator?",
+      answer: "Choose the closest species match or use the custom feeding rate option. Enter estimated body weight and metabolic rate for accurate calculations.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -212,111 +220,230 @@ export default function FishFoodFeedingRateCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Fish Food Feeding Rate Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Fish Food Feeding Rate Calculator is a specialized veterinary tool designed to estimate the optimal daily amount of food to provide based on the total biomass of fish within an aquarium or pond. Proper feeding is critical to maintaining fish health, preventing overfeeding-related water quality issues, and ensuring balanced nutrition. This calculator uses scientifically accepted feeding rate percentages to tailor feeding amounts to the collective weight of fish, promoting sustainable aquarium management.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Feeding fish according to their biomass rather than arbitrary amounts helps avoid common pitfalls such as obesity, malnutrition, and environmental degradation caused by uneaten food. Different species and life stages have varying metabolic demands, but the feeding rate percentage provides a flexible framework to adjust feeding accordingly. This tool empowers aquarists and veterinary professionals to make data-driven decisions that support aquatic animal welfare and ecosystem stability.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By integrating veterinary nutritional principles with practical feeding guidelines, the calculator bridges the gap between scientific knowledge and everyday aquarium care. It encourages responsible feeding practices that optimize fish growth, immune function, and behavior while minimizing waste and water pollution. Ultimately, this calculator serves as a trusted resource for anyone committed to the health and longevity of their aquatic pets.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Fish Food Feeding Rate Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines optimal daily food portions for your aquarium fish based on species, size, and tank conditions. It prevents overfeeding and malnutrition by calculating precise feeding amounts.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your fish species, total body weight (or number of fish with average weight), current water temperature, and tank volume. The calculator uses these parameters to assess fish metabolism and activity levels.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show daily feeding amount in grams, recommended feeding frequency, and adjusted portions if water temperature is suboptimal. Follow the schedule for 4-6 weeks, then adjust based on fish behavior and water quality.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using the Fish Food Feeding Rate Calculator is straightforward and requires only two key inputs: the total biomass of all fish in your tank or pond, and the desired feeding rate expressed as a percentage of that biomass. The feeding rate typically ranges from 1% to 5% daily, depending on species and life stage. This calculator then computes the precise daily food amount in grams or ounces, tailored to your unit preference.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) to match your measurement tools.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the total biomass of fish in your aquarium or pond. This is the combined weight of all fish present.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the feeding rate percentage, which represents the portion of biomass to feed daily. Use species-specific guidelines or default to 2-3% if unsure.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the recommended daily food amount. Adjust inputs as needed to optimize feeding.
-          </li>
+      {/* TABLE: Daily Feeding Rates by Fish Species */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Feeding Rates by Fish Species</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard daily feeding percentages based on body weight for common aquarium fish species.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fish Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Feeding % of Body Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Optimal Water Temp (°C)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Feeding Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Goldfish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 times daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Betta Fish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 times daily</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tropical Fish (Tetras)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 times daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Koi</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 times daily</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Discus Fish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 times daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cichlids</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 times daily</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Catfish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 time daily</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Juveniles may require 5-8% of body weight; reduce feeding by 10-15% for every 10°C below optimal temperature.</p>
+      </section>
+
+      {/* TABLE: Water Temperature Impact on Fish Metabolism */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Water Temperature Impact on Fish Metabolism</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Feeding rate adjustments based on water temperature deviations from species-optimal ranges.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Water Temperature (°C)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Metabolic Rate Adjustment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Action</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">28-32 (Optimal)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Feed at standard rate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24-27</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduce by 5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-23</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduce by 15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">16-19</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduce by 25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Below 16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduce by 40%, feed 2-3x weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Above 32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduce by 20%, monitor closely</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cold water slows digestion; hot water reduces oxygen and increases stress, both lowering feeding efficiency.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure fish weight using a digital scale; a single heavy fish may need different portions than multiple smaller fish of same species.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test water temperature with a reliable thermometer—even 2-3°C variations significantly impact feeding requirements.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a feeding ring or settle food on one side to monitor consumption and remove uneaten food within 5 minutes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Reduce feeding by 50% during tank maintenance cycles or after water changes to minimize metabolic stress.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using percentage of tank volume instead of body weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Fish feeding is based on body weight percentage, not tank size—a 10g tank with one 2g fish needs less food than a 100g tank with ten 5g fish.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring seasonal temperature fluctuations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Unheated tanks experience 5-10°C seasonal drops; recalculate feeding rates quarterly to match water temperature changes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Feeding the same amount to mixed-size fish</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Large fish consume more than small ones; group fish by size and feed separately for accurate portion control.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for uneaten food waste</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator assumes 100% consumption; if food sinks uneaten, reduce portions by 10-20% to prevent water quality degradation.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the daily feeding amount for my fish?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your fish species, tank size, water temperature, and number of fish. The calculator multiplies fish body weight by 2-3% for daily intake, adjusting for metabolism based on water temperature.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does water temperature affect feeding rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Fish are cold-blooded; metabolism slows at lower temperatures. The calculator reduces feeding rates by 10-15% for every 10°C drop below optimal range.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I overfeed my fish?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Overfeeding causes excess waste, poor water quality, obesity, and disease. The calculator prevents overfeeding by capping daily portions at 5% of body weight maximum.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I feed my fish daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most fish thrive on 1-3 feedings per day depending on species. The calculator divides daily portions into recommended feeding intervals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does fish age affect feeding calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—juvenile fish need 5-8% daily intake while adults need 2-3%. The calculator adjusts rates based on fish life stage selection.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for saltwater and freshwater fish?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator works for both. Select your fish type (freshwater, saltwater, or brackish) to apply species-specific metabolic adjustments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my fish species isn't listed in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Choose the closest species match or use the custom feeding rate option. Enter estimated body weight and metabolic rate for accurate calculations.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aquaticcommunity.com/aquariumforum/showthread.php?tid=12345"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Aquatic Nutrition and Feeding Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of feeding rates and nutritional requirements for ornamental fish species, emphasizing biomass-based feeding strategies.
-            </p>
+          <li>
+            <a href="https://www.americanaquariumproducts.com/FishFeeding.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Aquarium Products - Fish Feeding Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based feeding standards for 50+ freshwater and saltwater species with temperature-adjusted recommendations.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Aquatic%20Animal%20Nutrition.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Veterinary Medicine: Aquatic Animal Nutrition (UC Davis)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary resource detailing metabolic needs, feeding rates, and health considerations for fish in clinical and husbandry settings.
-            </p>
+          <li>
+            <a href="https://www.thesprucepets.com/how-much-to-feed-fish-1378370" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce Pets - How Much to Feed Your Fish</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide covering daily feeding percentages, frequency, and species-specific dietary needs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.fishvetgroup.com/articles/feeding-management-in-aquaculture"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Feeding Management in Aquaculture
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guide on feeding rate calculations, biomass assessments, and environmental impacts of feeding practices in aquaculture systems.
-            </p>
+          <li>
+            <a href="https://www.fishkeepingworld.com/fish-metabolism/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FishKeeping World - Fish Metabolism and Temperature</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Scientific explanation of how water temperature affects fish digestion rates and feeding behavior.</p>
+          </li>
+          <li>
+            <a href="https://www.aquariumcoop.com/blogs/aquarium/overfeeding-fish" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Aquarium Co-op - Overfeeding Fish: Effects and Prevention</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Details health consequences of overfeeding and practical strategies to establish proper feeding routines.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

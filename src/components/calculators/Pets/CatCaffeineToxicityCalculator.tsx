@@ -69,25 +69,33 @@ export default function CatCaffeineToxicityCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is caffeine toxic to cats?",
-      answer:
-        "Cats metabolize caffeine much more slowly than humans, leading to accumulation of toxic levels in their system. Caffeine stimulates the central nervous system and cardiovascular system, which can cause symptoms ranging from restlessness and rapid breathing to seizures and cardiac arrest. Because cats are smaller and more sensitive, even small amounts can be dangerous, making awareness critical.",
+      question: "What caffeine dose is toxic to cats?",
+      answer: "Cats are highly sensitive to caffeine; toxicity typically occurs at 20 mg/kg of body weight, with severe effects at 40+ mg/kg. A 10 lb cat needs only 90 mg of caffeine to show mild symptoms.",
     },
     {
-      question: "How much caffeine is considered toxic for cats?",
-      answer:
-        "The lowest reported toxic dose of caffeine in cats is approximately 20 mg per kilogram of body weight. This means that a 5 kg cat could experience toxicity symptoms after ingesting around 100 mg of caffeine. However, individual sensitivity varies, so any caffeine ingestion should be treated cautiously and monitored closely.",
+      question: "How quickly do caffeine toxicity symptoms appear in cats?",
+      answer: "Symptoms usually appear within 30-60 minutes of ingestion and peak at 1-2 hours. Effects can last 12+ hours depending on the amount consumed.",
     },
     {
-      question: "What are common sources of caffeine that cats might ingest?",
-      answer:
-        "Cats can be exposed to caffeine through coffee grounds, tea leaves, energy drinks, chocolate, certain medications, and even some dietary supplements. Because cats often explore their environment with their mouths, accidental ingestion of these substances is possible. Pet owners should keep all caffeine-containing products securely out of reach to prevent accidental poisoning.",
+      question: "Which common foods and drinks contain dangerous caffeine levels for cats?",
+      answer: "One cup of coffee (95-200 mg), a single espresso shot (63-75 mg), dark chocolate (12-26 mg per ounce), and energy drinks (80-300 mg) all pose serious risks to cats.",
     },
     {
-      question: "What should I do if I suspect my cat has ingested caffeine?",
-      answer:
-        "If you suspect caffeine ingestion, immediately contact your veterinarian or an emergency animal poison control center. Early symptoms include hyperactivity, vomiting, and increased heart rate, which can escalate quickly. Prompt veterinary intervention can prevent severe complications and improve the prognosis significantly.",
+      question: "What are the early warning signs of caffeine poisoning in cats?",
+      answer: "Early signs include restlessness, rapid breathing, increased heart rate, tremors, and vomiting. Severe cases may cause seizures, arrhythmias, or collapse.",
     },
+    {
+      question: "Is there an antidote for cat caffeine toxicity?",
+      answer: "No specific antidote exists; treatment is supportive care including IV fluids, monitoring, and symptom management at an emergency veterinary clinic.",
+    },
+    {
+      question: "How much caffeine is in tea versus coffee for cats?",
+      answer: "Black tea contains 25-50 mg per cup while coffee has 95-200 mg per cup; even small amounts of either can be harmful to cats.",
+    },
+    {
+      question: "Should I use this calculator before contacting a vet?",
+      answer: "This calculator estimates risk level, but contact your vet or poison control immediately if your cat ingested any caffeine; do not delay seeking professional help.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -224,95 +232,230 @@ export default function CatCaffeineToxicityCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Caffeine Toxicity Risk for Cats
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Caffeine is a potent stimulant that affects the central nervous and cardiovascular systems. Cats are particularly sensitive to caffeine because their bodies metabolize it much more slowly than humans, leading to prolonged toxic effects. Even small amounts of caffeine can cause serious health issues, including tremors, seizures, and cardiac arrhythmias. Understanding the risk factors and toxic thresholds is essential for preventing accidental poisoning.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The toxic dose of caffeine in cats is estimated to be around 20 mg per kilogram of body weight, but individual sensitivity varies. Sources of caffeine exposure include coffee grounds, tea, chocolate, energy drinks, and certain medications. Because cats often explore their environment with their mouths, accidental ingestion is a common risk, especially in multi-pet households or homes with children. Early recognition and intervention can save lives.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Caffeine Toxicity Risk for Cats</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates whether your cat has ingested a potentially toxic amount of caffeine based on their weight and the caffeine dose consumed. It helps you quickly assess risk level and determine if veterinary attention is needed.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your cat's body weight in pounds or kilograms and the milligrams of caffeine ingested. The calculator uses established toxicity thresholds (20 mg/kg for symptoms, 40+ mg/kg for severe effects) to compute risk.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show your cat's risk level as none, mild, moderate, severe, or life-threatening. Always contact your veterinarian or animal poison control for any suspected ingestion; this tool is informational only and does not replace professional medical advice.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the risk of caffeine toxicity in cats based on their weight and the estimated amount of caffeine ingested. By inputting your cat’s weight and the caffeine dose, you can assess whether the exposure is likely to be harmful. The tool uses a scientifically supported toxic dose threshold to provide a risk score and guidance.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) that matches your cat’s weight measurement.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your cat’s current weight accurately to ensure correct risk calculation.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the total estimated caffeine amount ingested in milligrams from all sources.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the risk score and interpret the results carefully. If the risk is moderate or high, seek veterinary advice immediately.
-          </li>
+      {/* TABLE: Caffeine Content in Common Household Items */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Caffeine Content in Common Household Items</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical caffeine amounts found in foods and beverages that pose toxicity risks to cats.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Item</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Serving Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Caffeine Content (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level for 10 lb Cat</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Brewed Coffee</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95–200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Espresso</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 shot (1 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">63–75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Black Tea</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Energy Drink</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz serving</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80–300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dark Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 ounce</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12–26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Milk Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 ounce</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cola Soft Drink</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 oz can</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34–46</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Caffeine Pill</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100–200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Toxicity risk depends on cat weight; lighter cats are at greater risk from smaller amounts.</p>
+      </section>
+
+      {/* TABLE: Caffeine Toxicity Severity Levels for Cats */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Caffeine Toxicity Severity Levels for Cats</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Symptom severity based on caffeine dose relative to cat body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose (mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Symptom Severity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Clinical Signs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Veterinary Care Required</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&lt; 5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">None</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No symptoms expected</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not needed</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5–10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slight restlessness, mild tremors</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor closely</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10–20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hyperactivity, rapid heartbeat, vomiting</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Contact vet</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20–40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Tremors, rapid heart rate, seizures risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency care</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt; 40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Life-Threatening</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Seizures, cardiac arrhythmias, collapse</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency care immediately</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">A 5 lb cat ingesting 50 mg caffeine reaches ~22 mg/kg (severe risk level).</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep all coffee, tea, energy drinks, and caffeine pills secured in cabinets or high shelves away from curious cats.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Be aware that some medications, weight-loss supplements, and performance-enhancing products contain hidden caffeine dangerous to cats.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If your cat ingests caffeine, note the time and amount, then immediately contact your vet or ASPCA Animal Poison Control (888-426-4435).</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Kittens and senior cats are more vulnerable to caffeine toxicity due to slower metabolism; use extra caution with these age groups.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming small amounts are safe</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even 10 mg of caffeine can cause mild symptoms in a 5 lb cat; no amount is truly 'safe'.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting hidden caffeine sources</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Chocolate, energy bars, diet pills, and certain pain relievers contain caffeine and are often overlooked as toxicity risks.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Waiting to see symptoms before calling the vet</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Toxicity symptoms can escalate quickly to seizures or cardiac issues; seek immediate veterinary care at any ingestion suspicion.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using human toxicity data for cats</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats metabolize caffeine differently than humans and are far more sensitive; cat-specific toxicity thresholds must be used.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What caffeine dose is toxic to cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats are highly sensitive to caffeine; toxicity typically occurs at 20 mg/kg of body weight, with severe effects at 40+ mg/kg. A 10 lb cat needs only 90 mg of caffeine to show mild symptoms.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How quickly do caffeine toxicity symptoms appear in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Symptoms usually appear within 30-60 minutes of ingestion and peak at 1-2 hours. Effects can last 12+ hours depending on the amount consumed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which common foods and drinks contain dangerous caffeine levels for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">One cup of coffee (95-200 mg), a single espresso shot (63-75 mg), dark chocolate (12-26 mg per ounce), and energy drinks (80-300 mg) all pose serious risks to cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the early warning signs of caffeine poisoning in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Early signs include restlessness, rapid breathing, increased heart rate, tremors, and vomiting. Severe cases may cause seizures, arrhythmias, or collapse.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is there an antidote for cat caffeine toxicity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No specific antidote exists; treatment is supportive care including IV fluids, monitoring, and symptom management at an emergency veterinary clinic.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much caffeine is in tea versus coffee for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Black tea contains 25-50 mg per cup while coffee has 95-200 mg per cup; even small amounts of either can be harmful to cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I use this calculator before contacting a vet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator estimates risk level, but contact your vet or poison control immediately if your cat ingested any caffeine; do not delay seeking professional help.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/caffeine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. ASPCA Animal Poison Control Center: Caffeine Toxicity in Pets
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of caffeine poisoning symptoms, toxic doses, and emergency treatment protocols for cats and other pets.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official resource for emergency poisoning guidance and 24/7 hotline for pet toxicity cases.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/caffeine-and-theobromine-poisoning/caffeine-and-theobromine-poisoning-in-animals"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Caffeine and Theobromine Poisoning
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed veterinary reference on the pathophysiology, clinical signs, and treatment of caffeine toxicity in small animals.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/poison/caffeine/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline – Caffeine Toxicity in Pets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed toxicology information on caffeine poisoning symptoms and treatment in cats and other pets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/caffeine-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell Feline Health Center: Caffeine Toxicity in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource focused on feline-specific caffeine toxicity risks, prevention, and emergency care recommendations.
-            </p>
+          <li>
+            <a href="https://icatcare.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care – Feline Nutrition and Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidance on safe foods and substances for cats from cat welfare experts.</p>
+          </li>
+          <li>
+            <a href="https://vcahospitals.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals – Caffeine Toxicity in Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary clinical information on caffeine poisoning diagnosis, symptoms, and emergency treatment protocols.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

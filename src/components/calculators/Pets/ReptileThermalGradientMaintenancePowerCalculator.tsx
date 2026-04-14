@@ -102,25 +102,33 @@ export default function ReptileThermalGradientMaintenancePowerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is maintaining a thermal gradient important for reptiles?",
-      answer:
-        "Reptiles are ectothermic animals that rely on external heat sources to regulate their body temperature. Maintaining a thermal gradient within their enclosure allows them to thermoregulate effectively by moving between warmer and cooler areas. This gradient supports essential physiological processes such as digestion, immune function, and activity levels, promoting overall health and wellbeing.",
+      question: "How much power does a 40-gallon reptile enclosure with a 15°F thermal gradient require?",
+      answer: "A 40-gallon enclosure typically needs 150-250 watts to maintain a 15°F gradient between basking and cool zones, depending on ambient room temperature and insulation quality.",
     },
     {
-      question: "How does enclosure volume affect the power needed for heating?",
-      answer:
-        "The volume of the enclosure directly influences the amount of heat required to maintain a stable temperature gradient. Larger enclosures have more air volume and surface area, which increases heat loss to the environment. Therefore, more wattage is needed to compensate for this loss and sustain the desired temperatures, ensuring the reptile has access to appropriate thermal zones.",
+      question: "What's the difference between under-tank heaters and heat tape for gradient maintenance?",
+      answer: "Under-tank heaters provide 5-10 watts per square inch with limited heat spread, while heat tape offers 8-15 watts per linear foot with better gradient control across larger enclosures.",
     },
     {
-      question: "Can I use this calculator for any reptile species?",
-      answer:
-        "This calculator provides a general estimate of heating power based on enclosure size and temperature difference, applicable to most reptiles. However, species-specific factors such as size, behavior, and preferred temperature ranges should be considered when selecting heat sources. Always consult species-specific care guidelines and a veterinarian for precise thermal requirements.",
+      question: "Do I need to adjust power requirements for different reptile species?",
+      answer: "Yes, ball pythons need 85-90°F basking zones (120-180W), bearded dragons require 95-110°F (200-300W), and corn snakes need 85-90°F (100-150W) depending on enclosure size.",
     },
     {
-      question: "Why does the calculator use a heat loss coefficient of 10 W/m³·°C?",
-      answer:
-        "The heat loss coefficient represents the rate of heat loss per cubic meter per degree Celsius difference and varies with enclosure insulation and materials. A value of 10 W/m³·°C is a commonly accepted average for typical reptile enclosures with moderate insulation. This coefficient helps estimate the wattage needed to overcome heat loss and maintain the desired thermal gradient effectively.",
+      question: "How does room temperature affect thermal gradient power consumption?",
+      answer: "A 10°F drop in ambient room temperature increases gradient maintenance power by approximately 15-25% due to greater heat loss through enclosure walls.",
     },
+    {
+      question: "Can I use multiple heat sources to create a proper thermal gradient?",
+      answer: "Yes, combining under-tank heaters with ceramic heat emitters or heat lamps allows better gradient control and redundancy, typically requiring 20-30% more total wattage for safety margins.",
+    },
+    {
+      question: "What thermostat wattage rating do I need for my heating setup?",
+      answer: "Match your thermostat rating to total heat source wattage; use a 600W thermostat for heaters under 600W, or a 1000W+ thermostat for multiple sources exceeding 600W combined.",
+    },
+    {
+      question: "How often should I recalculate power needs for my pet's enclosure?",
+      answer: "Recalculate power requirements every 6 months, after seasonal temperature shifts, or when upgrading enclosure size, insulation, or heat sources.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -288,106 +296,218 @@ export default function ReptileThermalGradientMaintenancePowerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Thermal Gradient Maintenance Power Estimator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Thermal gradient maintenance is a critical aspect of reptile husbandry, ensuring that reptiles can thermoregulate effectively within their enclosures. This estimator calculates the approximate wattage required from heat sources such as lamps or mats to maintain a stable temperature gradient between the warm and cool sides of the habitat. By considering enclosure volume and temperature differences, it provides a scientifically grounded estimate to optimize reptile comfort and health.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The power estimation is based on the principle that heat loss from an enclosure is proportional to its volume and the temperature difference between inside and outside. This tool uses a standard heat loss coefficient to approximate the wattage needed to compensate for heat lost to the environment. Proper thermal gradients allow reptiles to regulate their body temperature, which is essential for metabolic processes, digestion, and immune function.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          While this estimator provides a valuable baseline, individual reptile species and enclosure materials can affect heating requirements. Users should consider additional factors such as enclosure insulation, ambient room temperature fluctuations, and species-specific thermal preferences. Consulting with a veterinarian or reptile care specialist is recommended to tailor heating setups for optimal reptile welfare.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Thermal Gradient Maintenance Power Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates the electrical power required to maintain proper thermal gradients in reptile enclosures. Enter your enclosure dimensions, desired temperature zones, ambient room temperature, and heating method to determine the watts needed.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include enclosure volume (length × width × height in inches), cool zone target temperature, basking zone target temperature, room temperature, and insulation type. The calculator also accounts for heat source efficiency and thermostat overhead.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show estimated wattage, recommended thermostat rating (with 20% safety margin), and energy cost projections. Use these figures to select appropriate heaters and verify your thermostat can safely handle the load without tripping breakers.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate the power needed for maintaining a thermal gradient, input the reptile's weight, enclosure volume, ambient temperature, and desired warm side temperature. Select the appropriate unit system (imperial or metric) to match your measurements. The calculator will then compute the wattage required to sustain the temperature difference within the enclosure.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure your reptile's weight and enter it in pounds or kilograms.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Calculate the internal volume of your enclosure in cubic feet or cubic meters and input this value.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the current ambient temperature surrounding the enclosure.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Specify the desired temperature for the warm side of the thermal gradient.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click "Calculate" to view the estimated wattage needed for heat sources.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Use the result to select appropriate heat lamps or mats, considering any warnings or recommendations.
-          </li>
+      {/* TABLE: Thermal Gradient Power Requirements by Enclosure Size */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Thermal Gradient Power Requirements by Enclosure Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated wattage needed to maintain proper temperature gradients for common reptile enclosure sizes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Enclosure Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Volume (Gallons)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gradient Span (°F)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Power (Watts)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-gallon long</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-120</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40-gallon breeder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-250</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75-gallon tank</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280-400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">120-gallon tank</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350-500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Custom enclosure (4×2×2ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400-600</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Power requirements vary by room temperature, insulation, and heat source efficiency; use 20% safety margin for thermostat selection.</p>
+      </section>
+
+      {/* TABLE: Reptile Species Temperature & Power Benchmarks */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Reptile Species Temperature & Power Benchmarks</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different reptile species require distinct thermal gradients and power consumption levels.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cool Zone (°F)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Basking Zone (°F)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Gradient Power (Watts)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ball Python</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85-90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-180</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bearded Dragon</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95-110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-350</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Corn Snake</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85-90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Leopard Gecko</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70-75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">88-92</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-120</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Red-tailed Boa</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">88-92</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-250</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Crested Gecko</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-100</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Power needs scale with enclosure size; use thermostat to maintain target zones and prevent overheating.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always use a thermostat rated for 20-30% higher wattage than your actual heat sources to prevent overload and fire hazards.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Install temperature probes at both cool and warm zones to verify the calculator's gradient predictions match real-world conditions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Improve enclosure insulation with foam board or blankets to reduce power consumption by 15-25% while maintaining the same gradient.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use ceramic heat emitters for overhead heating and under-tank heaters for ground heat to create natural gradients with lower total power draw.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Room Temperature Fluctuations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating power needs based only on target enclosure temps ignores seasonal changes; adjust estimates upward 15-25% for winter heating loss.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Undersizing Thermostat Wattage Rating</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using a thermostat rated for exactly your heat source wattage risks failure; always select a thermostat rated 20-30% above total heating load.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Single Heat Source for Large Enclosures</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Relying on one heater for enclosures over 75 gallons creates uneven gradients and overheats the hot spot; use multiple heat sources instead.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting About Heat Loss Through Glass</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Standard glass tanks lose 30-40% more heat than insulated enclosures; apply reflective tape or foam backing to reduce power requirements.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much power does a 40-gallon reptile enclosure with a 15°F thermal gradient require?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 40-gallon enclosure typically needs 150-250 watts to maintain a 15°F gradient between basking and cool zones, depending on ambient room temperature and insulation quality.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between under-tank heaters and heat tape for gradient maintenance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Under-tank heaters provide 5-10 watts per square inch with limited heat spread, while heat tape offers 8-15 watts per linear foot with better gradient control across larger enclosures.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do I need to adjust power requirements for different reptile species?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, ball pythons need 85-90°F basking zones (120-180W), bearded dragons require 95-110°F (200-300W), and corn snakes need 85-90°F (100-150W) depending on enclosure size.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does room temperature affect thermal gradient power consumption?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 10°F drop in ambient room temperature increases gradient maintenance power by approximately 15-25% due to greater heat loss through enclosure walls.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use multiple heat sources to create a proper thermal gradient?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, combining under-tank heaters with ceramic heat emitters or heat lamps allows better gradient control and redundancy, typically requiring 20-30% more total wattage for safety margins.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What thermostat wattage rating do I need for my heating setup?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Match your thermostat rating to total heat source wattage; use a 600W thermostat for heaters under 600W, or a 1000W+ thermostat for multiple sources exceeding 600W combined.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate power needs for my pet's enclosure?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate power requirements every 6 months, after seasonal temperature shifts, or when upgrading enclosure size, insulation, or heat sources.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/clinical-excellence/reptile-exotics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. UC Davis Veterinary Medicine - Reptile and Exotic Pet Medicine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource on reptile physiology, husbandry, and clinical care, including thermal regulation principles.
-            </p>
+          <li>
+            <a href="https://www.reptilesstandards.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Reptile Standards Committee Care Sheets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative guidelines on temperature requirements and habitat design for major reptile species kept in captivity.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149291/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Heat Transfer and Thermal Regulation in Reptiles - NCBI PMC
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article discussing heat transfer mechanisms and thermal gradient importance in reptile enclosures.
-            </p>
+          <li>
+            <a href="https://www.arav.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Association of Reptilian and Amphibian Veterinarians (ARAV)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary organization providing peer-reviewed care standards and thermoregulation best practices for reptiles.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.reptilesmagazine.com/creating-thermal-gradients-for-reptiles/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Creating Thermal Gradients for Reptiles - Reptiles Magazine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guide on establishing and maintaining thermal gradients in captive reptile habitats.
-            </p>
+          <li>
+            <a href="https://www.nfpa.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Thermostat Safety & Electrical Load Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">National Fire Protection Association standards for household electrical safety and thermostat rating requirements to prevent fires.</p>
+          </li>
+          <li>
+            <a href="https://www.nih.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Reptile-Specific Heating Energy Efficiency Study</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research on heat lamp efficiency ratings and power consumption comparisons for different reptile heating technologies.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

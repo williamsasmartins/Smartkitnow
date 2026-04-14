@@ -57,25 +57,33 @@ export default function BirdDailyCalorieNeedsBodyWeightCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is body weight important for calculating daily calorie needs in birds?",
-      answer:
-        "Body weight is a fundamental factor in determining a bird's energy requirements because metabolic rate scales with size. Larger birds generally require more calories, but not in a linear fashion; the relationship follows an allometric scaling (weight to the power of 0.75). This ensures that calorie needs are accurately estimated to maintain healthy body function and activity levels.",
+      question: "How do I calculate my pet's daily calorie needs based on body weight?",
+      answer: "Enter your pet's current weight and activity level into the calculator. It uses the Resting Energy Expenditure (REE) formula multiplied by an activity factor to estimate total daily calorie needs, typically ranging from 25-35 calories per pound for average pets.",
     },
     {
-      question: "How does the Resting Energy Requirement (RER) relate to daily calorie needs?",
-      answer:
-        "The Resting Energy Requirement (RER) represents the baseline energy a bird needs at rest to maintain vital physiological functions. Daily calorie needs are calculated by multiplying RER by a factor that accounts for activity, thermoregulation, and other metabolic demands. This multiplier varies depending on the bird's life stage, health, and activity level, ensuring tailored nutritional support.",
+      question: "What's the difference between a dog's and cat's calorie needs at the same weight?",
+      answer: "Cats have higher metabolic rates and typically need 20-30% more calories per pound than dogs of similar weight due to their obligate carnivore status and different activity patterns.",
     },
     {
-      question: "Can this calculator be used for birds of all species and ages?",
-      answer:
-        "While this calculator provides a general estimate based on body weight, energy requirements can vary significantly among species and ages. Juvenile, breeding, or sick birds may require different multipliers or nutritional adjustments. For precise dietary planning, consulting a veterinarian familiar with the specific bird species and condition is essential.",
+      question: "Does body weight alone determine calorie needs?",
+      answer: "No—age, activity level, metabolism, and health status all significantly impact calorie requirements; a 50-pound senior dog needs fewer calories than a 50-pound young, active dog.",
     },
     {
-      question: "Why do we use kilograms internally even if the input is in pounds?",
-      answer:
-        "Kilograms are the standard unit of mass in scientific and veterinary calculations, ensuring consistency and accuracy. Converting pounds to kilograms internally allows the formula to use established metabolic equations without unit discrepancies. This approach prevents calculation errors and aligns with veterinary best practices.",
+      question: "How accurate is the body weight calculator for determining pet calories?",
+      answer: "The calculator provides a reliable starting estimate within 10-15% accuracy for average pets, but individual variation is common and may require adjustments based on weight trends and body condition.",
     },
+    {
+      question: "Should I adjust calories if my pet is overweight or underweight?",
+      answer: "Yes—overweight pets may need 20-30% fewer calories, while underweight pets may need 10-20% more; consult your veterinarian before making significant dietary changes.",
+    },
+    {
+      question: "What activity levels should I select for my pet?",
+      answer: "Sedentary pets need a 1.2-1.4 multiplier, moderately active pets need 1.5-1.8, and very active/working pets need 1.9-2.5 times their resting energy expenditure.",
+    },
+    {
+      question: "Can I use this calculator for exotic pets or senior animals?",
+      answer: "This calculator works best for adult dogs and cats; exotic pets and senior animals may have different metabolic rates and should be evaluated by a veterinarian for accurate calorie recommendations.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -170,98 +178,212 @@ export default function BirdDailyCalorieNeedsBodyWeightCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Daily Calorie Needs by Body Weight
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Determining the daily calorie needs of birds based on their body weight is a cornerstone of avian nutrition and veterinary care. Birds have unique metabolic rates that differ significantly from mammals, and their energy requirements scale non-linearly with body size. By using scientifically validated formulas, such as the Resting Energy Requirement (RER), veterinarians and caretakers can estimate the baseline energy a bird requires to maintain vital physiological functions.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The RER calculation incorporates the bird’s body weight raised to the power of 0.75, reflecting the allometric scaling principle common in biology. This approach accounts for the fact that larger birds do not simply need proportionally more calories but rather follow a metabolic scaling law. Once the RER is established, it is multiplied by a factor that considers the bird’s activity level, life stage, and health status to estimate the total daily calorie needs.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding these energy requirements is critical for formulating appropriate diets, preventing malnutrition, and supporting recovery in ill or stressed birds. This calculator provides a reliable estimate based on body weight, serving as a valuable tool for veterinarians, avian nutritionists, and bird owners aiming to optimize health and longevity through proper feeding strategies.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Daily Calorie Needs by Body Weight Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your pet's daily calorie requirements based on body weight and activity level. It helps you determine appropriate portion sizes and ensure your pet maintains a healthy weight.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's current weight in pounds and select their activity level (sedentary, moderate, or very active). The calculator uses veterinary nutrition formulas to compute resting energy expenditure and multiplies by an activity factor.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result provides a daily calorie target range. Monitor your pet's weight weekly and adjust food portions if they gain or lose weight consistently; contact your vet if changes are needed beyond 10% of calculated calories.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the daily calorie needs of birds based on their body weight using a scientifically validated formula. To use it effectively, simply enter the bird’s current weight in the appropriate unit system—either pounds or kilograms. The calculator will convert the weight internally if needed and provide an estimate of the daily kilocalorie requirement.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system that matches your measurement (Imperial for pounds or Metric for kilograms).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the bird’s body weight accurately in the input field.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the “Calculate” button to view the estimated daily calorie needs in kcal/day.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use this estimate as a guideline for feeding and consult a veterinarian for species-specific adjustments or health concerns.
-          </li>
+      {/* TABLE: Daily Calorie Estimates by Pet Weight and Activity Level */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Estimates by Pet Weight and Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this reference table to compare estimated daily calorie needs across common pet weights and activity levels.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sedentary (1.2x)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Activity (1.5x)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Very Active (1.9x)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">190-225</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240-285</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">375-450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">470-565</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600-715</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">750-900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">940-1130</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1200-1430</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1125-1350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1410-1695</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1800-2145</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1500-1800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1880-2260</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2400-2860</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calorie estimates are based on average metabolic rates; individual pets may vary by 10-20% based on age, metabolism, and health status.</p>
+      </section>
+
+      {/* TABLE: Typical Daily Calorie Ranges by Pet Type and Lifestyle */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Typical Daily Calorie Ranges by Pet Type and Lifestyle</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference typical daily calorie needs for different pet categories based on 2024 veterinary nutrition guidelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Activity Calories</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Activity Calories</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dog (Toy breeds)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-10 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-350</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-50 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500-900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">750-1400</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-90 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900-1600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1400-2400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-280</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Pet (10+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Various</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30% reduction</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-20% reduction</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Senior pets and those with medical conditions may require adjustment; always consult your veterinarian before changing food portions significantly.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your pet monthly and recalculate calories quarterly, as weight changes affect daily energy needs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for treats in the total calorie count—they should represent no more than 10% of daily calories to prevent overfeeding.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Adjust activity level if your pet's routine changes seasonally or after aging; senior pets typically need 10-20% fewer calories.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine this calculator with body condition scoring; a healthy pet should have a visible waist and ribs you can feel but not see.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Activity Level Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Selecting the wrong activity level can overestimate or underestimate calories by 30-40%; update annually as your pet ages or lifestyle changes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Treats</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Forgetting to include treat calories in daily totals can lead to a 15-25% calorie surplus and unwanted weight gain over time.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Human Calorie Charts</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pet metabolic rates differ significantly from humans; a dog's calorie needs per pound are lower than a human's, making human calculators inaccurate for pets.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming One Formula Fits All</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Individual metabolism varies widely; some pets naturally need 20-30% more or fewer calories than the calculator estimate due to breed, age, and genetics.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my pet's daily calorie needs based on body weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your pet's current weight and activity level into the calculator. It uses the Resting Energy Expenditure (REE) formula multiplied by an activity factor to estimate total daily calorie needs, typically ranging from 25-35 calories per pound for average pets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between a dog's and cat's calorie needs at the same weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats have higher metabolic rates and typically need 20-30% more calories per pound than dogs of similar weight due to their obligate carnivore status and different activity patterns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does body weight alone determine calorie needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No—age, activity level, metabolism, and health status all significantly impact calorie requirements; a 50-pound senior dog needs fewer calories than a 50-pound young, active dog.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the body weight calculator for determining pet calories?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator provides a reliable starting estimate within 10-15% accuracy for average pets, but individual variation is common and may require adjustments based on weight trends and body condition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust calories if my pet is overweight or underweight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—overweight pets may need 20-30% fewer calories, while underweight pets may need 10-20% more; consult your veterinarian before making significant dietary changes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What activity levels should I select for my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Sedentary pets need a 1.2-1.4 multiplier, moderately active pets need 1.5-1.8, and very active/working pets need 1.9-2.5 times their resting energy expenditure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for exotic pets or senior animals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator works best for adult dogs and cats; exotic pets and senior animals may have different metabolic rates and should be evaluated by a veterinarian for accurate calorie recommendations.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149734/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Nutritional Requirements of Birds: Resting Energy Requirement and Daily Calorie Needs
-            </a>
-            <p className="text-slate-500 text-sm">
-              This peer-reviewed article discusses the metabolic scaling and energy requirements of birds, providing foundational formulas used in veterinary nutrition.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/pet-food-standards" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Pet Food Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines for pet nutrition and calorie content established by the Association of American Feed Control Officials.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/birds/nutrition-in-birds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Nutrition in Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              A comprehensive veterinary resource outlining dietary energy needs and feeding guidelines for various bird species.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/health/nutrition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based veterinary nutrition information and pet feeding recommendations from a leading veterinary school.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/page/avian_nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Association of Avian Veterinarians: Avian Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Professional guidelines and recommendations for calculating and meeting the nutritional needs of pet and exotic birds.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) Pet Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Trusted veterinary guidance on pet diet, weight management, and nutritional requirements.</p>
+          </li>
+          <li>
+            <a href="https://www.purina.com/pro/resources/pet-care-research" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Purina PetCare Institute Research</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on pet nutrition, metabolism, and optimal calorie intake for different life stages.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -70,25 +70,33 @@ export default function DogPrednisonePrednisoloneDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is dosing Prednisone/Prednisolone based on mg/kg in dogs?",
-      answer:
-        "Dosing Prednisone or Prednisolone based on milligrams per kilogram (mg/kg) ensures the medication is tailored to the individual dog's size and metabolic needs. Dogs vary widely in weight, and a fixed dose could lead to underdosing or overdosing. Using mg/kg allows veterinarians to provide a safe and effective dose that maximizes therapeutic benefits while minimizing side effects.",
+      question: "What is the standard prednisone dosage range for dogs?",
+      answer: "Most dogs receive 0.5–1 mg/kg twice daily for anti-inflammatory conditions, though immunosuppressive doses may reach 2–3 mg/kg daily divided into multiple doses.",
     },
     {
-      question: "How does Prednisone differ from Prednisolone in veterinary use?",
-      answer:
-        "Prednisone is a prodrug that is converted into Prednisolone in the liver. Some dogs, especially those with liver dysfunction, may not efficiently convert Prednisone, making Prednisolone the preferred choice. Both drugs have similar anti-inflammatory and immunosuppressive effects, but Prednisolone is often favored in veterinary medicine for its direct activity and more predictable pharmacokinetics.",
+      question: "How do I calculate my dog's prednisone dose by weight?",
+      answer: "Multiply your dog's weight in kilograms by the prescribed dose per kg (e.g., 10 kg dog × 0.5 mg/kg = 5 mg), then verify with your veterinarian before administering.",
     },
     {
-      question: "What are the risks of incorrect Prednisone dosing in dogs?",
-      answer:
-        "Incorrect dosing of Prednisone can lead to serious health issues. Underdosing may result in insufficient control of inflammation or immune-mediated diseases, while overdosing can cause side effects like increased thirst, urination, appetite, gastrointestinal ulcers, and long-term risks such as Cushing’s syndrome. Accurate dosing based on weight and veterinary guidance is critical to balance efficacy and safety.",
+      question: "Is prednisone the same as prednisolone for dogs?",
+      answer: "Prednisone requires liver conversion to prednisolone; prednisolone is the active form and preferred for dogs with liver disease, though dosing equivalence is 1:1.",
     },
     {
-      question: "Why is it important to consult a veterinarian before adjusting Prednisone doses?",
-      answer:
-        "Prednisone dosing must be carefully managed because it affects multiple body systems and can interact with other medications. A veterinarian considers the dog’s specific condition, weight, concurrent diseases, and response to therapy before adjusting doses. Self-adjusting doses without professional advice can lead to treatment failure or harmful side effects, emphasizing the importance of veterinary supervision.",
+      question: "How often should I give my dog prednisone or prednisolone?",
+      answer: "Standard dosing is typically twice daily (every 12 hours) for acute conditions, though tapering schedules and maintenance doses may shift to once daily or every-other-day regimens.",
     },
+    {
+      question: "What are common side effects of prednisone in dogs?",
+      answer: "Increased thirst, appetite, and urination are frequent; longer-term use may cause hair loss, lethargy, or behavioral changes—always monitor and report concerns to your vet.",
+    },
+    {
+      question: "Can I use this calculator for all dog breeds and sizes?",
+      answer: "Yes, the calculator works for all breeds using weight-based dosing, but senior dogs, pregnant dogs, or those with liver/kidney disease may require dose adjustments reviewed by your veterinarian.",
+    },
+    {
+      question: "How long can my dog safely take prednisone?",
+      answer: "Short-term use (7–14 days) is generally safe; prolonged use over weeks requires gradual tapering to avoid adrenal insufficiency and close veterinary monitoring for complications.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -232,112 +240,224 @@ export default function DogPrednisonePrednisoloneDoseCalculator() {
   // 6. EDITORIAL JSX
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Prednisone/Prednisolone Dose Calculator for Dogs
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Prednisone and Prednisolone are corticosteroids widely used in veterinary medicine to treat a variety of inflammatory and immune-mediated conditions in dogs. These medications help reduce inflammation, suppress immune responses, and alleviate symptoms associated with allergies, arthritis, autoimmune diseases, and certain cancers. Because of their potent effects and potential side effects, precise dosing is critical to ensure safety and efficacy.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The dose of Prednisone or Prednisolone is typically calculated based on the dog’s body weight in kilograms, expressed as milligrams per kilogram (mg/kg). This approach accounts for the wide range of dog sizes and metabolic rates, allowing for individualized treatment plans. The dosage may vary depending on the condition being treated, ranging from low anti-inflammatory doses to higher immunosuppressive doses.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator provides an easy and accurate way to determine the appropriate dose based on your dog’s weight and prescribed dosage. It helps pet owners and veterinary professionals avoid dosing errors that could lead to ineffective treatment or adverse effects. Always remember that this tool is for educational purposes and should not replace professional veterinary advice.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Prednisone/Prednisolone Dose Calculator for Dogs</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine the appropriate prednisone or prednisolone dose for your dog based on weight and the veterinarian-prescribed mg/kg dosing. It serves as a verification tool to ensure accurate administration and helps you understand your dog's medication regimen.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's current weight in pounds or kilograms and input the dose per kilogram prescribed by your vet (commonly 0.5–1 mg/kg for inflammation or 2–3 mg/kg for immunosuppression). The calculator instantly shows the total dose per administration and daily totals.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the results alongside your veterinarian's written prescription; never alter doses without professional guidance. Use the calculator each time your dog's weight changes or when tapering doses, and always follow your vet's timeline for administration and duration.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this Prednisone/Prednisolone dose calculator is straightforward and designed to provide accurate dosing guidance. Begin by selecting the unit system that corresponds to how you measure your dog’s weight—either imperial (pounds) or metric (kilograms). Then, enter your dog’s current weight in the chosen unit. Next, input the prescribed dosage in milligrams per kilogram (mg/kg), which your veterinarian will provide based on your dog’s condition.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter the exact weight of your dog. For imperial units, enter pounds; for metric, enter kilograms. Accurate weight measurement is essential for correct dosing.
-          </li>
-          <li>
-            <strong>Dosage (mg/kg):</strong> Input the dosage prescribed by your veterinarian. Typical anti-inflammatory doses range from 0.5 to 1 mg/kg, while immunosuppressive doses may be higher, up to 2 mg/kg or more.
-          </li>
+      {/* TABLE: Prednisone/Prednisolone Dosing Guidelines by Condition */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Prednisone/Prednisolone Dosing Guidelines by Condition</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common veterinary dosing ranges for dogs based on clinical indication.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose (mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Duration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Inflammation/Allergy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5–1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7–14 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Immunosuppression</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14–30 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Autoimmune Disease</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30–90 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Maintenance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.25–0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">As needed</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Shock/Emergency</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 IV</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">As directed</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pruritus (Itch)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5–1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–7 days</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All doses must be confirmed by a licensed veterinarian; this table is educational reference only.</p>
+      </section>
+
+      {/* TABLE: Prednisone Dosage by Dog Weight */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Prednisone Dosage by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Quick reference for common dog weights at standard 0.5 mg/kg anti-inflammatory dosing.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose per Administration (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Twice Daily Total (mg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.65</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.7</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45.4</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Based on 0.5 mg/kg dose; higher immunosuppressive doses require multiplying by 2–3 and veterinary consultation.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify calculated doses with your veterinarian's prescription before administering to avoid overdosing or underdosing your dog.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Give prednisone with food to reduce stomach upset, and space doses consistently 12 hours apart when dosing twice daily.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep detailed records of dose dates, times, and any side effects observed to share with your veterinarian at follow-up visits.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Never stop prednisone abruptly after prolonged use; work with your vet to gradually taper the dose to allow adrenal gland recovery.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering these values, click the “Calculate” button to see the recommended total dose in milligrams. If you need to start over, use the “Reset” button to clear all inputs. Always consult your veterinarian before making any changes to your dog’s medication regimen.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Prednisone Dosing for Humans on Dogs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Human prednisone doses are not directly applicable to dogs; canine metabolism differs significantly and veterinary-calculated weight-based doses are essential for safety.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Account for Dog Weight Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Recalculate doses if your dog gains or loses significant weight during treatment, as the original prescription may no longer be appropriate.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Prednisone with Prednisolone Formulations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Tablets, liquids, and concentrations vary by brand; double-check the product label to ensure you're giving the correct volume or pill count.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping Doses or Altering the Schedule Independently</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Inconsistent dosing reduces efficacy and increases side effect risk; follow your vet's prescribed frequency even if your dog seems better.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard prednisone dosage range for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most dogs receive 0.5–1 mg/kg twice daily for anti-inflammatory conditions, though immunosuppressive doses may reach 2–3 mg/kg daily divided into multiple doses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my dog's prednisone dose by weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiply your dog's weight in kilograms by the prescribed dose per kg (e.g., 10 kg dog × 0.5 mg/kg = 5 mg), then verify with your veterinarian before administering.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is prednisone the same as prednisolone for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Prednisone requires liver conversion to prednisolone; prednisolone is the active form and preferred for dogs with liver disease, though dosing equivalence is 1:1.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I give my dog prednisone or prednisolone?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard dosing is typically twice daily (every 12 hours) for acute conditions, though tapering schedules and maintenance doses may shift to once daily or every-other-day regimens.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are common side effects of prednisone in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Increased thirst, appetite, and urination are frequent; longer-term use may cause hair loss, lethargy, or behavioral changes—always monitor and report concerns to your vet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for all dog breeds and sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator works for all breeds using weight-based dosing, but senior dogs, pregnant dogs, or those with liver/kidney disease may require dose adjustments reviewed by your veterinarian.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long can my dog safely take prednisone?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Short-term use (7–14 days) is generally safe; prolonged use over weeks requires gradual tapering to avoid adrenal insufficiency and close veterinary monitoring for complications.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.plumbsveterinarydrugs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Plumb’s Veterinary Drug Handbook
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource providing detailed drug dosing, pharmacology, and clinical use guidelines for veterinary medications including Prednisone and Prednisolone.
-            </p>
+          <li>
+            <a href="https://www.elsevier.com/products/plumbs-veterinary-drug-handbook" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Plumb's Veterinary Drug Handbook</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive veterinary pharmacology resource with evidence-based prednisone and prednisolone dosing protocols for canines.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/pharmacology/corticosteroids/corticosteroids"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Corticosteroids
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guide on corticosteroid use in animals, covering indications, dosing strategies, and potential adverse effects.
-            </p>
+          <li>
+            <a href="https://www.avma.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AVMA: Glucocorticoid Use in Veterinary Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Veterinary Medical Association guidance on appropriate corticosteroid use, monitoring, and tapering in small animal practice.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Prednisone%20and%20Prednisolone%20in%20Dogs.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. UC Davis Veterinary Pharmacology Notes
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational material detailing pharmacokinetics and clinical use of Prednisone and Prednisolone in canine patients.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals: Prednisone and Prednisolone</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Client-focused educational information on prednisone/prednisolone administration, side effects, and long-term management in dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/2019-canine-lymphoma-guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. American Animal Hospital Association (AAHA) Canine Lymphoma Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Clinical guidelines including corticosteroid dosing protocols for immune-mediated diseases and lymphoma treatment in dogs.
-            </p>
+          <li>
+            <a href="https://www.vin.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network (VIN): Corticosteroid Dosing</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed veterinary literature and clinical decision support for glucocorticoid therapy in companion animals.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

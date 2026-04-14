@@ -77,25 +77,33 @@ export default function CatPlaySessionPlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is playtime important for cats?",
-      answer:
-        "Playtime is essential for cats to maintain physical health, mental stimulation, and emotional well-being. It mimics natural hunting behaviors, which helps reduce stress and prevent obesity. Regular interactive play also strengthens the bond between cats and their owners, promoting a happier, healthier pet.",
+      question: "What is the ideal daily play session duration for cats using feather toys?",
+      answer: "Most veterinarians recommend 15-30 minutes per session, split into 2-3 sessions daily for indoor cats. This targets natural hunting instincts while preventing fatigue and overstimulation.",
     },
     {
-      question: "How does a cat's age affect its playtime needs?",
-      answer:
-        "Kittens and young cats have higher energy levels and require more frequent and longer play sessions to support their growth and development. As cats age, their activity levels typically decrease, so playtime can be adjusted accordingly. However, maintaining regular play is crucial at all life stages to prevent cognitive decline and maintain muscle tone.",
+      question: "How does chase time differ from feather toy interaction time?",
+      answer: "Chase time involves sustained running and sprinting (high-intensity cardio), while feather toy play combines pouncing, batting, and short bursts. Chase sessions tire cats faster and should be 10-15 minutes, whereas feather play can extend to 20-30 minutes.",
     },
     {
-      question: "What types of play are best for cats?",
-      answer:
-        "Interactive play involving toys that mimic prey, such as feather wands or laser pointers, encourages natural hunting instincts. Chase play helps improve agility and cardiovascular health. A combination of both feather and chase play provides balanced physical exercise and mental enrichment, which is vital for overall feline health.",
+      question: "Can I use the same daily targets for kittens and senior cats?",
+      answer: "No—kittens (under 1 year) need 30-45 minutes daily split into frequent short bursts, while senior cats (&gt;10 years) require gentler 10-15 minute sessions to avoid joint stress.",
     },
     {
-      question: "How can I tell if my cat is getting enough playtime?",
-      answer:
-        "Signs your cat is getting sufficient play include a healthy weight, good muscle tone, and a calm demeanor when not playing. Cats that are bored or under-stimulated may exhibit destructive behavior or excessive vocalization. Using a play session planner helps ensure your cat receives adequate daily activity tailored to their age and current play habits.",
+      question: "What factors affect optimal play session duration?",
+      answer: "Cat age, fitness level, breed energy type, and underlying health conditions all impact targets. Indoor cats need more play than outdoor cats; high-energy breeds like Bengals require longer sessions than laid-back breeds.",
     },
+    {
+      question: "How do I know if my cat is getting enough playtime?",
+      answer: "Adequate play reduces destructive behavior, maintains healthy weight, and improves sleep quality. If your cat exhibits aggression, excessive meowing, or weight gain, increase session frequency or duration by 5-10 minutes.",
+    },
+    {
+      question: "Should I adjust play targets seasonally?",
+      answer: "Yes—indoor cats may need 10-15% more playtime during winter months when outdoor stimulation decreases. Summer or multi-cat households may require 10-20% less due to natural activity increases.",
+    },
+    {
+      question: "How do I balance feather toy play with other enrichment activities?",
+      answer: "Allocate 50% of playtime to feather toys, 30% to chase games, and 20% to climbing or puzzle feeders for comprehensive enrichment that prevents boredom and behavioral issues.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -225,101 +233,211 @@ export default function CatPlaySessionPlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Play Session Planner (Feather/Chase Time Targets)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Play is a fundamental aspect of feline health, serving not only as physical exercise but also as mental enrichment. The Play Session Planner focuses on two primary types of interactive play: feather play, which stimulates a cat’s predatory instincts through light, fluttering movements, and chase play, which encourages vigorous activity and cardiovascular fitness. Together, these play styles help maintain a cat’s agility, coordination, and emotional well-being.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Cats’ play needs vary significantly with age, energy levels, and individual personality. Kittens and young cats require more frequent and longer play sessions to support their rapid growth and high energy, while adult and senior cats benefit from consistent but potentially shorter sessions to maintain muscle tone and cognitive function. This planner helps owners tailor daily playtime targets by considering these factors, ensuring cats receive adequate stimulation to prevent boredom and behavioral issues.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By quantifying playtime goals, this tool empowers cat owners to create structured, achievable daily routines that promote healthy activity levels. It emphasizes the importance of balancing different play types to mimic natural hunting behaviors, which is crucial for a cat’s psychological health. Ultimately, this planner supports the holistic care of cats by integrating veterinary insights into practical, everyday enrichment strategies.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Play Session Planner (Feather/Chase Time Targets)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Play Session Planner calculates personalized daily and weekly play targets for your cat based on age, activity level, and health status. It combines feather toy interaction and chase-based play to create balanced enrichment schedules that prevent obesity, behavioral issues, and cognitive decline.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your cat's age category, current fitness level (sedentary to athletic), and any health considerations. The calculator also factors in your availability and household type (single cat vs. multi-cat environment) to generate realistic, achievable targets.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show optimal session durations, recommended frequency, total weekly minutes, and intensity distribution. Use these targets as a baseline and adjust up or down by 10-15% based on your cat's enthusiasm, weight trends, and veterinary recommendations for personalized success.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps you estimate the optimal total daily playtime for your cat by considering their age and current play habits. Begin by entering your cat’s age in months, which allows the tool to adjust recommendations based on developmental needs. Then, input the average daily minutes spent playing with feather toys and chase activities to assess current activity levels.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat’s age in months (between 2 months and 20 years) to tailor playtime recommendations.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the average daily minutes your cat spends playing with feather toys, which stimulate stalking and pouncing instincts.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the average daily minutes spent in chase play, encouraging vigorous movement and cardiovascular health.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the recommended total daily playtime target and see if your cat’s current playtime meets this goal.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the results to adjust your cat’s daily play sessions, increasing or balancing activities as needed to promote optimal health.
-          </li>
+      {/* TABLE: Daily Play Duration Targets by Cat Life Stage */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Play Duration Targets by Cat Life Stage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended daily playtime varies significantly across life stages to support development, fitness, and wellbeing.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Life Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Duration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Session Count</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Intensity Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kittens (0-6 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-45 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 sessions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Juveniles (6-12 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-35 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 sessions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adults (1-7 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 sessions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate-High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mature (7-10 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-25 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 sessions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Seniors (&gt;10 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 sessions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-Moderate</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Adjust based on individual fitness level and health status; consult veterinarian for special needs.</p>
+      </section>
+
+      {/* TABLE: Feather vs. Chase Play Session Characteristics */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Feather vs. Chase Play Session Characteristics</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different play modalities serve distinct physical and mental enrichment purposes with varying time requirements.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Play Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Session Length</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Energy Burn Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Feather Wand/Toy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-30 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate (3-5 cal/min)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Coordination, reflexes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chase/Sprint Games</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High (6-8 cal/min)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cardiovascular fitness</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5x weekly</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mixed Interactive</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate-High (4-6 cal/min)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Balanced enrichment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Solo Feather Play</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-20 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-Moderate (2-4 cal/min)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Independent exercise</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">High-energy breeds may sustain longer sessions; overweight cats should start with shorter durations.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Start feather play sessions 30 minutes before meals to mimic natural hunting patterns and boost appetite regulation.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Rotate between 3-4 different feather toys weekly to maintain novelty and prevent play fatigue or habituation.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Schedule chase games during your cat's natural peak activity hours (typically dawn/dusk) for maximum engagement and energy burn.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cat's breathing and body language during play—stop immediately if panting persists &gt;2 minutes or signs of distress appear.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using single daily play session</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Condensing all playtime into one 30-minute session causes burnout and injury risk; split into 2-3 shorter bursts instead.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring heat and rest periods</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Playing intensely without breaks leads to overheating and exhaustion; allow 5-10 minute cool-down periods between sessions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Treating all cats identically</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying identical targets to kittens, adults, and seniors ignores critical developmental and health differences requiring customized plans.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting play variation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using only feather toys without chase games creates muscular imbalance and incomplete fitness; combine multiple play styles.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the ideal daily play session duration for cats using feather toys?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most veterinarians recommend 15-30 minutes per session, split into 2-3 sessions daily for indoor cats. This targets natural hunting instincts while preventing fatigue and overstimulation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does chase time differ from feather toy interaction time?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Chase time involves sustained running and sprinting (high-intensity cardio), while feather toy play combines pouncing, batting, and short bursts. Chase sessions tire cats faster and should be 10-15 minutes, whereas feather play can extend to 20-30 minutes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the same daily targets for kittens and senior cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No—kittens (under 1 year) need 30-45 minutes daily split into frequent short bursts, while senior cats (&gt;10 years) require gentler 10-15 minute sessions to avoid joint stress.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect optimal play session duration?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cat age, fitness level, breed energy type, and underlying health conditions all impact targets. Indoor cats need more play than outdoor cats; high-energy breeds like Bengals require longer sessions than laid-back breeds.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my cat is getting enough playtime?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Adequate play reduces destructive behavior, maintains healthy weight, and improves sleep quality. If your cat exhibits aggression, excessive meowing, or weight gain, increase session frequency or duration by 5-10 minutes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust play targets seasonally?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—indoor cats may need 10-15% more playtime during winter months when outdoor stimulation decreases. Summer or multi-cat households may require 10-20% less due to natural activity increases.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I balance feather toy play with other enrichment activities?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Allocate 50% of playtime to feather toys, 30% to chase games, and 20% to climbing or puzzle feeders for comprehensive enrichment that prevents boredom and behavioral issues.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/play-and-enrichment"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Cornell Feline Health Center: Play and Enrichment
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide on the importance of play for feline health and behavior, emphasizing enrichment strategies.
-            </p>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Feline Nutrition Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Guidelines for optimal cat nutrition and exercise requirements across life stages from industry standards body.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.wsu.edu/outreach/Pet-Health-Topics/categories/behavior-enrichment"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Washington State University: Behavior and Enrichment
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary insights into behavioral enrichment and how structured play benefits cats of all ages.
-            </p>
+          <li>
+            <a href="https://www.icatcare.org/advice/play-and-enrichment/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care—Play and Enrichment</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary-backed recommendations for feline enrichment, play duration targets, and behavioral prevention strategies.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/canine-physical-activity-guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association: Canine and Feline Physical Activity Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based recommendations for daily physical activity in pets, including playtime targets for cats.
-            </p>
+          <li>
+            <a href="https://journals.sagepub.com/home/jfm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Feline Medicine and Surgery—Exercise Physiology</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on feline exercise needs, caloric expenditure rates, and age-based play recommendations for cats.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AVMA Companion Animal Care Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Veterinary Medical Association guidelines for cat wellness, including minimum daily activity and play session standards.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

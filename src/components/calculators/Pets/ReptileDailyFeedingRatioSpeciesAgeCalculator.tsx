@@ -118,25 +118,33 @@ export default function ReptileDailyFeedingRatioSpeciesAgeCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why does the daily feeding ratio vary by species and age?",
-      answer:
-        "Different reptile species have unique metabolic rates, digestive systems, and nutritional needs that influence their daily feeding requirements. Additionally, age significantly impacts metabolism; juveniles require more frequent and higher feeding ratios to support growth, while adults and seniors need less to maintain health and avoid obesity. Understanding these differences ensures optimal nutrition and prevents health complications.",
+      question: "What percentage of body weight should my puppy eat daily?",
+      answer: "Puppies typically need 5-10% of their body weight daily, split into 3-4 meals. As they grow, this percentage decreases to 2-3% by adulthood.",
     },
     {
-      question: "How is the daily feeding ratio calculated for reptiles?",
-      answer:
-        "The daily feeding ratio is typically expressed as a percentage of the reptile’s body weight, reflecting how much food should be offered daily. This percentage is derived from veterinary research and clinical experience, considering species-specific metabolism and age-related energy demands. By multiplying the animal’s weight by this ratio, caretakers can estimate an appropriate daily food amount to maintain health.",
+      question: "How does feeding ratio differ between kittens and adult cats?",
+      answer: "Kittens require 5-7% of body weight daily across multiple meals, while adult cats need only 2-3% in one or two meals depending on activity level.",
     },
     {
-      question: "Can I feed my reptile more or less than the recommended daily feeding ratio?",
-      answer:
-        "While the recommended feeding ratio provides a general guideline, individual reptiles may have varying appetites and activity levels that require adjustments. Overfeeding can lead to obesity and related health issues, whereas underfeeding may cause malnutrition and lethargy. Regular monitoring of body condition and consultation with a veterinarian are essential to tailor feeding amounts appropriately.",
+      question: "What's the daily feeding ratio for senior dogs?",
+      answer: "Senior dogs (7+ years) typically need 2-2.5% of body weight daily, adjusted downward due to lower metabolism and reduced activity compared to adults.",
     },
     {
-      question: "How often should I feed my reptile based on this daily feeding ratio?",
-      answer:
-        "Feeding frequency depends on species, age, and lifestyle; juveniles often require daily feeding to support rapid growth, while adults may be fed every 2-3 days. The daily feeding ratio helps determine the total amount of food needed per day, which can be divided into multiple feedings or offered in one meal depending on the reptile’s natural habits. Consistency and observation of feeding behavior are key to successful nutrition management.",
+      question: "How do I calculate daily portions for a rabbit by age?",
+      answer: "Young rabbits need approximately 5% of body weight in hay plus 1-2 oz vegetables daily, while adults require 2-3% body weight with unlimited hay.",
     },
+    {
+      question: "Should I adjust feeding ratios for indoor versus outdoor pets?",
+      answer: "Yes; outdoor and active pets may need 10-15% more calories than indoor pets of the same species and age due to higher energy expenditure.",
+    },
+    {
+      question: "How does body condition score affect the feeding ratio?",
+      answer: "Overweight pets should be fed 10-20% less than the standard ratio, while underweight pets may need 10-15% more to reach ideal condition.",
+    },
+    {
+      question: "What's the recommended daily feeding ratio for ferrets?",
+      answer: "Ferrets have fast metabolisms and require 5-7% of body weight daily, divided into multiple small meals, with specialized ferret kibble or raw diets.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -271,101 +279,234 @@ export default function ReptileDailyFeedingRatioSpeciesAgeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Daily Feeding Ratio (by Species & Age)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The daily feeding ratio is a critical metric in reptile husbandry that determines the optimal amount of food a reptile should consume relative to its body weight. This ratio varies significantly between species due to differences in metabolism, digestive physiology, and natural dietary habits. Additionally, age plays a pivotal role; younger reptiles require higher feeding ratios to support rapid growth and development, whereas older reptiles need less to maintain health and avoid obesity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Veterinarians and experienced herpetologists use these ratios to guide caretakers in providing balanced nutrition tailored to each reptile’s unique needs. Feeding too much can lead to obesity, liver disease, and other metabolic disorders, while underfeeding can cause malnutrition, stunted growth, and weakened immune function. Therefore, understanding and applying the correct daily feeding ratio is essential for promoting longevity and well-being in captive reptiles.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator integrates species-specific and age-related feeding guidelines to estimate the appropriate daily food quantity. By inputting your reptile’s species, age group, and weight, you receive a scientifically grounded recommendation that supports optimal health. This tool serves as a valuable resource for both novice and experienced reptile keepers aiming to enhance their animal care practices.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Daily Feeding Ratio (by Species &amp; Age)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the optimal daily food amount for your pet based on species, age, current weight, and lifestyle. It accounts for the fact that younger and more active animals require higher caloric intake per pound of body weight than sedentary adults.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's species, age in months, current lean body weight, and activity level (sedentary, moderate, or active). The calculator will generate a personalized feeding ratio range and suggested daily portion size in grams or ounces.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the result as a starting point and monitor your pet's weight and energy levels weekly. Adjust portions up or down by 10-15% if your pet gains or loses weight unexpectedly, and consult your veterinarian for breed-specific or health-related modifications.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately determine the daily feeding amount for your reptile, begin by selecting the species from the dropdown menu. Next, choose the appropriate age group that best describes your reptile’s life stage. Finally, enter the current weight of your reptile in the selected unit system, either pounds or kilograms. Once all inputs are provided, click the calculate button to receive the recommended daily food quantity.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your reptile’s species to ensure species-specific metabolic differences are accounted for.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Choose the age group to adjust feeding ratios according to growth or maintenance needs.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the reptile’s weight accurately in the preferred unit system.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Press “Calculate” to view the daily feeding amount, displayed in grams or ounces depending on your unit choice.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use this information as a guideline and monitor your reptile’s condition regularly, adjusting feeding as necessary.
-          </li>
+      {/* TABLE: Daily Feeding Ratios by Pet Species and Life Stage */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Feeding Ratios by Pet Species and Life Stage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows recommended daily feeding percentages based on body weight for common pet species across different ages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Puppies/Kittens (0-6 months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Young Adults (6-24 months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adults (2-7 years)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Seniors (7+ years)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-2.5%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-2.5%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbits</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-2.5%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ferrets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Guinea Pigs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hamsters</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages represent daily caloric intake as a proportion of lean body weight. Adjust based on activity level, metabolism, and individual health status.</p>
+      </section>
+
+      {/* TABLE: Caloric Needs Adjustment Factors by Lifestyle and Health Status */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Caloric Needs Adjustment Factors by Lifestyle and Health Status</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these multipliers to adjust baseline feeding ratios based on your pet's activity level, metabolism, and condition.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Factor</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjustment Multiplier</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Activity Level</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sedentary/Indoor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8–0.9x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Activity Level</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate/Mixed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x (baseline)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Activity Level</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High/Very Active</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.1–1.3x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Body Condition</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75–0.85x</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Body Condition</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ideal Weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x (baseline)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Body Condition</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Underweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.1–1.2x</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Health Status</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Post-surgery/Recovery</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.1–1.25x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Health Status</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal/Healthy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x (baseline)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Multiply the baseline ratio by the appropriate factor. For example, a very active dog normally at 3% might need 3.3% (3 × 1.1).</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your pet monthly to ensure portions remain appropriate as they age and their metabolism changes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Split daily portions into multiple meals for puppies, kittens, and senior pets to improve digestion and prevent bloating.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for treats, which should comprise no more than 10% of total daily calories, and subtract from the main meal portion accordingly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Gradually transition to new food over 7-10 days while reducing old food portions to avoid digestive upset and maintain consistent calorie intake.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the Same Ratio for All Ages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Feeding an adult-sized ratio to a puppy results in malnutrition and stunted growth; always adjust ratios downward as pets mature.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Activity Level Differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Indoor and outdoor pets have vastly different energy needs; failing to account for this leads to overfeeding or underfeeding.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Miscalculating Lean Body Weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using total weight on an overweight pet inflates the recommended portion; use assessed lean body weight instead.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adjusting for Health Conditions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pets recovering from surgery, on medications, or with metabolic disorders require personalized ratios beyond standard age-based guidelines.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What percentage of body weight should my puppy eat daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Puppies typically need 5-10% of their body weight daily, split into 3-4 meals. As they grow, this percentage decreases to 2-3% by adulthood.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does feeding ratio differ between kittens and adult cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Kittens require 5-7% of body weight daily across multiple meals, while adult cats need only 2-3% in one or two meals depending on activity level.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the daily feeding ratio for senior dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Senior dogs (7+ years) typically need 2-2.5% of body weight daily, adjusted downward due to lower metabolism and reduced activity compared to adults.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate daily portions for a rabbit by age?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Young rabbits need approximately 5% of body weight in hay plus 1-2 oz vegetables daily, while adults require 2-3% body weight with unlimited hay.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust feeding ratios for indoor versus outdoor pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; outdoor and active pets may need 10-15% more calories than indoor pets of the same species and age due to higher energy expenditure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does body condition score affect the feeding ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Overweight pets should be fed 10-20% less than the standard ratio, while underweight pets may need 10-15% more to reach ideal condition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the recommended daily feeding ratio for ferrets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Ferrets have fast metabolisms and require 5-7% of body weight daily, divided into multiple small meals, with specialized ferret kibble or raw diets.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/clinical-expertise/exotic-animal-medicine/reptile-nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. UC Davis Veterinary Medicine - Reptile Nutrition
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on reptile dietary requirements and feeding strategies from a leading veterinary institution.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Association of American Feed Control Officials (AAFCO) Pet Food Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards and nutrient profiles for pet food formulations across all life stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/reptiles/nutrition-in-reptiles"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual - Nutrition in Reptiles
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource detailing nutritional needs, feeding ratios, and metabolic considerations for various reptile species.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/nutrition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) Nutrition Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based feeding guidelines and caloric requirements for dogs, cats, and other pets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/resources/nutrition/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Association of Avian Veterinarians - Nutrition Resources
-            </a>
-            <p className="text-slate-500 text-sm">
-              While focused on avian species, this resource provides insights into age-related feeding adjustments applicable to reptiles.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/academic-programs/veterinary-medical-teaching-hospital/nutrition-service" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine Nutrition Service</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert consultations and research on species-specific and condition-specific pet nutrition.</p>
+          </li>
+          <li>
+            <a href="https://www.petmd.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD Feeding Guide and Calorie Calculator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical feeding recommendations and caloric calculations for different pet species and life stages.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

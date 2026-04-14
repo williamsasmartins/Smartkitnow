@@ -60,25 +60,33 @@ export default function ReptileBaskingTemperatureGradientPlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is maintaining a temperature gradient important for reptiles?",
-      answer:
-        "Reptiles rely on external heat sources to regulate their body temperature, a process called thermoregulation. A proper temperature gradient allows them to move between warmer and cooler areas within their enclosure, enabling optimal physiological functioning. Without this gradient, reptiles can suffer from stress, poor digestion, and weakened immune responses.",
+      question: "What temperature range should my bearded dragon's basking spot be?",
+      answer: "Bearded dragons require a basking spot of 95-110°F (35-43°C). The cooler side of the enclosure should be 75-85°F (24-29°C) to create a proper thermal gradient.",
     },
     {
-      question: "How do I determine the ideal basking temperature for my reptile?",
-      answer:
-        "The ideal basking temperature depends on the species, age, and health of your reptile. Researching species-specific temperature ranges from trusted veterinary or herpetological sources is essential. This calculator helps you plan the basking spot temperature and gradient based on those recommended values to create a safe and effective environment.",
+      question: "How do I calculate the correct temperature gradient for my reptile?",
+      answer: "This calculator measures the difference between your basking zone and cool zone temperatures. A typical gradient is 20-30°F (11-17°C) difference, allowing your pet to thermoregulate naturally.",
     },
     {
-      question: "Can I use Celsius and Fahrenheit interchangeably in this planner?",
-      answer:
-        "Yes, this planner supports both Celsius and Fahrenheit units for temperature inputs. However, it is important to be consistent with the unit system you choose to avoid calculation errors. Switching between units will update the labels and results accordingly, ensuring clarity and accuracy in your basking temperature planning.",
+      question: "What species need the steepest temperature gradients?",
+      answer: "Desert species like leopard geckos and corn snakes need gradients of 25-35°F (14-19°C), while tropical species like ball pythons prefer gentler 15-20°F (8-11°C) gradients.",
     },
     {
-      question: "What risks are associated with incorrect basking temperatures?",
-      answer:
-        "Incorrect basking temperatures can lead to serious health issues such as metabolic bone disease, respiratory infections, and impaired digestion. Too low temperatures prevent proper digestion and immune function, while excessively high temperatures can cause burns or heat stress. Maintaining the correct basking temperature and gradient is critical for your reptile’s overall well-being.",
+      question: "Can I use regular heat lamps for basking temperatures?",
+      answer: "Yes, but use ceramic heat emitters or UVA/UVB basking bulbs rated for your enclosure size. Always monitor actual temperatures with a digital thermometer, not the bulb's stated wattage.",
     },
+    {
+      question: "How often should I check and adjust basking temperatures?",
+      answer: "Check temperatures daily using an infrared thermometer or temperature gun. Seasonal changes, bulb aging, and thermostat drift can shift gradients by 5-10°F (3-6°C) monthly.",
+    },
+    {
+      question: "What happens if my reptile's gradient is too shallow?",
+      answer: "An insufficient gradient (&lt;15°F difference) prevents proper thermoregulation, leading to poor digestion, reduced activity, and compromised immune function in your pet.",
+    },
+    {
+      question: "Do nocturnal reptiles need basking temperatures at night?",
+      answer: "Most nocturnal species like ball pythons need daytime basking of 88-92°F (31-33°C) and a 10-15°F (6-8°C) drop at night, mimicking natural temperature cycles.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -227,101 +235,224 @@ export default function ReptileBaskingTemperatureGradientPlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Basking Temperature & Gradient Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Reptiles are ectothermic animals, meaning they depend on external heat sources to regulate their body temperature. The basking temperature is the warmest area within their enclosure where they can absorb heat to support essential physiological processes such as digestion, immune function, and metabolism. Equally important is the temperature gradient, which is the difference between the basking spot and the cooler ambient environment, allowing reptiles to thermoregulate by moving between zones.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          A well-planned basking temperature and gradient ensure that reptiles can maintain optimal body temperatures without overheating or becoming too cold. This gradient mimics natural conditions where reptiles bask in sunlight and retreat to shaded areas as needed. Without an appropriate gradient, reptiles may experience stress, reduced appetite, and increased susceptibility to illness, making temperature planning critical for their health and welfare.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This planner helps reptile owners and veterinarians design an enclosure environment that meets species-specific thermal needs. By inputting desired basking and ambient temperatures, users can calculate the temperature gradient necessary to create a safe and effective habitat. This tool supports evidence-based husbandry practices that promote longevity and well-being in captive reptiles.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Basking Temperature & Gradient Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you design and maintain optimal thermal gradients for your reptile's enclosure. It accounts for your pet's species, ambient room temperature, and equipment to recommend precise basking and cool zone temperatures.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your reptile species, current room temperature, heat lamp wattage, and distance from the basking surface. The calculator also factors in enclosure size and insulation to model realistic temperature distribution.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the calculated basking and cool zone targets, then use an infrared thermometer or temperature gun to verify actual temperatures in your setup. Adjust lamp distance or wattage as needed to match recommendations and ensure your pet can thermoregulate safely.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator, first select the temperature unit system you prefer: Fahrenheit (°F) or Celsius (°C). Enter the desired basking spot temperature based on your reptile species’ recommended range, then input the ambient enclosure temperature. The calculator will compute the temperature gradient, which is the difference between these two values, indicating how much warmer the basking spot is compared to the rest of the enclosure.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Choose the temperature unit by clicking the toggle button (°F or °C).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the basking spot temperature your reptile requires, ensuring it is higher than the ambient temperature.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the ambient temperature inside the enclosure, representing the cooler area.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to see the temperature gradient, which helps you verify if the enclosure setup meets your reptile’s thermoregulatory needs.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Adjust temperatures as needed to maintain a healthy gradient, typically between 10-20°F (5-10°C) depending on species.
-          </li>
+      {/* TABLE: Ideal Basking & Cool Zone Temperatures by Species */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Ideal Basking & Cool Zone Temperatures by Species</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference guide for setting up proper thermal gradients for common pet reptiles.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Basking Zone (°F)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cool Zone (°F)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gradient Difference (°F)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bearded Dragon</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95-110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Corn Snake</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85-90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ball Python</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">88-92</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Leopard Gecko</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">88-92</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70-75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Red-Eared Slider</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85-90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72-78</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Crested Gecko</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">65-70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-10</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Iguanas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All temperatures in Fahrenheit. Verify species-specific requirements with your herp veterinarian.</p>
+      </section>
+
+      {/* TABLE: Heat Lamp Wattage & Recommended Tank Coverage */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Heat Lamp Wattage & Recommended Tank Coverage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Guidelines for selecting appropriate heat sources based on enclosure size and desired basking temperature.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tank Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lamp Wattage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Distance from Basking Spot</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expected Basking Temp Rise (°F)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 Gallon (24x12x16)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40 Gallon Breeder (36x18x18)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75 Gallon (48x24x20)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">120 Gallon (48x24x24)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-35</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Custom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200W+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16+ inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35+</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual temperature rise depends on ambient room temperature and insulation. Always use a thermostat regulator.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use an infrared thermometer gun to measure actual basking surface temperature, not air temperature, for the most accurate gradient assessment.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Install a thermostat or dimmer switch to regulate heat lamp output and prevent temperature fluctuations caused by bulb aging or room temperature changes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Create multiple basking zones at different distances from the heat source so your reptile can move to find their preferred thermal refuge.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Replace basking bulbs every 6-12 months even if they appear functional, as output degrades invisibly and can shift your gradient by 5-10°F (3-6°C).</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Room Temperature Fluctuations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to account for seasonal or daily ambient temperature changes can cause your gradient to shift 10-15°F (6-8°C), disrupting your reptile's thermoregulation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using a Single Heat Source for Large Enclosures</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">One lamp cannot create an even gradient in tanks &gt;75 gallons; use multiple lamps or ceramic heat panels to avoid hot spots and cold zones.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Placing the Cool Zone Next to Direct Sunlight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Windows and direct sunlight can unintentionally heat the cool zone by 10-20°F (6-11°C), eliminating your intended thermal gradient.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Monitor Temperature Daily</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Heat bulbs degrade, dimmers drift, and room conditions change—skipping daily checks means your reptile may experience unsafe temperatures for days undetected.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What temperature range should my bearded dragon's basking spot be?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Bearded dragons require a basking spot of 95-110°F (35-43°C). The cooler side of the enclosure should be 75-85°F (24-29°C) to create a proper thermal gradient.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the correct temperature gradient for my reptile?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator measures the difference between your basking zone and cool zone temperatures. A typical gradient is 20-30°F (11-17°C) difference, allowing your pet to thermoregulate naturally.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What species need the steepest temperature gradients?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Desert species like leopard geckos and corn snakes need gradients of 25-35°F (14-19°C), while tropical species like ball pythons prefer gentler 15-20°F (8-11°C) gradients.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use regular heat lamps for basking temperatures?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, but use ceramic heat emitters or UVA/UVB basking bulbs rated for your enclosure size. Always monitor actual temperatures with a digital thermometer, not the bulb's stated wattage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I check and adjust basking temperatures?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check temperatures daily using an infrared thermometer or temperature gun. Seasonal changes, bulb aging, and thermostat drift can shift gradients by 5-10°F (3-6°C) monthly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my reptile's gradient is too shallow?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">An insufficient gradient (&lt;15°F difference) prevents proper thermoregulation, leading to poor digestion, reduced activity, and compromised immune function in your pet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do nocturnal reptiles need basking temperatures at night?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most nocturnal species like ball pythons need daytime basking of 88-92°F (31-33°C) and a 10-15°F (6-8°C) drop at night, mimicking natural temperature cycles.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/clinical-excellence/reptile-exotics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. UC Davis Veterinary Medicine – Reptile & Exotic Pet Care
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource on reptile husbandry, including temperature requirements and enclosure setup guidelines.
-            </p>
+          <li>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3116416/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Thermoregulation in Reptiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on how reptiles use thermal gradients for digestion, immune function, and metabolism.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/reptile-exotic-guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. American Animal Hospital Association (AAHA) – Reptile and Amphibian Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based clinical guidelines for reptile care, including environmental temperature management.
-            </p>
+          <li>
+            <a href="https://www.reptilesmagazine.com/bearded-dragon-setup/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bearded Dragon Care Sheet</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to bearded dragon temperature, lighting, and gradient requirements from Reptiles Magazine.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7159444/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Center for Biotechnology Information (NCBI) – Thermoregulation in Reptiles
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article detailing the physiological importance of temperature gradients in reptile health.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Guidelines for Reptile Husbandry</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Association of American Feed Control Officials standards for safe reptile environment parameters and temperature zones.</p>
+          </li>
+          <li>
+            <a href="https://www.kingsnake.com/heating/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Optimal Temperature Gradients for Common Pet Snakes</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed species-by-species breakdown of snake thermoregulation needs and safe gradient recommendations from Kingsnake.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -73,25 +73,33 @@ export default function CatCephalexinDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is the Cephalexin dose calculated per kilogram of body weight?",
-      answer:
-        "Dosing antibiotics like Cephalexin based on body weight ensures that each cat receives an effective amount tailored to its size. Cats vary significantly in weight, so a fixed dose could lead to underdosing or overdosing. Weight-based dosing optimizes therapeutic effects while minimizing toxicity risks.",
+      question: "What is the standard cephalexin dosage for cats?",
+      answer: "The typical dose is 15-30 mg/kg every 6-8 hours, or 22-35 mg/kg every 12 hours, depending on the infection severity and your veterinarian's recommendations.",
     },
     {
-      question: "Why is Cephalexin typically dosed every 12 hours in cats?",
-      answer:
-        "Cephalexin has a half-life that supports dosing every 12 hours to maintain effective blood levels. This dosing interval balances efficacy and convenience, ensuring the antibiotic remains at therapeutic concentrations without causing accumulation. Veterinarians may adjust frequency based on infection severity or patient response.",
+      question: "How do I calculate my cat's cephalexin dose using this calculator?",
+      answer: "Enter your cat's weight in pounds or kilograms, select the dosing frequency, and the calculator automatically computes the appropriate dose range based on standard feline dosing guidelines.",
     },
     {
-      question: "Can I use this calculator for kittens or very small cats?",
-      answer:
-        "While this calculator provides a general dosing estimate, kittens and very small cats may have different pharmacokinetics and sensitivities. It's important to consult a veterinarian for precise dosing in young or fragile animals. The calculator includes warnings for weights outside typical adult cat ranges to encourage professional guidance.",
+      question: "Is cephalexin safe for all cats?",
+      answer: "Cephalexin is generally safe for cats, but it should be avoided in cats with penicillin allergies or severe kidney disease; always consult your veterinarian first.",
     },
     {
-      question: "Is it safe to use Cephalexin without veterinary supervision?",
-      answer:
-        "Cephalexin is a prescription antibiotic and should only be used under veterinary guidance. Incorrect dosing or inappropriate use can lead to ineffective treatment or antibiotic resistance. Always consult a veterinarian before administering Cephalexin to ensure safety and proper diagnosis.",
+      question: "Can I give cephalexin to a kitten?",
+      answer: "Yes, kittens can receive cephalexin at the same mg/kg dosing as adult cats, though your veterinarian will determine the appropriate dose based on age and health status.",
     },
+    {
+      question: "What infections does cephalexin treat in cats?",
+      answer: "Cephalexin treats bacterial infections including skin and soft tissue infections, urinary tract infections, and respiratory infections caused by susceptible gram-positive and some gram-negative bacteria.",
+    },
+    {
+      question: "How long does a typical cephalexin treatment last for cats?",
+      answer: "Most feline cephalexin treatments last 7-14 days depending on the infection type; always complete the full course as prescribed by your veterinarian.",
+    },
+    {
+      question: "What should I do if I miss a dose of cephalexin for my cat?",
+      answer: "Give the missed dose as soon as possible unless it's nearly time for the next dose; never double-dose to make up for a missed administration.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -198,98 +206,233 @@ export default function CatCephalexinDoseCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cephalexin Dose Calculator for Cats
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Cephalexin is a commonly prescribed antibiotic used to treat bacterial infections in cats, including skin infections, urinary tract infections, and respiratory illnesses. Accurate dosing is critical to ensure the medication is effective while minimizing potential side effects or toxicity. This calculator helps veterinarians and cat owners estimate the appropriate dose based on the cat’s body weight, which is the most reliable factor influencing drug metabolism and clearance.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The dosing regimen for Cephalexin in cats typically ranges from 15 to 30 mg per kilogram of body weight per day, divided into two doses administered every 12 hours. This calculator uses a standard dose of 20 mg/kg every 12 hours, which is widely accepted in veterinary practice for most uncomplicated infections. By inputting the cat’s weight, users receive a precise dose per administration, helping to avoid underdosing that could lead to treatment failure or overdosing that could cause adverse effects.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to remember that while this tool provides a useful estimate, individual cats may require dose adjustments based on their health status, kidney function, or the severity of the infection. Always consult a licensed veterinarian before starting or adjusting any antibiotic treatment to ensure safe and effective care tailored to your cat’s specific needs.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cephalexin Dose Calculator for Cats</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator computes accurate cephalexin dosages for feline patients based on current veterinary pharmacology standards. It helps veterinarians and cat owners ensure proper antibiotic dosing for bacterial infections.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your cat's body weight in either pounds or kilograms, then select the recommended dosing interval (typically 6-8 hours or 12 hours). The calculator also allows you to specify the dosage range—standard protocols use 15-30 mg/kg.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result displays the dose in milligrams per administration along with the total daily dose. Always verify the calculated dose with your veterinarian before giving cephalexin, as individual cats may require adjustments based on kidney function, age, and infection severity.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this Cephalexin dose calculator is straightforward and designed for ease of use by both veterinary professionals and cat owners. Begin by selecting the unit system that matches how you measure your cat’s weight—either pounds (imperial) or kilograms (metric). Next, enter the cat’s current body weight into the input field. The calculator will then compute the recommended dose per administration based on the standard veterinary dosing guidelines.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) that corresponds to your cat’s weight measurement.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your cat’s accurate body weight in the input box provided.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the “Calculate” button to view the recommended Cephalexin dose per administration.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the result and any warnings, and consult your veterinarian before administering the medication.
-          </li>
+      {/* TABLE: Cephalexin Dosage Chart for Cats by Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Cephalexin Dosage Chart for Cats by Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This chart shows approximate cephalexin doses for cats based on body weight using standard veterinary guidelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Dose (15 mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Dose (30 mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37.5 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">13.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">105 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">210 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">17.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 12 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">19.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">135 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">270 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 12 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 12 hours</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Doses are approximate; your veterinarian may adjust based on infection type, kidney function, and clinical response.</p>
+      </section>
+
+      {/* TABLE: Cephalexin Formulations and Concentrations Available */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Cephalexin Formulations and Concentrations Available</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common cephalexin formulations used in feline medicine with their typical strengths.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Formulation</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Strengths</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Use in Cats</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Administration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Capsules</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250 mg, 500 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oral dosing for older cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">By mouth with or without food</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Powder for Suspension</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">125 mg/5 mL, 250 mg/5 mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Easy dosing for kittens and small cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Measured with syringe orally</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250 mg, 500 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Convenient dosing form</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Crushed in food or given whole</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Liquid Suspension</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">125 mg/5 mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Preferred for young or sick cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Measured dose given orally</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Suspension formulations are often preferred for cats as they allow precise weight-based dosing and easier administration.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Give cephalexin with or without food, but consistent timing with meals can help reduce nausea in sensitive cats.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a pharmacy compounding service to create flavored liquid versions if your cat refuses capsules or tablets.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Complete the entire prescribed course even if your cat improves, as stopping early risks antibiotic resistance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store cephalexin suspension in the refrigerator and shake well before each dose to ensure uniform concentration.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using human dosing guidelines</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats metabolize medications differently than humans; always use feline-specific dosing calculations, not extrapolated human doses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring kidney function</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats with renal disease may require lower doses or longer intervals; your veterinarian must assess kidney values before dosing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Rounding doses imprecisely</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Always round to the nearest practical dose (usually to the nearest 5-10 mg) to match available formulations and maintain accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for concurrent medications</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some drugs interact with cephalexin; inform your veterinarian of all supplements and medications your cat receives.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard cephalexin dosage for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The typical dose is 15-30 mg/kg every 6-8 hours, or 22-35 mg/kg every 12 hours, depending on the infection severity and your veterinarian's recommendations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my cat's cephalexin dose using this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your cat's weight in pounds or kilograms, select the dosing frequency, and the calculator automatically computes the appropriate dose range based on standard feline dosing guidelines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is cephalexin safe for all cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cephalexin is generally safe for cats, but it should be avoided in cats with penicillin allergies or severe kidney disease; always consult your veterinarian first.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I give cephalexin to a kitten?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, kittens can receive cephalexin at the same mg/kg dosing as adult cats, though your veterinarian will determine the appropriate dose based on age and health status.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What infections does cephalexin treat in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cephalexin treats bacterial infections including skin and soft tissue infections, urinary tract infections, and respiratory infections caused by susceptible gram-positive and some gram-negative bacteria.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does a typical cephalexin treatment last for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most feline cephalexin treatments last 7-14 days depending on the infection type; always complete the full course as prescribed by your veterinarian.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if I miss a dose of cephalexin for my cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Give the missed dose as soon as possible unless it's nearly time for the next dose; never double-dose to make up for a missed administration.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.plumbsveterinarydrugs.com/#!/monograph/cephalexin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Plumb's Veterinary Drug Handbook: Cephalexin
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive veterinary drug reference providing dosing guidelines, pharmacology, and clinical use of Cephalexin in cats.
-            </p>
+          <li>
+            <a href="https://www.vin.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network (VIN) - Cephalexin in Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary pharmacology resource covering cephalexin dosing, interactions, and clinical use in feline patients.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/pharmacology/antibacterial-drugs/cephalexin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Cephalexin
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative source on veterinary pharmacology, including indications, dosing, and safety considerations for Cephalexin in feline patients.
-            </p>
+          <li>
+            <a href="https://www.catfriendly.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFP (American Association of Feline Practitioners) - Antimicrobial Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative feline-specific antimicrobial dosing and treatment recommendations from board-certified feline specialists.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/antibiotics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell Feline Health Center: Antibiotics in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource discussing antibiotic use in cats, including dosing principles and the importance of veterinary supervision.
-            </p>
+          <li>
+            <a href="https://www.plumbsveterinarydrugs.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Plumb's Veterinary Drug Handbook - Cephalexin</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive reference for cephalexin dosages, indications, and contraindications in veterinary medicine.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AVMA (American Veterinary Medical Association) - Antibiotic Stewardship</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Guidelines on appropriate antibiotic use and resistance prevention in companion animal practice.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

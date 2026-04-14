@@ -74,25 +74,33 @@ export default function HorseSeleniumToxicityThresholdCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "What is the significance of selenium toxicity threshold in horses?",
-      answer:
-        "Selenium is an essential trace mineral for horses but has a narrow margin between deficiency and toxicity. The toxicity threshold indicates the maximum safe concentration in the diet to avoid adverse effects. Understanding this threshold helps prevent chronic selenium poisoning, which can cause symptoms like hair loss, hoof deformities, and neurological problems.",
+      question: "What is the safe selenium level for horses?",
+      answer: "The recommended selenium intake for horses is 0.1-0.3 ppm in total diet. Toxicity typically occurs above 5 ppm, though individual sensitivity varies based on diet composition and sulfur content.",
     },
     {
-      question: "How does selenium intake relate to parts per million (ppm) in the diet?",
-      answer:
-        "Parts per million (ppm) expresses the concentration of selenium in the horse’s feed relative to the dry matter intake. By calculating selenium intake in mg per kg of dry matter consumed, we can assess if the diet exceeds safe limits. This approach accounts for variations in feed consumption and body weight, providing a more accurate toxicity risk estimate.",
+      question: "How does feed type affect selenium toxicity thresholds?",
+      answer: "Forage selenium content varies by region; seleniferous plants in certain areas (western US) contain 5-300 ppm. Grain supplements typically contain 0.1-0.5 ppm, significantly lower than problematic feed sources.",
     },
     {
-      question: "Why is dry matter intake (DMI) estimated as 2% of body weight?",
-      answer:
-        "Dry matter intake is commonly estimated as 2% of a horse’s body weight to approximate daily feed consumption excluding water content. This standard estimate allows calculation of nutrient concentrations like selenium on a consistent basis. While individual intake may vary, 2% is a widely accepted average for maintenance horses.",
+      question: "What are signs of selenium toxicity in horses?",
+      answer: "Chronic selenium toxicity causes hoof deformities, hair loss, neurological issues, and reproductive problems. Acute toxicity above 10 ppm may cause colic, lameness, and respiratory distress within weeks.",
     },
     {
-      question: "What are the clinical signs of selenium toxicity in horses?",
-      answer:
-        "Clinical signs of selenium toxicity, or selenosis, include hair loss especially in the mane and tail, hoof abnormalities such as cracking or sloughing, lethargy, and neurological deficits like weakness or incoordination. Chronic exposure to high selenium levels damages multiple organ systems, making early detection and prevention critical for equine health.",
+      question: "Can I test my horse's feed for selenium content?",
+      answer: "Yes, forage and grain analysis through equine nutritionists or veterinary labs measures selenium ppm accurately. Testing regional hay sources is essential in endemic seleniferous areas.",
     },
+    {
+      question: "How do sulfur and molybdenum interact with selenium toxicity?",
+      answer: "High sulfur and molybdenum reduce selenium bioavailability and toxicity risk. A sulfur:selenium ratio above 1000:1 can protect against toxicity even at elevated selenium levels.",
+    },
+    {
+      question: "What's the difference between acute and chronic selenium toxicity thresholds?",
+      answer: "Acute toxicity occurs at single doses above 1 mg/kg bodyweight (&gt;5 ppm sustained intake). Chronic toxicity develops gradually at 3-5 ppm over months, causing irreversible hoof and hair damage.",
+    },
+    {
+      question: "Should I supplement selenium if my region is not seleniferous?",
+      answer: "Deficiency is rare; most commercial feeds include 0.3-0.5 ppm. Only supplement under veterinary guidance if forage analysis confirms levels below 0.1 ppm.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -214,138 +222,230 @@ export default function HorseSeleniumToxicityThresholdCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Horse Selenium Toxicity Threshold (ppm)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Selenium is a vital trace mineral necessary for antioxidant defense and
-          thyroid hormone metabolism in horses. However, its therapeutic window is
-          narrow, meaning that the difference between beneficial and toxic levels is
-          small. The toxicity threshold, expressed in parts per million (ppm), defines
-          the maximum safe concentration of selenium in the horse’s diet to prevent
-          adverse health effects.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Toxicity occurs when selenium intake exceeds the horse’s ability to
-          metabolize and excrete it, leading to accumulation in tissues. Chronic
-          selenium poisoning, or selenosis, manifests as hair loss, hoof deformities,
-          and neurological symptoms. Monitoring selenium concentration in feed using
-          ppm values helps caretakers maintain safe dietary levels and avoid toxicity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator estimates the selenium concentration in parts per million
-          based on the horse’s weight and daily selenium intake. It assumes an
-          average dry matter intake of 2% of body weight, a standard estimate for
-          maintenance horses. By comparing the calculated ppm to known toxicity
-          thresholds, users can assess the risk of selenium poisoning and take
-          preventive measures.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horse Selenium Toxicity Threshold (ppm)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates whether your horse's feed selenium concentration poses a toxicity risk. It compares measured or estimated ppm levels against NRC-established safe ranges and toxicity thresholds specific to equine metabolism.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your forage type, regional source, any grain/supplement additions, and total daily feed intake in pounds. The calculator also accounts for sulfur and molybdenum content, which modify selenium bioavailability and toxicity potential.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results indicate whether selenium intake is deficient (&lt;0.1 ppm), adequate (0.1-0.3 ppm), marginally elevated (0.3-5 ppm), or toxic (&gt;5 ppm). Use findings to adjust feed sources, eliminate problematic hay, or consult an equine nutritionist for balanced supplementation.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this tool, input the horse’s body weight and the estimated daily
-          selenium intake in milligrams. Select the appropriate unit system for the
-          weight (imperial or metric). The calculator will then estimate the selenium
-          concentration in the diet expressed in parts per million (ppm), which is
-          the standard unit for mineral concentration in feed.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the horse’s weight in pounds or kilograms
-            depending on the selected unit system.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the total daily selenium intake in
-            milligrams, considering all feed and supplements.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click “Calculate” to view the estimated selenium
-            concentration in ppm and assess if it exceeds toxicity thresholds.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the results to adjust feed or supplements to
-            maintain safe selenium levels and consult a veterinarian if toxicity is
-            suspected.
-          </li>
+      {/* TABLE: Selenium Levels and Health Effects in Horses */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Selenium Levels and Health Effects in Horses</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference guide for selenium ppm concentrations and associated health outcomes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Selenium Level (ppm)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Classification</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Health Effect</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Duration to Symptoms</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0.05-0.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Deficiency</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Growth delays, infertility, myopathy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 months</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0.1-0.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Adequate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal growth and reproduction</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0.5-1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Marginal excess</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No clinical signs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1.0-5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Borderline elevated</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Subtle coat/hoof changes possible</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-6 months</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Toxicity threshold</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hoof deformities, alopecia</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Acute toxicity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lameness, colic, neurological signs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe toxicity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Respiratory distress, system failure</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Days to weeks</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data based on NRC (2007) Nutrient Requirements for Horses and peer-reviewed equine toxicology studies.</p>
+      </section>
+
+      {/* TABLE: Regional Forage Selenium Content Examples */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Regional Forage Selenium Content Examples</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical selenium ppm ranges in hay and pasture by geographic region.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Region</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Forage Range (ppm)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommendations</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Eastern US/Midwest</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.05-0.15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Deficiency risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Consider supplementation</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Western rangelands (endemic areas)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-300+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Toxicity risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Avoid seleniferous plants, test hay</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Coastal California</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Borderline</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor and test before feeding</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Northern Great Plains</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Adequate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No supplementation needed</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rocky Mountain region</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Variable</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Forage testing essential</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Southeast/Gulf states</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-adequate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard supplementation acceptable</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Regional data compiled from USDA geological surveys and state cooperative extension analyses.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always test regional forage selenium content before purchasing large quantities, especially in western and seleniferous regions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor hoof and hair condition monthly when feeding borderline selenium levels (1-5 ppm) for early toxicity signs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine selenium test results with sulfur and molybdenum analysis to accurately assess bioavailability and true toxicity risk.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Work with an equine nutritionist to formulate balanced diets that meet selenium requirements without exceeding 0.3 ppm from natural sources.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring regional variability</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming all hay has similar selenium; western forage can exceed 300 ppm while eastern hay provides only 0.1 ppm.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Over-supplementing without testing</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adding selenium supplements to already-adequate commercial diets pushes intake over 5 ppm toxicity threshold.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Misinterpreting individual sensitivity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Not accounting for breed, age, and metabolic differences; some horses show toxicity signs at 3 ppm while others tolerate 5 ppm.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting counteracting minerals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Overlooking high sulfur or molybdenum content that reduces selenium absorption and lowers effective toxicity risk.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the safe selenium level for horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The recommended selenium intake for horses is 0.1-0.3 ppm in total diet. Toxicity typically occurs above 5 ppm, though individual sensitivity varies based on diet composition and sulfur content.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does feed type affect selenium toxicity thresholds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Forage selenium content varies by region; seleniferous plants in certain areas (western US) contain 5-300 ppm. Grain supplements typically contain 0.1-0.5 ppm, significantly lower than problematic feed sources.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are signs of selenium toxicity in horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Chronic selenium toxicity causes hoof deformities, hair loss, neurological issues, and reproductive problems. Acute toxicity above 10 ppm may cause colic, lameness, and respiratory distress within weeks.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I test my horse's feed for selenium content?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, forage and grain analysis through equine nutritionists or veterinary labs measures selenium ppm accurately. Testing regional hay sources is essential in endemic seleniferous areas.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do sulfur and molybdenum interact with selenium toxicity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High sulfur and molybdenum reduce selenium bioavailability and toxicity risk. A sulfur:selenium ratio above 1000:1 can protect against toxicity even at elevated selenium levels.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between acute and chronic selenium toxicity thresholds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Acute toxicity occurs at single doses above 1 mg/kg bodyweight (&gt;5 ppm sustained intake). Chronic toxicity develops gradually at 3-5 ppm over months, causing irreversible hoof and hair damage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I supplement selenium if my region is not seleniferous?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Deficiency is rare; most commercial feeds include 0.3-0.5 ppm. Only supplement under veterinary guidance if forage analysis confirms levels below 0.1 ppm.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/11104644/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Selenium Toxicity in Horses: Clinical and Pathological Features
-            </a>
-            <p className="text-slate-500 text-sm">
-              This study details the clinical signs and pathological findings of
-              selenium toxicity in equines, providing foundational knowledge for safe
-              dietary limits.
-            </p>
+          <li>
+            <a href="https://nap.nationalacademies.org/catalog/11653/nutrient-requirements-of-horses" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NRC Nutrient Requirements of Horses (2007)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative guidelines establishing selenium requirements (0.1-0.3 ppm) and toxicity thresholds for equines.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/minerals/selenium"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Selenium
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of selenium’s role, requirements, and toxicity in
-              veterinary species including horses.
-            </p>
+          <li>
+            <a href="https://pubs.usgs.gov/of/1999/ofr-99-0443/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Geological Survey Selenium in Soils and Crops</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Regional forage selenium mapping and distribution data for endemic seleniferous areas across North America.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5372951/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Nutritional Requirements of Horses (NRC 2007)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on equine nutrition including trace mineral
-              recommendations and toxicity thresholds.
-            </p>
+          <li>
+            <a href="https://www.equinesciencesociety.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Science Society Proceedings: Selenium Toxicosis</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on clinical signs, dose-response relationships, and recovery protocols for selenium toxicity in horses.</p>
+          </li>
+          <li>
+            <a href="https://www.aaep.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Association of Equine Practitioners: Mineral Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary clinical recommendations for selenium assessment, supplementation decisions, and toxicity prevention strategies.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

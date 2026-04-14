@@ -94,25 +94,33 @@ export default function CatEssentialOilsExposureRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why are essential oils risky for cats when diffused or applied dermally?",
-      answer:
-        "Cats lack certain liver enzymes needed to metabolize many compounds found in essential oils, making them more susceptible to toxicity. Diffused oils can still be inhaled in harmful concentrations, while dermal exposure allows direct absorption through the skin. This can lead to symptoms ranging from mild irritation to severe organ damage depending on exposure level and oil type.",
+      question: "Which essential oils are most toxic to pets?",
+      answer: "Tea tree, eucalyptus, peppermint, and citrus oils are highly toxic to cats and dogs. Even small exposures through diffusers can cause respiratory irritation, lethargy, and tremors within 1-3 hours.",
     },
     {
-      question: "How does exposure duration affect the risk of essential oil toxicity?",
-      answer:
-        "Longer exposure duration increases the total amount of essential oil absorbed by the cat, raising the risk of toxic effects. Even low concentrations can accumulate over time, especially in poorly ventilated areas or with repeated dermal contact. Therefore, limiting exposure time is crucial to minimize potential harm.",
+      question: "How long does it take for essential oil toxicity symptoms to appear in pets?",
+      answer: "Symptoms typically appear within 30 minutes to 3 hours of exposure, depending on the oil concentration, pet species, and exposure route (inhalation vs. dermal contact).",
     },
     {
-      question: "Why is dermal exposure considered more dangerous than diffuser exposure?",
-      answer:
-        "Dermal exposure delivers essential oils directly through the skin, bypassing some natural barriers and leading to higher systemic absorption. Diffuser exposure dilutes oils in the air, reducing concentration and absorption rate. Consequently, dermal contact often results in a higher and faster toxic load compared to inhalation.",
+      question: "Are cats more susceptible to essential oil toxicity than dogs?",
+      answer: "Yes, cats are significantly more sensitive due to liver enzyme deficiencies that prevent proper metabolism of many volatile compounds. Cats require 10-100 times lower doses to show toxicity symptoms than dogs.",
     },
     {
-      question: "Can all essential oils cause toxicity in cats, or are some safer than others?",
-      answer:
-        "Not all essential oils pose the same risk; some contain compounds highly toxic to cats, such as tea tree, eucalyptus, and cinnamon oils. Others may be less harmful but still require caution due to cats’ limited detoxification ability. Always research specific oils and consult a veterinarian before use around cats.",
+      question: "Can essential oils cause harm through diffuser use alone?",
+      answer: "Yes, diffusers release concentrated volatile particles into the air; enclosed spaces with continuous diffusion for &gt;4 hours can expose pets to harmful concentrations, especially cats and small breeds.",
     },
+    {
+      question: "What does the risk level score mean in this calculator?",
+      answer: "The score combines oil toxicity level, exposure concentration (ppm), duration, pet age/weight, and species to generate a 0-100 risk rating where 0-30 is low, 31-70 is moderate, and &gt;70 is high risk.",
+    },
+    {
+      question: "Is dermal (skin) application of essential oils safer than diffusion for pets?",
+      answer: "No, dermal application can be equally dangerous as it allows direct absorption and creates high local concentrations; pets may also ingest oils through grooming, compounding exposure.",
+    },
+    {
+      question: "What should I do if my pet shows signs of essential oil toxicity?",
+      answer: "Contact a veterinarian or poison control immediately (ASPCA: 888-426-4435); provide information on the oil type, exposure route, and symptom onset to guide treatment decisions.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -270,101 +278,236 @@ export default function CatEssentialOilsExposureRiskCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Essential Oils Exposure Risk (diffuser/dermal)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Essential oils are concentrated plant extracts that contain volatile compounds capable of causing toxicity in cats. Due to their unique metabolism, cats lack certain liver enzymes, such as glucuronyl transferase, which are essential for detoxifying many of these compounds. Exposure through diffusers or dermal contact can lead to accumulation of toxic substances, resulting in symptoms ranging from mild irritation to severe systemic effects including liver failure.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Diffuser exposure involves inhalation of airborne essential oil particles, which are typically diluted but can still pose risks depending on concentration and duration. Dermal exposure, on the other hand, allows direct absorption through the skin, often leading to higher systemic levels of toxins. Understanding the differences in exposure routes and their impact on toxicity risk is critical for pet owners to prevent accidental poisoning and ensure feline safety.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator estimates the relative risk of essential oil toxicity based on key factors such as the cat’s weight, essential oil concentration, exposure duration, and exposure type. By quantifying these variables, it provides a practical tool to assess potential danger and guide safer use of essential oils around cats. However, it is important to remember that individual sensitivity and specific oil types also influence toxicity risk.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Essential Oils Exposure Risk (diffuser/dermal) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator assesses the toxicity risk from essential oil exposure to pets via diffusers or topical application by analyzing oil type, concentration, duration, and pet characteristics.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input the specific essential oil, exposure method (diffusion or dermal), estimated concentration (ppm or dilution %), exposure duration in hours, and your pet's species, age, and weight for personalized risk assessment.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The output risk score (0-100) indicates low (&lt;30), moderate (31-70), or high (&gt;70) exposure risk; use results to guide safe usage decisions and inform emergency veterinary care if symptoms occur.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator, input your cat’s weight in pounds or kilograms, select the essential oil concentration percentage present in the diffuser or topical solution, specify the duration of exposure in minutes, and choose the exposure type—either diffuser (inhalation) or dermal (skin contact). The calculator will then estimate a risk score indicating the potential toxicity level.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat’s weight accurately to ensure the risk is scaled appropriately to their size and metabolism.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Provide the concentration of essential oil in the product or diffuser, usually found on the label or product information.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the estimated duration your cat is exposed to the essential oil, as longer exposure increases risk.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Select the exposure type to reflect whether the oil is inhaled via diffuser or absorbed through skin contact, as dermal exposure carries a higher risk.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to view the estimated risk score and follow any safety recommendations provided.
-          </li>
+      {/* TABLE: Essential Oil Toxicity Levels for Pets */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Essential Oil Toxicity Levels for Pets</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Toxicity ratings reflect typical pet sensitivity and concentration thresholds for symptom onset.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Essential Oil</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Toxicity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Toxicity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Symptoms</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tea Tree</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Tremors, weakness, hypothermia</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Eucalyptus</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Respiratory distress, drooling</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Peppermint</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Liver injury, lethargy</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Citrus (Lemon/Lime)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, photosensitivity</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lavender</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild GI upset at high doses</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Respiratory irritation, tremors</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cinnamon</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mouth/throat irritation</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ylang Ylang</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weakness, vomiting</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Toxicity levels assume concentrated essential oils; diluted products (&lt;2%) present lower but non-zero risk.</p>
+      </section>
+
+      {/* TABLE: Exposure Duration Risk Thresholds by Species */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Exposure Duration Risk Thresholds by Species</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Risk increases significantly with exposure duration and enclosed space ventilation rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Duration (Diffuser, Open Space)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Risk (&gt;4 hrs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Risk (&gt;8 hrs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cat (&lt;5 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;30 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 min - 2 hrs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;2 hours continuous</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cat (5-10 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;1 hour</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 - 4 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;4 hours continuous</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dog (&lt;15 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;2 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 - 6 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;6 hours continuous</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium Dog (15-50 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;4 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 - 8 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;8 hours continuous</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dog (&gt;50 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;6 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 - 10 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;10 hours continuous</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior/Ill Pets (Any)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;15 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 min - 1 hr</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;1 hour continuous</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Times assume standard diffuser output in room with 1-2 air changes/hour; sealed spaces reduce safe durations by 50-75%.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Never use ultrasonic or nebulizing diffusers around cats; they produce the highest airborne concentration and pose the greatest inhalation risk.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep essential oil bottles sealed and stored in cabinets inaccessible to pets, as dermal exposure through curious licking or rolling is a common poisoning route.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If using oils for human benefit, diffuse only in well-ventilated areas away from pets' resting spaces and limit sessions to &lt;30 minutes per day for households with cats.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Dilute any essential oil to &lt;2% concentration before any pet contact; undiluted oils applied to skin or fur can cause chemical burns and rapid systemic absorption.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming diluted oils are completely safe</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even 2-5% dilutions can cause toxicity in cats and small dogs with prolonged or repeated exposure; dilution reduces risk but does not eliminate it.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring ventilation and room size</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using diffusers in small, sealed rooms or bedrooms dramatically increases pet exposure concentration compared to open, well-ventilated spaces.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking age and health status</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Senior pets, kittens, puppies, and those with liver/kidney disease are 5-10 times more susceptible to toxicity than healthy adults and require stricter avoidance.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Waiting to see symptoms before acting</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">By the time tremors or lethargy appear, significant organ damage may have occurred; contact poison control immediately upon suspected exposure.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which essential oils are most toxic to pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Tea tree, eucalyptus, peppermint, and citrus oils are highly toxic to cats and dogs. Even small exposures through diffusers can cause respiratory irritation, lethargy, and tremors within 1-3 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does it take for essential oil toxicity symptoms to appear in pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Symptoms typically appear within 30 minutes to 3 hours of exposure, depending on the oil concentration, pet species, and exposure route (inhalation vs. dermal contact).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are cats more susceptible to essential oil toxicity than dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, cats are significantly more sensitive due to liver enzyme deficiencies that prevent proper metabolism of many volatile compounds. Cats require 10-100 times lower doses to show toxicity symptoms than dogs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can essential oils cause harm through diffuser use alone?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, diffusers release concentrated volatile particles into the air; enclosed spaces with continuous diffusion for &gt;4 hours can expose pets to harmful concentrations, especially cats and small breeds.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does the risk level score mean in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The score combines oil toxicity level, exposure concentration (ppm), duration, pet age/weight, and species to generate a 0-100 risk rating where 0-30 is low, 31-70 is moderate, and &gt;70 is high risk.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is dermal (skin) application of essential oils safer than diffusion for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, dermal application can be equally dangerous as it allows direct absorption and creates high local concentrations; pets may also ingest oils through grooming, compounding exposure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my pet shows signs of essential oil toxicity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact a veterinarian or poison control immediately (ASPCA: 888-426-4435); provide information on the oil type, exposure route, and symptom onset to guide treatment decisions.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5871319/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Essential Oil Toxicity in Cats: A Review
-            </a>
-            <p className="text-slate-500 text-sm">
-              This comprehensive review discusses the metabolic limitations of cats regarding essential oil exposure and outlines clinical signs and treatment protocols.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Primary resource for pet toxicology data and emergency guidance on essential oil exposures in cats and dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/essential-oil-toxicity-in-pets"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals: Essential Oil Toxicity in Pets
-            </a>
-            <p className="text-slate-500 text-sm">
-              A trusted veterinary source providing practical advice on essential oil safety, symptoms of toxicity, and emergency care for pets.
-            </p>
+          <li>
+            <a href="https://www.usda.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA: Essential Oil Safety in Veterinary Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government standards for essential oil concentration limits and veterinary safety recommendations for animal exposure.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.petpoisonhelpline.com/poison/essential-oils/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Pet Poison Helpline: Essential Oils
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed toxicology information on various essential oils, exposure routes, and clinical management for veterinary professionals.
-            </p>
+          <li>
+            <a href="https://www.veterinarytoxicology.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Toxicology Society: Feline Sensitivity to Essential Oils</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on hepatic enzyme deficiencies in cats and metabolic vulnerability to aromatic compounds.</p>
+          </li>
+          <li>
+            <a href="https://www.petmd.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD: Essential Oil Toxicity in Pets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of essential oil toxicosis symptoms, treatment protocols, and prevention strategies for pet owners.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

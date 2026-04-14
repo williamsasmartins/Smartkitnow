@@ -130,25 +130,33 @@ export default function BirdToxicFoodsExposureCheckerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why are some common human foods toxic to birds and pets?",
-      answer:
-        "Many human foods contain compounds that animals metabolize differently, leading to toxicity. For example, persin in avocados and theobromine in chocolate can cause severe organ damage or neurological symptoms in pets. Understanding these differences helps prevent accidental poisonings and ensures pet safety.",
+      question: "How much chocolate is toxic to dogs?",
+      answer: "Dark chocolate is most dangerous; 20 mg/kg of theobromine can cause symptoms, and 60 mg/kg may be fatal. Milk chocolate requires higher doses (around 200-500 mg/kg) to cause toxicity.",
     },
     {
-      question: "How does body weight affect the toxicity risk of a food?",
-      answer:
-        "Toxicity is often dose-dependent and calculated relative to body weight, usually in mg or grams per kilogram. Smaller animals require much smaller amounts to reach toxic levels compared to larger ones. This is why accurate weight measurement is critical when assessing exposure risk.",
+      question: "Is avocado safe for cats and dogs?",
+      answer: "Avocado contains persin, which is mildly toxic to both dogs and cats. While the fruit flesh rarely causes serious harm, the pit, leaves, and stem are more concentrated and should be avoided completely.",
     },
     {
-      question: "What should I do if my pet ingests a toxic food?",
-      answer:
-        "Immediate veterinary consultation is essential if you suspect toxic ingestion. Early intervention can include inducing vomiting, administering activated charcoal, or supportive care to prevent absorption and mitigate symptoms. Time is critical to improve outcomes in poisoning cases.",
+      question: "What does the Toxic Foods Exposure Checker calculate?",
+      answer: "This calculator estimates toxicity risk by comparing your pet's weight, food type, and consumption amount against known toxic thresholds for common household foods.",
     },
     {
-      question: "Can all types of chocolate cause toxicity in pets?",
-      answer:
-        "No, the toxicity depends on the type and concentration of theobromine, which varies widely. Dark and baking chocolates contain much higher levels than milk chocolate, increasing the risk. Always consider the chocolate type and amount ingested when assessing risk.",
+      question: "Can grapes and raisins kill dogs?",
+      answer: "Yes, grapes and raisins are highly toxic to dogs with unknown compounds causing acute kidney failure. As few as 10-15 grapes have caused fatal reactions in dogs weighing 20-40 lbs.",
     },
+    {
+      question: "How long after eating toxic food do symptoms appear?",
+      answer: "Symptoms typically appear within 1-12 hours depending on the toxin. Chocolate poisoning may take 6-12 hours, while grape toxicity can cause kidney damage within 24-72 hours.",
+    },
+    {
+      question: "Which toxic food is most dangerous: chocolate, avocado, or grapes?",
+      answer: "Grapes and raisins are the most dangerous due to unpredictable severity and small toxic doses. Dark chocolate and avocado pits are also serious but require larger quantities for severe effects.",
+    },
+    {
+      question: "Should I use this calculator instead of calling my vet?",
+      answer: "No, this calculator is an informational tool only. Always contact your veterinarian or animal poison control (888-426-4435) immediately if your pet ingests a toxic food.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -294,101 +302,224 @@ export default function BirdToxicFoodsExposureCheckerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Toxic Foods Exposure Checker (Avocado, Chocolate, etc.)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Toxic foods such as avocado, chocolate, grapes, onions, and garlic contain compounds that can be harmful or even fatal to birds and other pets. These substances interfere with normal metabolic processes, causing symptoms ranging from mild gastrointestinal upset to severe organ failure. Because pets metabolize these toxins differently than humans, even small amounts can pose significant health risks.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Avocado contains persin, a fungicidal toxin that affects the heart and lungs of sensitive species, especially birds. Chocolate’s theobromine and caffeine content can overstimulate the nervous system and heart, leading to seizures or cardiac arrest. Grapes and raisins have been linked to acute kidney failure in dogs, while onions and garlic cause oxidative damage to red blood cells, resulting in anemia.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding the dose relative to your pet’s body weight is crucial in assessing the risk of toxicity. This calculator helps estimate the exposure level by comparing the ingested amount to known toxic thresholds, providing guidance on potential severity. Early recognition and veterinary intervention can significantly improve outcomes in toxic food ingestion cases.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Toxic Foods Exposure Checker (Avocado, Chocolate, etc.)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners quickly assess the potential toxicity risk after their dog, cat, or other pet has ingested common household foods. It cross-references your pet's weight, the food consumed, and the quantity against established veterinary toxicology data.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your pet's species and weight in pounds, select the toxic food from the dropdown list, and enter the estimated amount consumed. The calculator will determine whether the exposure falls into safe, mild, moderate, or severe risk categories.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results are informational only and should never replace professional veterinary advice. If your pet consumed a potentially toxic food, contact your veterinarian or ASPCA Animal Poison Control (888-426-4435) immediately, regardless of the calculator's output.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This tool estimates the toxicity risk of common harmful foods based on your pet’s weight and the amount ingested. Begin by selecting the unit system you prefer, then enter your pet’s weight accurately. Choose the type of food ingested from the dropdown menu, and input the amount your pet consumed in grams or ounces.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your pet’s weight in pounds or kilograms, depending on your selected unit system.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Select the toxic food type your pet ingested from the provided list.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the amount of food ingested, specifying grams or ounces.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to see the estimated dose per kilogram of body weight and the associated toxicity risk.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Review the results and warnings carefully. If moderate or severe risk is indicated, seek veterinary care immediately.
-          </li>
+      {/* TABLE: Toxic Thresholds for Common Pet Toxins */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Toxic Thresholds for Common Pet Toxins</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference thresholds showing estimated toxic doses for common household foods in dogs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Compound</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Dose (mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dangerous Dose Example</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dark Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Theobromine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 oz for 10 lb dog</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Milk Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Theobromine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multiple bars needed</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Grapes/Raisins</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Unknown toxin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15 grapes per 20-40 lb dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very small amounts</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Avocado</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Persin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low toxicity in fruit flesh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pit &amp; leaves more dangerous</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Macadamia Nuts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Unknown compound</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4 grams/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 nuts for 10 lb dog</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Xylitol</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Xylitol</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1 grams/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small amount causes liver damage</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Doses vary by individual pet sensitivity and health status. These are general guidelines based on veterinary toxicology data.</p>
+      </section>
+
+      {/* TABLE: Symptom Timeline by Toxin Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Symptom Timeline by Toxin Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Expected symptom onset after toxic food ingestion in dogs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxin</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Onset Time</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Early Symptoms</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severity</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chocolate/Theobromine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, diarrhea, restlessness</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild to severe</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Grapes/Raisins</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-72 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, loss of appetite, lethargy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe (kidney failure)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Avocado (pit/leaves)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, diarrhea, abdominal pain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild to moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Macadamia Nuts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weakness, tremors, hyperthermia</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild to moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Xylitol</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, hypoglycemia, lethargy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe (liver damage)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Onions/Garlic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-3 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weakness, anemia, pale gums</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate to severe</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Onset times are approximate; seek immediate veterinary care for any suspected poisoning.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store chocolate, grapes, macadamia nuts, and xylitol-containing foods in locked cabinets away from curious pets.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep the ASPCA Poison Control number (888-426-4435) and your vet's emergency number saved in your phone.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Dark chocolate and baking chocolate are more toxic than milk chocolate due to higher theobromine concentration.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Avocado pits pose choking hazards and contain higher persin concentrations than the fruit flesh alone.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all chocolate is equally toxic</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Milk chocolate is far less dangerous than dark or baking chocolate; the theobromine content varies dramatically by cocoa percentage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying on calculator results without veterinary consultation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Individual pet sensitivity, health conditions, and metabolic factors make professional evaluation essential for any suspected poisoning.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Waiting to see symptoms before seeking help</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some toxins like grapes cause delayed kidney damage; don't wait for vomiting or lethargy to contact your vet.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the pet's species when assessing toxicity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats metabolize toxins differently than dogs; xylitol and grapes affect both, but dosage thresholds may vary by species.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much chocolate is toxic to dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dark chocolate is most dangerous; 20 mg/kg of theobromine can cause symptoms, and 60 mg/kg may be fatal. Milk chocolate requires higher doses (around 200-500 mg/kg) to cause toxicity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is avocado safe for cats and dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Avocado contains persin, which is mildly toxic to both dogs and cats. While the fruit flesh rarely causes serious harm, the pit, leaves, and stem are more concentrated and should be avoided completely.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does the Toxic Foods Exposure Checker calculate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator estimates toxicity risk by comparing your pet's weight, food type, and consumption amount against known toxic thresholds for common household foods.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can grapes and raisins kill dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, grapes and raisins are highly toxic to dogs with unknown compounds causing acute kidney failure. As few as 10-15 grapes have caused fatal reactions in dogs weighing 20-40 lbs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long after eating toxic food do symptoms appear?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Symptoms typically appear within 1-12 hours depending on the toxin. Chocolate poisoning may take 6-12 hours, while grape toxicity can cause kidney damage within 24-72 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which toxic food is most dangerous: chocolate, avocado, or grapes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Grapes and raisins are the most dangerous due to unpredictable severity and small toxic doses. Dark chocolate and avocado pits are also serious but require larger quantities for severe effects.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I use this calculator instead of calling my vet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this calculator is an informational tool only. Always contact your veterinarian or animal poison control (888-426-4435) immediately if your pet ingests a toxic food.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/people-foods-avoid-feeding-your-pets"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. AVMA: People Foods to Avoid Feeding Your Pets
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide by the American Veterinary Medical Association outlining common toxic foods and their effects on pets.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official resource for pet poisoning emergencies with 24/7 hotline support and toxin database.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/food-hazards/food-hazards"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Food Hazards
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed veterinary resource describing toxic compounds in foods and clinical signs of poisoning in animals.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary toxicology database with specific toxic food thresholds and treatment recommendations.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6313445/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. NCBI: Toxicity of Chocolate in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed article discussing the pharmacokinetics and toxic effects of theobromine in canine patients.
-            </p>
+          <li>
+            <a href="https://www.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary organization providing evidence-based guidance on pet nutrition and toxicology.</p>
+          </li>
+          <li>
+            <a href="https://www.merckvetmanual.com/toxicology/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Merck Veterinary Manual</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive reference for veterinary toxins, clinical signs, and treatment protocols for toxic exposures.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

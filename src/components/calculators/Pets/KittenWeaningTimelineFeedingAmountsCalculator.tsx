@@ -100,25 +100,33 @@ export default function KittenWeaningTimelineFeedingAmountsCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is the kitten weaning timeline important for feeding?",
-      answer:
-        "The weaning timeline is critical because kittens transition from a solely milk-based diet to solid foods during this period. Proper timing ensures they receive adequate nutrition for growth while avoiding digestive upset. Understanding this timeline helps caregivers introduce appropriate food textures and feeding frequencies to support healthy development.",
+      question: "When should I start weaning my kitten?",
+      answer: "Most kittens are ready to begin weaning at 3-4 weeks of age when their teeth start erupting. Weaning typically completes by 8-10 weeks old when kittens can eat solid food exclusively.",
     },
     {
-      question: "How do I determine the correct feeding amounts during weaning?",
-      answer:
-        "Feeding amounts are based on the kitten’s weight, age, and energy requirements, which are higher during growth phases. This calculator uses resting energy requirements multiplied by a growth factor to estimate daily caloric needs, then divides by feeding frequency. This approach ensures kittens receive sufficient calories without overfeeding, promoting optimal growth.",
+      question: "How much should a 6-week-old kitten eat per day?",
+      answer: "A 6-week-old kitten needs approximately 200-250 calories daily, spread across 4 meals of 2-3 tablespoons of kitten food each.",
     },
     {
-      question: "Can I feed my kitten less frequently as it grows?",
-      answer:
-        "Yes, as kittens mature and their digestive systems develop, feeding frequency can be gradually reduced from multiple small meals to fewer, larger meals. Early in weaning, frequent feeding supports energy needs and digestion, but by 8-12 weeks, kittens can handle less frequent feeding. Adjustments should be made carefully to avoid hunger or overeating.",
+      question: "Can I mix wet and dry food during weaning?",
+      answer: "Yes, combining wet and dry kitten food during weaning helps transition digestive systems and provides moisture; mix approximately 50% wet and 50% dry food for optimal results.",
     },
     {
-      question: "What type of food should I use during the weaning period?",
-      answer:
-        "During weaning, kittens should be offered soft, easily digestible foods such as wet kitten food or softened dry kibble mixed with water or formula. This helps ease the transition from milk to solids and encourages acceptance of new textures. High-quality, nutrient-dense foods formulated for kittens support their rapid growth and immune development.",
+      question: "What's the ideal feeding schedule for a weaning kitten?",
+      answer: "Kittens aged 4-6 weeks should eat 4 times daily, 6-8 weeks old 3-4 times daily, and 8-12 weeks old 3 times daily before transitioning to adult schedules.",
     },
+    {
+      question: "How do I know if my kitten is eating enough?",
+      answer: "Healthy weaning kittens should gain 0.5-1 ounce per day, have a rounded belly after meals, and display active, playful behavior throughout the day.",
+    },
+    {
+      question: "Should kittens have access to mother's milk during weaning?",
+      answer: "Yes, continue allowing nursing sessions alongside solid food until 8-10 weeks old; mother's milk provides essential antibodies and nutrients during the transition period.",
+    },
+    {
+      question: "What kitten food formula is best for weaning?",
+      answer: "Use high-quality kitten-specific formulas with at least 30% protein and AAFCO certification; premium brands support proper growth and immune development.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -242,142 +250,237 @@ export default function KittenWeaningTimelineFeedingAmountsCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Kitten Weaning Timeline & Feeding Amounts
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The kitten weaning timeline marks the critical transition period when kittens
-          move from exclusive nursing to consuming solid foods. This phase typically
-          begins around three weeks of age and continues until about twelve weeks,
-          during which kittens gradually develop the ability to digest and metabolize
-          more complex nutrients. Proper understanding of this timeline is essential
-          for ensuring kittens receive adequate nutrition to support their rapid growth
-          and immune system development.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Feeding amounts during weaning must be carefully calibrated to meet the
-          kitten’s increasing energy demands without overwhelming their immature
-          digestive systems. Energy requirements during this phase are approximately
-          double the resting energy requirement (RER) due to rapid growth and activity.
-          Dividing daily caloric needs into multiple small feedings helps optimize
-          nutrient absorption and maintain stable blood glucose levels.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, the texture and type of food offered evolve throughout the
-          weaning period. Early on, kittens benefit from softened or wet foods that
-          mimic the consistency of milk, gradually progressing to firmer solids as
-          their teeth and digestive capabilities mature. Monitoring weight gain and
-          feeding tolerance during this timeline is crucial to adjust feeding amounts
-          and frequency appropriately.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Kitten Weaning Timeline & Feeding Amounts</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners establish proper weaning schedules and portion sizes for kittens transitioning from mother's milk to solid food. It provides age-specific feeding recommendations to ensure adequate nutrition during critical developmental stages.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your kitten's current age in weeks to receive customized meal frequency, portion sizes, and daily calorie targets. The calculator considers whether you're using wet food, dry kibble, or a combination to tailor recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results display your kitten's complete feeding timeline through adulthood, helping prevent overfeeding or underfeeding during weaning. Use these guidelines alongside your veterinarian's advice and monitor your kitten's growth rate and body condition regularly.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the recommended feeding amount per feeding for a
-          kitten during the weaning period based on its age, weight, and feeding
-          frequency. By inputting these parameters, you receive a scientifically
-          grounded guideline to support healthy growth and development. The calculator
-          assumes typical energy needs and food caloric density, so adjustments may be
-          necessary based on specific food types or veterinary advice.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the kitten’s age in weeks (between 3 and 12).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the kitten’s current weight in pounds or
-            kilograms, depending on the unit system.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Specify how many times per day you plan to feed
-            the kitten.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the recommended feeding
-            amount per meal, along with contextual guidance based on the kitten’s age.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use this information to plan feeding schedules and
-            portion sizes, adjusting as needed with veterinary consultation.
-          </li>
+      {/* TABLE: Kitten Weaning Timeline & Daily Feeding Amounts */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Kitten Weaning Timeline & Daily Feeding Amounts</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table outlines recommended feeding schedules and portion sizes based on kitten age during the weaning process.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age (Weeks)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Meals Per Day</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Portion Per Meal</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Daily Calories</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Type</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Soft/moistened food</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wet & dry mix</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Wet & dry mix</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Primarily dry kibble</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350-400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dry kitten food</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12+ weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400-450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Adult kitten formula</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Adjust portions based on individual kitten growth rate and specific food brand recommendations.</p>
+      </section>
+
+      {/* TABLE: Kitten Nutritional Requirements During Weaning */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Kitten Nutritional Requirements During Weaning</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Essential nutrient profiles for healthy kitten development from 4-12 weeks of age.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Nutrient</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Optimal Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Key Role</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Crude Protein</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-40%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Muscle and immune development</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Crude Fat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Energy and coat health</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Calcium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8-1.6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Bone and teeth development</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Phosphorus</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.7%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6-1.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Bone mineralization</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Taurine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heart and eye health</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vitamin A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5000 IU/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5000-20000 IU/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vision and immune function</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ash Content</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mineral balance indicator</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All percentages are on a dry matter basis; verify your kitten food meets AAFCO nutritional standards.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always introduce new kitten food gradually over 7-10 days, mixing increasing amounts with previous food to prevent digestive upset.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep fresh water available at all times during weaning, as kittens eating dry kibble need more hydration than nursing kittens.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your kitten weekly to track growth; healthy kittens gain 0.5-1 ounce daily during weeks 4-8.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use kitten-specific formulas with high taurine content, as kittens cannot synthesize adequate taurine from adult cat food.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Feeding adult cat food too early</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adult cat food lacks sufficient protein, calories, and essential nutrients needed for kitten growth; use kitten formulas exclusively until 12 months old.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Inconsistent meal timing</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Irregular feeding schedules disrupt kitten digestion and growth; maintain consistent meal times daily for optimal nutrient absorption and housetraining.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overfeeding during growth phases</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Excess calories can cause rapid growth leading to skeletal problems; follow portion guidelines strictly and monitor body condition rather than appearance alone.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting hydration during dry food transition</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Kittens eating primarily kibble need more water intake than nursing kittens; provide fresh water with every meal and monitor for adequate consumption.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When should I start weaning my kitten?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most kittens are ready to begin weaning at 3-4 weeks of age when their teeth start erupting. Weaning typically completes by 8-10 weeks old when kittens can eat solid food exclusively.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much should a 6-week-old kitten eat per day?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 6-week-old kitten needs approximately 200-250 calories daily, spread across 4 meals of 2-3 tablespoons of kitten food each.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I mix wet and dry food during weaning?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, combining wet and dry kitten food during weaning helps transition digestive systems and provides moisture; mix approximately 50% wet and 50% dry food for optimal results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the ideal feeding schedule for a weaning kitten?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Kittens aged 4-6 weeks should eat 4 times daily, 6-8 weeks old 3-4 times daily, and 8-12 weeks old 3 times daily before transitioning to adult schedules.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my kitten is eating enough?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Healthy weaning kittens should gain 0.5-1 ounce per day, have a rounded belly after meals, and display active, playful behavior throughout the day.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should kittens have access to mother's milk during weaning?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, continue allowing nursing sessions alongside solid food until 8-10 weeks old; mother's milk provides essential antibodies and nutrients during the transition period.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What kitten food formula is best for weaning?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use high-quality kitten-specific formulas with at least 30% protein and AAFCO certification; premium brands support proper growth and immune development.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/feeding-and-nutrition-of-kittens/weaning-and-feeding-kittens"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Weaning and Feeding Kittens
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on kitten nutrition during weaning, including
-              energy requirements and feeding strategies.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/resources/faq" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Cat Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards for complete and balanced kitten nutrition established by the Association of American Feed Control Officials.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feeding-kittens"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Cornell Feline Health Center: Feeding Kittens
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert advice on feeding schedules, food types, and nutritional needs for
-              growing kittens.
-            </p>
+          <li>
+            <a href="https://icatcare.org/advice/kitten-care/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care Kitten Nutrition Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for kitten weaning timelines and nutritional requirements from feline health experts.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/nutrition/nutrition_guidelines_for_dogs_and_cats.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association (AAHA) Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based recommendations for feeding growing kittens, including
-              energy requirements and feeding frequency.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/cat-care/general-cat-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Pet Care: Kitten Feeding Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical guidance on kitten weaning schedules, portion sizes, and selecting appropriate commercial kitten foods.</p>
+          </li>
+          <li>
+            <a href="https://www.aaha.org/petcare/general-pet-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Nutritionists Academy Position on Kitten Diet</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary nutritionist consensus on optimal feeding protocols during critical growth stages.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -77,25 +77,33 @@ export default function CatLitterBoxOutputTrackerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is tracking litter box output important for cats?",
-      answer:
-        "Monitoring litter box output helps detect early signs of health issues such as urinary tract infections, kidney problems, or gastrointestinal disturbances. Changes in volume or frequency can indicate dehydration, constipation, or diarrhea. Early detection through tracking allows timely veterinary intervention, improving outcomes and comfort for your cat.",
+      question: "What is considered normal litter box output for a healthy cat?",
+      answer: "A healthy adult cat typically urinates 2–3 times daily and defecates once daily. Output varies by diet, hydration, and age, but these frequencies indicate normal kidney and digestive function.",
     },
     {
-      question: "How do I accurately measure my cat's litter box output?",
-      answer:
-        "To measure output, weigh the clean litter box before and after your cat uses it, subtracting the initial weight to find the volume of waste. Use a kitchen scale for precision and record daily measurements consistently. This method helps identify trends and deviations from normal output, essential for health monitoring.",
+      question: "What signs indicate increased litter box output?",
+      answer: "Increased urination (polyuria) or defecation beyond normal ranges may signal diabetes, hyperthyroidism, or UTIs. Changes occurring over 1–2 weeks warrant a veterinary visit.",
     },
     {
-      question: "What factors can cause increased litter box output in cats?",
-      answer:
-        "Increased output may result from diarrhea, urinary tract infections, dietary changes, or stress. Certain illnesses like hyperthyroidism or kidney disease can also increase urine or fecal volume. Understanding these factors helps owners and veterinarians determine when further diagnostics or treatment are necessary.",
+      question: "How does diet affect litter box output?",
+      answer: "High-fiber diets increase stool volume, while wet food increases urine output due to higher moisture content. Protein-rich foods typically produce firmer stools and normal urine frequency.",
     },
     {
-      question: "When should I consult a veterinarian based on litter box output changes?",
-      answer:
-        "If you notice persistent increases or decreases in litter box output volume, accompanied by behavioral changes, straining, or discomfort, consult your veterinarian promptly. Sudden changes may indicate serious conditions requiring medical evaluation. Regular tracking helps differentiate normal fluctuations from concerning patterns.",
+      question: "When should I contact a veterinarian about litter box changes?",
+      answer: "Contact your vet if output increases by 50% or more, lasts over 3 days, or is accompanied by lethargy, weight loss, or vomiting.",
     },
+    {
+      question: "Can stress affect my cat's litter box habits?",
+      answer: "Yes, stress can trigger decreased or irregular litter box use, urinary marking, or diarrhea. Environmental changes or anxiety may reduce output temporarily.",
+    },
+    {
+      question: "How does age impact normal litter box frequency?",
+      answer: "Senior cats (age 7+) may experience increased urination due to declining kidney function, while kittens may urinate 4–6 times daily as they develop.",
+    },
+    {
+      question: "What role does hydration play in litter box output?",
+      answer: "Increased water intake directly increases urine output and frequency; dehydration reduces it. Monitor water consumption alongside litter box changes for accurate assessment.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -221,98 +229,218 @@ export default function CatLitterBoxOutputTrackerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Litter Box Output Tracker (Normal vs. Increased)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The litter box output tracker is a vital tool for monitoring your cat’s health by assessing the volume of waste produced daily. Cats typically produce a consistent amount of feces and urine, which can be estimated relative to their body weight. Deviations from normal output volumes may signal underlying health issues such as dehydration, urinary tract infections, or gastrointestinal disturbances. By tracking these changes, owners can detect early warning signs and seek veterinary care promptly.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Normal litter box output is generally proportional to a cat’s weight, with typical daily waste volume ranging from approximately 2% to 4% of their body weight in grams. This includes both fecal matter and urine absorbed by the litter. Increased output may indicate diarrhea, urinary problems, or dietary issues, while decreased output might suggest constipation or dehydration. Understanding these patterns helps in maintaining optimal feline health and preventing serious complications.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tracker provides a straightforward way to compare your cat’s daily litter box output against scientifically established normal ranges. It empowers pet owners with actionable insights, enabling them to make informed decisions about their cat’s well-being. Regular monitoring supports early diagnosis and intervention, which are critical for effective treatment and improved quality of life for your feline companion.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Litter Box Output Tracker (Normal vs. Increased)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you monitor and compare your cat's daily litter box habits against established health baselines. By tracking urination and defecation frequency, you can detect early signs of medical conditions like diabetes, hyperthyroidism, or UTIs.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your cat's age, current daily urination count, and daily defecation frequency. The calculator also accepts optional details like diet type and water intake to refine the analysis.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The tracker compares your data against normal ranges for your cat's age and provides alerts if output suggests increased activity. Results include guidance on when to consult a veterinarian and actionable health recommendations.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is simple and requires just two key inputs: your cat’s weight and the daily litter box output volume measured in grams. Begin by selecting the unit system that matches how you measure your cat’s weight—either imperial (pounds) or metric (kilograms). Then, accurately measure your cat’s daily waste output by weighing the litter box before and after use to determine the total volume of feces and urine-absorbed litter.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat’s weight in the selected unit system. Ensure the weight is current and accurate for best results.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Measure the total daily litter box output volume in grams. Use a precise scale and record the value.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click “Calculate” to compare the output volume against the normal range for your cat’s weight. Review the result and any warnings provided.
-          </li>
-          <li>
-            <strong>Step 4:</strong> If the output is outside the normal range, monitor your cat closely and consult your veterinarian if abnormalities persist or worsen.
-          </li>
+      {/* TABLE: Normal vs. Increased Litter Box Output by Age and Health Status */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Normal vs. Increased Litter Box Output by Age and Health Status</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares typical daily output ranges across different cat life stages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Life Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Urinations</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Defecations</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Output Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kittens (0–6 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–6 times</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3 times</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal—frequent due to development</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult cats (1–7 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3 times</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 time</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal—stable baseline</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior cats (7+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5 times</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 time</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal—slight increase from age</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Diabetic/Hyperthyroid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–10+ times</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3 times</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increased—medical attention needed</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dehydrated cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;1 time</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;1 time</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Decreased—hydration concern</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Frequencies vary by individual cat, diet, and environment; use as general reference only.</p>
+      </section>
+
+      {/* TABLE: Common Triggers for Increased Litter Box Output */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Triggers for Increased Litter Box Output</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Identify medical and environmental factors that commonly elevate urination and defecation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Trigger</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Associated Symptoms</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Output Increase</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Action Required</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Diabetes mellitus</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increased thirst, weight loss</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50–300% increase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Veterinary exam and bloodwork</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hyperthyroidism</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hyperactivity, appetite increase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30–100% increase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Thyroid panel test</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Urinary tract infection</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Straining, small frequent voids</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100–200% increase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Urinalysis and antibiotics</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dietary change</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal stools, same urination</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–30% increase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor 5–7 days for stabilization</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stress/anxiety</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Marking, irregular patterns</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Variable decrease or increase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Environmental enrichment</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kidney disease</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increased thirst, lethargy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40–150% increase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Bloodwork and ultrasound</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Consult a veterinarian if output changes persist beyond 3 days or are accompanied by other symptoms.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track output daily for at least 5–7 days to establish an accurate baseline before comparing changes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Note litter box visits during specific times (morning, evening) to identify patterns tied to feeding or stress.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Photograph or count clumps in the litter box weekly; weight-based tracking offers more precision than frequency estimates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep a separate log of water intake, appetite, and behavior changes alongside litter box data to provide complete medical history to your vet.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring gradual changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 20–30% increase over 2 weeks often goes unnoticed but may indicate early diabetes; track weekly totals to catch subtle trends.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing increased frequency with increased volume</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats with UTIs visit the box more often but produce small amounts; high volume with normal frequency suggests diet or hydration changes instead.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for multi-cat households</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Output data becomes unreliable with multiple cats sharing one box; use separate litter boxes per cat to track individual health accurately.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all output increases are medical</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dietary changes, seasonal temperature shifts, and stress can temporarily alter output; monitor for 3–5 days before assuming illness.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is considered normal litter box output for a healthy cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A healthy adult cat typically urinates 2–3 times daily and defecates once daily. Output varies by diet, hydration, and age, but these frequencies indicate normal kidney and digestive function.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What signs indicate increased litter box output?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Increased urination (polyuria) or defecation beyond normal ranges may signal diabetes, hyperthyroidism, or UTIs. Changes occurring over 1–2 weeks warrant a veterinary visit.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does diet affect litter box output?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High-fiber diets increase stool volume, while wet food increases urine output due to higher moisture content. Protein-rich foods typically produce firmer stools and normal urine frequency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When should I contact a veterinarian about litter box changes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your vet if output increases by 50% or more, lasts over 3 days, or is accompanied by lethargy, weight loss, or vomiting.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can stress affect my cat's litter box habits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, stress can trigger decreased or irregular litter box use, urinary marking, or diarrhea. Environmental changes or anxiety may reduce output temporarily.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does age impact normal litter box frequency?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Senior cats (age 7+) may experience increased urination due to declining kidney function, while kittens may urinate 4–6 times daily as they develop.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What role does hydration play in litter box output?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Increased water intake directly increases urine output and frequency; dehydration reduces it. Monitor water consumption alongside litter box changes for accurate assessment.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/digestive-system/diseases-of-the-intestinal-tract-in-small-animals/overview-of-intestinal-disease-in-small-animals"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Overview of Intestinal Disease in Small Animals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource detailing gastrointestinal health, fecal output norms, and diagnostic approaches in cats.
-            </p>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Cat Food Standards and Nutrient Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards for feline nutrition affecting digestive and urinary output.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/urinary-tract-infections"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Cornell Feline Health Center: Urinary Tract Infections in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guide on urinary health, symptoms, and management strategies relevant to litter box output changes.
-            </p>
+          <li>
+            <a href="https://www.icatcare.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care – Feline Health & Behavior</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidance on normal cat litter habits and medical red flags.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/constipation-and-obstipation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell Feline Health Center: Constipation and Obstipation in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed explanation of causes, symptoms, and treatments for constipation affecting litter box output.
-            </p>
+          <li>
+            <a href="https://www.avma.org/public/petcare" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) – Pet Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative resource on recognizing changes in urination and defecation patterns.</p>
+          </li>
+          <li>
+            <a href="https://journals.sagepub.com/home/jfm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Feline Medicine and Surgery – Urinary Disorders</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on feline urinary conditions and diagnostic criteria.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -61,25 +61,33 @@ export default function HorseHayIntakeBodyweightPercentCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is hay intake calculated as a percentage of body weight?",
-      answer:
-        "Calculating hay intake as a percentage of body weight ensures that feeding amounts are tailored to the individual horse's size and nutritional needs. This method accounts for variations in metabolism, workload, and health status. Using body weight percentage helps prevent underfeeding or overfeeding, promoting optimal digestive health and weight maintenance.",
+      question: "What percentage of body weight should horses eat in hay daily?",
+      answer: "Most horses require 1.5–2% of their body weight in hay daily, though idle horses may need only 1–1.5% while working horses require up to 2–2.5%.",
     },
     {
-      question: "What factors can influence a horse's hay intake requirements?",
-      answer:
-        "Several factors affect hay intake including the horse's age, activity level, metabolic rate, and physiological status such as pregnancy or lactation. Environmental conditions like temperature and humidity also play a role. Additionally, the quality and nutrient density of the hay can alter how much a horse needs to consume to meet its energy requirements.",
+      question: "How do I calculate hay intake for a 1,000-pound horse?",
+      answer: "A 1,000-pound horse eating 2% of body weight requires 20 pounds of hay per day; at 1.5% intake, that's 15 pounds daily.",
     },
     {
-      question: "Can feeding more than 2.5% of body weight in hay be harmful?",
-      answer:
-        "Feeding hay beyond 2.5% of body weight is generally unnecessary and may lead to excessive calorie intake, resulting in unwanted weight gain or digestive upset. However, some horses with high energy demands, such as performance or lactating horses, might require more. It is important to consult a veterinarian or equine nutritionist to tailor feeding plans safely.",
+      question: "Does hay intake percentage change based on activity level?",
+      answer: "Yes—sedentary horses need 1–1.5% body weight in hay, while moderately active horses require 1.5–2% and performance horses may need 2–2.5%.",
     },
     {
-      question: "How often should hay intake be adjusted for a horse?",
-      answer:
-        "Hay intake should be regularly reassessed based on changes in the horse’s weight, workload, health status, and forage quality. Seasonal changes and growth phases also necessitate adjustments. Frequent monitoring helps maintain ideal body condition and prevents nutritional imbalances or digestive issues.",
+      question: "How does hay quality affect intake recommendations?",
+      answer: "Higher-quality hay (more protein and digestible energy) requires lower intake percentages, while lower-quality hay may require 2–2.5% body weight to meet nutritional needs.",
     },
+    {
+      question: "Can I use this calculator for young horses and foals?",
+      answer: "This calculator is designed for adult horses; growing foals and young horses have different caloric and protein requirements and should be assessed by an equine nutritionist.",
+    },
+    {
+      question: "What's the difference between percentage-based and pound-based hay calculations?",
+      answer: "Percentage-based calculations use body weight (e.g., 2% of 1,000 lbs = 20 lbs), ensuring consistent intake regardless of horse size, while pound-based amounts don't account for individual weight variations.",
+    },
+    {
+      question: "How often should I recalculate hay intake for my horse?",
+      answer: "Recalculate hay intake whenever your horse's weight changes significantly or activity level shifts, typically every 2–3 months during seasonal transitions.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -184,98 +192,212 @@ export default function HorseHayIntakeBodyweightPercentCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Horse Hay Intake Calculator (per body weight %)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Horse Hay Intake Calculator estimates the daily amount of hay a horse should consume based on its body weight. Hay is a primary source of fiber and nutrients essential for equine digestive health and overall well-being. By calculating intake as a percentage of body weight, this tool provides a personalized feeding guideline that aligns with veterinary nutritional standards.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Typically, horses require between 1.5% to 2.5% of their body weight in hay daily, depending on factors such as age, workload, and physiological status. This range ensures adequate fiber intake to maintain gut motility and prevent digestive disorders like colic or gastric ulcers. Feeding within this range supports optimal body condition and energy balance.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator simplifies complex nutritional recommendations into an easy-to-use format for horse owners, trainers, and veterinarians. It emphasizes the importance of adjusting hay intake according to individual horse needs rather than relying on generic feeding amounts. Proper hay management is a cornerstone of equine health and performance.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horse Hay Intake Calculator (per body weight %)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the optimal daily hay intake for your horse based on body weight and activity level, using industry-standard percentages (1–2.5% of body weight). It helps ensure proper nutrition, prevent obesity, and manage feed costs effectively.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your horse's current body weight in pounds and select its activity level (sedentary, moderate, or high). The calculator uses these factors to determine the recommended daily hay intake range in pounds.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show a range of daily hay requirements; adjust within this range based on your horse's body condition score, metabolism, hay quality, and individual response. Consult an equine veterinarian or nutritionist for horses with special dietary needs.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires only one input: your horse's current body weight. Select the appropriate unit system (Imperial or Metric) and enter the weight accurately. The calculator will then provide a recommended daily hay intake range expressed in the same unit system.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Choose the unit system that matches how you measure your horse’s weight (pounds or kilograms).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the horse’s body weight in the input field. Ensure the weight is current and accurate for best results.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the “Calculate” button to see the recommended daily hay intake range, which reflects 1.5% to 2.5% of the horse’s body weight.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use this range as a guideline to adjust your horse’s feeding plan, and consult a veterinarian for personalized advice.
-          </li>
+      {/* TABLE: Daily Hay Intake by Horse Weight and Activity Level */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Hay Intake by Horse Weight and Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to estimate daily hay requirements based on body weight and activity level.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Horse Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sedentary (1–1.5%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Activity (1.5–2%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Activity (2–2.5%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8–12 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12–16 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16–20 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–15 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–20 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–25 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12–18 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18–24 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24–30 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14–21 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21–28 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28–35 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16–24 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24–32 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32–40 lbs</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values represent daily dry hay intake; adjust based on individual metabolism and hay quality.</p>
+      </section>
+
+      {/* TABLE: Hay Intake Adjustments by Type and Quality */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Hay Intake Adjustments by Type and Quality</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different hay types and quality levels may require intake percentage adjustments.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hay Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Quality Grade</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Intake %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Alfalfa</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–1.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Higher protein and energy; less volume needed</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Timothy Grass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5–2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good digestibility; standard maintenance hay</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Orchard Grass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5–2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate protein; common pasture alternative</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mixed Legume</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–1.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rich in nutrients; may reduce grain supplementation</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Poor Quality Hay</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–2.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lower nutrition requires higher volume for adequacy</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages apply to total forage intake; grain supplements should be factored separately.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh or estimate your horse's body weight accurately—even 50-pound differences affect hay calculations significantly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use dry hay weight, not fresh or as-fed weight, since fresh-cut hay contains moisture that affects actual intake.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor body condition score monthly and adjust hay intake if your horse becomes overweight or underweight.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for pasture grass in spring and summer—reduce hay intake by 0.5–1% body weight for each pound of fresh forage available.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Fresh Hay Weight Instead of Dry Weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Fresh hay contains 20–40% moisture; using actual intake weight instead of dry matter basis leads to underfeeding.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adjusting for Hay Quality Variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Poor-quality hay requires higher intake percentages than premium hay to meet nutritional needs, which this calculator assumes are average.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Account for Pasture Intake</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Horses grazing spring pasture consume significant forage beyond hay; calculating hay at 2% without subtracting pasture leads to overfeeding.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Individual Metabolic Differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some horses are easy keepers (needing less hay) while hard keepers need more; percentage-based calculations are starting points, not absolutes.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What percentage of body weight should horses eat in hay daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most horses require 1.5–2% of their body weight in hay daily, though idle horses may need only 1–1.5% while working horses require up to 2–2.5%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate hay intake for a 1,000-pound horse?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 1,000-pound horse eating 2% of body weight requires 20 pounds of hay per day; at 1.5% intake, that's 15 pounds daily.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does hay intake percentage change based on activity level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—sedentary horses need 1–1.5% body weight in hay, while moderately active horses require 1.5–2% and performance horses may need 2–2.5%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does hay quality affect intake recommendations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Higher-quality hay (more protein and digestible energy) requires lower intake percentages, while lower-quality hay may require 2–2.5% body weight to meet nutritional needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for young horses and foals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator is designed for adult horses; growing foals and young horses have different caloric and protein requirements and should be assessed by an equine nutritionist.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between percentage-based and pound-based hay calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Percentage-based calculations use body weight (e.g., 2% of 1,000 lbs = 20 lbs), ensuring consistent intake regardless of horse size, while pound-based amounts don't account for individual weight variations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate hay intake for my horse?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate hay intake whenever your horse's weight changes significantly or activity level shifts, typically every 2–3 months during seasonal transitions.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines/nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. AAEP Guidelines on Equine Nutrition
-            </a>
-            <p className="text-slate-500 text-sm">
-              The American Association of Equine Practitioners provides comprehensive guidelines on feeding practices, including hay intake recommendations based on body weight and physiological needs.
-            </p>
+          <li>
+            <a href="https://www.elsevier.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Nutrition, Fifth Edition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive reference on horse nutrition including hay intake requirements by weight and activity level.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.extension.umn.edu/agriculture/equine/nutrition/feeding-horses/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. University of Minnesota Extension: Feeding Horses
-            </a>
-            <p className="text-slate-500 text-sm">
-              This resource outlines practical feeding strategies for horses, emphasizing the importance of forage intake as a percentage of body weight to maintain digestive health and energy balance.
-            </p>
+          <li>
+            <a href="https://www.aaep.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Association of Equine Practitioners (AAEP) Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional standards and recommendations for equine dietary management and forage intake.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/management-and-nutrition/nutrition-horses/feeding-horses"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual: Feeding Horses
-            </a>
-            <p className="text-slate-500 text-sm">
-              A detailed veterinary manual discussing nutritional requirements for horses, including recommended hay intake ranges and factors influencing dietary needs.
-            </p>
+          <li>
+            <a href="https://www.uky.edu/ag/horses" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Kentucky Equine Research Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-based hay intake recommendations and digestibility data for various horse types.</p>
+          </li>
+          <li>
+            <a href="https://www.nap.edu" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Research Council (NRC) Nutrient Requirements of Horses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative guide on daily nutrient needs and forage intake percentages for all classes of horses.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

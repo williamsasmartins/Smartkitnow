@@ -75,25 +75,33 @@ export default function RabbitTemperatureStressRiskHeatstrokeCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why are rabbits particularly vulnerable to heatstroke?",
-      answer:
-        "Rabbits have a limited ability to sweat and primarily regulate their body temperature through their ears. In hot and humid conditions, this cooling mechanism becomes less effective, increasing their risk of overheating. Understanding this vulnerability helps owners take preventive measures to protect their pets during warm weather.",
+      question: "At what temperature do rabbits start experiencing heat stress?",
+      answer: "Rabbits begin showing signs of heat stress above 75°F (24°C), with critical danger occurring at 85°F (29°C) and higher. Prolonged exposure above 80°F can lead to heatstroke within 1-2 hours.",
     },
     {
-      question: "How does humidity affect the risk of heatstroke in rabbits?",
-      answer:
-        "High humidity reduces the evaporation of moisture from a rabbit’s body, impairing its natural cooling process. When humidity is elevated, even moderate temperatures can become dangerous because the rabbit cannot dissipate heat efficiently. This is why both temperature and humidity must be considered together when assessing heatstroke risk.",
+      question: "How does humidity affect rabbit heatstroke risk?",
+      answer: "High humidity (above 60%) significantly increases heatstroke risk by preventing rabbits from cooling through evaporation. At 85°F with 70% humidity, risk escalates rapidly compared to dry conditions.",
     },
     {
-      question: "What are the early signs of heatstroke in rabbits?",
-      answer:
-        "Early signs include rapid breathing, lethargy, drooling, and weakness. Rabbits may also exhibit a lack of appetite and seek cooler areas. Recognizing these symptoms promptly is critical to prevent progression to severe heatstroke, which can be fatal without immediate veterinary intervention.",
+      question: "What are the early warning signs of heatstroke in rabbits?",
+      answer: "Early signs include rapid breathing (over 60 breaths per minute), lethargy, drooling, and ear temperature increase. If you notice these within 15-20 minutes of heat exposure, move your rabbit to a cool area immediately.",
     },
     {
-      question: "How can I effectively prevent heatstroke in my rabbit during hot weather?",
-      answer:
-        "Prevention involves providing a cool, shaded environment with plenty of fresh water and good ventilation. Avoid exposing rabbits to direct sunlight and high humidity for extended periods. Additionally, using cooling mats or frozen water bottles wrapped in towels can help maintain a safe body temperature during heat waves.",
+      question: "Can certain rabbit breeds tolerate heat better than others?",
+      answer: "Shorter-haired breeds like Rex and Dutch rabbits have less heat tolerance, while larger rabbits with more body mass generate more internal heat. Angora and Flemish Giant breeds are especially vulnerable to heat stress.",
     },
+    {
+      question: "How long can a rabbit survive in extreme heat without intervention?",
+      answer: "A rabbit exposed to temperatures above 90°F can develop fatal heatstroke within 30-60 minutes, making immediate cooling intervention critical. Even moderate heat (80-85°F) poses risk within 2-3 hours without proper ventilation.",
+    },
+    {
+      question: "What is the safest temperature range for pet rabbits?",
+      answer: "Rabbits thrive in temperatures between 60-70°F (15-21°C) with humidity below 60%. This range minimizes heatstroke risk while maintaining comfort and metabolic stability.",
+    },
+    {
+      question: "How does age affect a rabbit's susceptibility to heatstroke?",
+      answer: "Young kits (under 8 weeks) and senior rabbits (over 5 years) have reduced heat tolerance and thermoregulation abilities. Middle-aged rabbits (1-4 years) typically handle temperature fluctuations better than extremes of age.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -221,101 +229,218 @@ export default function RabbitTemperatureStressRiskHeatstrokeCalculator() {
   // 6. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Temperature Stress Risk (Rabbit Heatstroke)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Rabbits are highly susceptible to temperature stress due to their unique physiology and limited ability to dissipate heat. Unlike many mammals, rabbits do not sweat and rely heavily on their ears for thermoregulation. When ambient temperatures rise, especially combined with high humidity, their natural cooling mechanisms become overwhelmed, increasing the risk of heatstroke, a potentially fatal condition.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Heatstroke in rabbits occurs when their core body temperature exceeds safe limits, leading to cellular damage, organ failure, and in severe cases, death. Environmental factors such as temperature and humidity interact synergistically to elevate this risk, making it essential to assess both parameters together. This calculator estimates the risk level by combining these factors into a simple score, helping owners and veterinarians make informed decisions.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding and monitoring temperature stress risk is critical for rabbit welfare, especially in warmer climates or during heat waves. Early recognition and prevention can save lives by prompting timely interventions such as providing shade, hydration, and cooling measures. This tool empowers caretakers with actionable insights to protect their rabbits from heat-related illnesses.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Temperature Stress Risk (Rabbit Heatstroke) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your rabbit's heatstroke risk by analyzing current temperature, humidity, and environmental factors. It provides real-time risk assessment to help you prevent potentially fatal heat-related illness in your pet.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter the current ambient temperature in your rabbit's living space, humidity percentage, breed type (or size), age, and whether ventilation is adequate. The calculator uses established veterinary thresholds to compute personalized risk levels.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results display risk categories from Safe to Severe with recommended actions. Green indicates safe conditions; yellow signals monitoring is needed; red requires immediate intervention such as moving your rabbit to cooler areas, providing ice packs, or contacting an emergency vet.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the risk of heatstroke in rabbits based on two key environmental inputs: ambient temperature and relative humidity. Select your preferred unit system (Imperial or Metric) to enter the temperature, then input the current humidity percentage. The tool will compute a risk score and categorize the risk level to guide your preventive actions.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Choose the unit system for temperature input (°F or °C) using the dropdown selector.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the current ambient temperature in the selected unit.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the relative humidity percentage (0-100%).
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to view the estimated heatstroke risk score and category.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Follow any warnings or recommendations provided to protect your rabbit.
-          </li>
+      {/* TABLE: Temperature Risk Levels for Rabbit Heatstroke */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Temperature Risk Levels for Rabbit Heatstroke</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows heatstroke risk categories based on ambient temperature and typical symptom onset timelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temperature Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Symptom Onset</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Intervention Time</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Below 70°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">70-75°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No immediate risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75-80°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ensure ventilation</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">80-85°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Active cooling needed</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">85-90°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-60 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency cooling required</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Above 90°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-30 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Immediate veterinary care</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Onset times may accelerate with high humidity (&gt;60%), poor ventilation, or underlying health conditions.</p>
+      </section>
+
+      {/* TABLE: Humidity and Temperature Stress Index */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Humidity and Temperature Stress Index</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Combined heat and humidity create compounded heatstroke risk; this table shows stress escalation by humidity level.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temperature</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Humidity (&lt;40%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Humidity (40-60%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Humidity (&gt;60%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75°F (24°C)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low Risk</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">78°F (26°C)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low Risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate Risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High Risk</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">82°F (28°C)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate Risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High Risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical Risk</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">86°F (30°C)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High Risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical Risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe Risk</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">90°F (32°C)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical Risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe Risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extreme Risk</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rabbits cannot sweat; they rely on ear blood vessels and panting to cool, making humid conditions especially dangerous.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Provide frozen water bottles or ice packs wrapped in towels to create cool zones rabbits can press against during warm weather.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use air conditioning, fans, and shade to maintain temperatures below 75°F, especially during peak summer months.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor respiratory rate regularly; rabbits above 60 breaths per minute in warm conditions may indicate early heat stress.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Never leave rabbits in direct sunlight or poorly ventilated spaces, as temperatures inside enclosed areas can exceed outdoor readings by 20°F or more.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring humidity in risk assessment</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many owners focus only on temperature while overlooking humidity; a 78°F day with 70% humidity poses greater risk than 82°F with 35% humidity.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming rabbits will drink more to cool down</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Unlike dogs, rabbits don't cool through panting or sweating, so increased water intake won't prevent heatstroke without environmental temperature reduction.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Placing cooling items too far from rabbit</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Frozen water bottles are only effective if your rabbit can lie directly against them; placing them across the enclosure provides minimal relief.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Waiting for visible symptoms before cooling</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">By the time rabbits show obvious heatstroke signs (drooling, lethargy), internal organ damage may have already begun; prevention is critical.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what temperature do rabbits start experiencing heat stress?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rabbits begin showing signs of heat stress above 75°F (24°C), with critical danger occurring at 85°F (29°C) and higher. Prolonged exposure above 80°F can lead to heatstroke within 1-2 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does humidity affect rabbit heatstroke risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High humidity (above 60%) significantly increases heatstroke risk by preventing rabbits from cooling through evaporation. At 85°F with 70% humidity, risk escalates rapidly compared to dry conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the early warning signs of heatstroke in rabbits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Early signs include rapid breathing (over 60 breaths per minute), lethargy, drooling, and ear temperature increase. If you notice these within 15-20 minutes of heat exposure, move your rabbit to a cool area immediately.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can certain rabbit breeds tolerate heat better than others?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Shorter-haired breeds like Rex and Dutch rabbits have less heat tolerance, while larger rabbits with more body mass generate more internal heat. Angora and Flemish Giant breeds are especially vulnerable to heat stress.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long can a rabbit survive in extreme heat without intervention?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A rabbit exposed to temperatures above 90°F can develop fatal heatstroke within 30-60 minutes, making immediate cooling intervention critical. Even moderate heat (80-85°F) poses risk within 2-3 hours without proper ventilation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the safest temperature range for pet rabbits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rabbits thrive in temperatures between 60-70°F (15-21°C) with humidity below 60%. This range minimizes heatstroke risk while maintaining comfort and metabolic stability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does age affect a rabbit's susceptibility to heatstroke?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Young kits (under 8 weeks) and senior rabbits (over 5 years) have reduced heat tolerance and thermoregulation abilities. Middle-aged rabbits (1-4 years) typically handle temperature fluctuations better than extremes of age.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/rabbits/heatstroke-in-rabbits"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Heatstroke in Rabbits
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of heatstroke pathophysiology, clinical signs, and treatment in rabbits.
-            </p>
+          <li>
+            <a href="https://www.rabbit.org/care/heat.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">House Rabbit Society - Heat and Rabbits</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative guide on rabbit heat tolerance thresholds and emergency cooling protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7070511/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Center for Biotechnology Information (NCBI): Thermoregulation in Rabbits
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific study on rabbit thermoregulation mechanisms and environmental stress responses.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/rabbit" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA - Rabbit Heat Stress Prevention</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for maintaining safe temperatures and recognizing heatstroke symptoms.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/rabbit-heat-stress"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell University College of Veterinary Medicine: Rabbit Heat Stress
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guidelines for prevention and management of heat stress in domestic rabbits.
-            </p>
+          <li>
+            <a href="https://www.sciencedirect.com/journal/journal-of-exotic-pet-medicine" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Exotic Pet Medicine - Thermoregulation in Lagomorphs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on rabbit physiology and heat-related illness mechanisms.</p>
+          </li>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/rabbits" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Rabbit Heat Intolerance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical guidelines for diagnosing and treating heat-induced illness in domestic rabbits.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

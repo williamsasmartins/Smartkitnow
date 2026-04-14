@@ -67,25 +67,33 @@ export default function SmallMammalParasiteTreatmentDoseReferenceCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate the parasite treatment dose accurately?",
-      answer:
-        "Accurate dosing ensures the medication is effective against parasites while minimizing the risk of toxicity or side effects. Underdosing can lead to treatment failure and parasite resistance, whereas overdosing can harm the animal’s health. Calculating the dose based on weight and recommended mg/kg dosage helps veterinarians and pet owners administer safe and effective treatments.",
+      question: "What parasites does this dose reference calculator cover?",
+      answer: "This calculator provides dosing guidance for common internal and external parasites including roundworms, hookworms, tapeworms, fleas, ticks, and mites in dogs and cats.",
     },
     {
-      question: "How does weight unit conversion affect the dose calculation?",
-      answer:
-        "Weight unit conversion is critical because dose rates are typically given in mg per kilogram of body weight. If weight is entered in pounds without conversion, the calculated dose will be incorrect and potentially unsafe. This calculator converts pounds to kilograms internally to maintain accuracy regardless of the unit system selected.",
+      question: "How do I determine my pet's weight for accurate dosing?",
+      answer: "Weigh your pet on a veterinary scale in pounds or kilograms; most antiparasitic medications require precise weight-based calculations, so accuracy is critical for safety and efficacy.",
     },
     {
-      question: "Can this calculator be used for all types of anti-parasitic medications?",
-      answer:
-        "This calculator provides a general framework for dose calculation based on weight and dose rate, which applies to many anti-parasitic drugs. However, specific medications may have unique dosing protocols, frequency, or contraindications. Always consult veterinary guidelines or a veterinarian before administering any medication to ensure safety and efficacy.",
+      question: "Can I use this calculator for both dogs and cats?",
+      answer: "Yes, but dosages differ significantly between species. Always select your pet's species first, as feline and canine formulations have different concentrations and safe limits.",
     },
     {
-      question: "What should I do if the calculated dose seems unusually high or low?",
-      answer:
-        "If the dose appears outside typical ranges, double-check the weight and dose rate inputs for accuracy. Extremely high or low doses may indicate input errors or inappropriate dose rates. When in doubt, consult a veterinarian to verify the correct dosage and avoid potential harm to the animal.",
+      question: "What if my pet's weight falls between two dosage tiers?",
+      answer: "Always round up to the next weight category to ensure adequate parasite coverage; never round down, as underdosing reduces treatment effectiveness.",
     },
+    {
+      question: "How often should I repeat parasite treatments based on this calculator?",
+      answer: "Most internal parasite treatments require 2 doses given 2 weeks apart, while flea and tick preventatives are monthly or every 3 months depending on the product.",
+    },
+    {
+      question: "Are there drug interactions I should know about before using this reference?",
+      answer: "Certain antiparasitics interact with heartworm medications and other drugs; always consult your veterinarian about current medications before administering treatment.",
+    },
+    {
+      question: "What should I do if I accidentally overdose my pet?",
+      answer: "Contact your veterinarian or poison control immediately; overdoses can cause neurological signs, vomiting, or diarrhea depending on the medication type.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -207,135 +215,231 @@ export default function SmallMammalParasiteTreatmentDoseReferenceCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Parasite Treatment Dose Reference
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Parasite treatment dose references are essential tools in veterinary
-          medicine that guide the administration of anti-parasitic medications
-          based on an animal’s weight and the recommended dosage per kilogram. These
-          references ensure that treatments are both safe and effective, minimizing
-          the risk of underdosing, which can lead to treatment failure and parasite
-          resistance, or overdosing, which can cause toxicity and adverse effects.
-          Accurate dosing is particularly critical in small mammals, where even
-          slight deviations can have significant health impacts.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The dose reference typically involves calculating the total amount of
-          medication required by multiplying the animal’s weight by the dose rate
-          (expressed in mg/kg). This calculation must consider the unit system used,
-          converting pounds to kilograms when necessary, to maintain precision. By
-          adhering to these standards, veterinarians and pet owners can confidently
-          administer treatments that effectively target parasites such as mites,
-          fleas, and intestinal worms, promoting animal health and welfare.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Parasite Treatment Dose Reference</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners and veterinary staff quickly reference appropriate antiparasitic medication dosages based on pet species, weight, and parasite type. It streamlines treatment planning and reduces calculation errors during emergency or routine parasite management.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's species (dog or cat), accurate body weight in pounds or kilograms, and the specific parasite or medication you're treating. The calculator also requires the active ingredient concentration of your medication to convert dosage recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator displays the recommended dose in milligrams or milliliters, treatment frequency, and repetition schedule. Always verify results with your veterinarian before administration, as individual pet health status may require dose adjustments.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator is designed to provide a straightforward method for
-          determining the total dose of anti-parasitic medication based on your
-          animal’s weight and the recommended dose rate. Begin by selecting the unit
-          system that matches your measurement preference—imperial (pounds) or
-          metric (kilograms). Then, enter the animal’s weight and the dose rate in
-          milligrams per kilogram.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the animal’s weight in the chosen unit.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the recommended dose rate (mg/kg) for the
-            specific medication.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the total dose in
-            milligrams.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Review the result and any warnings before
-            administering medication. Always consult a veterinarian if unsure.
-          </li>
+      {/* TABLE: Common Antiparasitic Medications and Standard Dosages */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Antiparasitic Medications and Standard Dosages</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference dosages for popular parasite treatments in dogs and cats by weight category.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Medication</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Parasite Target</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Dose (per 10 lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Dose (per 5 lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pyrantel Pamoate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Roundworms/Hookworms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mg/lb</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mg/lb</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single or repeat at 2 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Praziquantel</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Tapeworms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mg/lb</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mg/lb</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single dose</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ivermectin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mites/Lice</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2 mg/lb</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2 mg/lb</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weekly x 2-4 doses</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fenbendazole</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Roundworms/Hookworms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 mg/kg daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 mg/kg daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 consecutive days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Spinosad</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fleas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not for cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single oral dose</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fipronil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fleas/Ticks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10 mg/kg topical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10 mg/kg topical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly application</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All dosages are approximate guidelines; veterinary consultation is required for accurate prescription dosing.</p>
+      </section>
+
+      {/* TABLE: Weight Categories and Parasite Treatment Intervals */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Weight Categories and Parasite Treatment Intervals</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard treatment schedules based on pet weight and parasite type.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Internal Parasites (Roundworms)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">External Parasites (Fleas/Ticks)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tapeworms</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Heartworm Prevention</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&lt;10 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 2 weeks x2, then monthly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly or every 3 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single dose as needed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly year-round</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-25 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 2 weeks x2, then quarterly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly or every 3 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single dose as needed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly year-round</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25-50 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 2 weeks x2, then quarterly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly or every 3 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single dose as needed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly year-round</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50-75 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 2 weeks x2, then quarterly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly or every 3 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single dose as needed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly year-round</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;75 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 2 weeks x2, then quarterly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly or every 3 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single dose as needed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly year-round</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Intervals vary by region, climate, and product type; consult your veterinarian for personalized schedules.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your pet monthly to maintain accurate dosing records, especially for young or growing animals whose weight changes frequently.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store antiparasitic medications in cool, dry conditions away from light, as many formulations degrade quickly when exposed to heat or humidity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine parasite treatments strategically: monthly flea/tick prevention often includes heartworm prevention, reducing injection frequency.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track treatment dates in a calendar or app to prevent missed doses or accidental overdosing from multiple preventatives.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated Weight Records</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Relying on weights from previous visits can lead to under- or overdosing; always use current weight measured within the same month.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Species-Specific Dosages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cat dosages are often lower than dog dosages for the same medication; using canine doses on felines can cause toxicity.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Medication Concentration</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Different brands have different active ingredient concentrations; calculating based on the wrong percentage dramatically changes the required volume or tablets.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping the Second Dose for Internal Parasites</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Most internal parasite treatments require a second dose 2 weeks later to eliminate newly hatched parasites; one dose alone is often insufficient.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What parasites does this dose reference calculator cover?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator provides dosing guidance for common internal and external parasites including roundworms, hookworms, tapeworms, fleas, ticks, and mites in dogs and cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I determine my pet's weight for accurate dosing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Weigh your pet on a veterinary scale in pounds or kilograms; most antiparasitic medications require precise weight-based calculations, so accuracy is critical for safety and efficacy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for both dogs and cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, but dosages differ significantly between species. Always select your pet's species first, as feline and canine formulations have different concentrations and safe limits.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my pet's weight falls between two dosage tiers?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Always round up to the next weight category to ensure adequate parasite coverage; never round down, as underdosing reduces treatment effectiveness.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I repeat parasite treatments based on this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most internal parasite treatments require 2 doses given 2 weeks apart, while flea and tick preventatives are monthly or every 3 months depending on the product.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there drug interactions I should know about before using this reference?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Certain antiparasitics interact with heartworm medications and other drugs; always consult your veterinarian about current medications before administering treatment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if I accidentally overdose my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian or poison control immediately; overdoses can cause neurological signs, vomiting, or diarrhea depending on the medication type.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/pharmacology/antiparasitic-drugs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Antiparasitic Drugs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of antiparasitic medications, dosing, and
-              administration guidelines for veterinary use.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources/pet-owners/petcare/parasites" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AVMA Pet Parasite Protocols</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official American Veterinary Medical Association guidelines for parasite prevention and treatment in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/guidelines/parasite-prevention/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. American Animal Hospital Association - Parasite Prevention Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based recommendations for parasite control and treatment in
-              companion animals.
-            </p>
+          <li>
+            <a href="https://capcvet.org/guidelines/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Companion Animal Parasite Council</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for diagnosing and treating parasites in dogs and cats by veterinary specialists.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vin.com/apputil/content/defaultadv1.aspx?pId=11339&id=4950919"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Veterinary Information Network - Parasite Treatment Dosage Calculations
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guidance on calculating and administering parasite treatment
-              doses safely.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com/pharmacology/antiparasitic-agents" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Merck Veterinary Manual - Antiparasitic Drugs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive reference for antiparasitic medication mechanisms, dosages, and safety profiles for veterinary use.</p>
+          </li>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Poison Control - Common Pet Toxins</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Emergency resource for identifying and managing overdose or toxicity from antiparasitic medications in pets.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

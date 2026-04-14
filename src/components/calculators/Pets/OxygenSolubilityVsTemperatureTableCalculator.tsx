@@ -75,25 +75,33 @@ export default function OxygenSolubilityVsTemperatureTableCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why does oxygen solubility decrease as temperature increases?",
-      answer:
-        "Oxygen solubility in water decreases with rising temperature because warmer water molecules move more vigorously, reducing the ability of water to hold dissolved gases. This phenomenon affects aquatic animals, as less oxygen is available in warmer environments, potentially stressing their respiratory systems. Understanding this relationship helps veterinarians and aquaculturists manage animal health in varying thermal conditions.",
+      question: "Why does oxygen solubility decrease as water temperature increases?",
+      answer: "Oxygen solubility is inversely related to temperature because warmer water molecules move faster, allowing dissolved oxygen to escape more easily into the air. At 0°C, water holds approximately 14.6 mg/L of oxygen, while at 30°C it holds only 7.5 mg/L.",
     },
     {
-      question: "How can veterinarians use this table in clinical practice?",
-      answer:
-        "Veterinarians use oxygen solubility data to assess aquatic animal environments, ensuring adequate oxygen levels for fish and amphibians. By knowing the maximum dissolved oxygen at a given temperature, they can recommend aeration or water changes to prevent hypoxia. This is crucial for treatment planning and maintaining optimal husbandry conditions in veterinary aquatic care.",
+      question: "What oxygen levels do fish and aquatic pets need to survive?",
+      answer: "Most freshwater fish require minimum dissolved oxygen levels of 5-6 mg/L to thrive, though some species like trout need 7-8 mg/L. Levels below 3 mg/L become critically dangerous for most aquatic life.",
     },
     {
-      question: "Is this solubility data applicable to all water types in veterinary settings?",
-      answer:
-        "The solubility values presented are for pure freshwater under standard atmospheric pressure. In veterinary practice, water salinity, pressure, and contaminants can alter oxygen solubility. Therefore, while this table provides a baseline, practitioners should consider environmental factors and perform direct measurements when precise oxygen levels are critical.",
+      question: "How does salinity affect oxygen solubility in aquatic pet tanks?",
+      answer: "Saltwater holds approximately 20% less dissolved oxygen than freshwater at the same temperature. At 20°C, saltwater contains about 8 mg/L compared to 9.2 mg/L in freshwater.",
     },
     {
-      question: "How does oxygen solubility impact animal metabolism and health?",
-      answer:
-        "Oxygen availability directly influences metabolic rates and overall health in aquatic and semi-aquatic animals. Lower solubility at higher temperatures can limit oxygen supply, causing stress, reduced growth, or increased susceptibility to disease. Veterinarians must understand these dynamics to optimize care, especially in temperature-controlled environments like aquariums or rehabilitation tanks.",
+      question: "What is the optimal water temperature for maintaining oxygen levels in aquariums?",
+      answer: "Water temperatures between 18-24°C provide good oxygen retention for most freshwater pets while supporting beneficial bacteria growth. Avoid temperatures above 28°C where oxygen becomes critically depleted.",
     },
+    {
+      question: "How can I improve oxygen levels in warm water aquariums?",
+      answer: "Use air pumps, increase surface agitation, add plants for photosynthetic oxygen production, perform frequent water changes, and consider chiller units to lower water temperature during hot months.",
+    },
+    {
+      question: "Does altitude affect the oxygen solubility table readings?",
+      answer: "Yes, higher altitudes have lower atmospheric pressure, reducing the maximum oxygen solubility by approximately 0.5% per 1,000 feet of elevation. Pets at high altitudes may need additional aeration.",
+    },
+    {
+      question: "How quickly does oxygen depletion occur when aeration stops?",
+      answer: "In a stagnant, fully stocked aquarium, dissolved oxygen can drop from 8 mg/L to dangerous levels (&lt;3 mg/L) within 4-6 hours depending on bioload and temperature.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -175,95 +183,233 @@ export default function OxygenSolubilityVsTemperatureTableCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Oxygen Solubility vs. Temperature Table
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Oxygen solubility in water is a critical parameter influencing the health and survival of aquatic animals. This table illustrates how the maximum amount of dissolved oxygen decreases as water temperature rises, reflecting the inverse relationship between temperature and gas solubility. Warmer water holds less oxygen, which can stress fish, amphibians, and other aquatic species dependent on dissolved oxygen for respiration.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding this relationship is essential for veterinarians and aquaculture professionals who manage aquatic environments. It helps in assessing water quality and ensuring that oxygen levels remain sufficient to meet the metabolic demands of animals. This knowledge also guides interventions such as aeration or temperature regulation to optimize animal welfare and prevent hypoxic conditions.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Oxygen Solubility vs. Temperature Table</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners determine how much dissolved oxygen is available in their aquarium or water system based on water temperature. Understanding oxygen solubility is critical for maintaining healthy environments for fish, shrimp, and other aquatic pets.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the table, locate your current water temperature in degrees Celsius on the left column, then read across to find the corresponding oxygen solubility in mg/L (milligrams per liter). You can also input specific temperatures to generate precise oxygen availability data for your setup.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Compare your calculated oxygen levels against your pet species' requirements shown in the second reference table. If oxygen falls below minimum thresholds, implement aeration improvements like air pumps, water changes, or temperature reduction to increase dissolved oxygen.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the maximum dissolved oxygen concentration in freshwater at a given temperature. Simply enter the water temperature in degrees Celsius within the valid range of 0 to 40°C. The tool interpolates between standard reference values to provide an accurate solubility estimate, aiding veterinary professionals in evaluating aquatic environments.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the water temperature in °C, ensuring it falls between 0 and 40 for reliable results.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Click the "Calculate" button to view the estimated oxygen solubility in mg/L.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Use the result to assess if the aquatic environment provides sufficient oxygen for animal health.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Adjust husbandry practices or environmental controls accordingly to maintain optimal oxygen levels.
-          </li>
+      {/* TABLE: Dissolved Oxygen Solubility in Freshwater (mg/L) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dissolved Oxygen Solubility in Freshwater (mg/L)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how oxygen solubility decreases as freshwater temperature increases from freezing to 35°C.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temperature (°C)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dissolved Oxygen (mg/L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Saturation Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maximum</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Adequate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Adequate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data based on standard atmospheric pressure at sea level.</p>
+      </section>
+
+      {/* TABLE: Oxygen Requirements by Aquatic Pet Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Oxygen Requirements by Aquatic Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different pets require specific minimum dissolved oxygen levels to maintain health and prevent stress-related illness.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum DO (mg/L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Optimal Range (mg/L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temperature Preference (°C)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Goldfish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tropical Fish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-28</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bettas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-27</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Corydoras Catfish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-26</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Shrimp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-24</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Trout</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Killifish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-24</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Sustained levels below minimum cause stress, disease, and potential mortality.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test your aquarium's actual dissolved oxygen using an electronic meter, as the table provides theoretical maximums that may differ from real conditions due to bioload and organic debris.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Perform 25-30% water changes weekly to replenish dissolved oxygen and remove waste that depletes oxygen faster in established tanks.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Run air pumps and filters 24/7, especially in warm water setups above 26°C where oxygen becomes critically limited without active aeration.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add live aquatic plants like Ludwigia or Rotala to increase daytime oxygen production through photosynthesis, reducing reliance on mechanical aeration.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming maximum solubility equals actual dissolved oxygen</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The table shows theoretical maximum oxygen; your tank's actual dissolved oxygen is typically 10-30% lower due to organic matter consumption.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring temperature fluctuations throughout the day</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Water temperature rises during daytime and falls at night, causing oxygen levels to fluctuate significantly; calculate for peak afternoon temperatures.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Stocking tanks based on room temperature instead of actual water temperature</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Ambient room temperature differs from tank water temperature, especially in heated aquariums; always measure water temperature directly.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting nighttime oxygen depletion in planted tanks</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Plants consume oxygen at night through respiration, dropping levels 1-2 mg/L below daytime readings even in heavily planted aquariums.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does oxygen solubility decrease as water temperature increases?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Oxygen solubility is inversely related to temperature because warmer water molecules move faster, allowing dissolved oxygen to escape more easily into the air. At 0°C, water holds approximately 14.6 mg/L of oxygen, while at 30°C it holds only 7.5 mg/L.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What oxygen levels do fish and aquatic pets need to survive?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most freshwater fish require minimum dissolved oxygen levels of 5-6 mg/L to thrive, though some species like trout need 7-8 mg/L. Levels below 3 mg/L become critically dangerous for most aquatic life.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does salinity affect oxygen solubility in aquatic pet tanks?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Saltwater holds approximately 20% less dissolved oxygen than freshwater at the same temperature. At 20°C, saltwater contains about 8 mg/L compared to 9.2 mg/L in freshwater.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the optimal water temperature for maintaining oxygen levels in aquariums?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Water temperatures between 18-24°C provide good oxygen retention for most freshwater pets while supporting beneficial bacteria growth. Avoid temperatures above 28°C where oxygen becomes critically depleted.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How can I improve oxygen levels in warm water aquariums?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use air pumps, increase surface agitation, add plants for photosynthetic oxygen production, perform frequent water changes, and consider chiller units to lower water temperature during hot months.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does altitude affect the oxygen solubility table readings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, higher altitudes have lower atmospheric pressure, reducing the maximum oxygen solubility by approximately 0.5% per 1,000 feet of elevation. Pets at high altitudes may need additional aeration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How quickly does oxygen depletion occur when aeration stops?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">In a stagnant, fully stocked aquarium, dissolved oxygen can drop from 8 mg/L to dangerous levels (&lt;3 mg/L) within 4-6 hours depending on bioload and temperature.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149327/"
-              className="text-blue-600 font-bold hover:underline text-lg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              1. Boyd, C.E. (2019). Water Quality for Aquaculture. Springer.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource detailing water quality parameters including oxygen solubility and its impact on aquatic animal health.
-            </p>
+          <li>
+            <a href="https://www.usgs.gov/faqs/what-dissolved-oxygen-concentration-water" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Henry's Law and Dissolved Gas Solubility</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">USGS explains the scientific principles governing dissolved oxygen in water at varying temperatures.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.sciencedirect.com/science/article/pii/S0044848618303937"
-              className="text-blue-600 font-bold hover:underline text-lg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              2. Ultsch, G.R. (2006). Physiology and Ecology of Oxygen Solubility in Aquatic Environments.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Explores the physiological implications of oxygen solubility changes in aquatic species and environmental adaptations.
-            </p>
+          <li>
+            <a href="https://www.epa.gov/wqs-tech-assistance/aquatic-life-water-quality-criteria" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Aquatic Life Water Quality Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">EPA guidelines establish minimum dissolved oxygen requirements for freshwater and saltwater aquatic life protection.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/avian-medicine/avian-oxygen-therapy"
-              className="text-blue-600 font-bold hover:underline text-lg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              3. UC Davis Veterinary Medicine. Avian Oxygen Therapy Guidelines.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guidelines for oxygen management in veterinary care, emphasizing the importance of dissolved oxygen in treatment.
-            </p>
+          <li>
+            <a href="https://www.lenntech.com/aquatic/dissolved-oxygen.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Dissolved Oxygen Solubility Tables</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Lenntech provides comprehensive oxygen solubility data across temperature and salinity ranges for water quality management.</p>
+          </li>
+          <li>
+            <a href="https://www.aquariumcoop.com/blogs/aquarium/aquarium-parameters" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Aquarium Water Parameters and Fish Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Aquarium Co-op explains how dissolved oxygen and temperature parameters directly impact fish stress levels and disease susceptibility.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

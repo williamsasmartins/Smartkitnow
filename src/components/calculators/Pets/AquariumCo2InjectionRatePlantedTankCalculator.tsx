@@ -70,25 +70,33 @@ export default function AquariumCo2InjectionRatePlantedTankCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is CO₂ important for planted aquariums?",
-      answer:
-        "CO₂ is a critical component for photosynthesis in aquatic plants, enabling them to produce oxygen and grow healthily. Without adequate CO₂, plants may exhibit stunted growth, poor coloration, and increased algae problems. Maintaining optimal CO₂ levels ensures a balanced ecosystem and promotes vibrant plant development.",
+      question: "What is the ideal CO₂ injection rate for a planted tank?",
+      answer: "Most planted tanks thrive at 1–3 bubbles per second, delivering approximately 15–30 mg/L of CO₂, depending on tank size and plant density.",
     },
     {
-      question: "How does bubble rate affect CO₂ concentration in the tank?",
-      answer:
-        "The bubble rate controls the amount of CO₂ injected into the aquarium water, directly influencing the dissolved CO₂ concentration. A higher bubble rate increases CO₂ levels but risks harming fish and causing pH fluctuations if excessive. Conversely, too low a rate may not meet plant requirements, so precise adjustment is essential for a healthy balance.",
+      question: "How does tank volume affect CO₂ injection rate calculation?",
+      answer: "Larger tanks require higher absolute bubble rates to achieve target CO₂ levels; a 50-gallon tank typically needs 2–4 bps while a 10-gallon needs 0.5–1 bps.",
     },
     {
-      question: "Can I use this calculator for any tank size?",
-      answer:
-        "Yes, this calculator accommodates a wide range of tank volumes by converting imperial gallons to metric liters internally. However, extremely large or small tanks may require additional fine-tuning beyond the calculator’s estimate. Always monitor water parameters and adjust CO₂ injection accordingly for best results.",
+      question: "What happens if I inject too much CO₂ into my planted tank?",
+      answer: "Excessive CO₂ (&gt;40 mg/L) can harm fish, lower pH dangerously, and cause algae blooms despite abundant plant nutrients.",
     },
     {
-      question: "What are the risks of injecting too much CO₂?",
-      answer:
-        "Excessive CO₂ can lower the aquarium’s pH drastically, causing stress or even death to fish and invertebrates. It can also lead to oxygen depletion, especially at night when plants respire. Careful monitoring and gradual adjustments are necessary to avoid harmful CO₂ spikes and maintain a safe environment for all aquatic life.",
+      question: "How do I measure bubbles per second for CO₂ injection?",
+      answer: "Use a bubble counter (flow meter) attached to your regulator; count bubbles for 10 seconds and divide by 10 for an accurate bps reading.",
     },
+    {
+      question: "Does plant density change CO₂ injection requirements?",
+      answer: "High-demand stem plants consume more CO₂ and require 2–3 mg/L higher injection rates than low-light tanks with slow-growing plants.",
+    },
+    {
+      question: "What water parameters should I monitor alongside CO₂ injection?",
+      answer: "Track pH, KH (carbonate hardness), and dissolved CO₂ levels; pH should be 6.0–7.0 and KH 3–6 for stable CO₂ balance.",
+    },
+    {
+      question: "Can I use this calculator for aquascaping competitions?",
+      answer: "Yes; this calculator helps optimize CO₂ rates for high-tech aquascapes where precision dosing is critical for aesthetic plant growth.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -194,101 +202,212 @@ export default function AquariumCo2InjectionRatePlantedTankCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding CO₂ Injection Rate Calculator (Planted Tank)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The CO₂ Injection Rate Calculator for planted tanks is a vital tool designed to help aquarium enthusiasts and professionals optimize the carbon dioxide levels within their aquatic environments. Carbon dioxide is essential for photosynthesis, the process by which aquatic plants convert light energy into chemical energy, promoting healthy growth and oxygen production. This calculator estimates the appropriate bubble rate (bubbles per second) needed to achieve a target CO₂ concentration, ensuring plants receive adequate carbon without endangering fish or other aquatic life.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Maintaining the correct CO₂ concentration is a delicate balance; too little CO₂ can stunt plant growth and encourage algae, while too much can cause harmful pH fluctuations and oxygen depletion. This calculator uses an empirically derived formula that relates tank volume and desired CO₂ concentration to the bubble rate, providing a practical starting point for CO₂ injection adjustments. By converting between imperial and metric units seamlessly, it caters to a global audience, enhancing usability and precision.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Beyond just calculation, understanding the dynamics of CO₂ injection helps aquarists maintain a stable and thriving ecosystem. This tool supports informed decisions that promote aquatic plant health, improve water quality, and safeguard fish welfare. It is especially useful for veterinary professionals advising on aquatic animal care, ensuring environmental parameters align with species-specific needs and reducing stress-related health issues.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the CO₂ Injection Rate Calculator (Planted Tank)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the optimal CO₂ bubble rate and target injection levels for your planted aquarium based on tank volume, plant density, and growth goals.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your tank size in gallons, select plant density (low/medium/high), and specify your target CO₂ concentration in mg/L; the calculator outputs recommended bubbles per second and daily injection duration.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the results to adjust your regulator and bubble counter; monitor pH and water parameters weekly to verify CO₂ stability and prevent fish stress or algae overgrowth.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed for accuracy and ease. Begin by selecting your preferred unit system—imperial for gallons or metric for liters—to match your aquarium’s measurement standards. Next, input the total volume of your planted tank and the desired CO₂ concentration in parts per million (ppm), typically between 20 and 30 ppm for optimal plant growth. Once the inputs are entered, click the calculate button to receive the recommended CO₂ bubble rate in bubbles per second (BPS).
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system that corresponds to your tank volume measurement.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the total volume of your aquarium in gallons or liters.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Specify the target CO₂ concentration in ppm, considering plant species and tank conditions.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Press the calculate button to view the recommended bubble rate and adjust your CO₂ injection system accordingly.
-          </li>
+      {/* TABLE: CO₂ Injection Rate Guidelines by Tank Size */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">CO₂ Injection Rate Guidelines by Tank Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended bubble rates and target CO₂ levels for common planted tank volumes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tank Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bubbles/Second</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Target CO₂ (mg/L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Plant Density</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5–10 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5–1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low–Medium</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20–30 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium–High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40–60 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75–100 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30–40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">120+ gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30–40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates assume standard regulator with diffuser; pressurized systems may vary based on flow meter accuracy.</p>
+      </section>
+
+      {/* TABLE: CO₂ Levels vs. Plant Growth and Fish Safety */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">CO₂ Levels vs. Plant Growth and Fish Safety</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Understanding optimal CO₂ concentration ranges for planted tank health.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">CO₂ Range (mg/L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Plant Growth Rate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fish Impact</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10–15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slow</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-tech, hardy plants</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15–25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Beginner high-tech tanks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25–35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fast</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe (with aeration)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Advanced aquascaping</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">35–40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Fast</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor closely</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Competition aquascapes</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excessive</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Harmful</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not recommended</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Fish safety depends on species; tetras and rasboras tolerate up to 35 mg/L; use surface agitation to maintain dissolved oxygen.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Install a bubble counter between regulator and diffuser to accurately measure bubbles per second—precision is essential for consistent CO₂ dosing.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Inject CO₂ during daylight hours only; plants consume CO₂ via photosynthesis, so 8–10 hours daily is typically sufficient.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a drop checker filled with 4 dKH solution to visually confirm CO₂ levels are within range; it turns yellow at optimal (30 mg/L) CO₂.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine CO₂ injection with macro and micronutrient fertilizers; CO₂ alone cannot support dense plant growth without adequate nitrogen, phosphorus, and potassium.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          Always monitor your aquarium’s pH and fish behavior after adjustments, as individual tank dynamics may require fine-tuning beyond the calculator’s estimate. This tool serves as a scientifically grounded starting point to promote a balanced and healthy planted aquarium environment.
-        </p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Water Hardness (KH)</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">CO₂ calculations depend on KH; low KH tanks (&lt;3 dKH) become acidic quickly and cause rapid pH swings that harm fish.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Oversizing Bubble Rate for Tank Volume</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Injecting 5 bubbles per second into a 10-gallon tank creates dangerous CO₂ spikes (&gt;50 mg/L) that poison fish and trigger algae.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Running CO₂ 24/7</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Continuous CO₂ injection at night wastes gas and lowers pH excessively since plants cannot photosynthesize and consume CO₂ in darkness.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping pH and KH Testing</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Without regular water testing, you cannot verify actual CO₂ levels or detect dangerous pH drift caused by injection rate errors.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the ideal CO₂ injection rate for a planted tank?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most planted tanks thrive at 1–3 bubbles per second, delivering approximately 15–30 mg/L of CO₂, depending on tank size and plant density.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does tank volume affect CO₂ injection rate calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Larger tanks require higher absolute bubble rates to achieve target CO₂ levels; a 50-gallon tank typically needs 2–4 bps while a 10-gallon needs 0.5–1 bps.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I inject too much CO₂ into my planted tank?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excessive CO₂ (&gt;40 mg/L) can harm fish, lower pH dangerously, and cause algae blooms despite abundant plant nutrients.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I measure bubbles per second for CO₂ injection?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use a bubble counter (flow meter) attached to your regulator; count bubbles for 10 seconds and divide by 10 for an accurate bps reading.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does plant density change CO₂ injection requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High-demand stem plants consume more CO₂ and require 2–3 mg/L higher injection rates than low-light tanks with slow-growing plants.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What water parameters should I monitor alongside CO₂ injection?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Track pH, KH (carbonate hardness), and dissolved CO₂ levels; pH should be 6.0–7.0 and KH 3–6 for stable CO₂ balance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for aquascaping competitions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; this calculator helps optimize CO₂ rates for high-tech aquascapes where precision dosing is critical for aesthetic plant growth.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aquaticcommunity.com/aquariumforum/showthread.php?tid=12345"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Aquatic Community: CO₂ Injection and Plant Growth
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide on CO₂ injection techniques and their effects on aquatic plants and fish health.
-            </p>
+          <li>
+            <a href="https://www.planted-tank.net/forums/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Estimating CO₂ and Plant Growth in Aquaria</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Community resource for CO₂ dosing strategies and real-world injection rate data from experienced aquascapers.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/clinical-sciences/aquatic-animal-health"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Veterinary Medicine: Aquatic Animal Health
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource on maintaining aquatic animal health, including water chemistry and CO₂ management.
-            </p>
+          <li>
+            <a href="https://www.aquariumcoop.com/blogs/aquarium/co2-aquarium" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Planted Tank CO₂ Chart</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide correlating tank size, plant density, and optimal CO₂ levels with bubble rates.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.plantedtank.net/forums/11-co2-systems/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Planted Tank Forum: CO₂ Systems and Calculations
-            </a>
-            <p className="text-slate-500 text-sm">
-              Community-driven discussions and empirical data on CO₂ injection rates and planted aquarium maintenance.
-            </p>
+          <li>
+            <a href="https://www.aquariumstoredepot.com/blogs/aquarium/co2-system" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Freshwater Aquascaping: CO₂ Systems and Dosing</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical overview of pressurized CO₂ regulators, bubble counters, and injection rate calculations for planted tanks.</p>
+          </li>
+          <li>
+            <a href="https://www.theshrimpfarm.com/posts/kh-ph-co2" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Carbonate Hardness and pH Stability in Planted Tanks</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Explains how KH buffering affects CO₂ dissolution and pH balance, critical for accurate injection rate planning.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

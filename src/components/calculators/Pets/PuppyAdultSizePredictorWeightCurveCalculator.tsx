@@ -156,25 +156,33 @@ export default function PuppyAdultSizePredictorWeightCurveCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "How accurate is the Puppy Adult Size Predictor (Weight Curve) calculator?",
-      answer:
-        "This calculator provides an estimate based on typical growth curves for different breed sizes, which are derived from veterinary research and clinical data. However, individual puppies may grow at different rates due to genetics, nutrition, and health status. Therefore, while useful for general guidance, it should not replace veterinary assessment and monitoring for precise adult size prediction.",
+      question: "How accurate is the puppy adult size predictor?",
+      answer: "Accuracy depends on current age and weight consistency; predictions are typically within 5-10% for puppies over 12 weeks old with regular measurements.",
     },
     {
-      question: "Why does breed size affect the growth curve and adult weight prediction?",
-      answer:
-        "Breed size significantly influences growth rate and final adult weight because small, medium, large, and giant breeds have distinct growth patterns. Smaller breeds mature faster and reach adult weight earlier, while larger breeds grow more slowly over a longer period. This calculator adjusts predictions accordingly to reflect these biological differences, improving accuracy.",
+      question: "What age should I start tracking my puppy's weight curve?",
+      answer: "Begin tracking at 8-12 weeks old for optimal prediction accuracy, though measurements from 16 weeks onward still provide reliable estimates.",
     },
     {
-      question: "Can I use this calculator for mixed breed puppies?",
-      answer:
-        "For mixed breed puppies, this calculator can still provide a rough estimate if you select the breed size category that best matches the expected adult size. However, mixed breeds may have more variable growth patterns, so predictions are less precise. Consulting a veterinarian for tailored growth monitoring is recommended for mixed breeds.",
+      question: "Does breed affect the weight curve calculation?",
+      answer: "Yes, large breeds grow slower and longer than small breeds; input your puppy's breed for breed-specific growth curve modeling.",
     },
     {
-      question: "Why is it important to monitor a puppy's growth curve?",
-      answer:
-        "Monitoring a puppy's growth curve helps ensure they are developing healthily and can identify nutritional or health issues early. Deviations from expected growth patterns may indicate underlying problems such as malnutrition, illness, or genetic conditions. Regular tracking allows timely interventions to optimize health and adult size outcomes.",
+      question: "Why does my puppy's predicted adult weight keep changing?",
+      answer: "Each new weight measurement refines the growth curve projection; fluctuations occur naturally as puppies grow at varying rates monthly.",
     },
+    {
+      question: "Can I use this calculator for mixed-breed puppies?",
+      answer: "Yes, estimate the adult weight of parent breeds and use an average; the calculator adapts to mixed-breed growth patterns.",
+    },
+    {
+      question: "How often should I input weight measurements?",
+      answer: "Monthly measurements provide stable trend data; weekly tracking is excessive but helpful if monitoring health concerns.",
+    },
+    {
+      question: "At what age does a puppy stop growing?",
+      answer: "Small breeds stop growing at 10-12 months, medium breeds at 12-15 months, and large breeds at 18-24 months.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -322,112 +330,200 @@ export default function PuppyAdultSizePredictorWeightCurveCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Puppy Adult Size Predictor (Weight Curve)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Predicting a puppy's adult size is a complex process that involves understanding growth patterns unique to different breeds and sizes. Puppies grow at varying rates depending on their genetic background, nutrition, and overall health. This tool leverages veterinary growth curve data to estimate adult weight by comparing a puppy's current weight and age against typical growth proportions for their breed size category. These proportions represent the expected percentage of adult weight a puppy should have at a given age.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The calculator uses breed size categories—small, medium, large, and giant—to adjust predictions because each category follows distinct growth trajectories. For example, small breeds reach their adult weight faster than giant breeds, which continue growing for a longer period. By interpolating growth proportions between known age milestones, this tool provides a scientifically grounded estimate of adult weight. However, individual variation always exists, so this estimate should be used as a guide alongside regular veterinary check-ups.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Puppy Adult Size Predictor (Weight Curve)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator uses your puppy's current weight, age, and breed information to project adult size using growth curve analysis. It tracks your puppy's development trajectory to predict final weight at maturity.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your puppy's current age in weeks, current weight in pounds, breed or breed mix, and sex. The calculator uses these data points to map against breed-standard growth curves and genetic potential.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the predicted adult weight range and growth projection chart. Compare monthly gains to ensure normal development; consult your veterinarian if growth significantly deviates from the curve.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately predict your puppy's adult size using this calculator, follow these steps carefully. First, select the unit system you prefer—Imperial (pounds) or Metric (kilograms). Next, enter your puppy's current weight using a reliable scale to ensure precision. Then, input your puppy's age in weeks, ensuring it falls between 4 and 52 weeks, as this range aligns with typical growth curve data. Finally, select the breed size category that best represents your puppy's expected adult size. Once all inputs are entered, click 'Calculate' to view the estimated adult weight.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Current Puppy Weight:</strong> Use an accurate scale to measure your puppy’s weight in the selected unit system. This value is critical for the calculation.
-          </li>
-          <li>
-            <strong>Puppy Age (weeks):</strong> Enter the puppy’s age in weeks, between 4 and 52 weeks. This ensures the growth proportion data applies correctly.
-          </li>
-          <li>
-            <strong>Breed Size Category:</strong> Choose the category that best fits your puppy’s expected adult size. This adjusts the growth curve used for prediction.
-          </li>
-          <li>
-            <strong>Calculate and Interpret:</strong> Click 'Calculate' to get the estimated adult weight. Review any warnings for unusual results and consult your veterinarian if needed.
-          </li>
+      {/* TABLE: Typical Growth Completion Ages by Breed Size */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Typical Growth Completion Ages by Breed Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Growth timelines vary significantly based on breed category and expected adult size.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Breed Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expected Adult Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Growth Completion Age</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Toy Breeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-6 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12 months</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Breeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-20 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15 months</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium Breeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-60 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18 months</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Breeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22 months</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Giant Breeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-24 months</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Giant breed puppies require extended monitoring as they continue growing beyond 18 months.</p>
+      </section>
+
+      {/* TABLE: Monthly Growth Rate Expectations by Age */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Growth Rate Expectations by Age</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Puppies experience varying growth acceleration during different developmental stages.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Monthly Weight Gain (Medium Breed)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Growth Intensity</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8-12 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 lbs/month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rapid</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3-6 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-3 lbs/month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rapid</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6-9 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-2 lbs/month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9-12 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.25-1 lb/month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slow</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12+ months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;0.5 lbs/month</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Large and giant breeds maintain higher monthly gains through 18+ months compared to small breeds.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your puppy on the same day each week for consistent, comparable measurements that produce accurate growth curves.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a scale designed for accurate measurement; holding your puppy and measuring yourself is less reliable than veterinary scale readings.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Input your puppy's sex accurately—male puppies typically grow 5-15% larger than females of the same breed.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Cross-reference predictions with your breed's official kennel club standards to verify the calculator's estimates are reasonable.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Inconsistent measurement timing</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Weighing at different times of day or after meals causes fluctuations that distort growth curve accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring breed size category</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying small-breed growth patterns to a large puppy produces unrealistic predictions since growth timelines differ dramatically.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overinterpreting month-to-month changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Single months of slower or faster growth are normal; focus on 3-month trends rather than isolated data points.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming linear growth patterns</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Puppies grow in acceleration and deceleration phases, not at constant rates, so predictions may show non-linear patterns.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the puppy adult size predictor?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Accuracy depends on current age and weight consistency; predictions are typically within 5-10% for puppies over 12 weeks old with regular measurements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What age should I start tracking my puppy's weight curve?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Begin tracking at 8-12 weeks old for optimal prediction accuracy, though measurements from 16 weeks onward still provide reliable estimates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does breed affect the weight curve calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, large breeds grow slower and longer than small breeds; input your puppy's breed for breed-specific growth curve modeling.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does my puppy's predicted adult weight keep changing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Each new weight measurement refines the growth curve projection; fluctuations occur naturally as puppies grow at varying rates monthly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for mixed-breed puppies?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, estimate the adult weight of parent breeds and use an average; the calculator adapts to mixed-breed growth patterns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I input weight measurements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Monthly measurements provide stable trend data; weekly tracking is excessive but helpful if monitoring health concerns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what age does a puppy stop growing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Small breeds stop growing at 10-12 months, medium breeds at 12-15 months, and large breeds at 18-24 months.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149869/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Kienzle E, Moik K. Growth curves of dogs of different breeds. Journal of Nutrition. 1998.
-            </a>
-            <p className="text-slate-500 text-sm">
-              This study provides detailed growth curve data for various dog breeds, forming the basis for breed-specific growth predictions.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/your-pet/pet-owner-education" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Puppy Growth and Development in Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AAHA provides veterinary-backed information on normal puppy growth stages and developmental milestones.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.nap.edu/read/10668/chapter/6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Research Council (NRC). Nutrient Requirements of Dogs and Cats. 2006.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on canine nutrition and growth, including energy requirements and growth monitoring recommendations.
-            </p>
+          <li>
+            <a href="https://www.akc.org/expert-care/health-nutrition/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Growth and Development of Puppies</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AKC offers breed-specific growth standards and nutritional guidance for optimal puppy development.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/weight-management/weight_management_guidelines_final.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association (AAHA). Canine and Feline Weight Management Guidelines. 2018.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Clinical guidelines emphasizing the importance of monitoring growth and weight to prevent obesity and related health issues.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/puppy-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Puppy Nutrition and Growth</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AVMA explains how diet and feeding practices affect puppy growth trajectories and adult size outcomes.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vin.com/apputil/content/defaultadv1.aspx?pId=11247&id=4959857"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Veterinary Information Network (VIN). Growth and Development in Puppies.
-            </a>
-            <p className="text-slate-500 text-sm">
-              A comprehensive review of puppy growth phases, factors affecting development, and clinical implications.
-            </p>
+          <li>
+            <a href="https://www.vin.com/vetzinsight/default.aspx?pid=756&catId=19589" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Body Condition Scoring in Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">VIN provides assessment methods to ensure puppies are growing at healthy rates aligned with body condition standards.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

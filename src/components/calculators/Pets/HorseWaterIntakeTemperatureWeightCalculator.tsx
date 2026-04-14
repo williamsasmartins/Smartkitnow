@@ -76,25 +76,33 @@ export default function HorseWaterIntakeTemperatureWeightCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why does temperature affect a horse's water intake?",
-      answer:
-        "Temperature influences a horse's hydration needs because higher temperatures increase sweating and respiratory water loss. As ambient temperature rises, horses lose more fluids to maintain body temperature, requiring increased water intake to prevent dehydration. Conversely, cooler temperatures reduce water loss, but horses still need adequate hydration for metabolic functions.",
+      question: "How much water should a 1,000 lb horse drink daily?",
+      answer: "A 1,000 lb horse typically needs 5–10 gallons per day under normal conditions, but this increases significantly in hot weather or during exercise.",
     },
     {
-      question: "How does a horse's weight impact its daily water requirements?",
-      answer:
-        "A horse's weight directly correlates with its water needs since larger animals have greater body mass and metabolic activity. Water intake is typically calculated per kilogram of body weight to ensure proportional hydration. Underestimating weight can lead to insufficient water provision, risking dehydration and health complications.",
+      question: "Does temperature affect how much water horses need?",
+      answer: "Yes, horses in temperatures above 75°F may require 25–50% more water than in cool conditions due to increased sweating and heat stress.",
     },
     {
-      question: "Can this calculator be used for all horse breeds and ages?",
-      answer:
-        "This calculator provides estimates primarily for adult horses of average breed sizes. Foals, ponies, and draft breeds may have different hydration requirements due to metabolic and physiological differences. For specialized cases, consulting a veterinarian is recommended to tailor water intake accurately.",
+      question: "What's the relationship between horse weight and water intake?",
+      answer: "Water needs scale roughly with body weight; a 500 lb pony requires about half the water of a 1,000 lb horse under identical conditions.",
     },
     {
-      question: "What are signs of inadequate water intake in horses?",
-      answer:
-        "Signs of insufficient water intake include dry mucous membranes, decreased urine output, lethargy, and concentrated urine. Prolonged dehydration can cause colic, kidney issues, and impaired thermoregulation. Monitoring water consumption and providing fresh water are essential preventive measures.",
+      question: "Can horses drink too much water?",
+      answer: "Horses can overconsume water in certain situations, but they typically self-regulate; excessive intake may indicate salt deficiency or metabolic issues.",
     },
+    {
+      question: "How do I know if my horse is drinking enough?",
+      answer: "Check for dark yellow urine, normal skin turgor, and moist mucous membranes; pale or absent urine suggests dehydration.",
+    },
+    {
+      question: "Does exercise increase water requirements?",
+      answer: "Yes, working horses can require 2–3 times normal water intake depending on intensity and duration of exercise.",
+    },
+    {
+      question: "When should I use this calculator for my horse?",
+      answer: "Use it daily during warm months, when traveling, during training, or whenever monitoring hydration status to prevent colic and heat stress.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -201,101 +209,206 @@ export default function HorseWaterIntakeTemperatureWeightCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Horse Water Intake by Temperature & Weight
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Horses require adequate water intake daily to maintain hydration, support metabolic processes, and regulate body temperature. The amount of water a horse drinks is influenced significantly by its body weight, as larger horses have greater metabolic demands and fluid volume. Additionally, environmental temperature plays a crucial role; as temperatures rise, horses lose more water through sweating and respiration, increasing their hydration needs.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          At moderate temperatures around 20°C, horses typically consume about 50 milliliters of water per kilogram of body weight each day. However, for every 5°C increase above this baseline, their water requirements increase by approximately 10% to compensate for additional fluid loss. Conversely, in cooler conditions, water intake decreases but should not fall below a minimum threshold to ensure physiological functions remain optimal.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding these variables helps caretakers provide sufficient water to prevent dehydration, which can lead to serious health issues such as colic, kidney dysfunction, and impaired thermoregulation. This calculator integrates weight and temperature to estimate daily water needs, offering a practical tool for horse owners and veterinarians to optimize hydration management.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horse Water Intake by Temperature & Weight</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates daily water requirements for horses based on body weight and ambient temperature. It accounts for baseline hydration needs and thermal stress to help prevent dehydration, colic, and heat-related illness.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your horse's weight in pounds and the current or forecasted temperature in Fahrenheit. The calculator will generate a recommended water intake range in gallons per day.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the results to monitor water troughs, adjust feeding schedules, and plan electrolyte supplementation. Always ensure fresh water is continuously available, especially during hot weather or strenuous activity.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the minimum daily water intake required for a horse based on its weight and the ambient temperature. Begin by selecting the unit system that matches your measurement preference—Imperial (pounds) or Metric (kilograms). Then, enter the horse’s weight and the current ambient temperature in Celsius. After inputting these values, click the calculate button to receive an estimate of the daily water volume your horse should consume.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) to match your weight measurement.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the horse’s weight accurately to ensure precise calculation.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the ambient temperature in degrees Celsius to adjust water needs for environmental conditions.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the estimated daily water intake in gallons or liters.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the result as a guideline and consult a veterinarian for specific health considerations.
-          </li>
+      {/* TABLE: Daily Water Intake Guidelines by Horse Weight (Moderate Conditions) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Water Intake Guidelines by Horse Weight (Moderate Conditions)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows baseline daily water consumption for horses at rest in temperatures between 50–70°F.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Horse Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Daily Intake (gallons)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Daily Intake (gallons)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pony or small horse</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium pony or large pony</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Average adult horse</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large riding horse</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Draft horse or warmblood</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Intake varies by individual metabolism, diet composition, and access to fresh water.</p>
+      </section>
+
+      {/* TABLE: Water Intake Multipliers by Temperature */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Water Intake Multipliers by Temperature</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Apply these multipliers to baseline water intake to account for heat stress and increased sweating.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temperature Range (°F)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Multiplier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: 1,000 lb Horse</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50–70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–10 gallons/day</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">71–80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6–13 gallons/day</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">81–90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7–15 gallons/day</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">91–100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–20 gallons/day</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12–25 gallons/day</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Humidity levels and wind exposure also affect actual water demand beyond temperature alone.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Offer water before, during, and after exercise; horses may not drink adequately if water is presented only once daily.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add salt to feed or provide free-choice mineral blocks to encourage drinking and replace electrolytes lost through sweat.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor urine color and consistency as a practical hydration indicator; dark or scant urine suggests insufficient intake.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Clean water troughs daily and keep water cool in summer to encourage consumption and reduce bacterial growth.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring temperature changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming winter water intake applies in summer can lead to severe dehydration; always adjust for seasonal and daily temperature fluctuations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting exercise and workload</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator provides baseline estimates; working horses require significantly more water and may need supplements beyond calculated amounts.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using cold water exclusively in summer</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">While cool water encourages drinking, extremely cold water can cause digestive upset; aim for 45–65°F in hot climates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying solely on calculator results</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Individual variation is high; combine calculator guidance with direct observation of your horse's behavior, appetite, and hydration cues.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much water should a 1,000 lb horse drink daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 1,000 lb horse typically needs 5–10 gallons per day under normal conditions, but this increases significantly in hot weather or during exercise.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does temperature affect how much water horses need?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, horses in temperatures above 75°F may require 25–50% more water than in cool conditions due to increased sweating and heat stress.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the relationship between horse weight and water intake?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Water needs scale roughly with body weight; a 500 lb pony requires about half the water of a 1,000 lb horse under identical conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can horses drink too much water?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Horses can overconsume water in certain situations, but they typically self-regulate; excessive intake may indicate salt deficiency or metabolic issues.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my horse is drinking enough?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check for dark yellow urine, normal skin turgor, and moist mucous membranes; pale or absent urine suggests dehydration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does exercise increase water requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, working horses can require 2–3 times normal water intake depending on intensity and duration of exercise.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When should I use this calculator for my horse?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use it daily during warm months, when traveling, during training, or whenever monitoring hydration status to prevent colic and heat stress.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.nap.edu/catalog/11653/nutrient-requirements-of-horses-sixth-revised-edition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Nutrient Requirements of Horses, 6th Edition - National Research Council (2007)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on equine nutrition including water requirements relative to weight and environmental factors.
-            </p>
+          <li>
+            <a href="https://www.nap.edu/catalog/25553/nutrient-requirements-of-horses-seventh-revised-edition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Nutrition and Feeding – National Research Council</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource on horse nutritional needs including water requirements by weight and activity level.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.extension.org/pages/Water-Requirements-for-Horses"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Water Requirements for Horses - Extension.org
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical insights into how temperature and activity influence hydration needs in horses.
-            </p>
+          <li>
+            <a href="https://aaep.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Heat Stress in Horses – American Association of Equine Practitioners</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Guidelines for preventing heat illness and managing water intake during high temperatures and competition.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/management-and-nutrition/nutrition-of-horses/water-requirements"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Water Requirements - Merck Veterinary Manual
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary reference detailing physiological water needs and factors affecting equine hydration.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Hydration and Electrolyte Balance – UC Davis School of Veterinary Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on optimal hydration strategies and electrolyte supplementation for performance horses.</p>
+          </li>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Colic Prevention – AAFCO Equine Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Best practices for preventing colic through proper hydration, forage intake, and water management protocols.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

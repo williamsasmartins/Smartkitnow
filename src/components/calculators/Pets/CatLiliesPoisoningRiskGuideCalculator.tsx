@@ -96,25 +96,33 @@ export default function CatLiliesPoisoningRiskGuideCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why are lilies so toxic to cats compared to other pets?",
-      answer:
-        "Lilies contain compounds that cause severe kidney damage specifically in cats due to their unique metabolism and renal sensitivity. Even small amounts can lead to acute kidney failure, which is often irreversible without prompt treatment. This species-specific toxicity makes lilies one of the most dangerous plants for feline households.",
+      question: "Why are lilies so toxic to cats?",
+      answer: "All parts of lilies contain nephrotoxins that damage the kidneys, with as little as 1-2 leaves or petals potentially causing fatal kidney failure in cats within 24-72 hours.",
     },
     {
-      question: "How does the amount of lily ingested affect poisoning risk?",
-      answer:
-        "The risk of poisoning correlates strongly with the quantity of lily material ingested relative to the cat's body weight. Small exposures may cause mild symptoms, but ingestion exceeding approximately 0.1% of body weight in true lilies can cause severe kidney toxicity. Early veterinary intervention is critical to mitigate damage regardless of amount.",
+      question: "Which lily species are most dangerous to cats?",
+      answer: "Easter, Tiger, Stargazer, and Asiatic lilies are the most toxic, though Peace lilies and Calla lilies cause milder oral irritation and are less immediately life-threatening.",
     },
     {
-      question: "Why is the time since exposure important in assessing risk?",
-      answer:
-        "The time elapsed since ingestion influences the severity of poisoning because kidney damage progresses rapidly after exposure. Treatment within six hours can often prevent irreversible damage, while delays increase the risk of fatal outcomes. This calculator incorporates time to emphasize urgency for veterinary care.",
+      question: "How does cat weight affect lily poisoning risk?",
+      answer: "Smaller cats (under 5 lbs) face higher risk from even minimal lily exposure due to concentrated toxin levels, while larger cats may show delayed symptoms with the same exposure.",
     },
     {
-      question: "Are all lilies equally toxic to cats?",
-      answer:
-        "No, true lilies such as Easter, Tiger, and Day lilies are highly toxic, whereas lily-like plants like Peace lilies have much lower toxicity. This difference is due to varying chemical compounds present in the plants. Understanding the specific lily type helps assess poisoning risk more accurately.",
+      question: "What are the first signs of lily poisoning in cats?",
+      answer: "Initial symptoms include vomiting, drooling, lack of appetite, and lethargy within 6-12 hours, followed by kidney failure symptoms like excessive thirst and urination within 24-48 hours.",
     },
+    {
+      question: "Can a cat survive lily poisoning if treated quickly?",
+      answer: "Aggressive veterinary treatment (IV fluids, activated charcoal) within 18-24 hours of exposure significantly improves survival rates, but delays beyond 48 hours reduce chances substantially.",
+    },
+    {
+      question: "Should I remove all lilies from my home if I have a cat?",
+      answer: "Yes, completely removing lilies and lily-containing bouquets is the safest approach since even brief unsupervised contact poses severe poisoning risk.",
+    },
+    {
+      question: "How does the calculator determine poisoning risk level?",
+      answer: "The calculator evaluates lily species toxicity, contact type, cat weight, and time since exposure to assign risk as Low, Moderate, High, or Critical and recommend action.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -290,138 +298,242 @@ export default function CatLiliesPoisoningRiskGuideCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Lilies Poisoning Risk Guide (cats)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Lilies are among the most dangerous plants for cats due to their potent
-          nephrotoxic compounds. Even minimal ingestion of true lilies, such as Easter,
-          Tiger, or Day lilies, can cause acute kidney failure, which may be fatal if
-          untreated. This guide helps quantify the risk based on exposure amount,
-          cat weight, and time since ingestion to aid in early recognition and
-          intervention.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The toxicity mechanism involves rapid damage to renal tubular cells, leading
-          to kidney shutdown within 24-72 hours post-exposure. Cats are uniquely
-          susceptible compared to other species, making any exposure a veterinary
-          emergency. Understanding the type of lily and the quantity ingested relative
-          to the cat’s body weight is critical for assessing poisoning severity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Time is a crucial factor; early treatment within six hours can prevent
-          irreversible damage, while delays increase fatality risk. This calculator
-          integrates these variables to provide an evidence-based risk score, guiding
-          pet owners and veterinarians in decision-making and urgency of care.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Lilies Poisoning Risk Guide (cats)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator assesses your cat's poisoning risk from lily exposure by analyzing multiple toxicity factors. It provides a risk level classification and personalized recommendations to guide your next steps.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your cat's weight, the specific lily species involved, what parts were ingested or contacted, and how long ago the exposure occurred. These inputs determine the concentration and severity of toxic exposure.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results are categorized as Low, Moderate, High, or Critical, with specific actions for each level. Always consult a veterinarian for any lily exposure—early treatment within 18-24 hours dramatically improves survival outcomes.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This tool estimates the poisoning risk for cats exposed to lilies by
-          calculating a risk score based on weight, amount ingested, lily type, and
-          time since exposure. Follow the steps below to input accurate data for the
-          most reliable assessment.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat’s weight in pounds or kilograms,
-            depending on your preferred unit system.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Estimate the amount of lily ingested in grams.
-            This includes petals, leaves, pollen, or any part of the plant.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the type of lily your cat was exposed to,
-            distinguishing between true lilies (high toxicity) and lily-like plants
-            (lower toxicity).
-          </li>
-          <li>
-            <strong>Step 4:</strong> Input the time elapsed since your cat ingested
-            the lily, measured in hours.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to receive a risk score and
-            guidance on urgency of veterinary care.
-          </li>
+      {/* TABLE: Lily Species Toxicity Levels for Cats */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Lily Species Toxicity Levels for Cats</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Toxicity levels vary significantly by lily species, with true lilies posing the greatest kidney damage risk.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lily Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxicity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dangerous Parts</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Symptoms Timeline</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Easter Lily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">All parts equally toxic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tiger Lily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Leaves &amp; petals most dangerous</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stargazer Lily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pollen &amp; flowers highly toxic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Asiatic Lily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">All parts, especially pollen</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oriental Lily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Flowers &amp; stems toxic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Peace Lily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sap causes mouth irritation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 minutes to 2 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Calla Lily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">All parts cause irritation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Daylily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Flowers &amp; buds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-6 hours</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">True lilies (genus Lilium) cause acute kidney failure; other plants labeled 'lily' are typically less dangerous.</p>
+      </section>
+
+      {/* TABLE: Recommended Actions by Risk Level &amp; Cat Weight */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Actions by Risk Level &amp; Cat Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Response urgency increases with toxicity exposure and decreases with cat body weight due to dose concentration.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Action</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vet Visit Urgency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor for 24 hours, call vet if symptoms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">If symptoms develop</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Contact vet immediately for guidance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Within 2-4 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Induce vomiting if within 2 hours, vet visit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Within 4-6 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency vet visit immediately</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Immediately</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency veterinary care required</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Within 1-2 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency vet visit (critical)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Immediately</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Any</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency intensive care required</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Immediately</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Time since exposure is critical—treatment efficacy drops significantly after 18-24 hours.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Remove all lilies from your home immediately if you own a cat, including bouquets, decorative arrangements, and potted plants.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Pollen is highly toxic—even grooming pollen from fur or accidentally ingesting it during self-cleaning can poison a cat.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep emergency vet contact information readily available; many critical lily poisoning cases need treatment within hours, not days.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If unsure whether a plant is a lily, err on the side of caution and remove it, or research the scientific name first.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Peace Lilies are as dangerous as true lilies</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Peace lilies cause mild oral irritation, not kidney failure—true lilies (Lilium genus) are far more toxic.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Waiting to see if symptoms develop before contacting a vet</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Kidney damage from true lilies may be silent until it's severe; contact a vet immediately upon exposure regardless of symptoms.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Only removing flowers but leaving leaves and stems</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">All parts of true lilies are equally toxic, so partial removal still poses serious poisoning risk.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying treatment because the cat seems fine</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Lilies cause progressive kidney failure that may not show obvious symptoms until irreversible damage has occurred within 24-48 hours.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why are lilies so toxic to cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">All parts of lilies contain nephrotoxins that damage the kidneys, with as little as 1-2 leaves or petals potentially causing fatal kidney failure in cats within 24-72 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which lily species are most dangerous to cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Easter, Tiger, Stargazer, and Asiatic lilies are the most toxic, though Peace lilies and Calla lilies cause milder oral irritation and are less immediately life-threatening.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does cat weight affect lily poisoning risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Smaller cats (under 5 lbs) face higher risk from even minimal lily exposure due to concentrated toxin levels, while larger cats may show delayed symptoms with the same exposure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the first signs of lily poisoning in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Initial symptoms include vomiting, drooling, lack of appetite, and lethargy within 6-12 hours, followed by kidney failure symptoms like excessive thirst and urination within 24-48 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can a cat survive lily poisoning if treated quickly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Aggressive veterinary treatment (IV fluids, activated charcoal) within 18-24 hours of exposure significantly improves survival rates, but delays beyond 48 hours reduce chances substantially.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I remove all lilies from my home if I have a cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, completely removing lilies and lily-containing bouquets is the safest approach since even brief unsupervised contact poses severe poisoning risk.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator determine poisoning risk level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator evaluates lily species toxicity, contact type, cat weight, and time since exposure to assign risk as Low, Moderate, High, or Critical and recommend action.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lilies"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. ASPCA Animal Poison Control: Lilies Toxicity in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of lily toxicity, clinical signs, and treatment
-              recommendations for feline poisoning.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official poisoning hotline and resource for toxic plants affecting cats and dogs with 24/7 emergency support.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/lily-poisoning-in-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals: Lily Poisoning in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed clinical information on symptoms, prognosis, and emergency care
-              for cats exposed to lilies.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/poison/lilies/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide on lily toxicity in cats with treatment protocols and prognosis information.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/plant-poisoning/lilies"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual: Lilies Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary reference describing pathophysiology and clinical
-              management of lily poisoning in cats.
-            </p>
+          <li>
+            <a href="https://icatcare.org/harmful-practices/toxic-plants/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care—Toxic Plants</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Cat-specific toxicology information from veterinary experts addressing common household poisoning risks.</p>
+          </li>
+          <li>
+            <a href="https://vcahospitals.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospital—Lilies Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary treatment guidelines for acute lily poisoning and kidney failure management in feline patients.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

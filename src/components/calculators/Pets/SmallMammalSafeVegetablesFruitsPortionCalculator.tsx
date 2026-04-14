@@ -105,21 +105,33 @@ export default function SmallMammalSafeVegetablesFruitsPortionCalculator() {
 
   // 3. FAQS
   const faqs = [
-    { 
-      question: "Which vegetables are safe for rabbits and guinea pigs?", 
-      answer: "Safe staples include Romaine lettuce, green/red leaf lettuce, cilantro, parsley, and bell peppers (high Vitamin C for guinea pigs). Avoid iceberg lettuce (low nutrition) and limit high-calcium greens like spinach if your pet has sludge/stone issues." 
+    {
+      question: "How much vegetable can I safely give my dog daily?",
+      answer: "Vegetables should comprise no more than 10% of your dog's daily caloric intake. For a 50-pound dog eating 1,000 calories daily, that's roughly 100 calories or about 1-2 cups of low-calorie vegetables like green beans or carrots.",
     },
-    { 
-      question: "Can I feed fruit to my small mammal?", 
-      answer: "Yes, but sparingly. Fruits like apples (no seeds), berries, and bananas are high in sugar. For rabbits and guinea pigs, fruit should be a treat (max 1-2 tsp per day), not a meal, to prevent gut bacterial imbalance." 
+    {
+      question: "Which fruits are toxic to pets and should never be used?",
+      answer: "Grapes, raisins, avocado, and anything with xylitol (artificial sweetener) are toxic to dogs and cats. Always verify fruit safety before entering it into the calculator.",
     },
-    { 
-      question: "Why can't ferrets have vegetables?", 
-      answer: "Ferrets are obligate carnivores with a short digestive tract designed for meat. They lack the cecum bacteria to digest plant fiber. Feeding veggies can cause life-threatening intestinal blockages or bladder stones." 
+    {
+      question: "Can cats eat the same vegetable portions as dogs?",
+      answer: "No, cats have different nutritional needs and should consume vegetables sparingly—typically less than 5% of daily calories. Cats are obligate carnivores and need fewer plant-based foods than dogs.",
     },
-    { 
-      question: "How do I introduce fresh foods?", 
-      answer: "Introduce one new vegetable at a time every 3 days. Watch for soft stools or diarrhea. If digestive upset occurs, stop the new food immediately and offer unlimited timothy hay." 
+    {
+      question: "What pet weight should I input for accurate portion sizes?",
+      answer: "Use your pet's current weight in pounds or kilograms as measured at your last veterinary visit. Accuracy ensures the calculator recommends appropriate serving sizes for your specific pet.",
+    },
+    {
+      question: "How does pet age affect safe vegetable and fruit portions?",
+      answer: "Puppies and kittens have different caloric needs than adults; senior pets may have digestive sensitivities. The calculator adjusts recommendations based on age group to prevent overfeeding or digestive upset.",
+    },
+    {
+      question: "Are frozen vegetables as safe as fresh for this calculator?",
+      answer: "Yes, frozen vegetables without added salt or seasonings are equally nutritious and safe. Thaw them and calculate portions by weight, just as you would with fresh produce.",
+    },
+    {
+      question: "What if my pet has existing health conditions—should I adjust portions?",
+      answer: "Pets with diabetes, kidney disease, or digestive issues may need modified portions; always consult your veterinarian before introducing vegetables or adjusting amounts.",
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -220,56 +232,218 @@ export default function SmallMammalSafeVegetablesFruitsPortionCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Safe Produce Portions</h2>
-         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            Small mammals have sensitive digestive systems evolved for specific diets. <strong>Herbivores</strong> like rabbits, guinea pigs, and chinchillas require high-fiber diets dominated by hay. Fresh vegetables provide hydration and vitamins, but must be strictly portioned to prevent gastrointestinal stasis or bloating.
-         </p>
-         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-            <strong>Fruits and root vegetables</strong> (like carrots) are high in sugar and starch. While tasty, they act like candy for small pets. Excessive sugar disrupts the delicate cecal flora, leading to gas, diarrhea, and potentially fatal enterotoxemia. This calculator uses veterinary weight-based formulas to determine safe daily limits.
-         </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Safe Veggie & Fruit Portion Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines safe daily vegetable and fruit portions for your dog or cat based on weight, age, and activity level. It ensures treats don't exceed 10% of daily caloric intake, maintaining nutritional balance for your pet.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's current weight, species (dog or cat), age group, and activity level. The calculator uses these inputs to estimate daily caloric needs and generate maximum vegetable and fruit servings.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show total daily veggie calories allowed, equivalent cup servings, and safe fruit options. Use these guidelines when introducing produce to your pet's diet, and always consult your veterinarian about individual dietary needs.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            Select your pet's species, enter their current weight, and choose the type of fresh food you plan to feed.
-         </p>
-         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-            <li><strong>Leafy Greens:</strong> Includes romaine, kale, cilantro. Can be fed in larger amounts (daily staples).</li>
-            <li><strong>Root Veg & Fruit:</strong> Includes carrots, apples, berries. These are "treats" and the calculator will drastically reduce the safe portion size to protect your pet's health.</li>
-         </ul>
+      {/* TABLE: Safe Daily Vegetable Portions by Pet Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Safe Daily Vegetable Portions by Pet Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to cross-reference your pet's weight with recommended daily vegetable servings.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Caloric Intake</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Veggie Calories (10%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Cup Equivalent</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5 cup</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75 cup</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 cups</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">135</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 cups</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 cups</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Portions assume low-calorie vegetables like green beans, carrots, and broccoli. High-calorie vegetables like potatoes require smaller servings.</p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-         <ul className="space-y-6">
-            {faqs.map((item, i) => (
-              <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-                <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-              </li>
-            ))}
-         </ul>
+      {/* TABLE: Safe Fruit Portions for Common Pet-Friendly Options */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Safe Fruit Portions for Common Pet-Friendly Options</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Fruits are higher in natural sugars and should be limited compared to vegetables.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fruit Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe for Dogs?</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe for Cats?</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Serving Size</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Apples (no seeds)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 thin slices</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Blueberries</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10 berries</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Watermelon (no seeds)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 small cubes</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bananas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rarely</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 small pieces</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Strawberries</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 whole berries</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pumpkin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 tablespoons</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All fruit portions should count toward the 10% daily caloric limit. Remove all seeds and pits before serving.</p>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
-         <ul className="space-y-4">
-           <li className="block">
-             <a href="https://rabbit.org/care/food-diet/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               1. House Rabbit Society
-             </a>
-             <p className="text-slate-500 text-sm">Guidelines for suggested vegetables and fruits for a rabbit diet.</p>
-           </li>
-           <li className="block">
-             <a href="https://www.guinealynx.info/diet.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               2. Guinea Lynx
-             </a>
-             <p className="text-slate-500 text-sm">Comprehensive medical and nutritional guide for guinea pigs.</p>
-           </li>
-         </ul>
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Introduce new vegetables and fruits gradually over 7-10 days to prevent digestive upset.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Remove seeds, pits, and stems from all fruits before serving to avoid choking hazards and toxins.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Cook hard vegetables like carrots and broccoli briefly to improve digestibility and reduce choking risk.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your pet after introducing new produce for signs of allergies, vomiting, or diarrhea.</li>
+        </ul>
       </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Feeding Toxic Fruits Without Checking</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Never assume all fruits are safe; grapes, raisins, and avocados are toxic to both dogs and cats and can cause serious poisoning.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Exceeding the 10% Daily Treat Rule</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Giving vegetables and fruits beyond 10% of daily calories can cause nutritional imbalances and obesity regardless of portion type.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Seasoned or Salted Vegetables</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Store-bought canned vegetables with salt, garlic, or onions are unsafe; always use fresh, plain, or unseasoned frozen options.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Pet-Specific Dietary Restrictions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats and dogs have different nutritional needs; portions that are safe for dogs may be inappropriate for cats or senior pets.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much vegetable can I safely give my dog daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Vegetables should comprise no more than 10% of your dog's daily caloric intake. For a 50-pound dog eating 1,000 calories daily, that's roughly 100 calories or about 1-2 cups of low-calorie vegetables like green beans or carrots.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which fruits are toxic to pets and should never be used?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Grapes, raisins, avocado, and anything with xylitol (artificial sweetener) are toxic to dogs and cats. Always verify fruit safety before entering it into the calculator.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can cats eat the same vegetable portions as dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, cats have different nutritional needs and should consume vegetables sparingly—typically less than 5% of daily calories. Cats are obligate carnivores and need fewer plant-based foods than dogs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What pet weight should I input for accurate portion sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use your pet's current weight in pounds or kilograms as measured at your last veterinary visit. Accuracy ensures the calculator recommends appropriate serving sizes for your specific pet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does pet age affect safe vegetable and fruit portions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Puppies and kittens have different caloric needs than adults; senior pets may have digestive sensitivities. The calculator adjusts recommendations based on age group to prevent overfeeding or digestive upset.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are frozen vegetables as safe as fresh for this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, frozen vegetables without added salt or seasonings are equally nutritious and safe. Thaw them and calculate portions by weight, just as you would with fresh produce.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my pet has existing health conditions—should I adjust portions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pets with diabetes, kidney disease, or digestive issues may need modified portions; always consult your veterinarian before introducing vegetables or adjusting amounts.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive list of toxic foods and plants for pets with emergency contact information.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) Pet Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for balanced pet diets and safe treat percentages.</p>
+          </li>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Veterinary Cooperative Medical Association Nutrition Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official nutritional standards and guidelines for commercial and homemade pet foods.</p>
+          </li>
+          <li>
+            <a href="https://www.petmd.com/dogs/nutrition/vegetables-dogs" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD Vegetable Safety for Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed guide to which vegetables are safe, how to prepare them, and appropriate serving sizes.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

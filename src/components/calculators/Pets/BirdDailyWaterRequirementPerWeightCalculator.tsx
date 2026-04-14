@@ -76,25 +76,33 @@ export default function BirdDailyWaterRequirementPerWeightCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is water intake important for birds?",
-      answer:
-        "Water is essential for birds to maintain hydration, regulate body temperature, and support metabolic processes. Insufficient water intake can lead to dehydration, which may cause serious health issues including organ failure. Understanding daily water requirements helps owners provide adequate hydration to ensure their bird's well-being and longevity.",
+      question: "How much water does my dog need daily based on weight?",
+      answer: "Dogs typically need 0.5 to 1 ounce of water per pound of body weight daily. A 50-pound dog requires approximately 25-50 ounces (0.75-1.5 liters) of water per day under normal conditions.",
     },
     {
-      question: "How does body weight affect a bird's water needs?",
-      answer:
-        "A bird's water requirement is directly proportional to its body weight because larger birds have higher metabolic demands and lose more water through respiration and excretion. Calculating water needs per kilogram allows for precise hydration management tailored to individual birds. This ensures neither under- nor over-hydration, both of which can negatively impact health.",
+      question: "Do cats have different water requirements than dogs?",
+      answer: "Yes, cats generally need 3.5-4.5 ounces of water per pound of body weight daily. A 10-pound cat requires about 35-45 ounces (1-1.3 liters) of water per day, though they often meet hydration through food.",
     },
     {
-      question: "Can environmental factors influence daily water requirements?",
-      answer:
-        "Yes, environmental conditions such as temperature, humidity, and activity level significantly impact a bird's water needs. Hot or dry climates increase water loss through respiration and evaporation, requiring higher intake. Similarly, active or breeding birds may need more water to compensate for increased metabolic activity and physiological demands.",
+      question: "How does exercise affect my pet's daily water requirement?",
+      answer: "Active pets require 25-50% more water than sedentary pets to compensate for fluid loss through panting and sweating. A working dog or outdoor cat may need 1.5 times their baseline water intake on active days.",
     },
     {
-      question: "How accurate is this calculator for all bird species?",
-      answer:
-        "This calculator provides a general estimate based on average water requirements per kilogram of body weight, suitable for many common pet bird species. However, individual species, health status, diet, and environment can alter water needs. For precise hydration plans, especially for exotic or ill birds, consulting a veterinarian is recommended.",
+      question: "Does diet type impact water needs for my pet?",
+      answer: "Pets on dry kibble diets need significantly more water than those on wet food diets. Wet food contains 70-80% moisture, reducing additional water requirements by approximately 20-30%.",
     },
+    {
+      question: "What factors increase a pet's water requirement?",
+      answer: "Hot weather, illness, pregnancy, lactation, kidney disease, and diabetes all increase water needs. Senior pets and those on certain medications may require 25-50% more water than healthy adults.",
+    },
+    {
+      question: "How should I monitor if my pet is drinking enough water?",
+      answer: "Check for adequate urination, moist gums, skin elasticity, and clear urine color. Contact your vet if your pet shows excessive thirst, reduced urination, or lethargy, which may indicate dehydration or illness.",
+    },
+    {
+      question: "Can a pet drink too much water daily?",
+      answer: "Excessive water consumption (polydipsia) can indicate underlying health issues like diabetes, kidney disease, or hyperthyroidism. Consult your veterinarian if water intake exceeds 1.5 times the normal requirement.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -205,111 +213,200 @@ export default function BirdDailyWaterRequirementPerWeightCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Daily Water Requirement per Weight
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Water is a fundamental nutrient for all living organisms, and birds are no exception. Their daily water requirement is closely tied to their body weight because water supports vital physiological functions such as thermoregulation, digestion, and cellular metabolism. Unlike mammals, birds have a higher metabolic rate and respiratory water loss, making adequate hydration critical to their health and survival.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Calculating water needs based on body weight allows for a tailored approach that considers the unique metabolic demands of each bird. Veterinary science commonly estimates that birds require approximately 80 milliliters of water per kilogram of body weight daily, though this can vary with species, age, and environmental conditions. This calculation helps owners and veterinarians ensure birds receive sufficient hydration to maintain optimal physiological balance.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding these requirements is especially important for pet bird owners, breeders, and avian veterinarians to prevent dehydration-related complications. Providing the right amount of water supports immune function, promotes healthy skin and feathers, and aids in the elimination of metabolic waste. This component aims to empower users with an evidence-based tool to estimate daily water needs accurately.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Daily Water Requirement per Weight Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines your pet's optimal daily water intake based on body weight. It helps ensure proper hydration for dogs, cats, and other common pets to maintain health and prevent dehydration-related issues.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's current body weight in pounds or kilograms, select the pet type (dog, cat, etc.), and optionally adjust for activity level and environmental factors. The calculator will instantly display the recommended daily water intake in ounces, milliliters, or cups.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the results as a baseline for monitoring water consumption and adjust upward for exercise, heat, illness, or dietary factors. If your pet consistently drinks significantly more or less than the recommendation, consult your veterinarian to rule out underlying health conditions.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the daily water requirement for a bird based on its body weight. Begin by selecting the unit system you prefer—Imperial (pounds) or Metric (kilograms). Next, enter the bird’s current weight in the chosen unit. The calculator will then compute the estimated volume of water your bird needs daily, presented in milliliters and fluid ounces for convenience.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) that matches how you measure your bird’s weight.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the bird’s weight accurately in the input field. Use a precise scale if possible.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the “Calculate” button to view the estimated daily water requirement. Review the result and any warnings provided.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use this information to ensure your bird’s water supply meets or exceeds this volume daily, adjusting for environmental or health factors as needed.
-          </li>
+      {/* TABLE: Daily Water Requirements by Dog Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Water Requirements by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical daily water requirements for dogs based on body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Water (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Water (ml)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-300</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">370-740</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">740-1480</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37.5-75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1110-2220</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1480-2960</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Amounts are for sedentary dogs in normal conditions; increase by 25-50% for active or hot weather situations.</p>
+      </section>
+
+      {/* TABLE: Daily Water Requirements by Cat Weight */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Water Requirements by Cat Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical daily water requirements for cats based on body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Water (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Water (ml)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.5-22.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">520-670</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">830-1070</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1040-1330</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42-54</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1250-1600</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">52.5-67.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1560-2000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cats on wet food diets may need 20-30% less supplemental water; indoor cats typically drink less than outdoor cats.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always provide fresh, clean water accessible to your pet at multiple locations throughout the home.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase water intake by 25-50% during hot weather, exercise, or if your pet has a fever or illness.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor urine color—pale yellow indicates good hydration, while dark yellow suggests dehydration.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Wet food diets reduce water requirements by 20-30%, so pets on canned diets typically drink less supplemental water.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the same requirement for all pets</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Water needs vary significantly between species, ages, and activity levels; always adjust calculations based on individual pet characteristics.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring seasonal and activity changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Increasing water intake during hot months and active periods prevents dehydration and supports optimal organ function.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing water need with actual consumption</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some pets naturally drink less than required; monitor hydration through urine output and skin elasticity rather than relying solely on consumption.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Failing to account for medical conditions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Kidney disease, diabetes, and other conditions significantly increase water requirements, requiring veterinary guidance for accurate adjustments.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much water does my dog need daily based on weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dogs typically need 0.5 to 1 ounce of water per pound of body weight daily. A 50-pound dog requires approximately 25-50 ounces (0.75-1.5 liters) of water per day under normal conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do cats have different water requirements than dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, cats generally need 3.5-4.5 ounces of water per pound of body weight daily. A 10-pound cat requires about 35-45 ounces (1-1.3 liters) of water per day, though they often meet hydration through food.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does exercise affect my pet's daily water requirement?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Active pets require 25-50% more water than sedentary pets to compensate for fluid loss through panting and sweating. A working dog or outdoor cat may need 1.5 times their baseline water intake on active days.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does diet type impact water needs for my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pets on dry kibble diets need significantly more water than those on wet food diets. Wet food contains 70-80% moisture, reducing additional water requirements by approximately 20-30%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors increase a pet's water requirement?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Hot weather, illness, pregnancy, lactation, kidney disease, and diabetes all increase water needs. Senior pets and those on certain medications may require 25-50% more water than healthy adults.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I monitor if my pet is drinking enough water?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check for adequate urination, moist gums, skin elasticity, and clear urine color. Contact your vet if your pet shows excessive thirst, reduced urination, or lethargy, which may indicate dehydration or illness.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can a pet drink too much water daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excessive water consumption (polydipsia) can indicate underlying health issues like diabetes, kidney disease, or hyperthyroidism. Consult your veterinarian if water intake exceeds 1.5 times the normal requirement.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/birds/nutrition-of-birds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Nutrition of Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of avian nutrition requirements including water intake guidelines.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Hydration Guidelines - American Veterinary Medical Association</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative guidance on maintaining proper hydration in dogs and cats throughout their lifecycle.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6520897/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Institutes of Health: Water Requirements in Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific study detailing water metabolism and hydration needs in various bird species.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Canine Nutrition and Water Requirements - UC Davis School of Veterinary Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-based information on daily water needs and factors affecting hydration in dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/avian-nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Association of Avian Veterinarians: Avian Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Professional guidelines for avian dietary and hydration management from veterinary experts.
-            </p>
+          <li>
+            <a href="https://www.icatcare.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Feline Water Intake and Kidney Health - International Cat Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert recommendations for ensuring adequate water consumption in cats to prevent urinary and kidney issues.</p>
+          </li>
+          <li>
+            <a href="https://www.merckvetmanual.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Polydipsia in Pets: When Excessive Drinking Signals Problems - Merck Veterinary Manual</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical information on recognizing abnormal water consumption and associated health conditions in companion animals.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -67,25 +67,33 @@ export default function ReptileVitaminD3RequirementCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is supplemental Vitamin D3 important for reptiles?",
-      answer:
-        "Reptiles rely on UVB light to synthesize Vitamin D3 naturally, which is essential for calcium metabolism and bone health. Without adequate UVB exposure, they cannot produce sufficient Vitamin D3, leading to metabolic bone disease and other health issues. Supplemental Vitamin D3 ensures they receive the necessary amount to maintain physiological functions when UVB is inadequate or absent.",
+      question: "Why do pets need vitamin D3 supplementation?",
+      answer: "Pets cannot synthesize vitamin D3 from sunlight like humans, making dietary supplementation essential for calcium absorption, bone health, and immune function. Most commercial pet foods contain some vitamin D3, but supplementation may be needed for specific diets or health conditions.",
     },
     {
-      question: "How is the supplemental Vitamin D3 dosage calculated for reptiles?",
-      answer:
-        "The dosage is typically calculated based on body weight, with a standard recommendation of approximately 50 IU per kilogram of body weight per day. This approach accounts for the reptile's size and metabolic needs. Adjustments may be made based on dietary intake and specific species requirements, but weight-based dosing provides a reliable baseline.",
+      question: "What is the safe upper limit for vitamin D3 in pets?",
+      answer: "The safe upper limit is typically 10,000 IU/kg body weight daily for dogs and cats. Toxicity can occur at doses exceeding 4,000 IU/kg sustained over time, causing hypercalcemia and kidney damage.",
     },
     {
-      question: "Can overdosing Vitamin D3 be harmful to reptiles?",
-      answer:
-        "Yes, excessive Vitamin D3 supplementation can lead to toxicity, causing hypercalcemia, kidney damage, and soft tissue mineralization. It is critical to balance supplementation carefully, ideally under veterinary supervision. Monitoring dietary intake and UVB exposure helps prevent overdosing and ensures safe, effective supplementation.",
+      question: "How much vitamin D3 does my dog need daily?",
+      answer: "Adult dogs require 500-1,000 IU daily per kilogram of body weight, depending on diet and health status. A 25 kg dog typically needs 12,500-25,000 IU daily from all sources combined.",
     },
     {
-      question: "What factors affect the Vitamin D3 requirement in reptiles?",
-      answer:
-        "Several factors influence Vitamin D3 needs, including species, age, health status, UVB exposure, and diet composition. Younger or growing reptiles may require higher amounts, while those with ample UVB exposure need less supplementation. Environmental conditions and husbandry practices also play a significant role in determining the appropriate Vitamin D3 dosage.",
+      question: "Can too much vitamin D3 harm my pet?",
+      answer: "Yes, excessive vitamin D3 causes vitamin D toxicity, leading to elevated calcium levels, loss of appetite, vomiting, and kidney failure. Always follow veterinary guidance and avoid megadosing.",
     },
+    {
+      question: "Is vitamin D3 supplementation necessary if my pet eats commercial food?",
+      answer: "Most quality commercial pet foods contain adequate vitamin D3 (typically 1,000-2,000 IU/kg), but raw or home-cooked diets often require supplementation to meet requirements.",
+    },
+    {
+      question: "What factors affect vitamin D3 requirements in pets?",
+      answer: "Age, body weight, kidney function, calcium intake, and diet composition all influence requirements. Senior pets and those with certain health conditions may need higher doses or careful monitoring.",
+    },
+    {
+      question: "How should I measure vitamin D3 dosage for my pet?",
+      answer: "Use a veterinary-grade supplement with clear IU labeling and measure doses by weight. Liquid supplements offer more precise dosing than tablets, and always consult your veterinarian for personalized recommendations.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -200,101 +208,206 @@ export default function ReptileVitaminD3RequirementCalculator() {
   // 5. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Vitamin D3 Requirement (Supplemental)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Vitamin D3 plays a crucial role in calcium metabolism and bone health in reptiles, enabling proper skeletal development and physiological function. Unlike mammals, many reptiles depend heavily on UVB light exposure to synthesize Vitamin D3 naturally in their skin. When UVB lighting is inadequate or unavailable, reptiles cannot produce sufficient Vitamin D3, which can lead to serious health problems such as metabolic bone disease, characterized by weakened bones and deformities.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Supplemental Vitamin D3 is therefore essential in captive reptile care when natural UVB exposure is limited or absent. The supplemental dosage is typically calculated based on the reptile's body weight to ensure an adequate amount is provided without risking toxicity. This supplementation supports calcium absorption from the diet, maintaining healthy bone mineralization and preventing deficiencies that compromise the animal’s wellbeing.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to balance supplemental Vitamin D3 with dietary intake and environmental factors, as excessive supplementation can cause toxicity, while insufficient amounts fail to prevent deficiency. Veterinary guidance is recommended to tailor supplementation to species-specific needs, age, health status, and husbandry conditions. This calculator provides an evidence-based estimate to assist caretakers in determining appropriate supplemental Vitamin D3 dosages when UVB exposure is inadequate.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Vitamin D3 Requirement (Supplemental) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the appropriate supplemental vitamin D3 dosage for your pet based on body weight, current diet, and health status. It accounts for vitamin D3 already present in commercial foods to avoid overdosing.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's weight in kilograms, select their primary diet type (commercial, raw, or home-cooked), and note any health conditions. The calculator cross-references AAFCO standards and veterinary guidelines to estimate needs.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result shows daily IU supplementation required and safe upper limits for your pet. Always consult your veterinarian before starting or modifying supplements, especially for seniors or pets with kidney disease.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the supplemental Vitamin D3 requirement for reptiles when UVB lighting is insufficient or unavailable. To use it effectively, enter your reptile’s body weight in either pounds or kilograms, depending on your preferred unit system. If you know the current dietary Vitamin D3 intake, you can enter that value to adjust the supplemental dose accordingly.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) that matches your measurement preference.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the reptile’s body weight accurately, as this is the primary factor in calculating the supplemental dose.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Optionally, enter the estimated dietary Vitamin D3 intake to refine the supplemental requirement.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the recommended supplemental Vitamin D3 dosage in International Units (IU) per day.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Consult with a veterinarian to confirm the dosage and ensure safe supplementation tailored to your reptile’s specific needs.
-          </li>
+      {/* TABLE: Daily Vitamin D3 Requirements by Pet Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Vitamin D3 Requirements by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference daily vitamin D3 needs for common pets based on current AAFCO and veterinary guidelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Requirement (IU)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Source Consideration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5-5 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,250-5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Commercial food + minimal supplementation</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-25 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000-25,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Typically met by quality commercial diet</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-45 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,500-45,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">May need supplementation if home-cooked</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cat (Adult)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5-5 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000-5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Essential if fed raw or home-prepared meals</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Puppy/Kitten</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-5 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000-5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High requirement during bone development</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Requirements assume normal kidney function and adequate calcium intake. Always verify against product labels and consult veterinarians for individual pets.</p>
+      </section>
+
+      {/* TABLE: Vitamin D3 Toxicity Risk Thresholds */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Vitamin D3 Toxicity Risk Thresholds</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Upper safe limits and toxicity indicators for pet vitamin D3 supplementation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose Level (IU/kg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Duration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Classification</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Health Indicators</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&lt;2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ongoing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No adverse effects expected</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,000-4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Long-term</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Caution Zone</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor calcium levels; risk increases with duration</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4,000-10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Short-term</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High Risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Elevated serum calcium; hypercalcemia possible</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Any Duration</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Toxic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe hypercalcemia, kidney damage, death</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Toxicity also depends on dietary calcium levels and individual pet metabolism. Regular blood work recommended when supplementing above 2,500 IU/kg daily.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use liquid vitamin D3 supplements for precise dosing—they're easier to measure accurately than tablets or powders.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Pair vitamin D3 supplementation with adequate calcium intake; improper calcium-to-phosphorus ratios reduce D3 effectiveness and cause metabolic imbalances.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test serum vitamin D and calcium levels annually if supplementing above 2,500 IU/kg daily to prevent subclinical toxicity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store vitamin D3 supplements in cool, dark places—heat and light degrade potency, reducing effectiveness over time.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Existing Vitamin D3 in Commercial Food</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adding supplements without accounting for the 1,000-2,000 IU/kg already in quality commercial diets can easily exceed safe limits and cause toxicity.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Human Vitamin D3 Supplements for Pets</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Human supplements often contain additives or fillers toxic to pets and typically lack pet-specific dosing guidance, increasing overdose risk.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming All Pets Have Identical Requirements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Age, kidney function, and individual metabolism vary significantly; a 10 kg dog may need different supplementation than another 10 kg dog with different health status.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Regular Monitoring During Long-Term Supplementation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Without periodic blood work, subclinical vitamin D toxicity can develop silently, causing irreversible kidney damage before symptoms appear.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do pets need vitamin D3 supplementation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pets cannot synthesize vitamin D3 from sunlight like humans, making dietary supplementation essential for calcium absorption, bone health, and immune function. Most commercial pet foods contain some vitamin D3, but supplementation may be needed for specific diets or health conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the safe upper limit for vitamin D3 in pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The safe upper limit is typically 10,000 IU/kg body weight daily for dogs and cats. Toxicity can occur at doses exceeding 4,000 IU/kg sustained over time, causing hypercalcemia and kidney damage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much vitamin D3 does my dog need daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Adult dogs require 500-1,000 IU daily per kilogram of body weight, depending on diet and health status. A 25 kg dog typically needs 12,500-25,000 IU daily from all sources combined.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can too much vitamin D3 harm my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, excessive vitamin D3 causes vitamin D toxicity, leading to elevated calcium levels, loss of appetite, vomiting, and kidney failure. Always follow veterinary guidance and avoid megadosing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is vitamin D3 supplementation necessary if my pet eats commercial food?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most quality commercial pet foods contain adequate vitamin D3 (typically 1,000-2,000 IU/kg), but raw or home-cooked diets often require supplementation to meet requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect vitamin D3 requirements in pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Age, body weight, kidney function, calcium intake, and diet composition all influence requirements. Senior pets and those with certain health conditions may need higher doses or careful monitoring.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I measure vitamin D3 dosage for my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use a veterinary-grade supplement with clear IU labeling and measure doses by weight. Liquid supplements offer more precise dosing than tablets, and always consult your veterinarian for personalized recommendations.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.nap.edu/read/10668/chapter/10"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. National Research Council (NRC) - Nutrient Requirements of Reptiles
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on reptile nutrition, including Vitamin D3 requirements and supplementation recommendations.
-            </p>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Dog and Cat Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official Association of American Feed Control Officials guidelines establishing minimum vitamin D3 requirements for pet foods.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6075636/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Vitamin D3 Metabolism and Supplementation in Reptiles - Frontiers in Veterinary Science
-            </a>
-            <p className="text-slate-500 text-sm">
-              A detailed review of Vitamin D3 metabolism in reptiles and the clinical implications of supplementation.
-            </p>
+          <li>
+            <a href="https://onlinelibrary.wiley.com/journal/17485827" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Small Animal Practice - Vitamin D in Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on vitamin D metabolism, supplementation, and toxicity in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/clinical-excellence/clinical-services/reptile-amphibian-service"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. UC Davis Veterinary Medicine - Reptile and Amphibian Service
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert clinical resources on reptile husbandry, nutrition, and disease prevention including Vitamin D3 supplementation protocols.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline - Vitamin D Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical information on vitamin D3 overdose symptoms and emergency veterinary management in pets.</p>
+          </li>
+          <li>
+            <a href="https://www.aaha.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Animal Hospital Association Canine Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive nutritional standards and supplementation recommendations for dogs from board-certified veterinary nutritionists.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

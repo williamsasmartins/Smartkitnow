@@ -60,25 +60,33 @@ export default function BirdWeightTrendTrackerWeeklyCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is tracking weekly weight trends important for birds?",
-      answer:
-        "Weekly weight tracking is crucial because birds often mask illness until symptoms become severe. Subtle weight changes can be the earliest indicator of health issues or nutritional imbalances. By monitoring these trends consistently, caretakers and veterinarians can intervene promptly, improving outcomes and preventing serious complications.",
+      question: "How often should I weigh my pet for accurate trend tracking?",
+      answer: "Weigh your pet at the same time each week, preferably in the morning before meals, to ensure consistent and comparable data points that reflect true weight trends rather than daily fluctuations.",
     },
     {
-      question: "How should I accurately measure my bird’s weight for this tracker?",
-      answer:
-        "Use a precise digital scale designed for small animals to ensure accuracy, ideally measuring to the nearest gram or 0.1 ounce. Weigh your bird at the same time each week, preferably before feeding, to reduce variability. Consistency in measurement conditions helps produce reliable data for meaningful trend analysis.",
+      question: "What weight change per week is considered normal for pets?",
+      answer: "Most healthy pets should maintain stable weight or lose 1-2% of body weight weekly during supervised diets; gains exceeding 5% weekly may indicate overfeeding or health issues requiring veterinary attention.",
     },
     {
-      question: "What does a significant weight change indicate in a weekly log?",
-      answer:
-        "A significant weight change, typically more than 5% loss or gain within a week, can signal underlying health problems such as infections, organ dysfunction, or dietary issues. It is important to consider other clinical signs and consult a veterinarian promptly. Early detection through weight trends allows for timely diagnosis and treatment.",
+      question: "Can I use this tracker for both dogs and cats?",
+      answer: "Yes, this tracker works for any pet species, but interpretation varies—cats typically need &lt;0.5 lbs weekly loss while larger dogs can safely lose 1-2 lbs per week depending on their starting weight.",
     },
     {
-      question: "Can this tracker replace regular veterinary check-ups?",
-      answer:
-        "No, this tracker is a supplementary tool designed to aid in early detection of health changes but does not replace professional veterinary evaluations. Regular check-ups remain essential for comprehensive health assessments, vaccinations, and diagnostics. Use this tool to provide valuable data to your veterinarian between visits.",
+      question: "How do I identify a concerning weight trend in my pet?",
+      answer: "A consistent downward trend exceeding 10% monthly or sudden weight spikes of &gt;5% warrant veterinary evaluation, as these patterns may signal illness, metabolic issues, or feeding problems.",
     },
+    {
+      question: "Should I adjust my pet's diet based on weekly weight logs?",
+      answer: "Track 4+ weeks of data before making dietary adjustments; consult your veterinarian before modifying portions, as rapid changes can cause digestive upset and may mask underlying health conditions.",
+    },
+    {
+      question: "What factors affect weekly weight fluctuations in pets?",
+      answer: "Water retention, bowel content, recent meals, activity level, stress, and hormonal cycles can cause 2-3% weekly variations, so focus on month-to-month trends rather than individual weekly readings.",
+    },
+    {
+      question: "How accurate does my scale need to be for pet weight tracking?",
+      answer: "Use a scale with ±0.5 lb accuracy minimum for accurate trends; weighing your pet with and without yourself on a human scale works if a pet scale is unavailable.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -180,98 +188,212 @@ export default function BirdWeightTrendTrackerWeeklyCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Weight Trend Tracker (Weekly Log)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Weight Trend Tracker (Weekly Log) is a vital tool designed specifically for bird owners and veterinarians to monitor subtle changes in a bird’s weight over time. Birds are masters at hiding illness, and weight fluctuations often serve as one of the earliest indicators of health problems. By logging weekly weights consistently, caretakers can detect trends that may otherwise go unnoticed, enabling early intervention and improved health outcomes.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This tracker emphasizes the importance of regular, precise weight measurements taken under consistent conditions. It is not merely about recording a single weight but about understanding the pattern of weight gain or loss across weeks. Such longitudinal data can reveal nutritional imbalances, disease progression, or recovery, providing invaluable insights for veterinary care and dietary adjustments.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          While the tool itself focuses on logging and displaying individual weekly weights, its true power lies in the cumulative data collected over time. When used alongside veterinary assessments, this tracker becomes an authoritative resource for managing avian health proactively. It supports informed decision-making and fosters a collaborative approach between bird owners and veterinary professionals.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Weight Trend Tracker (Weekly Log)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Weight Trend Tracker (Weekly Log) records your pet's weekly weight measurements to identify patterns and trends over time, helping you catch gradual weight gain or loss that might indicate health or feeding issues. This calculator converts raw weekly data into actionable insights about your pet's metabolic health and diet effectiveness.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's name, starting weight, and weekly measurements at the same time each week for consistency. The tracker also accepts your target weight goal and diet start date to calculate progress toward optimal body condition.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results display weight change trends, percentage of body weight gained or lost, estimated time to goal, and visual charts showing whether your pet is on track for healthy weight management. Compare results to veterinary guidelines—stable trends are better than rapid changes, even if they appear positive.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To effectively use the Weight Trend Tracker, begin by accurately weighing your bird using a precise scale. Enter the weight in pounds (lbs) into the input field, and select the date corresponding to that measurement. Consistency is key: weigh your bird at the same time each week, ideally before feeding, to minimize variability caused by food intake or hydration.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Weigh your bird using a reliable digital scale and record the weight in pounds.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the weight and the date of measurement into the respective fields.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click "Calculate" to log the weight. Repeat weekly to build a trend.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Monitor the results for any significant changes and consult your veterinarian if you notice unusual trends.
-          </li>
+      {/* TABLE: Healthy Weekly Weight Change Benchmarks by Pet Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Healthy Weekly Weight Change Benchmarks by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Target weekly weight loss or maintenance rates vary significantly by species and starting condition.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Healthy Maintenance Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Weekly Loss (Overweight)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Concerning Loss Rate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dogs (5-15 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.2 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.3 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;0.5 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium Dogs (16-50 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.3 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1.0 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;2.5 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dogs (51+ lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.5 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0-2.0 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;4.0 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cats (6-12 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.1 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.25 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;0.5 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbits (3-5 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0.05 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.05-0.1 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;0.3 lbs</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates based on veterinary nutrition guidelines; consult your vet for individual pet recommendations.</p>
+      </section>
+
+      {/* TABLE: Body Condition Score and Expected Weight Trends */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Body Condition Score and Expected Weight Trends</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Pet weight goals depend on current body condition; this table shows typical monthly targets by condition level.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Body Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Description</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Weight Goal</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Duration to Target</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Underweight (4/9)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ribs visible, no fat palpable</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+1-3% monthly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ideal (5/9)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ribs palpable, visible waist</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±0-1% monthly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maintenance</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overweight (7/9)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ribs not easily felt, slight belly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-3-5% monthly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Obese (8-9/9)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No visible waist, ribs not palpable</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-5-8% monthly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-16 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Post-Surgery/Recovery</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Individual assessment needed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+2-4% weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 weeks</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Body Condition Scores use the 9-point scale; adjust diet gradually to meet targets.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your pet on the same day and time weekly, preferably before feeding, to eliminate variables like meal and water content affecting readings.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track at least 3-4 weeks before evaluating trends, as single-week fluctuations are normal and don't indicate true progress or problems.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a dedicated pet scale or weigh yourself with and without your pet to ensure accuracy; avoid weighing during seasonal shedding peaks when wet coats add temporary weight.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Share logged data with your veterinarian during checkups to adjust diet plans based on actual trends rather than perceived changes.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Weighing at Different Times Daily</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Inconsistent weighing times introduce water, meal, and bowel content variables that mask real trends; always weigh at the same weekly time for comparable data.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Reacting to Single-Week Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A single week of weight change does not indicate a trend; evaluate at least 4 consecutive weeks before adjusting diet or concluding progress.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Body Condition Score</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Weight alone doesn't determine health—a pet gaining muscle while losing fat may show no scale change; assess visible ribs, waist, and rib palpability alongside numbers.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Setting Unrealistic Weight Goals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Aiming for &gt;8% monthly weight loss causes muscle loss and metabolic damage; healthy targets are 1-2% weekly for overweight pets, roughly 1-2 lbs per week for large dogs.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I weigh my pet for accurate trend tracking?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Weigh your pet at the same time each week, preferably in the morning before meals, to ensure consistent and comparable data points that reflect true weight trends rather than daily fluctuations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What weight change per week is considered normal for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most healthy pets should maintain stable weight or lose 1-2% of body weight weekly during supervised diets; gains exceeding 5% weekly may indicate overfeeding or health issues requiring veterinary attention.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this tracker for both dogs and cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this tracker works for any pet species, but interpretation varies—cats typically need &lt;0.5 lbs weekly loss while larger dogs can safely lose 1-2 lbs per week depending on their starting weight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I identify a concerning weight trend in my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A consistent downward trend exceeding 10% monthly or sudden weight spikes of &gt;5% warrant veterinary evaluation, as these patterns may signal illness, metabolic issues, or feeding problems.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust my pet's diet based on weekly weight logs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Track 4+ weeks of data before making dietary adjustments; consult your veterinarian before modifying portions, as rapid changes can cause digestive upset and may mask underlying health conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect weekly weight fluctuations in pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Water retention, bowel content, recent meals, activity level, stress, and hormonal cycles can cause 2-3% weekly variations, so focus on month-to-month trends rather than individual weekly readings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate does my scale need to be for pet weight tracking?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use a scale with ±0.5 lb accuracy minimum for accurate trends; weighing your pet with and without yourself on a human scale works if a pet scale is unavailable.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aav.org/avian-health/weight-monitoring"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American Association of Avian Veterinarians: Weight Monitoring in Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on the importance of weight tracking and techniques for accurate measurement in avian patients.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Pet Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards for pet food formulation and nutritional adequacy to support evidence-based diet selection and weight management plans.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/birds/clinical-examination-of-birds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Clinical Examination of Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Details clinical signs including weight changes and their diagnostic significance in avian medicine.
-            </p>
+          <li>
+            <a href="https://www.wsava.org/Global-Veterinary-Community/Advocacy/WSAVA-Guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">World Small Animal Veterinary Association Body Condition Scoring</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Standardized 9-point body condition scale used globally by veterinarians to assess pet weight and health status objectively.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151219/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Center for Biotechnology Information: Nutritional Assessment in Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Research article discussing nutritional monitoring and weight trends as indicators of health in captive birds.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/obesity-management" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association Pet Obesity Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidance on pet weight management, safe weight loss rates, and health risks associated with overweight conditions.</p>
+          </li>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis Veterinary Medical Teaching Hospital Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Academic veterinary nutrition research and clinical recommendations for maintaining healthy weight through diet and exercise protocols.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

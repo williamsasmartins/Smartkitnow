@@ -75,25 +75,33 @@ export default function AquariumSafeStockingDensityFishPerLitreCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is safe stocking density important for aquarium fish?",
-      answer:
-        "Safe stocking density is crucial to maintain optimal water quality and reduce stress among fish. Overstocking can lead to increased waste, depleted oxygen levels, and heightened disease susceptibility. By adhering to recommended stocking densities, aquarists ensure a healthier environment that promotes fish well-being and longevity.",
+      question: "What is the 1 inch per gallon rule for fish stocking?",
+      answer: "The 1 inch per gallon rule is a general guideline suggesting 1 inch of fish length per gallon of water, or approximately 0.1 cm of fish per litre. This rule works for small community fish but underestimates needs for larger or more active species.",
     },
     {
-      question: "How does fish length affect the calculation of stocking density?",
-      answer:
-        "Fish length directly correlates with the space and resources each fish requires in an aquarium. Larger fish produce more waste and need more oxygen, so their length is used to estimate their environmental impact. Incorporating fish length into stocking density calculations helps create a balanced aquatic ecosystem tailored to the species’ size.",
+      question: "How do I calculate safe stocking density for my aquarium?",
+      answer: "Divide the total length of all fish (in cm) by your tank volume (in litres). Safe densities typically range from 0.5–1.5 cm per litre depending on species, filtration, and tank shape.",
     },
     {
-      question: "Can I use this calculator for all types of fish species?",
-      answer:
-        "This calculator provides a general guideline based on fish length and tank volume, but species-specific behaviors and needs vary widely. Some fish are more territorial or produce more waste, requiring lower stocking densities. Always consider species-specific care requirements alongside this tool for best results.",
+      question: "Why does fish size matter in stocking density calculations?",
+      answer: "Larger fish produce more waste and require more oxygen, so they need proportionally more space. A 10 cm fish demands more resources than two 5 cm fish despite having equal total length.",
     },
     {
-      question: "What should I do if my stocking density exceeds the recommended limit?",
-      answer:
-        "If your stocking density is too high, consider reducing the number of fish or upgrading to a larger tank to improve conditions. Increasing filtration and performing more frequent water changes can also help mitigate negative effects. Prioritizing fish health by maintaining safe stocking densities prevents stress and disease outbreaks.",
+      question: "What stocking density is safe for goldfish?",
+      answer: "Goldfish require 0.5–0.75 cm per litre due to high bioload and oxygen demand. A single 15 cm goldfish needs at least 20–30 litres to thrive.",
     },
+    {
+      question: "Can filtration increase safe stocking density limits?",
+      answer: "Stronger filtration and aeration allow slightly higher densities, but cannot eliminate the need for adequate space. Even with excellent filtration, exceeding 2 cm per litre risks stress and disease.",
+    },
+    {
+      question: "How do tank shape and water circulation affect stocking density?",
+      answer: "Tall, narrow tanks have less surface area for gas exchange than long, shallow tanks of equal volume. Better water circulation supports higher densities by improving oxygen distribution.",
+    },
+    {
+      question: "What happens if I overstock my aquarium?",
+      answer: "Overstocking causes poor water quality, oxygen depletion, increased ammonia and nitrite, and higher disease risk. Fish become stressed, stop eating, and may die within days or weeks.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -237,101 +245,206 @@ export default function AquariumSafeStockingDensityFishPerLitreCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Safe Stocking Density (Fish/cm per Litre)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Safe stocking density is a critical concept in aquarium management that refers to the optimal amount of fish length per litre of water. This metric helps aquarists avoid overcrowding, which can lead to poor water quality, increased stress, and susceptibility to diseases among fish. By calculating the total length of fish relative to the tank volume, hobbyists can maintain a balanced and healthy aquatic environment.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Overstocking an aquarium disrupts the delicate ecosystem by increasing waste production and reducing oxygen availability, which negatively impacts fish health and behavior. Different species and sizes of fish have varying space and environmental needs, making it essential to consider average fish length in stocking calculations. This approach provides a more accurate and species-agnostic guideline compared to simply counting fish numbers.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Maintaining a safe stocking density not only promotes fish welfare but also simplifies tank maintenance by reducing the frequency of water changes and filtration strain. Aquarists should use this metric as a foundational guideline, complemented by species-specific knowledge and regular monitoring of water parameters. Ultimately, understanding and applying safe stocking density principles ensures a thriving and sustainable aquarium ecosystem.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Safe Stocking Density (Fish/cm per Litre) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines whether your aquarium is safely stocked by comparing total fish length to tank volume. It helps prevent overstocking, which causes poor water quality, stress, disease, and premature death.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your tank volume in litres and the total body length of all fish in centimetres. The calculator computes density (cm/L) and compares it against species-specific safe ranges to indicate if your stock is appropriate.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results &lt; 0.75 cm/L are conservative (extra safe); 0.75–1.5 cm/L is ideal for most community tanks; &gt; 1.5 cm/L risks problems unless you have exceptional filtration and maintenance.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps you determine the safe stocking density of your aquarium by calculating the total fish length per litre of tank water. To use it effectively, you will need to input the number of fish, the average length of your fish, and the total volume of your aquarium in litres. The calculator will then provide a value indicating whether your stocking density is within safe limits or if adjustments are necessary.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial for inches or Metric for centimeters) to match your fish length measurements.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the total number of fish currently in your aquarium.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the average length of your fish according to the selected unit system.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Provide the total volume of your aquarium in litres.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click "Calculate" to view your stocking density and any warnings if the density exceeds recommended safe levels.
-          </li>
+      {/* TABLE: Recommended Stocking Density Ranges by Fish Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Stocking Density Ranges by Fish Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These benchmarks help determine safe cm-per-litre limits based on species characteristics.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fish Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stocking Density (cm/L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example Species</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small community fish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0–1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Neon tetras, guppies, danios</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium community fish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75–1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Corydoras, mollies, platies</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large active fish</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5–0.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Goldfish, plecos, cichlids</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bottom dwellers</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75–1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Loaches, catfish, kuhli loaches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aggressive species</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.25–0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oscars, large cichlids, piranhas</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values assume good filtration, regular water changes, and appropriate tank dimensions. Adjust downward for poor filtration or high bioload species.</p>
+      </section>
+
+      {/* TABLE: Tank Volume and Maximum Fish Length Capacity */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Tank Volume and Maximum Fish Length Capacity</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Quick reference for maximum total fish length at recommended safe densities.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tank Volume (L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Capacity at 1.0 cm/L</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Capacity at 0.75 cm/L</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Capacity at 0.5 cm/L</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 cm total</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 cm total</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 cm total</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 cm total</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150 cm total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 cm total</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These figures represent total body length of all fish combined. Account for growth; juveniles will exceed these limits as they mature.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for future growth when stocking juveniles; many fish double or triple in size within 1–2 years.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure fish from the tip of the mouth to the end of the tail fin for accurate total length.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine stocking density with 25–30% weekly water changes and appropriate filtration to maintain water quality.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Research each species' bioload; some fish (goldfish, plecos) produce more waste than length alone suggests.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring future growth</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Stocking based on juvenile size causes overstocking within months when fish reach adult length.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying solely on the 1 inch per gallon rule</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">This oversimplified guideline doesn't account for species differences; goldfish need far more space than neon tetras.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming excellent filtration eliminates space needs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even premium filters cannot replace the natural space and surface area fish require for comfort and health.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting tank shape differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 40 L tall cube is less suitable for stocking than a 40 L long, shallow tank due to reduced surface area.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the 1 inch per gallon rule for fish stocking?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The 1 inch per gallon rule is a general guideline suggesting 1 inch of fish length per gallon of water, or approximately 0.1 cm of fish per litre. This rule works for small community fish but underestimates needs for larger or more active species.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate safe stocking density for my aquarium?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Divide the total length of all fish (in cm) by your tank volume (in litres). Safe densities typically range from 0.5–1.5 cm per litre depending on species, filtration, and tank shape.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does fish size matter in stocking density calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Larger fish produce more waste and require more oxygen, so they need proportionally more space. A 10 cm fish demands more resources than two 5 cm fish despite having equal total length.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What stocking density is safe for goldfish?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Goldfish require 0.5–0.75 cm per litre due to high bioload and oxygen demand. A single 15 cm goldfish needs at least 20–30 litres to thrive.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can filtration increase safe stocking density limits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Stronger filtration and aeration allow slightly higher densities, but cannot eliminate the need for adequate space. Even with excellent filtration, exceeding 2 cm per litre risks stress and disease.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do tank shape and water circulation affect stocking density?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Tall, narrow tanks have less surface area for gas exchange than long, shallow tanks of equal volume. Better water circulation supports higher densities by improving oxygen distribution.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I overstock my aquarium?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Overstocking causes poor water quality, oxygen depletion, increased ammonia and nitrite, and higher disease risk. Fish become stressed, stop eating, and may die within days or weeks.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aquaticcommunity.com/aquariumfish/safestockdensity.php"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Aquatic Community - Safe Stocking Density Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              This resource provides detailed insights into calculating safe stocking densities for freshwater aquariums, emphasizing fish length and tank volume relationships.
-            </p>
+          <li>
+            <a href="https://www.fishbase.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FishBase – Fish Biology and Ecology Database</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive species profiles including bioload, oxygen requirements, and minimum space recommendations.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/clinical-sciences/clinical-services/aquatic-animal-medicine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Veterinary Medicine - Aquatic Animal Medicine
-            </a>
-            <p className="text-slate-500 text-sm">
-              A veterinary perspective on aquatic animal health, including the importance of environmental factors such as stocking density in disease prevention and welfare.
-            </p>
+          <li>
+            <a href="https://www.americanaquariumproducts.com/Stocking.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Aquarium Products – Stocking Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed stocking density benchmarks and species-specific care requirements.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.fishvetgroup.com.au/fish-health-management/stocking-density"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Fish Vet Group - Stocking Density and Fish Health
-            </a>
-            <p className="text-slate-500 text-sm">
-              This article discusses the impact of stocking density on fish health and growth, providing practical advice for aquarists and professionals.
-            </p>
+          <li>
+            <a href="https://www.thesprucepets.com/aquarium-stocking-guide-4768378" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce Pets – Aquarium Stocking Calculator Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert guidance on calculating safe stocking levels and common stocking mistakes.</p>
+          </li>
+          <li>
+            <a href="https://www.aquariumcoop.com/blogs/aquarium/nitrogen-cycle" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Aquarium Co-operative – Aquarium Nitrogen Cycle</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Explains how bioload and water quality relate to fish stocking and tank capacity.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

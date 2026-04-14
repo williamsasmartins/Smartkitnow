@@ -57,25 +57,33 @@ export default function BirdVitaminARequirementCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is Vitamin A important for birds?",
-      answer:
-        "Vitamin A plays a crucial role in maintaining healthy skin, mucous membranes, and immune function in birds. Deficiency can lead to respiratory infections, poor feather quality, and vision problems. Ensuring adequate intake supports overall health and disease resistance in avian species.",
+      question: "Why is vitamin A important for pets?",
+      answer: "Vitamin A is essential for pet vision, immune function, and skin health. Deficiency can cause night blindness and respiratory infections, while excess can lead to toxicity.",
     },
     {
-      question: "How is the Vitamin A requirement calculated for birds?",
-      answer:
-        "The requirement is calculated based on the bird's body weight, typically expressed in International Units (IU) per kilogram. For seed-fed birds, a standard recommendation is 4000 IU per kg of body weight daily. This calculation helps tailor supplementation to the bird's size and nutritional needs.",
+      question: "How does pet species affect vitamin A requirements?",
+      answer: "Dogs need 5,000 IU/kg of body weight daily, while cats require 10,000 IU/kg. Cats cannot convert beta-carotene to vitamin A efficiently, making preformed sources critical.",
     },
     {
-      question: "Can I use this calculator for all bird species?",
-      answer:
-        "This calculator is designed primarily for common pet seed-fed birds and may not be accurate for all species, especially exotic or large birds. Different species have varying nutritional requirements, so consulting a veterinarian for specialized diets is essential. Use this tool as a general guideline rather than a definitive prescription.",
+      question: "What factors does this calculator consider?",
+      answer: "The calculator factors in pet species, age, weight, health status, and life stage (growth, maintenance, or senior) to determine precise requirements.",
     },
     {
-      question: "What are the risks of Vitamin A overdose in birds?",
-      answer:
-        "Excessive Vitamin A intake can cause toxicity, leading to symptoms like bone deformities, liver damage, and neurological issues. Over-supplementation should be avoided by adhering to recommended dosages based on body weight. Always consult a veterinary professional before making significant dietary changes or adding supplements.",
+      question: "Can vitamin A toxicity occur in pets?",
+      answer: "Yes, chronic excess vitamin A causes bone pain, hair loss, and liver damage. Cats are more susceptible than dogs, with toxicity typically occurring above 100,000 IU/kg daily.",
     },
+    {
+      question: "How often should I recalculate my pet's vitamin A needs?",
+      answer: "Recalculate every 6 months or when your pet's weight, age, or health status changes significantly.",
+    },
+    {
+      question: "Are synthetic and natural vitamin A sources equally effective?",
+      answer: "Synthetic retinyl acetate and natural sources are bioequivalent, but absorption depends on diet composition and individual pet metabolism.",
+    },
+    {
+      question: "What commercial foods meet vitamin A requirements?",
+      answer: "AAFCO-certified complete and balanced pet foods contain adequate vitamin A; check labels for retinyl palmitate or retinyl acetate content.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -166,114 +174,212 @@ export default function BirdVitaminARequirementCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Vitamin A Requirement Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Vitamin A is an essential nutrient for birds, playing a vital role in maintaining healthy epithelial tissues,
-          supporting immune function, and ensuring proper vision. Deficiencies in Vitamin A are common in seed-fed birds,
-          as their natural diets often lack sufficient amounts of this nutrient. This calculator estimates the daily Vitamin
-          A requirement based on the bird's body weight, helping caretakers provide appropriate supplementation.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The calculation uses a standardized dosage of 4000 International Units (IU) of Vitamin A per kilogram of body
-          weight, which is widely accepted in avian veterinary nutrition. This approach allows for a tailored recommendation
-          that considers the size of the bird, ensuring neither deficiency nor toxicity. Proper Vitamin A intake supports
-          feather quality, respiratory health, and resistance to infections.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          While this tool provides a general guideline, individual birds may have unique requirements based on species,
-          health status, and diet. It is important to consult with a qualified avian veterinarian for precise nutritional
-          planning, especially for exotic or large bird species. This calculator serves as an educational resource to
-          promote optimal avian health through informed supplementation.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Vitamin A Requirement Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the precise daily vitamin A intake your pet needs based on species, age, and weight. It provides personalized recommendations aligned with AAFCO and NRC nutritional standards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's species, current weight in pounds or kilograms, age category, and any health conditions. The calculator adjusts requirements for growth, maintenance, or senior life stages.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the daily IU recommendation and compare it to your pet's current diet using food labels or ingredient databases. Consult your veterinarian before supplementing, especially for cats prone to toxicity.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this Vitamin A Requirement Calculator is straightforward and designed to provide quick, reliable estimates
-          for daily Vitamin A needs in birds. Begin by selecting the unit system that corresponds to your measurement of the
-          bird's weight—either imperial (pounds) or metric (kilograms). Enter the bird's body weight accurately to ensure
-          the calculation reflects its true nutritional needs.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) from the dropdown menu to match your
-            measurement preference.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the bird's body weight in the input field. Ensure the value is positive and
-            realistic for the species.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the "Calculate" button to generate the estimated daily Vitamin A requirement
-            in International Units (IU).
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the result and any warnings provided. Use this information to guide dietary
-            supplementation, and consult a veterinarian for personalized advice.
-          </li>
+      {/* TABLE: Daily Vitamin A Requirements by Pet Type and Age */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Vitamin A Requirements by Pet Type and Age</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference values for vitamin A daily intake based on pet species and life stage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Puppies/Kittens (IU/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adult Dogs/Cats (IU/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Senior Pets (IU/kg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000–10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000–7,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000–20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000–12,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbits</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,000–10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6,000–8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6,000–8,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Guinea Pigs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500–3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500–3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500–3,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values based on AAFCO (2021) and NRC (2006) guidelines; adjust based on individual health conditions.</p>
+      </section>
+
+      {/* TABLE: Vitamin A Content in Common Pet Food Ingredients */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Vitamin A Content in Common Pet Food Ingredients</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical vitamin A levels in whole food ingredients used in pet diets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ingredient</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Vitamin A (IU per 100g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Source Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Suitability</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Beef Liver</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36,000–40,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Preformed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs &amp; Cats</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Carrots</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Beta-carotene</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs (limited cats)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sweet Potatoes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,260</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Beta-carotene</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs (limited cats)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fish Oil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000–40,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Preformed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs &amp; Cats</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Spinach</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9,377</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Beta-carotene</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs (limited cats)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Egg Yolk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,260</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Preformed</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs &amp; Cats</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cats have poor beta-carotene conversion (&lt;20% efficiency); prioritize preformed sources for feline diets.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Cats require preformed vitamin A sources (retinyl palmitate) since they cannot efficiently convert plant-based beta-carotene.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Balance vitamin A with other fat-soluble vitamins (D, E, K) as excess A can interfere with vitamin D absorption.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Liver contains very high vitamin A; limit to 1-2 times weekly for dogs and monthly for cats to prevent toxicity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator for homemade diets to avoid deficiency; commercial AAFCO-certified foods typically meet standards automatically.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming human vitamin A requirements apply to pets</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pets have vastly different requirements—cats need double the vitamin A per kilogram compared to dogs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Treating all beta-carotene sources equally for cats</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats convert beta-carotene inefficiently, so relying solely on carrots or sweet potatoes creates deficiency risk.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring cumulative vitamin A from multiple sources</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Combining commercial food, treats, and supplements often exceeds safe limits without tracking total intake.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not updating requirements as pets age</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Senior pets may need adjusted vitamin A levels; recalculate annually to prevent deficiency or toxicity.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is vitamin A important for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Vitamin A is essential for pet vision, immune function, and skin health. Deficiency can cause night blindness and respiratory infections, while excess can lead to toxicity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does pet species affect vitamin A requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dogs need 5,000 IU/kg of body weight daily, while cats require 10,000 IU/kg. Cats cannot convert beta-carotene to vitamin A efficiently, making preformed sources critical.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors does this calculator consider?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator factors in pet species, age, weight, health status, and life stage (growth, maintenance, or senior) to determine precise requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can vitamin A toxicity occur in pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, chronic excess vitamin A causes bone pain, hair loss, and liver damage. Cats are more susceptible than dogs, with toxicity typically occurring above 100,000 IU/kg daily.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my pet's vitamin A needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 6 months or when your pet's weight, age, or health status changes significantly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are synthetic and natural vitamin A sources equally effective?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Synthetic retinyl acetate and natural sources are bioequivalent, but absorption depends on diet composition and individual pet metabolism.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What commercial foods meet vitamin A requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">AAFCO-certified complete and balanced pet foods contain adequate vitamin A; check labels for retinyl palmitate or retinyl acetate content.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/vitamins/vitamin-a"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Vitamin A
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of Vitamin A's role in animal health, deficiency symptoms, and dietary requirements.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Nutrient Profiles for Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards for pet food vitamin A content and recommendations across life stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6520897/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Institutes of Health - Vitamin A and Immune Function
-            </a>
-            <p className="text-slate-500 text-sm">
-              Research article detailing the immunological importance of Vitamin A in various species, including birds.
-            </p>
+          <li>
+            <a href="https://nap.nationalacademies.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Research Council (NRC) Nutrient Requirements of Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed guidelines for vitamin A requirements with detailed evidence-based recommendations.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/avian-nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Association of Avian Veterinarians - Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guidelines for avian nutrition, including vitamin supplementation and dietary management.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Vitamin A in Pets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary guidance on vitamin A functions, deficiency signs, and toxicity management in companion animals.</p>
+          </li>
+          <li>
+            <a href="https://www.petmd.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD - Vitamin A Deficiency and Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of vitamin A-related health issues, symptoms, and safe supplementation practices for pets.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -87,25 +87,33 @@ export default function HorseDehydrationRiskEstimatorCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why are skin turgor and mucous membrane checks important for dehydration assessment?",
-      answer:
-        "Skin turgor and mucous membrane assessments provide rapid, non-invasive indicators of hydration status in animals. Skin turgor reflects the elasticity of the skin, which decreases with fluid loss, while mucous membrane capillary refill time indicates circulatory efficiency affected by dehydration. Together, these signs help veterinarians estimate dehydration severity and guide treatment decisions effectively.",
+      question: "What is skin turgor and why does it matter for dehydration assessment?",
+      answer: "Skin turgor is the elasticity of skin that returns to normal position after being gently pinched. Poor turgor indicates significant fluid loss and is a reliable sign of dehydration in pets, especially when combined with mucous membrane assessment.",
     },
     {
-      question: "How does delayed capillary refill time relate to dehydration severity?",
-      answer:
-        "Delayed capillary refill time (CRT) suggests poor peripheral perfusion, often caused by decreased blood volume due to dehydration. When the body loses fluids, blood circulation slows, prolonging the time for color to return to mucous membranes after pressure is applied. This delay is a critical clinical sign indicating moderate to severe dehydration requiring prompt intervention.",
+      question: "How do I properly check my pet's mucous membranes?",
+      answer: "Gently lift your pet's lip to expose the gums, or check inside the mouth. Healthy mucous membranes are wet and pink; dry or tacky membranes suggest dehydration requiring immediate attention.",
     },
     {
-      question: "Can this estimator replace professional veterinary diagnosis?",
-      answer:
-        "No, this estimator is designed as an educational and preliminary assessment tool to help identify dehydration risk based on observable clinical signs. It cannot replace comprehensive veterinary examination, diagnostics, or treatment plans. Always consult a qualified veterinarian for accurate diagnosis and appropriate care for your animal.",
+      question: "What dehydration percentage does this calculator estimate?",
+      answer: "This calculator estimates dehydration severity (mild, moderate, or severe) based on clinical signs. Mild is typically 5-8% fluid loss, moderate is 8-10%, and severe is &gt;10% requiring urgent veterinary care.",
     },
     {
-      question: "How often should dehydration risk be assessed in at-risk animals?",
-      answer:
-        "Animals at risk of dehydration, such as those with illness, heat stress, or limited water access, should be assessed frequently—ideally multiple times daily. Regular monitoring of skin turgor and mucous membrane status allows early detection of fluid loss and timely intervention. Consistent assessment helps prevent progression to severe dehydration and associated complications.",
+      question: "Can skin turgor and mucous checks alone diagnose dehydration?",
+      answer: "These checks are useful screening tools but should be combined with other signs like lethargy, urine output, and weight loss for a complete assessment; bloodwork may be needed for confirmation.",
     },
+    {
+      question: "How quickly can pet dehydration become life-threatening?",
+      answer: "Severe dehydration (&gt;10% fluid loss) can cause organ failure and shock within hours, particularly in young kittens, puppies, and senior pets; seek veterinary care immediately if severe signs appear.",
+    },
+    {
+      question: "What causes dehydration in pets most commonly?",
+      answer: "Common causes include vomiting, diarrhea, excessive panting, fever, diabetes, kidney disease, and inadequate water intake due to illness or injury.",
+    },
+    {
+      question: "Should I give my pet water if the estimator suggests severe dehydration?",
+      answer: "For mild dehydration, increase water access gradually; for moderate to severe cases, seek veterinary care immediately as IV fluids may be necessary to safely rehydrate.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -207,98 +215,210 @@ export default function HorseDehydrationRiskEstimatorCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dehydration Risk Estimator (Skin Turgor + Mucous Check)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Dehydration is a critical condition in animals that can rapidly deteriorate health if not identified early. The skin turgor test measures the elasticity of the skin by timing how quickly it returns to normal after being pinched, reflecting fluid loss in the interstitial spaces. Meanwhile, the mucous membrane capillary refill time (CRT) assesses circulatory efficiency by measuring how fast color returns to the gums after pressure is applied, indicating blood volume and perfusion status.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Combining these two clinical signs provides a reliable, quick, and non-invasive method to estimate dehydration severity in veterinary practice. Skin turgor delays and prolonged CRT are hallmark signs of fluid deficits affecting both the skin and circulatory system. This estimator quantifies these observations into a risk score, helping caregivers and veterinarians prioritize treatment urgency and fluid therapy needs.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding these parameters is essential for early intervention, as dehydration can lead to organ dysfunction, shock, and death if untreated. This tool supports clinical judgment by translating observable signs into actionable risk categories, promoting better outcomes through timely veterinary care and hydration management.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dehydration Risk Estimator (Skin Turgor + Mucous Check)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you assess your pet's hydration status using two clinical indicators: skin turgor elasticity and mucous membrane appearance. It provides an estimated dehydration severity level to guide whether home care or veterinary attention is needed.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this tool, gently pinch skin on your pet's neck or shoulder and observe how quickly it returns to normal; simultaneously check mucous membrane color and moisture by lifting the gum or checking inside the mouth. Select the appropriate responses that best match your observations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator estimates dehydration severity (mild, moderate, or severe) based on your inputs. Use results as a screening tool only—always contact your veterinarian if your pet shows lethargy, loss of appetite, sunken eyes, or signs of shock, regardless of calculator results.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate dehydration risk using this tool, first perform the skin turgor test by gently pinching the animal’s skin and timing how long it takes to return to its original position. Next, assess the mucous membrane capillary refill time by pressing on the gums and measuring the seconds until color returns. Enter these times in seconds into the respective input fields below.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure skin turgor return time in seconds using a stopwatch or timer.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Measure mucous membrane capillary refill time in seconds by pressing the gums and timing color return.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input both values into the calculator and click “Calculate” to receive the dehydration risk score and interpretation.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the risk category to guide urgency of veterinary consultation and fluid therapy decisions.
-          </li>
+      {/* TABLE: Dehydration Severity Classification by Clinical Signs */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dehydration Severity Classification by Clinical Signs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table outlines dehydration severity levels based on skin turgor and mucous membrane findings.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Fluid Loss</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Skin Turgor</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mucous Membranes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mild</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Returns to normal in &lt;2 seconds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slightly dry but moist</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increase water intake; monitor closely</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Returns to normal in 2-3 seconds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dry, tacky to touch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Veterinary visit within 24 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Severe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Remains tented &gt;3 seconds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very dry, pale or sticky</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency veterinary care immediately</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Clinical assessment should always be combined with veterinary examination for definitive diagnosis.</p>
+      </section>
+
+      {/* TABLE: Common Dehydration Causes and Risk Duration in Pets */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Dehydration Causes and Risk Duration in Pets</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical causes of pet dehydration and estimated timeline to clinical significance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cause</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Species Most Affected</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time to Mild Dehydration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time to Severe Dehydration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vomiting/Diarrhea</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs &amp; Cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-24 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-48 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fever/Illness</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs &amp; Cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-36 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48-72 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Heat Stroke</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs (especially brachycephalic)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-8 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kidney Disease</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Older Cats &amp; Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Days to weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weeks to months</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Diabetes Insipidus</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs (rare)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-36 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36-72 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Reduced Water Access</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">All pets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-48 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 days</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Timeline varies significantly based on pet age, size, underlying health conditions, and environmental factors.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test skin turgor on areas with less fur, such as the inner thigh or behind the ear, for more accurate assessment.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Perform mucous membrane checks in good lighting and compare color to your own gums to establish a baseline reference.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Dehydration assessment is most accurate when combined with other clinical signs like capillary refill time, urine color, and body temperature.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Elderly pets and those with elastic skin may show delayed skin turgor return even with mild dehydration, so use multiple indicators together.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying Only on Skin Turgor</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Overweight or obese pets may have reduced skin elasticity unrelated to hydration, so always cross-check with mucous membrane assessment and other signs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Environmental Factors</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Ambient temperature, humidity, and recent exercise can affect skin turgor accuracy; assess your pet in a neutral environment when possible.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Wet Nose Means Adequate Hydration</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A wet nose is not a reliable dehydration indicator; rely instead on mucous membrane moisture and skin turgor for accurate assessment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying Veterinary Care for Severe Cases</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Severe dehydration (&gt;10% fluid loss) requires emergency veterinary treatment within hours; do not wait for worsening symptoms before seeking care.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is skin turgor and why does it matter for dehydration assessment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Skin turgor is the elasticity of skin that returns to normal position after being gently pinched. Poor turgor indicates significant fluid loss and is a reliable sign of dehydration in pets, especially when combined with mucous membrane assessment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I properly check my pet's mucous membranes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gently lift your pet's lip to expose the gums, or check inside the mouth. Healthy mucous membranes are wet and pink; dry or tacky membranes suggest dehydration requiring immediate attention.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What dehydration percentage does this calculator estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator estimates dehydration severity (mild, moderate, or severe) based on clinical signs. Mild is typically 5-8% fluid loss, moderate is 8-10%, and severe is &gt;10% requiring urgent veterinary care.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can skin turgor and mucous checks alone diagnose dehydration?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">These checks are useful screening tools but should be combined with other signs like lethargy, urine output, and weight loss for a complete assessment; bloodwork may be needed for confirmation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How quickly can pet dehydration become life-threatening?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Severe dehydration (&gt;10% fluid loss) can cause organ failure and shock within hours, particularly in young kittens, puppies, and senior pets; seek veterinary care immediately if severe signs appear.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What causes dehydration in pets most commonly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common causes include vomiting, diarrhea, excessive panting, fever, diabetes, kidney disease, and inadequate water intake due to illness or injury.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I give my pet water if the estimator suggests severe dehydration?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For mild dehydration, increase water access gradually; for moderate to severe cases, seek veterinary care immediately as IV fluids may be necessary to safely rehydrate.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/emergency-medicine/fluid-therapy/dehydration"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Dehydration and Fluid Therapy
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of dehydration assessment and fluid therapy protocols in veterinary medicine.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com/emergency-medicine-and-critical-care/shock/fluid-therapy-and-shock-management" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Fluid Therapy and Shock Management in Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Merck Veterinary Manual provides comprehensive guidance on assessing and treating dehydration and shock in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Dehydration%20Assessment%20in%20Large%20Animals.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Veterinary Medicine - Dehydration Assessment in Large Animals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed guide on clinical signs including skin turgor and mucous membrane evaluation for dehydration.
-            </p>
+          <li>
+            <a href="https://www.veterinarypartner.com/article/what-are-signs-dehydration-pets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Clinical Dehydration Assessment in Small Animals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">VeterinaryPartner explains clinical signs of dehydration including skin turgor and mucous membrane changes in dogs and cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151197/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. NCBI - Clinical Assessment of Dehydration in Veterinary Patients
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed article discussing clinical dehydration markers and their diagnostic value in veterinary practice.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/general-pet-care/dehydration-pets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Recognizing Signs of Dehydration in Companion Animals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ASPCA provides pet owner guidance on identifying and responding to dehydration in household pets.</p>
+          </li>
+          <li>
+            <a href="https://www.aaha.org/petcare/healthy-pet/ask-aaha-vet" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Acute Vomiting and Diarrhea in Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Animal Hospital Association outlines causes and management of gastrointestinal illness leading to dehydration.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

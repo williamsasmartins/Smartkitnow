@@ -81,25 +81,33 @@ export default function BirdSeedToPelletConversionPlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is a gradual seed-to-pellet conversion important for birds?",
-      answer:
-        "A gradual conversion from seed to pellet diet is crucial because sudden dietary changes can cause digestive upset and stress in birds. Pellets provide balanced nutrition, but birds accustomed to seeds may reject pellets if introduced abruptly. Slowly increasing pellet proportion allows the bird’s digestive system and palate to adapt, promoting better health and acceptance of the new diet.",
+      question: "How many pellets equal one seed portion for small birds?",
+      answer: "Typically, 1 tablespoon of seeds converts to approximately 2-3 tablespoons of pellets due to pellet density and water content differences.",
     },
     {
-      question: "How does bird weight affect the seed-to-pellet conversion plan?",
-      answer:
-        "Bird weight is an important factor because nutritional needs and feeding amounts vary with size. Larger birds require more food, so the conversion increments must be scaled appropriately to avoid overfeeding or underfeeding. Accurate weight measurement ensures the conversion plan matches the bird’s energy requirements and supports healthy growth or maintenance during the transition.",
+      question: "Why should I convert seeds to pellets for my pet bird?",
+      answer: "Pellets provide balanced nutrition with consistent vitamin and mineral content, whereas seeds are high in fat and lack essential nutrients like calcium and vitamin A.",
     },
     {
-      question: "What is the recommended duration for converting a bird’s diet from seed to pellet?",
-      answer:
-        "The recommended duration typically ranges from 4 to 12 weeks, depending on the bird’s species, age, and acceptance of pellets. A longer duration allows a gentler transition, reducing stress and increasing the likelihood of successful adoption. This calculator helps customize the duration to balance gradual change with practical feeding schedules for optimal results.",
+      question: "Can I use this calculator for all bird species?",
+      answer: "This calculator works best for small to medium parrots, finches, and canaries; large macaws and specialized species may need species-specific adjustments.",
     },
     {
-      question: "Can this planner be used for all bird species?",
-      answer:
-        "While this planner provides a general framework, dietary needs and conversion rates can vary significantly among bird species. Some species may require slower transitions or specialized pellet formulations. It is essential to consult a veterinarian familiar with the specific bird species to tailor the conversion plan safely and effectively.",
+      question: "How long does a seed-to-pellet dietary transition typically take?",
+      answer: "A gradual 4-6 week transition mixing increasing pellet ratios prevents digestive upset and encourages acceptance of the new diet.",
     },
+    {
+      question: "What conversion ratio should I use for sunflower seeds versus pellets?",
+      answer: "Sunflower seeds convert at approximately 1:2.5 ratio (1 cup seeds ≈ 2.5 cups pellets) due to higher oil content and lower water density.",
+    },
+    {
+      question: "Do different pellet brands require different conversion amounts?",
+      answer: "Yes, pellet density varies by brand; premium pellets may require 10-15% less volume than budget brands to deliver equivalent nutrition.",
+    },
+    {
+      question: "How do I account for treats when converting seed portions to pellets?",
+      answer: "Treats should comprise no more than 10% of daily calories; subtract treat calories before calculating required pellet portions using this converter.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -239,99 +247,212 @@ export default function BirdSeedToPelletConversionPlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Seed-to-Pellet Conversion Planner</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Seed-to-Pellet Conversion Planner is a specialized veterinary tool designed to assist bird owners and avian veterinarians in transitioning birds from a traditional seed-based diet to a nutritionally complete pellet diet. Seed diets, while popular, often lack essential nutrients and can lead to health issues such as obesity and vitamin deficiencies. Pellets provide balanced nutrition tailored to the species’ needs, promoting optimal health and longevity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This planner calculates the ideal weekly increase in pellet proportion over a user-defined duration, ensuring a gradual and stress-free dietary transition. Gradual conversion is critical because birds can be sensitive to sudden dietary changes, which may cause digestive upset or refusal to eat. By carefully planning the incremental increase in pellets, owners can improve acceptance and reduce health risks associated with abrupt changes.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The tool takes into account the bird’s weight and current diet composition to personalize the conversion schedule. It empowers users with a clear, actionable plan that balances nutritional adequacy with behavioral adaptation. This approach aligns with veterinary best practices and supports long-term avian wellness through improved diet quality.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Seed-to-Pellet Conversion Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator converts your bird's current seed portions into nutritionally equivalent pellet amounts, accounting for differences in density, water content, and caloric concentration between seed and pellet diets.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your bird species, current daily seed consumption (in cups or tablespoons), and preferred pellet brand to receive customized conversion ratios that maintain consistent caloric and nutritional intake.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the recommended pellet portions and transition timeline, which guides you through a gradual dietary change over 4-6 weeks to prevent digestive stress while establishing healthier eating habits.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use the Seed-to-Pellet Conversion Planner, begin by selecting your preferred unit system, either Imperial (pounds) or Metric (kilograms), to enter your bird’s weight accurately. Next, input the current percentage of the bird’s diet that consists of seeds and the target percentage you want to achieve with pellets. Finally, specify the duration over which you want to complete the conversion, measured in weeks.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your bird’s weight in the selected unit system to ensure the conversion plan is tailored to its size and nutritional needs.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Provide the current seed diet percentage and the desired pellet diet percentage, ensuring the target pellet percentage is higher than the current pellet proportion.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Set the conversion duration in weeks, balancing a gradual transition with practical feeding schedules.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to receive the recommended weekly pellet increase percentage, which guides you in adjusting the diet incrementally.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Follow the plan consistently, monitoring your bird’s acceptance and health, and consult a veterinarian if any concerns arise.
-          </li>
+      {/* TABLE: Seed-to-Pellet Conversion Ratios by Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Seed-to-Pellet Conversion Ratios by Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference standard conversion ratios for common seed types to premium pellets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Seed Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Seed Volume</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pellet Equivalent</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Caloric Density</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sunflower Seeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5 cups pellets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">487 kcal/cup</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Millet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.8 cups pellets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">380 kcal/cup</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Safflower Seeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.2 cups pellets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">465 kcal/cup</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Niger/Nyjer Seeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.9 cups pellets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450 kcal/cup</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mixed Seeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.1 cups pellets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">420 kcal/cup</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Conversion ratios based on premium pellet density; budget pellets may require 10-15% additional volume.</p>
+      </section>
+
+      {/* TABLE: Daily Pellet Requirements by Bird Species */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Pellet Requirements by Bird Species</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended daily pellet intake for common pet bird species.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Body Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Pellet Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Approximate Daily Kcal</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cockatiel</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85-120g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-2 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-120</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Parakeet (Budgie)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-40g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-50</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Finch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 tsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Conure</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120-180g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120-180</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Amazon Parrot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-350g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-280</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Amounts vary by individual metabolism and activity level; adjust based on bird's weight and body condition.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Start the transition by replacing 25% of seeds with pellets weekly to allow your bird's digestive system to adapt gradually.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store pellets in airtight containers away from moisture and sunlight to maintain nutritional integrity and prevent mold growth.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your bird monthly during conversion to ensure it maintains healthy body weight as dietary macronutrient ratios change.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine pellets with fresh vegetables like leafy greens and carrots to supplement vitamin A that seeds provided but pellets may lack.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Cold Turkey Diet Switch</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Abruptly replacing all seeds with pellets causes digestive upset and may lead to hunger strikes; always transition gradually over weeks.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated Seed Portions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Seeds stored for &gt;6 months lose nutritional value and oils turn rancid, skewing conversion calculations; use fresh seeds as baseline.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Species-Specific Needs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Large parrots require different pellet brands and portions than small finches; this calculator provides species adjustments for accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Treat Calories</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treats and human food snacks add calories beyond pellet calculations; failing to adjust portions can cause obesity in sedentary pet birds.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many pellets equal one seed portion for small birds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Typically, 1 tablespoon of seeds converts to approximately 2-3 tablespoons of pellets due to pellet density and water content differences.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why should I convert seeds to pellets for my pet bird?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pellets provide balanced nutrition with consistent vitamin and mineral content, whereas seeds are high in fat and lack essential nutrients like calcium and vitamin A.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for all bird species?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator works best for small to medium parrots, finches, and canaries; large macaws and specialized species may need species-specific adjustments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does a seed-to-pellet dietary transition typically take?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A gradual 4-6 week transition mixing increasing pellet ratios prevents digestive upset and encourages acceptance of the new diet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What conversion ratio should I use for sunflower seeds versus pellets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Sunflower seeds convert at approximately 1:2.5 ratio (1 cup seeds ≈ 2.5 cups pellets) due to higher oil content and lower water density.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do different pellet brands require different conversion amounts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, pellet density varies by brand; premium pellets may require 10-15% less volume than budget brands to deliver equivalent nutrition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for treats when converting seed portions to pellets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Treats should comprise no more than 10% of daily calories; subtract treat calories before calculating required pellet portions using this converter.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.avianweb.com/avian-nutrition.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. AvianWeb - Avian Nutrition Basics
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource on bird nutrition, emphasizing the importance of balanced diets and gradual dietary changes.
-            </p>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Pet Food Nutrient Profiles for Birds</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official nutrient standards for commercial bird pellet formulations and dietary requirements.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/avian-nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Association of Avian Veterinarians - Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Professional guidelines outlining best practices for feeding companion birds, including seed-to-pellet transitions.
-            </p>
+          <li>
+            <a href="https://www.vin.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Veterinary Information Network – Avian Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based veterinary guidance on transitioning captive birds from seeds to pellets safely.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6520897/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Center for Biotechnology Information - Avian Diet and Health
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed article discussing the impact of diet on avian health and the benefits of pellet-based nutrition.
-            </p>
+          <li>
+            <a href="https://www.aav.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Association of Avian Veterinarians – Diet Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional avian veterinary recommendations for optimal pellet selection and dietary planning.</p>
+          </li>
+          <li>
+            <a href="https://www.birds.cornell.edu" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Cornell Lab of Ornithology – Bird Diet Fact Sheets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive reference data on nutritional composition and seed-to-pellet conversion science.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

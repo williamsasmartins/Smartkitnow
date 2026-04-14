@@ -100,25 +100,33 @@ export default function CatChocolateToxicityCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is chocolate toxic to cats, and how does theobromine affect them?",
-      answer:
-        "Chocolate contains theobromine, a stimulant that cats metabolize very slowly, leading to toxic accumulation. Theobromine affects the central nervous system, cardiovascular system, and kidneys, causing symptoms like vomiting, tremors, and seizures. Because cats are less likely to consume chocolate, toxicity is rarer but still dangerous when it occurs.",
+      question: "How does the Cat Chocolate Toxicity Calculator determine risk level?",
+      answer: "The calculator uses your cat's weight, chocolate type (dark, milk, or white), and amount consumed to compute theobromine dose in mg/kg. Risk levels are: Safe (&lt;20 mg/kg), Monitor (20-40 mg/kg), Mild toxicity (40-60 mg/kg), and Severe (&gt;60 mg/kg).",
     },
     {
-      question: "How accurate is this calculator in predicting chocolate toxicity in cats?",
-      answer:
-        "This calculator estimates risk based on known toxic doses of theobromine relative to a cat’s weight and chocolate type. Individual sensitivity can vary, and factors like age, health status, and metabolism influence toxicity. Therefore, it should be used as a guide, not a definitive diagnosis, and veterinary consultation is essential for suspected poisoning.",
+      question: "Why is dark chocolate more dangerous than milk chocolate for cats?",
+      answer: "Dark chocolate contains 12-26 mg theobromine per gram, while milk chocolate has 1-3 mg per gram. Cats metabolize theobromine slowly, making smaller dark chocolate amounts significantly more toxic.",
     },
     {
-      question: "What should I do if my cat ingests chocolate, regardless of the calculator result?",
-      answer:
-        "If your cat has ingested chocolate, monitor for symptoms such as vomiting, restlessness, or rapid breathing. Even small amounts can be harmful, so contacting a veterinarian immediately is crucial for proper assessment and treatment. Early intervention improves outcomes and can prevent serious complications.",
+      question: "At what weight does chocolate become toxic to cats?",
+      answer: "Toxicity depends on chocolate type and amount, not weight alone. For a 10 lb cat, as little as 0.5 oz of dark chocolate can trigger mild symptoms, while 1 oz of milk chocolate is typically safe.",
     },
     {
-      question: "Why does the type of chocolate matter in assessing toxicity risk for cats?",
-      answer:
-        "Different chocolates contain varying levels of theobromine; for example, baking chocolate has much higher concentrations than milk chocolate. This means smaller amounts of dark or baking chocolate can be more toxic than larger amounts of milk chocolate. Understanding the chocolate type helps accurately estimate the toxic dose and risk level.",
+      question: "What should I do if the calculator shows a severe risk level?",
+      answer: "Contact your veterinarian or poison control (ASPCA: 888-426-4435) immediately. Severe toxicity requires activated charcoal or gastric lavage within 2-4 hours of ingestion.",
     },
+    {
+      question: "Is white chocolate toxic according to this calculator?",
+      answer: "White chocolate contains negligible theobromine (&lt;0.1 mg/g) and poses minimal toxicity risk; however, high fat content may cause pancreatitis in cats.",
+    },
+    {
+      question: "How accurate is this calculator for different cat breeds?",
+      answer: "The calculator uses body weight only, which is accurate across all breeds. Individual metabolism varies, so monitor your cat closely and consult a vet if symptoms develop.",
+    },
+    {
+      question: "Can I use this calculator for kittens under 2 pounds?",
+      answer: "Yes, but kittens have immature livers and metabolize theobromine even slower than adults. Results may underestimate risk, so contact your vet immediately if accidental ingestion occurs.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -289,135 +297,200 @@ export default function CatChocolateToxicityCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cat Chocolate Toxicity Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Chocolate toxicity in cats, although less common than in dogs, poses a
-          significant health risk due to the presence of theobromine, a bitter alkaloid
-          stimulant. Cats metabolize theobromine much more slowly than humans, which
-          allows toxic levels to accumulate in their system. This calculator estimates
-          the risk of toxicity based on the cat’s weight, the type of chocolate ingested,
-          and the amount consumed, providing a scientific approach to assessing danger.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The severity of chocolate poisoning depends largely on the theobromine content,
-          which varies widely among chocolate types—from negligible amounts in white
-          chocolate to very high concentrations in baking chocolate. By inputting these
-          variables, the calculator helps pet owners and veterinarians quickly evaluate
-          potential toxicity. It is important to remember that even small amounts can
-          cause symptoms, and individual sensitivity varies, so this tool serves as a
-          guide rather than a definitive diagnostic.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cat Chocolate Toxicity Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines whether your cat's chocolate ingestion poses a health risk by calculating theobromine dose relative to body weight. It accounts for chocolate type, amount consumed, and your cat's weight to generate a toxicity risk assessment.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your cat's current weight in pounds or kilograms, select the chocolate type (dark, milk, or white), and enter the amount consumed in ounces or grams. The more precise your inputs, the more accurate the result.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results range from Safe to Severe Toxicity. Safe levels require monitoring only, while Severe requires immediate veterinary attention. Always contact your vet if your cat exhibits vomiting, diarrhea, tremors, or unusual behavior within 12 hours of chocolate consumption.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use the Cat Chocolate Toxicity Calculator effectively, start by selecting
-          the unit system that corresponds to your preference or location—imperial (lbs)
-          or metric (kg). Next, enter your cat’s current weight accurately, as this is
-          critical for calculating the toxic dose threshold. Then, choose the type of
-          chocolate ingested from the dropdown menu, which reflects varying theobromine
-          concentrations.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat’s weight in pounds or kilograms,
-            depending on the selected unit system.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Select the chocolate type your cat ingested to
-            account for theobromine content differences.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the estimated amount of chocolate consumed
-            in grams.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to receive an estimated risk
-            ratio and interpretation, including any necessary warnings.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the results as a guide and consult your
-            veterinarian immediately if toxicity is suspected.
-          </li>
+      {/* TABLE: Theobromine Content by Chocolate Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Theobromine Content by Chocolate Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different chocolate types contain vastly different theobromine concentrations, affecting toxicity calculations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Chocolate Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Theobromine (mg/g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Caffeine (mg/g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxicity Risk</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dark/Baking Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Milk Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">White Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;0.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cocoa Powder (unsweetened)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Baking and cocoa powder are most toxic. Dark chocolate toxicity increases with cocoa percentage (70%+ is highly dangerous).</p>
+      </section>
+
+      {/* TABLE: Feline Chocolate Toxicity Thresholds (per kg body weight) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Feline Chocolate Toxicity Thresholds (per kg body weight)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Toxicity risk escalates as theobromine dose increases relative to your cat's weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose (mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expected Symptoms</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Action Required</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Safe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">None</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Monitor</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild restlessness, drooling</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Observe; call vet if worsens</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mild Toxicity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, diarrhea, tremors</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Contact veterinarian</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Severe Toxicity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Seizures, rapid heart rate, collapse</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency vet visit immediately</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cats are more sensitive than dogs. Symptoms typically appear 6-12 hours post-ingestion. Lethal dose is approximately 200-500 mg/kg.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh the chocolate packaging before ingestion to estimate consumption amount; guessing can lead to inaccurate risk assessment.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Dark chocolate and cocoa powder pose 10-20x greater risk than milk chocolate at equivalent weights.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep the ASPCA Animal Poison Control Center number (888-426-4435) saved for emergency reference.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cat for 24 hours post-ingestion even if the calculator shows low risk, as individual sensitivity varies.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing chocolate type</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering dark chocolate as milk chocolate or vice versa dramatically skews results; verify cocoa percentage on packaging before calculating.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using outdated cat weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Inaccurate weight measurements reduce calculator precision; weigh your cat within the past month for reliable toxicity assessment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring chocolate with fillings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Chocolate-covered items may contain additional toxic ingredients like xylitol; assess total composition, not chocolate weight alone.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all cats metabolize identically</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Senior cats, kittens, and those with liver disease metabolize theobromine slower; consult a vet if your cat has pre-existing conditions.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the Cat Chocolate Toxicity Calculator determine risk level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your cat's weight, chocolate type (dark, milk, or white), and amount consumed to compute theobromine dose in mg/kg. Risk levels are: Safe (&lt;20 mg/kg), Monitor (20-40 mg/kg), Mild toxicity (40-60 mg/kg), and Severe (&gt;60 mg/kg).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is dark chocolate more dangerous than milk chocolate for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dark chocolate contains 12-26 mg theobromine per gram, while milk chocolate has 1-3 mg per gram. Cats metabolize theobromine slowly, making smaller dark chocolate amounts significantly more toxic.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what weight does chocolate become toxic to cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Toxicity depends on chocolate type and amount, not weight alone. For a 10 lb cat, as little as 0.5 oz of dark chocolate can trigger mild symptoms, while 1 oz of milk chocolate is typically safe.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if the calculator shows a severe risk level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian or poison control (ASPCA: 888-426-4435) immediately. Severe toxicity requires activated charcoal or gastric lavage within 2-4 hours of ingestion.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is white chocolate toxic according to this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">White chocolate contains negligible theobromine (&lt;0.1 mg/g) and poses minimal toxicity risk; however, high fat content may cause pancreatitis in cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this calculator for different cat breeds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses body weight only, which is accurate across all breeds. Individual metabolism varies, so monitor your cat closely and consult a vet if symptoms develop.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for kittens under 2 pounds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, but kittens have immature livers and metabolize theobromine even slower than adults. Results may underestimate risk, so contact your vet immediately if accidental ingestion occurs.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chocolate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. ASPCA Animal Poison Control: Chocolate Toxicity in Pets
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource detailing the toxic effects of chocolate and
-              treatment recommendations for cats and dogs.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official toxicity database and emergency hotline for chocolate and pet poisoning cases.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/chocolate-toxicity-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Cornell Feline Health Center: Chocolate Toxicity in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed explanation of theobromine metabolism in cats and clinical
-              signs of toxicity.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/poison/chocolate/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline - Chocolate Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary-reviewed toxicity thresholds and symptoms for chocolate ingestion in cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/chocolate-and-theobromine-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual: Chocolate and Theobromine Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary manual covering toxic doses, clinical signs,
-              and treatment protocols.
-            </p>
+          <li>
+            <a href="https://www.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) - Pet Toxicology</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidance on toxic substances and emergency response for companion animals.</p>
+          </li>
+          <li>
+            <a href="https://vcahospitals.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Chocolate Poisoning in Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of chocolate toxicity signs, diagnosis, and treatment protocols for feline patients.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

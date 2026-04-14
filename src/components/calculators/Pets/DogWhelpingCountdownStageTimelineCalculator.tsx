@@ -94,25 +94,33 @@ export default function DogWhelpingCountdownStageTimelineCalculator() {
   // 3. FAQS (DETAILED)
   const faqs = [
     {
-      question: "How accurate is the estimated whelping date?",
-      answer:
-        "The estimated whelping date is based on an average gestation period of 63 days from the breeding date. However, individual dogs may vary, with normal gestation ranging from 58 to 68 days. Factors such as breed, litter size, and health can influence timing, so always monitor your dog closely as the date approaches and consult your veterinarian for precise assessment.",
+      question: "How long is a dog's gestation period?",
+      answer: "A dog's gestation period is approximately 63 days (9 weeks) from the date of conception, though labor can begin as early as day 58 or as late as day 66.",
     },
     {
-      question: "What are the signs that labor is starting in my dog?",
-      answer:
-        "Early signs of labor include nesting behavior, restlessness, panting, shivering, and a drop in body temperature. Stage 1 labor can last 6 to 12 hours, during which the cervix dilates. If your dog shows prolonged distress or no progression to Stage 2 labor, contact your veterinarian immediately for guidance.",
+      question: "What are the three stages of labor in dogs?",
+      answer: "Stage 1 (6-12 hours) involves cervical dilation; Stage 2 (4-24 hours) includes active contractions and puppy delivery; Stage 3 occurs between puppies as the placenta is expelled.",
     },
     {
-      question: "What should I do if my dog goes past the estimated whelping date?",
-      answer:
-        "If your dog is more than 24 hours past the estimated whelping date without signs of labor, it is important to consult your veterinarian. Prolonged gestation can indicate complications such as fetal distress or uterine inertia. Timely veterinary evaluation ensures the health and safety of both the mother and puppies.",
+      question: "When should I contact a vet during whelping?",
+      answer: "Contact your vet immediately if more than 2 hours pass between puppies, if straining occurs without delivery after 30 minutes, or if the dam shows signs of distress or weakness.",
     },
     {
-      question: "Can I predict the exact time my dog will start whelping?",
-      answer:
-        "Exact timing of whelping is difficult to predict due to natural variation. While the countdown provides an estimated date, labor onset depends on hormonal and physiological changes unique to each dog. Close observation of behavioral and physical signs is essential for timely preparation and intervention if needed.",
+      question: "How do I calculate my dog's expected due date?",
+      answer: "Add 63 days to the date of breeding or ovulation; the calculator accounts for typical variation of ±3 days in gestation length.",
     },
+    {
+      question: "What temperature drop indicates labor is starting?",
+      answer: "A drop in the dam's rectal temperature from 101.5°F to 98-99°F within 24 hours signals imminent labor, typically occurring 8-24 hours before delivery begins.",
+    },
+    {
+      question: "How many puppies should I expect in a litter?",
+      answer: "Average litter size ranges from 4-8 puppies depending on breed; smaller breeds average 3-4 puppies while larger breeds may have 8-12 or more.",
+    },
+    {
+      question: "Can I use this calculator for multiple breed types?",
+      answer: "Yes, the 63-day gestation timeline applies to all dog breeds; however, breed-specific litter size predictions may vary based on individual breed characteristics.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -196,98 +204,205 @@ export default function DogWhelpingCountdownStageTimelineCalculator() {
   // 5. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Whelping Countdown & Stage Timeline
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Whelping, the process of a dog giving birth, is a critical time that requires careful monitoring and preparation. The gestation period for dogs typically lasts around 63 days from the date of breeding, though it can vary between 58 and 68 days depending on breed, litter size, and individual health factors. Understanding this timeline helps owners anticipate and prepare for labor.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Labor in dogs is divided into three stages. Stage 1 involves cervical dilation and can last from 6 to 12 hours, during which the dog may show nesting behavior, restlessness, and a drop in body temperature. Stage 2 is the active delivery of puppies, typically lasting 3 to 6 hours. Stage 3 involves the expulsion of placentas after each puppy, usually within 15 minutes.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Accurate tracking of the whelping countdown and understanding the stage timeline allows owners and veterinarians to recognize normal labor progression and identify potential complications early. This knowledge is essential for ensuring the health and safety of both the mother and her puppies during this vulnerable period.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Whelping Countdown &amp; Stage Timeline</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you track your dog's pregnancy from conception through labor and delivery by predicting the expected whelping date and breaking down the gestation timeline into manageable stages.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input the breeding or ovulation date into the calculator to generate a customized countdown. The tool accounts for the standard 63-day canine gestation period while noting natural variation of ±3 days.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the resulting timeline to prepare your whelping area, schedule veterinary check-ins, and recognize labor signs so you can provide proper care during delivery and immediately after.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates your dog's expected whelping date based on the date of breeding you provide. It also outlines the typical timeline for each stage of labor to help you prepare accordingly.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the exact date your dog was bred or mated using the date picker.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Click "Calculate" to see the estimated whelping date and days remaining.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Review the stage timeline summary to understand labor progression.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Monitor your dog closely as the estimated date approaches and consult your veterinarian if you notice any unusual signs or delays.
-          </li>
+      {/* TABLE: Whelping Timeline by Gestational Stage */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Whelping Timeline by Gestational Stage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Track your dog's pregnancy progression through key developmental milestones.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Days Post-Conception</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Developmental Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Observable Signs</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Early conception</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No visible signs; fertilized eggs enter uterus</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Implantation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Embryos attach to uterine wall</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15-21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Organogenesis begins</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fetal heartbeats detectable; minimal dam changes</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">22-35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rapid fetal growth</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slight weight gain; nipples may darken</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">36-49</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Advanced development</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Noticeable abdominal enlargement; increased appetite</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50-56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pre-labor stage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Restlessness; nesting behavior; temperature stabilizes</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">57-63</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Labor &amp; delivery</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Temperature drop; contractions; puppy birth begins</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Gestation typically ranges 58-66 days; individual variation is normal.</p>
+      </section>
+
+      {/* TABLE: Labor Stages Duration &amp; Delivery Indicators */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Labor Stages Duration &amp; Delivery Indicators</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference expected timeline and physical indicators for each labor phase.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Labor Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Duration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Key Signs &amp; Milestones</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stage 1: Cervical Dilation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Restlessness, panting, loss of appetite, temperature drop</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stage 2: Active Labor &amp; Birth</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-24 hours total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Strong contractions every 5-30 min; puppy delivery every 30-120 min</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stage 3: Placental Expulsion</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-30 min per puppy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Expulsion of placenta between or after puppies; dam may eat placentas</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Post-Whelping Recovery</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-48 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dam settles; nurses puppies; mild vaginal discharge is normal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Consult vet if any stage significantly exceeds normal timeframe or distress occurs.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your dam's rectal temperature starting 1 week before the due date; a drop below 99°F signals labor within 24 hours.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Prepare a clean, quiet whelping box in a low-traffic area at least 2 weeks before the expected due date so your dam can familiarize herself with it.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep your vet's emergency contact information readily available; complications can arise quickly, and professional guidance may be essential.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Document each puppy's birth time, weight, and sex to track health and ensure all placentas have been delivered.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using last breeding date instead of ovulation date</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dogs may breed multiple times; ovulation typically occurs 2 days after the initial breeding, so using the wrong date skews your due date prediction.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming exact 63-day delivery</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Normal gestation ranges 58-66 days; expecting delivery precisely on day 63 can cause unnecessary anxiety if whelping begins earlier or later.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring pre-labor temperature drops</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to take rectal temperatures before the due date means you may miss the critical 24-hour warning window that a temperature drop provides.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying veterinary contact for slow labor progression</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">More than 2 hours between puppies or 30+ minutes of straining without delivery requires immediate vet evaluation to rule out dystocia.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long is a dog's gestation period?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A dog's gestation period is approximately 63 days (9 weeks) from the date of conception, though labor can begin as early as day 58 or as late as day 66.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the three stages of labor in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Stage 1 (6-12 hours) involves cervical dilation; Stage 2 (4-24 hours) includes active contractions and puppy delivery; Stage 3 occurs between puppies as the placenta is expelled.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When should I contact a vet during whelping?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your vet immediately if more than 2 hours pass between puppies, if straining occurs without delivery after 30 minutes, or if the dam shows signs of distress or weakness.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my dog's expected due date?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Add 63 days to the date of breeding or ovulation; the calculator accounts for typical variation of ±3 days in gestation length.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What temperature drop indicates labor is starting?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A drop in the dam's rectal temperature from 101.5°F to 98-99°F within 24 hours signals imminent labor, typically occurring 8-24 hours before delivery begins.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many puppies should I expect in a litter?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Average litter size ranges from 4-8 puppies depending on breed; smaller breeds average 3-4 puppies while larger breeds may have 8-12 or more.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for multiple breed types?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the 63-day gestation timeline applies to all dog breeds; however, breed-specific litter size predictions may vary based on individual breed characteristics.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/reproductive-system/parturition-in-small-animals/parturition-in-dogs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Parturition in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive veterinary resource detailing canine gestation, labor stages, and whelping management.
-            </p>
+          <li>
+            <a href="https://www.akc.org/dog-breeds/health-considerations/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Canine Reproduction &amp; Whelping Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The American Kennel Club provides breed-specific health guidelines including reproductive care and whelping timelines.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/labor-and-delivery-in-dogs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals - Labor and Delivery in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guide for dog owners on recognizing labor signs and caring for whelping dogs.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com/reproductive-system/small-animals/whelping-and-neonatal-care-of-puppies" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Obstetrics &amp; Neonatal Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Merck Veterinary Manual offers clinical guidance on normal and abnormal whelping, labor complications, and neonatal puppy care.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/parturition-guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association - Canine Parturition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary clinical guidelines for managing canine labor and delivery.
-            </p>
+          <li>
+            <a href="https://www.dogstrust.org.uk/what-we-do/campaigning/puppy-farm-campaign" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Dogs Trust Breeder Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Dogs Trust provides ethical breeding information and resources for responsible dog reproduction and care.</p>
+          </li>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Nutritional Guidelines for Pregnant &amp; Lactating Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The Association of American Feed Control Officials establishes nutritional standards for pregnant and nursing dams to support healthy gestation and milk production.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

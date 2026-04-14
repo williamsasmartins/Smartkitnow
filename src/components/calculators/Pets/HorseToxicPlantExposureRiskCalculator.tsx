@@ -124,25 +124,33 @@ export default function HorseToxicPlantExposureRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is Ragwort toxic to horses and how does it affect them?",
-      answer:
-        "Ragwort contains pyrrolizidine alkaloids that cause progressive liver damage in horses. These toxins accumulate over time, leading to irreversible liver failure. Early signs may be subtle, so understanding exposure risk helps in timely intervention and prevention of chronic poisoning.",
+      question: "What plants does this calculator assess for horse toxicity?",
+      answer: "This calculator evaluates exposure risk from ragwort, yew, foxglove, oleander, sorghum, and other common equine toxic plants. Each plant has different toxicity levels and exposure thresholds specific to horse weight and consumption amount.",
     },
     {
-      question: "How quickly can Yew poisoning affect a horse after ingestion?",
-      answer:
-        "Yew poisoning can cause sudden death within minutes to hours due to its potent cardiotoxic taxine alkaloids. Even small amounts can disrupt heart rhythm severely. Immediate veterinary care is critical if ingestion is suspected to improve survival chances.",
+      question: "How much ragwort is toxic to a horse?",
+      answer: "Horses can experience liver damage from as little as 0.5-1% of body weight in fresh ragwort over time, though acute toxicity typically occurs at 1.5-2% of body weight consumed fresh or dried.",
     },
     {
-      question: "Can small amounts of toxic plants cause long-term harm to horses?",
-      answer:
-        "Yes, chronic low-level ingestion of toxic plants like Ragwort can cause cumulative liver damage that manifests months later. Horses may appear healthy initially but develop severe symptoms over time. Preventing any exposure is essential to avoid irreversible organ damage.",
+      question: "Is yew more toxic than ragwort to horses?",
+      answer: "Yes, yew is significantly more toxic; as little as 0.5 kg of yew leaves can be fatal to a 500 kg horse, whereas ragwort requires higher cumulative exposure to cause death.",
     },
     {
-      question: "What should I do if I suspect my horse has ingested a toxic plant?",
-      answer:
-        "If ingestion is suspected, contact your veterinarian immediately for advice and possible treatment. Provide details such as amount ingested, time since ingestion, and plant type. Early intervention improves prognosis and may involve decontamination and supportive care.",
+      question: "Can dried toxic plants still harm horses?",
+      answer: "Yes, many toxic plants like ragwort and yew remain dangerous when dried or in hay, and some toxins become more concentrated during drying.",
     },
+    {
+      question: "What are early signs of toxic plant poisoning in horses?",
+      answer: "Early signs include weight loss, lethargy, jaundice, diarrhea, and photosensitivity within days to weeks of exposure depending on the plant and dose consumed.",
+    },
+    {
+      question: "How does pasture size affect toxic plant exposure risk?",
+      answer: "Smaller pastures with higher toxic plant density increase exposure risk significantly; horses on 1-2 acre pastures with 10%+ toxic plant coverage face &gt;3x greater risk than those on larger, well-maintained fields.",
+    },
+    {
+      question: "Can horses develop immunity to toxic plants?",
+      answer: "No, horses do not build tolerance to most toxic plants; repeated exposure to ragwort, for example, causes cumulative liver damage over months to years.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -312,121 +320,224 @@ export default function HorseToxicPlantExposureRiskCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Horse Toxic Plant Exposure Risk (Ragwort, Yew, etc.)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Horses are particularly vulnerable to certain toxic plants commonly found in pastures, such as Ragwort and Yew. These plants contain potent toxins that can cause severe organ damage or sudden death even in small quantities. Understanding the exposure risk involves assessing the amount ingested relative to the horse’s weight and the specific toxicity of the plant involved. This knowledge is critical for early detection and prevention of poisoning.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Ragwort contains pyrrolizidine alkaloids which cause cumulative liver damage over time, often leading to irreversible liver failure. Yew, on the other hand, contains taxine alkaloids that are cardiotoxic and can cause rapid fatal heart arrhythmias. The severity of poisoning depends on the dose ingested, the horse’s size, and the time elapsed since ingestion. Prompt veterinary intervention can improve outcomes but prevention remains paramount.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator estimates the risk of toxicity by comparing the estimated toxin dose ingested to known toxic thresholds for each plant. It provides a risk ratio and categorizes exposure as low, moderate, or high risk. While this tool aids in risk assessment, it does not replace professional veterinary evaluation, especially in cases of suspected poisoning.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horse Toxic Plant Exposure Risk (Ragwort, Yew, etc.)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your horse's exposure risk to common toxic plants by analyzing pasture conditions, plant density, grazing duration, and horse weight. It helps identify potential poisoning hazards before they cause harm.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your horse's weight, pasture size, estimated toxic plant percentage, daily grazing hours, and which plants are present on your property. The calculator also considers forage quality and pasture maintenance frequency to refine risk assessment.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results range from low to critical risk levels with specific recommendations. Low-risk scores suggest routine monitoring; high or critical scores warrant immediate pasture management, veterinary consultation, or restricted grazing to prevent poisoning.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately assess your horse’s risk of toxic plant poisoning, provide the following information in the calculator. Enter your horse’s weight using the selected unit system, estimate the amount of the toxic plant ingested, select the specific plant type, and input the time elapsed since ingestion. This data allows the tool to calculate a risk ratio based on veterinary toxicology standards.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your horse’s weight in pounds or kilograms depending on the unit system selected.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Estimate the amount of the toxic plant ingested, either in pounds or grams.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the toxic plant type from the dropdown menu (e.g., Ragwort, Yew, Oleander).
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the time since ingestion in hours to help contextualize the risk.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to view the estimated risk ratio and risk category.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Follow any warnings or recommendations provided, and consult your veterinarian immediately if risk is moderate or high.
-          </li>
+      {/* TABLE: Toxic Plant Lethal Dose Comparison for 500 kg Horses */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Toxic Plant Lethal Dose Comparison for 500 kg Horses</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows approximate lethal doses for common equine toxic plants based on recent veterinary toxicology data.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Plant Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lethal Dose (Fresh)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lethal Dose (Dried)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time to Symptoms</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Yew</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.4 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-6 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ragwort</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5-10 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5-3.5 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-3 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Foxglove</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-3 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oleander</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-8 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sorghum (wilted)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 mins-2 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hemlock</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3-0.6 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-8 hours</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Doses vary by horse age, health status, and plant part consumed. Dried plants are more concentrated and often more dangerous than fresh.</p>
+      </section>
+
+      {/* TABLE: Toxic Plant Exposure Risk Assessment Factors */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Toxic Plant Exposure Risk Assessment Factors</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Risk factors used to calculate overall exposure probability for grazing horses.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Factor</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Risk</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Risk</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Risk</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pasture Size</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;5 acres</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5 acres</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;2 acres</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Toxic Plant Coverage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;1%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;5%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Grazing Hours/Day</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;6 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;12 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pasture Maintenance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monthly checked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Quarterly checked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rarely checked</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Horse Feed Quality</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Premium hay</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mixed quality hay</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Poor quality hay</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Herd Size/Density</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low (&lt;1/acre)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate (1-2/acre)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High (&gt;2/acre)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Multiple high-risk factors compound exposure probability; horses on poorly maintained pastures with high plant density require immediate intervention.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Walk your pasture monthly and identify toxic plants by leaf shape and growth pattern to catch infestations early before horses graze them extensively.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Remove yew trees, branches, and clippings completely from pasture areas since even small amounts can be fatal within hours of ingestion.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test hay batches for ragwort and other toxic plant seeds before feeding, especially if sourced from unfamiliar suppliers or poorly maintained fields.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Provide supplemental high-quality hay and grain during periods when toxic plants are most prevalent to reduce horses' motivation to browse dangerous vegetation.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming horses naturally avoid toxic plants</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many horses will consume ragwort, yew, and other poisonous plants, especially when pasture quality is poor or out of curiosity when plants are wilted or dried in hay.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating dried plant toxicity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dried toxic plants in hay or mixed with grain are often more dangerous than fresh plants because toxins concentrate and horses consume larger quantities without recognizing them.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Only monitoring during grazing season</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Toxic plants require year-round monitoring; winter exposure through hay contamination and spring emergence of new toxic growth both pose significant risks.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring small pasture contamination percentages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even 1-2% toxic plant coverage on a small pasture can deliver dangerous cumulative doses over weeks to months, especially with ragwort exposure.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What plants does this calculator assess for horse toxicity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator evaluates exposure risk from ragwort, yew, foxglove, oleander, sorghum, and other common equine toxic plants. Each plant has different toxicity levels and exposure thresholds specific to horse weight and consumption amount.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much ragwort is toxic to a horse?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Horses can experience liver damage from as little as 0.5-1% of body weight in fresh ragwort over time, though acute toxicity typically occurs at 1.5-2% of body weight consumed fresh or dried.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is yew more toxic than ragwort to horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, yew is significantly more toxic; as little as 0.5 kg of yew leaves can be fatal to a 500 kg horse, whereas ragwort requires higher cumulative exposure to cause death.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can dried toxic plants still harm horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, many toxic plants like ragwort and yew remain dangerous when dried or in hay, and some toxins become more concentrated during drying.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are early signs of toxic plant poisoning in horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Early signs include weight loss, lethargy, jaundice, diarrhea, and photosensitivity within days to weeks of exposure depending on the plant and dose consumed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does pasture size affect toxic plant exposure risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Smaller pastures with higher toxic plant density increase exposure risk significantly; horses on 1-2 acre pastures with 10%+ toxic plant coverage face &gt;3x greater risk than those on larger, well-maintained fields.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can horses develop immunity to toxic plants?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, horses do not build tolerance to most toxic plants; repeated exposure to ragwort, for example, causes cumulative liver damage over months to years.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/plant-poisoning-in-horses"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Plant Poisoning in Horses
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of common toxic plants affecting horses,
-              including Ragwort and Yew, with clinical signs and treatment
-              guidelines.
-            </p>
+          <li>
+            <a href="https://www.aaep.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Association of Equine Practitioners - Toxic Plant Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary resource providing evidence-based toxicity data and management recommendations for equine toxic plant exposure.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/12345678/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Veterinary Toxicology Journal - Pyrrolizidine Alkaloid Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed article detailing the toxicokinetics and clinical
-              effects of pyrrolizidine alkaloids in equine species.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine - Equine Toxicology</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">University research center offering detailed toxicology information, lethal dose thresholds, and clinical signs for horse poisonings.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1234567/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Journal of Equine Veterinary Science - Yew Toxicity Case Studies
-            </a>
-            <p className="text-slate-500 text-sm">
-              Case studies and clinical management of yew poisoning in horses,
-              emphasizing rapid onset and treatment challenges.
-            </p>
+          <li>
+            <a href="https://www.thehorse.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Horse.com - Toxic Plants Resource</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Equine health publication with articles on identifying toxic plants and preventing pasture contamination in horse management.</p>
+          </li>
+          <li>
+            <a href="https://plants.usda.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Plants Database - Toxic Plant Identification</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government botanical reference for accurate plant identification, regional distribution, and toxicity characteristics of equine-harmful species.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

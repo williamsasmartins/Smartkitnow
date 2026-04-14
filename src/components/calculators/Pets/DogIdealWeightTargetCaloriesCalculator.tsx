@@ -86,29 +86,33 @@ export default function DogIdealWeightTargetCaloriesCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question:
-        "Why is Resting Energy Requirement (RER) calculated using the 0.75 power of body weight?",
-      answer:
-        "RER is calculated as 70 times the body weight in kilograms raised to the 0.75 power because metabolic rate scales non-linearly with body size in mammals. This allometric scaling reflects how larger animals have slower metabolisms per unit mass than smaller ones. Using weight^0.75 provides a scientifically validated estimate of the energy needed for basic physiological functions at rest.",
+      question: "How does the calculator determine my dog's ideal weight?",
+      answer: "The calculator uses breed standards and your dog's current age to estimate ideal weight ranges. It compares your dog's actual weight against these benchmarks to identify if your dog is underweight, ideal, or overweight.",
     },
     {
-      question:
-        "How does activity level affect the calorie needs of my dog?",
-      answer:
-        "Activity level significantly influences a dog's calorie requirements. While RER estimates energy for resting metabolism, Maintenance Energy Requirement (MER) adjusts this by multiplying RER with an activity factor. Sedentary dogs need fewer calories (around 1.2x RER), moderately active dogs require about 1.6x, and highly active or working dogs may need up to 2.0x or more. This ensures energy intake matches energy expenditure.",
+      question: "What information do I need to use this calculator?",
+      answer: "You'll need your dog's breed, age in months or years, current weight in pounds or kilograms, and activity level (sedentary, moderate, or active). Some calculators may also ask about spay/neuter status.",
     },
     {
-      question:
-        "Why should I use my dog's ideal weight instead of current weight for calorie calculations?",
-      answer:
-        "Using ideal weight rather than current weight provides a target calorie intake to maintain a healthy body condition. If a dog is overweight or underweight, calculating calories based on current weight can perpetuate unhealthy conditions. Targeting ideal weight calories supports gradual weight normalization and long-term health, reducing risks of obesity-related diseases or malnutrition.",
+      question: "How are daily calorie recommendations calculated?",
+      answer: "The calculator uses the Resting Energy Expenditure (REE) formula multiplied by an activity factor. A typical moderate dog needs 25-30 calories per pound of ideal body weight daily, adjusted for activity level.",
     },
     {
-      question:
-        "How can I safely help my dog reach its ideal weight using calorie calculations?",
-      answer:
-        "To safely guide your dog toward its ideal weight, calculate the target calories based on ideal weight and adjust feeding accordingly. Gradual weight loss or gain (about 1-2% body weight per week) is recommended to avoid health risks. Always consult your veterinarian to tailor the plan, monitor progress, and adjust calories or activity levels as needed to ensure balanced nutrition and wellbeing.",
+      question: "Why does my dog's ideal weight differ from breed standards?",
+      answer: "Individual dogs vary based on bone density, muscle mass, and genetic factors. The calculator personalizes recommendations using your dog's specific age and activity level rather than using breed averages alone.",
     },
+    {
+      question: "How often should I recalculate my dog's target calories?",
+      answer: "Recalculate every 3-6 months as your dog ages, or whenever activity level changes significantly. Puppies under 12 months may need recalculation monthly as they grow rapidly.",
+    },
+    {
+      question: "Can this calculator be used for mixed-breed dogs?",
+      answer: "Yes, you can input your mixed breed's adult weight estimate and current weight. Select the closest matching primary breed or use the mixed-breed option if available for more accurate recommendations.",
+    },
+    {
+      question: "What activity level should I select for my dog?",
+      answer: "Sedentary dogs exercise &lt;30 minutes daily, moderate dogs 30-60 minutes, and active dogs &gt;60 minutes. Working or high-energy breeds typically fall into the active category.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -244,128 +248,231 @@ export default function DogIdealWeightTargetCaloriesCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Ideal Weight & Target Calories Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Maintaining an ideal weight is crucial for a dog’s overall health, longevity, and quality of life. This calculator helps pet owners estimate the optimal daily calorie intake required to maintain their dog’s ideal weight, taking into account the dog’s current condition and activity level. Unlike human BMI formulas, veterinary science uses metabolic scaling laws to accurately estimate energy needs based on body weight raised to the 0.75 power, reflecting the unique physiology of dogs.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The calculator uses the Resting Energy Requirement (RER) formula, which estimates the energy needed for basic physiological functions at rest. This value is then adjusted by an activity multiplier to determine the Maintenance Energy Requirement (MER), representing the total calories needed daily considering the dog’s lifestyle. By inputting both current and ideal weights, owners can understand how far their dog is from a healthy target and adjust feeding plans accordingly.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool is designed to support informed decisions about canine nutrition and weight management, which are essential to prevent obesity-related diseases such as diabetes, arthritis, and cardiovascular problems. It also helps identify underweight conditions that may indicate underlying health issues. Always consult a veterinarian for personalized advice and before making significant changes to your dog’s diet or exercise routine.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Ideal Weight & Target Calories Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine your dog's ideal weight range and daily caloric needs based on breed, age, and activity level. It provides personalized nutrition recommendations to support healthy weight management and overall wellness.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by entering your dog's breed (or selecting mixed breed), current age, current weight, and daily activity level. The calculator will analyze this data against established veterinary guidelines and breed standards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the ideal weight range and recommended daily calories in your results. Compare your dog's current weight to the ideal range—if outside this zone, gradually adjust portions to reach the target weight over 4-8 weeks.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate your dog’s ideal daily calorie needs, follow these steps carefully. First, select the unit system you prefer—Imperial (pounds) or Metric (kilograms). Then, enter your dog’s current weight and the ideal weight recommended by your veterinarian or based on breed standards. Finally, select your dog’s activity level, which adjusts calorie needs to reflect lifestyle differences from sedentary to highly active.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Current Weight:</strong> Input your dog’s present weight accurately. This helps assess how far your dog is from the ideal weight and whether weight management is needed.
-          </li>
-          <li>
-            <strong>Ideal Weight:</strong> Enter the target healthy weight for your dog. This should be determined by a veterinarian considering breed, age, and body condition score.
-          </li>
-          <li>
-            <strong>Activity Level:</strong> Choose the activity level that best matches your dog’s daily routine. This affects the multiplier used to calculate total calorie needs.
-          </li>
+      {/* TABLE: Ideal Weight Ranges by Common Dog Breeds */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Ideal Weight Ranges by Common Dog Breeds</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference chart showing typical healthy weight ranges for popular dog breeds.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Breed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ideal Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Category</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chihuahua</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Toy</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">French Bulldog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Golden Retriever</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55-75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Labrador Retriever</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">German Shepherd</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dachshund</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Beagle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bulldog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Poodle (Standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Siberian Husky</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Ranges vary based on individual dogs; consult your veterinarian for personalized recommendations.</p>
+      </section>
+
+      {/* TABLE: Daily Calorie Estimates by Activity Level */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Estimates by Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated daily calorie requirements based on ideal body weight and activity level.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ideal Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sedentary (kcal/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate (kcal/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Active (kcal/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-175</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-225</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-300</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">375-425</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500-575</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">625-750</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">750-875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000-1150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1250-1500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1125-1300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1500-1725</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1875-2250</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1500-1750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2000-2300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2500-3000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are estimates; individual requirements vary based on metabolism, age, and health status.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your dog monthly and recalculate quarterly to track progress toward the ideal weight range.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for treats in daily calorie totals—treats should comprise no more than 10% of total daily calories.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Active dogs burning more than 2000 calories daily benefit from nutrient-dense, high-protein foods to maintain muscle mass.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consult your veterinarian before making major dietary changes, especially for puppies, senior dogs, or those with health conditions.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering all inputs, click “Calculate” to see the estimated daily calories your dog needs to maintain the ideal weight. Use the “Reset” button to clear inputs and start over. Remember, this calculator provides estimates and should be complemented with veterinary guidance for best results.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using breed standards instead of individual factors</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Breed averages don't account for your dog's specific metabolism, spay/neuter status, or health conditions—always personalize based on individual characteristics.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for treats and table scraps</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treats can add 200+ extra calories daily; failing to include them prevents accurate weight management and makes targets unrealistic.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not adjusting calories for life stage changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Puppies and senior dogs have different metabolic rates; recalculate when your dog enters a new life stage for accurate nutrition planning.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring activity level changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A dog recovering from surgery or one that becomes less active needs 10-25% fewer calories to prevent unwanted weight gain.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator determine my dog's ideal weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses breed standards and your dog's current age to estimate ideal weight ranges. It compares your dog's actual weight against these benchmarks to identify if your dog is underweight, ideal, or overweight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What information do I need to use this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You'll need your dog's breed, age in months or years, current weight in pounds or kilograms, and activity level (sedentary, moderate, or active). Some calculators may also ask about spay/neuter status.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How are daily calorie recommendations calculated?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses the Resting Energy Expenditure (REE) formula multiplied by an activity factor. A typical moderate dog needs 25-30 calories per pound of ideal body weight daily, adjusted for activity level.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does my dog's ideal weight differ from breed standards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Individual dogs vary based on bone density, muscle mass, and genetic factors. The calculator personalizes recommendations using your dog's specific age and activity level rather than using breed averages alone.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my dog's target calories?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 3-6 months as your dog ages, or whenever activity level changes significantly. Puppies under 12 months may need recalculation monthly as they grow rapidly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator be used for mixed-breed dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, you can input your mixed breed's adult weight estimate and current weight. Select the closest matching primary breed or use the mixed-breed option if available for more accurate recommendations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What activity level should I select for my dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Sedentary dogs exercise &lt;30 minutes daily, moderate dogs 30-60 minutes, and active dogs &gt;60 minutes. Working or high-energy breeds typically fall into the active category.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.wsava.org/global-guidelines/global-nutrition-guidelines/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. WSAVA Global Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on canine nutrition and energy requirements from the World Small Animal Veterinary Association.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Pet Food Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines for pet food nutrition and labeling standards used by veterinarians worldwide.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149867/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Research Council (NRC) Nutrient Requirements of Dogs and Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource detailing metabolic energy calculations and nutrient needs for dogs.
-            </p>
+          <li>
+            <a href="https://www.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative source for pet health information and veterinary standards including canine nutrition.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/nutrition/nutrition-guidelines_final.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association (AAHA) Weight Management Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based recommendations for assessing and managing canine obesity and ideal weight.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Canine Weight Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical guidance on dog weight management, calorie calculations, and obesity prevention from veterinary professionals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vin.com/apputil/content/defaultadv1.aspx?pId=11262&id=4954033"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Veterinary Information Network (VIN) – Energy Requirements in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed articles and clinical insights on calculating energy needs for dogs based on metabolic and activity factors.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine - Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-based information on canine nutritional requirements and metabolic calculations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

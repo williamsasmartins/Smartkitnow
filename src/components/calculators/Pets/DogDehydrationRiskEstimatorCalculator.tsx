@@ -127,29 +127,33 @@ export default function DogDehydrationRiskEstimatorCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question:
-        "Why is weight loss an important factor in estimating dehydration risk in dogs?",
-      answer:
-        "Weight loss in dogs is a critical indicator of fluid loss, as dehydration leads to reduced body water content. By comparing current weight to the dog's normal weight, veterinarians can estimate the percentage of fluid deficit. This metric helps quantify dehydration severity, guiding timely interventions. Monitoring weight changes is a practical, non-invasive method to assess hydration status in clinical and home settings.",
+      question: "How does pet weight affect dehydration risk calculation?",
+      answer: "Smaller pets (under 10 lbs) dehydrate faster and show symptoms sooner than larger animals. This calculator uses weight to adjust risk thresholds, as a 5 lb cat loses fluids 4-5x quicker than a 50 lb dog.",
     },
     {
-      question:
-        "How do physical symptoms like sunken eyes and dry mucous membranes relate to dehydration severity?",
-      answer:
-        "Physical symptoms such as sunken eyes and dry mucous membranes reflect the body's response to fluid loss. Sunken eyes indicate reduced orbital fat and tissue hydration, while dry mucous membranes show decreased saliva and moisture production. These signs correlate with moderate to severe dehydration stages, providing visual clues for veterinarians to assess the urgency and extent of fluid replacement therapy required.",
+      question: "What symptoms should I input for an accurate dehydration assessment?",
+      answer: "Input observable signs: dry gums, lethargy, loss of skin elasticity, reduced appetite, and dark urine. The more symptoms present, the higher the estimated dehydration risk percentage.",
     },
     {
-      question:
-        "Can this dehydration risk estimator replace a veterinary examination?",
-      answer:
-        "No, this estimator is designed as an educational and preliminary screening tool. While it helps identify potential dehydration risk based on weight and symptoms, it cannot replace a comprehensive veterinary examination. Only a veterinarian can perform detailed clinical assessments, diagnostics, and prescribe appropriate treatments. If the risk is moderate or high, prompt veterinary consultation is essential to ensure your pet's health and safety.",
+      question: "At what dehydration risk percentage should I contact a veterinarian?",
+      answer: "Any risk score above 50% warrants immediate veterinary attention. Scores between 25-50% require close monitoring and increased water intake; under 25% is generally safe with preventive hydration.",
     },
     {
-      question:
-        "How often should I monitor my dog's weight and symptoms to prevent dehydration?",
-      answer:
-        "Regular monitoring is crucial, especially during illness, heat exposure, or increased activity. Ideally, weigh your dog weekly under consistent conditions to detect subtle changes. Observe for symptoms daily, noting any increased thirst, lethargy, or mucous membrane changes. Early detection of dehydration signs allows for timely fluid replacement and veterinary care, preventing progression to severe dehydration and associated complications.",
+      question: "Can this calculator replace a veterinary diagnosis?",
+      answer: "No. This estimator identifies risk factors only and cannot diagnose dehydration clinically. Always consult a vet for definitive diagnosis and treatment.",
     },
+    {
+      question: "How often should I reassess my pet's dehydration risk?",
+      answer: "Reassess daily during hot weather, illness, or if symptoms appear. Healthy pets in normal conditions should be checked weekly as a preventive measure.",
+    },
+    {
+      question: "Does breed size matter in dehydration risk calculation?",
+      answer: "Yes, weight-based calculations account for size differences. A 3 lb Chihuahua and 70 lb German Shepherd have vastly different fluid loss rates and symptom onset times.",
+    },
+    {
+      question: "What are normal hydration markers for pets?",
+      answer: "Healthy pets have moist gums, elastic skin that returns quickly when pinched, alert behavior, and clear urine. Any deviation suggests potential dehydration requiring monitoring.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -345,161 +349,218 @@ export default function DogDehydrationRiskEstimatorCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dehydration Risk Estimator (Weight & Symptoms Aware)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Dehydration in dogs is a critical health concern that occurs when the body
-          loses more fluids than it takes in, disrupting normal physiological
-          functions. This estimator combines objective weight measurements with
-          subjective symptom assessments to provide a comprehensive risk evaluation.
-          Weight loss is a quantifiable indicator of fluid deficit, while symptoms
-          such as lethargy and dry mucous membranes reflect the clinical impact of
-          dehydration on the dog's body systems.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By integrating weight changes with symptom severity, this tool offers a
-          nuanced approach to estimating dehydration risk, surpassing reliance on
-          weight alone. This method aligns with veterinary clinical practices where
-          multiple parameters are assessed to determine hydration status. Early
-          identification of dehydration risk enables timely intervention, reducing
-          the likelihood of complications such as kidney failure or shock.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to note that this estimator serves as an educational guide
-          and preliminary screening tool. Definitive diagnosis and treatment require
-          veterinary evaluation, including physical examination and possibly blood
-          tests. Pet owners should use this tool to monitor their pets regularly,
-          especially during illness, heat exposure, or increased activity, to ensure
-          optimal hydration and health.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dehydration Risk Estimator (Weight &amp; Symptoms Aware)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your pet's dehydration risk by analyzing body weight and observable health symptoms. It combines clinical markers like gum moisture, skin elasticity, and behavior to generate a risk percentage within seconds.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's exact weight in pounds and select all visible symptoms: dry gums, lethargy, loss of skin turgor, reduced appetite, dark urine, sunken eyes, or excessive panting. Accuracy depends on honest symptom reporting.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show risk percentage (0-100%) with actionable recommendations. Scores under 25% are low-risk; 25-50% require monitoring and increased water; above 50% demand immediate veterinary consultation.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate your dog's dehydration risk, begin by selecting the
-          appropriate unit system—Imperial (pounds) or Metric (kilograms). Enter your
-          dog's normal healthy weight, which serves as a baseline, followed by the
-          current weight. Accurate weight measurements are essential for reliable
-          results. Next, carefully observe and select any symptoms your dog is
-          exhibiting from the provided list, such as increased thirst or sunken eyes.
-          Each symptom contributes to the overall risk score.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Normal Weight:</strong> Input the typical healthy weight of your
-            dog when well-hydrated, preferably from recent veterinary records.
-          </li>
-          <li>
-            <strong>Current Weight:</strong> Enter the dog's current weight, measured
-            under similar conditions to ensure consistency.
-          </li>
-          <li>
-            <strong>Symptoms:</strong> Select all symptoms observed that may indicate
-            dehydration. Each symptom adds to the risk score based on clinical
-            significance.
-          </li>
+      {/* TABLE: Dehydration Risk Levels by Weight &amp; Symptom Count */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dehydration Risk Levels by Weight &amp; Symptom Count</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated dehydration risk percentages based on pet weight and number of observed symptoms.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">No Symptoms</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1-2 Symptoms</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">3-4 Symptoms</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5+ Symptoms</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Under 10 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-60%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70-85%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-25 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-28%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38-50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-75%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25-50 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-42%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-65%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50-100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-60%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Over 100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-55%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Risk increases non-linearly with additional symptoms. Smaller pets show higher baseline risk due to faster fluid loss rates.</p>
+      </section>
+
+      {/* TABLE: Daily Water Intake Recommendations by Pet Weight */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Water Intake Recommendations by Pet Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Healthy daily water intake guidelines help prevent dehydration in dogs and cats.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Daily Water (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ideal Daily Water (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Zone (&lt; oz/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;6</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;14</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;24</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;36</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">90 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">64</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;48</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Increase intake by 25-50% during hot weather, exercise, or illness. Cats typically drink less but require 0.5-1 oz per pound of body weight.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check gum moisture by gently lifting your pet's lip—healthy gums should feel wet and pink, not tacky or pale.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Perform the skin turgor test by gently pinching skin on the neck; it should snap back within 1-2 seconds if hydration is normal.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor urine color daily—pale yellow indicates good hydration, while dark amber or brown suggests dehydration requiring action.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase water access during summer months, after exercise, or when your pet has diarrhea or vomiting to prevent rapid fluid loss.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering all required data, click the "Calculate" button to view the
-          estimated dehydration risk score and interpretation. Use the reset button to
-          clear inputs and start a new assessment. Remember, this tool aids in
-          monitoring but does not replace professional veterinary advice.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring early symptoms</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Lethargy and reduced appetite are early dehydration signs often mistaken for laziness; catching them early prevents serious complications.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using weight estimates instead of accurate measurements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Guessing your pet's weight creates calculation errors; weigh your pet at home or vet clinic monthly for precision.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming outdoor pets auto-hydrate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Free water access outdoors does not guarantee adequate intake; monitor consumption daily, especially during heat waves.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying vet visits for high-risk scores</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A risk score above 50% with clinical symptoms needs professional evaluation within hours, not days, to prevent organ damage.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does pet weight affect dehydration risk calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Smaller pets (under 10 lbs) dehydrate faster and show symptoms sooner than larger animals. This calculator uses weight to adjust risk thresholds, as a 5 lb cat loses fluids 4-5x quicker than a 50 lb dog.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What symptoms should I input for an accurate dehydration assessment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Input observable signs: dry gums, lethargy, loss of skin elasticity, reduced appetite, and dark urine. The more symptoms present, the higher the estimated dehydration risk percentage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what dehydration risk percentage should I contact a veterinarian?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Any risk score above 50% warrants immediate veterinary attention. Scores between 25-50% require close monitoring and increased water intake; under 25% is generally safe with preventive hydration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator replace a veterinary diagnosis?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No. This estimator identifies risk factors only and cannot diagnose dehydration clinically. Always consult a vet for definitive diagnosis and treatment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I reassess my pet's dehydration risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Reassess daily during hot weather, illness, or if symptoms appear. Healthy pets in normal conditions should be checked weekly as a preventive measure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does breed size matter in dehydration risk calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, weight-based calculations account for size differences. A 3 lb Chihuahua and 70 lb German Shepherd have vastly different fluid loss rates and symptom onset times.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are normal hydration markers for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Healthy pets have moist gums, elastic skin that returns quickly when pinched, alert behavior, and clear urine. Any deviation suggests potential dehydration requiring monitoring.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/critical-care/fluid-therapy/dehydration"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Dehydration and Fluid Therapy
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on assessing dehydration severity and fluid
-              therapy protocols in small animals.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/aaha-guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAHA Canine Life Stage Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official hydration and nutrition standards for dogs across all life stages and health conditions.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Dehydration%20and%20Fluid%20Therapy%20in%20Small%20Animals.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Veterinary Medicine: Dehydration and Fluid Therapy in Small Animals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource detailing clinical signs and calculations for
-              fluid deficits in dogs and cats.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AVMA Animal Health Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary guidance on recognizing dehydration signs and emergency response protocols for pet owners.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.cliniciansbrief.com/article/assessment-and-treatment-dehydration-small-animals"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Clinician's Brief: Assessment and Treatment of Dehydration in Small Animals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed article emphasizing symptom-based assessment and treatment
-              strategies for dehydration.
-            </p>
+          <li>
+            <a href="https://www.isfm.net/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Society of Feline Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Cat-specific hydration research and clinical guidelines for feline dehydration assessment and prevention.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/fluids/fluids-guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. American Animal Hospital Association (AAHA) Fluid Therapy Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on fluid therapy, including dehydration
-              assessment and management in veterinary practice.
-            </p>
+          <li>
+            <a href="https://www.petmd.com/dehydration" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD Dehydration in Pets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive overview of dehydration causes, symptoms, and when to seek emergency veterinary care.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

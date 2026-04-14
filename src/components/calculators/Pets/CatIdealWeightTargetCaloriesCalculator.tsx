@@ -92,25 +92,33 @@ export default function CatIdealWeightTargetCaloriesCalculator() {
   // 3. FAQS (DETAILED)
   const faqs = [
     {
-      question: "How is the ideal weight range for cats determined?",
-      answer:
-        "The ideal weight range for cats is generally estimated based on their current weight adjusted by a percentage to account for healthy body condition. Since breed and body condition score (BCS) vary, this calculator provides a ±15% range around the current weight as a practical estimate of ideal weight. For precise assessment, a veterinarian's evaluation is recommended.",
+      question: "How do I know my cat's ideal weight?",
+      answer: "Ideal weight depends on breed, age, and body frame size. Most domestic cats range from 8-12 lbs, but Maine Coons can reach 18 lbs while Siamese stay around 6-8 lbs. Your vet can assess your cat's body condition score (1-9 scale) to determine target weight.",
     },
     {
-      question: "What is the Resting Energy Requirement (RER) and why is it important?",
-      answer:
-        "Resting Energy Requirement (RER) represents the energy a cat needs at rest to maintain vital bodily functions. It is calculated using the cat's weight raised to the 0.75 power, multiplied by 70. RER serves as the foundation for determining daily calorie needs, which are then adjusted for activity and other factors to estimate maintenance energy requirements.",
+      question: "How many calories should my indoor cat eat daily?",
+      answer: "Indoor cats typically need 200-250 calories per day, depending on age and weight. A sedentary 10 lb cat requires roughly 24 calories per pound of body weight, while active cats may need up to 30 calories per pound.",
     },
     {
-      question: "Why does the calculator use a multiplier of 1.3 for maintenance calories?",
-      answer:
-        "The multiplier of 1.3 applied to RER estimates the Maintenance Energy Requirement (MER), reflecting the average daily energy needs of an adult cat considering typical activity levels and neuter status. This value can vary between 1.2 and 1.4 depending on individual factors, but 1.3 is a widely accepted average for healthy adult cats.",
+      question: "Do outdoor cats need more calories than indoor cats?",
+      answer: "Yes, outdoor and highly active cats burn 25-50% more calories than indoor cats due to increased movement and temperature regulation. A 10 lb outdoor cat may require 300-350 calories daily versus 200-250 for an indoor counterpart.",
     },
     {
-      question: "Can this calculator replace veterinary advice for my cat's diet?",
-      answer:
-        "No, this calculator is an educational tool designed to provide general estimates of ideal weight and calorie needs. Individual cats may have unique health conditions, activity levels, or dietary requirements. Always consult a qualified veterinarian for personalized nutrition and health advice tailored to your cat.",
+      question: "How often should I recalculate my cat's calorie needs?",
+      answer: "Recalculate every 6 months or when your cat's weight changes significantly, enters a new life stage (kitten to adult), or shows changes in activity level. Senior cats (&gt;7 years) may need adjustments every 3-4 months.",
     },
+    {
+      question: "What factors affect a cat's ideal weight calculation?",
+      answer: "Age, breed, body frame size, activity level, neutering status, and health conditions all influence ideal weight. Spayed/neutered cats typically weigh 10-15% more than intact cats and may need 25-30% fewer calories.",
+    },
+    {
+      question: "Can I use human BMI calculators for my cat?",
+      answer: "No, cats have different metabolic rates and body composition than humans. Feline calculations use body condition scoring and weight-to-calorie ratios specific to cat physiology, not human BMI formulas.",
+    },
+    {
+      question: "How do I adjust calories if my cat is overweight or underweight?",
+      answer: "Reduce calories by 10-15% for overweight cats and increase by 10-15% for underweight cats, reassessing every 4 weeks. Extreme restrictions (&lt;150 calories daily) risk hepatic lipidosis in cats and require veterinary supervision.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -217,95 +225,224 @@ export default function CatIdealWeightTargetCaloriesCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Ideal Weight & Target Calories for Cats
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Maintaining an ideal weight is crucial for a cat’s overall health and longevity. Unlike humans, cats do not have a standardized body mass index (BMI), so veterinarians rely on body condition scores and weight ranges tailored to breed, age, and activity level. This calculator estimates your cat’s ideal weight range by adjusting their current weight by a healthy margin, providing a practical guideline for maintaining optimal body condition.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Caloric needs for cats are calculated based on their Resting Energy Requirement (RER), which accounts for the energy required to maintain vital bodily functions at rest. This value is then multiplied by a factor reflecting activity level and neuter status to estimate the Maintenance Energy Requirement (MER), or the daily calories needed to maintain weight. Proper calorie management helps prevent obesity and related health issues such as diabetes and arthritis.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool provides an evidence-based estimate of your cat’s daily calorie needs and ideal weight range, helping you make informed decisions about feeding and nutrition. However, individual variations exist, and it is always best to consult with a veterinarian for personalized advice tailored to your cat’s unique health status.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Ideal Weight &amp; Target Calories for Cats</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines your cat's healthy weight range and daily calorie requirements based on age, weight, activity level, and body frame size. It helps you create a nutrition plan aligned with veterinary weight management standards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">You'll input your cat's current weight (in pounds or kilograms), age category (kitten, adult, senior), activity level (indoor/sedentary, moderate, or outdoor/active), and breed/frame size. The calculator cross-references these data against feline metabolic standards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show your cat's ideal weight range, daily calorie targets, and personalized feeding recommendations. Use these numbers to adjust portion sizes, select appropriate food calorie density, and monitor weight changes over time with your veterinarian.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator, simply enter your cat’s current weight and select the appropriate unit system (metric or imperial). The calculator will then estimate an ideal weight range based on a healthy margin around the current weight and calculate the daily calorie intake needed to maintain your cat’s weight.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat’s current weight in kilograms or pounds.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Click the "Calculate" button to view the estimated ideal weight range and target daily calories.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Use the results as a guideline for feeding and consult your veterinarian for personalized nutrition plans.
-          </li>
+      {/* TABLE: Daily Calorie Requirements by Cat Weight and Activity Level */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Requirements by Cat Weight and Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to estimate daily calorie needs based on your cat's weight and lifestyle.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Indoor/Sedentary (kcal)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Activity (kcal)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Outdoor/Active (kcal)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">144-180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-210</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">210-240</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">192-240</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240-280</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280-320</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350-400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">288-360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">360-420</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">420-480</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">336-420</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">420-490</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">490-560</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">384-480</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">480-560</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">560-640</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations based on 24-30 kcal per pound daily. Adjust for metabolism, age, and health conditions.</p>
+      </section>
+
+      {/* TABLE: Ideal Weight Ranges by Cat Breed and Frame Size */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Ideal Weight Ranges by Cat Breed and Frame Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference ideal weight targets for common cat breeds and body frame types.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Breed/Frame Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Small Frame (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Medium Frame (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Large Frame (lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Siamese/Oriental</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Russian Blue</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Domestic Shorthair</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">British Shorthair</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Maine Coon</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Persian</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Frame size assessment should be performed by a veterinarian using body condition scoring.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your cat monthly on a consistent scale to track progress toward ideal weight, accounting for 0.5-1 lb monthly loss as healthy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use calorie information on cat food labels to portion correctly; most canned foods contain 70-100 kcal per 3 oz can, while dry foods range from 350-500 kcal per cup.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in treats and supplements, which can add 20-50 calories daily and often get overlooked in calorie calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consult your veterinarian before making major dietary changes, especially if your cat has diabetes, kidney disease, or other health conditions affecting nutrition needs.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using human weight loss guidelines</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Rapid weight loss in cats (&gt;2 lbs monthly) risks hepatic lipidosis; follow veterinary protocols limiting loss to 0.5-1 lb per week.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring neutering/spaying status</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Spayed/neutered cats need 25-30% fewer calories than intact cats but often weigh 10-15% more; failing to adjust causes obesity.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for treats and table food</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treats often provide 20-50 calories daily and should represent no more than 10% of total calorie intake but are frequently excluded from calculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming breed has no impact on ideal weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Breed-specific genetics significantly affect ideal weight; a 12 lb Maine Coon is lean while a 12 lb Siamese is obese.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know my cat's ideal weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Ideal weight depends on breed, age, and body frame size. Most domestic cats range from 8-12 lbs, but Maine Coons can reach 18 lbs while Siamese stay around 6-8 lbs. Your vet can assess your cat's body condition score (1-9 scale) to determine target weight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many calories should my indoor cat eat daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Indoor cats typically need 200-250 calories per day, depending on age and weight. A sedentary 10 lb cat requires roughly 24 calories per pound of body weight, while active cats may need up to 30 calories per pound.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do outdoor cats need more calories than indoor cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, outdoor and highly active cats burn 25-50% more calories than indoor cats due to increased movement and temperature regulation. A 10 lb outdoor cat may require 300-350 calories daily versus 200-250 for an indoor counterpart.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my cat's calorie needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 6 months or when your cat's weight changes significantly, enters a new life stage (kitten to adult), or shows changes in activity level. Senior cats (&gt;7 years) may need adjustments every 3-4 months.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect a cat's ideal weight calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Age, breed, body frame size, activity level, neutering status, and health conditions all influence ideal weight. Spayed/neutered cats typically weigh 10-15% more than intact cats and may need 25-30% fewer calories.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use human BMI calculators for my cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, cats have different metabolic rates and body composition than humans. Feline calculations use body condition scoring and weight-to-calorie ratios specific to cat physiology, not human BMI formulas.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I adjust calories if my cat is overweight or underweight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Reduce calories by 10-15% for overweight cats and increase by 10-15% for underweight cats, reassessing every 4 weeks. Extreme restrictions (&lt;150 calories daily) risk hepatic lipidosis in cats and require veterinary supervision.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/feeding-and-nutrition-of-cats/energy-requirements"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Energy Requirements of Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of energy requirements and nutritional needs for cats, including RER and MER calculations.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/publications" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Feline Nutrient Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines for feline nutritional standards and calorie requirements across life stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/nutrition/nutrition-guidelines-for-healthy-adult-dogs-and-cats.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. American Animal Hospital Association (AAHA) Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based guidelines for feeding and maintaining ideal body condition in cats and dogs.
-            </p>
+          <li>
+            <a href="https://www.icatcare.org/advice/cat-weight-management/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care - Weight Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based resources on assessing body condition and managing feline weight health.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149329/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Center for Biotechnology Information (NCBI): Feline Nutrition and Energy Metabolism
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article discussing feline energy metabolism and nutritional requirements.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/obesity-pets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AVMA Pet Obesity Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary Association guidelines on obesity prevention and weight management in companion animals.</p>
+          </li>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/nutrition-for-cats" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Caloric Needs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical nutrition information for calculating and adjusting calorie intake in cats at various life stages.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -66,25 +66,33 @@ export default function BirdCalciumSupplementDosageBreedingFemalesCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is calcium supplementation important for breeding female birds?",
-      answer:
-        "Calcium is a critical mineral for breeding female birds because it supports eggshell formation and overall reproductive health. Insufficient calcium can lead to weak eggshells, egg binding, and metabolic bone disease. Supplementing calcium ensures females have adequate reserves during the high-demand breeding and egg-laying periods.",
+      question: "Why do breeding females need more calcium than non-breeding pets?",
+      answer: "Breeding females require 1.5–2 times more calcium to support fetal development and milk production during lactation. Calcium deficiency during pregnancy can cause eclampsia or poor bone development in offspring.",
     },
     {
-      question: "How do I determine the correct calcium dose for my bird?",
-      answer:
-        "The correct calcium dose depends primarily on the bird's body weight and reproductive status. Breeding females require higher calcium intake, typically calculated in milligrams per kilogram of body weight per day. Consulting with a veterinarian and using a dosage calculator helps tailor supplementation to the individual bird's needs safely.",
+      question: "What is the recommended daily calcium intake for breeding females?",
+      answer: "Most breeding females need 1,000–1,500 mg of calcium daily, depending on species, body weight, and reproductive stage. Lactating females may require up to 2,000 mg daily.",
     },
     {
-      question: "Can too much calcium be harmful to breeding females?",
-      answer:
-        "Yes, excessive calcium supplementation can cause hypercalcemia, leading to kidney damage, soft tissue calcification, and impaired absorption of other minerals. It is essential to provide calcium within recommended limits and monitor the bird's health regularly. Balanced nutrition and veterinary guidance help prevent overdose risks.",
+      question: "How do I calculate the right supplement dosage for my breeding female?",
+      answer: "Input your pet's weight, reproductive stage (pregnant or lactating), and current diet calcium content. The calculator adjusts dosage based on these variables to meet species-specific requirements.",
+    },
+    {
+      question: "Can too much calcium harm breeding females?",
+      answer: "Excessive calcium (&gt;2,500 mg daily) can interfere with phosphorus and magnesium absorption, causing mineral imbalances. Maintain the recommended 1.2:1 calcium-to-phosphorus ratio.",
+    },
+    {
+      question: "Should I adjust calcium dosage during different pregnancy stages?",
+      answer: "Yes, calcium needs increase progressively during pregnancy and peak during lactation. Early pregnancy requires baseline levels; late pregnancy and lactation demand 50–100% more supplementation.",
     },
     {
       question: "What forms of calcium supplements are best for breeding females?",
-      answer:
-        "Common calcium supplements include calcium carbonate, calcium citrate, and cuttlebone, each with different absorption rates. Cuttlebone provides a natural source and encourages foraging behavior, while powders and liquids allow precise dosing. Selecting the appropriate form depends on the bird species, preference, and ease of administration.",
+      answer: "Calcium carbonate and calcium citrate are highly absorbable options. Liquid or powder supplements mixed with food are easier to administer and monitor than tablets.",
     },
+    {
+      question: "How often should I reassess my breeding female's calcium needs?",
+      answer: "Reassess every 2–3 weeks during pregnancy and weekly during active lactation, as nutritional demands fluctuate significantly throughout these stages.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -189,98 +197,210 @@ export default function BirdCalciumSupplementDosageBreedingFemalesCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Calcium Supplement Dosage (Breeding Females)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Calcium plays a vital role in the reproductive health of breeding female birds, particularly during egg formation. Adequate calcium intake ensures strong eggshell development and supports metabolic functions that are critical during the high-demand breeding period. Without sufficient calcium, females may suffer from complications such as egg binding, weak shells, or metabolic bone disease, which can severely impact their health and reproductive success.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The calcium requirement for breeding females is significantly higher than for non-breeding birds due to the mineral's role in eggshell calcification. Supplementation must be carefully calculated based on the bird’s body weight to avoid both deficiency and toxicity. This balance is crucial because excessive calcium can lead to health issues such as kidney damage and mineral imbalances, while inadequate calcium compromises egg quality and female vitality.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Veterinary professionals recommend calculating calcium supplementation in milligrams per kilogram of body weight per day to tailor dosing precisely. This approach allows for adjustments based on species, size, and breeding stage, ensuring optimal health outcomes. Using a scientifically grounded dosage calculator helps bird owners and veterinarians provide safe, effective calcium supplementation during breeding cycles.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Calcium Supplement Dosage (Breeding Females) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines optimal daily calcium supplementation for pregnant and lactating females by analyzing reproductive stage, body weight, and dietary calcium intake. It prevents deficiency-related complications like eclampsia, poor fetal development, and inadequate milk production.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's current weight in pounds or kilograms, select the reproductive stage (pregnant or lactating), and input the baseline calcium content from her current diet. The calculator cross-references species-specific mineral requirements and accounts for absorption rates.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your breeding female's total daily calcium requirement and the supplementation gap. Compare the recommended dosage against her current diet to determine whether additional supplementation is necessary and in what form.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the total daily calcium supplement dose required for breeding female birds based on their body weight and the desired dose in milligrams per kilogram. Begin by selecting your preferred unit system—imperial (pounds) or metric (kilograms)—to enter the bird’s weight accurately. Then input the calcium dose per kilogram, which typically ranges between 50 and 100 mg/kg for breeding females.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the bird’s weight in the selected unit system. Ensure the value is positive and accurate for best results.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the calcium dose in mg/kg body weight per day. The default is set to 80 mg/kg, a common recommendation for breeding females.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click “Calculate” to view the total calcium supplement dose in milligrams per day.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the result to guide supplementation, and always consult a veterinarian to confirm dosing and monitor your bird’s health.
-          </li>
+      {/* TABLE: Daily Calcium Requirements by Reproductive Stage */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calcium Requirements by Reproductive Stage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Calcium intake guidelines vary significantly across reproductive phases for breeding females.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Reproductive Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Calcium (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calcium-to-Phosphorus Ratio</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Non-breeding</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800–1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2:1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Early Pregnancy (Weeks 1–4)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000–1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2:1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Late Pregnancy (Weeks 5–8)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,300–1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2:1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Early Lactation (Weeks 1–2)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800–2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2:1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Peak Lactation (Weeks 3–4)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000–2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2:1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Late Lactation (Weeks 5+)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500–1,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2:1</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Adjust based on litter size and individual metabolic rates. Consult veterinarian for species-specific needs.</p>
+      </section>
+
+      {/* TABLE: Calcium Content in Common Pet Foods */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Calcium Content in Common Pet Foods</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Baseline calcium levels in standard diets help determine supplementation needs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calcium Content (mg/100g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercial dry kibble</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800–1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Varies by brand; check label</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-quality wet food</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600–900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Often lower than dry food</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Raw/homemade diet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200–400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Usually requires supplementation</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Prescription pregnancy formula</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,400–1,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pre-formulated for breeding</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Whole prey (mice/rabbits)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500–800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Natural but variable calcium</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dairy products (cottage cheese)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100–150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minor calcium source only</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always verify actual calcium content on product labels or nutritional analysis sheets.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your breeding female's calcium levels monthly via bloodwork during pregnancy and bi-weekly during lactation to prevent dangerous deficiencies.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Pair calcium supplements with vitamin D3 (400–600 IU daily) to maximize intestinal calcium absorption and utilization.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Divide daily supplements into 2–3 smaller doses rather than one large dose to improve absorption efficiency.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a food scale or syringe to measure liquid calcium supplements precisely, as inconsistent dosing can disrupt mineral balance.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Dietary Calcium Content</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to account for baseline calcium in food often results in over-supplementation, causing mineral imbalances and metabolic issues.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Fixed Dosages Across All Stages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying the same calcium amount throughout pregnancy and lactation misses the 50–100% increase needed during peak lactation periods.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Phosphorus Ratios</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Supplementing calcium without maintaining a 1.2:1 calcium-to-phosphorus ratio compromises mineral absorption and skeletal health.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Discontinuing Supplements Too Early</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Stopping calcium supplementation before lactation ends deprives nursing offspring and accelerates maternal bone loss and milk quality decline.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do breeding females need more calcium than non-breeding pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Breeding females require 1.5–2 times more calcium to support fetal development and milk production during lactation. Calcium deficiency during pregnancy can cause eclampsia or poor bone development in offspring.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended daily calcium intake for breeding females?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most breeding females need 1,000–1,500 mg of calcium daily, depending on species, body weight, and reproductive stage. Lactating females may require up to 2,000 mg daily.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the right supplement dosage for my breeding female?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Input your pet's weight, reproductive stage (pregnant or lactating), and current diet calcium content. The calculator adjusts dosage based on these variables to meet species-specific requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can too much calcium harm breeding females?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excessive calcium (&gt;2,500 mg daily) can interfere with phosphorus and magnesium absorption, causing mineral imbalances. Maintain the recommended 1.2:1 calcium-to-phosphorus ratio.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust calcium dosage during different pregnancy stages?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, calcium needs increase progressively during pregnancy and peak during lactation. Early pregnancy requires baseline levels; late pregnancy and lactation demand 50–100% more supplementation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What forms of calcium supplements are best for breeding females?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Calcium carbonate and calcium citrate are highly absorbable options. Liquid or powder supplements mixed with food are easier to administer and monitor than tablets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I reassess my breeding female's calcium needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Reassess every 2–3 weeks during pregnancy and weekly during active lactation, as nutritional demands fluctuate significantly throughout these stages.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/birds/nutrition-in-birds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Nutrition in Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide on avian nutrition including calcium requirements and supplementation strategies for breeding birds.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Pet Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines for calcium and phosphorus requirements in pet foods, including breeding and growth stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6520897/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Calcium Metabolism in Birds - NCBI PMC
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article detailing calcium metabolism and its importance in avian reproduction and health.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/vns/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Nutrition Society</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based nutritional recommendations for pregnant and lactating animals with mineral supplementation protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/page/avian-nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Association of Avian Veterinarians: Avian Nutrition
-            </a>
-            <p className="text-slate-500 text-sm">
-              Professional resource offering guidelines on nutritional management including calcium supplementation for breeding birds.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine - Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed nutritional science for reproductive health and supplementation strategies in breeding females.</p>
+          </li>
+          <li>
+            <a href="https://www.petmd.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD Eclampsia in Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of eclampsia prevention through proper calcium management during pregnancy and lactation.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

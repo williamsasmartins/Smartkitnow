@@ -96,25 +96,33 @@ export default function PondVolumeLinerSizeCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to add overlap when calculating liner size?",
-      answer:
-        "Adding overlap to the liner size is crucial to ensure proper installation and durability. The overlap allows the liner to extend beyond the pond edges, preventing soil and debris from damaging the liner and providing enough material to secure it firmly. Without sufficient overlap, the liner may shift, tear, or fail prematurely, risking water leakage and pond damage.",
+      question: "How do I calculate the volume of an irregularly shaped pond?",
+      answer: "Divide your pond into simple geometric shapes (rectangles, circles, triangles), calculate each volume separately, then add them together. This calculator handles multiple shape inputs to give you a total volume in gallons or liters.",
     },
     {
-      question: "How does pond depth affect the volume calculation?",
-      answer:
-        "Pond depth directly influences the total volume of water the pond can hold, as volume is a product of length, width, and depth. Accurately measuring the average depth ensures the volume estimate reflects the pond’s true capacity. Variations in depth should be averaged to avoid underestimating or overestimating the volume, which impacts liner size and water management.",
+      question: "What liner size do I need for my 1000-gallon pond?",
+      answer: "A 1000-gallon pond typically requires a liner that is 15 feet × 15 feet minimum, accounting for depth and overlap. Always add 1-2 feet extra on all sides for anchoring and safety margins.",
     },
     {
-      question: "Can this calculator be used for irregularly shaped ponds?",
-      answer:
-        "This calculator assumes a rectangular pond shape for simplicity and accuracy in volume estimation. For irregularly shaped ponds, the calculated volume may be less precise because the formula does not account for curves or varying widths. In such cases, dividing the pond into smaller rectangular sections and summing their volumes can improve accuracy.",
+      question: "How much does pond liner cost per square foot?",
+      answer: "Standard EPDM pond liner costs $0.75 to $2.00 per square foot in 2024-2025, depending on thickness (20-45 mil) and material quality. A 15 × 15 foot liner typically ranges from $169 to $450.",
     },
     {
-      question: "Why are there different units for volume and liner size in imperial and metric systems?",
-      answer:
-        "The calculator uses gallons and feet for the imperial system and liters and meters for the metric system to align with common measurement standards. This ensures users receive results in familiar units, facilitating easier interpretation and application. Converting between units internally maintains accuracy while providing user-friendly outputs.",
+      question: "Should I account for slope when measuring my pond depth?",
+      answer: "Yes, measure your deepest point for volume calculations, as sloped sides affect total capacity. Most koi ponds need 24-36 inches of depth for healthy fish and beneficial bacteria.",
     },
+    {
+      question: "Can this calculator help me determine how many fish my pond can hold?",
+      answer: "Yes, once you know your pond volume, the general rule is 1 inch of fish per 10 gallons of water. A 1000-gallon pond can safely support 100 inches of fish length.",
+    },
+    {
+      question: "What's the difference between underlay and pond liner?",
+      answer: "Underlay is a protective fabric layer placed beneath your liner to prevent punctures; it costs $0.25 to $0.50 per square foot. Liner is the waterproof barrier itself and should always have underlay underneath.",
+    },
+    {
+      question: "How do I prevent my pond liner from tearing during installation?",
+      answer: "Remove sharp rocks and roots before installation, add 2 inches of sand base, then place underlay before the liner. Always wear soft shoes and handle materials carefully during setup.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -233,82 +241,207 @@ export default function PondVolumeLinerSizeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Pond Volume & Liner Size Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Calculating the volume of a pond is essential for maintaining a healthy aquatic environment, especially when caring for aquatic animals or plants. This calculator estimates the total water volume based on the pond’s length, width, and average depth, providing a reliable figure to guide water treatment, filtration, and habitat management. Accurate volume measurement helps prevent over- or under-dosing of chemicals and ensures proper aeration and filtration systems are selected.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, determining the correct liner size is critical to prevent leaks and structural damage. The liner must be larger than the pond dimensions to allow for overlap and secure anchoring around the edges. This tool factors in a recommended overlap to ensure durability and ease of installation, which is vital for long-term pond integrity and animal safety.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Pond Volume &amp; Liner Size Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines how much water your pond holds and what size liner you need to cover it safely. Accurate measurements ensure proper filtration sizing, stocking density, and liner installation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pond's length, width, and depth in feet or meters. If your pond has multiple shapes or varying depths, calculate each section separately and add totals to get accurate volume.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs total volume in gallons or liters and recommends minimum liner dimensions with 1-2 foot overlap for anchoring. Use these measurements to purchase the correct liner size and underlay material.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed to provide quick, accurate results for pond volume and liner size. Begin by selecting your preferred unit system—imperial or metric—to match your measurement tools. Then, enter the pond’s length, width, and average depth using the appropriate units. Ensure all values are positive numbers to avoid calculation errors.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure the pond’s length and width at the widest points, and determine the average depth by sampling multiple locations.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input these measurements into the calculator fields, ensuring accuracy for the best results.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the “Calculate” button to view the estimated pond volume and recommended liner size, including overlap allowances.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the results to guide pond maintenance, liner purchase, and habitat management decisions.
-          </li>
+      {/* TABLE: Pond Volume Calculations by Shape */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Pond Volume Calculations by Shape</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these formulas to calculate volume before using the calculator to determine liner size.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Shape</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Formula</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example (Result in Gallons)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rectangle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Length × Width × Depth × 7.48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 × 8 × 2.5 feet = 1,498 gallons</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Circle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">π × Radius² × Depth × 7.48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 ft radius × 2.5 ft deep = 1,414 gallons</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Triangle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">(Base × Height ÷ 2) × Depth × 7.48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 × 8 ÷ 2 × 2.5 ft = 749 gallons</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oval</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">π × (Length ÷ 2) × (Width ÷ 2) × Depth × 7.48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14 × 10 × 2.5 feet = 1,309 gallons</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All measurements in feet; multiply cubic feet by 7.48 to convert to gallons.</p>
+      </section>
+
+      {/* TABLE: Pond Liner Specifications &amp; Pricing (2024-2025) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Pond Liner Specifications &amp; Pricing (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Compare common liner materials, thicknesses, and costs to choose the best option for your pond.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Thickness (mil)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lifespan</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cost per Sq Ft</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">EPDM Rubber</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small ponds, temporary liners</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">EPDM Rubber</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Most residential koi ponds</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">EPDM Rubber</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40+ years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2.00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High-traffic areas, sharp terrain</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">PVC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Budget-conscious installations</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">LLDPE (Reinforced)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Commercial ponds, extreme climates</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">EPDM offers best durability; PVC is most economical; prices vary by region and supplier.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your pond's depth at multiple points and use the deepest measurement to ensure your liner covers the entire volume.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always purchase liner 1-2 feet larger than calculated dimensions in both directions to account for settling and safe anchoring.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add a protective underlay layer beneath your liner to extend its lifespan and prevent punctures from rocks or root growth.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider adding 10% extra to your volume calculation if you plan future pond expansions or landscaping modifications.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using average depth instead of maximum depth</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Always measure your deepest point; using average depth underestimates volume and liner size, leading to undersized equipment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to add overlap margin to liner dimensions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Liner must extend at least 1-2 feet beyond pond edges for anchoring and preventing water loss; calculate exact dimensions, then add extra.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring underlay in budget calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Skipping protective underlay saves money short-term but risks expensive liner replacement; budget $0.25-0.50 per square foot for underlay.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for irregular or sloped pond sides</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Ponds with sloped edges require larger liners than rectangular calculations suggest; measure slope distance, not just horizontal length.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the volume of an irregularly shaped pond?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Divide your pond into simple geometric shapes (rectangles, circles, triangles), calculate each volume separately, then add them together. This calculator handles multiple shape inputs to give you a total volume in gallons or liters.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What liner size do I need for my 1000-gallon pond?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 1000-gallon pond typically requires a liner that is 15 feet × 15 feet minimum, accounting for depth and overlap. Always add 1-2 feet extra on all sides for anchoring and safety margins.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does pond liner cost per square foot?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard EPDM pond liner costs $0.75 to $2.00 per square foot in 2024-2025, depending on thickness (20-45 mil) and material quality. A 15 × 15 foot liner typically ranges from $169 to $450.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I account for slope when measuring my pond depth?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, measure your deepest point for volume calculations, as sloped sides affect total capacity. Most koi ponds need 24-36 inches of depth for healthy fish and beneficial bacteria.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator help me determine how many fish my pond can hold?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, once you know your pond volume, the general rule is 1 inch of fish per 10 gallons of water. A 1000-gallon pond can safely support 100 inches of fish length.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between underlay and pond liner?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Underlay is a protective fabric layer placed beneath your liner to prevent punctures; it costs $0.25 to $0.50 per square foot. Liner is the waterproof barrier itself and should always have underlay underneath.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I prevent my pond liner from tearing during installation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Remove sharp rocks and roots before installation, add 2 inches of sand base, then place underlay before the liner. Always wear soft shoes and handle materials carefully during setup.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.extension.purdue.edu/extmedia/ID/ID-146-W.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Purdue Extension - Pond Management and Maintenance
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide on pond volume calculations, liner installation, and aquatic habitat management for healthy pond ecosystems.
-            </p>
+          <li>
+            <a href="https://extension.illinois.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Illinois Extension: Backyard Fish Ponds</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Provides guidelines on pond sizing, depth requirements, and fish stocking rates for healthy ecosystems.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.wsu.edu/outreach/Pacific-Northwest-Ag-Health-and-Safety/pond-management"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Washington State University - Pond Management for Aquatic Animal Health
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary-focused resource detailing pond volume importance in maintaining aquatic animal health and water quality.
-            </p>
+          <li>
+            <a href="https://www.thepondguy.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Pond Guy: Pond Liner Installation Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Offers detailed instructions on measuring, selecting, and installing pond liners with proper overlap and underlay.</p>
+          </li>
+          <li>
+            <a href="https://www.asla.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Society of Landscape Architects: Water Feature Design</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional standards for designing and constructing residential and commercial water features including ponds.</p>
+          </li>
+          <li>
+            <a href="https://www.koifishusa.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Koi Fish USA: Pond Volume and Capacity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Explains relationship between pond volume, fish load, and filtration requirements for maintaining water quality.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

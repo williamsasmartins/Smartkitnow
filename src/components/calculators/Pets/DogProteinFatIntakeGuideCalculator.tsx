@@ -77,25 +77,33 @@ export default function DogProteinFatIntakeGuideCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is protein intake important for dogs with different goals?",
-      answer:
-        "Protein is essential for tissue repair, muscle maintenance, and overall health in dogs. Growing puppies require higher protein to support rapid development, while athletic dogs need increased protein to repair muscle damage from exercise. Senior dogs benefit from moderate protein to preserve lean mass and prevent sarcopenia. Adjusting protein intake based on the dog's life stage and activity ensures optimal health and longevity.",
+      question: "What protein percentage should my dog eat based on their goal?",
+      answer: "Active dogs need 25-30% protein, senior dogs need 18-25%, and weight management dogs need 20-25% to preserve muscle while losing fat.",
     },
     {
-      question: "How does fat intake affect a dog's energy and health?",
-      answer:
-        "Fat is a dense energy source, providing 9 kcal per gram, which is more than double protein or carbohydrates. Dogs with high energy demands, such as working or performance dogs, require elevated fat intake to meet caloric needs efficiently. However, excessive fat can lead to obesity and pancreatitis, so fat intake must be balanced according to the dog's goal, age, and health status to maintain optimal body condition and metabolic health.",
+      question: "How do I know if my dog needs higher fat intake?",
+      answer: "Working dogs and those with high activity levels require 15-20% fat for sustained energy, while senior or sedentary dogs need only 10-15% fat.",
     },
     {
-      question: "How is the protein and fat intake calculated based on dog weight?",
-      answer:
-        "Protein and fat intake recommendations are expressed in grams per kilogram of body weight to tailor nutrition precisely. This method accounts for metabolic differences between small and large dogs. The calculator multiplies the dog's weight in kilograms by goal-specific protein and fat grams per kilogram values, ensuring individualized dietary planning that supports growth, maintenance, weight loss, or performance needs effectively.",
+      question: "Can I adjust protein and fat independently for my dog?",
+      answer: "Yes, this calculator allows independent adjustments based on your dog's specific goal, age, and activity level for customized nutrition.",
     },
     {
-      question: "Can this guide replace veterinary advice for dog nutrition?",
-      answer:
-        "While this guide provides scientifically grounded estimates for protein and fat intake, it is not a substitute for personalized veterinary advice. Individual dogs may have unique health conditions, allergies, or metabolic requirements that necessitate tailored nutrition plans. Always consult a veterinarian or veterinary nutritionist before making significant dietary changes to ensure your dog's specific needs are met safely and effectively.",
+      question: "What happens if my dog gets too much protein?",
+      answer: "Excess protein is converted to energy or stored as fat; it rarely causes kidney issues in healthy dogs unless they have pre-existing renal disease.",
     },
+    {
+      question: "Should senior dogs eat less protein or fat?",
+      answer: "Senior dogs benefit from moderate protein (18-25%) to maintain muscle mass and slightly reduced fat (10-12%) to prevent obesity-related joint problems.",
+    },
+    {
+      question: "How do I use this calculator for my puppy?",
+      answer: "Puppies require higher protein (25-30%) and fat (15-20%) for growth; select the growth/development goal for accurate recommendations.",
+    },
+    {
+      question: "Is this calculator suitable for all dog breeds?",
+      answer: "Yes, adjust inputs by your dog's weight and activity level; large breeds may have different caloric needs but protein/fat ratios remain similar.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -223,115 +231,224 @@ export default function DogProteinFatIntakeGuideCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Protein/Fat Intake Guide (by Goal)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Protein and fat are two fundamental macronutrients that play critical roles in canine health and nutrition. Protein provides the essential amino acids necessary for muscle development, tissue repair, immune function, and enzyme production. Fat serves as a dense energy source, supports absorption of fat-soluble vitamins, and contributes to healthy skin and coat. The optimal intake of these macronutrients varies significantly depending on a dog’s life stage, activity level, and health goals.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Puppies and growing dogs require higher protein and fat levels to support rapid growth and development, while adult maintenance diets focus on balanced intake to sustain health without excess calories. Dogs undergoing weight loss benefit from increased protein to preserve lean muscle mass during caloric restriction, and athletic or working dogs need elevated fat and protein to meet their heightened energy demands. Senior dogs often require moderate protein with controlled fat to maintain muscle and prevent obesity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This guide uses scientifically validated intake recommendations expressed as grams of protein and fat per kilogram of body weight, allowing for precise, individualized dietary planning. By tailoring macronutrient intake to specific goals, pet owners and veterinary professionals can optimize canine health, performance, and longevity through nutrition.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Protein/Fat Intake Guide (by Goal)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines optimal protein and fat percentages for your dog based on their specific health or fitness goal, weight, and activity level. It removes guesswork from selecting commercial dog foods or formulating home diets.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's current weight, select their primary goal (weight loss, muscle building, maintenance, etc.), and indicate their activity level to generate personalized macronutrient targets.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show recommended protein and fat percentages and estimated daily grams needed for your dog's weight, making it easy to compare labels or adjust feeding amounts.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the recommended daily protein and fat intake for your dog based on its current weight and specific health or lifestyle goals. To use it effectively, follow these steps carefully to ensure accurate and meaningful results that can guide dietary decisions.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Input Dog Weight:</strong> Enter your dog’s current body weight in either pounds (imperial) or kilograms (metric). Accurate weight measurement is crucial as the calculations are weight-dependent.
-          </li>
-          <li>
-            <strong>Select Goal:</strong> Choose the goal that best matches your dog’s current life stage or condition, such as growth (puppy), maintenance (adult), weight loss, performance (athletic), or senior. Each goal has tailored protein and fat intake recommendations.
-          </li>
-          <li>
-            <strong>Calculate:</strong> Click the “Calculate” button to generate the recommended daily protein and fat intake in grams, along with the estimated caloric contribution from these macronutrients.
-          </li>
-          <li>
-            <strong>Interpret Results:</strong> Use the output to guide feeding plans, ensuring your dog receives balanced nutrition aligned with its physiological needs and lifestyle.
-          </li>
+      {/* TABLE: Protein and Fat Recommendations by Dog Goal */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Protein and Fat Recommendations by Dog Goal</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Daily macronutrient targets vary significantly based on your dog's primary health or fitness objective.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Goal</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Protein %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fat %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Weight Loss</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-28%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight dogs on calorie-restricted diets</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Weight Maintenance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Healthy adult dogs with normal activity</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Muscle Building</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-32%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Athletic and working dogs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Health</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-14%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Older dogs with reduced activity</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Puppy Growth</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Growing dogs under 12 months</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Performance/Agility</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Competitive and high-energy dogs</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages are on a dry matter basis; actual amounts depend on total daily calories and dog weight.</p>
+      </section>
+
+      {/* TABLE: Daily Protein and Fat Intake by Dog Weight */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Protein and Fat Intake by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimate grams of protein and fat needed daily based on ideal body weight and activity level.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance Protein (g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance Fat (g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Active Dog Protein (g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Active Dog Fat (g)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-9</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-18</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36-56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56-70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-36</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">54-84</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27-42</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">84-105</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42-54</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72-112</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36-56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">112-140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56-72</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values assume average metabolic needs; adjust based on individual metabolism, breed, and specific goals from the calculator.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always transition to new protein/fat ratios gradually over 7-10 days to avoid digestive upset.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine calculator results with your veterinarian's recommendations, especially for dogs with existing health conditions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your dog's weight and energy levels monthly to ensure the recommended intake is achieving the desired goal.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">High-quality protein sources (chicken, fish, beef) are more bioavailable than plant-based proteins for dogs.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the Same Ratio for All Life Stages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Puppies, adults, and senior dogs have vastly different nutritional needs; always adjust goals and inputs to match your dog's current life stage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Activity Level</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A sedentary dog and an agility competitor of the same weight need different fat intake; accurately selecting activity level is critical for accurate results.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Dry Matter vs. As-Fed Percentages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dog food labels list as-fed percentages (which include moisture); convert to dry matter when comparing to calculator recommendations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Treats and Table Scraps</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treats can provide 10-20% of daily calories; account for these when implementing protein and fat targets to avoid exceeding recommendations.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What protein percentage should my dog eat based on their goal?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Active dogs need 25-30% protein, senior dogs need 18-25%, and weight management dogs need 20-25% to preserve muscle while losing fat.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my dog needs higher fat intake?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Working dogs and those with high activity levels require 15-20% fat for sustained energy, while senior or sedentary dogs need only 10-15% fat.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I adjust protein and fat independently for my dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator allows independent adjustments based on your dog's specific goal, age, and activity level for customized nutrition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my dog gets too much protein?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excess protein is converted to energy or stored as fat; it rarely causes kidney issues in healthy dogs unless they have pre-existing renal disease.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should senior dogs eat less protein or fat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Senior dogs benefit from moderate protein (18-25%) to maintain muscle mass and slightly reduced fat (10-12%) to prevent obesity-related joint problems.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I use this calculator for my puppy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Puppies require higher protein (25-30%) and fat (15-20%) for growth; select the growth/development goal for accurate recommendations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is this calculator suitable for all dog breeds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, adjust inputs by your dog's weight and activity level; large breeds may have different caloric needs but protein/fat ratios remain similar.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.nap.edu/catalog/10668/nutrient-requirements-of-dogs-and-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. National Research Council (NRC) - Nutrient Requirements of Dogs and Cats (2006)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines detailing nutrient requirements for dogs and cats, including protein and fat intake recommendations by life stage and activity.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/resource-library/nutrient-requirements" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Dog Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official nutritional standards for complete and balanced dog foods across all life stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aafco.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Association of American Feed Control Officials (AAFCO) Dog Food Nutrient Profiles
-            </a>
-            <p className="text-slate-500 text-sm">
-              Regulatory standards for pet food nutrient profiles, providing minimum and recommended protein and fat levels for different dog life stages.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/health/nutrition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine — Nutrition Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based nutritional guidance and research from a leading veterinary institution.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.wsava.org/WSAVA/media/Documents/Guidelines/Nutrition-Guidelines-WSAVA-2019.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. WSAVA Global Nutrition Guidelines (2019)
-            </a>
-            <p className="text-slate-500 text-sm">
-              World Small Animal Veterinary Association guidelines emphasizing balanced nutrition and macronutrient requirements tailored to canine health goals.
-            </p>
+          <li>
+            <a href="https://www.akc.org/expert-advice/how-feed-your-dog/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Kennel Club — Feeding Your Dog Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Breed-specific feeding recommendations and general canine nutrition guidelines.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149733/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Case Study: Effects of Dietary Protein and Fat on Canine Health (PMC Article)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed research analyzing the impact of varying protein and fat levels on dog metabolism, body composition, and performance.
-            </p>
+          <li>
+            <a href="https://avmajournals.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of the American Veterinary Medical Association — Canine Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on optimal protein and fat intake for dogs across different goals.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

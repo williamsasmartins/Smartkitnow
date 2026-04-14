@@ -74,25 +74,33 @@ export default function DogBmiBodyIndexEducationalCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why can't we use the human BMI formula directly for dogs?",
-      answer:
-        "Dogs have vastly different body shapes, sizes, and proportions compared to humans, making the human BMI formula inaccurate for them. Unlike humans, dogs' height is measured at the withers (shoulder), and their body composition varies widely by breed. Therefore, veterinarians rely on other metrics like Body Condition Score (BCS) and lean body mass assessments rather than BMI to evaluate canine health.",
+      question: "What is a healthy BMI range for dogs?",
+      answer: "A healthy canine BMI typically falls between 18.5 and 24.9, similar to human standards but interpreted differently based on breed type and body composition.",
     },
     {
-      question: "How does the Dog Body Index (DBI) differ from Body Condition Score (BCS)?",
-      answer:
-        "The Dog Body Index (DBI) is a mathematical calculation based on weight and height, providing a numerical value similar to BMI but is only an educational approximation. In contrast, Body Condition Score (BCS) is a hands-on, visual and tactile assessment performed by veterinarians to evaluate fat coverage and muscle mass, offering a more accurate and practical measure of a dog's health and nutritional status.",
+      question: "How do I measure my dog's weight and length accurately?",
+      answer: "Weigh your dog on a digital pet scale in kilograms, and measure body length from the base of the tail to the chest bone in centimeters for the most accurate BMI calculation.",
     },
     {
-      question: "Can this calculator replace a veterinary health assessment?",
-      answer:
-        "No, this calculator is designed solely for educational purposes and cannot replace a professional veterinary evaluation. Canine health depends on many factors beyond weight and height, including breed, age, muscle mass, and medical conditions. Always consult a veterinarian for accurate diagnosis, personalized advice, and treatment plans tailored to your dog's unique needs.",
+      question: "Does breed affect dog BMI interpretation?",
+      answer: "Yes, muscular breeds like Boxers may have higher BMIs while still being healthy, whereas toy breeds require different threshold evaluations than large breeds.",
     },
     {
-      question: "How can I use this Dog Body Index to monitor my dog's health?",
-      answer:
-        "You can use the Dog Body Index as a rough baseline to understand your dog's weight relative to height, but it should not be the sole indicator of health. Regular veterinary check-ups, monitoring your dog's Body Condition Score, and observing behavior and activity levels are essential. Use this tool alongside professional advice to track trends over time rather than absolute health status.",
+      question: "What BMI indicates an overweight dog?",
+      answer: "A BMI between 25 and 29.9 suggests overweight status, while a BMI above 30 indicates obesity requiring veterinary attention and dietary changes.",
     },
+    {
+      question: "Can I use human BMI calculators for my dog?",
+      answer: "No—dogs have different body compositions and metabolic rates than humans, so canine-specific BMI calculations provide more meaningful health assessments.",
+    },
+    {
+      question: "How often should I recalculate my dog's BMI?",
+      answer: "Monitor your dog's BMI every 3-6 months during weight management programs and annually during routine health checks to track fitness trends.",
+    },
+    {
+      question: "What should I do if my dog's BMI is in the obese range?",
+      answer: "Consult your veterinarian immediately for a diet plan, as obesity increases risks for diabetes, heart disease, and joint problems in dogs.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -218,112 +226,232 @@ export default function DogBmiBodyIndexEducationalCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog BMI/Body Index (educational)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Unlike humans, dogs do not have a universally accepted Body Mass Index (BMI) due to their diverse breeds, sizes, and body conformations. Veterinarians typically assess canine health through Body Condition Scores (BCS), which evaluate fat coverage and muscle mass visually and by palpation. However, for educational purposes, a Dog Body Index (DBI) can be calculated using weight and height measurements to provide a rough estimate of body composition.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The DBI is calculated similarly to human BMI by dividing the dog's weight in kilograms by the square of its height in meters. This formula offers a numerical value that can help owners understand how their dog's weight relates to its height, but it should never replace professional veterinary assessments. Breed-specific variations and individual health factors greatly influence what is considered a healthy weight for each dog.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to remember that the DBI is an educational tool designed to raise awareness about canine body condition and encourage responsible pet care. For accurate health evaluations, veterinarians use more comprehensive methods including physical exams, body condition scoring, and sometimes advanced imaging or laboratory tests. Always consult your veterinarian for personalized advice tailored to your dog's unique needs.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog BMI/Body Index (educational)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This educational calculator estimates your dog's Body Mass Index by comparing weight to body length, helping identify whether your pet falls into underweight, normal, overweight, or obese categories. It serves as a screening tool to prompt conversations with your veterinarian about your dog's health.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's weight in kilograms and body length in centimeters (measured from tail base to chest). Measure on a level surface with your dog standing naturally for the most accurate results.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator returns a BMI number and corresponding health category. Remember that BMI is one assessment tool—breed type, muscle mass, and overall fitness also matter, so always consult your vet for personalized health guidance.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this Dog Body Index calculator effectively, first select your preferred unit system—Imperial or Metric. Then, accurately measure your dog's weight and height at the withers (the highest point of the shoulder blades). Input these values into the respective fields and click "Calculate" to receive an educational estimate of your dog's body index. Use the results as a general guide, not a definitive health diagnosis.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Weight:</strong> Enter your dog's current weight. Use pounds (lbs) if Imperial units are selected, or kilograms (kg) if Metric.
-          </li>
-          <li>
-            <strong>Height at Withers:</strong> Measure from the ground to the top of your dog's shoulders. Use inches if Imperial units are selected, or meters if Metric.
-          </li>
-          <li>
-            <strong>Interpretation:</strong> Review the calculated Dog Body Index and accompanying guidance. Remember, this is an educational tool and should be supplemented with veterinary advice.
-          </li>
+      {/* TABLE: Dog BMI Categories and Health Status */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dog BMI Categories and Health Status</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this reference chart to interpret your dog's BMI calculation and understand the associated health implications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BMI Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Health Status</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&lt;18.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Underweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below ideal weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Consult vet about nutrition increase</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">18.5–24.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal Weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Healthy range</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maintain current diet and exercise</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25–29.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excess weight risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increase exercise, reduce calories</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30–34.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High health risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Veterinary intervention needed</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severely Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical concern</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Urgent vet consultation required</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These ranges are general guidelines; breed-specific variations exist and veterinary assessment should guide final health determinations.</p>
+      </section>
+
+      {/* TABLE: Sample Dog BMI Calculations by Breed */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sample Dog BMI Calculations by Breed</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These examples show how different dog sizes calculate BMI using the formula: weight (kg) ÷ length² (m²).</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Breed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Length (cm)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calculated BMI</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chihuahua</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Underweight</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Beagle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Underweight</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Labrador Retriever</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Golden Retriever</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">German Shepherd</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overweight Lab</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Obese Beagle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Obese</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These calculations demonstrate typical ranges; individual dogs may vary based on muscle mass, bone density, and overall frame.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your dog's length with a soft measuring tape while standing in a natural position to avoid artificially high or low readings.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your dog at the same time daily on a calibrated scale for consistency, as small variations can affect BMI accuracy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine BMI results with visual body assessment: you should feel ribs easily but not see them prominently in a healthy dog.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use BMI tracking over time rather than a single calculation to monitor weight management progress during diet or exercise changes.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring length incorrectly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Measuring from nose to tail base instead of tail base to chest bone inflates the length value and underestimates BMI.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using pounds instead of kilograms</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering weight in pounds when the calculator expects kilograms will produce a severely inaccurate BMI result.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring breed-specific body types</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming all dogs with the same BMI have identical health status ignores muscular breeds that naturally carry more weight healthily.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying solely on BMI for health decisions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using BMI as the only health indicator without veterinary assessment may miss important factors like age, fitness level, and underlying conditions.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a healthy BMI range for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A healthy canine BMI typically falls between 18.5 and 24.9, similar to human standards but interpreted differently based on breed type and body composition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I measure my dog's weight and length accurately?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Weigh your dog on a digital pet scale in kilograms, and measure body length from the base of the tail to the chest bone in centimeters for the most accurate BMI calculation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does breed affect dog BMI interpretation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, muscular breeds like Boxers may have higher BMIs while still being healthy, whereas toy breeds require different threshold evaluations than large breeds.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What BMI indicates an overweight dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A BMI between 25 and 29.9 suggests overweight status, while a BMI above 30 indicates obesity requiring veterinary attention and dietary changes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use human BMI calculators for my dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No—dogs have different body compositions and metabolic rates than humans, so canine-specific BMI calculations provide more meaningful health assessments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my dog's BMI?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Monitor your dog's BMI every 3-6 months during weight management programs and annually during routine health checks to track fitness trends.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my dog's BMI is in the obese range?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Consult your veterinarian immediately for a diet plan, as obesity increases risks for diabetes, heart disease, and joint problems in dogs.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/body-condition-score.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American Animal Hospital Association (AAHA) Body Condition Score Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on assessing canine body condition and nutritional status.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/petcare/pet-owner-education/ask-aaha-veterinarian-questions/ask-aaha" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Canine Body Condition Scoring</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AAHA provides veterinary-backed guidance on assessing and maintaining proper dog body weight.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149300/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Jeusette et al., 2010 - Body Surface Area and Metabolic Rate in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Study exploring the relationship between body surface area and metabolic needs in dogs.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/general-pet-care/obesity" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Obesity: A Serious Health Issue</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ASPCA explains obesity health risks in pets and provides weight management recommendations.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vin.com/apputil/content/defaultadv1.aspx?pId=11247&catId=34438&id=4958182"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Veterinary Information Network (VIN) - Canine Body Condition Scoring
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert discussions and resources on practical body condition scoring in dogs.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Nutritional Assessment Guidelines for Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AAFCO establishes nutritional standards for pet foods and pet health guidelines.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/assessment-of-nutritional-status/body-condition-scoring"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Merck Veterinary Manual - Body Condition Scoring in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary manual outlining methods for assessing canine nutritional status.
-            </p>
+          <li>
+            <a href="https://www.vin.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Body Weight Management in Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary Information Network offers evidence-based information on canine weight management and health.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

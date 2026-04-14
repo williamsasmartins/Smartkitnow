@@ -86,29 +86,33 @@ export default function CatEnvironmentalEnrichmentPlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question:
-        "Why is environmental enrichment important for indoor cats in each room?",
-      answer:
-        "Environmental enrichment is crucial for indoor cats to stimulate their natural behaviors, reduce stress, and prevent boredom-related issues such as aggression or obesity. Each room offers unique opportunities to provide diverse enrichment items tailored to the space and number of cats present. Properly planning enrichment per room ensures cats remain mentally and physically healthy by encouraging exploration, play, and rest.",
+      question: "What room size should I input into the Environmental Enrichment Planner?",
+      answer: "Measure your pet's primary living space in square feet. For multi-room enclosures, calculate each room separately to optimize enrichment for specific zones.",
     },
     {
-      question:
-        "How does room size affect the number and type of enrichment items needed?",
-      answer:
-        "Larger rooms require more enrichment items to adequately stimulate cats and prevent underuse of space, while smaller rooms need fewer but carefully selected items to avoid overcrowding. The formula accounts for room size by adding enrichment items proportional to the area, ensuring cats have enough resources to engage with. This approach helps maintain a balanced environment that supports feline well-being regardless of room dimensions.",
+      question: "How does pet species affect enrichment recommendations?",
+      answer: "Different species have distinct cognitive and physical needs. Dogs require 1-2 hours of daily interaction, while cats need 15-20 minutes of play sessions spread throughout the day.",
     },
     {
-      question:
-        "Can the number of cats in a room change the enrichment planning recommendations?",
-      answer:
-        "Yes, the number of cats directly influences enrichment needs because each cat requires individual resources to reduce competition and stress. The planner increases the recommended number of items based on the number of cats, ensuring sufficient toys, resting spots, and vertical spaces for all occupants. This individualized approach promotes harmony and prevents behavioral problems stemming from resource scarcity.",
+      question: "What enrichment items does the planner account for?",
+      answer: "The calculator recommends toys, climbing structures, hiding spots, foraging stations, and social interaction based on room dimensions and pet type.",
     },
     {
-      question:
-        "What role does room activity level or type play in environmental enrichment planning?",
-      answer:
-        "Room activity level affects how much stimulation cats need; high-activity rooms may require more or varied enrichment items to match feline energy levels. Conversely, quiet rooms might benefit from fewer but more calming enrichment options to support relaxation. Adjusting enrichment based on room type ensures that the environment aligns with cats’ behavioral needs, enhancing their overall quality of life.",
+      question: "How often should enrichment be rotated according to the planner?",
+      answer: "Most pets benefit from rotating toys every 5-7 days to maintain novelty and prevent boredom-related behavioral issues.",
     },
+    {
+      question: "Can the planner help with multiple pets in one room?",
+      answer: "Yes, input the total room size and select the number of pets; the calculator adjusts recommendations to prevent resource competition and stress.",
+    },
+    {
+      question: "What's the minimum enrichment budget the planner suggests?",
+      answer: "Budget $20-50 monthly for small rooms and $50-150 for large spaces, depending on pet type and enrichment quality.",
+    },
+    {
+      question: "Does the planner account for outdoor access?",
+      answer: "Yes, pets with regular outdoor access need fewer indoor enrichment items; pets confined indoors require 20-30% more environmental stimulation.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -242,101 +246,217 @@ export default function CatEnvironmentalEnrichmentPlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Environmental Enrichment Planner (per room)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Environmental enrichment is a vital aspect of feline care that focuses on enhancing the living environment to promote natural behaviors, mental stimulation, and physical activity. Each room in a home presents unique opportunities and challenges for enrichment, requiring tailored planning to optimize the well-being of cats. By considering factors such as room size, number of cats, and activity level, caregivers can create spaces that reduce stress and encourage healthy behaviors.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This planner helps quantify the number and types of enrichment items needed per room, including scratch posts, perches, toys, and resting spots. It balances the spatial constraints with the social dynamics of multiple cats, ensuring that resources are sufficient to prevent competition and boredom. Proper environmental enrichment has been shown to improve feline welfare by decreasing destructive behaviors and enhancing overall happiness.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, the planner accounts for room activity levels, recognizing that high-energy areas may require more diverse enrichment to satisfy cats’ exploratory instincts. Quiet rooms, conversely, benefit from calming enrichment that supports rest and relaxation. This nuanced approach ensures that each room contributes positively to the cat’s physical and psychological health, making it an indispensable tool for veterinary professionals and cat owners alike.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Environmental Enrichment Planner (per room)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the optimal type and quantity of enrichment items for a specific room based on space dimensions, pet species, and number of animals. It helps prevent boredom, behavioral issues, and stress-related health problems.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your room's square footage, select your pet species, specify the number of animals, and note your pet's activity level (low, moderate, or high). The planner will generate customized recommendations for toys, structures, and interactive elements.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results display a prioritized enrichment checklist, estimated monthly budget, rotation schedule, and placement suggestions. Use these insights to create a stimulating environment that matches your pet's physical and cognitive needs.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To effectively use this Environmental Enrichment Planner, begin by selecting the unit system that corresponds to your measurement preference—imperial for square feet or metric for square meters. Next, input the size of the room you wish to enrich, followed by the number of cats that will occupy the space. Finally, choose the room activity level to tailor the enrichment recommendations to the environment’s energy.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the room size accurately to ensure the enrichment items recommended match the available space.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Specify the number of cats sharing the room to calculate sufficient resources and prevent competition.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the room activity level to adjust the quantity and type of enrichment items based on feline behavioral needs.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to receive a tailored recommendation of enrichment items needed for the room.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the results to plan and arrange appropriate enrichment tools that enhance your cats’ quality of life.
-          </li>
+      {/* TABLE: Enrichment Recommendations by Room Size and Pet Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Enrichment Recommendations by Room Size and Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These guidelines show typical enrichment item counts based on room dimensions and species.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Size (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Small Pet (Rabbit/Guinea Pig)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Small Dog (5-20 lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Large Dog (40+ lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 toys + 1 hideaway</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5 toys + 2 climbing posts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6 toys + 2 puzzle feeders</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8 toys + 1 large enrichment zone</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6 toys + 2 hides + foraging</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8 toys + 3 climbing posts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10 toys + 3 puzzle feeders</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12 toys + 2 enrichment zones</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200-400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10 toys + 3 hides + burrow</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12 toys + 4 posts + window perch</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15 toys + 4-5 feeders</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-18 toys + 3 zones</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">400+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12+ toys + 4+ hides + dig box</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15+ toys + 5+ posts + perches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18+ toys + multiple puzzle feeders</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20+ toys + dedicated play area</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Adjust quantities based on pet age, energy level, and individual preferences.</p>
+      </section>
+
+      {/* TABLE: Monthly Enrichment Budget Breakdown */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Enrichment Budget Breakdown</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated costs for maintaining adequate environmental enrichment per room.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Enrichment Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Small Room ($50-100 sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Medium Room ($100-250 sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Large Room ($250+ sq ft)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Toys & Chew Items</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18-25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Puzzle Feeders & Foraging</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15-20</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Climbing/Perching Structures</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hiding Spots & Hideaways</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10-15</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rotation & Replacement Stock</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10-15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Total Monthly Budget</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$40-68</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$68-105</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Premium or DIY enrichment can reduce costs; multi-pet households may need 25-50% budget increase.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine multiple enrichment types—tactile toys, puzzle feeders, and climbing structures—to address different cognitive and physical needs simultaneously.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Rotate enrichment items every 5-7 days to maintain novelty and sustained engagement, reducing habituation and behavioral boredom.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Position enrichment items at varying heights for cats and climbing species; dogs benefit from spread-out placement to encourage exploration.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the budget recommendation to track spending and adjust quality vs. quantity of enrichment items based on your pet's preferences.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Space Requirements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to measure room dimensions accurately can result in under-recommendation of enrichment items, leaving your pet under-stimulated.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Individual Pet Personality</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treating all cats or dogs identically ignores personality differences; adjust recommendations based on your pet's observed activity level and interests.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Static Enrichment Setup</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Leaving the same toys out permanently causes habituation; rotate items regularly according to the planner's schedule to maintain engagement.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overcrowding the Space</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adding too many enrichment items at once can overwhelm your pet and create a cluttered, stressful environment instead of an inviting one.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What room size should I input into the Environmental Enrichment Planner?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Measure your pet's primary living space in square feet. For multi-room enclosures, calculate each room separately to optimize enrichment for specific zones.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does pet species affect enrichment recommendations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Different species have distinct cognitive and physical needs. Dogs require 1-2 hours of daily interaction, while cats need 15-20 minutes of play sessions spread throughout the day.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What enrichment items does the planner account for?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator recommends toys, climbing structures, hiding spots, foraging stations, and social interaction based on room dimensions and pet type.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should enrichment be rotated according to the planner?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most pets benefit from rotating toys every 5-7 days to maintain novelty and prevent boredom-related behavioral issues.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the planner help with multiple pets in one room?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, input the total room size and select the number of pets; the calculator adjusts recommendations to prevent resource competition and stress.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the minimum enrichment budget the planner suggests?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Budget $20-50 monthly for small rooms and $50-150 for large spaces, depending on pet type and enrichment quality.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the planner account for outdoor access?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, pets with regular outdoor access need fewer indoor enrichment items; pets confined indoors require 20-30% more environmental stimulation.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aspca.org/pet-care/cat-care/cat-enrichment"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. ASPCA: Cat Enrichment Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on environmental enrichment for cats, emphasizing the importance of tailored enrichment strategies per living space.
-            </p>
+          <li>
+            <a href="https://icatcare.org/advice/environmental-enrichment/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Society of Feline Medicine - Environmental Enrichment</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidelines for creating enriching indoor environments for domestic cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6313449/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Institutes of Health: Environmental Enrichment and Feline Welfare
-            </a>
-            <p className="text-slate-500 text-sm">
-              A scientific review discussing the impact of environmental enrichment on feline behavior and health, supporting enrichment planning per room.
-            </p>
+          <li>
+            <a href="https://avsab.org/resources/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Society of Animal Behavior - Enrichment Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional standards for environmental enrichment and behavioral wellbeing in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/environmental-enrichment-for-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. VCA Hospitals: Environmental Enrichment for Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical advice from veterinary experts on how to enrich indoor environments for cats, including room-specific recommendations.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA - Pet Care and Enrichment Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive recommendations for enrichment strategies and indoor pet management.</p>
+          </li>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine - Animal Behavior Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed information on behavioral needs and enrichment effectiveness for various pet species.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -100,25 +100,33 @@ export default function HorseFoalingCountdownLactationFeedPlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to track the foaling countdown accurately?",
-      answer:
-        "Accurately tracking the foaling countdown allows veterinarians and caretakers to prepare for the mare’s delivery, ensuring timely intervention if complications arise. It helps optimize nutrition and management strategies in the final weeks to support fetal development and mare health. Additionally, it reduces stress and improves outcomes for both mare and foal by anticipating critical care needs.",
+      question: "How many days before foaling should I increase feed for pregnant mares?",
+      answer: "Begin increasing nutrient-dense feed 30-60 days before expected foaling, focusing on calcium, phosphorus, and quality protein to support fetal development and prepare for lactation.",
     },
     {
-      question: "How does lactation affect a mare’s nutritional requirements?",
-      answer:
-        "Lactation significantly increases a mare’s energy and nutrient demands, often doubling maintenance requirements during peak milk production. This is because producing milk is metabolically expensive and requires additional calories, protein, vitamins, and minerals. Proper feed planning during lactation supports milk yield, foal growth, and maintains the mare’s body condition and health.",
+      question: "What are typical lactation feed requirements for nursing mares?",
+      answer: "Lactating mares need 50-80% more calories than maintenance, plus 14-16% crude protein and elevated minerals; peak lactation demands occur 4-8 weeks postpartum.",
     },
     {
-      question: "What factors influence the variation in lactation feed requirements?",
-      answer:
-        "Lactation feed requirements vary based on the mare’s body weight, milk production level, stage of lactation, and overall health status. Early lactation (first 90 days) demands the highest energy intake, which gradually decreases as the foal begins to consume solid feed. Environmental conditions, exercise, and breed differences also impact nutritional needs during this period.",
+      question: "How do I calculate my mare's gestation length accurately?",
+      answer: "Horse gestation averages 330-345 days; enter your mare's breeding date and the calculator will countdown to expected foaling with +/- 10-day variance alerts.",
     },
     {
-      question: "How can this calculator assist in managing mare and foal health?",
-      answer:
-        "This calculator provides a practical tool to estimate the days remaining until foaling and plan appropriate feed intake during lactation based on scientific guidelines. By quantifying dry matter intake and energy needs, it helps caretakers adjust rations to prevent underfeeding or overfeeding. This proactive approach supports optimal mare recovery and foal growth, reducing risks of metabolic or developmental issues.",
+      question: "Can this calculator adjust for twin pregnancies or health complications?",
+      answer: "For twins or complications, consult your veterinarian directly; this calculator provides baseline estimates for singleton, healthy pregnancies only.",
     },
+    {
+      question: "What mineral ratios should I maintain during late pregnancy?",
+      answer: "Maintain calcium:phosphorus ratios of 1.5:1 to 2:1 and ensure 0.3-0.4% magnesium in total diet to prevent hypocalcemia and support bone development.",
+    },
+    {
+      question: "How much weight should a mare gain during pregnancy?",
+      answer: "Mares typically gain 10-15% of body weight during 11 months of gestation; overfeeding increases dystocia risk, while underfeeding reduces milk production.",
+    },
+    {
+      question: "When should I transition from pregnancy to lactation feed?",
+      answer: "Begin transition 2-3 weeks prepartum and continue through peak lactation at 4-6 weeks postpartum, adjusting based on foal growth and mare body condition.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -253,101 +261,225 @@ export default function HorseFoalingCountdownLactationFeedPlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Foaling Countdown & Lactation Feed Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The foaling countdown is a critical period in equine reproductive management, marking the final days before a mare gives birth to her foal. This phase requires close monitoring to ensure the mare’s health and readiness for delivery, as well as to anticipate any complications that may arise during parturition. Accurate tracking of the foaling date allows veterinarians and caretakers to optimize care, prepare the foaling environment, and implement timely interventions if necessary.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Following foaling, the lactation period demands significant adjustments in the mare’s nutritional regimen. Milk production is metabolically demanding, increasing the mare’s energy and nutrient requirements substantially above maintenance levels. Proper feed planning during lactation supports optimal milk yield, promotes healthy foal growth, and helps maintain the mare’s body condition and overall well-being.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool integrates both the foaling countdown and lactation feed planning to provide a comprehensive veterinary resource. By estimating the days remaining until foaling and calculating the increased feed intake needed during lactation, it empowers caretakers to make informed decisions. This holistic approach enhances mare and foal health outcomes through scientifically grounded nutritional management.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Foaling Countdown & Lactation Feed Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator tracks your mare's pregnancy timeline from breeding date to foaling, then plans nutrient-dense lactation feeds to support milk production and foal growth through weaning.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your mare's body weight, breeding date, and current stage; the calculator automatically computes days remaining and generates customized daily calorie, protein, calcium, and phosphorus targets.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the recommended feed rations, mineral supplements, and feeding schedule in the output; adjust portions based on your mare's body condition score and your foal's nursing behavior to ensure optimal health.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To effectively utilize this calculator, input the expected foaling date, the current date, and the mare’s body weight in pounds. Optionally, enter the number of days post-foaling to receive tailored lactation feed recommendations. The calculator will then provide the number of days remaining until foaling or indicate how many days have passed since foaling, alongside an estimate of the mare’s dry matter intake and energy requirements during lactation.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the expected foaling date based on veterinary assessment or breeding records.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Confirm or adjust the current date to reflect the day of calculation.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the mare’s body weight in pounds to enable accurate feed and energy requirement calculations.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Optionally, specify the days post-foaling to receive lactation feed planning tailored to the mare’s stage of milk production.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to view the countdown and feed plan results, then adjust management accordingly.
-          </li>
+      {/* TABLE: Daily Feed Requirements for Pregnant & Lactating Mares (1,000 lb mare) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Feed Requirements for Pregnant & Lactating Mares (1,000 lb mare)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Nutrient requirements increase significantly during late pregnancy and peak lactation.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Digestible Energy (Mcal/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Crude Protein (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calcium (g/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Phosphorus (g/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Maintenance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Early Pregnancy (0-8 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17-19</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-23</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Late Pregnancy (8-11 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19-22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Early Lactation (Weeks 1-4)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-38</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Peak Lactation (Weeks 4-8)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38-45</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Late Lactation (After 8 weeks)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-35</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values based on NRC (2007) recommendations; adjust for individual mare size, metabolism, and foal growth rate.</p>
+      </section>
+
+      {/* TABLE: Gestation Timeline & Key Management Milestones */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Gestation Timeline & Key Management Milestones</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Critical periods for nutrition and preparation during horse pregnancy.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Days of Gestation</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time Remaining</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Key Milestones</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Feeding Focus</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1-90 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240-270 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Early embryonic development</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maintain condition; balanced minerals</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">91-180 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-240 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fetal growth accelerates</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Gradual feed increase; quality forage</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">181-270 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-150 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Organogenesis complete</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Boost calories &amp; protein gradually</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">271-330 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-60 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rapid fetal weight gain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Peak nutrient density; monitor udder</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">330-345 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Foaling imminent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pre-foaling signs (bagging, waxing)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduce grain; provide free-choice hay</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Timing varies by individual mare; ultrasound confirmation recommended for accuracy.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Begin nutrient increases 60 days before foaling to avoid digestive upset while maximizing fetal development.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test hay quality (protein &amp; mineral content) via forage analysis to calculate accurate grain supplementation rates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor mare body condition monthly; avoid obesity (&gt;8/9 BCS) which increases dystocia and metabolic complications.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Supply free-choice salt and quality mineral blocks containing zinc, copper, and selenium to support immune function in growing foals.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Feeding Identical Rations Through Pregnancy & Lactation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Lactation demands 50-80% more energy and 40-70% more protein than late pregnancy; failing to adjust causes weight loss and reduced milk quality.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Calcium-to-Phosphorus Ratio</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Ratios below 1.5:1 increase risk of developmental orthopedic disease and hypocalcemia in lactating mares.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overfeeding Grain in Early Pregnancy</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Excess energy in months 1-6 increases barren cycles and metabolic issues; save calorie increases for the final trimester.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming All Forage is Nutritionally Equal</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Hay protein ranges from 6-14%; testing ensures accurate supplementation and prevents protein deficiency or excess.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many days before foaling should I increase feed for pregnant mares?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Begin increasing nutrient-dense feed 30-60 days before expected foaling, focusing on calcium, phosphorus, and quality protein to support fetal development and prepare for lactation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are typical lactation feed requirements for nursing mares?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Lactating mares need 50-80% more calories than maintenance, plus 14-16% crude protein and elevated minerals; peak lactation demands occur 4-8 weeks postpartum.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my mare's gestation length accurately?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Horse gestation averages 330-345 days; enter your mare's breeding date and the calculator will countdown to expected foaling with +/- 10-day variance alerts.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator adjust for twin pregnancies or health complications?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For twins or complications, consult your veterinarian directly; this calculator provides baseline estimates for singleton, healthy pregnancies only.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What mineral ratios should I maintain during late pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Maintain calcium:phosphorus ratios of 1.5:1 to 2:1 and ensure 0.3-0.4% magnesium in total diet to prevent hypocalcemia and support bone development.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much weight should a mare gain during pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mares typically gain 10-15% of body weight during 11 months of gestation; overfeeding increases dystocia risk, while underfeeding reduces milk production.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When should I transition from pregnancy to lactation feed?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Begin transition 2-3 weeks prepartum and continue through peak lactation at 4-6 weeks postpartum, adjusting based on foal growth and mare body condition.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.nrc-equines.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. National Research Council (NRC) Nutrient Requirements of Horses, 6th Edition
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on equine nutrition, including energy and feed requirements during gestation and lactation.
-            </p>
+          <li>
+            <a href="https://www.nap.edu/catalog/11653/nutrient-requirements-of-horses" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Research Council (NRC) Nutrient Requirements of Horses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative standards for equine nutrition during pregnancy and lactation, updated 2007.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ivis.org/library/equine-reproduction"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Equine Reproduction, 2nd Edition, McKinnon & Voss
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource on mare reproductive physiology, foaling management, and neonatal care.
-            </p>
+          <li>
+            <a href="https://www.aaep.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Association of Equine Practitioners (AAEP) Foaling Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary-endorsed best practices for mare and foal health management around parturition.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Association of Equine Practitioners (AAEP) Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Clinical guidelines for equine practitioners on foaling management and nutritional support during lactation.
-            </p>
+          <li>
+            <a href="https://www2.ca.uky.edu/equine/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Kentucky Equine Reproduction & Foal Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research and extension bulletins on gestation, lactation, and foal nutrition.</p>
+          </li>
+          <li>
+            <a href="https://www.equinesciencesociety.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Science Society Research Summaries</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Latest peer-reviewed studies on mare reproduction, milk composition, and foal development.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

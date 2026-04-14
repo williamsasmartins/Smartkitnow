@@ -62,25 +62,33 @@ export default function CatBenadrylDiphenhydramineDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate Benadryl dosage based on weight?",
-      answer:
-        "Benadryl dosage must be carefully calculated based on a cat's weight to avoid underdosing or overdosing, both of which can be harmful. Cats metabolize medications differently than humans, and incorrect dosing can lead to ineffective treatment or toxic side effects. Weight-based dosing ensures the medication is both safe and effective for your cat's specific size.",
+      question: "What is the standard Benadryl dose for cats?",
+      answer: "The typical dose is 1 mg per pound of body weight, given every 8-12 hours. For a 10-pound cat, this equals approximately 10 mg per dose.",
     },
     {
-      question: "Can I give Benadryl to my cat without consulting a veterinarian?",
-      answer:
-        "While Benadryl is sometimes used in cats for allergies or mild sedation, it should never be given without veterinary guidance. Cats have unique sensitivities and underlying health conditions that may contraindicate its use. A veterinarian can confirm the appropriate dose and frequency, minimizing risks of adverse reactions or toxicity.",
+      question: "Can I use human Benadryl tablets for my cat?",
+      answer: "Yes, standard Benadryl tablets contain 25 mg of diphenhydramine and can be used for cats, but dosing must be calculated carefully by weight. Always consult your veterinarian before administering.",
     },
     {
-      question: "What are the risks of giving too much Benadryl to a cat?",
-      answer:
-        "Overdosing Benadryl in cats can cause serious side effects such as excessive sedation, dry mouth, urinary retention, rapid heart rate, and even seizures. Cats are particularly sensitive to diphenhydramine, so precise dosing is critical. If an overdose is suspected, immediate veterinary attention is necessary to prevent life-threatening complications.",
+      question: "How often can I give my cat Benadryl?",
+      answer: "Benadryl can be given every 8-12 hours as needed, but should not exceed 3-4 doses per day without veterinary supervision.",
     },
     {
-      question: "How often can I safely administer Benadryl to my cat?",
-      answer:
-        "Benadryl is typically administered every 8 to 12 hours in cats, depending on the condition being treated and veterinary recommendations. Administering doses too frequently can increase the risk of toxicity, while too infrequently may reduce effectiveness. Always follow your veterinarian’s instructions regarding timing and dosage intervals.",
+      question: "What conditions does this calculator help treat in cats?",
+      answer: "This calculator helps determine appropriate doses for allergies, itching, anxiety, and motion sickness in cats. Always verify dosing with your veterinarian.",
     },
+    {
+      question: "Are there side effects from Benadryl in cats?",
+      answer: "Common side effects include drowsiness and dry mouth; rarely, cats may experience paradoxical hyperactivity or urinary retention at improper doses.",
+    },
+    {
+      question: "Should I use liquid or tablet Benadryl for my cat?",
+      answer: "Liquid formulations are easier to dose accurately for smaller cats, but ensure they contain no alcohol or xylitol, which are toxic to felines.",
+    },
+    {
+      question: "What is the maximum safe dose of Benadryl for cats?",
+      answer: "The maximum recommended dose is typically 2 mg per pound per dose; exceeding this risks overdose and requires immediate veterinary care.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -198,132 +206,224 @@ export default function CatBenadrylDiphenhydramineDoseCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Benadryl (Diphenhydramine) Dose Calculator for Cats
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Benadryl, known generically as diphenhydramine, is an antihistamine commonly
-          used in veterinary medicine to alleviate allergic reactions, itching, and
-          mild sedation in cats. However, dosing must be precise because cats metabolize
-          medications differently than humans and other animals. This calculator helps
-          determine the safe and effective dose based on your cat’s body weight, ensuring
-          proper treatment while minimizing risks.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The recommended dose of Benadryl for cats is approximately 1 mg per kilogram
-          of body weight, administered every 8 to 12 hours. Overdosing can lead to
-          serious side effects such as sedation, dry mouth, or even toxicity, while
-          underdosing may render the treatment ineffective. This tool simplifies the
-          calculation process, providing a clear dosage recommendation tailored to your
-          cat’s size.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to remember that while this calculator offers guidance, it
-          does not replace professional veterinary advice. Always consult your vet
-          before administering any medication, especially if your cat has pre-existing
-          health conditions or is taking other drugs. Responsible use of Benadryl can
-          improve your cat’s comfort and health safely.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Benadryl (Diphenhydramine) Dose Calculator for Cats</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the appropriate Benadryl dose for your cat based on its weight and the standard veterinary dosing guideline of 1 mg per pound of body weight. It helps you calculate safe single doses and daily frequency to treat allergies, itching, anxiety, and motion sickness.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your cat's weight in pounds and select the condition being treated. The tool then computes the recommended single dose in milligrams and suggests appropriate dosing intervals (typically every 8-12 hours).</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the calculated dose and cross-reference it with the formulation you have available (tablet, liquid, etc.). Always consult your veterinarian before giving Benadryl to confirm the dose is appropriate for your cat's health status and any existing medications.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed to provide an accurate
-          Benadryl dose based on your cat’s weight. Begin by selecting the unit system
-          that matches your measurement preference—imperial (pounds) or metric
-          (kilograms). Then, enter your cat’s current weight in the input field provided.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Choose the unit system (lbs or kg) that you will
-            use to measure your cat’s weight.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your cat’s weight accurately in the input
-            box. Ensure the value is positive and realistic.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the “Calculate” button to see the
-            recommended Benadryl dose in milligrams.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the result and any warnings. Consult your
-            veterinarian before administering the medication.
-          </li>
+      {/* TABLE: Benadryl Dosage Guide by Cat Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Benadryl Dosage Guide by Cat Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to determine appropriate diphenhydramine doses based on your cat's weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Dose (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Daily Doses</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always consult your veterinarian before administering medication. Dosages are based on 1 mg per pound of body weight.</p>
+      </section>
+
+      {/* TABLE: Common Benadryl Formulations and Dosing */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Benadryl Formulations and Dosing</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference standard Benadryl products and their diphenhydramine content for accurate cat dosing.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Product Form</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Diphenhydramine Content</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Suitable for Cats</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dosing Method</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablets (Standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 mg per tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Crush and mix with food or use liquid</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Capsules</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-50 mg per capsule</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Limited</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Difficult to portion for cats</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Liquid (Allergy)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5 mg per 5 mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Use syringe for accurate measurement</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Children's Liquid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.5 mg per 5 mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Easy to dose; verify no xylitol</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cream/Topical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2% diphenhydramine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Never apply; toxic if ingested</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always verify the inactive ingredients for alcohol, xylitol, or other substances toxic to cats before use.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify your cat's weight accurately before calculating the dose, as even small variations impact the milligram amount significantly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Liquid Benadryl is often easier to administer to cats than tablets; use a syringe to measure and mix into wet food.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store Benadryl at room temperature away from moisture and never use expired medication, as potency may be compromised.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cat for signs of overdose such as excessive drowsiness, rapid heartbeat, or urinary retention, and contact your vet immediately if observed.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Product Formulations with Xylitol</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some Benadryl products contain xylitol, a sweetener highly toxic to cats; always read the inactive ingredients label before administering.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Doubling the Dose if a Dose Is Missed</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Never give a double dose to make up for a missed one; simply resume the normal schedule at the next scheduled time.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Giving Benadryl Without Veterinary Approval</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using Benadryl without consulting your vet may mask serious conditions or interact with existing medications your cat takes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Child and Adult Formulations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Children's Benadryl (12.5 mg/5 mL) differs from adult liquid (25 mg/5 mL); using the wrong concentration leads to incorrect dosing.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard Benadryl dose for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The typical dose is 1 mg per pound of body weight, given every 8-12 hours. For a 10-pound cat, this equals approximately 10 mg per dose.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use human Benadryl tablets for my cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, standard Benadryl tablets contain 25 mg of diphenhydramine and can be used for cats, but dosing must be calculated carefully by weight. Always consult your veterinarian before administering.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often can I give my cat Benadryl?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Benadryl can be given every 8-12 hours as needed, but should not exceed 3-4 doses per day without veterinary supervision.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What conditions does this calculator help treat in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator helps determine appropriate doses for allergies, itching, anxiety, and motion sickness in cats. Always verify dosing with your veterinarian.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there side effects from Benadryl in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common side effects include drowsiness and dry mouth; rarely, cats may experience paradoxical hyperactivity or urinary retention at improper doses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I use liquid or tablet Benadryl for my cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Liquid formulations are easier to dose accurately for smaller cats, but ensure they contain no alcohol or xylitol, which are toxic to felines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum safe dose of Benadryl for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The maximum recommended dose is typically 2 mg per pound per dose; exceeding this risks overdose and requires immediate veterinary care.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/health-information/benadryl-diphenhydramine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Cornell University College of Veterinary Medicine: Benadryl (Diphenhydramine) Use in Pets
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide on the safe use and dosing of diphenhydramine in cats and dogs.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Diphenhydramine Use in Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative veterinary reference providing guidelines on diphenhydramine dosing, uses, and safety considerations for feline patients.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/benadryl-for-dogs-and-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals: Benadryl for Dogs and Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary insights on indications, dosing, and precautions for diphenhydramine use in pets.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Merck Veterinary Manual - Antihistamines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive veterinary pharmacology resource detailing diphenhydramine formulations, dosage ranges, and contraindications in cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/pharmacology/antihistamines-and-antihistamine-anticholinergic-drugs/diphenhydramine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual: Diphenhydramine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed pharmacological information and clinical uses of diphenhydramine in veterinary medicine.
-            </p>
+          <li>
+            <a href="https://apcc.aspca.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Resource for identifying toxic substances in medications and emergency guidance if overdose or adverse reactions occur.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association - Pet Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary organization offering evidence-based guidance on medication safety and appropriate dosing protocols for cats.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

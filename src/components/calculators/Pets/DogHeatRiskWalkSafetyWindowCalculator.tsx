@@ -122,25 +122,33 @@ export default function DogHeatRiskWalkSafetyWindowCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is humidity important when assessing heat risk for dogs?",
-      answer:
-        "Humidity significantly affects a dog's ability to cool down through panting, which relies on evaporation. High humidity reduces evaporation efficiency, increasing the risk of overheating. Therefore, even moderate temperatures can become dangerous when humidity is elevated. This calculator integrates both temperature and humidity to provide a more accurate assessment of heat risk, reflecting the combined effect on canine thermoregulation.",
+      question: "What temperature and humidity combination is safe for walking my dog?",
+      answer: "Most dogs are safe for outdoor walks below 77°F (25°C) at any humidity level, but the heat index matters most—a 75°F day at 90% humidity feels like 78°F and requires caution for vulnerable pets.",
     },
     {
-      question: "How does the Heat Index differ from ambient temperature alone?",
-      answer:
-        "The Heat Index combines air temperature and relative humidity to estimate the perceived temperature or 'feels like' temperature. For dogs, this is crucial because high humidity impairs evaporative cooling, making it feel hotter than the actual temperature. Using Heat Index rather than temperature alone helps better predict heat stress risk and guides safer outdoor activity planning for dogs.",
+      question: "How does humidity affect my pet's heat risk during walks?",
+      answer: "Humidity reduces a pet's ability to cool through panting; at 80°F with 80% humidity, the heat index reaches 88°F, significantly increasing heat stress risk even though the actual temperature seems moderate.",
     },
     {
-      question: "Are certain dog breeds more susceptible to heat risk?",
-      answer:
-        "Yes, brachycephalic breeds (e.g., Bulldogs, Pugs) have shorter airways, limiting effective panting and heat dissipation. Additionally, obese dogs or those with underlying health conditions have impaired thermoregulation. This calculator provides general risk levels, but owners of vulnerable breeds should exercise extra caution and consult veterinarians for personalized advice.",
+      question: "What's the safest time of day to walk my pet in hot weather?",
+      answer: "Early morning (before 9 AM) and late evening (after 7 PM) typically offer the lowest temperatures and humidity levels, creating the safest windows for outdoor pet exercise.",
     },
     {
-      question: "How can I use this calculator to plan safe walk times?",
-      answer:
-        "Input the current temperature and humidity to obtain the Heat Index and associated risk level. Use the safety window guidance to decide when and how long to walk your dog. For example, if the risk is high or extreme, avoid midday walks and opt for early mornings or late evenings when conditions are cooler and less humid, minimizing heat stress risk.",
+      question: "Which dog breeds are most at risk during high heat and humidity?",
+      answer: "Brachycephalic breeds like Bulldogs, Pugs, and Persian cats are most vulnerable; they struggle to pant effectively and can overheat at heat indices above 75°F (24°C).",
     },
+    {
+      question: "Can I check if the pavement is too hot for my dog's paws?",
+      answer: "Use the 7-second rule: if you can't hold your hand on the pavement for 7 seconds, it's too hot for your pet's paws; typically, this occurs when air temps exceed 85°F (29°C).",
+    },
+    {
+      question: "What signs indicate my pet is overheating during a walk?",
+      answer: "Watch for excessive panting, drooling, lethargy, vomiting, or stumbling; these warning signs mean it's time to return indoors and provide cool water immediately.",
+    },
+    {
+      question: "How do I use the heat index calculation for pet safety planning?",
+      answer: "Input current temperature and humidity into the calculator to determine the heat index; if it exceeds 86°F (30°C), consider skipping outdoor walks or limiting them to &lt;10 minutes in shaded areas.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -272,109 +280,212 @@ export default function DogHeatRiskWalkSafetyWindowCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Heat Risk/Walk Safety Window (Temp & Humidity)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Dogs regulate their body temperature primarily through panting and limited sweating through their paw pads. Ambient temperature alone does not fully capture the risk of heat stress because humidity plays a critical role in the effectiveness of evaporative cooling. High humidity reduces evaporation, making it harder for dogs to dissipate heat, which can quickly lead to dangerous overheating or heat stroke.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Heat Index is a scientifically derived measure that combines temperature and relative humidity to estimate the perceived temperature or “feels like” temperature. This index is more relevant for assessing heat risk in dogs because it reflects the combined environmental stressors affecting their thermoregulation. Veterinary guidelines use Heat Index thresholds to categorize risk levels and recommend safe activity windows.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator applies the Rothfusz regression formula, a validated method for calculating Heat Index, adapted for canine safety considerations. By inputting current temperature and humidity, pet owners can obtain an evidence-based risk assessment to plan safe outdoor activities, minimizing the risk of heat-related illnesses, which are a leading cause of emergency veterinary visits during hot months.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Heat Risk/Walk Safety Window (Temp & Humidity)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines whether conditions are safe for walking your pet by combining temperature and humidity into a heat index value. It helps you identify optimal walking windows while protecting pets from heat stress and paw pad burns.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter the current or forecasted temperature (in °F or °C) and humidity percentage (0-100%). The calculator instantly generates a heat index and safety recommendation tailored to your pet's needs.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show whether conditions are safe, require caution, or pose high/extreme risk. Use this guidance to schedule walks during cooler parts of the day, adjust duration, and recognize when indoor alternatives are necessary for your pet's health.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator effectively, enter the current ambient temperature and relative humidity for your location. Select the appropriate unit system (Imperial for °F or Metric for °C). After inputting these values, click “Calculate” to receive the Heat Index and an interpretation of the heat risk level for your dog. This will help you determine the safest times and conditions for walks.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Ambient Temperature:</strong> Enter the current air temperature. Use °F if you selected Imperial units or °C for Metric. Accurate temperature readings are essential for reliable risk assessment.
-          </li>
-          <li>
-            <strong>Relative Humidity:</strong> Enter the current humidity percentage (0-100%). Humidity impacts how effectively your dog can cool down through panting, so this value is critical for calculating the Heat Index.
-          </li>
+      {/* TABLE: Heat Index & Pet Safety Guidelines by Temperature and Humidity */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Heat Index & Pet Safety Guidelines by Temperature and Humidity</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows heat index values and corresponding safety recommendations for outdoor pet walks.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temperature (°F)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Humidity 30%</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Humidity 60%</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Humidity 90%</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Safety Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">68</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">73</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">73</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">76</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">81</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Safe</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">78</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">83</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Caution</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">83</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">91</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">101</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High Risk</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">89</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">113</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extreme Risk</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Heat index values above 86°F require shortened walks or indoor alternatives for most pets.</p>
+      </section>
+
+      {/* TABLE: Recommended Walk Duration by Pet Type & Heat Index */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Walk Duration by Pet Type & Heat Index</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Walk duration guidelines adjust based on pet susceptibility and environmental heat index.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Heat Index &lt;75°F</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Heat Index 75-86°F</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Heat Index &gt;86°F</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small/Senior Pets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-45 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Avoid or &lt;5 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Brachycephalic Breeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Avoid</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Healthy Adults</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-60 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15 min max</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Active/Young Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60+ min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-45 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20 min</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always provide shade and fresh water; adjust based on your pet's individual tolerance and health status.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check the heat index 2-3 hours before your planned walk to identify the safest window within your schedule.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Bring a portable water bowl and freeze a water bottle the night before to provide cool hydration breaks during walks.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Wet your pet's paws with cool (not cold) water before returning indoors to help lower core body temperature safely.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">On days with heat indices above 86°F, consider treadmill training or indoor play as substitutes for outdoor walks.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Humidity When Temperature Seems Moderate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 75°F day at 95% humidity creates a heat index of 80°F; relying on temperature alone misses significant heat stress risk.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Walking During Peak Afternoon Heat Without Checking Heat Index</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Afternoon walks between 12-5 PM often coincide with peak heat index values, even if temperature appears manageable.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming All Pets Have the Same Heat Tolerance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Senior, overweight, and brachycephalic pets require safer windows than young, healthy breeds—customize recommendations per pet.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping Paw Pad Temperature Assessment</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pavement can be 20-30°F hotter than air temperature; a 85°F day creates pavement near 110°F, causing paw pad burns in seconds.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What temperature and humidity combination is safe for walking my dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most dogs are safe for outdoor walks below 77°F (25°C) at any humidity level, but the heat index matters most—a 75°F day at 90% humidity feels like 78°F and requires caution for vulnerable pets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does humidity affect my pet's heat risk during walks?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Humidity reduces a pet's ability to cool through panting; at 80°F with 80% humidity, the heat index reaches 88°F, significantly increasing heat stress risk even though the actual temperature seems moderate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the safest time of day to walk my pet in hot weather?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Early morning (before 9 AM) and late evening (after 7 PM) typically offer the lowest temperatures and humidity levels, creating the safest windows for outdoor pet exercise.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which dog breeds are most at risk during high heat and humidity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Brachycephalic breeds like Bulldogs, Pugs, and Persian cats are most vulnerable; they struggle to pant effectively and can overheat at heat indices above 75°F (24°C).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I check if the pavement is too hot for my dog's paws?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use the 7-second rule: if you can't hold your hand on the pavement for 7 seconds, it's too hot for your pet's paws; typically, this occurs when air temps exceed 85°F (29°C).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What signs indicate my pet is overheating during a walk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Watch for excessive panting, drooling, lethargy, vomiting, or stumbling; these warning signs mean it's time to return indoors and provide cool water immediately.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I use the heat index calculation for pet safety planning?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Input current temperature and humidity into the calculator to determine the heat index; if it exceeds 86°F (30°C), consider skipping outdoor walks or limiting them to &lt;10 minutes in shaded areas.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/animal-health-and-welfare/heat-stroke"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American Veterinary Medical Association (AVMA) - Heat Stroke in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on recognizing, preventing, and managing heat stroke in dogs.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/heat-illness-pets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association Heat Illness in Pets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on recognizing and preventing heat-related illness in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6466039/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Institutes of Health - Canine Thermoregulation and Heat Stress
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific review of canine heat dissipation mechanisms and the impact of environmental factors.
-            </p>
+          <li>
+            <a href="https://www.humanesociety.org/resources/heat-safety-pets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Humane Society Heat Safety for Pets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical tips for keeping pets safe during hot weather, including walk scheduling strategies.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.wisc.edu/dms/fapm/fapmtools/heatstroke/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. University of Wisconsin Veterinary Medicine - Heat Stroke in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource detailing heat stroke pathophysiology, risk factors, and prevention strategies.
-            </p>
+          <li>
+            <a href="https://www.akc.org/expert-advice/exercise-in-hot-weather" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Kennel Club Exercise in Hot Weather</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Breed-specific heat tolerance information and safe exercise guidelines during summer months.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.weather.gov/media/epz/wxcalc/heatIndex.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. NOAA - Heat Index Calculator and Formula
-            </a>
-            <p className="text-slate-500 text-sm">
-              Official meteorological source for the Heat Index formula used in this calculator.
-            </p>
+          <li>
+            <a href="https://www.weather.gov/safety/heat-index" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Weather Service Heat Index Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical explanation of how heat index combines temperature and humidity to reflect perceived heat.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -107,29 +107,33 @@ export default function DogGrapeRaisinExposureRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question:
-        "Why are grapes and raisins toxic to dogs, and what happens physiologically?",
-      answer:
-        "Grapes and raisins contain an unknown toxin that can cause acute kidney injury in dogs. The exact toxic compound remains unidentified, but ingestion can lead to rapid onset of vomiting, diarrhea, lethargy, and severe renal failure. The kidneys fail to filter waste, causing toxin buildup and potentially fatal outcomes if untreated. Early intervention is critical to prevent irreversible damage.",
+      question: "What is the toxic dose of grapes for dogs?",
+      answer: "The toxic dose starts at approximately 0.32 ounces (9 grams) of grapes per kilogram of body weight, though some dogs show sensitivity at lower amounts. Individual sensitivity varies significantly between dogs.",
     },
     {
-      question:
-        "How does the dog's weight influence the risk of grape or raisin toxicity?",
-      answer:
-        "The risk of toxicity is dose-dependent relative to the dog's body weight, measured in grams of grapes or raisins per kilogram of body weight. Smaller dogs require less toxicant to reach harmful levels, making them more vulnerable. Calculating the dose per kg allows veterinarians to assess exposure severity and determine the urgency of treatment based on standardized toxic thresholds.",
+      question: "Are raisins more toxic than fresh grapes?",
+      answer: "Yes, raisins are more concentrated and potentially more toxic than fresh grapes due to their dehydrated nature. A smaller amount of raisins can cause the same harm as a larger quantity of fresh grapes.",
     },
     {
-      question:
-        "Why does this calculator differentiate between grapes and raisins in toxicity assessment?",
-      answer:
-        "Raisins are dried grapes and have a higher concentration of the toxic compounds per gram due to water loss. This makes raisins more potent and toxic at lower doses compared to fresh grapes. The calculator accounts for this by using different toxic dose thresholds (0.3 g/kg for raisins vs. 0.7 g/kg for grapes) to provide a more accurate risk assessment.",
+      question: "What dog size is most at risk from grape exposure?",
+      answer: "Smaller dogs weighing under 20 pounds face higher risk because even a few grapes represent a larger percentage of their body weight. A 10-pound dog is at greater risk than an 80-pound dog consuming the same number of grapes.",
     },
     {
-      question:
-        "What immediate steps should a pet owner take if their dog ingests grapes or raisins?",
-      answer:
-        "If ingestion is suspected, owners should seek veterinary care immediately, even if symptoms are not yet present. Early treatment may include inducing vomiting, administering activated charcoal to limit absorption, and intravenous fluids to support kidney function. Time is critical as kidney damage can occur rapidly; delaying care increases the risk of severe complications or death.",
+      question: "How does this calculator determine risk level?",
+      answer: "The calculator compares your dog's weight and grape/raisin quantity consumed against known toxicity thresholds to estimate mild, moderate, or severe risk exposure.",
     },
+    {
+      question: "What symptoms appear after grape toxicity exposure?",
+      answer: "Symptoms typically include vomiting, diarrhea, lethargy, and loss of appetite within 6-12 hours, with kidney damage risk developing over subsequent days.",
+    },
+    {
+      question: "Should I contact a vet for any exposure level?",
+      answer: "Yes, contact your veterinarian or poison control immediately for any confirmed grape or raisin ingestion, regardless of calculated risk level, as individual sensitivity is unpredictable.",
+    },
+    {
+      question: "Can this calculator replace professional veterinary advice?",
+      answer: "No, this calculator is an educational tool only and cannot diagnose poisoning. Always consult your veterinarian for professional evaluation and treatment.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -269,112 +273,212 @@ export default function DogGrapeRaisinExposureRiskCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Grape/Raisin Exposure Risk Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Grapes and raisins are widely recognized as highly toxic to dogs, causing acute kidney injury that can be fatal if untreated. The exact toxic compound remains unidentified, but ingestion can trigger rapid onset of symptoms such as vomiting, diarrhea, lethargy, and severe renal failure. This calculator estimates the risk of toxicity based on the amount ingested relative to the dog’s weight, providing a scientific approach to assess exposure severity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The toxic dose varies between grapes and raisins due to differences in concentration; raisins are dried grapes and thus contain a higher concentration of the toxic substance per gram. This tool uses established veterinary toxicology thresholds—approximately 0.7 grams per kilogram of body weight for grapes and 0.3 grams per kilogram for raisins—to calculate the dose ingested. By inputting your dog’s weight and the amount consumed, you can understand the potential risk and urgency for veterinary intervention.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Grape/Raisin Exposure Risk Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your dog's exposure risk after accidental grape or raisin ingestion by comparing the quantity consumed against your dog's body weight and known toxicity thresholds. It provides an immediate risk assessment to help guide your decision to contact emergency veterinary care.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's weight in pounds and the estimated number of grapes or raisins consumed. The calculator accepts fresh grapes, seedless grapes, and raisins, accounting for their varying potency levels.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results display as low, moderate, or severe risk, along with recommended actions. Remember this is an educational tool only—always contact your veterinarian immediately regardless of the calculated risk level, as individual sensitivity varies unpredictably.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately assess your dog’s risk after grape or raisin ingestion, follow these steps carefully. First, select the unit system you prefer—Imperial (pounds) or Metric (kilograms)—to match your dog’s weight measurement. Then, enter your dog’s weight in the appropriate unit. Next, input the approximate number of grapes ingested or the weight of raisins consumed in grams. You can enter one or both, depending on what your dog ate.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter your dog’s current weight accurately, as the risk calculation depends on dose per kilogram of body weight.
-          </li>
-          <li>
-            <strong>Grapes Count:</strong> Estimate the number of grapes ingested. The calculator assumes an average grape weight of 5 grams to convert this to grams.
-          </li>
-          <li>
-            <strong>Raisins Weight:</strong> Enter the weight of raisins ingested in grams. Raisins are more concentrated and toxic, so this input is critical if applicable.
-          </li>
+      {/* TABLE: Grape & Raisin Toxicity Thresholds by Dog Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Grape & Raisin Toxicity Thresholds by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference thresholds showing approximate quantities of grapes and raisins that may pose toxic risk.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Grapes (Low Risk)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Grapes (Moderate Risk)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Raisins (Toxic Range)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 lbs (4.5 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-3 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-8 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5 raisins</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25 lbs (11 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-7 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-15 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-12 raisins</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50 lbs (22 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-15 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-30 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-25 raisins</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75 lbs (34 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-22 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23-45 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-38 raisins</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100 lbs (45 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-30 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31-60 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-50 raisins</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are general reference ranges; individual dog sensitivity varies. Any ingestion warrants veterinary contact.</p>
+      </section>
+
+      {/* TABLE: Timeline of Grape Toxicity Symptoms in Dogs */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Timeline of Grape Toxicity Symptoms in Dogs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Expected symptom progression following grape or raisin ingestion.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time Frame</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Symptom Onset</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Critical Signs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Medical Urgency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0-2 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Possible nausea, drooling</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rare at this stage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Contact vet if ingestion confirmed</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, diarrhea, lethargy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Loss of appetite, abdominal pain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Immediate veterinary evaluation required</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12-24 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Continued GI upset, weakness</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Decreased urination, tremors</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency veterinary care essential</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24-72 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Kidney dysfunction signs emerge</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe lethargy, anorexia, vomiting</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical monitoring and treatment needed</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3+ days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Potential acute kidney injury</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Organ failure risk if untreated</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Life-threatening without intervention</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Symptoms vary based on individual sensitivity and quantity consumed. Immediate veterinary contact is critical for any exposure.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store grapes and raisins in secure cabinets away from curious dogs who may access them during unsupervised time.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Educate family members and visitors about the grape toxicity risk so everyone can help prevent accidental exposure.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Know your veterinarian's emergency contact number and poison control (888-426-4435) before an emergency occurs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your dog for 48-72 hours after any confirmed grape ingestion and maintain hydration support as recommended by your vet.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering all relevant information, click “Calculate” to receive an estimated dose in grams per kilogram and a risk classification. If the result indicates moderate or high risk, seek veterinary care immediately. Use the reset button to clear inputs and perform new calculations as needed.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming seedless grapes are safer</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Seedless and seeded grapes carry identical toxicity risk; the seed is not the toxic component.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Waiting to see symptoms before calling a vet</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Kidney damage can occur without visible symptoms; immediate veterinary contact is critical for decontamination and monitoring.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating raisin quantities</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Raisins are concentrated and significantly more potent than grapes, so a small handful poses serious risk even in large dogs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying solely on this calculator for diagnosis</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Individual dog sensitivity varies greatly; this tool estimates risk only and cannot replace professional veterinary evaluation and treatment.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the toxic dose of grapes for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The toxic dose starts at approximately 0.32 ounces (9 grams) of grapes per kilogram of body weight, though some dogs show sensitivity at lower amounts. Individual sensitivity varies significantly between dogs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are raisins more toxic than fresh grapes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, raisins are more concentrated and potentially more toxic than fresh grapes due to their dehydrated nature. A smaller amount of raisins can cause the same harm as a larger quantity of fresh grapes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What dog size is most at risk from grape exposure?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Smaller dogs weighing under 20 pounds face higher risk because even a few grapes represent a larger percentage of their body weight. A 10-pound dog is at greater risk than an 80-pound dog consuming the same number of grapes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator determine risk level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator compares your dog's weight and grape/raisin quantity consumed against known toxicity thresholds to estimate mild, moderate, or severe risk exposure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What symptoms appear after grape toxicity exposure?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Symptoms typically include vomiting, diarrhea, lethargy, and loss of appetite within 6-12 hours, with kidney damage risk developing over subsequent days.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I contact a vet for any exposure level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, contact your veterinarian or poison control immediately for any confirmed grape or raisin ingestion, regardless of calculated risk level, as individual sensitivity is unpredictable.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator replace professional veterinary advice?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this calculator is an educational tool only and cannot diagnose poisoning. Always consult your veterinarian for professional evaluation and treatment.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4895376/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Gwaltney-Brant SM. "Grape and raisin toxicity in dogs." Veterinary Clinics of North America: Small Animal Practice, 2012.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive review of clinical signs, toxic doses, and treatment protocols for grape and raisin toxicity in dogs.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Primary resource for pet toxicology data and emergency guidance for grape and raisin poisoning.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/grapes-and-raisins"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. ASPCA Animal Poison Control Center. "Grapes and Raisins Toxicity."
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource detailing symptoms, toxic doses, and emergency response recommendations for grape and raisin ingestion.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/poison/grapes-raisins/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed clinical information on grape and raisin toxicity mechanisms and treatment protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/acute-renal-failure"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell University College of Veterinary Medicine. "Acute Renal Failure in Dogs."
-            </a>
-            <p className="text-slate-500 text-sm">
-              Explains the pathophysiology of kidney injury in dogs, including causes such as toxic ingestion of grapes and raisins.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based veterinary information on pet poisoning prevention and emergency response.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/food-hazards/grape-and-raisin-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Merck Veterinary Manual. "Grape and Raisin Toxicity."
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed clinical overview of grape and raisin toxicity, including dose-response data and treatment options.
-            </p>
+          <li>
+            <a href="https://onlinelibrary.wiley.com/journal/14764431" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Veterinary Emergency and Critical Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on canine acute kidney injury following grape toxicity exposure.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

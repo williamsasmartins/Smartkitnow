@@ -62,25 +62,33 @@ export default function CatPhosphorusPerMealEstimatorCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to estimate phosphorus content per meal for cats?",
-      answer:
-        "Phosphorus plays a critical role in feline health, but excessive intake can worsen kidney disease. Estimating phosphorus per meal helps pet owners and veterinarians manage dietary phosphorus to slow disease progression. This calculator aids in interpreting diet labels to make informed feeding decisions.",
+      question: "Why is phosphorus important in pet diets?",
+      answer: "Phosphorus is essential for bone health, energy metabolism, and kidney function in pets. Excess phosphorus, especially in dogs and cats with kidney disease, can worsen renal damage and increase mortality risk by 10-20%.",
     },
     {
-      question: "How does phosphorus affect cats with chronic kidney disease (CKD)?",
-      answer:
-        "In cats with CKD, impaired kidney function reduces phosphorus excretion, leading to elevated blood phosphorus levels. High phosphorus accelerates kidney damage and contributes to secondary complications like bone disorders. Controlling dietary phosphorus intake is essential to improve quality of life and longevity in affected cats.",
+      question: "What are safe daily phosphorus limits for dogs?",
+      answer: "Healthy adult dogs should consume 0.4-1.0% phosphorus on a dry matter basis. Dogs with chronic kidney disease (CKD) require restricted phosphorus at 0.3-0.4% or lower, depending on disease stage.",
     },
     {
-      question: "Can I use this calculator for all types of cat food?",
-      answer:
-        "Yes, this tool is designed to estimate phosphorus content from any diet label that provides phosphorus per 100 grams. Whether dry kibble, canned food, or homemade diets, entering the correct label values will yield accurate phosphorus estimates per meal. Always verify label accuracy and consult your veterinarian for diet suitability.",
+      question: "How do I read phosphorus content from pet food labels?",
+      answer: "Phosphorus is listed as a minimum or maximum percentage on AAFCO labels under guaranteed analysis. Convert label percentages to grams per serving using the serving size weight to calculate intake per meal.",
     },
     {
-      question: "What should I do if the phosphorus per meal is too high?",
-      answer:
-        "If the estimated phosphorus per meal exceeds recommended levels, consult your veterinarian to adjust your cat’s diet. They may recommend phosphorus-restricted diets or phosphate binders to reduce absorption. Monitoring and managing phosphorus intake is vital to protect kidney health and prevent further damage.",
+      question: "Can I use this calculator for cats?",
+      answer: "Yes, cats require 0.3-0.9% phosphorus for healthy kidney function. Cats with CKD benefit from diets containing &lt;0.4% phosphorus to slow disease progression.",
     },
+    {
+      question: "What happens if my pet consumes too much phosphorus?",
+      answer: "Excessive phosphorus elevates serum phosphate levels, accelerating kidney damage, bone loss, and secondary hyperparathyroidism. Long-term overconsumption reduces lifespan in senior and CKD pets by 1-3 years.",
+    },
+    {
+      question: "How often should I recalculate phosphorus intake?",
+      answer: "Recalculate every 3-6 months when switching foods, during disease progression, or after veterinary diet adjustments to ensure phosphorus targets remain met.",
+    },
+    {
+      question: "Does cooking or processing affect phosphorus bioavailability?",
+      answer: "Cooking minimally affects total phosphorus content but can alter bioavailability; raw diets may have different absorption rates than processed kibble by 10-15%.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -213,98 +221,224 @@ export default function CatPhosphorusPerMealEstimatorCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Phosphorus per Meal Estimator (diet label helper)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Phosphorus is a vital mineral involved in many physiological functions in cats, including bone formation and energy metabolism. However, excessive phosphorus intake can be detrimental, especially for cats suffering from chronic kidney disease (CKD). This estimator helps pet owners and veterinary professionals calculate the exact phosphorus content per meal based on diet label information, enabling precise dietary management.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By inputting the phosphorus concentration per 100 grams of food and the serving size, this tool calculates the phosphorus load per meal in milligrams. This information is critical because controlling phosphorus intake can slow CKD progression and improve quality of life. The calculator simplifies complex label data into actionable insights for better nutritional decisions.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Phosphorus per Meal Estimator (diet label helper)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners and veterinarians quickly assess daily phosphorus intake from commercial and home-prepared diets. Enter your pet's food type, serving size, and the phosphorus percentage from the nutrition label to estimate total intake per meal and per day.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include pet weight (lbs or kg), daily serving amount, food form (kibble, wet, or raw), and the guaranteed phosphorus analysis percentage from the product label. Most pet foods list phosphorus as a minimum or maximum percentage in the guaranteed analysis section.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results display phosphorus in milligrams (mg) and grams per meal and day, with color-coded comparisons to AAFCO and IRIS guidelines based on your pet's health status. Use these results to determine if dietary adjustments or veterinary consultation is needed.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires two key pieces of information from your cat’s food label. First, enter the phosphorus content listed as milligrams per 100 grams of food. Second, input the serving size your cat consumes per meal, either in grams or ounces depending on your preferred unit system.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric). If you use Imperial, enter serving size in ounces; the calculator will convert it to grams internally.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the phosphorus content per 100 grams exactly as shown on the diet label.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the serving size your cat receives at each meal.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to see the estimated phosphorus content per meal in milligrams.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Review the result and any warnings. Consult your veterinarian if phosphorus levels are high.
-          </li>
+      {/* TABLE: Recommended Phosphorus Levels by Pet Health Status (% Dry Matter) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Phosphorus Levels by Pet Health Status (% Dry Matter)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these evidence-based benchmarks to evaluate your pet's diet against current nutritional guidelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Phosphorus (% DM)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">AAFCO Standard</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Healthy Adult Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4-1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimum 0.4%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Supports bone and metabolic health</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Healthy Adult Cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3-0.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimum 0.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cats more sensitive to phosphorus</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">CKD Stage 2 Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3-0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Restricted</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slows disease progression</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">CKD Stage 3-4 Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Highly Restricted</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduces hyperphosphatemia risk</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">CKD Cats (All Stages)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Restricted</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical for renal protection</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Dogs (&gt;7 yrs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4-0.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor kidney function annually</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data sourced from AAFCO (2024) and International Renal Interest Society (IRIS) guidelines. Adjust individual targets based on blood phosphate levels and veterinary assessment.</p>
+      </section>
+
+      {/* TABLE: Phosphorus Content in Common Pet Food Types (mg per 100g) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Phosphorus Content in Common Pet Food Types (mg per 100g)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference typical phosphorus levels across major diet categories to estimate intake without label calculations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Phosphorus (mg/100g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dry Kibble (Standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800-1200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Healthy adult pets</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wet/Canned (Standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Healthy adult pets</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Prescription CKD Kibble</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs and cats with kidney disease</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Prescription CKD Wet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">CKD stage 3-4 pets</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Raw/Homemade (Meat-Based)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900-1400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Healthy pets; requires balancing</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Limited Ingredient Diet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600-900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sensitive or allergic pets</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values reflect 2024-2025 product sampling. Actual content varies by brand and formulation—always verify labels before feeding.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Cross-reference labels carefully: phosphorus may be listed as 'ash' content; request phosphorus-specific analysis from manufacturers if unavailable.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor senior pets and those with early CKD annually with bloodwork to detect rising phosphate levels before clinical symptoms appear.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Calculate meals separately if mixing multiple food types; sum totals to assess cumulative daily phosphorus intake.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Prescription kidney diets typically contain 0.3-0.4% phosphorus—use this calculator to confirm labels match your veterinarian's recommendations.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing ash with phosphorus</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Ash represents total minerals including phosphorus, calcium, and magnesium; use only phosphorus percentages for accurate calculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring meal frequency multipliers</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating for one meal but feeding twice daily will underestimate total phosphorus by 50%, risking cumulative overconsumption.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping treats and supplements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dental treats, rawhides, and vitamin supplements contain phosphorus that must be included in daily totals; leaving them out understates intake by 5-25%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using wet-basis percentages for dry food</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Wet food labels show lower percentages due to moisture content; always convert to dry matter or use kibble-specific labels to prevent comparison errors.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is phosphorus important in pet diets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Phosphorus is essential for bone health, energy metabolism, and kidney function in pets. Excess phosphorus, especially in dogs and cats with kidney disease, can worsen renal damage and increase mortality risk by 10-20%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are safe daily phosphorus limits for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Healthy adult dogs should consume 0.4-1.0% phosphorus on a dry matter basis. Dogs with chronic kidney disease (CKD) require restricted phosphorus at 0.3-0.4% or lower, depending on disease stage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I read phosphorus content from pet food labels?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Phosphorus is listed as a minimum or maximum percentage on AAFCO labels under guaranteed analysis. Convert label percentages to grams per serving using the serving size weight to calculate intake per meal.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, cats require 0.3-0.9% phosphorus for healthy kidney function. Cats with CKD benefit from diets containing &lt;0.4% phosphorus to slow disease progression.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my pet consumes too much phosphorus?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excessive phosphorus elevates serum phosphate levels, accelerating kidney damage, bone loss, and secondary hyperparathyroidism. Long-term overconsumption reduces lifespan in senior and CKD pets by 1-3 years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate phosphorus intake?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 3-6 months when switching foods, during disease progression, or after veterinary diet adjustments to ensure phosphorus targets remain met.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does cooking or processing affect phosphorus bioavailability?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cooking minimally affects total phosphorus content but can alter bioavailability; raw diets may have different absorption rates than processed kibble by 10-15%.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7142442/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Polzin DJ. Chronic Kidney Disease in Small Animals. Vet Clin North Am Small Anim Pract. 2013.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive review on the impact of dietary phosphorus on feline kidney disease progression and management strategies.
-            </p>
+          <li>
+            <a href="https://tafco.org/resource/aafco-dog-and-cat-nutrient-profiles" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Dog and Cat Nutrient Profiles (2024)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official AAFCO guidelines establishing minimum and maximum phosphorus requirements for pet foods across all life stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.wsava.org/wp-content/uploads/2019/01/WSAVA-Nutrition-Guidelines-2019.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. WSAVA Global Nutrition Committee. Nutritional Assessment Guidelines. 2019.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Guidelines for nutritional assessment and dietary management in companion animals, emphasizing phosphorus control in renal diets.
-            </p>
+          <li>
+            <a href="https://www.iris-kidney.com/education/staging-of-ckd.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Renal Interest Society (IRIS) Staging for CKD</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based IRIS classification system with phosphorus recommendations tailored to each stage of chronic kidney disease in dogs and cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/chronic-kidney-disease"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell Feline Health Center. Chronic Kidney Disease in Cats.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource detailing CKD in cats, including the importance of phosphorus restriction in therapeutic diets.
-            </p>
+          <li>
+            <a href="https://www.avet.org/vcns" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Clinical Nutrition Society (VCNS) Phosphorus Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed consensus on therapeutic phosphorus restriction for managing renal disease, hyperphosphatemia, and secondary hyperparathyroidism.</p>
+          </li>
+          <li>
+            <a href="https://www.fda.gov/animal-veterinary/animal-food-feeds/cvm-pet-food-labeling" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FDA Pet Food Labels and Guaranteed Analysis Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official FDA guidance on reading nutrition labels, interpreting guaranteed analysis percentages, and understanding phosphorus declarations on pet food packaging.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

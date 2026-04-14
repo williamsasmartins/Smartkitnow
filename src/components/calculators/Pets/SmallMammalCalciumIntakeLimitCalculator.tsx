@@ -51,25 +51,33 @@ export default function SmallMammalCalciumIntakeLimitCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is limiting calcium intake important for bladder stone prevention?",
-      answer:
-        "Excessive calcium intake can lead to supersaturation of urine with calcium salts, which promotes the formation of bladder stones. By limiting calcium intake to a safe threshold, the risk of stone formation decreases significantly. This is especially critical in species prone to calcium oxalate or calcium phosphate stones, where dietary management is a key preventive strategy.",
+      question: "What is the recommended calcium intake limit for pets prone to bladder stones?",
+      answer: "Most veterinarians recommend keeping calcium intake between 0.8-1.2% of dry matter for dogs and cats susceptible to bladder stones, depending on stone composition and underlying conditions.",
     },
     {
-      question: "How is the calcium intake limit calculated for different animals?",
-      answer:
-        "The calcium intake limit is calculated based on body weight, typically expressed as milligrams of calcium per kilogram of body weight per day. This approach accounts for metabolic differences and ensures the limit is tailored to the individual animal’s size. Veterinary nutritional guidelines recommend approximately 70 mg/kg/day as a safe upper limit to minimize bladder stone risk.",
+      question: "How does excess calcium contribute to bladder stone formation?",
+      answer: "High calcium intake increases urinary calcium excretion, which can precipitate with phosphate or oxalate to form struvite or calcium oxalate stones in the bladder.",
     },
     {
-      question: "Can calcium intake limits vary between species or individual animals?",
-      answer:
-        "Yes, calcium requirements and safe intake limits can vary widely between species and even among individuals within a species. Factors such as age, health status, and predisposition to urinary tract issues influence these limits. Therefore, it is essential to consult a veterinarian for personalized dietary recommendations and adjustments.",
+      question: "Should I reduce calcium for pets with a history of bladder stones?",
+      answer: "Yes, reducing calcium to the lower end of the normal range (0.6-0.8%) may help prevent recurrence, especially for calcium oxalate stone formers.",
     },
     {
-      question: "What are common dietary sources of calcium that should be monitored?",
-      answer:
-        "Common dietary sources of calcium include dairy products, certain leafy greens, fortified pet foods, and supplements. Monitoring these sources helps prevent inadvertent excessive calcium intake. Pet owners should carefully read ingredient labels and consult with their veterinarian to ensure the total daily calcium intake remains within safe limits.",
+      question: "Can dietary calcium restriction alone prevent bladder stones?",
+      answer: "While calcium reduction helps, stone prevention also requires adequate hydration, urinary pH management, and treating underlying infections or metabolic disorders.",
     },
+    {
+      question: "What pet foods are appropriate for calcium-restricted diets?",
+      answer: "Prescription veterinary diets formulated for urinary health typically contain controlled calcium (0.6-1.0%) and are designed to prevent stone formation.",
+    },
+    {
+      question: "How do I calculate my pet's daily calcium intake?",
+      answer: "Multiply the percentage of calcium in the food by your pet's daily dry matter intake; this calculator automates that process using your pet's weight and food label data.",
+    },
+    {
+      question: "Are certain dog breeds more prone to bladder stones?",
+      answer: "Yes, miniature schnauzers, bulldogs, and dalmatians have higher genetic predisposition to bladder stones and may benefit from stricter calcium management.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -161,98 +169,200 @@ export default function SmallMammalCalciumIntakeLimitCalculator() {
   // 5. EDITORIAL JSX
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Calcium Intake Limit (Bladder Stone Prevention)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Calcium plays a vital role in many physiological processes in small mammals and other pets, but excessive calcium intake can predispose them to the formation of bladder stones, also known as uroliths. These stones can cause urinary obstruction, pain, and infections, which may require surgical intervention. Therefore, managing dietary calcium intake is a critical preventive measure to maintain urinary tract health and overall well-being.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The calcium intake limit is typically calculated based on the animal’s body weight, expressed in milligrams of calcium per kilogram of body weight per day. Veterinary nutritionists recommend a safe upper limit of approximately 70 mg/kg/day to minimize the risk of calcium-containing bladder stones. This limit helps balance the animal’s nutritional needs without promoting excess calcium excretion in the urine, which can crystallize and form stones.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to note that individual factors such as species, age, health status, and predisposition to urinary tract issues can influence calcium requirements and safe intake limits. Pet owners should work closely with their veterinarians to tailor dietary plans that meet their pet’s specific needs while preventing bladder stone formation. Regular monitoring and adjustments may be necessary to ensure optimal urinary health.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Calcium Intake Limit (Bladder Stone Prevention)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the optimal daily calcium intake range for your pet based on body weight and stone risk status. It helps owners and veterinarians establish dietary targets to reduce bladder stone formation risk.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's current weight, select their stone history status (none, previous stones, or active condition), and input the calcium percentage from your pet food label. The calculator uses these inputs to compute safe daily calcium limits.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show your pet's recommended daily calcium intake in milligrams. Compare this to your current food's calcium content to decide if dietary adjustment is needed; results &lt;500 mg/day or &gt;3500 mg/day warrant veterinary review.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the maximum safe daily calcium intake for your pet to help prevent bladder stones. Simply enter your pet’s weight in the selected unit system, and the calculator will provide the recommended calcium intake limit in milligrams per day. This tool is designed to assist in dietary planning and should be used alongside veterinary advice.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system that matches how you measure your pet’s weight (Imperial or Metric).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your pet’s current weight accurately to ensure the calculation is precise.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click “Calculate” to view the maximum recommended daily calcium intake to reduce bladder stone risk.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use this information to guide dietary choices and consult your veterinarian for personalized recommendations.
-          </li>
+      {/* TABLE: Calcium Content in Common Pet Foods */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Calcium Content in Common Pet Foods</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference table showing typical calcium percentages in standard and prescription pet diets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calcium % (Dry Matter)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Suitable for Stone-Prone Pets?</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Standard dry dog food</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.9-1.5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">May be too high</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-quality commercial diet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8-1.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Generally acceptable</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Prescription urinary diet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6-0.9%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Recommended</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Homemade diet (balanced)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.7-1.0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">If properly formulated</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Grain-free kibble</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0-1.8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Often excessive</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Consult your veterinarian before switching foods for stone prevention.</p>
+      </section>
+
+      {/* TABLE: Recommended Calcium Intake Limits by Pet Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Calcium Intake Limits by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Daily calcium intake recommendations based on pet weight and stone risk profile.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Normal Limit (mg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stone-Prone Limit (mg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stone-History Limit (mg/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800-1200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600-900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400-700</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">21-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1500-2500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1100-1800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800-1300</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">51-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2800-4500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2000-3200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1500-2400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Over 100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4500-6500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3200-4800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2400-3600</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual requirements vary by individual health status; use this calculator with veterinary guidance.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always check your pet food label for the calcium percentage listed as 'minimum' or 'guaranteed analysis' on a dry matter basis.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase fresh water availability—proper hydration is critical for preventing stone formation regardless of calcium intake.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your pet for signs of recurrent stones such as straining to urinate, blood in urine, or frequent urination.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Have urine analyzed (urinalysis) annually for stone-prone pets to detect early crystalluria before stones form.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Wet vs. Dry Matter Percentages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Always convert wet food calcium content to dry matter basis (multiply by 4-5) before comparing to dry food percentages.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Individual Pet Metabolism</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">This calculator provides guidelines; some pets absorb or excrete calcium differently, so veterinary oversight is essential.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Calcium Restriction Alone Cures Stones</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dietary calcium control is one tool—urinary pH management, hydration, and treating infections are equally important.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Treats and Supplements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calcium from treats, supplements, and table scraps can significantly exceed daily limits and should be included in calculations.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended calcium intake limit for pets prone to bladder stones?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most veterinarians recommend keeping calcium intake between 0.8-1.2% of dry matter for dogs and cats susceptible to bladder stones, depending on stone composition and underlying conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does excess calcium contribute to bladder stone formation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High calcium intake increases urinary calcium excretion, which can precipitate with phosphate or oxalate to form struvite or calcium oxalate stones in the bladder.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I reduce calcium for pets with a history of bladder stones?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, reducing calcium to the lower end of the normal range (0.6-0.8%) may help prevent recurrence, especially for calcium oxalate stone formers.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can dietary calcium restriction alone prevent bladder stones?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While calcium reduction helps, stone prevention also requires adequate hydration, urinary pH management, and treating underlying infections or metabolic disorders.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What pet foods are appropriate for calcium-restricted diets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Prescription veterinary diets formulated for urinary health typically contain controlled calcium (0.6-1.0%) and are designed to prevent stone formation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my pet's daily calcium intake?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiply the percentage of calcium in the food by your pet's daily dry matter intake; this calculator automates that process using your pet's weight and food label data.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are certain dog breeds more prone to bladder stones?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, miniature schnauzers, bulldogs, and dalmatians have higher genetic predisposition to bladder stones and may benefit from stricter calcium management.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/nutrition-of-small-mammals/calcium-and-phosphorus-in-small-mammals"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Calcium and Phosphorus in Small Mammals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of calcium metabolism and dietary recommendations for small mammals, emphasizing urinary health and stone prevention.
-            </p>
+          <li>
+            <a href="https://www.vetmed.wsu.edu/outreach/Pet-Health-Topics/Categories/Companion-Animals/Kidney-and-Urinary-Stones" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Canine and Feline Nephrology and Urology - Urolithiasis</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive veterinary resource on bladder stone causes, types, and dietary management strategies.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6466122/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Institutes of Health - Dietary Management of Urolithiasis in Small Animals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed article detailing nutritional strategies, including calcium restriction, to prevent bladder stone formation in veterinary patients.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Animal Hospital Association (AAHA) Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based nutritional guidelines for managing urinary diseases in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/urinary-tract-infection-guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association - Urinary Tract Infection and Stone Prevention Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Clinical guidelines highlighting the role of dietary calcium management in reducing the risk of urinary tract stones and infections.
-            </p>
+          <li>
+            <a href="https://www.isfm.net/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Society of Feline Medicine - Feline Lower Urinary Tract Disease</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Specialist guidance on preventing and managing feline urinary conditions including bladder stones.</p>
+          </li>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/veterinary-medical-teaching-hospital/nutrition-support-service" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine - Nutrition Support Service</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical nutrition expertise on formulating stone prevention diets for individual patient needs.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

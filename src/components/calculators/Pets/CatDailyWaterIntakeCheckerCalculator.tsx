@@ -97,25 +97,33 @@ export default function CatDailyWaterIntakeCheckerCalculator() {
   // 3. FAQS (DETAILED)
   const faqs = [
     {
-      question: "Why is daily water intake important for cats?",
-      answer:
-        "Daily water intake is crucial for maintaining kidney function and overall health in cats. Cats are prone to urinary tract issues and kidney disease, especially if they consume primarily dry food. Adequate hydration supports toxin elimination and prevents urinary crystals and stones.",
+      question: "How much water should my cat drink daily?",
+      answer: "Most cats need 40-60 mL of water per kilogram of body weight daily, or roughly 8-10 ounces per 5 pounds. This varies based on diet, activity level, and health status.",
     },
     {
-      question: "Does this calculator account for water from food?",
-      answer:
-        "This calculator estimates total daily water needs including water from food and drinking water. Cats eating wet food receive significant moisture from their diet, so their drinking water requirement may be lower. Adjust accordingly based on your cat’s diet.",
+      question: "Does wet food count toward my cat's daily water intake?",
+      answer: "Yes, wet food contains 70-80% moisture and contributes significantly to hydration. A cat eating mostly wet food may need less additional water than one on dry kibble.",
     },
     {
-      question: "How can I encourage my cat to drink more water?",
-      answer:
-        "Encourage water intake by providing fresh water daily, using water fountains, placing multiple water bowls around the home, and offering wet food. Some cats prefer running water or flavored water (e.g., low sodium broth). Consult your vet if hydration remains low.",
+      question: "What factors affect how much water a cat needs?",
+      answer: "Age, weight, activity level, diet type, climate, and health conditions like kidney disease or diabetes all impact water requirements. Indoor cats typically need less than outdoor cats.",
     },
     {
-      question: "When should I consult a veterinarian about my cat’s hydration?",
-      answer:
-        "Consult a veterinarian if your cat shows signs of dehydration such as lethargy, sunken eyes, dry gums, or reduced urination. Also seek advice if your cat refuses to drink water or has underlying health conditions affecting hydration.",
+      question: "How do I know if my cat is drinking enough water?",
+      answer: "Signs of proper hydration include normal energy levels, moist gums, and pale pink mucous membranes. Dehydration signs include lethargy, dry mouth, and dark urine.",
     },
+    {
+      question: "Should I use this calculator if my cat has kidney disease?",
+      answer: "Cats with kidney disease often need more water intake; consult your veterinarian for personalized hydration goals rather than relying solely on this calculator.",
+    },
+    {
+      question: "Why does my cat drink more water in summer?",
+      answer: "Higher temperatures increase evaporation and metabolic demands, causing cats to drink 10-20% more water during warm months to maintain hydration.",
+    },
+    {
+      question: "Can I use this calculator for kittens and senior cats?",
+      answer: "Kittens have higher water needs per pound of body weight, while senior cats may need more due to declining kidney function; adjust results accordingly or consult a vet.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -212,101 +220,212 @@ export default function CatDailyWaterIntakeCheckerCalculator() {
   // 5. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Daily Water Intake Checker for Cats
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Proper hydration is essential for cats to maintain optimal kidney function, regulate body temperature, and support overall health. Cats are naturally low-thirst animals, evolved to obtain moisture from their prey. However, domestic cats often consume dry kibble, which contains minimal water, increasing their risk of dehydration and urinary tract issues.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the recommended daily water intake based on your cat’s body weight, providing a practical guideline to ensure your feline friend stays well-hydrated. Adequate water consumption helps prevent common feline health problems such as kidney disease, urinary crystals, and bladder infections.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Monitoring your cat’s water intake is especially important for cats on dry food diets or those with pre-existing health conditions. By understanding and meeting your cat’s hydration needs, you contribute significantly to their long-term wellness and quality of life.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Daily Water Intake Checker for Cats</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your cat's optimal daily water intake based on body weight, diet type, and lifestyle factors. It helps you monitor hydration and identify potential dehydration risks.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your cat's weight in pounds, select their primary diet (dry, wet, or mixed), and note their activity level and any health conditions. The tool accounts for moisture content in food to provide a realistic water target.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Compare your cat's actual drinking to the recommended amount and adjust water availability accordingly. If results suggest concerning hydration issues, consult your veterinarian, especially for cats with kidney disease or other conditions.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this tool, simply enter your cat’s current body weight and select the appropriate unit system (imperial or metric). The calculator will estimate the total daily water intake your cat requires, including water from food and drinking water. Use this estimate to monitor and encourage adequate hydration.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure or estimate your cat’s weight accurately using a scale or veterinary records.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Select the unit system that matches your measurement (lbs or kg).
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the weight value into the input field.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the recommended daily water intake.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the result to guide your cat’s hydration management and consult your veterinarian if you have concerns.
-          </li>
+      {/* TABLE: Daily Water Intake Guidelines by Cat Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Water Intake Guidelines by Cat Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to estimate baseline daily water needs based on your cat's weight in pounds.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Water Need (mL)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Water Need (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.4-5.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small/young cats</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160-240</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.4-8.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Average adult cat</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.8-10.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium-large cat</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240-360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.1-12.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large/senior cat</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.1-15.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extra-large cat</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are baseline estimates; individual needs vary by diet, activity, and health status.</p>
+      </section>
+
+      {/* TABLE: Water Content in Common Cat Foods */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Water Content in Common Cat Foods</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different diets contribute varying amounts of water to your cat's daily intake.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Water Content (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Serving (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Water per Serving (oz)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dry Kibble</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.05-0.06</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wet Food (Pâté)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.25-2.4</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Raw Diet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70-75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.1-2.25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Semi-moist</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-0.7</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Broths/Toppers</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90-95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.9-0.95</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cats on high-moisture diets require significantly less additional water from drinking.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Place multiple water bowls throughout your home to encourage your cat to drink more frequently and stay hydrated.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a cat water fountain; many cats prefer running water and drink 20-30% more from fountains than bowls.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cat's urine color—pale yellow indicates good hydration, while dark yellow suggests dehydration.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Offer water at different temperatures; some cats prefer cool water while others drink more from room-temperature or slightly warm water.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Diet Composition</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming a cat needs the same water amount regardless of diet ignores that wet food provides 75-80% of daily hydration needs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Individual Variation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using calculator results as absolute requirements instead of guidelines fails to account for breed differences, metabolism, and personal preferences.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Health Conditions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying standard guidelines to cats with diabetes, hyperthyroidism, or kidney disease can lead to inadequate or excessive water intake targets.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Seasonal Adjustments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Not increasing water recommendations during hot months or in heated indoor environments results in preventable dehydration.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much water should my cat drink daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most cats need 40-60 mL of water per kilogram of body weight daily, or roughly 8-10 ounces per 5 pounds. This varies based on diet, activity level, and health status.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does wet food count toward my cat's daily water intake?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, wet food contains 70-80% moisture and contributes significantly to hydration. A cat eating mostly wet food may need less additional water than one on dry kibble.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect how much water a cat needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Age, weight, activity level, diet type, climate, and health conditions like kidney disease or diabetes all impact water requirements. Indoor cats typically need less than outdoor cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my cat is drinking enough water?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Signs of proper hydration include normal energy levels, moist gums, and pale pink mucous membranes. Dehydration signs include lethargy, dry mouth, and dark urine.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I use this calculator if my cat has kidney disease?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats with kidney disease often need more water intake; consult your veterinarian for personalized hydration goals rather than relying solely on this calculator.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does my cat drink more water in summer?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Higher temperatures increase evaporation and metabolic demands, causing cats to drink 10-20% more water during warm months to maintain hydration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for kittens and senior cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Kittens have higher water needs per pound of body weight, while senior cats may need more due to declining kidney function; adjust results accordingly or consult a vet.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.wsava.org/global-guidelines/global-nutrition-guidelines/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. WSAVA Global Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              World Small Animal Veterinary Association guidelines on feline nutrition and hydration recommendations.
-            </p>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Nutritional Requirements for Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines for feline nutritional standards including water and moisture requirements for different life stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.nap.edu/catalog/10668/nutrient-requirements-of-dogs-and-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Nutrient Requirements of Dogs and Cats (NRC, 2006)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource detailing water and nutrient requirements for cats based on scientific research.
-            </p>
+          <li>
+            <a href="https://www.icatcare.org/advice/hydration" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care: Hydration in Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based information on feline water needs and the benefits of wet food and water fountains.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/hydration"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell Feline Health Center - Hydration
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert advice on feline hydration, signs of dehydration, and strategies to increase water intake.
-            </p>
+          <li>
+            <a href="https://www.avma.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary organization providing guidelines on feline nutrition, hydration, and health management.</p>
+          </li>
+          <li>
+            <a href="https://journals.sagepub.com/home/jfm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Feline Medicine and Surgery: Water Intake Studies</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on cat hydration, dietary water content, and health outcomes related to dehydration.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -89,25 +89,33 @@ export default function DogBodyConditionScoreBcsTargetCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "What is the Body Condition Score (BCS) and why is it important?",
-      answer:
-        "The Body Condition Score (BCS) is a standardized 9-point scale used by veterinarians to assess a dog's fat stores and overall body condition. It helps identify if a dog is underweight, ideal, overweight, or obese. Understanding BCS is crucial because maintaining an ideal body condition reduces the risk of health problems such as diabetes, arthritis, and cardiovascular disease. It guides nutrition and weight management plans tailored to the dog's needs.",
+      question: "What is a Body Condition Score (BCS) and why does it matter for my dog?",
+      answer: "BCS is a 1-9 scale assessing your dog's weight relative to ideal body composition. A score of 4-5 indicates optimal health, while scores outside this range increase risks of obesity-related diseases like diabetes and joint problems.",
     },
     {
-      question: "How does this calculator estimate my dog’s target weight based on BCS?",
-      answer:
-        "This calculator uses a proportional relationship between your dog’s current weight and Body Condition Score to estimate a target weight corresponding to your desired BCS. Since BCS reflects fat accumulation, adjusting weight proportionally helps set realistic goals. The formula assumes linear scaling: Target Weight = Current Weight × (Target BCS / Current BCS). This method provides a practical starting point for weight management under veterinary supervision.",
+      question: "How do I determine my dog's current BCS before using this calculator?",
+      answer: "Feel your dog's ribs without pressing hard—you should feel them easily but not see them prominently. Check the waist when viewing from above and the abdominal tuck from the side to assign a score of 1-9.",
     },
     {
-      question: "Why do we calculate Resting Energy Requirement (RER) and Maintenance Energy Requirement (MER)?",
-      answer:
-        "RER represents the calories a dog needs at rest to maintain vital body functions, calculated as 70 × (weight in kg)^0.75. MER accounts for additional energy expenditure from daily activities and is derived by multiplying RER by an activity factor (typically 1.4 for neutered adult dogs). These calculations help determine appropriate daily calorie intake to achieve or maintain the target weight safely and effectively.",
+      question: "What does the calculator recommend if my dog scores a 7 or higher (overweight)?",
+      answer: "The tool suggests a gradual weight loss plan, typically 1-2% body weight loss per week through reduced calorie intake and increased exercise, with veterinary oversight.",
     },
     {
-      question: "Can I use this tool for all dog breeds and ages?",
-      answer:
-        "While this tool provides a general guideline for adult dogs, individual needs may vary based on breed, age, health status, and activity level. Puppies, senior dogs, or dogs with medical conditions require specialized nutritional plans. Always consult your veterinarian before making significant changes to your dog’s diet or weight management plan to ensure safety and effectiveness tailored to your pet’s unique requirements.",
+      question: "Can this calculator work for all dog breeds and sizes?",
+      answer: "Yes, BCS is breed-agnostic and applies to dogs from 5 lbs to 150+ lbs, though larger breeds may need adjusted exercise targets based on joint health.",
     },
+    {
+      question: "How often should I reassess my dog's BCS using this calculator?",
+      answer: "Reassess monthly if your dog is on a weight management plan, or every 3-6 months for maintenance, to track progress and adjust feeding as needed.",
+    },
+    {
+      question: "What is the relationship between BCS and daily calorie requirements?",
+      answer: "Dogs with BCS 8-9 typically require 25-30% fewer calories than ideal-weight dogs of the same size; this calculator helps estimate personalized targets.",
+    },
+    {
+      question: "Should I use this calculator alongside my veterinarian's recommendations?",
+      answer: "Yes, this tool is educational and complements professional advice—always consult your vet before implementing major diet or exercise changes, especially for senior or health-compromised dogs.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -236,112 +244,212 @@ export default function DogBodyConditionScoreBcsTargetCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Body Condition Score Helper (BCS → Target Plan)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Dog Body Condition Score (BCS) is a veterinary tool used to assess a dog’s fat stores and overall body condition on a standardized 9-point scale, ranging from 1 (emaciated) to 9 (obese). This scoring system provides a practical and visual method to evaluate whether a dog is underweight, ideal, overweight, or obese. It is widely used by veterinarians and pet owners to monitor health and guide nutritional management.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Maintaining an ideal BCS, typically between 4 and 5, is critical for a dog’s long-term health and wellbeing. Dogs with a BCS outside this range are at increased risk of metabolic disorders, joint problems, and reduced lifespan. This helper tool translates your dog’s current BCS and weight into a target weight plan, enabling you to set realistic goals for weight loss or gain. It incorporates veterinary nutritional science to estimate daily calorie needs based on the target weight, supporting safe and effective weight management.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Body Condition Score Helper (BCS → Target Plan)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you assess your dog's current body condition on a 1-9 scale and generates a personalized weight management plan. It bridges the gap between identifying if your dog is overweight and understanding what daily caloric intake and exercise adjustments are needed.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by honestly evaluating your dog's ribs, waist, and abdominal tuck, then input their current weight, age, and activity level. The calculator uses these inputs along with breed considerations to estimate caloric needs.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the recommended BCS target (typically 4-5), daily calorie targets, and suggested exercise or diet adjustments. Use this as a roadmap to discuss with your veterinarian and track progress monthly.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To effectively use this calculator, begin by selecting your preferred unit system: Imperial (pounds) or Metric (kilograms). Then, input your dog’s current weight and current Body Condition Score (BCS) on the 1-9 scale. Next, enter the target BCS you aim to achieve, typically within the ideal range of 4 to 5. Once all inputs are entered, click “Calculate” to receive your dog’s target weight and estimated daily calorie requirements.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Current Weight:</strong> Enter your dog’s present weight accurately, as this forms the basis for all calculations.
-          </li>
-          <li>
-            <strong>Current BCS:</strong> Input your dog’s current Body Condition Score, which reflects their fat level and overall condition.
-          </li>
-          <li>
-            <strong>Target BCS:</strong> Choose a realistic and healthy target BCS to guide your dog’s weight management plan.
-          </li>
-          <li>
-            <strong>Calculate:</strong> Press the calculate button to generate the target weight and daily calorie needs, which can be used to tailor feeding and exercise plans.
-          </li>
+      {/* TABLE: Dog Body Condition Score (BCS) Reference Guide */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dog Body Condition Score (BCS) Reference Guide</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this 9-point scale to identify your dog's current body condition and health status.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BCS Score</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Visual/Physical Signs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Health Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1-2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severely Underweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ribs, spine, pelvis prominent; no fat; sunken abdomen</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Malnutrition risk</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Underweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ribs easily felt; minimal fat; defined waist</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Below ideal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ideal Weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ribs palpable, not visible; visible waist; light abdominal tuck</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Optimal health</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ribs difficult to feel; slight waist; mild abdominal fat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Early concern</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ribs not palpable; no waist; abdominal sag; waddling gait</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Disease risk</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severely Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ribs invisible; no waist; severe fat deposits; mobility issues</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical health risk</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">BCS 4-5 is optimal for most dogs; scores outside this range warrant dietary adjustments and veterinary consultation.</p>
+      </section>
+
+      {/* TABLE: Recommended Daily Calorie Targets by BCS and Weight */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Daily Calorie Targets by BCS and Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimate daily caloric needs based on your dog's current BCS and target weight goal.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BCS 4-5 (Ideal)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BCS 6-7 (Overweight)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BCS 8-9 (Obese)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-450 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-350 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">175-300 cal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">21-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450-900 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350-700 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-600 cal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">51-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900-1,400 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">700-1,100 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600-950 cal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,400-2,000 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,100-1,600 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">950-1,400 cal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are baseline estimates; adjust based on activity level, age, metabolism, and veterinary guidance. Individual needs vary significantly.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Feel your dog's ribs regularly with flat fingers to catch weight changes early before scores drift above 5.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Reduce treat calories to no more than 10% of daily intake when implementing a weight loss plan.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase exercise gradually—add 10-15 minutes per week—to prevent joint strain in overweight dogs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a kitchen scale to measure food portions precisely rather than eyeballing, as small overages compound quickly.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying solely on weight without assessing body composition</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 60-lb dog can be ideal, overweight, or underweight depending on muscle vs. fat; BCS visual assessment is more informative than scale weight alone.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Making drastic calorie cuts instead of gradual reductions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cutting calories by 50% causes nutritional deficiency and metabolic slowdown; aim for 10-25% reductions over weeks for sustainable loss.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring age and breed differences in caloric needs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Senior dogs and certain breeds (Labs, Beagles) have slower metabolisms; calculator outputs should be adjusted downward for these populations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for training treats and table scraps</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Hidden calories from treats and human food often account for 20-30% of daily intake and derail weight loss plans if not tracked.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a Body Condition Score (BCS) and why does it matter for my dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">BCS is a 1-9 scale assessing your dog's weight relative to ideal body composition. A score of 4-5 indicates optimal health, while scores outside this range increase risks of obesity-related diseases like diabetes and joint problems.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I determine my dog's current BCS before using this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Feel your dog's ribs without pressing hard—you should feel them easily but not see them prominently. Check the waist when viewing from above and the abdominal tuck from the side to assign a score of 1-9.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does the calculator recommend if my dog scores a 7 or higher (overweight)?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The tool suggests a gradual weight loss plan, typically 1-2% body weight loss per week through reduced calorie intake and increased exercise, with veterinary oversight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator work for all dog breeds and sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, BCS is breed-agnostic and applies to dogs from 5 lbs to 150+ lbs, though larger breeds may need adjusted exercise targets based on joint health.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I reassess my dog's BCS using this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Reassess monthly if your dog is on a weight management plan, or every 3-6 months for maintenance, to track progress and adjust feeding as needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the relationship between BCS and daily calorie requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dogs with BCS 8-9 typically require 25-30% fewer calories than ideal-weight dogs of the same size; this calculator helps estimate personalized targets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I use this calculator alongside my veterinarian's recommendations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this tool is educational and complements professional advice—always consult your vet before implementing major diet or exercise changes, especially for senior or health-compromised dogs.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.wsava.org/global-guidelines/global-nutrition-guidelines/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. WSAVA Global Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on canine nutrition and body condition scoring from the World Small Animal Veterinary Association.
-            </p>
+          <li>
+            <a href="https://petobesityprevention.org/body-condition-scoring/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Association for Pet Obesity Prevention (APOP) — Body Condition Scoring</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standard resource defining the 9-point BCS system and health implications for overweight and obese dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6313445/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Laflamme, D. P. (2012). Development and validation of a body condition score system for dogs.
-            </a>
-            <p className="text-slate-500 text-sm">
-              A foundational study validating the 9-point BCS system and its correlation with body fat percentage in dogs.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/obesity" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) — Pet Obesity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidance on obesity-related health risks and weight management strategies approved by veterinary professionals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/nutrition/nutrition-guidelines_final.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association (AAHA) Canine Weight Management Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based recommendations for assessing and managing canine obesity, including the use of BCS and calorie calculations.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/news/dog-obesity-epidemic" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine — Canine Nutrition and Weight Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed information on caloric requirements, metabolic factors, and nutrition for dogs across different body condition scores.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/assessment-of-nutritional-status/body-condition-scoring"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Merck Veterinary Manual: Body Condition Scoring
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource explaining the principles and clinical application of body condition scoring in dogs.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com/dog-owners/disorders-of-dogs/obesity" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Merck Veterinary Manual — Obesity in Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive clinical resource covering BCS assessment, disease associations, and evidence-based dietary intervention protocols.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

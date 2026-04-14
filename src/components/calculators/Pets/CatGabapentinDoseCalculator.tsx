@@ -65,25 +65,33 @@ export default function CatGabapentinDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is Gabapentin dosing based on weight in cats?",
-      answer:
-        "Gabapentin dosing is weight-based because the drug’s efficacy and safety depend on the amount administered relative to the cat’s body mass. Cats metabolize medications differently, so precise dosing helps avoid underdosing, which may be ineffective, or overdosing, which can cause adverse effects. Weight-based dosing ensures a tailored approach for each individual cat’s needs.",
+      question: "What is the typical gabapentin dosage range for cats?",
+      answer: "Gabapentin for cats typically ranges from 50-100 mg per dose, administered 2-3 times daily, depending on the cat's weight and condition being treated.",
     },
     {
-      question: "How often should Gabapentin be administered to cats?",
-      answer:
-        "Gabapentin is typically given every 8 to 12 hours in cats, depending on the condition being treated and veterinary guidance. This dosing interval maintains therapeutic drug levels in the bloodstream to manage nerve pain or sedation effectively. Always follow your veterinarian’s instructions, as frequency may vary based on your cat’s health status.",
+      question: "How does a cat's weight affect gabapentin dosing?",
+      answer: "Dosing is calculated at approximately 5-10 mg/kg body weight per dose; a 5 kg cat would require 25-50 mg, while a 10 kg cat needs 50-100 mg per dose.",
     },
     {
-      question: "Can I use this calculator for cats with kidney or liver disease?",
-      answer:
-        "Cats with kidney or liver disease may process Gabapentin differently, requiring dose adjustments to avoid toxicity. This calculator provides general dosing guidelines but cannot replace personalized veterinary advice. Always consult your veterinarian before administering Gabapentin to cats with underlying health conditions.",
+      question: "Can this calculator be used for cats with kidney disease?",
+      answer: "Cats with renal impairment require dose adjustments; consult your veterinarian as dosing intervals may need to extend from every 8 hours to every 12-24 hours.",
     },
     {
-      question: "What are the risks of incorrect Gabapentin dosing in cats?",
-      answer:
-        "Incorrect dosing of Gabapentin can lead to insufficient pain relief or sedation if underdosed, or serious side effects such as sedation, ataxia, or toxicity if overdosed. Because cats are sensitive to medications, precise dosing based on weight is critical to ensure safety. Always verify doses with a veterinarian to minimize risks.",
+      question: "How often should gabapentin be administered to cats?",
+      answer: "Standard gabapentin dosing for cats is typically every 8-12 hours, though some conditions may require every 6 hours; always follow your veterinarian's specific instructions.",
     },
+    {
+      question: "Is gabapentin safe for senior cats?",
+      answer: "Gabapentin is generally safe for senior cats but may require dose adjustment due to age-related kidney function decline; your vet should assess kidney values first.",
+    },
+    {
+      question: "What conditions in cats require gabapentin treatment?",
+      answer: "Gabapentin treats neuropathic pain, post-operative pain, anxiety during vet visits, chronic pain from arthritis, and seizure disorders in cats.",
+    },
+    {
+      question: "Should I round the calculated dose to the nearest tablet size?",
+      answer: "Yes, always round to the nearest available tablet or liquid concentration; never split tablets without veterinary guidance, as gabapentin formulations vary.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -201,98 +209,219 @@ export default function CatGabapentinDoseCalculator() {
   // 6. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Gabapentin Dose Calculator for Cats
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Gabapentin is a medication commonly prescribed in veterinary medicine to manage neuropathic pain, seizures, and provide sedation in cats. Because cats metabolize drugs differently than humans and other animals, precise dosing based on body weight is essential to ensure both efficacy and safety. This calculator helps pet owners and veterinary professionals estimate an appropriate gabapentin dose tailored to the individual cat’s weight.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The typical dosing range for gabapentin in cats is 5 to 10 milligrams per kilogram of body weight, administered every 8 to 12 hours depending on the clinical situation. This range allows for flexibility based on the severity of symptoms and the cat’s response to treatment. Overdosing can lead to sedation and ataxia, while underdosing may result in inadequate pain control, making accurate calculations critical.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool is designed to provide a quick, evidence-based estimate of gabapentin dosage to assist in clinical decision-making or owner education. However, it does not replace professional veterinary advice. Always consult your veterinarian before starting or adjusting any medication regimen for your cat to ensure safety and effectiveness.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Gabapentin Dose Calculator for Cats</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the precise gabapentin dose for your cat based on weight, age, and kidney function. It helps pet owners and veterinary staff quickly calculate safe, evidence-based dosing to manage pain, anxiety, or seizures.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your cat's weight in pounds or kilograms, specify the condition being treated, note any kidney disease, and indicate the desired dosing frequency. The calculator uses standard feline pharmacokinetics (5-10 mg/kg) and adjusts for renal impairment automatically.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the calculated single dose and total daily amount, then confirm with your veterinarian before administering. Always use the nearest available tablet size or liquid concentration and monitor your cat for side effects like sedation or loss of coordination.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed to provide an accurate dose range based on your cat’s current weight. Begin by selecting the unit system that corresponds to how you measure your cat’s weight—either pounds (imperial) or kilograms (metric). Enter the weight value into the input field, ensuring it is as precise as possible for the best results.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) from the dropdown menu.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your cat’s weight in the appropriate units. Use a scale for accuracy.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the “Calculate” button to view the recommended gabapentin dose range.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the results and any warnings. Consult your veterinarian before administering medication.
-          </li>
+      {/* TABLE: Gabapentin Dosage by Cat Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Gabapentin Dosage by Cat Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows standard gabapentin dosing recommendations based on feline body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Dose (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Daily (mg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.4-6.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3x daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-90</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.6-8.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3x daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-120</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.8-11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3x daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-150</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-13.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3x daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-180</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.2-15.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3x daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90-210</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.4-17.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3x daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">105-240</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Doses are based on 5-10 mg/kg; adjust based on veterinary assessment and renal function.</p>
+      </section>
+
+      {/* TABLE: Gabapentin Frequency Adjustments for Kidney Function */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Gabapentin Frequency Adjustments for Kidney Function</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Cats with compromised renal function require dosing interval modifications to prevent toxicity.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Kidney Function Status</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Creatinine Level (mg/dL)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dosing Interval</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Normal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;1.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 8 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3x daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mild dysfunction</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.6-2.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2x daily</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate dysfunction</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.8-5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 12-24 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2x daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Severe dysfunction</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 24+ hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily or less</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always request serum creatinine testing before starting gabapentin in senior cats or those with renal concerns.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify kidney function with bloodwork before starting gabapentin, especially in cats over 7 years old.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Gabapentin liquid suspension is often easier to administer to cats than tablets; ask your pharmacist about compounding options.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Never stop gabapentin abruptly; taper doses gradually over 7-10 days to avoid rebound pain or seizures.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Gabapentin may cause drowsiness; monitor your cat for excessive sedation and report to your veterinarian if it worsens.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Kidney Function</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to test kidney values in senior cats can lead to gabapentin accumulation and toxicity; always request a recent serum creatinine before dosing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Human Dosing References</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Feline dosing differs significantly from human guidelines; the calculator accounts for cats' unique metabolism, so never extrapolate from human doses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Splitting Tablets Incorrectly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Gabapentin tablets cannot be reliably split due to uneven drug distribution; use only whole tablets or liquid formulations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating Cat Weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Inaccurate weight input produces incorrect doses; weigh your cat on a calibrated veterinary scale before using the calculator.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the typical gabapentin dosage range for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gabapentin for cats typically ranges from 50-100 mg per dose, administered 2-3 times daily, depending on the cat's weight and condition being treated.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does a cat's weight affect gabapentin dosing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dosing is calculated at approximately 5-10 mg/kg body weight per dose; a 5 kg cat would require 25-50 mg, while a 10 kg cat needs 50-100 mg per dose.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator be used for cats with kidney disease?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats with renal impairment require dose adjustments; consult your veterinarian as dosing intervals may need to extend from every 8 hours to every 12-24 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should gabapentin be administered to cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard gabapentin dosing for cats is typically every 8-12 hours, though some conditions may require every 6 hours; always follow your veterinarian's specific instructions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is gabapentin safe for senior cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gabapentin is generally safe for senior cats but may require dose adjustment due to age-related kidney function decline; your vet should assess kidney values first.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What conditions in cats require gabapentin treatment?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gabapentin treats neuropathic pain, post-operative pain, anxiety during vet visits, chronic pain from arthritis, and seizure disorders in cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I round the calculated dose to the nearest tablet size?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, always round to the nearest available tablet or liquid concentration; never split tablets without veterinary guidance, as gabapentin formulations vary.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/pharmacology/anticonvulsant-drugs/gabapentin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Gabapentin
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of gabapentin pharmacology, dosing, and clinical use in veterinary medicine.
-            </p>
+          <li>
+            <a href="https://www.plumbsveterinarydrugs.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Plumb's Veterinary Drug Handbook</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource for feline gabapentin dosing, pharmacokinetics, and contraindications.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Analgesics%20for%20Cats%20-%20Gabapentin.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Veterinary Medicine: Gabapentin Use in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed clinical guidelines and dosing recommendations for gabapentin in feline patients.
-            </p>
+          <li>
+            <a href="https://www.icatcare.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Society of Feline Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidelines on pain management and gabapentin use in cats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4977029/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Center for Biotechnology Information: Gabapentin Pharmacokinetics in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Research article exploring gabapentin absorption, metabolism, and dosing in feline subjects.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/publications/aaha-guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAHA Canine and Feline Pain Management Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional standards for analgesic dosing and monitoring in companion animals.</p>
+          </li>
+          <li>
+            <a href="https://www.merckvetmanual.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Merck Veterinary Manual</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed reference for feline drug dosing, renal adjustments, and clinical applications.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

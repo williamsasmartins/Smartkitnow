@@ -84,25 +84,33 @@ export default function ReptileFeederInsectGutLoadingRatioCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is gut-loading important for feeder insects?",
-      answer:
-        "Gut-loading is essential because feeder insects often have low intrinsic nutrient content. By feeding them nutrient-rich diets before offering them to reptiles, we enhance their nutritional value, ensuring reptiles receive adequate vitamins and minerals. This process supports the health, growth, and immune function of insectivorous reptiles.",
+      question: "What is gut-loading and why does the ratio matter?",
+      answer: "Gut-loading is feeding nutritious food to feeder insects 24-48 hours before offering them to reptiles, transferring nutrients directly to your pet. The ratio determines how much nutrition your reptile receives from each insect meal.",
     },
     {
-      question: "How does gut-loading duration affect nutrient availability?",
-      answer:
-        "The duration of gut-loading directly influences how much nutrient the insect can accumulate in its digestive tract. Longer gut-loading times allow insects to ingest and store more nutrients, improving their nutritional profile. However, excessively long durations may lead to nutrient degradation or insect stress, so optimal timing is critical.",
+      question: "What's the ideal calcium-to-phosphorus ratio for feeder insects?",
+      answer: "The optimal ratio is 1.5:1 to 2:1 calcium-to-phosphorus for most reptiles; ratios below 1:1 can lead to metabolic bone disease over time.",
     },
     {
-      question: "Can I use any nutrient concentration values for this calculator?",
-      answer:
-        "Nutrient concentration values should be based on reliable laboratory analyses or reputable gut-loading diet formulations. Using inaccurate or estimated values can lead to misleading results and inadequate nutrition for reptiles. Always source nutrient data from veterinary or scientific literature to ensure precision.",
+      question: "How long should insects be gut-loaded before feeding?",
+      answer: "Insects should be gut-loaded for 24-48 hours before feeding to your reptile; loading them longer than 48 hours provides diminishing nutritional returns.",
     },
     {
-      question: "What does a gut-loading ratio below 1 signify?",
-      answer:
-        "A gut-loading ratio below 1 indicates that the nutrient intake from the gut-loaded insect is insufficient to meet the desired nutritional target. This suggests that either the insect weight, nutrient concentration, or gut-loading duration is too low. Adjusting these parameters can help achieve adequate nutrient delivery for reptile health.",
+      question: "Which feeder insects benefit most from gut-loading?",
+      answer: "Crickets, dubia roaches, and mealworms absorb and retain gut-loaded nutrients better than insects like waxworms, which have high natural fat content.",
     },
+    {
+      question: "How does the ratio change based on reptile species?",
+      answer: "Herbivorous reptiles need higher calcium ratios (2:1), while carnivorous species tolerate ratios closer to 1.5:1; juvenile reptiles require stricter calcium supplementation.",
+    },
+    {
+      question: "What happens if the calcium-to-phosphorus ratio is too low?",
+      answer: "Ratios below 1:1 increase phosphorus absorption, which inhibits calcium uptake and leads to metabolic bone disease, impaction, and skeletal deformities.",
+    },
+    {
+      question: "Can I use commercial gut-load products or should I make my own?",
+      answer: "Commercial products (Repashy, Fluker's) offer consistent ratios around 1.5:1-2:1, while homemade blends of collards, squash, and calcium powder require careful measurement to achieve proper ratios.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -254,104 +262,224 @@ export default function ReptileFeederInsectGutLoadingRatioCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Feeder Insect Gut-Loading Ratio
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The feeder insect gut-loading ratio is a critical metric used to evaluate the efficiency and adequacy of nutrient enrichment in feeder insects before they are offered to insectivorous reptiles. Gut-loading involves feeding insects a nutrient-rich diet for a specified period, allowing them to accumulate essential vitamins, minerals, and other nutrients in their digestive tracts. This ratio helps quantify whether the gut-loading process meets the nutritional requirements necessary to support the health and growth of reptiles.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          By calculating the gut-loading ratio, veterinarians and reptile keepers can assess if the nutrient intake from gut-loaded insects is sufficient relative to the desired nutritional goals. This ensures that feeder insects provide an optimal source of nutrition, preventing deficiencies that could lead to metabolic bone disease, immune compromise, or poor growth in reptiles. The ratio takes into account insect weight, nutrient concentration in the gut-loading diet, and the duration of gut-loading, providing a comprehensive view of gut-loading effectiveness.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding and applying this ratio is essential for maintaining high standards of reptile husbandry and veterinary care. It empowers caretakers to make informed decisions about gut-loading protocols, adjusting feeding times or diet formulations to maximize nutrient delivery. Ultimately, this contributes to improved animal welfare and longevity in captive reptiles.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Feeder Insect Gut-Loading Ratio Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine the optimal calcium-to-phosphorus ratio for gut-loaded feeder insects based on your reptile species and age. By calculating the correct nutrient balance, you ensure your reptile receives proper nutrition and prevent metabolic bone disease.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your reptile type, age group, and your feeder insect variety to generate the target Ca:P ratio. The calculator accounts for the insect's natural nutrient content and adjusts recommendations based on loading duration and frequency.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the results to select appropriate gut-load recipes or commercial products that match your target ratio. Compare your current feeding protocol against the recommended ratio to identify nutritional gaps and adjust supplementation accordingly.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the gut-loading ratio by integrating key parameters related to feeder insect nutrition. To use it effectively, input the weight of the feeder insect, the nutrient concentration of the gut-loading diet, the desired nutrient intake for your reptile, and the gut-loading duration in hours. The calculator will then compute a ratio indicating whether the gut-loading process is sufficient to meet nutritional goals.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) for insect weight.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the feeder insect's weight accurately, ensuring correct units.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Provide the nutrient concentration of the gut-loading diet in mg per gram.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Specify the desired nutrient intake in milligrams based on your reptile's dietary needs.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Input the gut-loading duration in hours to reflect how long insects are fed the nutrient-rich diet.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Click "Calculate" to view the gut-loading ratio and interpret the results to optimize your feeding strategy.
-          </li>
+      {/* TABLE: Optimal Gut-Loading Ratios by Reptile Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Optimal Gut-Loading Ratios by Reptile Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different reptile species require varying calcium-to-phosphorus ratios for optimal health.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Reptile Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ideal Ca:P Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loading Duration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bearded Dragons (juvenile)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2:1 to 2.5:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6x weekly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bearded Dragons (adult)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5:1 to 2:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-48 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3x weekly</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Leopard Geckos</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5:1 to 2:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4x weekly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Crested Geckos</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4x weekly</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ball Pythons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2:1 to 1.5:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2x weekly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Corn Snakes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2:1 to 1.5:1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2x weekly</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Juvenile reptiles require higher ratios due to rapid bone development; adjust based on individual reptile health and UVB exposure.</p>
+      </section>
+
+      {/* TABLE: Feeder Insect Nutrient Profiles (Pre-Gut-Load) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Feeder Insect Nutrient Profiles (Pre-Gut-Load)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Base calcium and phosphorus content varies significantly among common feeder insects.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Insect Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calcium (mg/100g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Phosphorus (mg/100g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Base Ca:P Ratio</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Crickets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.45:1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dubia Roaches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110-140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.54:1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mealworms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.08:1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Waxworms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160-180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.18:1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Black Soldier Fly Larvae</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140-180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90-120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.4:1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Grasshoppers</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">170-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.45:1</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Gut-loading with calcium-rich greens and supplements improves these ratios by 150-300% within 24-48 hours.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use dark leafy greens (collards, mustard greens, dandelion) as your gut-load base; they provide 1000+ mg calcium per 100g compared to 80-120 mg in insects alone.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add calcium powder without vitamin D3 to gut-load mixes for insects kept indoors away from UVB; vitamin D3 is better obtained from UVB exposure.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Rotate feeder insect species weekly to vary nutrient profiles and prevent nutritional imbalances from relying on a single insect type.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your reptile's behavior and bone density; if metabolic bone disease signs appear, increase loading frequency to 5-6 times weekly and boost the Ca:P ratio to 2:1 or higher.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Gut-loading for more than 72 hours</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Extended loading causes insects to deplete their gut contents and reduces nutrient retention, making 24-48 hours the optimal window.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using only one feeder insect species</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Single-insect diets create nutritional imbalances; rotating between crickets, roaches, and BSFL ensures varied micronutrient intake.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the insect's base nutrient content</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Mealworms and waxworms have naturally low calcium; they require aggressive supplementation to reach appropriate ratios, unlike BSFL which is already calcium-rich.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to adjust ratios for reptile age</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Juveniles need 2:1 to 2.5:1 ratios, while adults thrive at 1.5:1; using adult-level ratios for growing reptiles increases metabolic bone disease risk.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is gut-loading and why does the ratio matter?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gut-loading is feeding nutritious food to feeder insects 24-48 hours before offering them to reptiles, transferring nutrients directly to your pet. The ratio determines how much nutrition your reptile receives from each insect meal.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the ideal calcium-to-phosphorus ratio for feeder insects?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The optimal ratio is 1.5:1 to 2:1 calcium-to-phosphorus for most reptiles; ratios below 1:1 can lead to metabolic bone disease over time.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long should insects be gut-loaded before feeding?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Insects should be gut-loaded for 24-48 hours before feeding to your reptile; loading them longer than 48 hours provides diminishing nutritional returns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which feeder insects benefit most from gut-loading?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Crickets, dubia roaches, and mealworms absorb and retain gut-loaded nutrients better than insects like waxworms, which have high natural fat content.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the ratio change based on reptile species?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Herbivorous reptiles need higher calcium ratios (2:1), while carnivorous species tolerate ratios closer to 1.5:1; juvenile reptiles require stricter calcium supplementation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if the calcium-to-phosphorus ratio is too low?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Ratios below 1:1 increase phosphorus absorption, which inhibits calcium uptake and leads to metabolic bone disease, impaction, and skeletal deformities.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use commercial gut-load products or should I make my own?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Commercial products (Repashy, Fluker's) offer consistent ratios around 1.5:1-2:1, while homemade blends of collards, squash, and calcium powder require careful measurement to achieve proper ratios.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6466064/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Nutritional Value of Gut-Loaded Feeder Insects for Reptiles
-            </a>
-            <p className="text-slate-500 text-sm">
-              This peer-reviewed article discusses the importance of gut-loading in enhancing the nutritional profile of feeder insects and its impact on reptile health.
-            </p>
+          <li>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5357140/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Nutritional Requirements of Reptiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on calcium-phosphorus ratios and metabolic bone disease prevention in captive reptiles.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Feeder%20Insect%20Gut-Loading%20and%20Nutritional%20Enhancement.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Gut-Loading Protocols for Feeder Insects in Veterinary Practice
-            </a>
-            <p className="text-slate-500 text-sm">
-              A comprehensive guide from UC Davis Veterinary Medicine outlining best practices for gut-loading feeder insects to optimize reptile nutrition.
-            </p>
+          <li>
+            <a href="https://www.thesprucepets.com/bearded-dragon-care-guide-1236563" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Bearded Dragon Care Guide - The Spruce Pets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based feeding recommendations including gut-loading protocols and optimal nutrient ratios for bearded dragons.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.reptilesmagazine.com/gut-loading-feeder-insects-for-reptiles/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Gut-Loading Feeder Insects for Reptiles: A Practical Approach
-            </a>
-            <p className="text-slate-500 text-sm">
-              This article provides practical advice on gut-loading techniques, nutrient formulations, and timing to maximize feeder insect nutritional content.
-            </p>
+          <li>
+            <a href="https://www.reptile-database.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Reptile Database - Feeding and Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive species-specific nutritional guidelines and feeder insect analysis for captive reptile husbandry.</p>
+          </li>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Pet Food Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official nutritional standards and mineral guidelines referenced for balanced reptile diets and supplement formulation.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

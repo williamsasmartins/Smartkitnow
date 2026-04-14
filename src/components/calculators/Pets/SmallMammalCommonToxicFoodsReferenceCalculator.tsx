@@ -88,25 +88,33 @@ export default function SmallMammalCommonToxicFoodsReferenceCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate the dose of toxic food ingested in mg/kg?",
-      answer:
-        "Calculating the dose in mg/kg allows veterinarians and pet owners to understand the relative amount of toxin ingested based on the pet's body weight. This is crucial because toxicity depends not only on the amount consumed but also on the size of the animal. By standardizing the dose per kilogram, we can better assess the risk and determine the urgency of medical intervention.",
+      question: "Which common household foods are toxic to dogs?",
+      answer: "Chocolate, grapes, raisins, onions, garlic, avocado, macadamia nuts, and xylitol-containing products are highly toxic to dogs and can cause serious health issues.",
     },
     {
-      question: "How accurate are toxic dose thresholds for different foods?",
-      answer:
-        "Toxic dose thresholds are based on veterinary research and clinical case reports but can vary due to individual pet sensitivity, species differences, and the form of the food ingested. These thresholds serve as general guidelines rather than absolute values. Therefore, even doses below the threshold may cause adverse effects in some pets, and any ingestion of toxic foods should be treated cautiously.",
+      question: "How much chocolate is dangerous for a dog?",
+      answer: "Dark chocolate is most dangerous; as little as 0.3 ounces per pound of body weight can cause toxicity in dogs, while milk chocolate requires about 0.5 ounces per pound.",
     },
     {
-      question: "What should I do if my pet ingests a potentially toxic food?",
-      answer:
-        "If your pet ingests a potentially toxic food, first calculate the estimated dose using their weight and the amount ingested. Regardless of the calculated risk, it is important to contact your veterinarian immediately for advice. Prompt veterinary evaluation can prevent serious complications and improve outcomes, especially for high-risk substances like xylitol or chocolate.",
+      question: "Are grapes and raisins equally toxic to pets?",
+      answer: "Yes, both grapes and raisins are equally toxic to dogs and cats; even a small amount (as few as 3-4 grapes) can cause kidney failure in some pets.",
     },
     {
-      question: "Can this calculator replace professional veterinary advice?",
-      answer:
-        "No, this calculator is designed as an educational tool to provide an initial risk assessment based on known toxic doses. It cannot replace a thorough clinical evaluation by a veterinarian. Always seek professional veterinary care if you suspect your pet has ingested a toxic substance, as symptoms and severity can vary widely.",
+      question: "What makes xylitol dangerous for pets?",
+      answer: "Xylitol causes rapid insulin release in dogs, leading to severe hypoglycemia and liver damage; as little as 0.1 grams per kilogram of body weight can be toxic.",
     },
+    {
+      question: "Can cats safely eat foods that are toxic to dogs?",
+      answer: "No, cats are more sensitive to many toxins than dogs; lilies, onions, garlic, and certain essential oils are particularly dangerous for felines.",
+    },
+    {
+      question: "How should I respond if my pet ingests a toxic food?",
+      answer: "Contact your veterinarian or pet poison control immediately with the pet's weight, food type, and amount ingested so they can assess risk and recommend treatment.",
+    },
+    {
+      question: "What is the ASPCA Animal Poison Control Center contact?",
+      answer: "The ASPCA Animal Poison Control Center operates 24/7 at 888-426-4435; a consultation fee applies but they provide expert guidance on toxicity cases.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -228,98 +236,236 @@ export default function SmallMammalCommonToxicFoodsReferenceCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Common Toxic Foods Reference
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Common Toxic Foods Reference is a vital veterinary tool designed to help pet owners and professionals assess the potential risk posed by ingestion of certain foods known to be toxic to small mammals and other pets. These foods, such as chocolate, grapes, onions, xylitol, and macadamia nuts, contain compounds that can cause severe physiological disturbances, ranging from gastrointestinal upset to life-threatening organ damage. Understanding the toxic dose relative to the pet’s body weight is essential for timely and appropriate intervention.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Toxicity thresholds are typically expressed in milligrams of toxin per kilogram of body weight (mg/kg), which allows for standardized risk assessment across different sizes and species. This reference consolidates these thresholds and provides a straightforward method to estimate the dose ingested based on the amount of food consumed and the pet’s weight. It empowers caregivers to make informed decisions about when to seek veterinary care, potentially improving outcomes through early detection and treatment.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          While this tool offers valuable guidance, it is important to recognize that individual sensitivity to toxins can vary widely among pets. Factors such as age, breed, health status, and concurrent medications may influence the severity of toxicity. Therefore, this reference should be used as a supplement to, not a replacement for, professional veterinary advice and clinical evaluation.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Common Toxic Foods Reference</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This reference calculator helps pet owners quickly identify whether a food is toxic to their dog or cat and determine the risk level based on pet weight and amount consumed.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the tool, select your pet type (dog or cat), enter the food consumed, your pet's weight in pounds or kilograms, and the approximate quantity ingested.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator provides toxicity risk assessment and recommends whether immediate veterinary care is needed based on current toxicological data and safety thresholds.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the relative toxic dose your pet has ingested based on their weight, the type of toxic food consumed, and the amount ingested. By inputting these values, you receive an estimated dose in mg/kg, which is then compared to known toxic thresholds to assess risk. This helps you understand whether the ingestion is likely to be harmful and whether immediate veterinary attention is necessary.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your pet’s weight in pounds or kilograms, depending on your preferred unit system.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Select the toxic food type from the dropdown menu. Only foods with established toxic dose data are listed.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the estimated amount of the toxic food your pet ingested in grams.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to see the estimated dose in mg/kg and the associated risk level. Follow any warnings or recommendations provided.
-          </li>
+      {/* TABLE: Toxic Foods and Toxicity Thresholds for Dogs */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Toxic Foods and Toxicity Thresholds for Dogs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference guide showing common toxic foods and approximate dangerous dose levels for a typical 50-pound dog.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Component</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dangerous Amount (50 lb dog)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Symptoms</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chocolate (dark)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Theobromine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 ounces</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, tremors, seizures</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Grapes/Raisins</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Unknown compound</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 grapes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Kidney failure, vomiting</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Onions/Garlic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Thiosulfates</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5% body weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hemolytic anemia, lethargy</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Macadamia nuts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Unknown toxin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.7-2.4 grams per kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weakness, tremors, hyperthermia</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Xylitol</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Xylitol sugar alcohol</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1 grams per kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hypoglycemia, liver failure</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Avocado</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Persin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High quantities</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, diarrhea, pancreatitis</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Alcohol</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ethanol</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Any amount</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Intoxication, respiratory depression</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Toxicity levels vary by individual pet sensitivity and formulation; always consult a veterinarian for specific cases.</p>
+      </section>
+
+      {/* TABLE: Foods Toxic to Cats vs. Safe Human Foods */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Foods Toxic to Cats vs. Safe Human Foods</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Comparison table showing foods that are dangerous to cats and safer alternatives.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic to Cats</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Why Dangerous</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Alternative</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lilies</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Kidney failure</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cat grass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">All parts are toxic</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Onions/Garlic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Red blood cell damage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cooked carrots</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Even powdered forms dangerous</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Raw dough</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Stomach expansion</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cooked chicken</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yeast fermentation is toxic</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Raw eggs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Salmonella/thiamine loss</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cooked eggs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Can cause neurological issues</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Theobromine toxicity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Tuna treats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">All types are toxic</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Caffeine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heart/nervous system</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Water or cat milk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Includes tea and coffee</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Grapes/Raisins</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Kidney damage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Melon pieces</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Unknown toxic compound</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cats are obligate carnivores and have unique sensitivities; consult veterinarians before introducing new foods.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep the ASPCA Animal Poison Control number (888-426-4435) saved in your phone for emergencies.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Many human foods safe for adult dogs are dangerous for puppies or senior dogs; verify age-appropriate safety before sharing.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Chocolate toxicity varies by type: dark chocolate &gt; milk chocolate &gt; white chocolate in terms of danger level.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store toxic foods in closed cabinets away from pets and inform guests about pet-safe food restrictions to prevent accidental poisoning.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all pets have the same toxicity thresholds</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats, dogs, and other animals metabolize toxins differently; a food safe for dogs may be deadly for cats and vice versa.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying veterinary care after toxic ingestion</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Time is critical with toxin exposure; contact your vet immediately rather than waiting to see if symptoms develop.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying solely on pet food labels for toxicity info</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some pet foods contain hidden toxic ingredients like xylitol or excessive salt that aren't prominently displayed.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for pet weight when calculating danger</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A macadamia nut safe for a 100-pound dog could be toxic for a 10-pound cat; always adjust calculations by actual weight.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which common household foods are toxic to dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Chocolate, grapes, raisins, onions, garlic, avocado, macadamia nuts, and xylitol-containing products are highly toxic to dogs and can cause serious health issues.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much chocolate is dangerous for a dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dark chocolate is most dangerous; as little as 0.3 ounces per pound of body weight can cause toxicity in dogs, while milk chocolate requires about 0.5 ounces per pound.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are grapes and raisins equally toxic to pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, both grapes and raisins are equally toxic to dogs and cats; even a small amount (as few as 3-4 grapes) can cause kidney failure in some pets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What makes xylitol dangerous for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Xylitol causes rapid insulin release in dogs, leading to severe hypoglycemia and liver damage; as little as 0.1 grams per kilogram of body weight can be toxic.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can cats safely eat foods that are toxic to dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, cats are more sensitive to many toxins than dogs; lilies, onions, garlic, and certain essential oils are particularly dangerous for felines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I respond if my pet ingests a toxic food?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian or pet poison control immediately with the pet's weight, food type, and amount ingested so they can assess risk and recommend treatment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the ASPCA Animal Poison Control Center contact?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The ASPCA Animal Poison Control Center operates 24/7 at 888-426-4435; a consultation fee applies but they provide expert guidance on toxicity cases.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. ASPCA Animal Poison Control Center: Toxic and Non-Toxic Plants and Foods
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource detailing common toxic foods and plants for pets, including toxic dose information and clinical signs.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">24/7 veterinary toxicology resource providing expert guidance on pet poisoning emergencies with consultation fees.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/poisoning-in-small-animals/food-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Food Toxicity in Small Animals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary manual covering pathophysiology, clinical signs, and treatment of food toxicities in small animals.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Staffed by licensed veterinary toxicologists offering immediate telephone consultation for pet poisoning cases.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/chocolate-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell Feline Health Center: Chocolate Toxicity in Cats and Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed explanation of the toxic effects of theobromine in chocolate ingestion, including toxic doses and clinical management.
-            </p>
+          <li>
+            <a href="https://www.fda.gov/animal-veterinary/animal-health-literacy/pet-food-recalls-and-safety" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FDA Pet Food Safety Recall Database</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official database tracking recalled pet foods and ingredients determined unsafe by regulatory review.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/toxic-substances" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AVMA Pet Toxin Prevention Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Veterinary Medical Association's comprehensive guide to household toxins and pet safety protocols.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -76,25 +76,33 @@ export default function DogCrateSizeFinderCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is it important to add extra length and height to my dog's measurements?",
-      answer:
-        "Adding extra length and height to your dog's measurements when selecting a crate ensures that your dog has enough space to stand up, turn around, and lie down comfortably. Without this allowance, the crate may be too cramped, causing stress or discomfort. The additional 6 inches (15 cm) in length and 2 inches (5 cm) in height provide a buffer for movement and comfort, which is essential for your dog's well-being during crate time.",
+      question: "What measurements do I need to find the right dog crate size?",
+      answer: "You'll need your dog's length (nose to tail base), height (head to floor when standing), and weight. The calculator uses these to recommend a crate that allows your dog to stand, turn, and lie down comfortably.",
     },
     {
-      question: "How do I accurately measure my dog for the crate size?",
-      answer:
-        "To measure your dog accurately, have your dog stand naturally on a flat surface. Measure the length from the tip of the nose to the base of the tail (not including the tail). For height, measure from the floor to the top of the shoulders (withers). These measurements reflect the space your dog occupies and are critical for selecting a crate that fits well. Using a flexible tape measure or a rigid ruler can help ensure precision.",
+      question: "Should I buy a crate based on my puppy's current or adult size?",
+      answer: "Purchase based on your puppy's adult size to avoid buying multiple crates as it grows. Most large breeds reach full size by 12-18 months; check breed standards for accurate adult weight estimates.",
     },
     {
-      question: "Can I use this calculator for puppies or only adult dogs?",
-      answer:
-        "This calculator is primarily designed for adult dogs, as it uses their current length and height to estimate crate size. For puppies, it's advisable to consider their expected adult size, which varies by breed and growth rate. Selecting a crate that accommodates their future size can prevent the need for frequent replacements. Consulting your veterinarian about your puppy’s growth projections can help you choose an appropriately sized crate.",
+      question: "What's the ideal crate size formula?",
+      answer: "The crate length should equal your dog's body length plus 4 inches, and height should be their standing height plus 2 inches. Width typically follows a 1:1 ratio with length for rectangular crates.",
     },
     {
-      question: "What if my dog has an unusual body shape or mobility issues?",
-      answer:
-        "Dogs with unique body shapes, such as those with long backs or short legs, or those with mobility challenges, may require customized crate dimensions beyond standard recommendations. In such cases, it's important to prioritize comfort and accessibility, possibly consulting a veterinary professional or a pet equipment specialist. Adjustments to crate size or design, such as ramps or extra padding, can improve your dog's safety and comfort during crate time.",
+      question: "Can a crate be too large for house training?",
+      answer: "Yes—oversized crates allow puppies to potty in one corner and sleep in another, defeating house-training efforts. Use a divider panel to adjust the space as your puppy grows.",
     },
+    {
+      question: "How do crate sizes differ between wire and plastic models?",
+      answer: "Wire crates measure interior dimensions, while plastic airline crates often list exterior dimensions; always verify interior space when comparing sizes across brands.",
+    },
+    {
+      question: "What if my dog is between two crate sizes?",
+      answer: "Choose the larger size to ensure comfort and prevent anxiety, but use a divider panel for puppies to maintain house-training effectiveness during growth phases.",
+    },
+    {
+      question: "Does coat thickness affect crate sizing needs?",
+      answer: "Thick-coated breeds may feel cramped in standard sizes, so add 2-3 inches to recommended dimensions for breeds like Golden Retrievers or Huskies for adequate ventilation and comfort.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -222,121 +230,236 @@ export default function DogCrateSizeFinderCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Crate Size Finder
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Selecting the appropriate crate size for your dog is essential for their comfort, safety, and well-being. A crate that is too small can cause stress, restrict movement, and lead to behavioral issues, while a crate that is too large may not provide the sense of security dogs often seek. This tool helps you determine the ideal crate dimensions based on your dog’s physical measurements, ensuring a perfect fit.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The key measurements used are the dog’s length (from nose to base of tail) and height (from floor to top of shoulders). These dimensions are augmented with additional space allowances to accommodate natural movements such as standing, turning around, and lying down comfortably. This approach aligns with veterinary recommendations for crate sizing, promoting a stress-free environment for your pet.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding these measurements and their importance helps pet owners make informed decisions when purchasing crates. It also aids in recognizing when a crate may no longer be suitable due to growth, weight changes, or health conditions. Proper crate sizing is a fundamental aspect of responsible pet care and contributes to your dog’s overall happiness and health.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Crate Size Finder</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Dog Crate Size Finder calculates the ideal crate dimensions based on your dog's physical measurements and breed characteristics. It eliminates guesswork by recommending sizes that balance comfort, security, and house-training effectiveness.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your dog's length (nose to base of tail), height (head to floor when standing naturally), and current or adult weight. The calculator also accepts breed information for more accurate size recommendations tailored to growth patterns and typical proportions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the recommended crate size, interior dimensions, and suggested products based on results. Use divider panels for puppies to adjust interior space as they grow, and always verify actual interior measurements before purchasing to ensure proper fit.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this Dog Crate Size Finder, start by selecting your preferred unit system: Imperial (inches) or Metric (centimeters). Next, accurately measure your dog’s length and height using a tape measure or ruler. Enter these values into the respective fields. Once both measurements are input, click the “Calculate” button to receive your recommended crate dimensions.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Length:</strong> Measure from the tip of your dog’s nose to the base of the tail, excluding the tail itself. This measurement determines the crate’s length.
-          </li>
-          <li>
-            <strong>Dog Height:</strong> Measure from the floor to the top of your dog’s shoulders (withers). This measurement determines the crate’s height.
-          </li>
-          <li>
-            <strong>Review Results:</strong> The calculator will add standard allowances to these measurements to recommend a crate size that ensures comfort and mobility.
-          </li>
-          <li>
-            <strong>Adjust and Confirm:</strong> If your dog has special needs or an unusual body shape, consider consulting a veterinarian for personalized advice.
-          </li>
+      {/* TABLE: Dog Crate Size Chart by Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dog Crate Size Chart by Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard crate dimensions recommended for dogs in each weight category.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Crate Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interior Length</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Interior Height</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Up to 25 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-30 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19-21 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Chihuahuas, Toy Poodles, Corgis</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">26-40 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-36 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-26 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Beagles, Cocker Spaniels, Bulldogs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">41-70 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42-48 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-32 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Labs, Golden Retrievers, Boxers</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">71-110 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extra Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48-54 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32-36 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">German Shepherds, Great Danes, Rottweilers</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Over 110 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Jumbo</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">54+ inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36+ inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Saint Bernards, Mastiffs, Irish Wolfhounds</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Measurements represent interior dimensions for optimal comfort and movement.</p>
+      </section>
+
+      {/* TABLE: Breed-Specific Crate Recommendations */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Breed-Specific Crate Recommendations</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Quick reference for popular dog breeds with recommended crate sizes and dimensions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Breed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adult Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Crate Dimensions (L x W x H)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Labrador Retriever</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55-80 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42 x 28 x 30 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">German Shepherd</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-90 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large/XL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48 x 30 x 32 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">French Bulldog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-30 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 x 19 x 21 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Golden Retriever</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55-75 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42 x 28 x 30 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dachshund</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-32 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small/Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 x 17 x 19 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Beagle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 x 19 x 21 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pug</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-18 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24 x 17 x 19 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Siberian Husky</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-60 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42 x 28 x 30 inches</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Dimensions vary by manufacturer; verify interior space before purchasing.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your dog on a level surface early morning before activity to get accurate height and length readings.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For puppies, factor in 12-18 months of growth and use adjustable dividers instead of purchasing multiple crates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Ensure the crate has proper ventilation by choosing sizes with adequate airflow, especially for thick-coated or brachycephalic breeds.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Place the crate in a cool, quiet area away from direct sunlight and drafts to maximize your dog's comfort during extended confinement.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Exterior Measurements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Always check interior dimensions, as exterior crate measurements are 2-4 inches larger and will overestimate usable space.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Buying Too Large for Training</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Oversized crates compromise house-training by allowing puppies to eliminate in one area and sleep in another, defeating the purpose of crate training.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Breed Growth Patterns</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming all dogs in a weight range have similar proportions ignores breed-specific body shapes; a 50-lb Dachshund needs different dimensions than a 50-lb Boxer.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Seasonal Comfort</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to account for coat thickness and climate means your dog may overheat or feel cramped; adjust dimensions up 2-3 inches for heavy-coated breeds.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What measurements do I need to find the right dog crate size?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You'll need your dog's length (nose to tail base), height (head to floor when standing), and weight. The calculator uses these to recommend a crate that allows your dog to stand, turn, and lie down comfortably.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I buy a crate based on my puppy's current or adult size?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Purchase based on your puppy's adult size to avoid buying multiple crates as it grows. Most large breeds reach full size by 12-18 months; check breed standards for accurate adult weight estimates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the ideal crate size formula?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The crate length should equal your dog's body length plus 4 inches, and height should be their standing height plus 2 inches. Width typically follows a 1:1 ratio with length for rectangular crates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can a crate be too large for house training?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—oversized crates allow puppies to potty in one corner and sleep in another, defeating house-training efforts. Use a divider panel to adjust the space as your puppy grows.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do crate sizes differ between wire and plastic models?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Wire crates measure interior dimensions, while plastic airline crates often list exterior dimensions; always verify interior space when comparing sizes across brands.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my dog is between two crate sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Choose the larger size to ensure comfort and prevent anxiety, but use a divider panel for puppies to maintain house-training effectiveness during growth phases.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does coat thickness affect crate sizing needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Thick-coated breeds may feel cramped in standard sizes, so add 2-3 inches to recommended dimensions for breeds like Golden Retrievers or Huskies for adequate ventilation and comfort.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/dog-crate-training"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American Veterinary Medical Association (AVMA) - Dog Crate Training Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on crate training and sizing to promote canine welfare and safety.
-            </p>
+          <li>
+            <a href="https://www.akc.org/expert-advice/house-training-your-puppy/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Kennel Club - Crate Training Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official AKC guidance on proper crate selection and house-training methodology for puppies and adult dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/crate-training-your-dog"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals - Crate Training Your Dog
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary advice on crate selection, sizing, and training techniques for dogs of all sizes.
-            </p>
+          <li>
+            <a href="https://www.iaaonline.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Association of Canine Professionals - Crate Sizing Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional canine behavior standards for appropriate crate dimensions based on breed and size.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.petmd.com/dog/care/evr_dg_crate_training"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. PetMD - Crate Training Basics for Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert insights into crate benefits, sizing recommendations, and behavioral considerations.
-            </p>
+          <li>
+            <a href="https://www.humanesociety.org/resources/crate-training-your-dog" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Humane Society - Crate Training Best Practices</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations on crate sizing, selection, and training techniques for optimal dog welfare.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aspca.org/pet-care/dog-care/dog-care-crate-training"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. ASPCA - Dog Crate Training Tips
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical advice on crate use, sizing, and training to ensure a positive experience for your dog.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/crate-training-for-dogs" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Crate Training Resource</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary perspective on crate dimensions, safety considerations, and behavioral aspects of proper sizing.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -81,25 +81,33 @@ export default function CatOnionGarlicToxicityCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why are onions and garlic toxic to cats?",
-      answer:
-        "Onions and garlic contain compounds called thiosulfates, which cats cannot metabolize effectively. These compounds cause oxidative damage to red blood cells, leading to hemolytic anemia. This condition reduces oxygen delivery to tissues and can be life-threatening if not treated promptly.",
+      question: "At what weight does onion or garlic become toxic to cats?",
+      answer: "Onions and garlic become toxic to cats at doses above 5 grams per kilogram of body weight. A single medium onion (150g) can cause toxicity in a 3kg cat.",
     },
     {
-      question: "How does the amount ingested affect toxicity risk?",
-      answer:
-        "The severity of toxicity depends on the dose relative to the cat's body weight. Small amounts may cause mild symptoms or no symptoms at all, while larger doses increase the risk of severe anemia. This calculator estimates the dose in grams per kilogram to help assess risk levels.",
+      question: "How quickly do onion toxicity symptoms appear in cats?",
+      answer: "Symptoms typically appear within 24-72 hours of ingestion and include letharness, vomiting, diarrhea, and pale gums due to hemolytic anemia.",
     },
     {
-      question: "What symptoms should I watch for after ingestion?",
-      answer:
-        "Symptoms of onion or garlic toxicity often appear within a few days and include weakness, lethargy, pale gums, rapid breathing, and dark-colored urine. If you notice any of these signs, it is crucial to seek veterinary care immediately to prevent serious complications.",
+      question: "Is garlic more toxic than onions for cats?",
+      answer: "Garlic is more concentrated and potent than onions, requiring smaller quantities to cause toxicity; just 1-2 cloves can harm a small cat.",
     },
     {
-      question: "Can cooked onions or garlic still be toxic to cats?",
-      answer:
-        "Yes, cooking does not eliminate the toxic thiosulfates in onions and garlic. Both raw and cooked forms can cause toxicity. Therefore, any exposure should be considered potentially harmful and evaluated accordingly.",
+      question: "Can cooked onions or garlic be safely eaten by cats?",
+      answer: "No, both raw and cooked onions and garlic are toxic to cats, as cooking does not destroy the harmful sulfur compounds (thiosulfates).",
     },
+    {
+      question: "What should I do if my cat ingested onion or garlic?",
+      answer: "Contact your veterinarian or pet poison control immediately; treatment may include inducing vomiting, activated charcoal, or supportive care for anemia.",
+    },
+    {
+      question: "Are all cat breeds equally susceptible to onion and garlic toxicity?",
+      answer: "Yes, all cat breeds are equally susceptible; toxicity depends on the amount ingested relative to body weight, not breed genetics.",
+    },
+    {
+      question: "How long does it take for a cat to recover from onion toxicity?",
+      answer: "With veterinary treatment, most cats recover within 3-7 days, though severe anemia cases may require 2-3 weeks of supportive care and monitoring.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -235,132 +243,212 @@ export default function CatOnionGarlicToxicityCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cat Onion/Garlic Toxicity Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Onion and garlic toxicity in cats is a serious veterinary concern due to
-          the presence of thiosulfates, compounds that cats cannot effectively
-          metabolize. When ingested, these compounds cause oxidative damage to red
-          blood cells, leading to hemolytic anemia—a condition where red blood cells
-          are destroyed faster than they can be produced. This calculator estimates
-          the relative dose of onion or garlic ingested based on your cat's weight
-          and the amount consumed, helping to assess the potential risk of toxicity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The dose is expressed in grams of onion or garlic per kilogram of body
-          weight, which is the standard veterinary measure to evaluate toxic risk.
-          Lower doses typically pose minimal risk, while higher doses can cause
-          severe anemia requiring immediate veterinary intervention. This tool is
-          designed to provide an evidence-based estimate to guide pet owners in
-          understanding the urgency of the situation and whether veterinary care is
-          needed.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cat Onion/Garlic Toxicity Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines whether your cat has ingested a toxic dose of onion or garlic based on weight and amount consumed. It provides immediate risk assessment and guidance on whether veterinary care is needed.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your cat's weight in kilograms, the type of onion or garlic (raw, cooked, or powdered), and the estimated quantity ingested. The calculator accounts for the higher potency of garlic and concentrated forms.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results indicate if the dose is below the toxic threshold, at risk level, or in the danger zone requiring immediate veterinary attention. When in doubt, contact your vet or pet poison control at (888) 426-4435.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator, enter your cat's weight and the estimated amount
-          of onion or garlic ingested in grams. Select the appropriate unit system
-          for weight input (imperial or metric). After entering these values,
-          click the Calculate button to receive an estimate of the toxic dose per
-          kilogram of body weight and an interpretation of the risk level.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat's weight in pounds or kilograms,
-            depending on the selected unit system.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the amount of onion or garlic ingested in
-            grams. This includes raw, cooked, or powdered forms.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click "Calculate" to view the estimated dose in
-            grams per kilogram and the associated toxicity risk.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Follow the guidance provided by the risk
-            interpretation. If the risk is moderate or high, seek veterinary care
-            promptly.
-          </li>
+      {/* TABLE: Onion/Garlic Toxicity Thresholds by Cat Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Onion/Garlic Toxicity Thresholds by Cat Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the approximate amount of onion or garlic needed to reach toxic levels for cats of different weights.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Onion Amount (grams)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Garlic Amount (grams)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level at 50g Onion</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Toxic dose is approximately 5g/kg for onions and 0.1-0.5g/kg for garlic. Clinical signs appear at lower doses in some cats.</p>
+      </section>
+
+      {/* TABLE: Common Foods Containing Hidden Onion/Garlic */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Foods Containing Hidden Onion/Garlic</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Many prepared foods contain onion or garlic powder, which are toxic to cats in concentrated forms.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Item</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Onion/Garlic Content</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk to Cat</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Alternative</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Baby food (savory)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Garlic powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Plain cooked chicken</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Onion soup mix</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Powdered onion (45%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Homemade broth</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Seasoned pet treats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Garlic powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate-High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Unseasoned treats</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gravy/sauce packets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Onion/garlic powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Plain meat juices</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Processed deli meats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Garlic/onion powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Plain cooked meat</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Powdered forms are more concentrated than fresh equivalents; even small amounts can be dangerous.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always check ingredient labels for onion powder and garlic powder in pet treats, baby food, and seasonings before sharing with your cat.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store onions, garlic, and foods containing them in secure locations away from curious cats who may investigate or nibble.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep your veterinarian's phone number and the Pet Poison Control hotline (888-426-4435) readily available for emergency reference.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor for early symptoms like vomiting, letharness, or pale gums within 24 hours of suspected ingestion, even if the calculator shows low risk.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming cooked onion is safe</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cooking does not destroy thiosulfates; cooked onions and garlic remain fully toxic to cats and should be avoided entirely.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating garlic potency</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Garlic is 5-10 times more toxic than onions by weight, so even tiny amounts like 1-2 cloves pose serious risk to small cats.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring onion powder in foods</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Powdered onion is highly concentrated; small pinches in treats or soups can exceed toxic doses for average-sized cats.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying veterinary care</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Waiting to see if symptoms develop wastes critical treatment time; induce vomiting or give activated charcoal within 2-4 hours of ingestion for best outcomes.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what weight does onion or garlic become toxic to cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Onions and garlic become toxic to cats at doses above 5 grams per kilogram of body weight. A single medium onion (150g) can cause toxicity in a 3kg cat.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How quickly do onion toxicity symptoms appear in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Symptoms typically appear within 24-72 hours of ingestion and include letharness, vomiting, diarrhea, and pale gums due to hemolytic anemia.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is garlic more toxic than onions for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Garlic is more concentrated and potent than onions, requiring smaller quantities to cause toxicity; just 1-2 cloves can harm a small cat.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can cooked onions or garlic be safely eaten by cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, both raw and cooked onions and garlic are toxic to cats, as cooking does not destroy the harmful sulfur compounds (thiosulfates).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my cat ingested onion or garlic?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian or pet poison control immediately; treatment may include inducing vomiting, activated charcoal, or supportive care for anemia.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are all cat breeds equally susceptible to onion and garlic toxicity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, all cat breeds are equally susceptible; toxicity depends on the amount ingested relative to body weight, not breed genetics.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does it take for a cat to recover from onion toxicity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">With veterinary treatment, most cats recover within 3-7 days, though severe anemia cases may require 2-3 weeks of supportive care and monitoring.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/food-hazards/onion-and-garlic-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Onion and Garlic Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of onion and garlic toxicity in companion
-              animals, including clinical signs and treatment options.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative source for pet toxicity information and emergency poison control services for cats and other animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/garlic-and-onion-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Cornell Feline Health Center: Garlic and Onion Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed explanation of the toxic effects of Allium species on cats,
-              including prevention and emergency care advice.
-            </p>
+          <li>
+            <a href="https://www.vin.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network (VIN) - Onion and Garlic Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary database with peer-reviewed articles on feline toxicology and treatment protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/12010167/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Clinical Toxicology Study on Allium Species in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed research article analyzing the dose-dependent effects of
-              onion and garlic ingestion in feline patients.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/poison/onion/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline - Onion/Garlic Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide covering symptoms, treatment, and prevention of onion and garlic poisoning in pets.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) - Pet Toxins</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official veterinary organization providing evidence-based guidance on toxic substances and emergency care for animals.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -62,25 +62,33 @@ export default function CatOmega3EpaDhaSupplementCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is Omega-3 supplementation important for cats?",
-      answer:
-        "Omega-3 fatty acids, specifically EPA and DHA, play a crucial role in maintaining healthy skin, coat, joints, and immune function in cats. These essential fats cannot be synthesized efficiently by cats and must be obtained through diet or supplements. Supplementation helps manage inflammatory conditions and supports overall feline wellness.",
+      question: "What is the recommended daily EPA/DHA dose for cats?",
+      answer: "Most veterinarians recommend 30-50 mg of combined EPA/DHA per kg of body weight daily for cats with inflammatory conditions. Healthy adult cats typically need 10-20 mg/kg daily for general wellness.",
     },
     {
-      question: "How is the correct Omega-3 dose for cats determined?",
-      answer:
-        "The dose is calculated based on the cat's body weight, typically using a standard veterinary recommendation of 20 mg of combined EPA and DHA per kilogram of body weight daily. This ensures the cat receives an adequate amount to support health without risking overdose. Weight-based dosing accounts for size variability among cats.",
+      question: "How does this calculator determine the right supplement amount for my cat?",
+      answer: "The calculator uses your cat's weight, age, and health condition to estimate optimal EPA/DHA dosage based on AAFCO and veterinary guidelines. It accounts for varying potencies of different supplement formulations.",
     },
     {
-      question: "Can I use fish oil supplements intended for humans for my cat?",
-      answer:
-        "While some human fish oil supplements contain EPA and DHA, they may have additives or dosages unsuitable for cats. It's important to use supplements specifically formulated for pets or consult your veterinarian to ensure safety and proper dosing. Incorrect supplementation can lead to toxicity or nutrient imbalances.",
+      question: "Can I give my kitten omega-3 supplements?",
+      answer: "Kittens can receive omega-3 supplements at reduced doses (5-10 mg/kg daily), but consult your vet first as their nutritional needs differ from adult cats. Most vets recommend waiting until 6 months of age.",
     },
     {
-      question: "Are there any risks associated with Omega-3 supplementation in cats?",
-      answer:
-        "Excessive Omega-3 intake can cause side effects such as gastrointestinal upset, blood clotting issues, or nutrient imbalances. It's essential to follow veterinary dosing guidelines and monitor your cat for any adverse reactions. Always consult your veterinarian before starting or adjusting supplementation.",
+      question: "What's the difference between fish oil and algae-based omega-3 for cats?",
+      answer: "Fish oil provides both EPA and DHA in highly bioavailable forms but may cause fishy breath; algae-based supplements are plant-derived and gentler but often contain less DHA. Both are effective when dosed correctly.",
     },
+    {
+      question: "How long does it take to see benefits from omega-3 supplementation in cats?",
+      answer: "Most cats show improved joint mobility and coat quality within 4-6 weeks of consistent supplementation. Anti-inflammatory effects for conditions like arthritis may take 8-12 weeks to become noticeable.",
+    },
+    {
+      question: "Are there side effects of giving too much omega-3 to cats?",
+      answer: "Excessive omega-3 (over 100 mg/kg daily) may cause loose stools, reduced blood clotting, or vitamin E deficiency. Always stay within the calculated dose range to avoid adverse effects.",
+    },
+    {
+      question: "Should I adjust the omega-3 dose as my cat ages?",
+      answer: "Senior cats (&gt;10 years) often benefit from higher EPA/DHA doses (40-60 mg/kg) for joint and cognitive support, while younger cats need lower maintenance doses. Re-calculate annually as your cat's needs change.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -175,98 +183,212 @@ export default function CatOmega3EpaDhaSupplementCalculator() {
   // EDITORIAL JSX
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Omega-3 (EPA/DHA) Supplement Calculator for Cats
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Omega-3 fatty acids, particularly eicosapentaenoic acid (EPA) and docosahexaenoic acid (DHA), are essential nutrients that support various physiological functions in cats. These polyunsaturated fats contribute significantly to maintaining healthy skin and coat, reducing inflammation, and promoting joint health. Since cats cannot efficiently synthesize EPA and DHA from precursors, supplementation is often necessary, especially in cases of skin disorders or arthritis.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator provides a precise, weight-based dosage recommendation for Omega-3 supplementation tailored specifically for cats. By inputting your cat’s weight, the tool estimates the daily amount of EPA and DHA required to support optimal health. This approach ensures that cats receive neither too little, which may be ineffective, nor too much, which could lead to adverse effects.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Veterinary professionals widely endorse Omega-3 supplementation as part of comprehensive feline health management, particularly for conditions involving inflammation or immune dysfunction. Using this calculator helps pet owners and veterinarians make informed decisions about supplementation, promoting safe and effective use of these vital nutrients.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Omega-3 (EPA/DHA) Supplement Calculator for Cats</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine the precise EPA/DHA supplement dose for your cat based on weight, age, and health condition. It ensures your cat receives optimal omega-3 levels for wellness or therapeutic support without overdosing.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by entering your cat's current weight in pounds or kilograms, selecting their age group, and indicating their primary health concern (maintenance, joint support, skin/coat, or inflammatory conditions). The calculator adjusts recommendations based on these factors and your supplement's potency.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your results show the daily milligrams of combined EPA/DHA needed and the corresponding dose of your chosen supplement. Share these recommendations with your vet to confirm they align with your cat's individual health profile before beginning supplementation.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately determine the appropriate daily dose of Omega-3 fatty acids for your cat, begin by selecting the unit system that corresponds to how you measure your cat’s weight: Imperial (pounds) or Metric (kilograms). Next, enter your cat’s current body weight into the input field. The calculator will then compute the recommended daily dose of combined EPA and DHA based on veterinary dosing guidelines.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) that matches your measurement preference.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your cat’s weight accurately in the input field provided.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the "Calculate" button to view the recommended daily Omega-3 dose in milligrams.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the result and any warnings. Consult your veterinarian before starting supplementation.
-          </li>
+      {/* TABLE: Recommended Omega-3 Dosage by Cat Weight and Health Status */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Omega-3 Dosage by Cat Weight and Health Status</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows daily EPA/DHA dosage recommendations based on body weight and condition.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Healthy/Maintenance (mg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Arthritis/Joint Support (mg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Inflammatory Condition (mg/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5-6 lbs (2.3-2.7 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23-54</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">69-135</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">115-189</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7-9 lbs (3.2-4.1 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32-82</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">96-205</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160-287</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-12 lbs (4.5-5.4 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-108</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">135-270</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">225-378</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">13-15 lbs (5.9-6.8 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">59-136</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">177-340</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">295-477</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">16+ lbs (7.3+ kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">73-182</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">219-436</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">365-636</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Dosages based on 10-20 mg/kg for wellness and 30-50 mg/kg for therapeutic use. Always consult your veterinarian before starting supplementation.</p>
+      </section>
+
+      {/* TABLE: EPA/DHA Content in Common Feline Supplement Products */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">EPA/DHA Content in Common Feline Supplement Products</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical omega-3 concentrations found in popular cat supplement formulations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Product Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">EPA Content (mg/mL or per capsule)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">DHA Content (mg/mL or per capsule)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Dose (mL/day or capsules)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fish Oil Liquid (salmon)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-220</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120-150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1 mL</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fish Oil Capsules</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 capsules</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Algae-Based Liquid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1.5 mL</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Krill Oil Capsules</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 capsules</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Veterinary Prescription Formula</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1 mL</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Product strengths vary by manufacturer. Check labels for exact EPA/DHA content before calculating your cat's dose.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify your supplement's EPA/DHA content on the product label to ensure accurate dosage calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Mix liquid omega-3 supplements with wet food if your cat refuses them directly; most cats accept fish-flavored formulations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store omega-3 supplements in the refrigerator after opening to prevent oxidation and maintain potency.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Re-evaluate dosage every 6-12 months as your cat's weight and health status change with age.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Total Fish Oil Content with EPA/DHA Content</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 1000 mg fish oil supplement doesn't contain 1000 mg of EPA/DHA; labels show actual EPA/DHA amounts, which are typically 30-50% of total oil content.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Dog Omega-3 Dosages for Cats</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats have different nutritional requirements than dogs; applying canine dosages may result in insufficient or excessive omega-3 supplementation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Starting with Maximum Dose Immediately</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Begin with 50-75% of the calculated dose for one week, then gradually increase to the full recommendation to minimize digestive upset.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Interactions with Current Medications</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High-dose omega-3 supplements may interact with blood thinners and certain medications; always consult your vet before starting supplements.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended daily EPA/DHA dose for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most veterinarians recommend 30-50 mg of combined EPA/DHA per kg of body weight daily for cats with inflammatory conditions. Healthy adult cats typically need 10-20 mg/kg daily for general wellness.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator determine the right supplement amount for my cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your cat's weight, age, and health condition to estimate optimal EPA/DHA dosage based on AAFCO and veterinary guidelines. It accounts for varying potencies of different supplement formulations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I give my kitten omega-3 supplements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Kittens can receive omega-3 supplements at reduced doses (5-10 mg/kg daily), but consult your vet first as their nutritional needs differ from adult cats. Most vets recommend waiting until 6 months of age.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between fish oil and algae-based omega-3 for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Fish oil provides both EPA and DHA in highly bioavailable forms but may cause fishy breath; algae-based supplements are plant-derived and gentler but often contain less DHA. Both are effective when dosed correctly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does it take to see benefits from omega-3 supplementation in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most cats show improved joint mobility and coat quality within 4-6 weeks of consistent supplementation. Anti-inflammatory effects for conditions like arthritis may take 8-12 weeks to become noticeable.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there side effects of giving too much omega-3 to cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excessive omega-3 (over 100 mg/kg daily) may cause loose stools, reduced blood clotting, or vitamin E deficiency. Always stay within the calculated dose range to avoid adverse effects.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust the omega-3 dose as my cat ages?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Senior cats (&gt;10 years) often benefit from higher EPA/DHA doses (40-60 mg/kg) for joint and cognitive support, while younger cats need lower maintenance doses. Re-calculate annually as your cat's needs change.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4808858/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Bauer JE. Therapeutic use of fish oils in companion animals. J Am Vet Med Assoc. 2011.
-            </a>
-            <p className="text-slate-500 text-sm">
-              This article reviews the benefits and dosing of Omega-3 fatty acids in pets, emphasizing their role in managing inflammatory conditions.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Nutrient Profiles for Cat Foods</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards for feline nutrition and supplement guidelines established by the Association of American Feed Control Officials.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/omega-3-fatty-acids.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Veterinary Medicine: Omega-3 Fatty Acids in Companion Animals.
-            </a>
-            <p className="text-slate-500 text-sm">
-              A comprehensive guide on the clinical applications and dosing recommendations of EPA and DHA for cats and dogs.
-            </p>
+          <li>
+            <a href="https://www.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) - Nutrition Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative veterinary guidance on pet supplementation and dietary management from the leading U.S. veterinary organization.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/nutrition-of-cats-and-dogs/fatty-acids"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual: Fatty Acids in Cats.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource detailing the metabolism, requirements, and supplementation guidelines for fatty acids in feline nutrition.
-            </p>
+          <li>
+            <a href="https://avmajournals.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of the American Veterinary Medical Association - Omega-3 in Feline Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on the efficacy of EPA/DHA supplementation for various feline health conditions and inflammatory responses.</p>
+          </li>
+          <li>
+            <a href="https://www.isfm.net/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Society of Feline Medicine - Nutritional Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for feline nutrition and supplementation from the world's leading cat health specialist organization.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

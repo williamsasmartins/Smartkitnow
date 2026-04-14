@@ -47,25 +47,33 @@ export default function CatPregnancyGestationDueDateCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "How accurate is the cat pregnancy due-date calculator?",
-      answer:
-        "The calculator provides an estimated due date based on the average gestation period of 63 days for cats. However, individual cats may deliver anywhere between 58 and 67 days after breeding, so the exact date can vary. Factors such as breed, health, and timing of fertilization can influence gestation length, making veterinary monitoring essential for precise predictions.",
+      question: "How long is a cat's pregnancy?",
+      answer: "Cat pregnancy lasts approximately 63-65 days from conception, though it can range from 58-70 days depending on the individual cat and breed.",
     },
     {
-      question: "Why is knowing the due date important for a pregnant cat?",
-      answer:
-        "Knowing the estimated due date helps cat owners and veterinarians prepare for the birth and ensure the queen receives appropriate prenatal care. It allows for timely monitoring of the cat’s health and early detection of any complications. Additionally, it helps in planning a safe and comfortable environment for the delivery and postnatal care of the kittens.",
+      question: "What date do I enter into the calculator?",
+      answer: "Enter the date of mating or the first day your cat showed signs of estrus; the calculator will add 63-65 days to estimate the due date.",
     },
     {
-      question: "Can the due date change after initial calculation?",
-      answer:
-        "Yes, the due date is an estimate and can shift based on the queen’s health and development of the fetuses. Ultrasound examinations during pregnancy can provide more accurate information about fetal age and expected delivery time. Regular veterinary check-ups are recommended to adjust care plans and anticipate any changes in the gestation timeline.",
+      question: "Can I use this calculator if I don't know the exact mating date?",
+      answer: "You can estimate based on when your cat entered heat; a veterinary ultrasound (days 10-20) provides the most accurate confirmation of pregnancy and due date.",
     },
     {
-      question: "What signs indicate that a cat is close to giving birth?",
-      answer:
-        "As the due date approaches, a pregnant cat may exhibit nesting behavior, restlessness, decreased appetite, and a drop in body temperature. These signs typically occur within 24 to 48 hours before labor begins. Understanding these indicators helps owners provide timely assistance and seek veterinary care if complications arise during delivery.",
+      question: "How many kittens will my cat have?",
+      answer: "This calculator estimates due date only; litter size typically ranges from 2-8 kittens but varies by breed, age, and individual cat genetics.",
     },
+    {
+      question: "What should I do one week before the due date?",
+      answer: "Prepare a clean, quiet nesting box, monitor for labor signs like restlessness and loss of appetite, and contact your vet if delivery doesn't begin within 24 hours of the due date.",
+    },
+    {
+      question: "Is my cat pregnant if she's eating less?",
+      answer: "Reduced appetite can indicate early pregnancy, but only a veterinary examination or ultrasound confirms pregnancy; appetite changes occur around weeks 3-4.",
+    },
+    {
+      question: "What if kittens aren't born by the due date?",
+      answer: "Contact your veterinarian immediately if labor hasn't started 24 hours after the due date, as this may indicate complications requiring medical intervention.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -144,98 +152,218 @@ export default function CatPregnancyGestationDueDateCalculator() {
   // 5. EDITORIAL JSX
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cat Pregnancy (Gestation) Due-Date Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Cat Pregnancy (Gestation) Due-Date Calculator is a specialized veterinary tool designed to estimate the expected delivery date of a pregnant cat, also known as a queen. This calculator uses the date of breeding (mating) as the primary input and applies the average gestation period of cats, which is approximately 63 days. By providing an estimated due date, it helps cat owners and veterinarians prepare for the birth and ensure appropriate prenatal care.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Gestation length in cats can vary slightly, typically ranging from 58 to 67 days depending on factors such as breed, health status, and timing of fertilization. This variability means the calculator’s output is an estimate rather than an exact date. Regular veterinary check-ups and monitoring are essential to track the queen’s health and fetal development throughout pregnancy.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Using this calculator can improve the management of feline pregnancies by providing timely information that supports decision-making for nutrition, environment, and veterinary interventions. It also helps owners recognize when labor is imminent and when to seek veterinary assistance if complications arise. Overall, it is a valuable tool in promoting the health and welfare of both the queen and her kittens.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cat Pregnancy (Gestation) Due-Date Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your cat's due date by taking the mating date and adding the standard 63-65 day feline gestation period. It helps you prepare for labor and delivery by providing an expected timeframe for kitten arrival.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter the date your cat was bred or first showed estrus signs (heat). If unsure of the exact date, veterinary ultrasound between days 10-20 provides accurate pregnancy confirmation and more precise due-date estimation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator displays an estimated due date range; labor typically begins within 12-24 hours of this date. Monitor for labor signs like restlessness, panting, and loss of appetite starting one week before the due date, and contact your vet if delivery doesn't start within 24 hours.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator is simple and user-friendly, requiring only the date when the cat was bred or mated. Once you enter the breeding date, the tool automatically calculates the estimated due date by adding the average gestation period of 63 days. This estimate helps you plan for the arrival of the kittens and monitor the queen’s pregnancy progress.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the exact date of breeding or mating in the date input field. Ensure the date is accurate for the best estimate.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Click the "Calculate" button to generate the estimated due date. The result will display below the input.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Use the estimated due date to prepare for the queen’s delivery, including scheduling veterinary check-ups and creating a safe nesting area.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Reset the calculator if you need to enter a new breeding date for another pregnancy.
-          </li>
+      {/* TABLE: Cat Pregnancy Timeline by Week */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Cat Pregnancy Timeline by Week</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Track physical and behavioral changes throughout your cat's gestation period.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Week</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gestation Days</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Physical Changes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Behavioral Signs</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1-2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal external changes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Possible increased affection or appetite</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Nipples enlarge and darken</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Nausea, reduced appetite, nesting behavior begins</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29-42</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Visible abdominal enlargement</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weight gain 1-2 lbs, increased lethargy</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43-56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Kittens palpable in abdomen</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Restlessness, frequent grooming, seeking quiet spaces</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">57-65</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Obvious pregnancy, kitten movement visible</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Labor signs: loss of appetite, panting, nesting intensifies</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Timing varies by individual; veterinary ultrasound confirms pregnancy by day 14-21.</p>
+      </section>
+
+      {/* TABLE: Expected Litter Size by Cat Age and Breed */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Expected Litter Size by Cat Age and Breed</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Average kitten counts vary based on maternal age and breed type.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Age</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Litter Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Healthy Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Under 2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 kittens</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">First pregnancies often smaller</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2-6 years (Prime)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 kittens</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Peak reproductive years, larger litters</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7-10 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 kittens</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Gradually declining litter size</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Over 10 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 kittens</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fertility decreases significantly</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large breeds (Maine Coon)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8 kittens</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Larger cats typically have larger litters</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small breeds (Siamese)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 kittens</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Smaller cats generally have fewer kittens</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Litter size depends on genetics, nutrition, health, and prior pregnancies.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Set a reminder 1-2 weeks before the due date to prepare a comfortable, quiet nesting box in a low-traffic area of your home.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep your veterinarian's emergency contact number handy in case your cat needs assistance during labor or shows signs of distress.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Document your cat's weight gain and behavioral changes throughout pregnancy to identify potential complications early.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Ensure your cat receives proper prenatal nutrition with increased calories and high-quality protein starting in week 6 of pregnancy.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the wrong mating date</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Entering an incorrect date can shift the due date by weeks; confirm mating date from veterinary records or estrus observation notes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all pregnancies last exactly 63 days</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Normal feline gestation ranges 58-70 days; use the calculator's due date as an estimate, not an absolute cutoff for veterinary concern.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring pre-labor signs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Restlessness, panting, and temperature drops occur 6-24 hours before labor; missing these signs may delay recognition of complications.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not preparing a nesting box in advance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pregnant cats may deliver in unsafe locations if no suitable nesting box is provided; set one up by week 7 of gestation.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long is a cat's pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cat pregnancy lasts approximately 63-65 days from conception, though it can range from 58-70 days depending on the individual cat and breed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What date do I enter into the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter the date of mating or the first day your cat showed signs of estrus; the calculator will add 63-65 days to estimate the due date.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator if I don't know the exact mating date?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You can estimate based on when your cat entered heat; a veterinary ultrasound (days 10-20) provides the most accurate confirmation of pregnancy and due date.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many kittens will my cat have?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator estimates due date only; litter size typically ranges from 2-8 kittens but varies by breed, age, and individual cat genetics.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do one week before the due date?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Prepare a clean, quiet nesting box, monitor for labor signs like restlessness and loss of appetite, and contact your vet if delivery doesn't begin within 24 hours of the due date.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is my cat pregnant if she's eating less?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Reduced appetite can indicate early pregnancy, but only a veterinary examination or ultrasound confirms pregnancy; appetite changes occur around weeks 3-4.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if kittens aren't born by the due date?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian immediately if labor hasn't started 24 hours after the due date, as this may indicate complications requiring medical intervention.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/reproductive-system/pregnancy-in-cats-and-dogs/pregnancy-in-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Pregnancy in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive veterinary resource detailing feline pregnancy, gestation periods, and care recommendations.
-            </p>
+          <li>
+            <a href="https://www.aafponline.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Feline Reproduction Handbook</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Association of Feline Practitioners resource on cat pregnancy, labor, and postpartum care.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/pregnancy-in-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals: Pregnancy in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert guidance on feline pregnancy stages, signs of labor, and prenatal care from a leading veterinary hospital network.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/cat-care/pregnancy-birth-and-kitten-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Cat Pregnancy and Birth Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ASPCA guide covering pregnancy timeline, labor signs, and when to contact a veterinarian.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.petmd.com/cat/conditions/reproductive/c_ct_pregnancy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. PetMD: Cat Pregnancy Overview
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational article covering the basics of cat pregnancy, including gestation length and common pregnancy symptoms.
-            </p>
+          <li>
+            <a href="https://www.vin.com/members/cms/project/defaultadv1.aspx?id=3846651" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Feline Obstetrics and Neonatology</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary Information Network resource on cat pregnancy complications and emergency protocols.</p>
+          </li>
+          <li>
+            <a href="https://www.humanesociety.org/resources/cats-heat-and-pregnancy" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Understanding Cat Heat Cycles and Pregnancy</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Humane Society guide on estrus cycles, mating signs, and accurate pregnancy dating methods.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

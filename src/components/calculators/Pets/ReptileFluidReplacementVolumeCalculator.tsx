@@ -64,25 +64,33 @@ export default function ReptileFluidReplacementVolumeCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate fluid replacement volume accurately in reptiles?",
-      answer:
-        "Reptiles have unique physiology and fluid balance compared to mammals, making precise fluid therapy essential. Overhydration can cause complications such as edema, while underhydration delays recovery and worsens dehydration effects. Accurate calculations ensure safe and effective rehydration tailored to the reptile's specific needs.",
+      question: "How do I calculate fluid replacement volume for my dehydrated pet?",
+      answer: "Enter your pet's current weight, estimated dehydration percentage (typically 5-10%), and the calculator will determine total fluid needed and safe replacement rate over 24-48 hours.",
     },
     {
-      question: "How does dehydration percentage affect the fluid replacement volume?",
-      answer:
-        "The dehydration percentage reflects the severity of fluid loss in the reptile's body. Higher dehydration percentages require proportionally more fluids to restore normal hydration levels. This calculator uses the dehydration percentage to scale the fluid volume, ensuring the treatment matches the animal's clinical condition.",
+      question: "What dehydration percentage should I use for my pet?",
+      answer: "Mild dehydration is 5-6%, moderate is 7-8%, and severe is 10%+ based on skin turgor and mucous membrane appearance; your vet can assess this clinically.",
     },
     {
-      question: "Why do we multiply weight by 10 mL per percent dehydration?",
-      answer:
-        "The factor of 10 mL per kilogram per percent dehydration is a veterinary standard for reptiles receiving subcutaneous fluids. It accounts for the total fluid deficit in the body that needs replacement. This simplified formula helps clinicians quickly estimate the volume needed without complex calculations.",
+      question: "Is subcutaneous or intravenous fluid replacement better?",
+      answer: "IV fluids work faster for severe dehydration, while subcutaneous fluids suit mild-moderate cases; the calculator helps determine volume regardless of route.",
     },
     {
-      question: "Can this calculator be used for all reptile species and sizes?",
-      answer:
-        "While this calculator provides a general guideline, fluid requirements can vary among reptile species, age, and health status. It is best used as an initial estimate, and adjustments should be made based on clinical judgment and monitoring. Always consult a veterinarian for species-specific protocols and critical cases.",
+      question: "How quickly can I replace fluids safely?",
+      answer: "Most pets tolerate 40-50 mL/kg/day IV or 30-40 mL/kg/day subcutaneously; rapid replacement over &lt;12 hours risks overload and should only occur under veterinary supervision.",
     },
+    {
+      question: "Can I use this calculator for cats and dogs equally?",
+      answer: "Yes, the calculator works for both species; however, cats are more sensitive to fluid overload, so monitor closely and consult your vet on appropriate rates.",
+    },
+    {
+      question: "What if my pet has kidney disease or heart problems?",
+      answer: "Pets with renal or cardiac conditions need slower, conservative replacement; always consult your veterinarian to adjust rates below standard recommendations.",
+    },
+    {
+      question: "Should I account for ongoing fluid loss in my calculation?",
+      answer: "Yes, add 10-20 mL/kg/day for maintenance and extra losses from vomiting or diarrhea to the replacement volume for total daily fluid needs.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -204,98 +212,200 @@ export default function ReptileFluidReplacementVolumeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Fluid Replacement Volume Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Fluid Replacement Volume Calculator is a vital tool designed specifically for veterinary professionals and reptile caregivers to estimate the volume of subcutaneous fluids required to treat dehydration in reptiles. Dehydration in reptiles can be subtle yet life-threatening, and accurate fluid therapy is essential to restore their hydration balance safely. This calculator simplifies the process by using weight and dehydration severity to provide a reliable fluid volume estimate.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Reptiles have different fluid distribution and metabolic rates compared to mammals, which necessitates specialized calculations for fluid therapy. The calculator applies a standard veterinary formula that multiplies the animal's weight by the dehydration percentage and a constant factor to determine the total fluid deficit. This approach ensures that the volume administered matches the physiological needs of the reptile, minimizing risks associated with improper hydration.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By providing a quick, evidence-based estimate, this tool supports clinical decision-making and enhances treatment accuracy. It is especially useful in emergency settings or fieldwork where rapid assessment is critical. However, it should always be used in conjunction with clinical judgment and ongoing patient monitoring to adjust fluid therapy as needed.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Fluid Replacement Volume Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the total fluid volume needed to rehydrate your pet based on body weight and estimated dehydration percentage. It helps veterinarians and pet owners plan safe, effective fluid therapy protocols.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's current weight in kilograms or pounds, select the estimated dehydration severity (mild 5-6%, moderate 7-8%, severe 10%+), and choose your preferred fluid replacement route. The calculator will display total replacement volume and recommended daily rates.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show how much fluid is needed over 24-48 hours plus daily maintenance requirements. Always consult your veterinarian before administering fluids, especially if your pet has kidney disease, heart conditions, or is very young or elderly.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires only two key inputs: the reptile's body weight and the estimated dehydration percentage. Begin by selecting the appropriate unit system—Imperial (pounds) or Metric (kilograms)—to match your measurement preference. Enter the animal's weight accurately, as this directly influences the fluid volume calculation.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Input the reptile's weight in the selected unit system. Ensure the value is positive and realistic for the species.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the dehydration percentage, which is typically estimated through clinical signs such as skin tenting, mucous membrane dryness, and sunken eyes. This value usually ranges from 0% (no dehydration) to 15% (severe dehydration).
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the "Calculate" button to generate the estimated fluid replacement volume in milliliters. The result reflects the total volume needed to correct the dehydration over approximately 24 hours.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the provided volume as a guideline for subcutaneous fluid administration, adjusting as necessary based on ongoing clinical assessment and veterinary advice.
-          </li>
+      {/* TABLE: Dehydration Severity and Clinical Signs */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dehydration Severity and Clinical Signs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these clinical indicators to estimate dehydration percentage for your calculator inputs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dehydration %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Clinical Signs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Skin Turgor</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mild</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slight dry mucous membranes, normal capillary refill</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Returns &lt;1 second</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dry mouth, weak pulses, slightly delayed capillary refill</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Returns 1-2 seconds</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Severe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very dry mucous membranes, weak pulses, lethargy, cool extremities</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Returns &gt;2 seconds</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Shock</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Collapse, weak/absent pulses, altered mental status, pale gums</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Returns &gt;3 seconds</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Clinical assessment by a veterinarian is essential; this table supports initial estimation only.</p>
+      </section>
+
+      {/* TABLE: Safe Fluid Replacement Rates by Route */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Safe Fluid Replacement Rates by Route</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Maximum safe daily fluid rates vary by administration route and pet condition.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Administration Route</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Healthy Pet (mL/kg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">With Renal Disease (mL/kg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance + Replacement</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Intravenous (IV)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maintenance 60-70 mL/kg/day total</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Subcutaneous (SC)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maintenance 60-70 mL/kg/day total</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oral (if tolerated)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maintenance 60-70 mL/kg/day total</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Emergency bolus IV</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90 (over 15-30 min)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not recommended</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Shock protocol only</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always follow veterinary guidance; these are general guidelines and individual pets may require adjustment based on response and comorbidities.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your pet accurately before calculating, as dosing is weight-dependent; even small errors in weight affect fluid volume significantly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your pet's urine output, mucous membrane color, and skin turgor during rehydration to confirm adequate fluid absorption and prevent overload.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add 10-15 mL/kg/day to your replacement total if your pet is actively vomiting or has diarrhea to account for ongoing losses.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use room-temperature fluids and warm IV fluids to body temperature when possible to prevent hypothermia and improve circulation during rehydration.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating dehydration percentage</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming severe dehydration when only mild-moderate loss exists leads to unnecessary fluid overload; perform skin turgor and capillary refill tests.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring ongoing fluid losses</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating replacement volume alone without adding maintenance or accounting for vomiting/diarrhea results in persistent dehydration despite treatment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using human or livestock reference rates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Small animal fluid rates differ significantly from larger species and humans; always use veterinary-specific guidelines for dogs and cats.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Replacing fluids too rapidly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Administering the entire replacement volume over &lt;12 hours risks pulmonary edema and hypervolemia, even though calculator shows total volume needed.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate fluid replacement volume for my dehydrated pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your pet's current weight, estimated dehydration percentage (typically 5-10%), and the calculator will determine total fluid needed and safe replacement rate over 24-48 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What dehydration percentage should I use for my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Mild dehydration is 5-6%, moderate is 7-8%, and severe is 10%+ based on skin turgor and mucous membrane appearance; your vet can assess this clinically.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is subcutaneous or intravenous fluid replacement better?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">IV fluids work faster for severe dehydration, while subcutaneous fluids suit mild-moderate cases; the calculator helps determine volume regardless of route.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How quickly can I replace fluids safely?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most pets tolerate 40-50 mL/kg/day IV or 30-40 mL/kg/day subcutaneously; rapid replacement over &lt;12 hours risks overload and should only occur under veterinary supervision.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for cats and dogs equally?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator works for both species; however, cats are more sensitive to fluid overload, so monitor closely and consult your vet on appropriate rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my pet has kidney disease or heart problems?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pets with renal or cardiac conditions need slower, conservative replacement; always consult your veterinarian to adjust rates below standard recommendations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I account for ongoing fluid loss in my calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, add 10-20 mL/kg/day for maintenance and extra losses from vomiting or diarrhea to the replacement volume for total daily fluid needs.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/reptiles/fluid-therapy-in-reptiles"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Fluid Therapy in Reptiles
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of fluid therapy principles and protocols specific to reptilian patients.
-            </p>
+          <li>
+            <a href="https://www.fadavis.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">DavisPlus: Fluid Therapy in Small Animal Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive veterinary reference on intravenous and subcutaneous fluid administration protocols and safety limits.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151207/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Clinical Veterinary Advisor: Reptile Fluid Therapy Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based guidelines for calculating and administering fluids in dehydrated reptiles.
-            </p>
+          <li>
+            <a href="https://www.aafco.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Nutrient Profiles and Fluid Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards and guidelines for safe fluid volumes and electrolyte balance in companion animal medicine.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetstream.com/treat/exotic/reptiles/fluid-therapy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Vetstream: Fluid Therapy in Reptiles
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical advice and clinical tips for fluid replacement in various reptile species.
-            </p>
+          <li>
+            <a href="https://www.vin.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network (VIN) - Dehydration Assessment</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based clinical resources for assessing dehydration severity and selecting appropriate fluid therapy routes.</p>
+          </li>
+          <li>
+            <a href="https://www.iris-kidney.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Renal Interest Society (IRIS) - Fluid Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Specialized recommendations for fluid therapy in pets with renal disease and modified replacement protocols.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

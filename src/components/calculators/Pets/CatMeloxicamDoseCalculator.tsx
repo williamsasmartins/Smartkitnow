@@ -62,25 +62,33 @@ export default function CatMeloxicamDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is Meloxicam dosing based on weight in kilograms?",
-      answer:
-        "Meloxicam dosing is weight-based to ensure accurate and safe administration tailored to each cat's size. Using kilograms standardizes dosing across veterinary medicine globally, as it aligns with scientific research and pharmacological guidelines. This approach minimizes the risk of underdosing or overdosing, which can lead to ineffective treatment or adverse effects.",
+      question: "What is the standard meloxicam dose for cats?",
+      answer: "The typical dose is 0.1-0.2 mg/kg administered once daily, with most cats receiving 0.5-1 mg per dose depending on weight and condition.",
     },
     {
-      question: "Can I use this calculator for long-term Meloxicam administration in cats?",
-      answer:
-        "This calculator is designed for short-term analgesic dosing only, as Meloxicam's long-term use in cats requires careful veterinary supervision due to potential kidney and gastrointestinal side effects. Chronic administration involves different dosing protocols and monitoring strategies. Always consult your veterinarian before extending Meloxicam treatment beyond the recommended short-term period.",
+      question: "How does the calculator account for cat weight in dosing?",
+      answer: "The calculator multiplies your cat's weight in kilograms by the recommended dose per kilogram (0.1-0.2 mg/kg) to determine the precise dose needed.",
     },
     {
-      question: "What should I do if my cat's weight is difficult to measure accurately?",
-      answer:
-        "If precise weight measurement is challenging, try using a pet scale or visit a veterinary clinic for an accurate reading. Accurate weight is crucial for safe Meloxicam dosing to avoid toxicity or insufficient pain control. If uncertainty persists, always consult your veterinarian before administering any medication.",
+      question: "Can meloxicam be given to kittens using this calculator?",
+      answer: "Meloxicam is generally not recommended for kittens under 6 weeks old; always consult your veterinarian before using this calculator for very young cats.",
     },
     {
-      question: "Why is it important to consult a veterinarian even after using this dose calculator?",
-      answer:
-        "While this calculator provides an estimated Meloxicam dose, individual cats may have unique health conditions affecting drug metabolism and safety. Veterinarians consider factors like kidney function, concurrent medications, and overall health before prescribing NSAIDs. Therefore, professional veterinary advice ensures the safest and most effective treatment plan for your cat.",
+      question: "What if my cat's calculated dose doesn't match tablet sizes available?",
+      answer: "Your veterinarian may adjust the dose to match available tablet strengths (typically 1.5 mg, 7.5 mg, or 15 mg) while staying within safe therapeutic ranges.",
     },
+    {
+      question: "How long can a cat safely take meloxicam?",
+      answer: "Cats can take meloxicam long-term under veterinary supervision, typically for chronic pain conditions like osteoarthritis, with regular monitoring for kidney or liver issues.",
+    },
+    {
+      question: "Should the dose be adjusted based on meal timing?",
+      answer: "Meloxicam can be given with or without food, but administering with food may reduce gastrointestinal upset in sensitive cats.",
+    },
+    {
+      question: "What happens if I accidentally give my cat an overdose?",
+      answer: "Contact your veterinarian or pet poison control immediately; overdoses can cause vomiting, diarrhea, lethargy, and potential kidney damage.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -186,95 +194,224 @@ export default function CatMeloxicamDoseCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Meloxicam Dose Calculator for Cats
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Meloxicam is a non-steroidal anti-inflammatory drug (NSAID) commonly prescribed to cats for managing pain and inflammation associated with conditions such as arthritis, post-operative recovery, and other musculoskeletal disorders. Accurate dosing is critical because cats metabolize NSAIDs differently than other species, and improper dosing can lead to serious adverse effects including kidney damage and gastrointestinal upset. This calculator provides a precise dose estimate based on your cat’s weight to help ensure safe and effective analgesic therapy.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The calculator uses a scientifically established dosing guideline of 0.05 mg per kilogram of body weight, which is the recommended short-term analgesic dose for cats. This weight-based dosing approach accounts for individual variability and helps avoid underdosing, which can result in inadequate pain relief, or overdosing, which increases the risk of toxicity. While this tool offers an evidence-based estimate, it is essential to use it as a supplement to veterinary advice rather than a replacement.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Meloxicam Dose Calculator for Cats</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps determine the appropriate meloxicam dose for your cat based on weight and veterinary dosing protocols. Meloxicam is a non-steroidal anti-inflammatory drug (NSAID) commonly prescribed for feline pain management and arthritis relief.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your cat's weight in kilograms (or pounds if the converter is available) and select whether you need the standard 0.1 mg/kg dose or the higher 0.2 mg/kg dose for acute pain. The calculator will instantly display the recommended dose in milligrams.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Always verify the calculated dose with your veterinarian before administering meloxicam, as individual cats may require dose adjustments based on age, kidney function, liver health, and concurrent medications. Never assume the calculator output replaces professional veterinary assessment.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this Meloxicam dose calculator is straightforward and designed for pet owners and veterinary professionals alike. Begin by selecting the unit system that corresponds to your cat’s weight measurement—either Imperial (pounds) or Metric (kilograms). Next, enter your cat’s current weight accurately into the input field. The calculator will then compute the recommended Meloxicam dose in milligrams for once-daily administration.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) that matches your cat’s weight measurement.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your cat’s weight in the input field, ensuring the value is accurate and up-to-date.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the “Calculate” button to view the recommended Meloxicam dose in milligrams.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the result and any warnings provided, and always consult your veterinarian before administering medication.
-          </li>
+      {/* TABLE: Meloxicam Dosing Guidelines for Cats by Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Meloxicam Dosing Guidelines for Cats by Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical meloxicam doses based on cat weight using the standard 0.1 mg/kg dosing protocol.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose at 0.1 mg/kg (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Tablet Match</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not standard—consult vet</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not standard—consult vet</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not standard—consult vet</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 mg tablet (partial)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 mg tablet (partial)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 mg tablet (partial)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 mg tablet (partial)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Dosing may be increased to 0.2 mg/kg for acute pain; always follow veterinary guidance for your specific cat.</p>
+      </section>
+
+      {/* TABLE: Meloxicam Formulations and Typical Dosing */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Meloxicam Formulations and Typical Dosing</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common meloxicam products available for cats include oral tablets, oral suspension, and injectable forms.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Formulation</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Strength</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Route</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oral</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily maintenance for osteoarthritis</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oral</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large cats or acute pain situations</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oral Suspension</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 mg/mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oral</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Easier dosing for small cats or kittens</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Injectable (Anjeso)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 mg/mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">IV/IM/SC</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Post-operative pain or acute conditions</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Injectable (Metacam)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mg/mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">SC/IM</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Initial treatment or cats unable to take oral doses</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Injectable formulations are typically given as a single dose; oral formulations are dosed once daily.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your cat accurately at home or at a vet clinic before using the calculator to ensure precise dose calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep a dosing chart from your vet nearby and compare it with the calculator results to catch any discrepancies.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Administer meloxicam at the same time each day to maintain consistent pain relief and medication levels.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cat for side effects like decreased appetite, vomiting, or diarrhea, and report them to your vet immediately.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using human weight instead of current cat weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Always re-weigh your cat regularly, as weight changes affect the correct dose; using outdated weight can lead to under- or over-dosing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing mg/kg dosing with total daily dose</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator works with mg/kg; entering total dose instead of body weight will produce incorrect results.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for tablet availability</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculated dose may not match available tablet strengths; attempting to split or combine tablets without vet approval can be dangerous.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming the calculator adjusts for liver or kidney disease</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats with pre-existing organ issues may require different doses; the calculator provides standard doses only and cannot replace veterinary assessment.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard meloxicam dose for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The typical dose is 0.1-0.2 mg/kg administered once daily, with most cats receiving 0.5-1 mg per dose depending on weight and condition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator account for cat weight in dosing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator multiplies your cat's weight in kilograms by the recommended dose per kilogram (0.1-0.2 mg/kg) to determine the precise dose needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can meloxicam be given to kittens using this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Meloxicam is generally not recommended for kittens under 6 weeks old; always consult your veterinarian before using this calculator for very young cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my cat's calculated dose doesn't match tablet sizes available?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your veterinarian may adjust the dose to match available tablet strengths (typically 1.5 mg, 7.5 mg, or 15 mg) while staying within safe therapeutic ranges.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long can a cat safely take meloxicam?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats can take meloxicam long-term under veterinary supervision, typically for chronic pain conditions like osteoarthritis, with regular monitoring for kidney or liver issues.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should the dose be adjusted based on meal timing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Meloxicam can be given with or without food, but administering with food may reduce gastrointestinal upset in sensitive cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I accidentally give my cat an overdose?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian or pet poison control immediately; overdoses can cause vomiting, diarrhea, lethargy, and potential kidney damage.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/pharmacology/nonsteroidal-anti-inflammatory-drugs-nsaids"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Nonsteroidal Anti-Inflammatory Drugs (NSAIDs)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of NSAID pharmacology, dosing, and safety considerations in veterinary medicine.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/meloxicam-cats" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Meloxicam for Cats - VCA Animal Hospitals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide on meloxicam use, dosing, and side effects in cats from a trusted veterinary hospital network.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Meloxicam%20in%20Cats.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. University of California Davis: Meloxicam Use in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed clinical guidelines and research on Meloxicam dosing and safety in feline patients.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Emergency resource for medication overdose concerns and poisoning in pets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/analgesia-pain-management/analgesia-pain-management-guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association (AAHA) Pain Management Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on pain management protocols including NSAID use in cats.
-            </p>
+          <li>
+            <a href="https://www.fda.gov/animal-veterinary/approved-animal-drug-products" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Metacam (Meloxicam) - FDA Approved Veterinary Drug</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official FDA information on approved meloxicam formulations and labeling for veterinary use.</p>
+          </li>
+          <li>
+            <a href="https://journals.sagepub.com/home/jfm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Feline Medicine and Surgery - NSAID Use in Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on NSAID efficacy and safety protocols in feline pain management.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

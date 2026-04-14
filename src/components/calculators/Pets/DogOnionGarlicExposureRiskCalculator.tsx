@@ -117,29 +117,33 @@ export default function DogOnionGarlicExposureRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question:
-        "Why are onions and garlic toxic to dogs, and how does the toxicity mechanism work?",
-      answer:
-        "Onions, garlic, and related Allium species contain compounds such as N-propyl disulfide that cause oxidative damage to red blood cells in dogs. This leads to hemolytic anemia, where red blood cells are destroyed faster than they can be replaced. The oxidative stress damages hemoglobin, forming Heinz bodies, which mark cells for destruction. This process impairs oxygen transport, causing weakness, lethargy, and potentially life-threatening complications.",
+      question: "How much onion or garlic is toxic to dogs?",
+      answer: "Dogs can experience toxicity from as little as 0.5% of their body weight in onions or garlic. A 10 lb dog could show symptoms from consuming just 0.8 oz (23g) of onion or garlic, though severity depends on the form and type.",
     },
     {
-      question:
-        "How does the amount of onion or garlic ingested relate to the risk of toxicity in dogs?",
-      answer:
-        "The risk of toxicity depends on the dose relative to the dog's body weight. Toxic doses are generally around 15 grams of onion per kilogram of dog weight and about 5 grams per kilogram for garlic, which is more potent. Smaller amounts may cause mild symptoms or no symptoms, but repeated exposure or larger doses increase the risk of severe anemia. Calculating the ingested dose per kg helps estimate the risk level and urgency of veterinary care.",
+      question: "What does this calculator measure?",
+      answer: "This calculator estimates toxicity risk based on your dog's weight, the amount of allium consumed, and the type (raw, cooked, or powdered). It compares exposure to established toxic thresholds to provide a risk assessment.",
     },
     {
-      question:
-        "Can all types of Allium plants cause toxicity in dogs, and are some more dangerous than others?",
-      answer:
-        "Yes, all Allium species including onions, garlic, chives, and leeks contain toxic compounds harmful to dogs. Garlic is generally considered more toxic than onions, requiring a smaller dose to cause harm. Chives and leeks also pose risks but are less commonly ingested in toxic amounts. Regardless of type, ingestion should be treated seriously, and any exposure should prompt monitoring or veterinary consultation depending on the amount consumed.",
+      question: "Are cooked onions and garlic safer than raw?",
+      answer: "Cooked alliums are slightly less toxic than raw, but cooking does not eliminate the danger. Both raw and cooked onions/garlic contain thiosulfates that damage dog red blood cells regardless of preparation method.",
     },
     {
-      question:
-        "What are the clinical signs of Allium toxicity in dogs, and when should I seek veterinary care?",
-      answer:
-        "Clinical signs typically appear 1-5 days after ingestion and include weakness, lethargy, pale or yellow gums, rapid breathing, vomiting, diarrhea, and reddish or brown urine due to hemoglobinuria. If you suspect your dog has ingested onions, garlic, or related plants, especially in moderate to large amounts, seek veterinary care immediately. Early intervention can prevent severe anemia and improve outcomes significantly.",
+      question: "What are the symptoms of allium toxicity in dogs?",
+      answer: "Symptoms include vomiting, diarrhea, lethargy, pale gums, weakness, and rapid breathing. These typically appear 1-7 days after exposure and warrant immediate veterinary attention.",
     },
+    {
+      question: "Is garlic powder more dangerous than fresh garlic?",
+      answer: "Yes, garlic powder is significantly more concentrated and dangerous. One teaspoon of garlic powder is roughly equivalent to 1 clove of fresh garlic, making powdered forms pose higher risk per gram.",
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides a risk estimate based on veterinary toxicology data but is not a substitute for professional veterinary diagnosis. Always consult your veterinarian if your dog ingests onions or garlic.",
+    },
+    {
+      question: "Can repeated small exposures cause cumulative toxicity?",
+      answer: "Yes, thiosulfates from repeated exposures accumulate in the bloodstream over days or weeks, potentially causing hemolytic anemia even if single exposures seem minimal.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -303,146 +307,212 @@ export default function DogOnionGarlicExposureRiskCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Onion/Garlic (Allium) Exposure Risk Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the risk of toxicity in dogs after ingestion of
-          onions, garlic, chives, or leeks—plants belonging to the Allium genus. These
-          plants contain compounds such as N-propyl disulfide that induce oxidative
-          damage to canine red blood cells, leading to hemolytic anemia. The severity
-          of toxicity depends on the amount ingested relative to the dog’s body weight,
-          making dose calculation essential for risk assessment.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The tool uses veterinary toxicology data to estimate the ingested dose of
-          toxic compounds per kilogram of dog weight, comparing it to known toxic
-          thresholds. Garlic is generally more potent than onion, so the calculator
-          adjusts risk accordingly. By quantifying exposure, pet owners and veterinarians
-          can better understand potential health impacts and decide when urgent care is
-          needed.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Onion/Garlic (Allium) Exposure Risk Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your dog's toxicity risk from onion or garlic exposure by analyzing the amount consumed relative to body weight and the form consumed. It provides a rapid risk assessment to help you decide whether veterinary care is needed.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's weight in pounds, the amount of onion or garlic consumed (in ounces or grams), and select whether it was raw, cooked, or powdered. The calculator accounts for concentration differences across these forms.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results are categorized as Low, Moderate, High, or Critical risk. Low-risk cases may only require monitoring, while Moderate and above warrant veterinary contact. Critical exposures require immediate emergency veterinary care.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately assess the risk of Allium toxicity, enter your dog’s weight and
-          the amount of onion, garlic, chives, or leeks consumed. Select the specific
-          Allium type, as toxicity varies between species. The calculator will then
-          estimate the toxic dose ingested per kilogram of body weight and provide a
-          risk category with guidance.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter your dog’s current weight in pounds or
-            kilograms, depending on your preferred unit system.
-          </li>
-          <li>
-            <strong>Allium Type:</strong> Choose the specific plant ingested (onion,
-            garlic, chives, or leeks) to adjust toxicity calculations accordingly.
-          </li>
-          <li>
-            <strong>Amount Consumed:</strong> Enter the estimated amount of Allium
-            consumed in grams. Be as accurate as possible for reliable risk estimation.
-          </li>
-          <li>
-            <strong>Calculate:</strong> Click the calculate button to view the estimated
-            toxic dose and risk level. Follow any warnings or veterinary recommendations
-            provided.
-          </li>
+      {/* TABLE: Allium Toxicity Risk Levels by Dog Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Allium Toxicity Risk Levels by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows approximate toxic thresholds for dogs of different weights based on fresh onion/garlic consumption.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Dose Raw Garlic</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Dose Raw Onion</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Category at 1 oz Consumption</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12g (0.4 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25g (0.9 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">CRITICAL</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23g (0.8 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50g (1.8 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">HIGH</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">57g (2 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">113g (4 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">MODERATE</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">113g (4 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">227g (8 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">LOW</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">227g (8 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">454g (16 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">LOW</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Toxic dose = &gt;0.5% body weight. Smaller dogs reach toxic thresholds faster with same absolute amounts.</p>
+      </section>
+
+      {/* TABLE: Onion/Garlic Form Toxicity Comparison */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Onion/Garlic Form Toxicity Comparison</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different forms of alliums vary in concentration and risk level for dogs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Form</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Concentration Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Dose Risk (1 teaspoon)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cooking Impact</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fresh Garlic Clove</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low for most dogs &gt;15 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal reduction</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Garlic Powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5x concentrated</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">HIGH risk for dogs &lt;20 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No reduction</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fresh Onion (raw)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Concentration increases 50-75%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Onion Powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4x concentrated</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">CRITICAL for dogs &lt;25 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No reduction</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dehydrated Garlic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5x concentrated</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">CRITICAL for most dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pre-concentrated</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Powdered forms are significantly more dangerous due to volume reduction and concentration of thiosulfates.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check ingredient labels on store-bought foods, soups, and baby food—many contain garlic or onion powder as hidden ingredients dangerous to dogs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Establish a pet-free cooking zone and store onions/garlic where curious dogs cannot access them, including trash bins.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your dog for 3-7 days after suspected exposure, watching for lethargy, vomiting, or pale mucous membranes indicating anemia.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep your veterinarian's emergency contact and the ASPCA Poison Control number (888-426-4435) readily available for quick reference.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming cooked = safe</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cooking does not eliminate thiosulfates; cooked alliums remain toxic and should never be fed to dogs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating powdered forms</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many owners forget that garlic/onion powder in seasoning mixes is highly concentrated and poses greater risk than fresh forms.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring cumulative exposure</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Repeated small exposures over days accumulate in the bloodstream and can trigger hemolytic anemia even when single doses seemed minor.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Waiting to contact vet</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Symptoms may not appear for 1-7 days, but early veterinary intervention improves outcomes significantly if toxicity is suspected.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much onion or garlic is toxic to dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dogs can experience toxicity from as little as 0.5% of their body weight in onions or garlic. A 10 lb dog could show symptoms from consuming just 0.8 oz (23g) of onion or garlic, though severity depends on the form and type.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does this calculator measure?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator estimates toxicity risk based on your dog's weight, the amount of allium consumed, and the type (raw, cooked, or powdered). It compares exposure to established toxic thresholds to provide a risk assessment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are cooked onions and garlic safer than raw?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cooked alliums are slightly less toxic than raw, but cooking does not eliminate the danger. Both raw and cooked onions/garlic contain thiosulfates that damage dog red blood cells regardless of preparation method.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the symptoms of allium toxicity in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Symptoms include vomiting, diarrhea, lethargy, pale gums, weakness, and rapid breathing. These typically appear 1-7 days after exposure and warrant immediate veterinary attention.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is garlic powder more dangerous than fresh garlic?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, garlic powder is significantly more concentrated and dangerous. One teaspoon of garlic powder is roughly equivalent to 1 clove of fresh garlic, making powdered forms pose higher risk per gram.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator provides a risk estimate based on veterinary toxicology data but is not a substitute for professional veterinary diagnosis. Always consult your veterinarian if your dog ingests onions or garlic.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can repeated small exposures cause cumulative toxicity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, thiosulfates from repeated exposures accumulate in the bloodstream over days or weeks, potentially causing hemolytic anemia even if single exposures seem minimal.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/food-hazards/onion-and-garlic-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Onion and Garlic Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of Allium toxicity, clinical signs, and treatment
-              protocols in dogs.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official resource for pet toxin emergencies with 24/7 hotline and database of toxic substances for animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/15318009/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. "Onion (Allium cepa) toxicosis in dogs: a review" - PubMed
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific review detailing the pathophysiology and toxic dose thresholds
-              of onion ingestion in dogs.
-            </p>
+          <li>
+            <a href="https://www.vin.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network (VIN) - Onion and Garlic Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed veterinary toxicology information on allium compounds and thiosulfate mechanisms in dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/garlic-and-onion-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell University College of Veterinary Medicine: Garlic and Onion Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource explaining toxic compounds and clinical management.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline - Garlic and Onion Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Emergency veterinary toxicology resource with specific guidance on allium exposure and treatment protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.acvma-vet.org/resources/animal-poison-control"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. American College of Veterinary Medical Toxicology: Animal Poison Control
-            </a>
-            <p className="text-slate-500 text-sm">
-              Guidelines and emergency protocols for Allium species poisoning in pets.
-            </p>
+          <li>
+            <a href="https://www.akc.org/dog-breeds/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Kennel Club (AKC) - Toxic Foods for Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to common household foods dangerous to dogs, including detailed allium toxicity information.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

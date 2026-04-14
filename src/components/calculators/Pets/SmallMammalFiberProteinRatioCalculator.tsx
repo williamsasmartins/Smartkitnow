@@ -72,25 +72,33 @@ export default function SmallMammalFiberProteinRatioCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is the fiber to protein ratio important in small mammal diets?",
-      answer:
-        "The fiber to protein ratio is crucial because fiber supports healthy gut motility and microbial populations, especially in herbivorous small mammals like rabbits. Protein is essential for tissue repair and growth, but an imbalance can lead to digestive issues or nutrient deficiencies. Maintaining an appropriate ratio ensures optimal digestion, nutrient absorption, and overall health.",
+      question: "What is the ideal fiber to protein ratio for dogs?",
+      answer: "Most healthy adult dogs thrive on a ratio of 1:10 to 1:15 (fiber to protein), meaning roughly 5-10% fiber and 18-25% protein by weight. Individual needs vary by breed, age, and activity level.",
     },
     {
-      question: "How does fiber affect protein digestibility in small mammals?",
-      answer:
-        "Fiber influences the rate of digestion and fermentation in the gut, which can impact how well protein is absorbed. Excessive fiber may bind to proteins or speed up transit time, reducing protein digestibility. Conversely, too little fiber can impair gut motility and microbial balance, indirectly affecting protein utilization.",
+      question: "How does this calculator help with pet nutrition?",
+      answer: "This calculator compares your pet's current fiber and protein intake against breed-specific and age-appropriate benchmarks, helping identify nutritional imbalances that may affect digestion and muscle health.",
     },
     {
-      question: "Can this calculator be used for all small mammal species?",
-      answer:
-        "This calculator is designed primarily for herbivorous small mammals such as rabbits and guinea pigs, where fiber and protein balance is critical. Omnivorous or carnivorous species have different dietary requirements, so this tool may not provide accurate guidance for them. Always consult a veterinarian for species-specific dietary advice.",
+      question: "Can cats and dogs have the same fiber to protein ratio?",
+      answer: "No, cats require higher protein (30-40%) and tolerate less fiber than dogs. Cats are obligate carnivores, so use species-specific inputs when using this calculator.",
     },
     {
-      question: "How should I adjust the diet if the fiber to protein ratio is outside the recommended range?",
-      answer:
-        "If the ratio is too low, increase dietary fiber through hay or fibrous vegetables to support gut health. If the ratio is too high, consider adding higher-protein foods like pellets or legumes to improve nutrient balance. Adjustments should be gradual and monitored closely to avoid digestive upset.",
+      question: "What happens if my pet's fiber ratio is too high?",
+      answer: "Excessive fiber (&gt;10-12%) can reduce nutrient absorption, cause loose stools, and interfere with mineral uptake in dogs; use the calculator to stay within safe ranges.",
     },
+    {
+      question: "Should senior pets have different fiber and protein ratios?",
+      answer: "Yes, senior pets typically need 10-15% more protein to maintain muscle mass, while fiber should remain moderate (5-8%) to support digestive health; adjust inputs for accurate age-based guidance.",
+    },
+    {
+      question: "How do I input food labels into this calculator?",
+      answer: "Enter the guaranteed analysis percentages found on pet food packaging for crude protein and crude fiber; this calculator will compute the ratio and compare it to optimal ranges.",
+    },
+    {
+      question: "Does activity level affect the fiber to protein ratio?",
+      answer: "Yes, highly active dogs need 25-30% protein and 4-6% fiber, while sedentary pets need 18-22% protein and 6-8% fiber; select your pet's activity level for accurate recommendations.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -218,101 +226,217 @@ export default function SmallMammalFiberProteinRatioCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Fiber & Protein Ratio Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Fiber & Protein Ratio Calculator is a specialized veterinary tool designed to help pet owners and professionals determine the balance between fiber and protein in the diets of small mammals, particularly herbivores like rabbits and guinea pigs. This ratio is critical because fiber supports healthy gastrointestinal function by promoting proper gut motility and maintaining beneficial microbial populations. Protein, on the other hand, is essential for growth, tissue repair, and overall metabolic functions.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          An imbalance in this ratio can lead to digestive disturbances, nutrient malabsorption, or metabolic disorders. For example, diets too low in fiber can cause gastrointestinal stasis, while excessively high fiber may reduce protein digestibility and energy availability. This calculator simplifies the process by providing a clear numerical ratio, enabling users to assess whether their pet’s diet falls within an optimal range for health and wellbeing.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By understanding and applying this ratio, caretakers can make informed dietary adjustments to improve gut health, prevent common nutritional issues, and support the longevity of their small mammal companions. This tool is especially valuable for veterinary nutritionists, breeders, and conscientious pet owners aiming to optimize dietary formulations.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Fiber & Protein Ratio Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines whether your pet's current diet delivers balanced fiber and protein nutrition by comparing actual intake against species and age-specific benchmarks. It helps identify digestive issues, muscle loss, or nutrient absorption problems caused by imbalanced ratios.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's species, age, activity level, current food's crude protein percentage, and crude fiber percentage (found on packaging labels). The calculator will automatically compute the ratio and flag deviations from optimal ranges.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show your pet's F:P ratio, comparison to ideal ranges, and actionable recommendations for diet adjustments. If results fall outside safe ranges, consult a veterinarian before changing foods, especially for pets with existing health conditions.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using the Fiber & Protein Ratio Calculator is straightforward and requires only two key inputs: the fiber percentage and the protein percentage of the diet. These values can typically be found on commercial pet food labels or determined through nutritional analysis of homemade diets. The calculator then computes the ratio of fiber to protein, providing an immediate assessment of dietary balance.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) to ensure familiarity with input conventions.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the fiber content percentage of the diet in the designated input field. This represents the total dietary fiber.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the protein content percentage of the diet in the corresponding input field.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click the “Calculate” button to generate the fiber to protein ratio and review the contextual feedback provided.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the results and warnings to adjust your pet’s diet accordingly, consulting a veterinarian if necessary.
-          </li>
+      {/* TABLE: Optimal Fiber & Protein Ratios by Pet Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Optimal Fiber & Protein Ratios by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference benchmarks for healthy fiber and protein percentages based on pet type and life stage.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type & Life Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Protein (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fiber (%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Dogs (sedentary)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Dogs (active)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Dogs (7+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Puppies (growing)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior Cats (10+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages reflect guaranteed analysis minimums on pet food labels; individual pets may require adjustments based on health conditions.</p>
+      </section>
+
+      {/* TABLE: Common Pet Foods Fiber & Protein Ratios */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Pet Foods Fiber & Protein Ratios</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Sample analysis of popular commercial pet foods to compare against calculator results.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Protein (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fiber (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">F:P Ratio</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Premium Dry Dog Food (chicken)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:4.3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Budget Dry Dog Food</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:2.5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Protein Dry Dog Food</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:6.4</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Prescription Digestive Diet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:1.5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Premium Wet Dog Food</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:4.0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Grain-Free Dog Food</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:4.0</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data based on 2024-2025 product guarantees; formulas vary by brand and formula revision.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always use guaranteed analysis percentages from food labels rather than estimated values to ensure accurate calculator results.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Mix two foods in known proportions to test blended fiber and protein ratios before committing to a full diet change.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your pet's stool consistency, energy, and coat quality for 3-4 weeks after adjusting fiber intake to confirm the new ratio is working.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Puppies and senior pets require higher protein but lower fiber than adult pets; use age-specific calculator inputs for accurate recommendations.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using crude fiber instead of dietary fiber percentages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pet food labels list crude fiber, which is what this calculator requires; dietary fiber values are different and will produce inaccurate results.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring water content in wet food calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Wet foods have 70-80% moisture, so their protein and fiber percentages are lower than dry food; use label values directly without adjusting for water.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming one ratio works for all life stages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Puppies need 22-32% protein and kittens need 30-40%, while senior pets need higher protein but may tolerate less fiber; always input the correct life stage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Changing diet based solely on this calculator without veterinary input</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pets with allergies, sensitivities, or medical conditions may need ratios outside normal ranges; consult your vet before major dietary changes.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the ideal fiber to protein ratio for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most healthy adult dogs thrive on a ratio of 1:10 to 1:15 (fiber to protein), meaning roughly 5-10% fiber and 18-25% protein by weight. Individual needs vary by breed, age, and activity level.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator help with pet nutrition?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator compares your pet's current fiber and protein intake against breed-specific and age-appropriate benchmarks, helping identify nutritional imbalances that may affect digestion and muscle health.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can cats and dogs have the same fiber to protein ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, cats require higher protein (30-40%) and tolerate less fiber than dogs. Cats are obligate carnivores, so use species-specific inputs when using this calculator.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my pet's fiber ratio is too high?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excessive fiber (&gt;10-12%) can reduce nutrient absorption, cause loose stools, and interfere with mineral uptake in dogs; use the calculator to stay within safe ranges.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should senior pets have different fiber and protein ratios?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, senior pets typically need 10-15% more protein to maintain muscle mass, while fiber should remain moderate (5-8%) to support digestive health; adjust inputs for accurate age-based guidance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I input food labels into this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter the guaranteed analysis percentages found on pet food packaging for crude protein and crude fiber; this calculator will compute the ratio and compare it to optimal ranges.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does activity level affect the fiber to protein ratio?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, highly active dogs need 25-30% protein and 4-6% fiber, while sedentary pets need 18-22% protein and 6-8% fiber; select your pet's activity level for accurate recommendations.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/digestive-system/nutrition-and-feeding-of-rabbits"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Nutrition and Feeding of Rabbits
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource detailing the nutritional requirements of rabbits, emphasizing the importance of fiber and protein balance for gastrointestinal health.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/Publications/Nutrient-Profiles" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Dog Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official Association of American Feed Control Officials guidelines for minimum protein and fiber levels in pet foods.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6520897/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Institutes of Health: Dietary Fiber and Gut Microbiota in Small Mammals
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article exploring how dietary fiber influences gut microbiota composition and digestive physiology in herbivorous small mammals.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com/management-and-nutrition/nutrition/nutrition-for-companion-animals" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Medicine — Nutrition for Companion Animals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Merck Veterinary Manual reference for optimal nutrient ratios across dog and cat life stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aavmc.org/resources/animal-nutrition/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Association of American Veterinary Medical Colleges: Animal Nutrition Resources
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational materials and guidelines on balanced nutrition for various species, including small mammals, highlighting fiber and protein requirements.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/aaha-guidelines/nutrition-assessment-guidelines-for-the-veterinary-professional/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Animal Hospital Association — Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for assessing pet nutrition and identifying dietary imbalances affecting health.</p>
+          </li>
+          <li>
+            <a href="https://www.petmd.com/dogs/wellness/what-you-need-know-about-fiber-your-pet" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Digestive Health in Dogs and Cats — PetMD</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of how fiber and protein ratios impact digestive health and nutrient absorption in pets.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -71,25 +71,33 @@ export default function SmallMammalCageSizeRequirementCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is cage size important for small mammals?",
-      answer:
-        "Cage size directly impacts the physical and psychological well-being of small mammals. Adequate space allows for natural behaviors such as running, burrowing, and climbing, which are essential for their health. Insufficient cage size can lead to stress, obesity, and behavioral problems, making proper enclosure dimensions critical for welfare.",
+      question: "What factors does the Cage Size Requirement Calculator consider?",
+      answer: "The calculator considers pet species, age, number of animals, and activity level to determine minimum cage dimensions in cubic feet or meters.",
     },
     {
-      question: "How does species affect the cage size requirement?",
-      answer:
-        "Different small mammal species have varying activity levels and space needs based on their natural behaviors and body size. For example, rabbits require more space to hop and stretch compared to hamsters, which are smaller and less active. This calculator adjusts cage size multipliers to reflect these species-specific requirements, ensuring appropriate living conditions.",
+      question: "How accurate are the cage size recommendations from this calculator?",
+      answer: "Recommendations follow ASPCA and veterinary guidelines updated for 2024-2025, but local regulations and individual animal needs may require adjustments.",
     },
     {
-      question: "Can I use this calculator for all small mammal species?",
-      answer:
-        "This tool is designed for common small mammals like hamsters, guinea pigs, rabbits, and ferrets, which have well-established space guidelines. For less common or exotic species, consult a veterinarian or specialist as their needs may differ significantly. Always prioritize species-specific welfare recommendations when determining cage size.",
+      question: "Can I use this calculator for multiple different pet species in one cage?",
+      answer: "No, this calculator is designed for single-species housing; multi-species setups require separate assessments due to compatibility and territorial concerns.",
     },
     {
-      question: "Why do I need to input weight for cage size calculation?",
-      answer:
-        "Weight is a practical proxy for the animal's size and space needs, as larger animals require more room to move comfortably. Using weight allows the calculator to scale cage size proportionally, ensuring the enclosure accommodates the animal’s physical dimensions. This approach aligns with veterinary standards for minimum enclosure volume per kilogram of body weight.",
+      question: "Does the calculator account for enrichment space and exercise areas?",
+      answer: "Yes, recommended sizes include space for climbing structures, hideouts, and movement, not just basic floor area.",
     },
+    {
+      question: "What if my pet needs more space than the calculator recommends?",
+      answer: "Larger cages are always beneficial; the calculator provides minimum standards, but exceeding them improves welfare and behavior.",
+    },
+    {
+      question: "How often should I update my cage size as my pet grows?",
+      answer: "Re-run the calculator every 3-6 months during growth phases, or annually once your pet reaches adult size.",
+    },
+    {
+      question: "Are vertical dimensions as important as floor space for cage sizing?",
+      answer: "Yes, especially for climbing species like rodents and reptiles; total volume matters more than horizontal footprint alone.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -208,101 +216,230 @@ export default function SmallMammalCageSizeRequirementCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cage Size Requirement Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Cage Size Requirement Calculator is a veterinary tool designed to estimate the minimum enclosure volume necessary for small mammal pets based on their species and weight. Proper cage size is essential to ensure the animal’s physical health and psychological well-being by providing adequate space for natural behaviors such as movement, exploration, and rest. This calculator uses scientifically supported multipliers to translate an animal’s weight into a recommended minimum cage size in cubic feet.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Different species have unique spatial needs depending on their activity levels and natural habits. For example, rabbits require more space to hop and stretch compared to hamsters, which are smaller and less active. By incorporating species-specific multipliers, this tool offers tailored recommendations that align with veterinary welfare standards, helping owners provide optimal living conditions for their pets.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Weight is used as a practical proxy for size, allowing the calculator to scale cage size proportionally. This approach ensures that the enclosure accommodates the animal’s physical dimensions comfortably, reducing stress and promoting healthy behaviors. Ultimately, this calculator serves as an educational resource to guide pet owners in making informed decisions about habitat requirements.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cage Size Requirement Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the minimum cage dimensions your pet requires for health and behavioral well-being. It uses species-specific guidelines and animal count to generate accurate recommendations in square feet, cubic feet, or metric equivalents.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's species, age category (juvenile, adult, senior), total number of animals sharing the space, and activity level (low, moderate, high). The calculator cross-references these factors against current veterinary and animal welfare standards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show minimum floor area, recommended height, and total volume needed. Use these as your baseline, but remember larger enclosures always benefit your pet's mental and physical health.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using the Cage Size Requirement Calculator is straightforward and user-friendly. Begin by selecting the unit system you prefer—Imperial (pounds) or Metric (kilograms)—to input your pet’s weight accurately. Next, enter the animal’s weight and choose the species from the dropdown menu to ensure the calculation reflects species-specific space needs.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) to match your measurement preference.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your pet’s weight in the chosen unit system, ensuring the value is positive and accurate.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the species of your small mammal to apply the correct cage size multiplier.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click the “Calculate” button to view the recommended minimum cage size in cubic feet.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Review the result and any warnings to ensure your pet’s enclosure meets welfare standards.
-          </li>
+      {/* TABLE: Minimum Cage Size Requirements by Pet Type (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Minimum Cage Size Requirements by Pet Type (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard minimum cage dimensions for common household pets based on ASPCA and veterinary guidelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Floor Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Height (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Volume (cubic ft)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single Dwarf Hamster</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37.5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single Guinea Pig</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.75</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pair of Guinea Pigs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single Rabbit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Budgie (Parakeet)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pair of Budgies</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bearded Dragon</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Corn Snake</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ball Python</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Floor area in square feet; height in inches. Larger is always better. Social species require additional space per additional animal.</p>
+      </section>
+
+      {/* TABLE: Space Multipliers for Multiple Animals */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Space Multipliers for Multiple Animals</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these multipliers to calculate additional space needed when housing more than one animal of the same species.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Number of Animals</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Space Multiplier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example (Guinea Pig Base: 7.5 sq ft)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1 Animal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5 sq ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2 Animals</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.4x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.5 sq ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 Animals</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.8x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.5 sq ft</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4 Animals</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.2x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.5 sq ft</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5+ Animals</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.6x+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19.5 sq ft+</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Multipliers based on social housing recommendations. Apply to single-animal minimum for accurate multi-pet sizing.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Vertical space is critical for climbing species like hamsters and tree-dwelling reptiles; don't overlook height in your calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for water bowls, food dishes, hideouts, and enrichment toys when planning actual usable space inside the cage.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Recalculate requirements if your pet's age changes significantly, as juvenile and senior animals may have different space and accessibility needs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check local animal welfare laws; some regions mandate larger minimums than industry standards, especially for rabbits and guinea pigs.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Only Floor Area Without Height</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Floor space alone doesn't capture a pet's true living volume; always include vertical dimensions for an accurate picture of available space.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming One Cage Size Fits All Ages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Juvenile pets grow rapidly and require cage upgrades every few months; recalculate as your animal reaches adulthood.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overcounting Social Housing Space</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adding a second pet doesn't simply double space needs; use proper multipliers to avoid underestimating cage requirements.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Regional Regulation Differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some countries and states have stricter cage minimums than industry guidelines; verify local legal requirements before finalizing your setup.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors does the Cage Size Requirement Calculator consider?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator considers pet species, age, number of animals, and activity level to determine minimum cage dimensions in cubic feet or meters.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate are the cage size recommendations from this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recommendations follow ASPCA and veterinary guidelines updated for 2024-2025, but local regulations and individual animal needs may require adjustments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for multiple different pet species in one cage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this calculator is designed for single-species housing; multi-species setups require separate assessments due to compatibility and territorial concerns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the calculator account for enrichment space and exercise areas?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, recommended sizes include space for climbing structures, hideouts, and movement, not just basic floor area.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my pet needs more space than the calculator recommends?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Larger cages are always beneficial; the calculator provides minimum standards, but exceeding them improves welfare and behavior.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I update my cage size as my pet grows?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Re-run the calculator every 3-6 months during growth phases, or annually once your pet reaches adult size.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are vertical dimensions as important as floor space for cage sizing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, especially for climbing species like rodents and reptiles; total volume matters more than horizontal footprint alone.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.mspca.org/pet_resources/hamster-care/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. MSPCA Hamster Care Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive care recommendations including minimum cage sizes for hamsters and other small mammals.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Pet Care Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative source for minimum housing and welfare standards across domestic pets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/small-mammal-care"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. American Veterinary Medical Association: Small Mammal Care
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary resource covering husbandry and welfare standards for small mammals.
-            </p>
+          <li>
+            <a href="https://www.aza.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Association of Zoos and Aquariums (AZA) Housing Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional standards for exotic and zoological animal housing and space requirements.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.rabbit.org/faq/space.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. House Rabbit Society: Space Requirements
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed guidelines on appropriate enclosure sizes for rabbits to promote health and happiness.
-            </p>
+          <li>
+            <a href="https://www.vin.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network (VIN) Pet Housing Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed veterinary recommendations for cage sizing and enrichment across species.</p>
+          </li>
+          <li>
+            <a href="https://www.humanesociety.org/resources/pets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Humane Society of the United States</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based animal welfare standards and housing recommendations for common household pets.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

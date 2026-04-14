@@ -82,25 +82,33 @@ export default function CatAcetaminophenIbuprofenExposureRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is acetaminophen so dangerous to cats?",
-      answer:
-        "Acetaminophen is highly toxic to cats because they lack the necessary liver enzymes to safely metabolize it. This leads to the accumulation of harmful metabolites that cause oxidative damage to red blood cells and liver tissue. Even small doses can result in severe poisoning, making prompt veterinary care essential if exposure occurs.",
+      question: "What acetaminophen dose is toxic to dogs?",
+      answer: "Dogs can experience liver damage at doses exceeding 100-150 mg/kg, with severe toxicity typically occurring above 200 mg/kg. A single 500 mg tablet poses significant risk to small dogs under 10 lbs.",
     },
     {
-      question: "How does ibuprofen affect cats differently than humans?",
-      answer:
-        "Ibuprofen can cause serious gastrointestinal irritation, kidney damage, and central nervous system effects in cats, even at doses much lower than those tolerated by humans. Cats metabolize ibuprofen poorly, which increases the risk of toxicity. Therefore, any accidental ingestion should be treated as an emergency requiring veterinary evaluation.",
+      question: "Is ibuprofen safer than acetaminophen for pets?",
+      answer: "No; ibuprofen is actually more toxic to dogs than acetaminophen, causing gastrointestinal ulceration and kidney damage at doses as low as 100 mg/kg, with GI signs appearing within 2-4 hours of ingestion.",
     },
     {
-      question: "What symptoms indicate my cat has ingested a toxic dose?",
-      answer:
-        "Symptoms of acetaminophen or ibuprofen toxicity in cats include vomiting, lethargy, difficulty breathing, swelling of the face or paws, and dark or discolored gums. These signs reflect internal damage and require immediate veterinary attention. Early recognition and treatment significantly improve the prognosis.",
+      question: "How quickly does acetaminophen poisoning show symptoms?",
+      answer: "Clinical signs typically appear 1-4 hours after ingestion and include lethargy, vomiting, abdominal pain, and dark urine; liver damage may take 24-72 hours to become apparent.",
     },
     {
-      question: "Can I induce vomiting at home if my cat ingests these medications?",
-      answer:
-        "Inducing vomiting at home is generally not recommended without veterinary guidance because it can cause additional harm or be ineffective depending on the time since ingestion. Some medications may cause esophageal irritation or aspiration pneumonia if vomited improperly. Always contact a veterinarian or poison control center immediately for advice.",
+      question: "What should I do if my pet ingests human pain medication?",
+      answer: "Contact your veterinarian or ASPCA Animal Poison Control Center (888-426-4435) immediately with your pet's weight and the medication dose; do not wait for symptoms to develop.",
     },
+    {
+      question: "Can cats be poisoned by acetaminophen or ibuprofen?",
+      answer: "Yes; cats are highly sensitive to both drugs, with acetaminophen causing toxicity at doses &gt;60 mg/kg and ibuprofen at &gt;50 mg/kg, making them even more susceptible than dogs.",
+    },
+    {
+      question: "What's the difference between toxic and lethal doses?",
+      answer: "Toxic doses cause clinical signs and organ damage but may be survivable with treatment, while lethal doses result in death; the gap narrows significantly in small pets and cats.",
+    },
+    {
+      question: "How is acetaminophen or ibuprofen poisoning treated?",
+      answer: "Treatment includes activated charcoal for recent ingestion, IV fluids, liver protectants (like N-acetylcysteine for acetaminophen), and supportive care; prognosis depends on dose and time to treatment.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -236,98 +244,217 @@ export default function CatAcetaminophenIbuprofenExposureRiskCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Acetaminophen/Ibuprofen Exposure Risk (human meds)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Acetaminophen and ibuprofen are common human pain relievers that pose significant toxicity risks to cats. Unlike humans, cats metabolize these drugs very poorly due to deficiencies in liver enzymes responsible for detoxification. This metabolic limitation means even small amounts can cause severe and potentially fatal damage to vital organs such as the liver and kidneys.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Acetaminophen toxicity primarily causes oxidative damage to red blood cells, leading to methemoglobinemia and anemia, while ibuprofen mainly induces gastrointestinal ulceration and kidney injury. Both medications can rapidly cause clinical signs such as vomiting, lethargy, difficulty breathing, and swelling. Early recognition and intervention are critical to improving outcomes in affected cats.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator estimates the risk level based on the estimated dose ingested relative to the cat’s weight, helping pet owners and veterinarians quickly assess the urgency of the situation. It is important to remember that any exposure should prompt immediate veterinary consultation, as individual sensitivity and clinical response can vary widely.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Acetaminophen/Ibuprofen Exposure Risk Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates the toxicity risk of accidental acetaminophen or ibuprofen ingestion in dogs, cats, and other pets by comparing the ingested dose to established toxicological thresholds.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's weight in pounds or kilograms, select the medication type, and input the total dose consumed (in milligrams). The calculator will identify the medication strength from common over-the-counter formulations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results classify exposure as safe, mild concern, moderate risk, or severe toxicity, helping you determine whether immediate veterinary care is necessary. Always contact your vet or poison control center before relying on calculator results alone.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this tool, enter your cat’s weight and the estimated amount of acetaminophen or ibuprofen ingested. Select the medication type to ensure accurate risk assessment. The calculator will then provide an estimated dose per kilogram and categorize the exposure risk based on veterinary toxicology data.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Choose the medication type your cat was exposed to—either acetaminophen or ibuprofen.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your cat’s weight in pounds or kilograms, depending on your preferred unit system.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the estimated total dose ingested in milligrams. This may require checking pill strength or packaging.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the estimated mg/kg dose and risk level. Follow any warnings and seek veterinary care immediately if risk is moderate or high.
-          </li>
+      {/* TABLE: Acetaminophen Toxicity Thresholds by Pet Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Acetaminophen Toxicity Thresholds by Pet Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated toxic dose ranges for acetaminophen exposure in dogs based on body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Toxic Dose (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose per kg</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 lbs (2.3 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">230-345</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate to High</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 lbs (4.5 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450-675</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate to High</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25 lbs (11.4 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,140-1,710</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50 lbs (22.7 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,270-3,405</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low to Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75 lbs (34 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,400-5,100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100 lbs (45.5 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,550-6,825</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Doses &gt;200 mg/kg are considered severely toxic; smaller pets and cats require immediate veterinary attention at lower exposures.</p>
+      </section>
+
+      {/* TABLE: Ibuprofen Toxicity Comparison for Common Pet Medications */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Ibuprofen Toxicity Comparison for Common Pet Medications</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Ibuprofen dosing found in over-the-counter human pain relievers and relative pet toxicity risk.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Product</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose per Unit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Dose (Dogs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toxic Dose (Cats)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Onset of Symptoms</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Standard Ibuprofen Tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;100 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;50 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Children's Ibuprofen Liquid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 mg/5mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;100 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;50 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extra Strength Ibuprofen</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;100 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;50 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ibuprofen + Acetaminophen Combo</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 + 500 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Both thresholds apply</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Both thresholds apply</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-4 hours</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">GI ulceration is the primary concern with ibuprofen; kidney and liver damage can develop with chronic or high-dose exposure.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store all human medications in child-proof and pet-proof cabinets; acetaminophen and ibuprofen are commonly found in bedside tables where pets may access them.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check ingredient lists on combination medications, as many cold and flu remedies contain both acetaminophen and ibuprofen, increasing toxicity risk with small ingestions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep the ASPCA Animal Poison Control Center number (888-426-4435) posted on your refrigerator; they can provide specific dosing guidance based on your pet's exact weight.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Be aware that extended-release formulations may delay symptom onset but can result in prolonged toxicity; report the specific product name to your veterinarian.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming small doses are safe</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even a single 500 mg acetaminophen tablet can cause liver damage in a 5 lb dog; never assume 'just one pill' is harmless.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Waiting for symptoms before calling the vet</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">By the time signs like vomiting or lethargy appear, organ damage may already be underway; contact a veterinarian immediately after ingestion.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing ibuprofen with acetaminophen toxicity profiles</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Ibuprofen causes GI ulceration and kidney damage at lower doses than acetaminophen, making it more dangerous in many cases.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for pet species sensitivity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats are far more susceptible to both drugs than dogs; a dose safe for a dog may be life-threatening to a cat of similar weight.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What acetaminophen dose is toxic to dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dogs can experience liver damage at doses exceeding 100-150 mg/kg, with severe toxicity typically occurring above 200 mg/kg. A single 500 mg tablet poses significant risk to small dogs under 10 lbs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is ibuprofen safer than acetaminophen for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No; ibuprofen is actually more toxic to dogs than acetaminophen, causing gastrointestinal ulceration and kidney damage at doses as low as 100 mg/kg, with GI signs appearing within 2-4 hours of ingestion.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How quickly does acetaminophen poisoning show symptoms?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Clinical signs typically appear 1-4 hours after ingestion and include lethargy, vomiting, abdominal pain, and dark urine; liver damage may take 24-72 hours to become apparent.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my pet ingests human pain medication?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian or ASPCA Animal Poison Control Center (888-426-4435) immediately with your pet's weight and the medication dose; do not wait for symptoms to develop.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can cats be poisoned by acetaminophen or ibuprofen?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; cats are highly sensitive to both drugs, with acetaminophen causing toxicity at doses &gt;60 mg/kg and ibuprofen at &gt;50 mg/kg, making them even more susceptible than dogs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between toxic and lethal doses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Toxic doses cause clinical signs and organ damage but may be survivable with treatment, while lethal doses result in death; the gap narrows significantly in small pets and cats.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How is acetaminophen or ibuprofen poisoning treated?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Treatment includes activated charcoal for recent ingestion, IV fluids, liver protectants (like N-acetylcysteine for acetaminophen), and supportive care; prognosis depends on dose and time to treatment.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/acetaminophen"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. ASPCA Animal Poison Control Center: Acetaminophen Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of acetaminophen poisoning in pets, including clinical signs and treatment protocols.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official resource for reporting pet poisoning exposures and obtaining real-time veterinary toxicology guidance.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/ibuprofen-toxicity-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Cornell Feline Health Center: Ibuprofen Toxicity in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed explanation of ibuprofen’s effects on cats, including toxic doses and emergency care recommendations.
-            </p>
+          <li>
+            <a href="https://www.petmd.com/dogs/conditions/acetaminophen-toxicity-dogs" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD: Acetaminophen Toxicity in Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive clinical overview of acetaminophen poisoning symptoms, diagnosis, and treatment protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/poisoning-by-drugs-and-chemicals/acetaminophen-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual: Acetaminophen Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary resource describing pathophysiology, clinical signs, and treatment of acetaminophen poisoning.
-            </p>
+          <li>
+            <a href="https://www.vpis.info" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Toxicology Database (VPIS)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based veterinary poison information system used by veterinarians worldwide for toxicity assessment.</p>
+          </li>
+          <li>
+            <a href="https://onlinelibrary.wiley.com/journal/13652885" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Veterinary Pharmacology and Therapeutics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed journal publishing research on pet medication toxicity and pharmacokinetics.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

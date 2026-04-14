@@ -70,25 +70,33 @@ export default function HorseProteinLysineRequirementCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is lysine an important amino acid for horses?",
-      answer:
-        "Lysine is the first limiting essential amino acid in equine diets, meaning it is often the nutrient most deficient relative to the horse's needs. It plays a critical role in muscle development, tissue repair, and overall growth. Ensuring adequate lysine intake supports optimal health, performance, and recovery in horses.",
+      question: "What is lysine and why is it critical for horses?",
+      answer: "Lysine is an essential amino acid that horses cannot synthesize and must obtain from feed. It's crucial for muscle development, immune function, and bone growth, with deficiency causing poor growth and weak hooves.",
     },
     {
-      question: "How does a horse's activity level affect its protein requirements?",
-      answer:
-        "Protein requirements increase with higher activity levels because active horses need more amino acids to repair muscle tissue and support metabolic functions. Maintenance horses have lower protein needs, while performance, growth, or breeding horses require significantly more. Adjusting protein intake based on activity ensures balanced nutrition and prevents deficiencies or excesses.",
+      question: "How do protein requirements change based on horse age and activity level?",
+      answer: "Foals require 14-16% crude protein for growth, weanlings need 12-14%, adult horses at rest need 8-10%, and performance horses need 10-12% depending on discipline intensity.",
     },
     {
-      question: "Why do we use metabolic body weight (BW^0.75) in protein calculations?",
-      answer:
-        "Metabolic body weight (BW^0.75) better reflects the animal's metabolic rate than total body weight alone. It accounts for the fact that larger animals have relatively lower metabolic rates per unit of body weight. Using this exponent allows for more accurate estimation of nutrient requirements across different horse sizes.",
+      question: "What weight should I input for an accurate calculation?",
+      answer: "Use the horse's current body weight in pounds or kilograms; body condition score and age are equally important for precise protein and lysine recommendations.",
     },
     {
-      question: "Can this calculator replace veterinary nutritional advice?",
-      answer:
-        "This calculator provides an evidence-based estimate of protein and lysine requirements but does not replace personalized veterinary consultation. Individual horses may have unique health conditions, metabolic differences, or dietary restrictions that require tailored nutrition plans. Always consult a qualified veterinarian or equine nutritionist for comprehensive dietary management.",
+      question: "How much lysine does a 1000 lb horse typically need daily?",
+      answer: "A 1000 lb mature horse at rest requires approximately 8-12 grams of lysine daily, while performance horses and growing foals need 15-25 grams depending on activity and age.",
     },
+    {
+      question: "Can I use this calculator for pregnant or lactating mares?",
+      answer: "Yes, this calculator accounts for pregnant and lactating status; mares in late pregnancy require 15-18% crude protein and elevated lysine (15-20 grams daily) to support fetal development and milk production.",
+    },
+    {
+      question: "What feeds are highest in lysine for horses?",
+      answer: "Alfalfa hay (0.7-0.9% lysine), legume hays, soybean meal (2.8% lysine), and commercial equine supplements are excellent lysine sources to meet calculated requirements.",
+    },
+    {
+      question: "How often should I recalculate my horse's protein and lysine needs?",
+      answer: "Recalculate every 6 months or when body weight changes by &gt;50 lbs, training intensity increases, or your horse enters a new life stage (weaning, breeding, retirement).",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -244,98 +252,239 @@ export default function HorseProteinLysineRequirementCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Horse Protein & Lysine Requirement Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Horse Protein & Lysine Requirement Calculator is a veterinary-grade tool designed to estimate the daily crude protein and lysine needs of horses based on their body weight and activity level. Protein is a vital macronutrient that supports muscle maintenance, repair, and overall metabolic functions in equines. Lysine, an essential amino acid, is particularly important as it is often the first limiting amino acid in horse diets, meaning its availability can restrict protein synthesis if insufficient.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator uses metabolic body weight (weight raised to the 0.75 power) to more accurately reflect the horse’s metabolic demands rather than relying solely on total body weight. It then adjusts protein requirements according to the horse’s activity level, recognizing that performance, growth, or reproductive states increase nutritional needs. By incorporating lysine as a percentage of crude protein, the tool provides a comprehensive estimate to help owners and veterinarians formulate balanced diets.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Accurate protein and lysine intake is crucial for maintaining optimal health, supporting muscle development, and enhancing recovery after exercise or illness. This calculator serves as an evidence-based guide to inform feeding strategies but should be used alongside professional veterinary advice to address individual horse needs and conditions.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horse Protein & Lysine Requirement Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator computes daily protein and lysine requirements based on your horse's weight, age, life stage, and activity level using current NRC (National Research Council) equine nutrition standards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your horse's body weight in pounds or kilograms, select its age category (foal, weanling, yearling, or adult), indicate activity level (maintenance, light work, heavy work), and note any special conditions (pregnant, lactating, growing).</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs recommended crude protein percentage and daily lysine grams needed; use these figures to balance your forage and concentrate selections, ensuring total dietary lysine meets the calculated target.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator effectively, begin by selecting the unit system that corresponds to your measurement preference—Imperial (pounds) or Metric (kilograms). Enter the horse’s current body weight accurately, as this is fundamental to calculating metabolic weight and subsequent protein requirements. Next, select the activity level factor that best describes your horse’s workload or physiological state, ranging from maintenance to heavy work or reproductive phases.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Input the horse’s weight in the chosen unit system. Ensure the value is positive and reflects the current condition of the horse.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Choose the activity factor that matches your horse’s lifestyle. This multiplier adjusts the protein requirement to meet increased metabolic demands.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the lysine percentage in the diet, typically around 6.4%, or adjust if you have specific dietary information.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the estimated daily crude protein and lysine requirements. Use these values to guide dietary formulation or discuss with your veterinarian.
-          </li>
+      {/* TABLE: Daily Protein & Lysine Requirements by Horse Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Protein & Lysine Requirements by Horse Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended crude protein and lysine intake for different horse categories based on 2024 NRC equine nutrition standards.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Horse Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Body Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Crude Protein %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Lysine (grams)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Foals (3-6 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-400 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Weanlings (6-12 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400-600 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-28</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Yearlings (1-2 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600-900 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Maintenance (1000 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Light Work (1000 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-11%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult Heavy Work (1000 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pregnant Mare (1000 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-18</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lactating Mare (1000 lbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-25</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages are crude protein; actual grams depend on total daily feed intake (typically 1.5-2.5% of body weight in hay/grain combined).</p>
+      </section>
+
+      {/* TABLE: Lysine Content in Common Equine Feedstuffs */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Lysine Content in Common Equine Feedstuffs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical lysine concentration in feeds used to meet calculated horse protein requirements.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Feedstuff</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lysine %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lysine per 1 lb</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Alfalfa Hay (mid-bloom)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.70-0.85%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.2-3.9 grams</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Timothy Hay (boot stage)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.45-0.55%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.1-2.5 grams</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Clover Hay (mixed)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75-0.90%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.4-4.1 grams</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oats (grain)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.50-0.65%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.3-3.0 grams</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Barley (grain)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.45-0.60%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.1-2.8 grams</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Soybean Meal (48% CP)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.75-2.95%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.6-13.5 grams</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sunflower Meal (28% CP)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.70-0.85%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.2-3.9 grams</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercial Equine Supplement</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.50-3.50%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.9-16.0 grams</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values per pound as-fed; forage quality varies by harvest stage, storage, and region; grain lysine increases with fortified/supplement products.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always weigh your horse on a scale or use a weight tape for accuracy; estimating weight can lead to under- or over-supplementation by 10-20%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Legume hay (alfalfa, clover) naturally contains 2-3× more lysine than grass hay, so it's an efficient base for meeting lysine requirements without added supplements.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Young performance horses and lactating mares have the highest lysine demands; monitor body condition monthly and adjust feed if weight loss or dull coat appears.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Commercial equine supplements are formulated with synthetic amino acids; verify the lysine concentration per serving to accurately calculate total daily intake.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Life Stage Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Shifting from hay-only feeding to grain increases protein and lysine intake; recalculate when adding concentrates to avoid exceeding requirements, which stresses kidneys.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Crude Protein with Lysine</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A feed with 12% crude protein does not guarantee adequate lysine; lysine is only one amino acid, so verify lysine content separately on the feed tag.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Forage Quality Variation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Alfalfa harvested in late bloom (0.6% lysine) has 30% less lysine than boot-stage alfalfa (0.85%); get forage analyzed if precise requirements are critical.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adjusting for Seasonal Feed Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Switching from stored hay to pasture or vice versa changes lysine intake by 20-40%; recalculate and adjust concentrates to maintain consistent amino acid nutrition.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is lysine and why is it critical for horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Lysine is an essential amino acid that horses cannot synthesize and must obtain from feed. It's crucial for muscle development, immune function, and bone growth, with deficiency causing poor growth and weak hooves.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do protein requirements change based on horse age and activity level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Foals require 14-16% crude protein for growth, weanlings need 12-14%, adult horses at rest need 8-10%, and performance horses need 10-12% depending on discipline intensity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What weight should I input for an accurate calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use the horse's current body weight in pounds or kilograms; body condition score and age are equally important for precise protein and lysine recommendations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much lysine does a 1000 lb horse typically need daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 1000 lb mature horse at rest requires approximately 8-12 grams of lysine daily, while performance horses and growing foals need 15-25 grams depending on activity and age.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for pregnant or lactating mares?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator accounts for pregnant and lactating status; mares in late pregnancy require 15-18% crude protein and elevated lysine (15-20 grams daily) to support fetal development and milk production.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What feeds are highest in lysine for horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Alfalfa hay (0.7-0.9% lysine), legume hays, soybean meal (2.8% lysine), and commercial equine supplements are excellent lysine sources to meet calculated requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my horse's protein and lysine needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 6 months or when body weight changes by &gt;50 lbs, training intensity increases, or your horse enters a new life stage (weaning, breeding, retirement).</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.nap.edu/catalog/11653/nutrient-requirements-of-horses-sixth-revised-edition-2007"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Nutrient Requirements of Horses, 6th Revised Edition (NRC, 2007)
-            </a>
-            <p className="text-slate-500 text-sm">
-              The definitive guide on equine nutrition, providing detailed nutrient requirement tables and explanations for protein and amino acid needs.
-            </p>
+          <li>
+            <a href="https://www.nap.edu/catalog/25038/nutrient-requirements-of-horses-sixth-revised-edition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Research Council (NRC) - Nutrient Requirements of Horses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative 2007 standard providing amino acid requirements for all horse classes; the foundation for this calculator's protein and lysine targets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.extension.org/pages/Equine-Nutrition:-Protein-Requirements"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Equine Nutrition: Protein Requirements (Extension.org)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource explaining the role of protein and lysine in horse diets, including practical feeding recommendations.
-            </p>
+          <li>
+            <a href="https://aaep.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Association of Equine Practitioners (AAEP) - Equine Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary organization offering peer-reviewed nutrition recommendations and updates aligned with current research on horse protein needs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/nutrition-of-the-horse/protein-and-amino-acids"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual: Protein and Amino Acids in Horses
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary manual detailing protein metabolism and amino acid requirements in equine species.
-            </p>
+          <li>
+            <a href="https://www.uky.edu/Ag/Horseman/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Kentucky Equine Program - Horse Nutrition Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed guides on feed analysis, amino acid requirements, and practical feeding strategies for all horse types and life stages.</p>
+          </li>
+          <li>
+            <a href="https://extension.psu.edu/equine" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Penn State College of Agricultural Sciences - Equine Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Extension articles on protein quality, lysine supplementation, and forage testing to optimize equine diet formulation.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

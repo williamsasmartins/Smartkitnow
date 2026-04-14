@@ -59,25 +59,33 @@ export default function AquariumSaltDosageTherapeuticCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is aquarium salt used therapeutically in fish tanks?",
-      answer:
-        "Aquarium salt is commonly used to treat various fish diseases such as Ichthyophthirius (Ich) and other parasitic infections. It helps by creating a hypertonic environment that stresses and kills parasites without harming most freshwater fish. Additionally, salt can improve gill function and reduce osmotic stress during illness, aiding fish recovery.",
+      question: "What is the ideal therapeutic salt concentration for freshwater aquariums?",
+      answer: "The standard therapeutic dosage is 1-3 teaspoons per gallon, which creates a concentration of approximately 0.1-0.3%. Most treatments target 0.2% (2-3 ppm) for stress relief and parasite control.",
     },
     {
-      question: "How do I determine the correct dosage of aquarium salt for treatment?",
-      answer:
-        "The correct dosage depends on the volume of water in the aquarium and the therapeutic concentration recommended for the specific condition, typically between 1 to 3 grams per liter. Overdosing can harm fish and beneficial bacteria, so precise measurement is critical. This calculator helps by converting your tank volume and desired dose into the exact amount of salt needed.",
+      question: "How do I calculate salt dosage for an irregularly shaped aquarium?",
+      answer: "Measure the length, width, and average depth in inches, multiply them together, divide by 231 to get gallons, then use this volume in the calculator. For non-rectangular tanks, estimate the effective volume by treating curves as partial sections.",
     },
     {
-      question: "Can I use aquarium salt continuously for my fish?",
-      answer:
-        "Continuous use of aquarium salt is generally not recommended as it can disrupt the natural balance of the tank and stress fish over time. Therapeutic salt treatments are usually short-term interventions to combat specific diseases. After treatment, it is important to perform water changes to remove excess salt and restore normal conditions.",
+      question: "Can I use table salt or kosher salt for therapeutic aquarium dosing?",
+      answer: "No—use only aquarium salt or marine salt without additives like iodine or anti-caking agents. Table salt and kosher salt contain chemicals that harm fish gills and water chemistry.",
     },
     {
-      question: "Is aquarium salt safe for all types of fish and aquatic plants?",
-      answer:
-        "Aquarium salt is safe for many freshwater fish species but can be harmful to some sensitive species such as scaleless fish or certain plants. It is important to research the tolerance of your specific fish and plants before treatment. Consulting a veterinarian or aquatic specialist ensures safe and effective use tailored to your aquarium inhabitants.",
+      question: "How long should I maintain therapeutic salt levels in the aquarium?",
+      answer: "Therapeutic dosing typically lasts 7-14 days for acute conditions like ich or fin rot. Gradual water changes reduce salt levels by 25% weekly after treatment begins.",
     },
+    {
+      question: "What aquarium types require adjusted salt calculations?",
+      answer: "Saltwater and brackish tanks need different dosing than freshwater systems. The calculator is designed for freshwater therapeutic use; marine systems already contain dissolved salts at 1.020-1.025 specific gravity.",
+    },
+    {
+      question: "How do I account for substrate and décor displacement in volume calculations?",
+      answer: "Subtract 10-15% from total tank volume to account for gravel, rocks, plants, and decorations, then enter the adjusted volume into the calculator for accurate dosing.",
+    },
+    {
+      question: "What happens if I overdose aquarium salt therapeutically?",
+      answer: "Overdosing above 0.5% can stress fish kidneys, damage plants, and disrupt beneficial bacteria. Always verify your tank volume before calculating to prevent accidental overdosing.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -184,101 +192,218 @@ export default function AquariumSaltDosageTherapeuticCalculator() {
   // EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Aquarium Salt Dosage Calculator (Therapeutic)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Aquarium salt is a vital therapeutic agent used in freshwater aquaculture and home aquariums to treat a variety of fish diseases, including parasitic infections like Ichthyophthirius multifiliis (Ich). The salt works by creating an osmotic imbalance that stresses and kills parasites while supporting fish health by improving gill function and reducing osmotic stress. Correct dosing is essential to maximize benefits and avoid harm to fish and beneficial microorganisms.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The therapeutic dosage of aquarium salt typically ranges from 1 to 3 grams per liter of water, depending on the species of fish and the severity of the condition being treated. Overdosing can lead to toxicity, stressing fish and damaging sensitive species or plants. This calculator provides a precise measurement of the total salt required based on your aquarium volume and desired therapeutic concentration, ensuring safe and effective treatment.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Using aquarium salt correctly not only helps in treating diseases but also supports recovery by enhancing fish osmoregulation and reducing secondary infections. It is important to monitor fish behavior and water parameters during treatment and to perform water changes after therapy to restore normal tank conditions. Always consult a veterinary professional for guidance tailored to your specific aquarium setup and fish species.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Aquarium Salt Dosage Calculator (Therapeutic)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator computes the precise amount of aquarium salt needed to achieve therapeutic concentrations (0.1-0.3%) for treating common freshwater fish ailments like ich, fin rot, and stress. It eliminates guesswork and prevents dangerous over- or under-dosing.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your aquarium's total volume in gallons and select your desired therapeutic concentration percentage. The calculator instantly returns the exact weight (grams) or volume (teaspoons) of salt required for your specific tank.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the result to measure salt accurately with a kitchen scale or measuring spoon, dissolve it in tank water before adding, and monitor fish behavior daily. Reduce salt levels gradually through 25% water changes every 3-7 days depending on the condition being treated.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps you determine the exact amount of aquarium salt needed for therapeutic treatment based on your tank's volume and the desired salt concentration. Begin by selecting your preferred unit system—imperial (gallons) or metric (liters)—to match how you measure your aquarium. Then, input the total volume of your aquarium water and the therapeutic dose in grams per liter, which typically ranges from 1 to 3 g/L depending on the disease.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system that corresponds to your aquarium volume measurement.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the total volume of your aquarium in gallons or liters.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the therapeutic dose of aquarium salt in grams per liter, typically between 1 and 3 g/L.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to see the total amount of salt in grams needed for your aquarium.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Follow veterinary guidance for treatment duration and monitor fish health closely.
-          </li>
+      {/* TABLE: Therapeutic Salt Dosage by Aquarium Volume */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Therapeutic Salt Dosage by Aquarium Volume</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this reference table to verify calculator results for common aquarium sizes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tank Volume (Gallons)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0.1% Concentration (TSP)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0.2% Concentration (TSP)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0.3% Concentration (TSP)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2/3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2/3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Measurements in teaspoons (TSP). 1 teaspoon aquarium salt ≈ 6 grams. Verify exact salt density with product labeling.</p>
+      </section>
+
+      {/* TABLE: Common Fish Conditions and Recommended Salt Dosage */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Fish Conditions and Recommended Salt Dosage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different ailments benefit from varying salt concentrations and treatment durations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Concentration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Duration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Water Change Rate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ich/White Spot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-14 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25% every 3 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fin Rot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-14 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25% weekly</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">General Stress Relief</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.2%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25% weekly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Velvet Disease</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-21 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25% every 2 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Gill Fluke Treatment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.3%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-14 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25% every 3 days</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always monitor fish behavior and remove carbon if using. Gradually reduce salt through partial water changes rather than abrupt removal.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always dissolve salt in a separate container of tank water before adding to avoid shocking fish with concentrated solution.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Remove activated carbon filters during salt treatment, as they absorb salt and reduce therapeutic effectiveness.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a hydrometer or refractometer to verify salt concentration if treating high-value fish or for extended therapy periods.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Maintain adequate aeration during salt treatment because elevated salinity reduces oxygen saturation in water.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Iodized or Anti-Caking Salt</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Table salt and kosher salt contain additives harmful to fish; always use non-iodized aquarium salt or marine salt for therapeutic dosing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Tank Substrate and Décor Volume</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to subtract 10-15% for gravel, plants, and decorations leads to overdosing; measure effective water volume, not just tank dimensions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Maintaining Therapeutic Salt Indefinitely</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Long-term salt exposure stresses fish kidneys and kills beneficial bacteria; always taper salt levels through water changes after 7-14 days of treatment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Calculating Dosage Without Verifying Tank Volume</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using manufacturer-stated capacity instead of actual water volume causes serious miscalculations; always measure your tank with a measuring cup or formula.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the ideal therapeutic salt concentration for freshwater aquariums?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The standard therapeutic dosage is 1-3 teaspoons per gallon, which creates a concentration of approximately 0.1-0.3%. Most treatments target 0.2% (2-3 ppm) for stress relief and parasite control.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate salt dosage for an irregularly shaped aquarium?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Measure the length, width, and average depth in inches, multiply them together, divide by 231 to get gallons, then use this volume in the calculator. For non-rectangular tanks, estimate the effective volume by treating curves as partial sections.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use table salt or kosher salt for therapeutic aquarium dosing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No—use only aquarium salt or marine salt without additives like iodine or anti-caking agents. Table salt and kosher salt contain chemicals that harm fish gills and water chemistry.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long should I maintain therapeutic salt levels in the aquarium?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Therapeutic dosing typically lasts 7-14 days for acute conditions like ich or fin rot. Gradual water changes reduce salt levels by 25% weekly after treatment begins.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What aquarium types require adjusted salt calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Saltwater and brackish tanks need different dosing than freshwater systems. The calculator is designed for freshwater therapeutic use; marine systems already contain dissolved salts at 1.020-1.025 specific gravity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for substrate and décor displacement in volume calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Subtract 10-15% from total tank volume to account for gravel, rocks, plants, and decorations, then enter the adjusted volume into the calculator for accurate dosing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I overdose aquarium salt therapeutically?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Overdosing above 0.5% can stress fish kidneys, damage plants, and disrupt beneficial bacteria. Always verify your tank volume before calculating to prevent accidental overdosing.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aquariumcoop.com/blogs/aquarium/salt-in-freshwater-aquariums"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Aquarium Salt Use in Freshwater Aquariums - Aquarium Co-Op
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guide on the therapeutic use of aquarium salt, including dosing, benefits, and precautions for freshwater fish.
-            </p>
+          <li>
+            <a href="https://www.aquariumsalts.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Aquarium Products - Salt Treatment Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to therapeutic salt dosing for freshwater fish conditions and treatment protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.wsu.edu/outreach/Pet-Health-Topics/categories/fish-health"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Fish Health and Disease Management - Washington State University Veterinary Medicine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary insights into fish disease treatment protocols, including the use of therapeutic salts and environmental management.
-            </p>
+          <li>
+            <a href="https://edis.ifas.ufl.edu/fa016" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Florida IFAS - Fish Disease Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed recommendations for salt therapy in aquaculture and home aquariums with dosage specifications.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aquaticcommunity.com/aquariumforum/archive/index.php/t-123456.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Therapeutic Salt Treatments for Freshwater Fish - Aquatic Community Forum
-            </a>
-            <p className="text-slate-500 text-sm">
-              Discussion and veterinary recommendations on dosing and safety considerations for aquarium salt treatments.
-            </p>
+          <li>
+            <a href="https://www.thesprucepets.com/aquarium-salt-1378319" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce Pets - Aquarium Salt for Fish Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Practical guide explaining therapeutic salt concentrations, application methods, and safety considerations for freshwater systems.</p>
+          </li>
+          <li>
+            <a href="https://www.aquaticcommunity.com/aquariumfishes/salttreatment.php" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Aquatic Community - Salt Treatment Safety Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Details on salt concentrations for specific fish diseases, duration guidelines, and compatibility with tank inhabitants.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

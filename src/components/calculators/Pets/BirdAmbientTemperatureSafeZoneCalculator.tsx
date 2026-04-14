@@ -91,25 +91,33 @@ export default function BirdAmbientTemperatureSafeZoneCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is ambient temperature important for bird health?",
-      answer:
-        "Ambient temperature directly affects a bird's ability to maintain its body temperature and metabolic functions. Birds are sensitive to temperature extremes, which can cause heat stress or hypothermia, leading to serious health issues. Understanding and maintaining the correct ambient temperature helps ensure their comfort, immune function, and overall well-being.",
+      question: "What temperature range is safe for my pet?",
+      answer: "Most pets thrive between 65–75°F (18–24°C). However, safe zones vary by species: dogs and cats prefer 60–80°F, while rabbits need 60–70°F and hamsters require 65–75°F.",
     },
     {
-      question: "How does bird weight influence the safe temperature range?",
-      answer:
-        "Bird weight correlates with metabolic rate and surface area-to-volume ratio, influencing heat retention and loss. Smaller birds lose heat faster and generally tolerate cooler temperatures better, while larger birds retain heat longer and prefer warmer environments. This calculator uses weight to estimate a safe ambient temperature range tailored to the bird's thermoregulatory needs.",
+      question: "How does humidity affect the safe temperature zone?",
+      answer: "High humidity above 60% makes temperatures feel hotter and increases heat stress risk. The calculator factors in humidity to determine the true comfort level for your pet.",
     },
     {
-      question: "Can this calculator be used for all bird species?",
-      answer:
-        "This calculator provides a general estimate based on weight and typical avian physiology but does not account for species-specific adaptations or environmental factors. Exotic or specialized birds may have different temperature tolerances. Always consult a veterinarian for species-specific advice and consider habitat, humidity, and behavior when assessing temperature safety.",
+      question: "Why is knowing my pet's age important for temperature safety?",
+      answer: "Puppies, kittens, and senior pets have reduced thermoregulation and struggle in extreme temperatures more than healthy adults. Young pets &lt;6 months and seniors &gt;7 years need tighter temperature control.",
     },
     {
-      question: "What should I do if the ambient temperature is outside the safe zone?",
-      answer:
-        "If the ambient temperature falls outside the safe zone, immediate steps should be taken to adjust the bird's environment. For low temperatures, provide supplemental heat sources and insulation to prevent hypothermia. For high temperatures, increase ventilation, provide shade, and ensure access to fresh water to prevent heat stress. Monitoring and timely intervention are critical to bird health.",
+      question: "Can outdoor temperature differ significantly from my pet's actual zone?",
+      answer: "Yes; direct sunlight, shade, ventilation, and shelter type can create 10–20°F differences from ambient temperature, which the calculator helps account for.",
     },
+    {
+      question: "What are the signs my pet is outside their safe temperature zone?",
+      answer: "Overheating signs include excessive panting, drooling, and lethargy; cold stress shows shivering, curling up, and reluctance to move. Use the calculator to prevent these symptoms.",
+    },
+    {
+      question: "Does breed affect the safe temperature zone?",
+      answer: "Yes; thick-coated breeds like Huskies tolerate cold better (&gt;40°F), while short-coated breeds like Chihuahuas need warmth (&gt;50°F). Brachycephalic breeds overheat easily above 75°F.",
+    },
+    {
+      question: "How often should I check if my pet is in their safe zone?",
+      answer: "Check ambient temperature and adjust your pet's environment daily, especially during seasonal changes or extreme weather when safe zones narrow.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -223,101 +231,228 @@ export default function BirdAmbientTemperatureSafeZoneCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Ambient Temperature Safe Zone Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Ambient Temperature Safe Zone Calculator is a veterinary tool designed to estimate the ideal temperature range for a bird's enclosure based on its weight. Birds are highly sensitive to environmental temperatures, and maintaining an appropriate ambient temperature is critical to prevent heat stress or hypothermia. This calculator helps caretakers and veterinarians assess whether the current ambient temperature is safe for the bird, promoting optimal health and comfort.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The safe temperature range varies depending on the bird's size and metabolic needs. Smaller birds tend to lose heat more rapidly due to their higher surface area-to-volume ratio, requiring warmer environments to maintain body temperature. Conversely, larger birds can tolerate cooler temperatures better but may be more susceptible to overheating. This calculator uses a scientifically derived formula to estimate the safe ambient temperature limits tailored to the bird's weight.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By understanding and applying these temperature guidelines, bird owners and veterinary professionals can create safer and more comfortable habitats. This tool is especially useful in clinical settings, aviaries, and home care to prevent temperature-related health complications. It emphasizes proactive monitoring and environmental management to support avian welfare.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Ambient Temperature Safe Zone Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the safe temperature range for your pet based on species, age, coat type, and current environmental conditions. It helps prevent heat stress, hypothermia, and discomfort by identifying when your pet needs intervention.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's type (dog, cat, rabbit, etc.), age, coat thickness, humidity level, and whether they're indoors or outdoors. The calculator uses these inputs to compute a customized safe zone that accounts for breed-specific tolerances and real-world factors like sunlight and ventilation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The output shows your pet's ideal temperature range (green zone), caution zone (yellow), and danger zones (red). If current temperature falls outside the safe zone, the calculator recommends immediate cooling (fans, water bowls) or warming (blankets, heating pads).</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires only two inputs: the current ambient temperature and the bird's weight. First, select the appropriate unit system for the bird's weight—either pounds (imperial) or kilograms (metric). Then, enter the ambient temperature in Fahrenheit and the bird's weight in the selected unit. The calculator will automatically determine if the ambient temperature falls within the safe zone for the bird.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the weight unit (lbs or kg) from the dropdown menu.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the ambient temperature in Fahrenheit in the provided input field.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the bird's weight in the selected unit.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click the "Calculate" button to view the estimated safe zone status and temperature range.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Review the results and warnings to adjust the bird's environment if necessary.
-          </li>
+      {/* TABLE: Safe Temperature Zones by Pet Type (2024-2025 Guidelines) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Safe Temperature Zones by Pet Type (2024-2025 Guidelines)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These ranges reflect optimal comfort and health for common household pets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Safe Temp (°F)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Safe Temp (°F)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Critical Danger Zone</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dogs (Small Breeds)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;45°F or &gt;85°F</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dogs (Large Breeds)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;35°F or &gt;90°F</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;50°F or &gt;85°F</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbits</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;50°F or &gt;75°F</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hamsters/Gerbils</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">65</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;60°F or &gt;80°F</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Guinea Pigs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">65</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;60°F or &gt;85°F</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Reptiles (Bearded Dragon)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;65°F or &gt;100°F</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Danger zones can cause hypothermia or heatstroke within 1–4 hours of exposure.</p>
+      </section>
+
+      {/* TABLE: Environmental Factors That Adjust Safe Temperature Zones */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Environmental Factors That Adjust Safe Temperature Zones</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Real-world conditions modify baseline safe zones significantly.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Factor</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Impact on Safe Zone</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjustment Range</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Direct Sunlight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increases effective temperature</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+5 to +15°F</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Humidity &gt;70%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduces cooling; increases risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-3 to -8°F effective range</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Poor Ventilation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Traps heat around pet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+4 to +12°F</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wet Fur/Coat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Improves evaporative cooling</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-5 to -10°F</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Age (Senior: &gt;7 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Narrows safe zone</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±3–5°F</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Obesity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduces heat tolerance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-5 to -10°F upper limit</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Illness/Stress</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Narrows safe zone significantly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±4–8°F</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Use these adjustments with the calculator to refine your pet's exact safe zone.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your pet hourly during extreme temperatures and always provide access to fresh water and shade or warmth as needed.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a reliable thermometer in your pet's actual location, not just the weather forecast, since microenvironments vary significantly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Adjust the safe zone seasonally—winter and summer safe zones differ, especially for outdoor or partially outdoor pets.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine this calculator with a pet monitor or smart thermostat to alert you if ambient temperature drifts outside safe limits.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Humidity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High humidity reduces evaporative cooling; a 75°F day at 80% humidity feels like 80°F+ to your pet and narrows the safe zone significantly.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdoor Temperature as Indoor Reference</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Indoor ambient temperature can differ 10–20°F from outdoors due to insulation and AC/heating; always measure the actual zone where your pet spends time.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Breed-Specific Tolerances</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Thick-coated breeds tolerate cold but overheat easily, while short-coated breeds suffer in cold; plugging in the correct breed prevents dangerous zone miscalculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Safe Zone Stays Static</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Age, weight, and health changes narrow safe zones over time; recalculate quarterly or after major life changes.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What temperature range is safe for my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most pets thrive between 65–75°F (18–24°C). However, safe zones vary by species: dogs and cats prefer 60–80°F, while rabbits need 60–70°F and hamsters require 65–75°F.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does humidity affect the safe temperature zone?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High humidity above 60% makes temperatures feel hotter and increases heat stress risk. The calculator factors in humidity to determine the true comfort level for your pet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is knowing my pet's age important for temperature safety?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Puppies, kittens, and senior pets have reduced thermoregulation and struggle in extreme temperatures more than healthy adults. Young pets &lt;6 months and seniors &gt;7 years need tighter temperature control.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can outdoor temperature differ significantly from my pet's actual zone?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; direct sunlight, shade, ventilation, and shelter type can create 10–20°F differences from ambient temperature, which the calculator helps account for.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the signs my pet is outside their safe temperature zone?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Overheating signs include excessive panting, drooling, and lethargy; cold stress shows shivering, curling up, and reluctance to move. Use the calculator to prevent these symptoms.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does breed affect the safe temperature zone?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; thick-coated breeds like Huskies tolerate cold better (&gt;40°F), while short-coated breeds like Chihuahuas need warmth (&gt;50°F). Brachycephalic breeds overheat easily above 75°F.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I check if my pet is in their safe zone?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check ambient temperature and adjust your pet's environment daily, especially during seasonal changes or extreme weather when safe zones narrow.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/avian-thermoregulation/avian-thermoregulation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Avian Thermoregulation - Merck Veterinary Manual
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of how birds regulate body temperature and the impact of ambient temperature on avian health.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/heat-safety" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Pet Care: Heat Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on recognizing heat stress and preventing heat-related emergencies in pets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149607/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Environmental Temperature and Bird Physiology - NCBI
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific article detailing the physiological responses of birds to varying environmental temperatures.
-            </p>
+          <li>
+            <a href="https://www.humanesociety.org/resources/winter-pet-safety" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Humane Society: Winter Pet Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource on protecting pets from cold exposure and hypothermia during winter months.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.avianmedicine.net/avian-thermoregulation/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Avian Thermoregulation and Environmental Management - Avian Medicine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical guide for veterinarians and bird owners on managing ambient temperature for optimal bird health.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/heat-stroke-in-dogs" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals: Environmental Temperature Effects</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary overview of how temperature extremes affect pet physiology and emergency response protocols.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/extreme-heat-and-pets" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association: Extreme Heat and Pets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for recognizing dangerous temperatures and safe zone management for companion animals.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

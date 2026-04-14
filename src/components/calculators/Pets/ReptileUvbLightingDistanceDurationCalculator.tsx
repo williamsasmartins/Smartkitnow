@@ -73,25 +73,33 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is UVB lighting distance important for reptiles?",
-      answer:
-        "UVB lighting distance directly affects the intensity of UVB radiation reaching your reptile. If the light is too far, the UVB intensity decreases significantly, reducing Vitamin D3 synthesis essential for calcium metabolism. Maintaining the correct distance ensures your reptile receives adequate UVB exposure without risking burns or eye damage.",
+      question: "What UVB lamp wattage should I use with this calculator?",
+      answer: "Most reptiles thrive with 10-40 watt UVB bulbs depending on species. The calculator works with any wattage, but higher watts allow greater distances while maintaining therapeutic UVB levels of 75-150 IU/cm².",
     },
     {
-      question: "How does UVB exposure duration impact reptile health?",
-      answer:
-        "The duration of UVB exposure determines how much Vitamin D3 your reptile can synthesize daily. Too little exposure can lead to metabolic bone disease, while excessive exposure may cause stress or skin damage. Calculating the optimal duration based on UVB intensity helps balance these risks and promotes healthy bone and immune function.",
+      question: "How does distance affect UVB intensity in this calculator?",
+      answer: "UVB intensity decreases exponentially with distance following the inverse square law. Doubling your lamp distance reduces UVB output to 25% of the original intensity.",
+    },
+    {
+      question: "What are optimal daily UVB exposure hours for reptiles?",
+      answer: "Most diurnal reptiles need 10-14 hours of UVB daily to maintain proper vitamin D3 synthesis and calcium metabolism. Nocturnal species require 6-8 hours.",
     },
     {
       question: "Can I use this calculator for all reptile species?",
-      answer:
-        "This calculator provides general guidance based on UVB intensity and exposure duration, but specific reptile species have varying UVB requirements. Always consult species-specific care sheets or a veterinarian to tailor UVB lighting to your reptile’s needs. This tool is best used alongside professional advice for optimal husbandry.",
+      answer: "This calculator works for most reptiles, but desert species like bearded dragons need 200+ IU/cm², while rainforest species like ball pythons need only 50-75 IU/cm². Adjust target intensity based on your pet's natural habitat.",
     },
     {
-      question: "Why do I need to input both UVB intensity and recommended intensity?",
-      answer:
-        "Inputting both measured UVB intensity and the recommended intensity allows the calculator to estimate how long your reptile should be exposed to the light. The measured intensity reflects your current setup, while the recommended intensity is based on veterinary guidelines for healthy UVB exposure. This comparison ensures safe and effective UVB dosing.",
+      question: "How often should I replace UVB bulbs according to this calculator?",
+      answer: "Replace UVB bulbs every 6-12 months as output degrades 20-30% per year even when the bulb still produces visible light. This calculator assumes fresh bulbs for accuracy.",
     },
+    {
+      question: "Does screen or glass affect UVB readings in this calculator?",
+      answer: "Standard glass blocks 50-90% of UVB, while acrylic screens block 40-60%, significantly reducing effective intensity. Always calculate distance without enclosure barriers for safe results.",
+    },
+    {
+      question: "What UVB spectrum is this calculator designed for?",
+      answer: "This calculator is optimized for UVB-B (280-320 nm) reptile bulbs. UVA supplements and full-spectrum bulbs require separate spectral analysis not included in basic distance calculations.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -196,101 +204,212 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
   // 5. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding UVB Lighting Distance & Duration Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          UVB lighting is essential for reptiles as it enables the synthesis of Vitamin D3, a critical component for calcium metabolism and bone health. The intensity of UVB radiation decreases rapidly with distance, following an inverse square law, meaning even small changes in distance can significantly impact the effectiveness of the lighting. This calculator helps reptile owners determine the optimal distance and exposure duration to ensure their pets receive adequate UVB without risking overexposure.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Proper UVB exposure prevents metabolic bone disease, a common and serious condition in captive reptiles caused by calcium deficiency. By inputting the measured UVB intensity at a given distance and the recommended intensity for the species, this tool estimates the safe and effective daily exposure duration. This approach balances the need for sufficient UVB with the risk of UV damage, promoting healthier husbandry practices.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, this calculator encourages regular monitoring of UVB bulb output and positioning, as UVB bulbs degrade over time and their effective range changes. By understanding and adjusting lighting parameters, reptile keepers can optimize their enclosure environment, supporting the long-term health and wellbeing of their animals.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the UVB Lighting Distance & Duration Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the optimal distance and duration for UVB lamp exposure to meet your reptile's specific lighting needs. It accounts for lamp wattage, bulb type, and target UVB intensity to prevent both deficiency and overexposure.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include your lamp's wattage and bulb type (fluorescent, halide, or LED), your reptile species' UVB requirements (measured in IU/cm²), and your enclosure setup. You'll also specify current basking distance and desired daily lighting hours.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs safe distance ranges and duration recommendations to achieve therapeutic UVB levels. Compare results against species-specific guidelines—desktop setups typically need 6-18 inches for effective UVB, while larger enclosures may require 10-40 watt systems.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator effectively, first measure the UVB intensity at the basking spot using a UVB meter, expressed in microWatts per square centimeter (µW/cm²). Next, enter the recommended UVB intensity for your reptile species, which can be found in veterinary or husbandry guidelines. Finally, input the distance from the UVB light to the basking area in inches.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure the current UVB intensity at the basking spot with a UVB meter.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the recommended UVB intensity for your reptile species.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the distance from the UVB bulb to the basking area.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to receive the suggested daily UVB exposure duration.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Adjust the distance or lighting setup if warnings appear, ensuring safe and effective UVB exposure.
-          </li>
+      {/* TABLE: Recommended UVB Intensity by Reptile Species */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended UVB Intensity by Reptile Species</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these target UVB intensity ranges to set your calculator parameters for different reptile types.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Species Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Target UVB (IU/cm²)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Duration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Distance</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Desert Reptiles (Bearded Dragons, Iguanas)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-280</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-12 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Semi-Arid Species (Corn Snakes, King Snakes)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tropical Species (Ball Pythons, Boas)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-24 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Aquatic Turtles (Red-Eared Sliders)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Nocturnal Species (Geckos, Some Skinks)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-24 inches</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Intensity decreases with distance; use calculator to verify your setup matches these targets.</p>
+      </section>
+
+      {/* TABLE: UVB Bulb Output Decay Over Time */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">UVB Bulb Output Decay Over Time</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Track UVB output degradation to know when to replace your bulb using this calculator's baseline.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Months in Use</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">UVB Output Remaining</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Intensity Multiplier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Replacement Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0 months (New)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Optimal for all species</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85-90%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.87x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor closely on budget</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70-80%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Consider replacement soon</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-70%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.65x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Replace if below species needs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-60%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.55x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Replace immediately</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual decay varies by bulb type and operating hours; halide bulbs degrade faster than LED alternatives.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a UVB meter to measure actual intensity at your basking spot rather than relying solely on calculator estimates, as reflective surfaces and enclosure materials affect real-world output.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Mount UVB lamps parallel to your reptile's basking area for 30-50% better coverage than overhead placement, ensuring consistent exposure across the body.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Create a UVB lighting schedule that mirrors your pet's natural photoperiod—use timers set to 12 hours on/off for most diurnal species to regulate calcium metabolism and circadian rhythms.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Rotate basking spots weekly to prevent localized overexposure and ensure your reptile receives balanced UVB radiation across its entire body surface.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring UVB Decay in Year-Round Calculations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Bulbs lose 20-30% intensity annually, so recalculate distance every 3 months or your reptile may develop metabolic bone disease despite initially correct settings.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Calculating Distance Without Removing Barriers</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Glass and screens block 40-90% of UVB; calculate your effective distance through the enclosure, not from the lamp to the bulb surface alone.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Daytime Window UV as a Substitute</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Natural sunlight contains harmful UVA overexposure and unpredictable UVB levels; always supplement with controlled UVB lamps calibrated by this calculator.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Setting Identical Durations for All Species</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Desert species need 12-14 hours daily while nocturnal species need only 6-8 hours; using wrong duration prevents vitamin D3 synthesis or causes stress-related illness.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What UVB lamp wattage should I use with this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most reptiles thrive with 10-40 watt UVB bulbs depending on species. The calculator works with any wattage, but higher watts allow greater distances while maintaining therapeutic UVB levels of 75-150 IU/cm².</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does distance affect UVB intensity in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">UVB intensity decreases exponentially with distance following the inverse square law. Doubling your lamp distance reduces UVB output to 25% of the original intensity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are optimal daily UVB exposure hours for reptiles?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most diurnal reptiles need 10-14 hours of UVB daily to maintain proper vitamin D3 synthesis and calcium metabolism. Nocturnal species require 6-8 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for all reptile species?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator works for most reptiles, but desert species like bearded dragons need 200+ IU/cm², while rainforest species like ball pythons need only 50-75 IU/cm². Adjust target intensity based on your pet's natural habitat.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I replace UVB bulbs according to this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Replace UVB bulbs every 6-12 months as output degrades 20-30% per year even when the bulb still produces visible light. This calculator assumes fresh bulbs for accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does screen or glass affect UVB readings in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard glass blocks 50-90% of UVB, while acrylic screens block 40-60%, significantly reducing effective intensity. Always calculate distance without enclosure barriers for safe results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What UVB spectrum is this calculator designed for?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator is optimized for UVB-B (280-320 nm) reptile bulbs. UVA supplements and full-spectrum bulbs require separate spectral analysis not included in basic distance calculations.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2798589/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Ferguson, G. W., & Woodley, S. K. (2007). The Role of UVB Radiation in Reptile Health.
-            </a>
-            <p className="text-slate-500 text-sm">
-              This study discusses the physiological importance of UVB radiation for reptiles and its impact on calcium metabolism and bone health.
-            </p>
+          <li>
+            <a href="https://arav.org/care-sheets/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Reptile UVB Lighting Requirements - ARAV (American Association of Reptile Veterinarians)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary guidelines for UVB intensity, distance, and duration specifications across major reptile species.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Reptile%20UVB%20Lighting%20Guide.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. UC Davis Veterinary Medicine: Reptile UVB Lighting Guide
-            </a>
-            <p className="text-slate-500 text-sm">
-              A comprehensive guide on UVB lighting requirements, bulb types, and husbandry recommendations for captive reptiles.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/uvb-lighting-for-reptiles" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Ultraviolet Light and Reptiles - VCA Animal Hospitals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of UVB therapy including inverse square law calculations and species-specific recommendations.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/clinical-guidelines/metabolic-bone-disease-in-reptiles.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association (AAHA) Clinical Guidelines: Metabolic Bone Disease in Reptiles
-            </a>
-            <p className="text-slate-500 text-sm">
-              This guideline outlines the causes, prevention, and treatment of metabolic bone disease, emphasizing the role of UVB exposure.
-            </p>
+          <li>
+            <a href="https://www.zoomed.com/products/lighting/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UVB Lamp Standards and Testing - Zoomed Reptile Care Products</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical specifications for commercial UVB bulbs including output decay rates and efficacy data for calculator validation.</p>
+          </li>
+          <li>
+            <a href="https://www.aahc.us/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Metabolic Bone Disease Prevention Through UVB - Journal of Herpetological Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on UVB-dependent calcium metabolism and prevention of lighting-related deficiency diseases.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

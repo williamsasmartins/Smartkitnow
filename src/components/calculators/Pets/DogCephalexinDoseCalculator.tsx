@@ -83,25 +83,33 @@ export default function DogCephalexinDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is Cephalexin dosage calculated based on mg/kg rather than a fixed dose?",
-      answer:
-        "Cephalexin dosage is calculated based on mg/kg to ensure the medication is tailored to the individual dog's body weight, providing an effective therapeutic level without overdosing. Dogs vary widely in size and metabolism, so a fixed dose could be ineffective or harmful. Weight-based dosing optimizes safety and efficacy by accounting for these physiological differences.",
+      question: "What is the standard cephalexin dosage for dogs?",
+      answer: "The typical dose is 10-15 mg/kg every 6-8 hours, or 22-35 mg/kg once daily. Always follow your veterinarian's specific prescription for your dog.",
     },
     {
-      question: "How does the frequency of administration affect the effectiveness of Cephalexin in dogs?",
-      answer:
-        "The frequency of administration is crucial because Cephalexin has a relatively short half-life, requiring multiple doses per day to maintain effective blood levels. Administering the medication at recommended intervals ensures consistent antibacterial activity, preventing bacterial regrowth and resistance. Skipping doses or incorrect timing can reduce treatment success and prolong infection.",
+      question: "How does the calculator account for my dog's weight?",
+      answer: "The calculator uses your dog's weight in pounds or kilograms to compute the precise milligram dose based on recommended mg/kg dosing guidelines for canine infections.",
     },
     {
-      question: "Can Cephalexin dosage vary depending on the type or severity of infection?",
-      answer:
-        "Yes, Cephalexin dosage may vary depending on the infection's severity, location, and causative bacteria. Mild infections might require lower dosages or shorter courses, while severe or deep infections often need higher dosages and longer treatment durations. Veterinarians assess clinical signs and may adjust dosage accordingly to optimize outcomes and minimize resistance.",
+      question: "Can I use this calculator instead of consulting my vet?",
+      answer: "No, this calculator is educational only and should never replace veterinary advice; always consult your veterinarian before administering any medication to your dog.",
     },
     {
-      question: "What are the risks of incorrect Cephalexin dosing in dogs?",
-      answer:
-        "Incorrect dosing of Cephalexin can lead to treatment failure, antibiotic resistance, or adverse effects. Underdosing may not fully eradicate the infection, allowing bacteria to survive and develop resistance. Overdosing increases the risk of side effects such as gastrointestinal upset, allergic reactions, or kidney toxicity. Accurate dosing ensures safe and effective therapy.",
+      question: "What infections does cephalexin treat in dogs?",
+      answer: "Cephalexin treats bacterial skin infections, ear infections, urinary tract infections, and soft tissue infections in dogs caused by susceptible bacteria.",
     },
+    {
+      question: "Are there dogs that shouldn't take cephalexin?",
+      answer: "Dogs with penicillin or cephalosporin allergies should not receive cephalexin; inform your vet of any drug allergies before treatment begins.",
+    },
+    {
+      question: "How long does a typical cephalexin course last for dogs?",
+      answer: "Treatment typically lasts 7-14 days depending on the infection type and severity; complete the full course even if symptoms improve earlier.",
+    },
+    {
+      question: "What should I do if I miss a dose?",
+      answer: "Give the missed dose as soon as you remember, but skip it if the next dose is due within 2-3 hours; never double-dose to make up for a missed one.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -251,115 +259,206 @@ export default function DogCephalexinDoseCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cephalexin Dose Calculator for Dogs
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Cephalexin is a widely used antibiotic in veterinary medicine, particularly effective against bacterial infections in dogs. It belongs to the cephalosporin class of antibiotics, which work by disrupting bacterial cell wall synthesis, leading to bacterial death. Proper dosing is critical to ensure the medication is both effective and safe, minimizing the risk of resistance and adverse effects. This calculator helps veterinarians and pet owners determine the appropriate dose based on the dog’s body weight and treatment frequency.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The dosage of Cephalexin is typically calculated in milligrams per kilogram of body weight per day (mg/kg/day), reflecting the pharmacokinetic principles that drug metabolism and distribution vary with size. Additionally, the frequency of administration is important to maintain therapeutic drug levels in the bloodstream. This tool incorporates these principles to provide a precise dose per administration, tailored to the individual dog’s weight and prescribed dosing schedule.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Using this calculator ensures that the antibiotic is administered within the recommended therapeutic window, reducing the risk of underdosing, which can lead to treatment failure and bacterial resistance, or overdosing, which can cause toxicity. It is essential to follow veterinary guidance and consider this calculator as an educational aid rather than a substitute for professional advice.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cephalexin Dose Calculator for Dogs</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you estimate appropriate cephalexin doses for your dog based on veterinary dosing guidelines. It provides educational reference values for typical infections, supporting informed conversations with your veterinarian.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's weight in pounds or kilograms and select the dosing protocol your vet recommended. The calculator will display the estimated dose in milligrams for each administration.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the results to verify your vet's prescription and understand proper dosing intervals. Always follow your veterinarian's specific instructions, as individual dogs may require dose adjustments based on age, health status, and infection severity.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately calculate the Cephalexin dose for your dog, begin by selecting the unit system that corresponds to your measurement preference—Imperial (pounds) or Metric (kilograms). Enter your dog’s current body weight in the selected units. Next, input the prescribed dosage in milligrams per kilogram per day, typically ranging from 20 to 30 mg/kg/day, as recommended by veterinary guidelines. Finally, select the frequency of administration, which is how many times per day the medication should be given.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter your dog’s accurate weight. For Imperial units, use pounds (lbs); for Metric, use kilograms (kg). This is critical as dosing is weight-dependent.
-          </li>
-          <li>
-            <strong>Dosage (mg/kg/day):</strong> Input the total daily dosage prescribed by your veterinarian. The calculator will divide this dose across the number of administrations per day.
-          </li>
-          <li>
-            <strong>Frequency:</strong> Choose how many times per day the medication will be administered (e.g., twice daily). The calculator will compute the dose per administration accordingly.
-          </li>
+      {/* TABLE: Cephalexin Dosing Guidelines for Dogs by Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Cephalexin Dosing Guidelines for Dogs by Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows recommended cephalexin doses based on dog weight using standard veterinary guidelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Single Dose at 15 mg/kg (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Dose at 30 mg/kg (mg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">68</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">135</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">170</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">340</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">340</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">681</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">510</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1020</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">681</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1361</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Doses are calculated for reference only; veterinarians may adjust based on infection type and severity.</p>
+      </section>
+
+      {/* TABLE: Cephalexin Dosing Intervals and Common Infection Types */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Cephalexin Dosing Intervals and Common Infection Types</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Typical cephalexin dosing schedules vary by infection and treatment protocol.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Infection Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Dosage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Duration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Skin infections</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-30 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours or once daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-14 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Urinary tract infection</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-30 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours or once daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-14 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ear infections</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-30 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours or once daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-14 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Soft tissue/wound</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-30 mg/kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every 6-8 hours or once daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-14 days</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Dosing frequency and duration determined by veterinarian based on infection severity and response.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always complete the full antibiotic course even if your dog improves, to prevent bacterial resistance and infection recurrence.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Administer cephalexin with food if your dog experiences stomach upset, unless your vet advises otherwise.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store cephalexin in a cool, dry place and check the expiration date before each dose to ensure medication effectiveness.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep a dosing log to track administration times and monitor your dog's response to treatment.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering these details, click the “Calculate” button to receive the recommended dose per administration in milligrams. Always verify the results with your veterinarian before administering medication, and never adjust doses without professional guidance.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping doses to save medication</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Skipping doses reduces antibiotic effectiveness and increases the risk of antibiotic-resistant bacterial infections in your dog.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using outdated weight measurements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Inaccurate weight leads to incorrect dose calculations; weigh your dog regularly, especially if treating a young or growing dog.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Adjusting doses without veterinary approval</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Never increase, decrease, or change dosing frequency without explicit approval from your veterinarian.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Sharing leftover cephalexin with other dogs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Antibiotics are prescribed individually; sharing medication risks improper dosing and adverse reactions in other dogs.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard cephalexin dosage for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The typical dose is 10-15 mg/kg every 6-8 hours, or 22-35 mg/kg once daily. Always follow your veterinarian's specific prescription for your dog.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator account for my dog's weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your dog's weight in pounds or kilograms to compute the precise milligram dose based on recommended mg/kg dosing guidelines for canine infections.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator instead of consulting my vet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this calculator is educational only and should never replace veterinary advice; always consult your veterinarian before administering any medication to your dog.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What infections does cephalexin treat in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cephalexin treats bacterial skin infections, ear infections, urinary tract infections, and soft tissue infections in dogs caused by susceptible bacteria.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there dogs that shouldn't take cephalexin?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dogs with penicillin or cephalosporin allergies should not receive cephalexin; inform your vet of any drug allergies before treatment begins.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does a typical cephalexin course last for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Treatment typically lasts 7-14 days depending on the infection type and severity; complete the full course even if symptoms improve earlier.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if I miss a dose?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Give the missed dose as soon as you remember, but skip it if the next dose is due within 2-3 hours; never double-dose to make up for a missed one.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.plumbsveterinarydrugs.com/#!/monograph/cephalexin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Plumb's Veterinary Drug Handbook - Cephalexin Monograph
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive drug information including pharmacology, dosing, and safety for Cephalexin in dogs.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com/pharmacology/antimicrobials/cephalosporins" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Merck Veterinary Manual - Cephalexin</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive veterinary reference on cephalosporin antibiotics including dosing and clinical applications in dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/pharmacology/antibacterial-drugs/cephalosporins"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual - Cephalosporins
-            </a>
-            <p className="text-slate-500 text-sm">
-              Overview of cephalosporin antibiotics, including Cephalexin, their uses, dosing, and resistance considerations.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Cephalexin for Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Client education resource providing information on cephalexin use, side effects, and proper administration in canine patients.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vin.com/apputil/content/defaultadv1.aspx?pId=11353&id=4952147"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Veterinary Information Network (VIN) - Cephalexin Dosing Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert discussions and clinical guidelines on appropriate Cephalexin dosing for various canine infections.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/avma-policies/antimicrobial-stewardship" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AVMA - Antimicrobial Stewardship</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Veterinary Medical Association guidelines on responsible antibiotic use in veterinary medicine.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/antimicrobial-use-guidelines/antimicrobial-use-guidelines-for-treatment-of-skin-infections-in-dogs-and-cats.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. American Animal Hospital Association (AAHA) - Antimicrobial Use Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based guidelines for antimicrobial use in canine skin infections, including Cephalexin dosing recommendations.
-            </p>
+          <li>
+            <a href="https://www.petmd.com/dog/conditions/cephalexin-dogs" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD - Cephalexin for Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Client-friendly guide covering cephalexin uses, dosing expectations, and potential side effects in dogs.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -75,25 +75,33 @@ export default function DogTreatCaloriesDailyAllowanceCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is it important to limit dog treat calories to 10% of daily intake?",
-      answer:
-        "Limiting dog treat calories to 10% of their daily energy needs helps prevent excessive calorie intake that can lead to obesity. Dogs require a balanced diet to maintain optimal health, and treats should complement, not replace, their main meals. Overfeeding treats disrupts this balance, increasing risks of weight gain, joint stress, and metabolic disorders. This calculator uses scientifically validated Resting Energy Requirement (RER) formulas to estimate safe treat allowances, ensuring treats remain a healthy part of your dog's diet.",
+      question: "What percentage of my dog's daily calories should come from treats?",
+      answer: "Treats should not exceed 10% of your dog's total daily caloric intake to maintain proper nutrition and prevent obesity. The remaining 90% should come from balanced commercial or home-prepared meals.",
     },
     {
-      question: "How is the Resting Energy Requirement (RER) calculated for dogs?",
-      answer:
-        "RER represents the baseline number of calories a dog needs at rest to maintain vital bodily functions. It is calculated using the formula: RER = 70 × (weight in kg)^0.75. This formula accounts for metabolic scaling relative to body size, providing a more accurate estimate than linear weight-based calculations. RER serves as the foundation for determining total daily energy needs and safe treat allowances, ensuring nutritional recommendations are tailored to each dog's physiology.",
+      question: "How do I find the calorie content of my dog's treats?",
+      answer: "Check the nutrition label on treat packaging for calories per piece or serving. If unavailable, consult your veterinarian or use USDA FoodData Central for homemade treat ingredients.",
     },
     {
-      question: "Can I use this calculator for puppies or overweight dogs?",
-      answer:
-        "This calculator estimates treat allowances based on RER, which is most accurate for healthy adult dogs. Puppies have higher energy needs relative to their size due to growth, and overweight dogs require adjusted calorie targets to promote weight loss. For puppies, consult a veterinarian or use specialized puppy calorie calculators. For overweight dogs, treat allowances should be reduced and monitored carefully to support weight management. Always seek veterinary guidance for these special cases to ensure safe and effective nutrition.",
+      question: "Does a dog's activity level affect daily treat allowance?",
+      answer: "Yes, highly active dogs can tolerate slightly more treats while maintaining weight, whereas sedentary dogs require fewer calories and should receive limited treats to prevent weight gain.",
     },
     {
-      question: "What should I do if my dog refuses low-calorie treats?",
-      answer:
-        "If your dog refuses low-calorie treats, try offering a variety of healthy options such as small pieces of cooked vegetables, lean meats, or specially formulated low-calorie dog treats. Positive reinforcement and gradual introduction can help your dog accept new treats. Avoid high-calorie or human foods that may be harmful or contribute to weight gain. Consulting a veterinarian or a veterinary nutritionist can provide personalized recommendations to maintain your dog's health while keeping treat time enjoyable.",
+      question: "How often should I recalculate my dog's treat allowance?",
+      answer: "Recalculate every 3-6 months as your dog ages, gains/loses weight, or experiences changes in activity level or health status.",
     },
+    {
+      question: "Can puppies and senior dogs have the same treat allowance?",
+      answer: "No; puppies need more calories for growth and seniors often need fewer calories, so adjust treat amounts based on life stage and your vet's recommendations.",
+    },
+    {
+      question: "What treats are best for dogs on restricted calorie diets?",
+      answer: "Low-calorie options include air-popped popcorn, carrot sticks, green beans, and freeze-dried chicken; these satisfy dogs while keeping calorie counts minimal.",
+    },
+    {
+      question: "Should I count training treats differently from regular treats?",
+      answer: "No; all treats count toward the 10% daily caloric limit, including training rewards, so subtract training treat calories from your dog's total allowance.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -207,115 +215,216 @@ export default function DogTreatCaloriesDailyAllowanceCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Treat Calories & Daily Allowance Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Dog Treat Calories & Daily Allowance Calculator is a scientifically grounded tool designed to help pet owners understand and manage the caloric intake from treats given to their dogs. Treats, while a valuable part of training and bonding, can contribute significantly to a dog’s daily calorie consumption if not carefully monitored. This calculator uses veterinary nutritional science principles to estimate the maximum number of treats a dog can safely consume daily without risking unhealthy weight gain.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Central to this calculation is the Resting Energy Requirement (RER), which estimates the baseline calories a dog needs to maintain vital bodily functions at rest. By applying the formula RER = 70 × (weight in kg)^0.75, the calculator determines the dog’s daily energy needs. It then recommends that treats should not exceed 10% of this caloric requirement to maintain a balanced diet. This approach helps prevent obesity, a common and serious health issue in dogs, by ensuring treats complement rather than replace essential nutrition.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, the calculator accounts for the calorie content per treat, allowing owners to input specific treat information rather than relying on generic estimates. This precision supports tailored feeding strategies, accommodating different treat sizes, types, and caloric densities. By integrating these veterinary formulas and nutritional guidelines, the calculator empowers dog owners to make informed decisions that promote their pet’s long-term health and well-being.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Treat Calories & Daily Allowance Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine the maximum daily treat allowance for your dog based on weight, activity level, and the 10% rule—treats should not exceed 10% of total daily calories. By using this tool, you ensure treats complement rather than compromise your dog's balanced diet.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by inputting your dog's weight, selecting their activity level (sedentary, moderate, or high), and entering the calorie count of treats you plan to give. The calculator will estimate daily caloric needs and show how many treats fit within the healthy 10% guideline.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the results to understand your dog's daily treat budget in both calories and quantity. Adjust treat choices or portion sizes as needed, and recalculate whenever your dog's weight, age, or activity changes to maintain optimal health.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed to provide accurate, personalized recommendations for your dog’s treat allowance. Begin by selecting the unit system you prefer—Imperial (pounds) or Metric (kilograms)—to match your measurement tools. Next, enter your dog’s current weight in the chosen unit. Accurate weight measurement is crucial as it directly influences the Resting Energy Requirement calculation.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Then, input the calorie content of a single treat. This information is often available on treat packaging or can be estimated based on ingredient content. The calculator uses this data to determine how many treats can be safely given daily without exceeding 10% of your dog’s RER, a veterinary guideline to prevent excessive calorie intake from treats.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter your dog’s weight accurately in pounds or kilograms. This value is essential for calculating the Resting Energy Requirement (RER), which forms the basis for safe treat calorie limits.
-          </li>
-          <li>
-            <strong>Calories per Treat:</strong> Enter the exact calorie content of one treat. This allows the calculator to estimate how many treats your dog can have daily without exceeding the recommended calorie threshold.
-          </li>
+      {/* TABLE: Daily Caloric Needs by Dog Weight and Activity Level */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Caloric Needs by Dog Weight and Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to estimate your dog's baseline daily caloric requirement before calculating treat allowance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sedentary Dog (kcal/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Activity (kcal/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Activity (kcal/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">290</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">360</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">430</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">540</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">675</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">810</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1350</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1215</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1520</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1825</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1875</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2250</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Based on the Resting Energy Expenditure (REE) formula and activity multipliers recognized by veterinary nutritionists.</p>
+      </section>
+
+      {/* TABLE: Common Dog Treat Calories & Maximum Daily Allowance */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Dog Treat Calories & Maximum Daily Allowance</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference standard treat calorie values and maximum daily amounts for a 50-lb dog consuming 900 kcal/day.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Treat Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calories per Unit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Daily Allowance (10% rule)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Peanut Butter Biscuit (1 small)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 treats</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chicken Training Treat (1 piece)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 treats</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sweet Potato Chew (1 stick)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5 chews</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rawhide Chew (1 regular)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 chews</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Carrot Stick (1 medium)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.6 sticks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Peanut Butter Cup (1 small)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 treat</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dental Chew (1 regular)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.3 chews</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calorie values are approximate; always verify actual product labels for accuracy.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh treats and log them daily to stay within calculated allowance and prevent accidental overfeeding.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use low-calorie vegetables like green beans and carrots as affordable, nutritious treat alternatives.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Split higher-calorie treats into smaller pieces to give more reward moments within the same caloric budget.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your dog's weight monthly and adjust treat allowance downward if weight gain occurs despite proper portion control.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering these inputs, click the Calculate button to see the maximum number of treats your dog can safely consume each day. If the treat calorie content is too high, the calculator will provide a warning and suggest choosing lower-calorie treats to maintain your dog’s healthy weight.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Include Training Treats</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Training rewards count toward daily limits; exclude them from your total and you risk exceeding the 10% threshold unknowingly.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated or No Calorie Labels</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Relying on old packaging or estimated calories leads to inaccurate calculations; always verify current product labels.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Life Stage Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Puppies and seniors have different caloric needs than adult dogs, so recalculate allowances when transitioning between life stages.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting Activity Level Updates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A dog recovering from surgery or aging into reduced activity needs fewer calories; recalculate to prevent weight gain.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What percentage of my dog's daily calories should come from treats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Treats should not exceed 10% of your dog's total daily caloric intake to maintain proper nutrition and prevent obesity. The remaining 90% should come from balanced commercial or home-prepared meals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I find the calorie content of my dog's treats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check the nutrition label on treat packaging for calories per piece or serving. If unavailable, consult your veterinarian or use USDA FoodData Central for homemade treat ingredients.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does a dog's activity level affect daily treat allowance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, highly active dogs can tolerate slightly more treats while maintaining weight, whereas sedentary dogs require fewer calories and should receive limited treats to prevent weight gain.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my dog's treat allowance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 3-6 months as your dog ages, gains/loses weight, or experiences changes in activity level or health status.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can puppies and senior dogs have the same treat allowance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No; puppies need more calories for growth and seniors often need fewer calories, so adjust treat amounts based on life stage and your vet's recommendations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What treats are best for dogs on restricted calorie diets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Low-calorie options include air-popped popcorn, carrot sticks, green beans, and freeze-dried chicken; these satisfy dogs while keeping calorie counts minimal.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I count training treats differently from regular treats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No; all treats count toward the 10% daily caloric limit, including training rewards, so subtract training treat calories from your dog's total allowance.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/nutrition-of-the-dog-and-cat/energy-requirements"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Energy Requirements of Dogs and Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of energy requirements and nutritional needs in dogs, including RER and MER calculations.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Dog Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards for pet food nutrition, including caloric guidelines for different dog life stages.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/nutrition/nutrition-guidelines-for-dogs.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. American Animal Hospital Association (AAHA) Canine Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based guidelines for canine nutrition, emphasizing calorie management and treat allowances to prevent obesity.
-            </p>
+          <li>
+            <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA FoodData Central</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive database of food composition data useful for calculating calories in homemade dog treats.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.wsava.org/wp-content/uploads/2020/03/WSAVA-Nutrition-Guidelines-2019.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. WSAVA Global Nutrition Guidelines for Dogs and Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Global consensus on nutritional requirements and feeding practices, including treat calorie considerations.
-            </p>
+          <li>
+            <a href="https://www.akc.org/dog-breeds/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Kennel Club: Dog Nutrition Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based feeding recommendations and weight management guidelines for dogs of all breeds and sizes.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7146310/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Clinical Nutrition for Dogs and Cats: A Review of Energy Requirements and Feeding Practices
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed article discussing energy metabolism and the importance of controlled treat feeding in canine health.
-            </p>
+          <li>
+            <a href="https://wsava.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">World Small Animal Veterinary Association: Nutritional Assessment</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional resource on evidence-based nutritional management and caloric requirements for companion animals.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

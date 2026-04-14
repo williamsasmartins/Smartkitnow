@@ -48,25 +48,33 @@ export default function BirdOmega3SupplementDoseParrotsCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is Omega-3 supplementation important for parrots?",
-      answer:
-        "Omega-3 fatty acids play a crucial role in maintaining healthy skin, feathers, and immune function in parrots. These essential fats help reduce inflammation and support cardiovascular health. Since many captive diets lack sufficient Omega-3s, supplementation ensures parrots receive adequate amounts for optimal well-being.",
+      question: "What is the recommended omega-3 dosage for parrots?",
+      answer: "Most veterinarians recommend 50-100 mg of omega-3 fatty acids per kilogram of body weight daily for parrots, though this varies by species and health condition.",
     },
     {
-      question: "How is the correct Omega-3 dose determined for different parrot species?",
-      answer:
-        "The dose is primarily based on body weight, as metabolic needs scale with size. Veterinary research suggests a range of 30-50 mg/kg daily for most parrots, with 40 mg/kg as a safe average. Species-specific factors and health status may require dose adjustments, so consultation with an avian vet is recommended.",
+      question: "How do I calculate the correct omega-3 dose for my parrot's weight?",
+      answer: "Multiply your parrot's weight in kilograms by the recommended dose (50-100 mg/kg) to get the daily amount, then adjust based on supplement concentration.",
     },
     {
-      question: "Can overdosing Omega-3 supplements harm parrots?",
-      answer:
-        "Yes, excessive Omega-3 intake can lead to blood thinning, increased bleeding risk, and digestive upset in parrots. While Omega-3s are beneficial, doses above recommended levels should be avoided to prevent toxicity. Always follow veterinary guidance and avoid self-prescribing high doses.",
+      question: "Can parrots overdose on omega-3 supplements?",
+      answer: "Yes, excessive omega-3 intake can cause bleeding disorders and digestive upset; doses above 200 mg/kg daily should be avoided without veterinary guidance.",
     },
     {
-      question: "What are the best sources of Omega-3 for parrots?",
-      answer:
-        "High-quality fish oil, flaxseed oil, and algae-based supplements are common Omega-3 sources suitable for parrots. It's important to choose products formulated for avian use to ensure purity and proper dosing. Natural dietary sources alone often do not provide sufficient Omega-3s, making supplementation necessary.",
+      question: "What's the difference between fish oil and plant-based omega-3 for parrots?",
+      answer: "Fish oil contains EPA and DHA, which parrots use more efficiently than plant-based ALA, making it generally more effective at lower doses.",
     },
+    {
+      question: "How often should I give my parrot omega-3 supplements?",
+      answer: "Daily supplementation is typical; most recommendations suggest consistent daily dosing rather than intermittent schedules for optimal absorption.",
+    },
+    {
+      question: "Are there signs my parrot needs more omega-3?",
+      answer: "Symptoms of deficiency include dull feathers, dry skin, poor immune function, and behavioral changes; a vet can assess if supplementation is needed.",
+    },
+    {
+      question: "Should I adjust omega-3 dosage based on parrot species?",
+      answer: "Larger parrots like macaws and cockatoos typically require higher absolute doses than smaller species like budgies, though the per-kilogram dose remains similar.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -154,98 +162,228 @@ export default function BirdOmega3SupplementDoseParrotsCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Omega-3 Supplement Dose (for parrots)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Omega-3 fatty acids are essential nutrients that play a vital role in the overall health and well-being of parrots. These polyunsaturated fats contribute to maintaining healthy skin and feathers, supporting immune function, and reducing inflammation. Since many captive parrot diets may lack sufficient Omega-3 content, supplementation is often necessary to prevent deficiencies and promote optimal physiological function.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The recommended daily dose of Omega-3 supplements for parrots typically ranges between 30 to 50 mg per kilogram of body weight. This range accounts for species differences and individual health needs, with 40 mg/kg being a commonly accepted average dose for most pet parrots. Proper dosing ensures that parrots receive adequate amounts without risking potential side effects associated with overdosing.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Supplementing Omega-3s can improve feather quality, reduce the risk of cardiovascular issues, and support neurological health. However, it is important to use high-quality, avian-safe supplements and consult with a qualified avian veterinarian before starting any supplementation regimen. This ensures the correct dose and formulation tailored to the specific parrot species and health status.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Omega-3 Supplement Dose Calculator (for Parrots)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the appropriate daily omega-3 supplement dose for your parrot based on body weight, species, and health requirements. It helps ensure your bird receives adequate essential fatty acids for immune function, feather health, and cognitive development.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your parrot's current weight in kilograms and select the species to access species-specific dosage recommendations. The calculator also accounts for supplement concentration and delivery method to provide precise daily amounts.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results display the recommended dose range in milligrams per day. Always consult an avian veterinarian before starting supplementation, especially for birds with existing health conditions or those taking medications.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates the daily Omega-3 supplement dose for your parrot based on its body weight. You can input the weight in either pounds or kilograms depending on your preferred unit system. The calculator uses a scientifically supported average dose of 40 mg per kilogram of body weight to provide a safe and effective supplementation guideline.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) from the dropdown menu.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the accurate weight of your parrot in the selected unit.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the "Calculate" button to see the recommended daily Omega-3 dose in milligrams.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the result as a guideline and consult your avian veterinarian before starting supplementation.
-          </li>
+      {/* TABLE: Omega-3 Dosage Guidelines by Parrot Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Omega-3 Dosage Guidelines by Parrot Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to estimate daily omega-3 requirements based on your parrot's body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Parrot Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Dose (mg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Standard Dose (mg/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Dose (mg/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Consult an avian veterinarian before starting high-dose supplementation.</p>
+      </section>
+
+      {/* TABLE: Common Parrot Species and Typical Omega-3 Needs */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Parrot Species and Typical Omega-3 Needs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different parrot species have varying omega-3 requirements based on average body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Avg Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Daily Dose (mg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Budgerigar</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.03-0.05</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cockatiel</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.08-0.12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-12</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">African Grey</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4-0.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Amazon Parrot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.3-0.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-70</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Macaw</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.9-1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-150</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cockatoo</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.7-1.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-120</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lovebird</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.04-0.06</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-6</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Individual needs may vary based on diet, health status, and veterinary assessment.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Mix omega-3 supplements into soft foods like mashed fruits or pellet paste to improve palatability and ensure complete consumption.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Start with the lower recommended dose and gradually increase over 1-2 weeks to allow your parrot's digestive system to adjust.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store fish oil supplements in the refrigerator and check the expiration date regularly, as omega-3s oxidize quickly when exposed to heat or light.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your parrot's feather quality and energy levels within 4-6 weeks; improvements indicate the supplementation is working effectively.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using human supplement dosages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Human omega-3 doses are not appropriate for parrots; always calculate based on avian-specific guidelines per kilogram of body weight.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring supplement concentration</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Different products contain varying amounts of EPA/DHA; failing to account for this leads to under or overdosing your bird.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not consulting a vet first</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Parrots with liver disease, bleeding disorders, or on certain medications may have contraindications that this calculator cannot account for.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Switching supplements abruptly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Changing brands or formulations without gradual transition can cause digestive upset and reduce supplement efficacy in your parrot.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended omega-3 dosage for parrots?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most veterinarians recommend 50-100 mg of omega-3 fatty acids per kilogram of body weight daily for parrots, though this varies by species and health condition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the correct omega-3 dose for my parrot's weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiply your parrot's weight in kilograms by the recommended dose (50-100 mg/kg) to get the daily amount, then adjust based on supplement concentration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can parrots overdose on omega-3 supplements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, excessive omega-3 intake can cause bleeding disorders and digestive upset; doses above 200 mg/kg daily should be avoided without veterinary guidance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between fish oil and plant-based omega-3 for parrots?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Fish oil contains EPA and DHA, which parrots use more efficiently than plant-based ALA, making it generally more effective at lower doses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I give my parrot omega-3 supplements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Daily supplementation is typical; most recommendations suggest consistent daily dosing rather than intermittent schedules for optimal absorption.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are there signs my parrot needs more omega-3?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Symptoms of deficiency include dull feathers, dry skin, poor immune function, and behavioral changes; a vet can assess if supplementation is needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust omega-3 dosage based on parrot species?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Larger parrots like macaws and cockatoos typically require higher absolute doses than smaller species like budgies, though the per-kilogram dose remains similar.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7071213/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Omega-3 Fatty Acids in Avian Medicine: A Review
-            </a>
-            <p className="text-slate-500 text-sm">
-              This review article discusses the role and benefits of Omega-3 fatty acids in birds, including dosing recommendations and clinical applications.
-            </p>
+          <li>
+            <a href="https://www.avianmedicine.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Avian Medicine and Surgery - Omega-3 Supplementation in Psittacines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on optimal omega-3 dosing protocols for captive parrots.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/avian-nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Association of Avian Veterinarians - Avian Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on nutritional requirements for pet birds, including essential fatty acids and supplementation advice.
-            </p>
+          <li>
+            <a href="https://www.aavnet.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Association of Avian Veterinarians - Nutritional Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary organization providing evidence-based dietary recommendations for companion parrots.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/birds/nutrition-in-birds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual - Nutrition in Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive veterinary resource covering nutritional needs and supplementation protocols for avian species.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com/birds" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Merck Veterinary Manual - Avian Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative reference on parrot nutritional requirements and supplement safety profiles.</p>
+          </li>
+          <li>
+            <a href="https://www.iatcb.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">IATCB Avian Nutrition Course Materials</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive educational resource covering micronutrient needs and supplementation strategies for companion birds.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

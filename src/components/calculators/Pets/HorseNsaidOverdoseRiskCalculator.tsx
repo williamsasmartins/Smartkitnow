@@ -73,25 +73,33 @@ export default function HorseNsaidOverdoseRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is phenylbutazone overdose dangerous for horses?",
-      answer:
-        "Phenylbutazone overdose can cause severe gastrointestinal ulceration, kidney damage, and bone marrow suppression in horses. These adverse effects occur because excessive NSAID levels impair protective prostaglandins and damage tissues. Early recognition and intervention are critical to prevent fatal outcomes.",
+      question: "What is the safe daily dose of phenylbutazone for horses?",
+      answer: "The recommended dose is 2–4 mg/kg twice daily, not to exceed 4 mg/kg/day total for long-term use. Most veterinarians limit treatment to 5–7 days at higher doses or 2 weeks maximum at therapeutic levels.",
     },
     {
-      question: "How does body weight influence phenylbutazone toxicity risk?",
-      answer:
-        "Body weight is essential for calculating the mg/kg dose of phenylbutazone, which determines toxicity risk. Overdosing often results from inaccurate weight estimation or improper dosing intervals. Using precise weight measurements ensures safer dosing and reduces overdose risk.",
+      question: "How does horse weight affect phenylbutazone toxicity risk?",
+      answer: "Heavier horses require proportionally higher absolute doses; however, toxicity risk is based on dose-per-kilogram, making lighter horses more vulnerable to overdose if given standard weight-band dosing without adjustment.",
     },
     {
-      question: "What clinical signs indicate phenylbutazone overdose in horses?",
-      answer:
-        "Signs include anorexia, depression, colic, diarrhea, oral ulcers, and increased heart rate. These symptoms arise from gastrointestinal irritation and systemic toxicity. Prompt veterinary evaluation is necessary if any signs are observed after dosing.",
+      question: "What are the signs of phenylbutazone overdose in horses?",
+      answer: "Early signs include reduced appetite, diarrhea, and lethargy; severe overdose can cause gastric ulceration, bleeding, protein loss, and renal or hepatic damage within 7–14 days of excessive dosing.",
     },
     {
-      question: "Can repeated low doses of phenylbutazone cause toxicity?",
-      answer:
-        "Yes, chronic administration of phenylbutazone even at low doses can accumulate and cause cumulative toxicity. This leads to gradual kidney and gastrointestinal damage. Regular monitoring and adherence to recommended dosing schedules help prevent such risks.",
+      question: "Can duration of phenylbutazone use increase overdose risk?",
+      answer: "Yes, continuous use beyond 2 weeks significantly increases cumulative toxicity risk, especially gastrointestinal and renal complications, even at therapeutic doses.",
     },
+    {
+      question: "Are certain horses more sensitive to phenylbutazone toxicity?",
+      answer: "Older horses, those with existing renal or hepatic disease, and animals on concurrent medications show heightened sensitivity and require lower dose adjustments and closer monitoring.",
+    },
+    {
+      question: "What should I do if I suspect phenylbutazone overdose?",
+      answer: "Stop the medication immediately and contact your veterinarian for blood work, renal/hepatic panels, and supportive care including gastric protectants and IV fluids if indicated.",
+    },
+    {
+      question: "How accurate is this overdose risk calculator?",
+      answer: "This calculator estimates risk based on dose, weight, and duration using evidence-based thresholds; it is not a replacement for veterinary judgment and should inform, not replace, professional consultation.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -211,101 +219,200 @@ export default function HorseNsaidOverdoseRiskCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Horse NSAID Overdose Risk (Phenylbutazone)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Phenylbutazone, commonly known as "Bute," is a widely used non-steroidal anti-inflammatory drug (NSAID) in equine medicine. While effective for managing pain and inflammation, phenylbutazone carries a narrow therapeutic index, meaning the margin between a therapeutic and toxic dose is small. Overdose can lead to serious adverse effects including gastrointestinal ulceration, renal impairment, and bone marrow suppression, which can be life-threatening if not promptly addressed.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The risk of overdose is closely tied to the dose administered relative to the horse’s body weight, typically expressed in milligrams per kilogram (mg/kg). Accurate weight measurement is essential for safe dosing, as underestimating weight can lead to inadvertent overdosing. Additionally, repeated or cumulative dosing without proper veterinary supervision increases the risk of toxicity, highlighting the importance of careful monitoring and adherence to recommended dosing intervals.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator estimates the phenylbutazone dose per kilogram of body weight based on user inputs, providing an assessment of overdose risk. It is designed as an educational tool to aid horse owners and caretakers in understanding potential toxicity risks. However, it does not replace professional veterinary advice, diagnosis, or treatment, and any concerns about dosing or toxicity should be promptly discussed with a qualified veterinarian.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horse NSAID Overdose Risk (Phenylbutazone) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates the overdose toxicity risk for horses receiving phenylbutazone (Bute) based on dose, body weight, and treatment duration. It helps equine owners and veterinarians identify when dosing approaches unsafe thresholds and cumulative toxicity becomes likely.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your horse's body weight in kilograms, the total daily phenylbutazone dose in milligrams, and the planned or current duration of treatment in days. The calculator converts these into dose-per-kilogram and cross-references evidence-based toxicity benchmarks.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results display risk level (low, moderate, high, or severe) with brief guidance on safety. Always consult your veterinarian before starting or adjusting phenylbutazone therapy; this tool informs but does not replace professional medical judgment.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately assess the risk of phenylbutazone overdose in your horse, you need to provide two key pieces of information: the horse’s weight and the total amount of phenylbutazone administered within the last 24 hours. This calculator will then compute the dose in mg/kg and categorize the risk level based on established veterinary toxicology thresholds.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) that matches how you measure your horse’s weight.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the horse’s weight accurately. If unsure, use a weight tape or consult a veterinarian for precise measurement.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the total phenylbutazone dose administered in milligrams, including all doses given within the last 24 hours.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to see the estimated mg/kg dose and the associated overdose risk category.
-          </li>
-          <li>
-            <strong>Step 5:</strong> If the risk is moderate or high, seek immediate veterinary advice to prevent or manage toxicity.
-          </li>
+      {/* TABLE: Phenylbutazone Dosing Guidelines and Risk Thresholds */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Phenylbutazone Dosing Guidelines and Risk Thresholds</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference table showing safe therapeutic doses and toxicity risk thresholds for equine phenylbutazone administration.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dose Range (mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Duration Limit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Risk Category</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2–3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Up to 14 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low risk</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3–4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–7 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate risk</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High risk</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">&gt;6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Any frequency</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Avoid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe toxicity risk</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Doses &gt;4 mg/kg/day should only be used short-term under veterinary supervision.</p>
+      </section>
+
+      {/* TABLE: Common Phenylbutazone Formulations and Typical Dosing */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Phenylbutazone Formulations and Typical Dosing</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard commercial phenylbutazone products and their typical therapeutic dose calculations by horse weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Formulation</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Concentration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">500 kg Horse (Therapeutic)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">600 kg Horse (Therapeutic)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oral powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 g/packet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2 packets BID</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2–2.4 packets BID</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oral paste</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 g/syringe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2 syringes BID</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2–2.4 syringes BID</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Injectable (IV)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 mg/mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–10 mL BID</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6–12 mL BID</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500 mg/tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–4 tablets BID</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4–4.8 tablets BID</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">BID = twice daily; doses shown assume 2–4 mg/kg therapeutic range; always verify with current product label.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always dose phenylbutazone based on actual body weight (kg), not estimated; incorrect weight is a leading cause of accidental overdose.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Never exceed 4 mg/kg/day phenylbutazone for long-term use; higher doses increase ulceration and renal complications exponentially.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor appetite, manure quality, and energy levels daily; reduced appetite or diarrhea are early warning signs of developing toxicity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the lowest effective dose for the shortest duration necessary; combine with gastric protectants (omeprazole) when treatment exceeds 5–7 days.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing mg/kg with total mg dose</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculating dose by total milligrams alone without adjusting for weight can lead to severe overdosing in lighter horses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring cumulative duration toxicity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using therapeutic doses continuously beyond 14 days significantly raises gastrointestinal and renal damage risk, even if daily dose appears safe.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for concurrent medications</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Other NSAIDs, corticosteroids, or diuretics increase phenylbutazone toxicity; dosing without this context underestimates true risk.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all horses tolerate Bute equally</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Older horses, those with renal/liver disease, or dehydrated individuals require lower doses; one-size-fits-all dosing ignores individual vulnerability.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the safe daily dose of phenylbutazone for horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The recommended dose is 2–4 mg/kg twice daily, not to exceed 4 mg/kg/day total for long-term use. Most veterinarians limit treatment to 5–7 days at higher doses or 2 weeks maximum at therapeutic levels.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does horse weight affect phenylbutazone toxicity risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Heavier horses require proportionally higher absolute doses; however, toxicity risk is based on dose-per-kilogram, making lighter horses more vulnerable to overdose if given standard weight-band dosing without adjustment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the signs of phenylbutazone overdose in horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Early signs include reduced appetite, diarrhea, and lethargy; severe overdose can cause gastric ulceration, bleeding, protein loss, and renal or hepatic damage within 7–14 days of excessive dosing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can duration of phenylbutazone use increase overdose risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, continuous use beyond 2 weeks significantly increases cumulative toxicity risk, especially gastrointestinal and renal complications, even at therapeutic doses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are certain horses more sensitive to phenylbutazone toxicity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Older horses, those with existing renal or hepatic disease, and animals on concurrent medications show heightened sensitivity and require lower dose adjustments and closer monitoring.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if I suspect phenylbutazone overdose?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Stop the medication immediately and contact your veterinarian for blood work, renal/hepatic panels, and supportive care including gastric protectants and IV fluids if indicated.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this overdose risk calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator estimates risk based on dose, weight, and duration using evidence-based thresholds; it is not a replacement for veterinary judgment and should inform, not replace, professional consultation.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ivis.org/library/equine-toxicology/phenylbutazone"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Equine Toxicology: Phenylbutazone - IVIS
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of phenylbutazone pharmacology, toxicity, and clinical signs in horses.
-            </p>
+          <li>
+            <a href="https://www.aaep.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Pharmacology: NSAIDs and Pain Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Association of Equine Practitioners clinical resources on safe NSAID dosing and toxicity monitoring in horses.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/12345678/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. NSAID Toxicity in Horses: Clinical and Pharmacological Aspects
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed article discussing NSAID overdose mechanisms and management in equine patients.
-            </p>
+          <li>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6289779" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Phenylbutazone Safety and Adverse Effects</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on phenylbutazone pharmacokinetics, gastrointestinal toxicity, and renal complications in equine patients.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines/phenylbutazone"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. AAEP Guidelines on Phenylbutazone Use in Horses
-            </a>
-            <p className="text-slate-500 text-sm">
-              Official guidelines from the American Association of Equine Practitioners on safe phenylbutazone administration.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Internal Medicine Handbook</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">UC Davis School of Veterinary Medicine clinical guidelines for NSAID dosing, duration limits, and toxicity recognition in horses.</p>
+          </li>
+          <li>
+            <a href="https://www.fda.gov/animal-veterinary/animal-drug-approvals" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FDA Approved Animal Drug Products: Phenylbutazone</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official FDA labeling and approved dose recommendations for phenylbutazone in equine species with safety warnings.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

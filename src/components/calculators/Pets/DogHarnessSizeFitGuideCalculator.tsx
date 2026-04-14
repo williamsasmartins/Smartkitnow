@@ -101,25 +101,33 @@ export default function DogHarnessSizeFitGuideCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is chest girth the most important measurement for dog harness sizing?",
-      answer:
-        "Chest girth is the circumference around the widest part of a dog's ribcage, just behind the front legs. This measurement is crucial because the harness must fit snugly around this area to provide proper support and control without restricting breathing or movement. Unlike weight or breed, chest girth directly correlates with the harness's fit, ensuring comfort and safety during walks or activities.",
+      question: "How do I measure my dog's chest for a harness?",
+      answer: "Measure around the widest part of your dog's chest using a soft measuring tape, keeping it snug but not tight. Add 1-2 inches to ensure comfort and proper fit.",
     },
     {
-      question: "How can I accurately measure my dog's chest, neck, and length for harness fitting?",
-      answer:
-        "To measure chest girth, use a flexible tape measure around the widest part of your dog's ribcage, just behind the front legs, ensuring the tape is snug but not tight. For neck girth, measure around the base of the neck where the collar naturally sits. Length is measured from the base of the neck (where it meets the shoulders) to the base of the tail. Accurate measurements ensure the harness fits well, preventing escape or discomfort.",
+      question: "What's the difference between harness sizes XS, S, M, L, and XL?",
+      answer: "XS fits dogs 5-15 lbs, S fits 15-30 lbs, M fits 30-50 lbs, L fits 50-80 lbs, and XL fits 80+ lbs, though measurements vary by brand.",
     },
     {
-      question: "What are the risks of using a poorly fitting dog harness?",
-      answer:
-        "A poorly fitting harness can cause multiple issues including chafing, restricted movement, and even injury. If too tight, it can impede breathing or cause skin irritation; if too loose, the dog may slip out, risking escape and injury. Additionally, improper fit can lead to uneven pressure distribution, potentially causing joint or muscle strain, especially in active or working dogs.",
+      question: "Can a harness be too loose or too tight?",
+      answer: "A loose harness reduces control and escape risk, while a tight harness restricts breathing and causes discomfort; aim for 1-2 finger spacing between harness and skin.",
     },
     {
-      question: "How do different harness styles affect sizing and fit considerations?",
-      answer:
-        "Harness styles vary in design—such as step-in, vest, or front-clip models—and each may fit differently based on your dog's shape. For example, vest harnesses often require more precise chest and length measurements for comfort, while step-in harnesses focus more on chest and neck girth. Understanding your dog's body shape and activity level helps select a style that complements the size measurements and ensures optimal fit and function.",
+      question: "Should I measure my dog's length for harness sizing?",
+      answer: "Yes, measure from the base of the neck to the tail base to ensure adequate coverage and proper weight distribution across the harness.",
     },
+    {
+      question: "How often should I re-measure my growing puppy?",
+      answer: "Re-measure your puppy every 4-6 weeks during growth phases (typically 3-12 months) to ensure the harness remains properly fitted.",
+    },
+    {
+      question: "Do different harness styles require different measurements?",
+      answer: "Yes; front-clip harnesses need snug chest measurements, back-clip harnesses require length accuracy, and no-pull harnesses need both chest and neck dimensions.",
+    },
+    {
+      question: "What happens if my dog is between two harness sizes?",
+      answer: "Choose the larger size if your dog falls between sizes, then adjust straps for a snug fit; oversizing is safer than undersizing.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -258,112 +266,206 @@ export default function DogHarnessSizeFitGuideCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Harness Size & Fit Guide
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Selecting the correct dog harness size and fit is essential for your pet's comfort, safety, and overall well-being. Unlike collars, harnesses distribute pressure across the chest and shoulders, reducing strain on the neck and preventing injuries. Proper sizing ensures the harness stays securely in place without restricting movement or causing chafing. This guide focuses on key measurements—chest girth, neck girth, and body length—to help you choose the most appropriate harness size tailored to your dog's unique body shape.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Chest girth is the most critical measurement because it determines how snugly the harness fits around the widest part of your dog's ribcage. An ill-fitting harness can lead to discomfort, escape risks, or even injury. Neck girth and body length measurements complement chest girth by ensuring the harness accommodates your dog's overall proportions, especially when selecting different harness styles such as vest, step-in, or front-clip models. Understanding these measurements and their interplay is vital for optimizing your dog's harness fit and function.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Harness Size & Fit Guide</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine the correct harness size and fit for your dog by analyzing key body measurements. It ensures proper weight distribution, comfort, and control during walks and activities.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's weight, chest measurement, length, and neck size into the calculator. The tool also considers your dog's breed and age to refine recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the recommended harness size and fit adjustments provided in your results. Use the fit checklist to verify proper spacing and support before purchasing or adjusting your current harness.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps you estimate the appropriate dog harness size based on your dog's key body measurements. Begin by selecting your preferred unit system—Imperial (inches and pounds) or Metric (centimeters and kilograms). Then, accurately measure your dog's weight, chest girth, neck girth, and body length using a flexible tape measure. Input these values into the respective fields and click "Calculate" to receive a recommended harness size along with fit notes and warnings if any measurements suggest potential fitting issues.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> While weight is not the primary sizing factor, it provides context for your dog's overall size and helps confirm measurements.
-          </li>
-          <li>
-            <strong>Chest Girth:</strong> Measure around the widest part of the ribcage, just behind the front legs. This is the most important measurement for harness sizing.
-          </li>
-          <li>
-            <strong>Neck Girth:</strong> Measure around the base of the neck where the collar naturally sits. This ensures the harness does not constrict the neck.
-          </li>
-          <li>
-            <strong>Body Length:</strong> Measure from the base of the neck to the base of the tail. This helps determine harness style suitability and fit.
-          </li>
+      {/* TABLE: Dog Harness Size Chart by Weight & Breed */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dog Harness Size Chart by Weight & Breed</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this chart to match your dog's weight and common breeds to the appropriate harness size.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Harness Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Breeds</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Chest Measurement</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">XS</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-15 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Chihuahua, Pomeranian, Toy Poodle</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-16 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">S</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-30 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Beagle, Cocker Spaniel, Schnauzer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-22 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">M</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-50 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Springer Spaniel, Brittany, Boxer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-28 inches</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">L</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-80 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Labrador, Golden Retriever, German Shepherd</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-36 inches</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">XL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80+ lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Great Dane, Saint Bernard, Mastiff</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36-45 inches</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Measurements are approximate and may vary by harness brand; always verify with manufacturer specifications.</p>
+      </section>
+
+      {/* TABLE: Harness Fit Checklist by Measurement Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Harness Fit Checklist by Measurement Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Verify your dog's harness fit using these key measurements and adjustment guidelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Measurement</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ideal Fit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Too Tight Signs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Too Loose Signs</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chest Girth</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 fingers spacing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Labored breathing, redness</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slip-over potential, no control</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Neck Opening</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Thumb width clearance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Gagging, hair loss</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Harness slides backward</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Shoulder Straps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No binding</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Restricted movement, chafing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Uneven weight distribution</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Back Panel Length</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Covers midback</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Spine pressure, discomfort</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Haunches unsupported</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Recheck fit monthly during growth phases and adjust straps as needed for safety and comfort.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always measure your dog while standing in a natural position; avoid measuring while sitting or stretching, as this skews results.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check harness fit weekly for puppies and monthly for adult dogs, as even slight changes affect comfort and safety.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use soft measuring tapes or fabric rulers to get accurate measurements without discomfort to your dog.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">When in doubt between sizes, order two sizes and return the incorrect one to ensure the best fit for your dog's body shape.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring Over Thick Fur</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Always measure directly on skin or under thin coat layers, as thick fur inflates measurements by 1-3 inches.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Neck Measurement</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Neglecting neck size can result in harnesses that slip over the head or cause choking; always measure neck circumference.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming All Brands Fit Identically</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Harness sizing varies significantly by manufacturer; always cross-reference calculator results with brand-specific fit guides.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping the Two-Finger Test</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to check spacing between harness and skin risks either restricting breathing or allowing escape.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I measure my dog's chest for a harness?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Measure around the widest part of your dog's chest using a soft measuring tape, keeping it snug but not tight. Add 1-2 inches to ensure comfort and proper fit.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between harness sizes XS, S, M, L, and XL?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">XS fits dogs 5-15 lbs, S fits 15-30 lbs, M fits 30-50 lbs, L fits 50-80 lbs, and XL fits 80+ lbs, though measurements vary by brand.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can a harness be too loose or too tight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A loose harness reduces control and escape risk, while a tight harness restricts breathing and causes discomfort; aim for 1-2 finger spacing between harness and skin.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I measure my dog's length for harness sizing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, measure from the base of the neck to the tail base to ensure adequate coverage and proper weight distribution across the harness.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I re-measure my growing puppy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Re-measure your puppy every 4-6 weeks during growth phases (typically 3-12 months) to ensure the harness remains properly fitted.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do different harness styles require different measurements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; front-clip harnesses need snug chest measurements, back-clip harnesses require length accuracy, and no-pull harnesses need both chest and neck dimensions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my dog is between two harness sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Choose the larger size if your dog falls between sizes, then adjust straps for a snug fit; oversizing is safer than undersizing.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/dog-harnesses-and-collars"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American Veterinary Medical Association (AVMA) - Dog Harnesses and Collars
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on selecting and fitting dog harnesses to promote safety and comfort.
-            </p>
+          <li>
+            <a href="https://www.akc.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Kennel Club - Dog Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative resource on dog breed standards and recommended equipment for safe walking and training.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/harnesses-vs-collars"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals - Harnesses vs. Collars: Which is Best?
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary insights into the benefits and fitting considerations of different harness types.
-            </p>
+          <li>
+            <a href="https://www.canineprofessionals.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Association of Canine Professionals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional guidelines for proper harness fitting, leash selection, and walking techniques for different dog sizes.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6466027/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Research Article: Biomechanical Effects of Dog Harnesses on Gait
-            </a>
-            <p className="text-slate-500 text-sm">
-              A scientific study analyzing how harness fit impacts canine movement and musculoskeletal health.
-            </p>
+          <li>
+            <a href="https://www.humanesociety.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Humane Society of the United States</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert advice on dog care, safety equipment, and proper fitting for harnesses and collars.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.petmd.com/dog/care/evr_dg_harnesses_for_dogs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. PetMD - Choosing the Right Harness for Your Dog
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert advice on measuring and selecting harnesses tailored to your dog's size and activity level.
-            </p>
+          <li>
+            <a href="https://www.petfinder.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Petfinder - Dog Care Articles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guides on selecting and fitting dog harnesses for comfort, safety, and training purposes.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

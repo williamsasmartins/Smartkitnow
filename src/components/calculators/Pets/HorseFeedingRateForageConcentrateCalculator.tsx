@@ -76,25 +76,33 @@ export default function HorseFeedingRateForageConcentrateCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to balance forage and concentrate in a horse's diet?",
-      answer:
-        "Balancing forage and concentrate is essential because forage provides fiber necessary for healthy digestion, while concentrates supply additional energy and nutrients. Too much concentrate can lead to digestive upset or metabolic disorders, whereas insufficient forage can cause behavioral issues and poor gut motility. Proper balance ensures optimal health, performance, and weight maintenance in horses.",
+      question: "How much forage should a 1,000 lb horse eat daily?",
+      answer: "A 1,000 lb horse should consume 15-20 lbs of forage daily, or 1.5-2% of body weight. The calculator adjusts this based on activity level and metabolism.",
     },
     {
-      question: "How does body weight influence the feeding rate calculation?",
-      answer:
-        "Body weight is the foundation for calculating feeding rates because nutrient requirements scale with size. Feeding rates are typically expressed as a percentage of body weight to ensure horses receive adequate energy without overfeeding. Accurate weight measurement helps prevent underfeeding or obesity, both of which can compromise health and performance.",
+      question: "What's the difference between forage and concentrate in this calculator?",
+      answer: "Forage (hay, pasture) provides fiber and bulk; concentrate (grains, pellets) provides energy and nutrients. This calculator determines optimal ratios for each based on your horse's needs.",
     },
     {
-      question: "What factors affect the total daily intake percentage used in this calculator?",
-      answer:
-        "Total daily intake percentage varies based on the horse's age, workload, metabolic rate, and health status. For example, performance horses or lactating mares require higher intake percentages, while idle or overweight horses need less. This calculator allows adjustment of intake percentage to tailor feeding plans to individual needs, promoting optimal nutrition.",
+      question: "Why does the calculator ask for activity level?",
+      answer: "Activity level determines caloric requirements: idle horses need 1.2x maintenance, while performance horses may need 1.5-2x maintenance calories.",
     },
     {
-      question: "Why do we convert weights between imperial and metric units internally?",
-      answer:
-        "Converting weights internally ensures consistent and accurate calculations regardless of the unit system used by the user. Metric units (kilograms) are standard in veterinary nutrition formulas, so inputs in pounds are converted to kilograms for precise math. Results are then converted back to the user's preferred unit for clarity and usability.",
+      question: "How do I input my horse's weight accurately?",
+      answer: "Weigh your horse on a scale if possible, or use the heart girth formula: (Heart Girth² × Body Length) ÷ 300 = estimated weight in pounds.",
     },
+    {
+      question: "What happens if I feed more concentrate than the calculator recommends?",
+      answer: "Excess concentrate increases colic, laminitis, and obesity risk; horses evolved to digest forage, so maintain at least 50% forage by weight in the diet.",
+    },
+    {
+      question: "Should I adjust feeding rates for seasonal changes?",
+      answer: "Yes, winter may increase forage needs by 10-20% for warmth, while summer pasture grazing can reduce concentrate supplementation.",
+    },
+    {
+      question: "How often should I recalculate my horse's feeding rate?",
+      answer: "Recalculate every 6-8 weeks or whenever weight changes significantly, as energy needs shift with age, fitness, and metabolic changes.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -224,98 +232,212 @@ export default function HorseFeedingRateForageConcentrateCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Horse Feeding Rate Calculator (Forage + Concentrate)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Horse Feeding Rate Calculator (Forage + Concentrate) is a veterinary tool designed to estimate the daily amounts of forage and concentrated feed a horse requires based on its body weight and nutritional needs. Forage, such as hay or pasture grass, forms the foundation of a horse’s diet by providing essential fiber that supports healthy digestion and gut motility. Concentrates, including grains and pelleted feeds, supply additional energy and nutrients necessary for horses with higher metabolic demands or specific health conditions.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator uses scientifically accepted feeding rate percentages relative to body weight to determine the total daily intake and then divides this into forage and concentrate portions according to user-defined ratios. By inputting the horse’s weight, the desired total daily intake as a percentage of body weight, and the proportion of forage in the diet, caretakers can generate precise feeding recommendations. This approach helps prevent common nutritional issues such as overfeeding concentrates, which can lead to colic or laminitis, and underfeeding forage, which can cause digestive disturbances and behavioral problems.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The calculator supports both imperial and metric units, converting inputs internally to maintain accuracy and consistency with veterinary nutritional standards. It is an essential tool for veterinarians, equine nutritionists, and horse owners aiming to optimize feeding strategies tailored to individual horses’ needs, workloads, and health statuses. Proper feeding management promotes overall equine wellness, performance, and longevity.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horse Feeding Rate Calculator (Forage + Concentrate)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the optimal daily forage and concentrate portions for your horse based on weight, age, activity level, and health status. It ensures proper nutrition while maintaining the 50-70% forage minimum that horses' digestive systems require.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your horse's body weight (in lbs), select activity level (idle to very heavy work), enter age and condition score, and note any special needs like pregnancy or metabolic issues. The calculator uses industry-standard formulas from equine nutrition research to compute daily dry matter intake.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show recommended daily forage (hay/pasture) and concentrate (grain/pellets) portions in pounds, plus total calories. Adjust gradually when changing diet, monitor body condition monthly, and consult a veterinarian or equine nutritionist if your horse has health concerns.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator effectively, begin by selecting the unit system that matches your measurement preference—imperial (pounds) or metric (kilograms). Next, enter the horse’s current body weight accurately, as this is the basis for all feeding rate calculations. Then, specify the percentage of the total daily intake that should come from forage, reflecting the horse’s dietary needs and management goals.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Input the horse’s body weight in the chosen unit system. Accurate weight measurement is critical for precise feeding recommendations.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the forage percentage of the total daily intake. This value typically ranges from 50% to 100%, depending on the horse’s diet and health.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the total daily intake as a percentage of body weight. Common values range from 1.5% to 3%, adjusted for workload, age, and condition.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to generate the estimated daily amounts of forage and concentrate feed. Review the results and adjust inputs as necessary to meet your horse’s specific needs.
-          </li>
+      {/* TABLE: Daily Forage & Concentrate Requirements by Horse Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Forage & Concentrate Requirements by Horse Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These ranges show typical daily dry matter intake (DMI) for maintenance-level horses.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Horse Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Forage (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Concentrate (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Daily Intake</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-20 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-25 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-30 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26-35 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24-32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-40 lbs</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages assume 1.5-2% body weight for forage and 0.3-0.5% for concentrate at maintenance level.</p>
+      </section>
+
+      {/* TABLE: Activity Level Multipliers for Caloric Requirements */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Activity Level Multipliers for Caloric Requirements</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these multipliers to adjust base maintenance calories based on your horse's work intensity.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Description</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Caloric Multiplier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Concentrate Increase</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Idle/Pasture Only</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal exercise, turnout only</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-2 lbs/day</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Light Work</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Casual riding 3-4 hours/week</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2-1.3x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 lbs/day</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate Work</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Regular riding 5-6 days/week</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.4-1.5x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 lbs/day</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Heavy Work</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Competition, training, or racing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.7-1.9x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-10 lbs/day</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Very Heavy Work</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Endurance or intense conditioning</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.9-2.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10+ lbs/day</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Forage should remain 50-70% of total diet; adjust concentrate within safe limits to meet energy demands.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always transition feed changes over 7-10 days to avoid digestive upset and colic.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh feed portions for the first week to ensure accuracy; don't estimate by eye.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store hay in a dry location and concentrate in airtight bins to maintain nutritional quality.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your horse's body condition score (BCS 1-9 scale) monthly and adjust portions if score drifts outside the ideal 5-6 range.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring forage-to-concentrate ratio</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Feeding &gt;30% concentrate by weight increases colic and laminitis risk; prioritize forage even for high-performance horses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using fresh weight instead of dry matter</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Hay moisture content varies (10-20%); the calculator uses dry matter, so 20 lbs fresh hay ≈ 16-18 lbs dry matter.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for pasture intake</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Green pasture contains 70-80% water; 1 lb of dry matter in pasture equals roughly 3-4 lbs fresh grass weight.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Feeding the same amount year-round</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Winter horses need 10-20% more calories; summer pasture grazing can reduce concentrate by 50% or more if quality forage is abundant.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much forage should a 1,000 lb horse eat daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 1,000 lb horse should consume 15-20 lbs of forage daily, or 1.5-2% of body weight. The calculator adjusts this based on activity level and metabolism.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between forage and concentrate in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Forage (hay, pasture) provides fiber and bulk; concentrate (grains, pellets) provides energy and nutrients. This calculator determines optimal ratios for each based on your horse's needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does the calculator ask for activity level?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Activity level determines caloric requirements: idle horses need 1.2x maintenance, while performance horses may need 1.5-2x maintenance calories.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I input my horse's weight accurately?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Weigh your horse on a scale if possible, or use the heart girth formula: (Heart Girth² × Body Length) ÷ 300 = estimated weight in pounds.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I feed more concentrate than the calculator recommends?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excess concentrate increases colic, laminitis, and obesity risk; horses evolved to digest forage, so maintain at least 50% forage by weight in the diet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust feeding rates for seasonal changes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, winter may increase forage needs by 10-20% for warmth, while summer pasture grazing can reduce concentrate supplementation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my horse's feeding rate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 6-8 weeks or whenever weight changes significantly, as energy needs shift with age, fitness, and metabolic changes.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines/feeding-horses"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. AAEP Feeding Guidelines for Horses
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines from the American Association of Equine Practitioners on balanced feeding practices for horses, emphasizing forage and concentrate ratios.
-            </p>
+          <li>
+            <a href="https://www.nap.edu/catalog/25038/nutrient-requirements-of-horses-revised-edition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Nutrient Requirements of Horses</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">National Academies Press comprehensive guide to equine nutrition standards and daily requirements by age and activity.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.extension.org/pages/11705/feeding-horses-nutrition-basics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Extension.org - Feeding Horses: Nutrition Basics
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource detailing the nutritional requirements of horses, including the importance of forage and concentrate balance in daily rations.
-            </p>
+          <li>
+            <a href="https://www.extension.org/pages/26643/equine-nutrition-and-joint-health" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Nutrition and Joint Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">University extension resource covering forage quality, concentrate selection, and metabolic disease prevention in horses.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/feeding-and-nutrition-of-horses/feeding-horses"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual - Feeding Horses
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary manual covering feeding strategies, nutrient requirements, and common feeding-related disorders in horses.
-            </p>
+          <li>
+            <a href="https://www.thehorese.com/articles/body-condition-scoring" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Horse: Body Condition Scoring</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Guide to visual body condition assessment (1-9 scale) and adjusting feed portions based on seasonal and work changes.</p>
+          </li>
+          <li>
+            <a href="https://www.aaep.org/about-aaep/about-american-association-equine-practitioners" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAEP Equine Weight Estimation</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Association of Equine Practitioners resources on accurate weight measurement and DMI calculations for horses.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

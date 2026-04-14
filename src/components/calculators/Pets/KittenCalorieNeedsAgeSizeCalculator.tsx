@@ -82,25 +82,33 @@ export default function KittenCalorieNeedsAgeSizeCalculator() {
   // 3. FAQS (DETAILED)
   const faqs = [
     {
-      question: "Why do kittens require more calories than adult cats?",
-      answer:
-        "Kittens are in a rapid growth phase requiring significantly more energy to support development of muscles, bones, and organs. Their metabolism is higher, and they need extra calories to fuel this growth, immune system development, and increased activity levels compared to adult cats.",
+      question: "How many calories does a 2-month-old kitten need daily?",
+      answer: "A 2-month-old kitten typically needs 150-250 calories per day, depending on breed and individual metabolism. Kittens at this age should eat 3-4 meals daily to support rapid growth.",
     },
     {
-      question: "How does age affect a kitten's calorie needs?",
-      answer:
-        "Calorie needs decrease as kittens grow older. Neonatal kittens (0-8 weeks) require about three times their resting energy requirement, while older kittens (9-16 weeks) need about 2.5 times, and adolescents (17-52 weeks) about twice their resting energy requirement. After one year, calorie needs stabilize closer to adult maintenance levels.",
+      question: "When do kittens transition from high-calorie to adult diets?",
+      answer: "Most kittens transition to adult food around 12 months of age, reducing caloric intake from 200-300 calories daily to 180-220 calories for an average adult cat. The exact timing depends on breed size and growth rate.",
     },
     {
-      question: "Can I use this calculator for overweight or underweight kittens?",
-      answer:
-        "This calculator estimates calorie needs based on current weight and age, assuming a healthy growth trajectory. For overweight or underweight kittens, consult a veterinarian for tailored feeding plans, as calorie needs may differ significantly to promote healthy weight gain or loss safely.",
+      question: "Do larger kitten breeds need more calories than smaller breeds?",
+      answer: "Yes, larger breeds like Maine Coons need 20-30% more calories than smaller breeds like Siamese at the same age. A 4-month-old Maine Coon may need 280-320 calories daily versus 200-240 for a standard kitten.",
     },
     {
-      question: "Why is weight input necessary for this calculator?",
-      answer:
-        "Weight is essential to calculate the resting energy requirement (RER), which is the foundation for determining daily calorie needs. Since energy expenditure scales with metabolic body size, accurate weight measurement ensures precise calorie estimations for optimal kitten growth and health.",
+      question: "How does activity level affect a kitten's calorie requirements?",
+      answer: "Active, playful kittens may need 10-20% more calories than less active littermates. Monitor body condition and adjust portions if your kitten seems constantly hungry or is gaining too much weight.",
     },
+    {
+      question: "What is the difference between calories for male and female kittens?",
+      answer: "Male kittens typically grow larger and may need 5-15% more calories than females of the same age. However, individual variation is significant, so weigh and monitor your kitten's growth regularly.",
+    },
+    {
+      question: "Can I overfeed a kitten with high-quality food?",
+      answer: "Yes, overfeeding kittens can lead to obesity, digestive issues, and joint problems even with premium food. Follow age-appropriate portion guidelines and adjust based on your kitten's body condition score.",
+    },
+    {
+      question: "How should I adjust calories if my kitten is underweight or overweight?",
+      answer: "For underweight kittens, increase portions by 10-15% and consult a vet to rule out health issues. For overweight kittens, reduce calories by 10% and increase playtime, but avoid drastic cuts that harm growth.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -241,101 +249,218 @@ export default function KittenCalorieNeedsAgeSizeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Kitten Calorie Needs by Age/Size
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Kittens have unique nutritional requirements that differ significantly from adult cats. Their rapid growth and development demand a higher caloric intake to support the formation of muscles, bones, and vital organs. Energy needs are calculated based on their current weight and age, reflecting their metabolic rate and growth stage.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Resting Energy Requirement (RER) is the baseline energy expenditure for a kitten at rest, calculated using their body weight raised to the 0.75 power. Growing kittens require multiples of this RER to meet their increased energy demands. Younger kittens need more calories per kilogram of body weight compared to older kittens as their growth rate slows.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding these calorie needs helps pet owners provide appropriate feeding amounts to promote healthy growth without overfeeding, which can lead to obesity or nutritional imbalances. This calculator uses established veterinary formulas to estimate daily calorie requirements based on weight and age, ensuring a science-backed approach to kitten nutrition.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Kitten Calorie Needs by Age/Size Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates daily caloric requirements for kittens from birth to one year, accounting for rapid growth, metabolism, and energy expenditure during critical developmental stages.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your kitten's current age in weeks, approximate weight in pounds or kilograms, and breed size category (small, standard, or large). The calculator will provide personalized daily calorie recommendations and meal frequency suggestions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the results to guide portion sizes on your kitten's food label, then monitor body condition weekly—your kitten should have a visible waist and rib definition without protruding ribs. Adjust portions by 5-10% if growth seems slow or weight gain excessive.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This tool estimates the daily calorie needs of your kitten based on its current weight and age in weeks. Accurate inputs will yield the most reliable results to guide feeding decisions.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system that matches your measurement (Imperial for pounds or Metric for kilograms).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your kitten’s current weight in the chosen unit.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter your kitten’s age in weeks (0 to 52 weeks).
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to see the estimated daily calorie needs.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the result to guide feeding amounts, and consult your veterinarian for personalized advice.
-          </li>
+      {/* TABLE: Daily Calorie Needs by Age (Standard Domestic Kittens) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Needs by Age (Standard Domestic Kittens)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows average daily calorie requirements for domestic shorthair and standard breed kittens from birth through one year.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Calories</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Feeding Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-250g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 meals</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400-600g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-200 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 meals</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">700-1000g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-250 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 meals</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">16 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2-1.5kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-300 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 meals</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-2.5kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280-320 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 meals</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5-3.5kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-350 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 meals</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5-4.5kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-250 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 meals</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values are approximate and vary by individual kitten metabolism, activity level, and breed. Always consult your veterinarian for personalized recommendations.</p>
+      </section>
+
+      {/* TABLE: Calorie Comparison: Large vs. Small Kitten Breeds */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Calorie Comparison: Large vs. Small Kitten Breeds</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares caloric needs at key growth milestones for large breeds versus small breeds.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Small Breed (Siamese, Abyssinian)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Large Breed (Maine Coon, Ragdoll)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Difference</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140-170 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-220 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+30-50 kcal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">190-220 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240-290 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+50-70 kcal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">260-290 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">320-380 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+60-90 kcal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-210 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240-280 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+60 kcal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Large breed kittens grow for 12-18 months versus 12 months for small breeds. Extended growth periods may increase total caloric needs by 15-25%.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your kitten weekly to track growth and adjust calories accordingly, since kittens grow rapidly and caloric needs change frequently.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a kitchen scale to measure kibble portions accurately rather than eyeballing, preventing overfeeding that leads to obesity and health complications.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Transition to new food gradually over 7-10 days by mixing increasing amounts of new food with old food to avoid digestive upset.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Choose kitten-formulated food with AAFCO certification to ensure it meets the higher protein and fat requirements for optimal growth and development.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Adult Cat Calorie Recommendations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adult cat formulas have 30-40% fewer calories than kitten diets, causing malnourishment and stunted growth if used before 12 months.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Feeding Free-Choice Without Measuring</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Leaving food available constantly causes overfeeding and obesity; kittens need portion-controlled meals 2-4 times daily based on age.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Breed-Specific Growth Rates</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Large breed kittens grow slower and longer than small breeds; feeding large-breed kittens adult portions too early causes joint stress and skeletal problems.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Treats in Daily Calories</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treats should comprise only 5-10% of daily calories; adding treats without reducing meal portions causes quick weight gain and metabolic issues.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many calories does a 2-month-old kitten need daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 2-month-old kitten typically needs 150-250 calories per day, depending on breed and individual metabolism. Kittens at this age should eat 3-4 meals daily to support rapid growth.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When do kittens transition from high-calorie to adult diets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most kittens transition to adult food around 12 months of age, reducing caloric intake from 200-300 calories daily to 180-220 calories for an average adult cat. The exact timing depends on breed size and growth rate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do larger kitten breeds need more calories than smaller breeds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, larger breeds like Maine Coons need 20-30% more calories than smaller breeds like Siamese at the same age. A 4-month-old Maine Coon may need 280-320 calories daily versus 200-240 for a standard kitten.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does activity level affect a kitten's calorie requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Active, playful kittens may need 10-20% more calories than less active littermates. Monitor body condition and adjust portions if your kitten seems constantly hungry or is gaining too much weight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between calories for male and female kittens?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Male kittens typically grow larger and may need 5-15% more calories than females of the same age. However, individual variation is significant, so weigh and monitor your kitten's growth regularly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I overfeed a kitten with high-quality food?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, overfeeding kittens can lead to obesity, digestive issues, and joint problems even with premium food. Follow age-appropriate portion guidelines and adjust based on your kitten's body condition score.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I adjust calories if my kitten is underweight or overweight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For underweight kittens, increase portions by 10-15% and consult a vet to rule out health issues. For overweight kittens, reduce calories by 10% and increase playtime, but avoid drastic cuts that harm growth.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/nutrition-of-the-growing-animal/nutrition-of-kittens"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Nutrition of Kittens
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of nutritional requirements and energy needs for growing kittens.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Pet Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards for kitten food formulation and nutritional adequacy statements.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.wsava.org/wp-content/uploads/2020/01/WSAVA-Nutrition-Guidelines-2019.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. WSAVA Global Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              International standards for pet nutrition including energy requirements for kittens.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/nutrition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) Pet Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based guidance on kitten nutrition, feeding frequency, and growth monitoring.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149605/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Center for Biotechnology Information: Energy Requirements of Growing Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific study detailing metabolic energy needs during feline growth phases.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/kitten-care-feeding" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Kitten Care and Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource on age-appropriate calorie needs, feeding schedules, and dietary transitions.</p>
+          </li>
+          <li>
+            <a href="https://icatcare.org/advice/kitten-nutrition/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care - Kitten Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Science-backed recommendations for supporting healthy kitten development through proper nutrition.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

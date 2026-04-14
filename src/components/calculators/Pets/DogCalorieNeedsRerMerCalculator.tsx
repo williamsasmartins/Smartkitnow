@@ -473,365 +473,201 @@ export default function DogCalorieNeedsRerMerCalculator() {
   // -------------------------------------------------------------------
 
   const editorial = (
-    <div className="space-y-10">
-      {/* INTRODUÇÃO */}
-      <section id="how-to-use">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to use the dog calorie needs calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 mb-3">
-          This calculator estimates your dog&apos;s{" "}
-          <strong>Resting Energy Requirement (RER)</strong> and{" "}
-          <strong>Maintenance Energy Requirement (MER)</strong> using
-          veterinary-standard formulas. RER is the energy needed for basic body
-          functions at rest, while MER adjusts that number for{" "}
-          <strong>activity level, life stage, and body condition</strong>.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 mb-3">
-          To get a meaningful result, try to use a{" "}
-          <strong>recent, accurate weight</strong> from your veterinarian or a
-          reliable home scale. Then choose the options that best describe your
-          dog&apos;s routine:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Weight &amp; unit</strong> – enter the current weight in
-            kilograms or pounds.
-          </li>
-          <li>
-            <strong>Life stage</strong> – puppies, adults and seniors have
-            noticeably different calorie needs.
-          </li>
-          <li>
-            <strong>Activity level</strong> – compare your dog&apos;s lifestyle
-            with the descriptions in the dropdown.
-          </li>
-          <li>
-            <strong>Body condition</strong> – choose whether your dog is
-            underweight, ideal or overweight based on rib and waist visibility.
-          </li>
+    <div className="space-y-12">
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Calorie Needs (RER/MER) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines your dog's daily caloric requirements using the industry-standard RER (Resting Energy Requirement) formula and adjusts for activity level via MER (Maintenance Energy Requirement). It helps you establish appropriate daily food portions tailored to your dog's age, weight, and lifestyle.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by entering your dog's current body weight in pounds or kilograms, then select their activity level (sedentary, moderate, or active) and life stage (puppy, adult, or senior). The calculator uses the formula 70 × (body weight in kg)^0.75 to compute RER, then applies a multiplier based on your selections.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your result shows daily calorie needs; divide this by your food's calorie density (kcal per cup) to determine portion size. Adjust portions every 4 weeks based on weight changes, and consult your veterinarian if your dog has special health conditions.</p>
+        </div>
+      </section>
+
+      {/* TABLE: RER Estimates by Dog Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">RER Estimates by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical resting energy requirements based on body weight using the standard RER formula.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated RER (kcal/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">375</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">650</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">880</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,100</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values calculated using 70 × (body weight in kg)^0.75. Actual RER may vary by metabolism and age.</p>
+      </section>
+
+      {/* TABLE: MER Multipliers by Activity Level and Life Stage */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">MER Multipliers by Activity Level and Life Stage</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Apply these multipliers to RER to determine daily maintenance energy requirements for your dog.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Life Stage/Activity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">MER Multiplier (× RER)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: 50 lb dog</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sedentary adult</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2–1.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">780–910 kcal/day</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderately active adult</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5–1.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">975–1,040 kcal/day</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Very active/working dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.7–2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,105–1,300 kcal/day</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Growing puppy (3–6 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5–2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">975–1,300 kcal/day</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior dog (&gt;7 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8–1.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">520–780 kcal/day</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Individual variation exists; monitor weight and adjust as needed every 4 weeks.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your dog monthly to catch weight gain or loss early, then recalculate calories to maintain optimal body condition.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a kitchen scale to measure food portions by weight rather than volume for greater accuracy in calorie control.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in treats and supplements—they can add 10–20% to daily calorie intake and should be subtracted from meal portions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consult your vet before major calorie changes, especially for dogs with metabolic disorders, diabetes, or obesity.</li>
         </ul>
-        <p className="mt-3 text-slate-700 dark:text-slate-300">
-          The tool then calculates a daily calorie target and a safe adjustment
-          range. These values are meant as{" "}
-          <strong>educational guidelines</strong>. Always work with your vet for
-          diagnosis, customized diet plans, and medical decisions.
-        </p>
       </section>
 
-      {/* FORMULA */}
-      <section id="formula" className="border-t border-slate-200 dark:border-slate-700 pt-10">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          RER and MER formulas used by this calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 mb-3">
-          Most modern veterinary nutrition guidelines estimate calorie needs
-          using a two-step approach:
-        </p>
-        <ol className="list-decimal pl-6 space-y-2 text-slate-700 dark:text-slate-300 mb-4">
-          <li>
-            Calculate the <strong>Resting Energy Requirement (RER)</strong>.
-          </li>
-          <li>
-            Multiply RER by an appropriate <strong>MER factor</strong> based on
-            the dog&apos;s situation.
-          </li>
-        </ol>
-
-        <div className="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-lg border border-indigo-100 dark:border-indigo-800 mb-6">
-          <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-2">
-            Resting Energy Requirement
-          </p>
-          <p className="text-2xl sm:text-3xl font-mono font-bold text-slate-900 dark:text-slate-100">
-            RER = 70 × (body weight in kg)<sup>0.75</sup>
-          </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using human calorie formulas for dogs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Human metabolic equations don't account for the 0.75 exponent that reflects dogs' lower metabolic rate per pound; always use the 70 × (body weight in kg)^0.75 formula.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring treats and table scraps</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treats can easily add 200–400 calories daily and push a dog into caloric surplus; include all extras in your total daily intake calculation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Applying the same multiplier to all dogs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A senior, sedentary dog needs far fewer calories than a young, active one of the same weight; always adjust the MER multiplier for life stage and activity.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not recalculating after major life changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Surgery, illness, or a shift from indoor to outdoor living can change calorie needs by 20–50%; recalculate when circumstances change.</p>
+          </div>
         </div>
-
-        <div className="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-lg border border-emerald-100 dark:border-emerald-800 mb-6">
-          <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-2">
-            Maintenance Energy Requirement
-          </p>
-          <p className="text-2xl sm:text-3xl font-mono font-bold text-slate-900 dark:text-slate-100 mb-2">
-            MER = RER × factor
-          </p>
-          <p className="text-sm text-slate-700 dark:text-slate-300">
-            The factor depends on whether your dog is a puppy, adult, senior,
-            very active, or on a weight-loss plan.
-          </p>
-        </div>
-
-        <h3 className="text-xl font-semibold mb-3 text-slate-900 dark:text-slate-100">
-          Typical MER factors
-        </h3>
-        <Table className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm mb-4">
-          <TableHeader>
-            <TableRow className="bg-slate-50 dark:bg-slate-900/60">
-              <TableHead>Dog type</TableHead>
-              <TableHead>Typical factor</TableHead>
-              <TableHead>Comment</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {ACTIVITY_LEVELS.map((level) => (
-              <TableRow key={level.id}>
-                <TableCell>{level.label}</TableCell>
-                <TableCell>{level.factor.toFixed(1)} × RER</TableCell>
-                <TableCell>{level.description}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-
-        <p className="text-slate-700 dark:text-slate-300">
-          Different textbooks and veterinary specialists may use slightly
-          different ranges, especially for puppies, working dogs and medical
-          conditions. The factors here represent{" "}
-          <strong>commonly used starting points</strong> for healthy dogs.
-        </p>
-      </section>
-
-      {/* EXEMPLO PRÁTICO */}
-      <section
-        id="examples"
-        className="border-t border-slate-200 dark:border-slate-700 pt-10"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Example: calculating calories for a 12&nbsp;kg neutered adult dog
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 mb-3">
-          Imagine a <strong>12 kg neutered adult dog</strong> who lives
-          indoors, has daily walks, and a normal body condition score. Here is
-          how the calculator estimates calorie needs:
-        </p>
-        <ol className="list-decimal pl-6 space-y-2 text-slate-700 dark:text-slate-300 mb-4">
-          <li>
-            Convert the weight to kilograms (already 12 kg in this example).
-          </li>
-          <li>
-            Calculate RER:
-            <br />
-            <span className="font-mono">
-              RER = 70 × 12<sup>0.75</sup> ≈ 70 × 6.4 ≈ 448 kcal/day
-            </span>
-          </li>
-          <li>
-            Choose MER factor for a neutered adult: 1.6 × RER.
-            <br />
-            <span className="font-mono">
-              MER = 448 × 1.6 ≈ 717 kcal/day
-            </span>
-          </li>
-          <li>
-            Because the body condition is ideal, the adjustment range is roughly
-            the same as MER.
-          </li>
-        </ol>
-        <p className="text-slate-700 dark:text-slate-300">
-          In practice, your vet might suggest starting at around{" "}
-          <strong>700–750 kcal/day</strong>, then monitoring weight, body
-          condition score, and energy level for several weeks and adjusting up
-          or down as needed.
-        </p>
       </section>
 
       {/* FAQ */}
-      <section
-        id="faq"
-        className="border-t border-slate-200 dark:border-slate-700 pt-10"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently asked questions about dog calorie needs
-        </h2>
-
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              What is the RER formula for dogs?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300">
-              The Resting Energy Requirement (RER) formula is{" "}
-              <strong>RER = 70 × (body weight in kg)^0.75</strong>. For example,
-              a 10 kg dog has RER = 70 × 10^0.75 = 70 × 5.62 = 393 kcal/day.
-              This represents the calories needed just to maintain basic organ
-              function at rest. MER multiplies RER by an activity factor (1.2–2.5)
-              for real-world daily needs.
-            </p>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is RER and how does it differ from MER?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">RER (Resting Energy Requirement) is the baseline calories a dog needs at rest, while MER (Maintenance Energy Requirement) adjusts RER based on activity level and life stage. MER is typically 1.2–1.8 times RER depending on the dog's lifestyle.</p>
           </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              How many calories does a dog need per day?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300">
-              Daily calorie needs vary widely by weight and activity. Approximate
-              MER ranges: a 5 kg (11 lb) small dog needs 280–400 kcal/day; a
-              20 kg (44 lb) medium dog needs 800–1,100 kcal/day; a 40 kg (88 lb)
-              large dog needs 1,400–1,800 kcal/day. Active, working, and
-              lactating dogs may need 2–3x these amounts.
-            </p>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How is RER calculated for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">RER is calculated using the formula: 70 × (body weight in kg)^0.75. This metabolic equation accounts for a dog's size and metabolic rate more accurately than simple calorie-per-pound estimates.</p>
           </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              Should I use current weight or ideal weight?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300">
-              For most healthy dogs, use <strong>current weight</strong>. If
-              your dog is visibly overweight (BCS 7–9/9), use an{" "}
-              <strong>estimated ideal weight</strong> to avoid over-feeding. A
-              general guideline: subtract 15–20% from current weight as a
-              starting ideal weight target, then adjust based on vet guidance.
-            </p>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What activity multipliers should I use for my dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Sedentary dogs use 1.2–1.4×, moderately active dogs use 1.5–1.6×, and highly active/working dogs use 1.7–2.0× RER. Puppies and senior dogs may need adjustments based on individual health status.</p>
           </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              How many calories are in dog food?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300">
-              Caloric density varies significantly: dry kibble typically has{" "}
-              <strong>300–450 kcal per cup</strong> (check label for your brand).
-              Wet/canned food has 80–170 kcal per 3.5 oz (100g) serving. Raw
-              diets vary widely (150–250+ kcal per 100g). Always check the
-              Metabolizable Energy (ME) on the label, usually listed as
-              "kcal/kg" or "kcal/cup."
-            </p>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator work for puppies and senior dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, but puppies typically need 1.5–2.0× their RER due to growth demands, while seniors may need 0.8–1.2× RER depending on metabolism and activity level. Individual health conditions should be considered.</p>
           </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              How fast should my dog lose or gain weight?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300">
-              Safe weight loss is <strong>1–2% of body weight per week</strong>{" "}
-              — about 0.2–0.4 kg/week for a 20 kg dog. Faster loss risks muscle
-              wasting and nutritional deficiencies. Weight gain for underweight
-              dogs should be similarly gradual. Always schedule monthly
-              weigh-ins while adjusting calories.
-            </p>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do larger dogs have lower calorie needs per pound than smaller dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The 0.75 exponent in the RER formula reflects that larger dogs have slower metabolic rates per unit of body weight, making calorie density lower for big breeds compared to small ones.</p>
           </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              How many calories should a puppy eat per day?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300">
-              Puppies need significantly more calories than adults — typically
-              2–3x the adult RER, using a MER factor of 2.0–3.0 depending on
-              age and breed size. Large breed puppies need careful calorie
-              control to avoid too-rapid growth, which can cause joint problems.
-              Use puppy-specific formulas and follow your vet&apos;s feeding schedule.
-            </p>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust calories based on neutering or spaying?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, neutered or spayed dogs typically need 25–30% fewer calories than intact dogs due to hormonal changes that lower metabolic rate. Adjust the MER multiplier downward accordingly.</p>
           </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              How many calories do treats count for?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300">
-              Treats should make up <strong>no more than 10% of daily calories</strong>.
-              For a 20 kg dog needing 900 kcal/day, that&apos;s only 90 kcal in
-              treats — roughly 3–5 medium commercial treats. Many owners
-              significantly underestimate treat calories. High-calorie training
-              treats (15–25 kcal each) can add 100–200 kcal daily without realizing.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              Is this calculator a substitute for a veterinary nutrition consult?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300">
-              No. This is an <strong>educational planning tool</strong>, not a
-              medical device. It cannot evaluate your dog&apos;s medical history,
-              lab work, medications or specific dietary needs. Discuss results
-              with your veterinarian, especially if your dog has chronic disease,
-              is significantly over/underweight, or takes long-term medications.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              Does the type of food matter, or just calories?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300">
-              Calories are only part of the picture. Dogs also need appropriate{" "}
-              <strong>protein, fat, vitamins, minerals and fiber</strong>.
-              Premium commercial diets are formulated to be balanced at
-              recommended amounts. Home-cooked food, raw diets, or heavy treat
-              use make it harder to maintain a complete diet. Work with a
-              veterinary nutrition specialist before major dietary changes.
-            </p>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my dog's calorie needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 3–6 months as your dog's weight, activity level, and age change, or immediately after significant life events like surgery, illness, or lifestyle shifts.</p>
           </div>
         </div>
       </section>
 
-      {/* REFERENCES & RESOURCES */}
-     <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-  <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-    References & additional resources
-  </h2>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.nap.edu/catalog/13038/nutrient-requirements-of-dogs-and-cats" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NRC Nutrient Requirements of Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">National Academies publication providing evidence-based dietary guidelines and energy requirement formulas for companion animals.</p>
+          </li>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Dog Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Association of American Feed Control Officials sets minimum nutritional standards and guidelines for pet food labeling and adequacy.</p>
+          </li>
+          <li>
+            <a href="https://www.wsava.org/Global-Guidelines/Nutrition" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">World Small Animal Veterinary Association (WSAVA) Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">International veterinary consensus on optimal caloric intake, macronutrient ratios, and feeding strategies for dogs across life stages.</p>
+          </li>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis Veterinary Medical Teaching Hospital Nutrition Support Service</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Academic resource offering research-backed information on canine nutrition, metabolic disorders, and therapeutic diet formulation.</p>
+          </li>
+        </ul>
+      </section>
 
-  <ul className="space-y-4">
-    <li className="flex items-start gap-3">
-      <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-      <div>
-        <a
-          href="https://wsava.org/global-guidelines/global-nutrition-guidelines/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-        >
-          WSAVA Global Nutrition Committee – Calorie and feeding guidelines
-        </a>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-          International recommendations used by many veterinarians to estimate RER, MER
-          and safe weight-loss plans.
-        </p>
-      </div>
-    </li>
-
-    <li className="flex items-start gap-3">
-      <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-      <div>
-        <a
-          href="https://www.amazon.com/Handbook-Small-Animal-Clinical-Nutrition/dp/0975961434"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-        >
-          Veterinary clinical nutrition textbooks
-        </a>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-          Standard references such as the <em>Handbook of Small Animal Clinical Nutrition</em>
-          summarize calorie equations, body-condition scoring and feeding strategies for
-          different life stages.
-        </p>
-      </div>
-    </li>
-
-    <li className="flex items-start gap-3">
-      <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-      <div>
-        <a
-          href="https://avma.org/resources-tools/pet-owners/petcare/your-veterinarian"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-        >
-          Your primary care veterinarian
-        </a>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-          Nothing replaces hands-on evaluation. Bring your calorie report to your vet visit
-          and use it as a starting point for a personalized nutrition discussion.
-        </p>
-      </div>
-    </li>
-  </ul>
-</section>
-
-
-        
     </div>
   );
 

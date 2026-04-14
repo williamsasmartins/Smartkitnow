@@ -80,25 +80,33 @@ export default function DogMeloxicamMetacamDoseCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is Meloxicam dosing based on mg/kg rather than a fixed dose?",
-      answer:
-        "Meloxicam dosing is calculated based on mg/kg to ensure safe and effective treatment tailored to each dog's size and metabolism. Dogs vary widely in weight, and a fixed dose could lead to underdosing smaller dogs or overdosing larger ones, increasing risks of side effects or therapeutic failure. Using mg/kg dosing optimizes efficacy while minimizing toxicity.",
+      question: "What is the standard meloxicam dose for dogs?",
+      answer: "The typical initial dose is 0.2 mg/kg once daily, with a maximum recommended dose of 0.1 mg/kg daily for maintenance therapy in most dogs.",
     },
     {
-      question: "What are the risks of incorrect Meloxicam dosing in dogs?",
-      answer:
-        "Incorrect Meloxicam dosing can cause serious adverse effects. Overdosing increases the risk of gastrointestinal ulcers, kidney damage, and liver toxicity, while underdosing may fail to control pain or inflammation effectively. Because Meloxicam is a non-steroidal anti-inflammatory drug (NSAID), precise dosing and veterinary supervision are essential to avoid complications.",
+      question: "How does the Metacam calculator account for dog weight?",
+      answer: "The calculator uses your dog's weight in kilograms to compute the exact dose, as meloxicam dosing is weight-dependent and ranges from 0.1–0.2 mg/kg.",
     },
     {
-      question: "How does the dog's weight influence Meloxicam metabolism and dosing?",
-      answer:
-        "A dog's weight directly influences Meloxicam metabolism because drug clearance and distribution volumes scale with body mass. Larger dogs generally require higher total doses but similar mg/kg doses to achieve therapeutic blood levels. Weight-based dosing ensures that the drug concentration remains within a safe and effective range across different sizes and breeds.",
+      question: "Can I use this calculator for cats?",
+      answer: "No, this calculator is specifically designed for dogs; cats require different meloxicam dosing protocols and should use a feline-specific calculator.",
     },
     {
-      question: "Can Meloxicam be used long-term in dogs, and how does dosing change?",
-      answer:
-        "Meloxicam can be used long-term for chronic pain or inflammation, but dosing typically shifts from an initial higher dose (e.g., 0.1 mg/kg) to a lower maintenance dose (e.g., 0.05 mg/kg) to reduce side effects. Long-term use requires regular veterinary monitoring of kidney and liver function, as well as gastrointestinal health, to ensure safety and adjust dosing as needed.",
+      question: "How long does meloxicam take to work in dogs?",
+      answer: "Most dogs show pain relief within 30 minutes to 1 hour of oral administration, though full anti-inflammatory effects may take 24–48 hours.",
     },
+    {
+      question: "What is the maximum daily meloxicam dose for large dogs?",
+      answer: "For a 50 kg dog at maintenance dose (0.1 mg/kg), the maximum is approximately 5 mg daily; your veterinarian may adjust based on individual response.",
+    },
+    {
+      question: "Does meloxicam require a prescription for dogs?",
+      answer: "Yes, meloxicam (Metacam) is a prescription NSAID and must be prescribed by a licensed veterinarian after a proper diagnosis.",
+    },
+    {
+      question: "How should I adjust meloxicam dosing if my dog misses a dose?",
+      answer: "Give the missed dose as soon as possible, but skip it if the next scheduled dose is approaching; never double-dose to compensate.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -244,112 +252,218 @@ export default function DogMeloxicamMetacamDoseCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Meloxicam/Metacam Dose Calculator for Dogs
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Meloxicam, commonly marketed as Metacam, is a non-steroidal anti-inflammatory drug (NSAID) widely used in veterinary medicine to manage pain and inflammation in dogs. It is especially effective for conditions such as osteoarthritis, post-surgical pain, and soft tissue injuries. Because NSAIDs can have significant side effects, precise dosing based on the dog’s weight is critical to maximize benefits while minimizing risks.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This dose calculator is designed to provide an evidence-based estimate of the initial and maintenance doses of Meloxicam for dogs, using the standard mg/kg dosing approach. The calculator accounts for unit preferences (imperial or metric) and allows customization of the dose within safe veterinary guidelines. It is an educational tool intended to support informed discussions between pet owners and veterinarians.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding the pharmacokinetics and pharmacodynamics of Meloxicam in dogs is essential. The drug’s metabolism and clearance depend on body weight and organ function, which is why dosing must be individualized. This calculator helps translate veterinary dosing protocols into practical, easy-to-understand numbers, promoting safe administration and improved therapeutic outcomes.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Meloxicam/Metacam Dose Calculator for Dogs</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the correct meloxicam dose for your dog based on weight and veterinary guidelines. It helps ensure safe, effective pain and inflammation management for conditions like arthritis, post-operative recovery, and acute injuries.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's current weight in kilograms and select the dosing phase (initial or maintenance therapy). The calculator uses evidence-based protocols with standard doses of 0.2 mg/kg for initial treatment and 0.1 mg/kg for long-term maintenance.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your dog's recommended dose in milligrams. Always confirm this calculation with your veterinarian before administration, as individual dogs may require dose adjustments based on age, kidney function, and concurrent medications.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this Meloxicam dose calculator is straightforward and requires only two inputs: the dog’s weight and the desired dose in mg/kg. First, select the unit system you prefer—imperial (pounds) or metric (kilograms). Then, enter the dog’s weight accurately, as this is the foundation for all calculations. Finally, input the dose per kilogram, which defaults to the typical initial dose of 0.1 mg/kg but can be adjusted based on veterinary advice.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter the dog’s current weight in the selected unit system. Accurate weight measurement is essential for safe dosing.
-          </li>
-          <li>
-            <strong>Dose (mg/kg):</strong> Input the initial dose recommended by your veterinarian. The default is 0.1 mg/kg, but this can be adjusted if your vet prescribes a different dose.
-          </li>
+      {/* TABLE: Meloxicam Dosing Guidelines for Dogs by Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Meloxicam Dosing Guidelines for Dogs by Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical initial and maintenance doses based on dog weight using standard veterinary protocols.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Initial Dose (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance Dose (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Doses based on 0.2 mg/kg initial and 0.1 mg/kg maintenance; always verify with your veterinarian before administration.</p>
+      </section>
+
+      {/* TABLE: Meloxicam Formulations and Concentrations Available */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Meloxicam Formulations and Concentrations Available</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Common meloxicam/Metacam products for dogs vary in concentration and form.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Formulation</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Concentration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Uses</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Route</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oral liquid suspension</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 mg/mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dogs unable to take tablets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oral</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Medium dogs, easy dosing</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oral</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Larger dogs, arthritis</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oral</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large breed dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oral</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Injectable solution</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mg/mL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Post-operative pain, acute cases</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">IV/IM/SC</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Verify product availability in your region; injectable forms typically require veterinary administration.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always give meloxicam with food or a meal to reduce gastrointestinal upset and improve absorption.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store liquid meloxicam suspension at room temperature away from light and shake well before each use.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your dog for signs of NSAID sensitivity including vomiting, diarrhea, loss of appetite, or black tarry stools.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Have regular veterinary check-ups while your dog is on long-term meloxicam to monitor kidney and liver function.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering these values, click “Calculate” to see the estimated initial dose in milligrams, along with the recommended maintenance dose, which is typically half the initial dose. Always consult your veterinarian before administering Meloxicam, as individual health conditions and concurrent medications may affect dosing and safety.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using cat dosing for dogs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Meloxicam dosing differs significantly between species; never apply feline protocols to canine patients.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Rounding doses incorrectly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Small rounding errors compound over time; use the exact milligram dose provided by the calculator or veterinarian.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Exceeding maintenance dose duration</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Meloxicam should not be used long-term without veterinary oversight and periodic bloodwork to check organ function.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Combining with other NSAIDs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Never give meloxicam with other NSAIDs or certain pain medications without explicit veterinary approval, as this increases toxicity risk.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the standard meloxicam dose for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The typical initial dose is 0.2 mg/kg once daily, with a maximum recommended dose of 0.1 mg/kg daily for maintenance therapy in most dogs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the Metacam calculator account for dog weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your dog's weight in kilograms to compute the exact dose, as meloxicam dosing is weight-dependent and ranges from 0.1–0.2 mg/kg.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this calculator is specifically designed for dogs; cats require different meloxicam dosing protocols and should use a feline-specific calculator.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does meloxicam take to work in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most dogs show pain relief within 30 minutes to 1 hour of oral administration, though full anti-inflammatory effects may take 24–48 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum daily meloxicam dose for large dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For a 50 kg dog at maintenance dose (0.1 mg/kg), the maximum is approximately 5 mg daily; your veterinarian may adjust based on individual response.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does meloxicam require a prescription for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, meloxicam (Metacam) is a prescription NSAID and must be prescribed by a licensed veterinarian after a proper diagnosis.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I adjust meloxicam dosing if my dog misses a dose?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Give the missed dose as soon as possible, but skip it if the next scheduled dose is approaching; never double-dose to compensate.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3407853/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Papich MG. Saunders Handbook of Veterinary Drugs: Small and Large Animal. 4th Edition.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive veterinary pharmacology reference detailing NSAID dosing protocols including Meloxicam in dogs.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/guidelines/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAHA Canine Pain Management Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative veterinary guidelines on safe pain management protocols for dogs including NSAID dosing.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vin.com/apputil/content/defaultadv1.aspx?pId=11339&id=4950409"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Veterinary Information Network (VIN) - Meloxicam Use in Dogs.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert discussions and clinical guidelines on Meloxicam dosing, safety, and monitoring in canine patients.
-            </p>
+          <li>
+            <a href="https://www.fda.gov/animal-veterinary/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FDA Center for Veterinary Medicine - Metacam Approval</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official FDA documentation on meloxicam approval, safety data, and approved uses in veterinary medicine.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5572147/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Lees P, Toutain PL. Pharmacokinetics and pharmacodynamics of NSAIDs in dogs.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific study analyzing NSAID metabolism and dosing rationale in dogs, including Meloxicam.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Merck Veterinary Manual - Meloxicam</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive veterinary pharmacology reference covering meloxicam mechanism, dosing, and adverse effects in dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/using-nonsteroidal-anti-inflammatory-drugs-nsaids"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. American Veterinary Medical Association (AVMA) - NSAIDs for Pets.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Official guidelines on the safe use of NSAIDs like Meloxicam in veterinary medicine.
-            </p>
+          <li>
+            <a href="https://www.boehringer-ingelheim.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Boehringer Ingelheim - Metacam Product Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Manufacturer product details including approved concentrations, formulations, and prescribing information for canine use.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

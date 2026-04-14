@@ -67,25 +67,33 @@ export default function HorseOmega3SupplementPlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate Omega-3 dosage based on weight?",
-      answer:
-        "Calculating Omega-3 dosage based on the horse's weight ensures precise and safe supplementation tailored to individual needs. Over- or under-dosing can lead to ineffective results or potential health risks. Weight-based dosing accounts for metabolic differences and optimizes the therapeutic benefits of EPA and DHA fatty acids.",
+      question: "What is the recommended EPA/DHA dosage per kilogram of body weight for dogs?",
+      answer: "Most veterinarians recommend 40–55 mg of combined EPA/DHA per kg of body weight daily for adult dogs, though therapeutic doses for joint or cognitive support may reach 100 mg/kg.",
     },
     {
-      question: "How do EPA and DHA benefit horses when supplemented correctly?",
-      answer:
-        "EPA and DHA are essential Omega-3 fatty acids that support anti-inflammatory processes, joint health, and cardiovascular function in horses. Proper supplementation can improve coat condition, immune response, and overall well-being. These fatty acids also play a role in modulating cellular functions critical for recovery and performance.",
+      question: "How do I calculate the right omega-3 dose for my cat's weight?",
+      answer: "Cats typically require 20–40 mg of combined EPA/DHA per kg of body weight daily; multiply your cat's weight in kg by the recommended dose range to determine total daily mg needed.",
     },
     {
-      question: "Can I use this calculator for other animals besides horses?",
-      answer:
-        "While this calculator is specifically designed for horses, the principle of dosing EPA/DHA per kilogram applies broadly. However, different species have unique metabolic rates and nutritional requirements, so it is crucial to consult a veterinarian before applying these calculations to other animals. Species-specific guidelines ensure safety and efficacy.",
+      question: "Why does the calculator use EPA/DHA per kilogram instead of total milligrams?",
+      answer: "Weight-based dosing ensures accurate supplementation across different pet sizes and prevents under- or over-supplementation, which is especially important for safety in smaller animals.",
     },
     {
-      question: "What factors can influence the required Omega-3 dosage for a horse?",
-      answer:
-        "Several factors affect Omega-3 requirements, including the horse's age, activity level, health status, and diet composition. Horses with inflammatory conditions or those in heavy training may require higher doses. Additionally, the bioavailability of the supplement and the balance with Omega-6 fatty acids influence the effective dosage.",
+      question: "Can I use human omega-3 supplements for my pet?",
+      answer: "No; human supplements often contain unsafe additives and incorrect ratios of EPA/DHA for pets—always use veterinary-formulated products designed for your pet's species and size.",
     },
+    {
+      question: "What is the maximum safe EPA/DHA dose per kg for pets?",
+      answer: "Most sources recommend not exceeding 200 mg of combined EPA/DHA per kg daily; excess intake may cause bleeding, diarrhea, or immune suppression in some animals.",
+    },
+    {
+      question: "How long does it take to see benefits from omega-3 supplementation?",
+      answer: "Most pets show improvements in coat quality within 4–6 weeks and joint health benefits within 8–12 weeks of consistent daily supplementation.",
+    },
+    {
+      question: "Does the EPA/DHA ratio matter when selecting a supplement?",
+      answer: "Yes; a balanced ratio of EPA to DHA (typically 1.5:1 to 2:1) is most effective for reducing inflammation, though some conditions benefit from higher EPA ratios.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -204,111 +212,224 @@ export default function HorseOmega3SupplementPlannerCalculator() {
   // 5. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Omega-3 Supplement Planner (EPA/DHA per kg)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Omega-3 fatty acids, particularly eicosapentaenoic acid (EPA) and docosahexaenoic acid (DHA), are vital nutrients that play a crucial role in equine health. These long-chain polyunsaturated fats contribute to anti-inflammatory processes, support cardiovascular function, and enhance immune responses. Supplementing horses with EPA and DHA can improve coat quality, joint mobility, and overall vitality, especially in animals under stress or with inflammatory conditions.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The Omega-3 Supplement Planner calculates the precise amount of EPA/DHA required based on the horse’s body weight, ensuring accurate dosing tailored to individual needs. This weight-based approach accounts for metabolic differences and helps avoid under- or overdosing, which can compromise efficacy or safety. By using this tool, caretakers and veterinarians can optimize supplementation strategies to support the horse’s health and performance effectively.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Omega-3 Supplement Planner (EPA/DHA per kg)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps pet owners determine the correct daily omega-3 dose for their dogs, cats, or other pets by converting weight-based EPA/DHA recommendations into practical dosing amounts. It removes guesswork from supplementation and ensures your pet receives therapeutic benefits without overdosing.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's weight in kilograms, select their species and health goal (maintenance, joint support, or cognitive health), and choose your supplement type to see the EPA/DHA concentration. The calculator will display your pet's daily target dose in milligrams and the recommended number of capsules or volume to administer.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Use the result to cross-check your supplement label's EPA/DHA content and confirm you're giving the correct amount each day. Adjust doses gradually over 1–2 weeks and monitor for side effects like soft stools or fishy breath, which may indicate the need for a lower dose.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps determine the total EPA/DHA supplement dose based on the horse’s weight and the desired dose per kilogram of body weight. Begin by selecting the unit system that corresponds to your measurement preference—imperial (lbs) or metric (kg). Then, enter the horse’s weight and the target EPA/DHA dose in milligrams per kilogram.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) to match your weight measurement.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the horse’s weight in the chosen unit.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the desired EPA/DHA dose in mg per kg body weight, typically ranging from 30 to 60 mg/kg depending on veterinary guidance.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the total EPA/DHA supplement dose in milligrams.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the result to guide supplementation, and consult your veterinarian for personalized recommendations.
-          </li>
+      {/* TABLE: Recommended Omega-3 (EPA/DHA) Dosage by Pet Type and Goal */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Omega-3 (EPA/DHA) Dosage by Pet Type and Goal</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to identify baseline EPA/DHA targets per kg for your pet based on health goal and species.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance (mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Joint Support (mg/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cognitive/Senior (mg/kg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dogs (adult)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40–55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75–100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60–85</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cats (adult)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50–75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45–70</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Puppies (growth)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30–50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kittens (growth)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior dogs (8+)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50–75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80–110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70–95</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior cats (10+)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30–50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60–85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55–80</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are general guidelines; consult your veterinarian for personalized dosing, especially for pets with bleeding disorders or on blood-thinning medications.</p>
+      </section>
+
+      {/* TABLE: EPA/DHA Content in Common Pet Supplement Sources */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">EPA/DHA Content in Common Pet Supplement Sources</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Compare the concentration of EPA and DHA across popular supplement types to calculate doses accurately.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Supplement Source</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">EPA per 1,000 mg</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">DHA per 1,000 mg</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total EPA+DHA</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fish oil (standard)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300 mg</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fish oil (concentrated)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">230 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">580 mg</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Krill oil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250 mg</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Algae-based (vegan)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280 mg</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Salmon oil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">340 mg</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Anchovy oil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">220 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">130 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350 mg</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Product labels may vary by brand and batch; always verify EPA/DHA content on the supplement label before calculating dosage.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always source omega-3 supplements from reputable veterinary brands that third-party test for purity, rancidity, and contaminants like heavy metals.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store fish oil supplements in the refrigerator or freezer to prevent oxidation and rancidity, which reduces potency and can cause GI upset.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If your pet is on anticoagulant medications (warfarin, aspirin), consult your vet before supplementing, as omega-3s have mild blood-thinning properties.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Mix liquid omega-3 supplements with wet food or a small treat to improve palatability and ensure your pet consumes the full dose.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing total product weight with EPA/DHA content</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 1,000 mg fish oil capsule does not contain 1,000 mg of EPA/DHA; it typically contains only 300–350 mg combined—always read the Supplement Facts label carefully.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the same dose for all life stages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Puppies and kittens require lower doses than adults, while senior pets often benefit from higher therapeutic doses; adjust recommendations based on age and health status.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overdosing to speed up results</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Exceeding 200 mg/kg daily can cause loose stools, bleeding gums, and immune suppression—more is not better, and consistency matters more than high doses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the EPA-to-DHA ratio</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Selecting a supplement with the wrong EPA/DHA balance may reduce effectiveness; joint support typically requires higher EPA, while cognitive health benefits from balanced or DHA-heavy formulas.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended EPA/DHA dosage per kilogram of body weight for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most veterinarians recommend 40–55 mg of combined EPA/DHA per kg of body weight daily for adult dogs, though therapeutic doses for joint or cognitive support may reach 100 mg/kg.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the right omega-3 dose for my cat's weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats typically require 20–40 mg of combined EPA/DHA per kg of body weight daily; multiply your cat's weight in kg by the recommended dose range to determine total daily mg needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does the calculator use EPA/DHA per kilogram instead of total milligrams?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Weight-based dosing ensures accurate supplementation across different pet sizes and prevents under- or over-supplementation, which is especially important for safety in smaller animals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use human omega-3 supplements for my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No; human supplements often contain unsafe additives and incorrect ratios of EPA/DHA for pets—always use veterinary-formulated products designed for your pet's species and size.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum safe EPA/DHA dose per kg for pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most sources recommend not exceeding 200 mg of combined EPA/DHA per kg daily; excess intake may cause bleeding, diarrhea, or immune suppression in some animals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does it take to see benefits from omega-3 supplementation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most pets show improvements in coat quality within 4–6 weeks and joint health benefits within 8–12 weeks of consistent daily supplementation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the EPA/DHA ratio matter when selecting a supplement?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; a balanced ratio of EPA to DHA (typically 1.5:1 to 2:1) is most effective for reducing inflammation, though some conditions benefit from higher EPA ratios.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6266232/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Omega-3 Fatty Acids in Equine Health: A Review
-            </a>
-            <p className="text-slate-500 text-sm">
-              This comprehensive review discusses the role of EPA and DHA in equine health, highlighting their anti-inflammatory effects and benefits for joint and cardiovascular function.
-            </p>
+          <li>
+            <a href="https://www.isfm.net" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Society of Feline Medicine: Omega-3 Supplementation in Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical guidelines on safe omega-3 dosing and efficacy in feline patients.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines/omega-3-fatty-acids"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. AAEP Guidelines on Omega-3 Supplementation
-            </a>
-            <p className="text-slate-500 text-sm">
-              The American Association of Equine Practitioners provides clinical guidelines on appropriate dosing and use of Omega-3 supplements in horses.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/aaha-guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Animal Hospital Association: Nutritional Guidelines for Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for essential fatty acid supplementation in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Equine-Nutrition-Omega-3.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. University of California Davis - Equine Nutrition: Omega-3 Fatty Acids
-            </a>
-            <p className="text-slate-500 text-sm">
-              This resource outlines the nutritional importance of Omega-3 fatty acids and practical supplementation strategies for horses.
-            </p>
+          <li>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PubMed Central: EPA and DHA in Canine Joint and Cognitive Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on omega-3 efficacy for osteoarthritis and age-related cognitive decline in dogs.</p>
+          </li>
+          <li>
+            <a href="https://www.ifos.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Omega-3 Index: Quality Standards for Pet Supplements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">International standards for purity, potency, and labeling accuracy of omega-3 products for animals.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

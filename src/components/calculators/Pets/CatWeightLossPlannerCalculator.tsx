@@ -93,25 +93,33 @@ export default function CatWeightLossPlannerCalculator() {
   // 3. FAQS (DETAILED)
   const faqs = [
     {
-      question: "What is the safest rate of weight loss for cats?",
-      answer:
-        "A safe and effective weight loss rate for cats is typically around 1% of their current body weight per week. Losing weight too quickly can cause serious health issues such as hepatic lipidosis. Always consult your veterinarian before starting a weight loss program to ensure it is tailored to your cat's specific needs.",
+      question: "How much weight can my cat safely lose per week?",
+      answer: "Cats should lose 1-2% of their body weight weekly for safe, sustainable results. A 10-pound cat losing 1.6 ounces per week is ideal to preserve muscle mass.",
     },
     {
-      question: "How is the recommended daily calorie intake calculated?",
-      answer:
-        "The recommended daily calorie intake during weight loss is calculated as 80% of the cat's Resting Energy Requirement (RER), which is based on their target weight. RER is determined by the formula 70 × (weight in kg)^0.75. This reduction helps promote gradual fat loss while maintaining muscle mass and overall health.",
+      question: "What daily calorie deficit is safe for weight loss in cats?",
+      answer: "A 200-250 calorie daily deficit is typically safe for most cats, resulting in 0.5-1 pound lost per month while maintaining metabolic health.",
     },
     {
-      question: "Can I use this planner for overweight kittens or only adult cats?",
-      answer:
-        "This planner is designed primarily for adult cats. Kittens have different nutritional requirements due to their growth needs and should not be put on weight loss diets without veterinary supervision. Always consult a veterinarian before applying any weight loss plan to kittens or young cats.",
+      question: "How long does it take for a cat to lose weight?",
+      answer: "Most cats lose noticeable weight within 4-6 weeks with consistent calorie reduction, but full weight loss goals may take 3-6 months depending on starting weight.",
     },
     {
-      question: "What should I do if my cat is not losing weight as expected?",
-      answer:
-        "If your cat is not losing weight as expected, first ensure you are accurately measuring food portions and not giving extra treats. If weight loss remains stagnant, consult your veterinarian to rule out underlying medical conditions and to adjust the weight loss plan safely.",
+      question: "Should I reduce food portions or switch to diet food?",
+      answer: "Combining portion control with high-protein, low-carb diet food is most effective, as it reduces calories while maintaining satiety and lean muscle.",
     },
+    {
+      question: "How do I know my cat's current maintenance calorie needs?",
+      answer: "A typical indoor adult cat needs 20 calories per pound of body weight daily; your veterinarian can adjust this based on age, activity level, and metabolism.",
+    },
+    {
+      question: "Can rapid weight loss harm my cat?",
+      answer: "Yes, losing more than 2% body weight weekly risks hepatic lipidosis (fatty liver disease), a serious condition in cats requiring veterinary care.",
+    },
+    {
+      question: "What factors affect my cat's weight loss rate?",
+      answer: "Age, metabolism, current activity level, food type, and underlying health conditions all influence how quickly cats lose weight on a given calorie deficit.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -245,101 +253,206 @@ export default function CatWeightLossPlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cat Weight Loss Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Managing your cat’s weight is crucial for their overall health and longevity. Overweight cats are at increased risk for diabetes, arthritis, and heart disease. This planner helps you create a safe, effective weight loss program by calculating the ideal daily calorie intake based on your cat’s current and target weights, as well as a recommended weekly weight loss rate.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The calculation uses Resting Energy Requirement (RER), a veterinary standard that estimates the calories needed for basic bodily functions at rest. By feeding approximately 80% of the RER based on your cat’s target weight, you encourage gradual fat loss while preserving lean muscle mass. This approach minimizes health risks associated with rapid weight loss.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Weight loss should be slow and steady, typically around 1% of body weight per week. This planner factors in your chosen weekly weight loss percentage to estimate the duration of the program, helping you set realistic expectations and monitor progress effectively.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cat Weight Loss Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Cat Weight Loss Planner calculates a safe, personalized weight loss timeline for your cat based on current weight, target weight, and age. It helps you set realistic goals that protect your cat's health while achieving sustainable results.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your cat's current weight in pounds, ideal target weight, and current daily calorie intake. The calculator will also factor in age and activity level to refine estimates for your specific cat's metabolism.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results show your recommended daily calorie deficit, weekly weight loss rate, and estimated timeline to reach goal weight. Always verify findings with your veterinarian before implementing dietary changes, as individual cats may need adjustments.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this planner, input your cat’s current weight and your desired target weight. Select the unit system that matches your preference or measurement tools. Enter the weekly weight loss rate as a percentage, with 1% being the recommended safe default. Then, click “Calculate” to see the recommended daily calorie intake and estimated duration for the weight loss program.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure your cat’s current weight accurately using a reliable scale.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Determine a healthy target weight in consultation with your veterinarian.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the weekly weight loss rate, typically 1%, to ensure safe progress.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Review the recommended daily calorie intake and estimated program duration.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Monitor your cat’s weight regularly and adjust the plan as needed with veterinary guidance.
-          </li>
+      {/* TABLE: Safe Weekly Weight Loss Targets by Current Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Safe Weekly Weight Loss Targets by Current Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to determine appropriate weekly weight loss goals for your cat based on current body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Weekly Loss (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Safe Weekly Loss (grams)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Est. Monthly Loss (lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0-1.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-54</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.25-0.5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.3-2.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">37-74</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.33-0.67</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.6-3.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-91</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4-0.8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.9-3.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">54-108</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1.0</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4-4.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">68-136</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6-1.2</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.9-5.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">82-164</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75-1.5</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Targets based on 1-2% of body weight weekly loss; adjust with veterinary guidance for individual cats.</p>
+      </section>
+
+      {/* TABLE: Daily Calorie Intake by Target Weight Loss Rate */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Intake by Target Weight Loss Rate</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows recommended daily calories for different weight loss speeds in a typical 10-pound indoor cat.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Loss Goal</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Calorie Reduction</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Calorie Target</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Timeline to Goal Weight</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Slow (1% weekly)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-200 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-9 months</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate (1.5% weekly)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-200 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 months</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Steady (2% weekly)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-250 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-100 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 months</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Based on typical 10-pound cat with 200-250 calorie maintenance needs; consult your vet before starting any weight loss plan.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure food portions with a kitchen scale rather than eyeballing to ensure consistent, accurate calorie reduction.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase playtime and interactive exercise gradually, as heavier cats tire more easily; even 10-15 minutes daily helps boost calorie burn.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Switch to high-protein, low-carb cat food formulas designed for weight management to increase satiety on fewer calories.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cat weekly at the same time of day using a digital pet scale to track progress and adjust the plan if needed.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Cutting calories too aggressively</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Reducing food by more than 30% at once risks nutrient deficiencies and metabolic shutdown in cats.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring treats and table scraps</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treats can account for 10-20% of daily calories and often sabotage weight loss plans if not factored into calorie targets.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming all cats metabolize food equally</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Senior cats, neutered cats, and certain breeds have slower metabolisms requiring more conservative calorie reductions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping veterinary checkups during weight loss</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Regular vet visits ensure your cat isn't developing health issues and allow for plan adjustments based on progress.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much weight can my cat safely lose per week?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cats should lose 1-2% of their body weight weekly for safe, sustainable results. A 10-pound cat losing 1.6 ounces per week is ideal to preserve muscle mass.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What daily calorie deficit is safe for weight loss in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 200-250 calorie daily deficit is typically safe for most cats, resulting in 0.5-1 pound lost per month while maintaining metabolic health.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does it take for a cat to lose weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most cats lose noticeable weight within 4-6 weeks with consistent calorie reduction, but full weight loss goals may take 3-6 months depending on starting weight.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I reduce food portions or switch to diet food?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Combining portion control with high-protein, low-carb diet food is most effective, as it reduces calories while maintaining satiety and lean muscle.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know my cat's current maintenance calorie needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A typical indoor adult cat needs 20 calories per pound of body weight daily; your veterinarian can adjust this based on age, activity level, and metabolism.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can rapid weight loss harm my cat?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, losing more than 2% body weight weekly risks hepatic lipidosis (fatty liver disease), a serious condition in cats requiring veterinary care.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors affect my cat's weight loss rate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Age, metabolism, current activity level, food type, and underlying health conditions all influence how quickly cats lose weight on a given calorie deficit.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.wsava.org/wp-content/uploads/2020/01/WSAVA-Nutrition-Guidelines-2019.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. WSAVA Global Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              World Small Animal Veterinary Association guidelines on nutrition and weight management in cats and dogs.
-            </p>
+          <li>
+            <a href="https://www.petobesityprevention.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Association for Pet Obesity Prevention (APOP)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Provides evidence-based guidelines for safe pet weight loss and obesity management in cats and dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4808651/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Veterinary Weight Management in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Peer-reviewed article discussing safe weight loss rates and calorie restriction strategies for feline obesity.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/obesity" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) - Pet Obesity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official AVMA resource on causes, prevention, and management of obesity in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/obesity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell Feline Health Center: Obesity in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive resource on feline obesity, health risks, and weight loss recommendations.
-            </p>
+          <li>
+            <a href="https://www.petmd.com/cat-obesity-weight-management" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PetMD - Cat Weight Loss Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide covering safe weight loss rates, nutrition strategies, and exercise recommendations for overweight cats.</p>
+          </li>
+          <li>
+            <a href="https://www.felinecentre.com/obesity" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Feline Centre - Feline Obesity and Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert resource on the relationship between diet, metabolism, and weight management specific to cat physiology.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

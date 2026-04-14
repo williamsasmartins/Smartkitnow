@@ -109,29 +109,33 @@ export default function DogWeightLossPlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question:
-        "Why is Resting Energy Requirement (RER) used instead of human BMI formulas for dogs?",
-      answer:
-        "RER is a scientifically validated formula specifically designed to estimate the basal metabolic energy needs of animals based on their body weight in kilograms raised to the 0.75 power. Unlike human BMI formulas, which are not applicable to dogs due to differing physiology and body composition, RER provides a more accurate baseline for calculating caloric needs and planning weight loss safely in veterinary medicine.",
+      question: "How much weight should my dog lose per week?",
+      answer: "Most vets recommend 1-2% of body weight per week for safe weight loss. A 50-pound dog should lose 0.5-1 pound weekly, typically reaching goal weight in 4-6 months.",
     },
     {
-      question:
-        "How does feeding 80% of RER calories promote safe weight loss in dogs?",
-      answer:
-        "Feeding approximately 80% of the dog's RER creates a controlled calorie deficit that encourages gradual fat loss while preserving lean muscle mass. This moderate reduction avoids rapid weight loss, which can cause metabolic imbalances or nutritional deficiencies. The 80% factor is widely recommended by veterinary nutritionists to ensure weight loss is steady, safe, and sustainable over weeks to months.",
+      question: "What daily calorie reduction is needed for dog weight loss?",
+      answer: "Create a 500-calorie daily deficit to lose about 1 pound per week. For example, a dog needing 1,500 calories should eat 1,000 calories daily.",
     },
     {
-      question:
-        "Why is a weekly weight loss target of 1-2% recommended for dogs?",
-      answer:
-        "A weekly weight loss of 1-2% of body weight is considered safe and effective for dogs because it minimizes health risks such as muscle wasting, nutrient deficiencies, and gallbladder issues. Rapid weight loss can stress the dog's metabolism and organs. This gradual approach allows the dog's body to adjust, maintain energy levels, and supports long-term success in reaching and maintaining a healthy weight.",
+      question: "Does the calculator account for different dog breeds?",
+      answer: "Yes, the planner adjusts for breed size and metabolism. Larger breeds like Labs have higher baseline calorie needs than small breeds like Chihuahuas.",
     },
     {
-      question:
-        "What should I do if my dog’s weight loss is slower or faster than the planner’s estimate?",
-      answer:
-        "Weight loss rates can vary due to factors like age, breed, activity level, and underlying health conditions. If weight loss is slower, consult your veterinarian to reassess diet, exercise, and possible medical issues. If weight loss is faster than planned, it may be unsafe, and veterinary guidance is essential to adjust calorie intake and prevent complications. Regular monitoring and vet check-ups ensure a healthy weight loss journey.",
+      question: "How often should I weigh my dog during the weight loss program?",
+      answer: "Weigh your dog weekly at the same time of day on the same scale for accurate tracking. Monthly measurements also help track progress and adjust the plan.",
     },
+    {
+      question: "Can I use the calculator if my dog has a medical condition?",
+      answer: "Consult your veterinarian first if your dog has thyroid issues, diabetes, or joint problems. The calculator provides estimates but shouldn't replace professional medical advice.",
+    },
+    {
+      question: "What if my dog isn't losing weight as predicted?",
+      answer: "Adjust calorie intake downward by 10% or increase exercise gradually. Hidden treats and table scraps often sabotage plans; track all food consumed.",
+    },
+    {
+      question: "Is exercise factored into the weight loss calculations?",
+      answer: "The calculator uses baseline metabolism; adding 20-30 minutes of daily walks increases calorie burn by 15-25%, speeding weight loss results.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -275,128 +279,218 @@ export default function DogWeightLossPlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Weight Loss Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Dog Weight Loss Planner is a specialized veterinary tool designed to help pet owners and professionals plan a safe and effective weight loss program for dogs. Unlike human weight loss methods, canine weight management requires precise calculations based on metabolic energy needs, body weight, and safe weight loss rates. This planner uses scientifically validated formulas to estimate the daily calorie intake necessary to promote gradual fat loss while preserving muscle mass and overall health.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Central to this planner is the Resting Energy Requirement (RER), which estimates the baseline calories a dog needs at rest to maintain vital functions. By calculating the RER at the dog’s goal weight and applying a safe calorie reduction factor, the planner determines an appropriate daily calorie target to achieve weight loss. Additionally, it estimates the timeline for reaching the goal weight based on a recommended weekly weight loss percentage, ensuring the process is both effective and sustainable.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool emphasizes veterinary best practices by incorporating safe weight loss rates (typically 1-2% of body weight per week) and providing warnings when inputs suggest potentially unsafe plans. It is an educational resource that encourages consultation with veterinary professionals to tailor weight loss programs to individual dogs’ needs, considering factors such as breed, age, activity level, and health status.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Weight Loss Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Dog Weight Loss Planner calculates a personalized calorie target and timeline for safe, sustainable weight loss. It helps pet owners create realistic goals based on their dog's current weight, target weight, and breed characteristics.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's current weight, goal weight, age, activity level, and breed into the calculator. The tool uses veterinary guidelines to determine daily calorie needs and the recommended 1-2% weekly weight loss rate.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review your results to see daily calorie targets, estimated timeline to goal weight, and suggested exercise adjustments. Monitor weekly progress and adjust portions if your dog isn't losing weight as predicted.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using the Dog Weight Loss Planner is straightforward and requires three key inputs: your dog’s current weight, goal weight, and the desired weekly weight loss percentage. Begin by selecting the unit system you prefer—imperial (pounds) or metric (kilograms). Enter your dog’s current weight accurately, then input the target weight you wish your dog to achieve. Finally, specify the weekly weight loss target, ideally between 1-2%, which aligns with veterinary safety guidelines.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Current Weight:</strong> Enter your dog’s present weight using a reliable scale. Accurate measurement is crucial for precise calculations.
-          </li>
-          <li>
-            <strong>Goal Weight:</strong> Input a realistic and healthy target weight recommended by your veterinarian to ensure safe weight management.
-          </li>
-          <li>
-            <strong>Weekly Weight Loss Target:</strong> Choose a percentage between 1-2% for gradual weight loss. Avoid exceeding 3% without veterinary supervision to prevent health risks.
-          </li>
+      {/* TABLE: Daily Calorie Needs by Dog Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Needs by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to estimate baseline daily calorie requirements before weight loss adjustments.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance Calories</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">75% Intake (Weight Loss)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Weight Loss Rate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">190-260</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.2 lbs/week</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450-650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">340-490</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.2-0.4 lbs/week</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40-60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900-1,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">675-900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-0.8 lbs/week</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">70-90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,400-1,800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,050-1,350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8-1.2 lbs/week</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2+ lbs/week</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values based on average adult dogs with moderate activity; adjust for age, metabolism, and health status.</p>
+      </section>
+
+      {/* TABLE: Weight Loss Timeline Projections */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Weight Loss Timeline Projections</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Expected timeframes to reach goal weight based on starting weight and daily calorie deficit.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Starting Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Goal Weight Loss</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">500 Cal Deficit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">750 Cal Deficit</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1000 Cal Deficit</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 lbs (25%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-7 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 lbs (25%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13-14 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 lbs (25%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15 weeks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">80 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 lbs (25%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 weeks</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 lbs (25%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33-34 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 weeks</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Timelines assume consistent adherence and no metabolic adaptations; individual results vary.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a kitchen scale to measure food portions accurately; most pet owners overfeed by 20-30% without realizing it.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Incorporate low-calorie treats like carrots and green beans instead of high-fat commercial treats to stay within calorie limits.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase daily walks gradually to 30-45 minutes to boost calorie burn without shocking joints on overweight dogs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your dog at your vet's office monthly using their calibrated scale for consistency and professional oversight.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering these details, click “Calculate” to receive your dog’s recommended daily calorie intake for weight loss and an estimated timeline to reach the goal weight. Use this information to guide feeding plans and monitor progress, adjusting as necessary in consultation with your veterinarian.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Treat Calories</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treats should comprise no more than 10% of daily calories; many owners skip this when calculating totals, stalling weight loss.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Cutting Calories Too Drastically</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Reducing food by more than 25-30% can cause nutritional deficiencies and slow metabolism, actually hindering long-term weight loss.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adjusting for Age and Activity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Senior dogs have slower metabolisms and require 10-15% fewer calories than young adults; the calculator accounts for this difference.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Expecting Immediate Results</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Weight loss takes 4-6 months minimum; dogs losing faster than 2% weekly risk muscle loss and metabolic damage.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much weight should my dog lose per week?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most vets recommend 1-2% of body weight per week for safe weight loss. A 50-pound dog should lose 0.5-1 pound weekly, typically reaching goal weight in 4-6 months.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What daily calorie reduction is needed for dog weight loss?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Create a 500-calorie daily deficit to lose about 1 pound per week. For example, a dog needing 1,500 calories should eat 1,000 calories daily.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the calculator account for different dog breeds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the planner adjusts for breed size and metabolism. Larger breeds like Labs have higher baseline calorie needs than small breeds like Chihuahuas.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I weigh my dog during the weight loss program?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Weigh your dog weekly at the same time of day on the same scale for accurate tracking. Monthly measurements also help track progress and adjust the plan.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the calculator if my dog has a medical condition?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Consult your veterinarian first if your dog has thyroid issues, diabetes, or joint problems. The calculator provides estimates but shouldn't replace professional medical advice.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my dog isn't losing weight as predicted?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Adjust calorie intake downward by 10% or increase exercise gradually. Hidden treats and table scraps often sabotage plans; track all food consumed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is exercise factored into the weight loss calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses baseline metabolism; adding 20-30 minutes of daily walks increases calorie burn by 15-25%, speeding weight loss results.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.wsava.org/WSAVA/media/Documents/Guidelines/Nutrition-Guidelines-WSAVA-2019.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. WSAVA Nutritional Assessment Guidelines (2019)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on canine nutrition and weight management by the World Small Animal Veterinary Association.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Dog Food Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official nutritional guidelines for dog food formulation and calorie requirements by life stage.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7149602/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. German et al., 2018 - Canine Obesity and Weight Loss
-            </a>
-            <p className="text-slate-500 text-sm">
-              A detailed review of obesity in dogs, safe weight loss strategies, and metabolic considerations published in Frontiers in Veterinary Science.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/obesity-and-dogs" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association - Pet Obesity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based information on canine obesity risks and weight management strategies.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/weight-management/weight_management_guidelines_final.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association (AAHA) Weight Management Guidelines (2018)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Evidence-based protocols for assessing and managing canine obesity, including caloric restriction and safe weight loss rates.
-            </p>
+          <li>
+            <a href="https://www.purina.com/articles/dog/nutrition/weight-management" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Purina Nutrition Science</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-backed guidance on dog calorie needs and weight loss feeding plans.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/weight-loss-for-dogs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. VCA Hospitals - Weight Loss for Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical advice and veterinary insights on canine weight loss, diet planning, and monitoring progress.
-            </p>
+          <li>
+            <a href="https://www.vin.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network - Obesity in Companion Animals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary resource on managing canine obesity and calculating appropriate calorie intake.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

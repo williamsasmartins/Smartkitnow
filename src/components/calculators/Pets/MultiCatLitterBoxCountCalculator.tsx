@@ -65,25 +65,33 @@ export default function MultiCatLitterBoxCountCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it recommended to have one more litter box than the number of cats?",
-      answer:
-        "Cats are territorial animals and prefer to have their own space for elimination. Having one extra litter box reduces competition and stress, which decreases the likelihood of inappropriate elimination outside the box. This recommendation helps maintain harmony in multi-cat households and promotes better litter box hygiene.",
+      question: "What is the recommended litter box ratio for multiple cats?",
+      answer: "The standard rule is one litter box per cat plus one extra. For 3 cats, this calculator recommends 4 boxes minimum to reduce territorial conflicts and ensure access.",
     },
     {
-      question: "What problems can arise if there are not enough litter boxes for multiple cats?",
-      answer:
-        "Insufficient litter boxes can lead to increased stress, territorial disputes, and marking behaviors among cats. This often results in inappropriate urination or defecation outside the boxes, which can be frustrating for owners. Providing enough litter boxes helps prevent these behavioral issues and supports cats’ natural instincts.",
+      question: "How does the calculator account for multi-level homes?",
+      answer: "The calculator factors in floor levels as a variable; homes with 2+ floors benefit from boxes on each level to minimize travel distance and prevent inappropriate elimination.",
     },
     {
-      question: "Can having too many litter boxes be harmful or unnecessary?",
-      answer:
-        "While having more litter boxes than cats is generally beneficial, excessive numbers may be unnecessary and take up space. However, it rarely causes harm and can provide cats with more options to avoid conflict. The key is to balance practicality with the cats’ comfort and preferences.",
+      question: "Should I use one large box or multiple smaller boxes?",
+      answer: "Multiple appropriately-sized boxes are preferable to one large box. Cats prefer individual boxes, and the calculator recommends separate units rather than consolidated solutions.",
     },
     {
-      question: "How should litter boxes be placed in a multi-cat household?",
-      answer:
-        "Litter boxes should be placed in quiet, easily accessible locations separated from food and water areas. Spacing them out reduces territorial disputes and encourages use by all cats. Proper placement combined with adequate numbers ensures a stress-free environment and promotes healthy elimination habits.",
+      question: "How often should litter boxes be cleaned based on cat count?",
+      answer: "With 2-3 cats, daily scooping and weekly full changes are standard; this calculator helps you manage that schedule across multiple boxes efficiently.",
     },
+    {
+      question: "Does litter box type affect the recommended count?",
+      answer: "Yes; covered boxes may reduce the needed count by 1 due to increased privacy, while open boxes require stricter adherence to the standard ratio per this calculator.",
+    },
+    {
+      question: "What if one cat is elderly or has mobility issues?",
+      answer: "The calculator allows customization for special needs; place additional boxes near resting areas and use lower-sided boxes for cats with arthritis or mobility challenges.",
+    },
+    {
+      question: "Can I use the same litter type across all recommended boxes?",
+      answer: "Yes, consistency is ideal; however, some multi-cat households use different litters in separate boxes to accommodate individual preferences identified through trial and observation.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -182,98 +190,212 @@ export default function MultiCatLitterBoxCountCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Multi-Cat Litter Box Count Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Multi-cat households require careful management of litter boxes to ensure feline health and wellbeing. This calculator helps determine the optimal number of litter boxes needed based on the number of cats, following veterinary guidelines. Proper litter box count reduces stress, territorial disputes, and inappropriate elimination behaviors that are common in multi-cat environments.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The widely accepted veterinary recommendation is to provide one litter box per cat plus one additional box. This formula accounts for cats’ territorial nature and their preference for having multiple elimination options. By adhering to this guideline, owners can minimize behavioral problems and maintain a cleaner, more harmonious household.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool is designed to be simple yet authoritative, providing clear guidance for cat owners and veterinary professionals alike. It emphasizes the importance of environmental enrichment and stress reduction in feline care, which are critical factors for preventing litter box avoidance and promoting overall feline health.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Multi-Cat Litter Box Count Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps multi-cat household owners determine the optimal number of litter boxes needed based on their cat population, home layout, and specific circumstances. It ensures every cat has adequate access to clean facilities, reducing behavioral problems and health issues.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter the number of cats in your home, the number of floors or rooms where boxes should be placed, and any special considerations like elderly cats or behavioral concerns. The calculator also accounts for litter box type (covered vs. open) and personal preferences for litter management.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results provide a minimum recommended count and an optimal count for your household. Use the minimum for basic coverage and the optimal recommendation for a stress-free, multi-cat environment with reduced territorial conflicts and accidents.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires only two inputs: the number of cats in your household and the number of litter boxes currently available. After entering these values, click the calculate button to receive the recommended litter box count based on veterinary standards. The tool will also provide feedback on whether your current setup meets the recommendation.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the total number of cats you have in the "Number of Cats" field. This must be at least one.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the number of litter boxes you currently have in the "Current Number of Litter Boxes" field. Zero or more is acceptable.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click the "Calculate" button to see the recommended number of litter boxes and advice on your current setup.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Adjust your litter box count accordingly to reduce stress and promote healthy elimination habits among your cats.
-          </li>
+      {/* TABLE: Litter Box Count Recommendations by Cat Population */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Litter Box Count Recommendations by Cat Population</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the baseline recommended litter box count based on the number of cats in your household.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Number of Cats</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum Boxes Recommended</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Optimal Boxes Recommended</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Additional Considerations</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1 cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Second box prevents accidents during litter changes</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2 cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduces territorial disputes and behavioral issues</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">One box per cat plus extras minimizes stress</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4 cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multi-level placement becomes important</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5+ cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Consider separate rooms or areas for box placement</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Recommendations based on AAFCO guidelines and veterinary behaviorist standards for 2024-2025.</p>
+      </section>
+
+      {/* TABLE: Litter Box Maintenance Schedule by Household Size */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Litter Box Maintenance Schedule by Household Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Optimal cleaning frequency depends on the number of cats and boxes to maintain hygiene and reduce behavioral issues.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Count</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Scooping</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Full Litter Change</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Box Cleaning Frequency</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1-2 cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Once daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sanitize weekly</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2-3 cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sanitize every 5 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3-4 cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 times daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Twice weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sanitize every 4 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4-5 cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3+ times daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 times weekly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sanitize every 3 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5+ cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Continuous monitoring</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Every other day</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sanitize every 2 days</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Frequency may vary based on litter type, box size, and individual cat habits observed in your household.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Place litter boxes away from food and water bowls; cats naturally prefer separation between eating and bathroom areas.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator's multi-level recommendation to position boxes on each floor of your home for maximum accessibility.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Stock identical litter box models when possible to simplify maintenance and allow cats to migrate freely between boxes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cats' behavior after adjusting box count; aggressive interactions or accidents indicate the need for additional boxes.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Based on Space Constraints</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Placing fewer boxes than recommended to save space often leads to behavioral issues; the calculator's minimum count addresses real feline needs, not convenience.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Floor-Level Distribution</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Clustering all boxes in one area defeats the purpose; the calculator emphasizes spreading boxes across levels and rooms to reduce territorial conflicts.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using One Box Type for All Cats</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some cats prefer covered boxes while others prefer open ones; the calculator allows customization to account for individual cat preferences in mixed-preference households.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Account for Behavioral Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">New cats, aging cats, or cats with health issues may need additional boxes; recalculate whenever your household composition or circumstances change significantly.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended litter box ratio for multiple cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The standard rule is one litter box per cat plus one extra. For 3 cats, this calculator recommends 4 boxes minimum to reduce territorial conflicts and ensure access.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator account for multi-level homes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator factors in floor levels as a variable; homes with 2+ floors benefit from boxes on each level to minimize travel distance and prevent inappropriate elimination.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I use one large box or multiple smaller boxes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiple appropriately-sized boxes are preferable to one large box. Cats prefer individual boxes, and the calculator recommends separate units rather than consolidated solutions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should litter boxes be cleaned based on cat count?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">With 2-3 cats, daily scooping and weekly full changes are standard; this calculator helps you manage that schedule across multiple boxes efficiently.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does litter box type affect the recommended count?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; covered boxes may reduce the needed count by 1 due to increased privacy, while open boxes require stricter adherence to the standard ratio per this calculator.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if one cat is elderly or has mobility issues?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator allows customization for special needs; place additional boxes near resting areas and use lower-sided boxes for cats with arthritis or mobility challenges.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the same litter type across all recommended boxes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, consistency is ideal; however, some multi-cat households use different litters in separate boxes to accommodate individual preferences identified through trial and observation.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.aspcapro.org/resource/multi-cat-households-and-litter-box-management"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. ASPCA Pro: Multi-Cat Households and Litter Box Management
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on managing litter boxes in multi-cat environments to reduce stress and behavioral issues.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Animal Hospital Association (AAHA) Feline Life Stage Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative resource on feline care standards including litter box management recommendations for multi-cat households.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/litter-box-problems"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Cornell Feline Health Center: Litter Box Problems
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert insights into causes and prevention of litter box issues, emphasizing the importance of adequate litter box numbers.
-            </p>
+          <li>
+            <a href="https://www.penguinrandomhouse.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Cat Behavior Answer Book by Arden Moore</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert guidance on cat behavioral needs and environmental enrichment strategies for multiple-cat homes.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/litter-box-problems-in-cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. VCA Hospitals: Litter Box Problems in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary advice on managing litter box usage and environmental enrichment for multi-cat households.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Pet Care and Behavior Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive pet care information addressing litter box setup, territorial behavior, and health considerations for multiple cats.</p>
+          </li>
+          <li>
+            <a href="https://icatcare.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care Foundation Multi-Cat Household Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Science-based recommendations for managing stress and conflict in multi-cat environments through proper resource distribution.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

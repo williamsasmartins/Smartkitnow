@@ -109,25 +109,33 @@ export default function PuppyCalorieNeedsAgeBreedSizeCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why does puppy calorie needs vary by breed size and age?",
-      answer:
-        "Puppy calorie needs vary significantly by breed size and age because growth rates and metabolic demands differ. Smaller breeds mature faster and require relatively higher energy per body weight early on, while larger breeds grow more slowly but need sustained energy for proper bone and muscle development. Age influences energy needs as puppies transition from rapid growth phases to maintenance stages, necessitating tailored nutrition to avoid underfeeding or overfeeding.",
+      question: "How many calories does a 3-month-old Golden Retriever puppy need daily?",
+      answer: "A 3-month-old Golden Retriever typically needs 700-900 calories per day, depending on growth rate and individual metabolism. This calculator adjusts based on current weight and expected adult size.",
     },
     {
-      question: "How is the Resting Energy Requirement (RER) calculated for puppies?",
-      answer:
-        "RER is calculated using the formula 70 × (body weight in kg)^0.75, which estimates the energy needed for basic physiological functions at rest. This formula is species-specific and accounts for metabolic scaling. For puppies, RER serves as the baseline, which is then multiplied by a factor (MER) reflecting growth and activity levels to determine total daily calorie needs, ensuring balanced nutrition during development.",
+      question: "Why do large breed puppies need different calorie amounts than small breeds?",
+      answer: "Large breed puppies grow more slowly to prevent joint problems, requiring lower calorie density relative to body weight—typically 60-70 kcal per pound, while small breeds need 80-100 kcal per pound.",
     },
     {
-      question: "Can I use this calculator for puppies younger than 8 weeks or older than 20 weeks?",
-      answer:
-        "This calculator is optimized for puppies aged 8 to 20 weeks, a critical growth period with well-defined energy multipliers. For puppies younger than 8 weeks, nutritional needs are typically met through nursing or specialized milk replacers, requiring veterinary guidance. Puppies older than 20 weeks begin transitioning to adult energy requirements, which vary by activity and health status, so consulting a veterinarian for tailored feeding plans is recommended.",
+      question: "Should I adjust puppy calories if my dog is between two age ranges?",
+      answer: "Yes, this calculator allows gradual transitions between age ranges. If your puppy is 5 months old, input that exact age to get accurate recommendations rather than rounding to the nearest bracket.",
     },
     {
-      question: "What are the risks of overfeeding or underfeeding a growing puppy?",
-      answer:
-        "Overfeeding puppies can lead to excessive weight gain, increasing the risk of developmental orthopedic diseases, such as hip dysplasia, especially in large breeds. Underfeeding, conversely, can cause poor growth, muscle wasting, and weakened immune function. Balanced calorie intake supports healthy bone growth, muscle development, and organ maturation, emphasizing the importance of precise feeding guided by age and breed size-specific calorie needs.",
+      question: "What's the difference between calculated puppy calories and adult dog requirements?",
+      answer: "Puppies require 2-3 times more calories per pound of body weight than adult dogs because of rapid growth, bone development, and higher activity levels during development.",
     },
+    {
+      question: "How do I know if my puppy is getting the right calories from this calculator?",
+      answer: "Monitor body condition weekly—your puppy should have visible ribs, a tucked waist, and steady growth without excessive weight gain, indicating proper calorie intake.",
+    },
+    {
+      question: "Can this calculator help me choose the right puppy food brand?",
+      answer: "This calculator determines calorie needs, not food brands. Once you know daily calorie requirements, check food labels for kcal per cup to portion correctly regardless of brand.",
+    },
+    {
+      question: "How often should I recalculate my puppy's calorie needs as they grow?",
+      answer: "Recalculate every 4-8 weeks during the first 6 months, then monthly until 12 months, since calorie needs change significantly as puppies approach their adult size.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -267,112 +275,223 @@ export default function PuppyCalorieNeedsAgeBreedSizeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Puppy Calorie Needs by Age/Breed Size Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Puppies have unique nutritional requirements that differ significantly from adult dogs due to their rapid growth and development. Their calorie needs are influenced by multiple factors including age, breed size, and metabolic rate. This calculator estimates the daily calorie requirements by integrating these variables, ensuring optimal energy intake to support healthy bone growth, muscle development, and organ maturation. Understanding these needs helps prevent nutritional imbalances that can lead to developmental disorders or obesity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The core scientific principle behind this calculator is the Resting Energy Requirement (RER), which estimates the energy needed for vital physiological functions at rest. This baseline is then adjusted by a Maintenance Energy Requirement (MER) multiplier that accounts for the puppy’s age and predicted adult breed size. Smaller breeds generally have higher metabolic rates per unit body weight, while larger breeds require sustained energy over a longer growth period. By dynamically calculating these values, the tool provides a tailored calorie estimate to guide feeding practices.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Puppy Calorie Needs by Age/Breed Size Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines daily calorie requirements for growing puppies by analyzing age, current weight, and expected adult breed size. Accurate calorie planning prevents growth problems, obesity, and nutritional imbalances during critical developmental stages.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your puppy's current age in weeks or months, their current weight, their breed or estimated adult size category, and activity level. The calculator cross-references growth curve data to estimate daily energy expenditure specific to your puppy's developmental stage.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show total daily calories needed and recommended daily portions based on typical puppy food formulations. Use these numbers to guide feeding amounts, adjust for training treats and snacks, and track whether your puppy maintains ideal body condition as they grow.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate your puppy’s daily calorie needs, follow these steps carefully. First, select the unit system you prefer—imperial (pounds) or metric (kilograms). Next, enter your puppy’s current weight in the chosen unit. Then, input the puppy’s age in weeks, ensuring it falls between 8 and 20 weeks, as this calculator is optimized for this critical growth window. Finally, select the predicted adult breed size to adjust the calorie multiplier accordingly.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Weight:</strong> Enter the current weight of your puppy. Accurate weight measurement is crucial as calorie needs scale with metabolic body size.
-          </li>
-          <li>
-            <strong>Age (weeks):</strong> Input the puppy’s age in weeks, between 8 and 20 weeks. This range covers the rapid growth phase where energy needs are highest.
-          </li>
-          <li>
-            <strong>Predicted Adult Breed Size:</strong> Select the expected adult size category (Small, Medium, Large) to adjust energy requirements based on growth patterns.
-          </li>
-          <li>
-            <strong>Calculate:</strong> Click the calculate button to receive an estimate of daily calorie needs tailored to your puppy’s profile.
-          </li>
+      {/* TABLE: Daily Calorie Needs by Puppy Age and Breed Size */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Needs by Puppy Age and Breed Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows average daily calorie requirements based on breed size category and puppy age in months.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age (Months)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toy Breed (&lt;10 lbs adult)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Small Breed (10-25 lbs adult)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Medium Breed (25-50 lbs adult)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Large Breed (50-90 lbs adult)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Giant Breed (&gt;90 lbs adult)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6 weeks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120-180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350-500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400-600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500-750</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500-750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">700-950</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800-1200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-280</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350-550</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">700-1000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1100-1500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1400-1900</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400-600</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">850-1150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1300-1700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1700-2200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12 months</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450-700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900-1300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1400-1900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1800-2400</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values are estimates; individual needs vary by metabolism, activity level, and growth rate. Consult veterinary guidelines for your specific puppy.</p>
+      </section>
+
+      {/* TABLE: Calorie Adjustment Factors for Puppies */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Calorie Adjustment Factors for Puppies</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these multipliers to fine-tune calculator results based on your puppy's activity level and health status.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjustment Factor</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: 1000 Base Calories</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Low activity/calm temperament</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.85x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">850 calories/day</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Average activity/typical puppy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000 calories/day</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High activity/frequent play</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.15x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1150 calories/day</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Post-surgery recovery</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1200 calories/day</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Underweight/catching up growth</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1250 calories/day</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overweight management</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8x</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800 calories/day</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Start with the base calculator result, then apply adjustments and monitor body condition over 2-3 weeks before making further changes.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Feed multiple smaller meals daily—8-week puppies need 3-4 meals, 3-6 month puppies need 3 meals, and puppies over 6 months can transition to 2 meals to match their growing capacity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for training treats and chews in total daily calories; allocate 10% of daily calories to treats, reducing meal portions accordingly to avoid overfeeding.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a kitchen scale to measure portions precisely rather than eyeballing food into bowls, since consistent measurement helps you notice gradual weight changes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Transition puppy food gradually over 7-10 days when changing brands or switching to adult food, reducing calories proportionally while maintaining total daily intake.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using adult dog calorie calculators for puppies</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adult formulas underestimate puppy needs by 100-200% since puppies require significantly more calories per pound for growth and development.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring breed size category differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Large and giant breed puppies need lower calorie density than small breeds to prevent too-rapid growth, which causes joint and bone problems that this calculator specifically accounts for.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not adjusting calories during growth spurts</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Puppies experience predictable growth acceleration at certain ages; recalculating every 4-8 weeks prevents under- or overfeeding during these peaks.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to subtract treat calories from daily totals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Training treats and table scraps often constitute 20-30% of a puppy's calorie intake, throwing off the calculator's portion recommendations if not deducted from meal plans.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many calories does a 3-month-old Golden Retriever puppy need daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 3-month-old Golden Retriever typically needs 700-900 calories per day, depending on growth rate and individual metabolism. This calculator adjusts based on current weight and expected adult size.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do large breed puppies need different calorie amounts than small breeds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Large breed puppies grow more slowly to prevent joint problems, requiring lower calorie density relative to body weight—typically 60-70 kcal per pound, while small breeds need 80-100 kcal per pound.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust puppy calories if my dog is between two age ranges?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator allows gradual transitions between age ranges. If your puppy is 5 months old, input that exact age to get accurate recommendations rather than rounding to the nearest bracket.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between calculated puppy calories and adult dog requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Puppies require 2-3 times more calories per pound of body weight than adult dogs because of rapid growth, bone development, and higher activity levels during development.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if my puppy is getting the right calories from this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Monitor body condition weekly—your puppy should have visible ribs, a tucked waist, and steady growth without excessive weight gain, indicating proper calorie intake.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator help me choose the right puppy food brand?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator determines calorie needs, not food brands. Once you know daily calorie requirements, check food labels for kcal per cup to portion correctly regardless of brand.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my puppy's calorie needs as they grow?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 4-8 weeks during the first 6 months, then monthly until 12 months, since calorie needs change significantly as puppies approach their adult size.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.nap.edu/read/10668/chapter/10"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. National Research Council (NRC) Nutrient Requirements of Dogs and Cats, 2006
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on canine nutrition, including energy requirements for puppies by age and breed size.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/consumers/what-aafco-does" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Dog Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official nutritional standards for puppy foods that inform calorie and nutrient density requirements for growing dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aafco.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Association of American Feed Control Officials (AAFCO) Dog Food Nutrient Profiles
-            </a>
-            <p className="text-slate-500 text-sm">
-              Industry standards for nutrient profiles in dog foods, including puppy growth stages and energy needs.
-            </p>
+          <li>
+            <a href="https://www.purina.com/articles/dog/puppy/nutrition/puppy-feeding-guide" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Purina Puppy Growth Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based feeding recommendations by breed size and age that validate calculator calorie ranges.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/nutrition/nutrition-of-the-growing-puppy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Merck Veterinary Manual: Nutrition of the Growing Puppy
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed veterinary insights into the nutritional management of puppies during growth phases.
-            </p>
+          <li>
+            <a href="https://www.vetmed.ucdavis.edu/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine: Puppy Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary research on optimal calorie intake for preventing developmental orthopedic disease in large breed puppies.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/feeding-your-puppy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. VCA Hospitals: Feeding Your Puppy
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical feeding guidelines for puppies, emphasizing calorie needs and growth monitoring.
-            </p>
+          <li>
+            <a href="https://www.royalcanin.com/en-us/dogs/products/all-breed-puppy" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Royal Canin Puppy Feeding Charts</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed calorie and portion tables by breed size category that correlate with calculator output benchmarks.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

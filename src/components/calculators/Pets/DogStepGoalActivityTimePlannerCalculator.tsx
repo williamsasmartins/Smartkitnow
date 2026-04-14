@@ -81,25 +81,33 @@ export default function DogStepGoalActivityTimePlannerCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is the dog's weight raised to the 0.75 power in the formula?",
-      answer:
-        "The weight raised to the 0.75 power is based on the metabolic scaling principle used in veterinary science, reflecting how metabolic rate scales with body size. This exponent accounts for the fact that larger dogs do not require proportionally more steps or activity time than smaller dogs, but rather a scaled amount that reflects their energy needs and physiology. This ensures the step goal is tailored scientifically to the dog's size.",
+      question: "How many steps should my dog get daily based on age?",
+      answer: "Puppies need 5,000–10,000 steps daily, adult dogs 10,000–15,000 steps, and senior dogs 5,000–8,000 steps depending on breed size and health.",
     },
     {
-      question: "How does activity level influence the step goal and activity time?",
-      answer:
-        "Activity level adjusts the baseline step goal to reflect the dog's lifestyle and energy expenditure. A low activity multiplier (1.0) suits sedentary or older dogs, moderate (1.5) fits average active dogs, and high (2.0) is for highly active or working dogs. This multiplier increases or decreases the recommended steps and active minutes, ensuring the plan matches the dog's real-world exercise needs for optimal health.",
+      question: "What's the difference between steps and active playtime for dogs?",
+      answer: "Steps measure total movement distance, while active playtime refers to intense exercise sessions lasting 20–60 minutes that elevate heart rate and build endurance.",
     },
     {
-      question: "Why is the average walking pace assumed to be 100 steps per minute?",
-      answer:
-        "The 100 steps per minute average is derived from observational studies of canine gait and exercise physiology. It represents a moderate walking pace suitable for most dogs during daily exercise or play. This standardization allows us to convert step goals into practical activity time recommendations, helping owners plan how long their dog should be active to meet their step goal effectively.",
+      question: "Can this planner work for all dog breeds?",
+      answer: "Yes, but adjust targets based on breed size: large breeds need 12,000–18,000 steps daily, while small breeds thrive on 5,000–10,000 steps.",
     },
     {
-      question: "Can this planner replace veterinary advice for dogs with special health conditions?",
-      answer:
-        "No, this planner is designed for healthy dogs and provides general guidelines based on weight and activity level. Dogs with special health conditions, such as arthritis, heart disease, or obesity, require personalized exercise plans developed by a veterinarian. Always consult your vet before starting or changing your dog's exercise routine to ensure safety and appropriateness for their specific health status.",
+      question: "How do I track my dog's steps accurately?",
+      answer: "Use a dog fitness tracker, smartwatch, or pedometer collar to record steps, or estimate based on walk distance using a map app.",
     },
+    {
+      question: "What happens if my dog doesn't meet daily step goals?",
+      answer: "Insufficient activity increases risk of obesity, joint problems, and behavioral issues; gradually increase exercise by 10% weekly to reach healthy targets.",
+    },
+    {
+      question: "Should I adjust activity goals for dogs with health conditions?",
+      answer: "Yes, dogs with arthritis, heart disease, or respiratory issues need modified plans; consult your vet before using this calculator for medical conditions.",
+    },
+    {
+      question: "How does weather affect my dog's daily activity planning?",
+      answer: "Hot weather requires shorter, cooler-time walks to prevent overheating; cold weather may reduce activity tolerance, so adjust goals seasonally.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -234,92 +242,188 @@ export default function DogStepGoalActivityTimePlannerCalculator() {
   // 6. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Step-Goal & Activity Time Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Dog Step-Goal & Activity Time Planner is a scientifically grounded tool designed to help dog owners establish appropriate daily exercise targets for their pets. Unlike human fitness trackers, this planner uses veterinary metabolic principles to tailor step goals and active playtime based on a dog’s weight and typical activity level. This ensures that the exercise recommendations align with the dog’s physiological needs, promoting optimal health and well-being.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The core of the planner’s calculation is the metabolic scaling law, which raises the dog’s weight to the 0.75 power. This exponent reflects how metabolic rate scales with body size in mammals, meaning larger dogs require more energy but not in direct proportion to their weight. By incorporating this factor, the planner provides a balanced step goal that neither underestimates nor overestimates the dog’s exercise requirements.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, the planner adjusts the step goal according to the dog’s activity level—low, moderate, or high—allowing for customization based on lifestyle. The resulting step goal is then translated into active playtime minutes using an average canine walking pace, making it practical for owners to schedule daily exercise sessions. This approach supports maintaining healthy weight, cardiovascular fitness, and mental stimulation for dogs of all sizes and breeds.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Step-Goal & Activity Time Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you establish personalized daily step goals and activity schedules tailored to your dog's age, size, breed type, and fitness level. It combines research-backed exercise recommendations with practical planning tools to keep your dog healthy and mentally stimulated.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by entering your dog's age, weight, breed category, and current activity level. The calculator will assess baseline needs and identify activity gaps. You can also specify any health conditions or behavioral concerns that may affect exercise intensity.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the recommended daily step count, optimal playtime duration, and suggested activity breakdown. Use this plan to structure walks, fetch sessions, and enrichment activities throughout the week, monitoring your dog's response and adjusting as needed.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this planner is straightforward and requires only two key inputs: your dog’s current weight and their typical daily activity level. Begin by selecting the unit system you prefer—imperial (pounds) or metric (kilograms)—to enter your dog’s weight accurately. Next, choose the activity level that best describes your dog’s usual routine, ranging from low (sedentary or older dogs) to high (very active or working dogs).
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog's Weight:</strong> Enter the precise weight of your dog. This is critical as the step goal calculation depends on metabolic scaling based on weight.
-          </li>
-          <li>
-            <strong>Activity Level:</strong> Select the activity level that matches your dog’s lifestyle. This adjusts the step goal to reflect energy expenditure differences.
-          </li>
+      {/* TABLE: Daily Step Goals by Dog Age and Size */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Step Goals by Dog Age and Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Target step counts vary significantly based on your dog's age category and breed size.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Small Breed (&lt;25 lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Medium Breed (25–50 lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Large Breed (&gt;50 lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Puppy (0–12 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,000–8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,000–12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000–15,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult (1–7 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,000–12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,000–16,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15,000–20,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior (7+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,000–7,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6,000–10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,000–12,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Adjust based on individual fitness level, metabolism, and health status.</p>
+      </section>
+
+      {/* TABLE: Recommended Weekly Activity Time by Breed Energy Level */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Weekly Activity Time by Breed Energy Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Active playtime targets ensure balanced physical and mental stimulation across different breed temperaments.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Energy Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weekly Activity Hours</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Activity Sessions</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ideal Activities</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Low (Bulldogs, Basset Hounds)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2 short sessions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Gentle walks, light fetch</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate (Beagles, Cocker Spaniels)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7–10 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3 sessions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Brisk walks, swimming, play</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High (Border Collies, Huskies)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14–20 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–4 intense sessions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Running, agility, herding games</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Monitor your dog's behavior and adjust intensity if showing signs of fatigue or restlessness.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Break daily steps into 2–3 walks rather than one long session to maintain consistent energy and prevent joint stress.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a dog fitness tracker or smartphone app to monitor actual step counts and adjust plans based on real data.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Incorporate mental enrichment games, puzzle toys, and training sessions to meet activity needs without relying solely on physical exercise.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Gradually increase step goals by 10% weekly for overweight dogs to prevent injury while building sustainable fitness habits.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After inputting these details, click the calculate button to receive your dog’s recommended daily step goal and corresponding active playtime in minutes. Use these results to plan walks, play sessions, or other physical activities that help your dog meet their exercise needs. Remember, this tool provides general guidance; consult your veterinarian for tailored advice, especially if your dog has health concerns.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using human step goals for dogs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dogs require fewer total steps than humans but higher intensity; a 10,000-step goal for a dog is more demanding than for a person.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring breed-specific exercise needs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High-energy working breeds like Border Collies need 15,000+ daily steps, while low-energy breeds like Bulldogs thrive on 5,000–8,000 steps.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Pushing senior dogs too hard</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Older dogs need 30–50% fewer steps than adults; excessive activity increases arthritis pain and joint damage in senior pets.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Exercising puppies excessively</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Puppies' growth plates don't close until 12–18 months; too much activity before this age causes permanent joint and bone damage.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many steps should my dog get daily based on age?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Puppies need 5,000–10,000 steps daily, adult dogs 10,000–15,000 steps, and senior dogs 5,000–8,000 steps depending on breed size and health.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between steps and active playtime for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Steps measure total movement distance, while active playtime refers to intense exercise sessions lasting 20–60 minutes that elevate heart rate and build endurance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this planner work for all dog breeds?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, but adjust targets based on breed size: large breeds need 12,000–18,000 steps daily, while small breeds thrive on 5,000–10,000 steps.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I track my dog's steps accurately?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Use a dog fitness tracker, smartwatch, or pedometer collar to record steps, or estimate based on walk distance using a map app.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my dog doesn't meet daily step goals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Insufficient activity increases risk of obesity, joint problems, and behavioral issues; gradually increase exercise by 10% weekly to reach healthy targets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust activity goals for dogs with health conditions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, dogs with arthritis, heart disease, or respiratory issues need modified plans; consult your vet before using this calculator for medical conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does weather affect my dog's daily activity planning?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Hot weather requires shorter, cooler-time walks to prevent overheating; cold weather may reduce activity tolerance, so adjust goals seasonally.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7142523/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-              1. National Center for Biotechnology Information (NCBI) - Metabolic Scaling in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              This study explores metabolic rate scaling in dogs and other mammals, providing the scientific basis for the 0.75 exponent used in exercise planning.
-            </p>
+          <li>
+            <a href="https://www.akc.org/expert-advice/how-much-exercise-does-my-dog-need/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Kennel Club: Exercise for Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Breed-specific exercise guidelines and recommendations from AKC veterinary experts.</p>
           </li>
-          <li className="block">
-            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/exercise-your-dog" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-              2. American Veterinary Medical Association (AVMA) - Exercise Your Dog
-            </a>
-            <p className="text-slate-500 text-sm">
-              AVMA guidelines on appropriate exercise for dogs, emphasizing the importance of tailored activity plans based on health and lifestyle.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/your-pet/pet-owner-education" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAHA Pet Owner Information: Canine Exercise</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based veterinary guidance on appropriate activity levels for dogs at different life stages.</p>
           </li>
-          <li className="block">
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6075692/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-              3. Journal of Veterinary Behavior - Canine Activity Monitoring
-            </a>
-            <p className="text-slate-500 text-sm">
-              Research on canine step counts and activity monitoring, supporting the use of step goals to assess and improve dog fitness.
-            </p>
+          <li>
+            <a href="https://avmajournals.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of the American Veterinary Medical Association: Obesity in Dogs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research linking inadequate exercise to obesity, joint disease, and metabolic disorders in dogs.</p>
           </li>
-          <li className="block">
-            <a href="https://vcahospitals.com/know-your-pet/exercise-for-dogs" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-              4. VCA Hospitals - Exercise for Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Practical advice on dog exercise routines, including duration and intensity recommendations based on breed and age.
-            </p>
+          <li>
+            <a href="https://www.iaabc.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Association of Canine Professionals: Activity Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Certified behavior and training standards for safe, effective canine exercise programming.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

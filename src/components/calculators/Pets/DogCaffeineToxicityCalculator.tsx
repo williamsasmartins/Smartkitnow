@@ -67,25 +67,33 @@ export default function DogCaffeineToxicityCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "Why is caffeine toxic to dogs and how does it affect their body?",
-      answer:
-        "Caffeine is a stimulant that affects the central nervous system and cardiovascular system. Dogs metabolize caffeine much slower than humans, leading to accumulation and toxicity. It causes increased heart rate, restlessness, tremors, seizures, and can lead to fatal arrhythmias. The toxic effects result from caffeine’s ability to block adenosine receptors and increase catecholamine release, overstimulating the nervous system.",
+      question: "What caffeine dose is toxic to dogs?",
+      answer: "Dogs typically show toxicity symptoms at 20 mg/kg of body weight, with severe toxicity occurring above 40 mg/kg. A 50-pound dog could experience serious effects from as little as 450 mg of caffeine.",
     },
     {
-      question: "How is the toxic dose of caffeine determined for dogs?",
-      answer:
-        "The toxic dose is calculated based on the dog's body weight, expressed as milligrams of caffeine per kilogram (mg/kg). Veterinary toxicology studies have established that doses above 20 mg/kg can cause clinical signs of toxicity, while doses above 40 mg/kg pose severe risks. This weight-based dosing ensures accurate risk assessment tailored to each dog's size and metabolism.",
+      question: "How does dog weight affect caffeine toxicity risk?",
+      answer: "Smaller dogs have much lower toxicity thresholds than larger dogs. A 10-pound chihuahua is at risk from 90 mg of caffeine, while a 80-pound labrador needs 720 mg to reach the same toxicity level.",
     },
     {
-      question: "What are common sources of caffeine poisoning in dogs?",
-      answer:
-        "Dogs can ingest caffeine from various sources including coffee, tea, energy drinks, chocolate, certain medications, and caffeine-containing supplements. Accidental ingestion often occurs when dogs consume human beverages or foods left within reach. Understanding these sources helps pet owners prevent exposure and recognize potential poisoning incidents early.",
+      question: "Which common foods and drinks contain dangerous caffeine levels for dogs?",
+      answer: "One cup of coffee contains 95-200 mg of caffeine, dark chocolate has 12-26 mg per ounce, and energy drinks can have 80-300 mg per serving—all potentially toxic depending on dog size.",
     },
     {
-      question: "What should I do if I suspect my dog has ingested caffeine?",
-      answer:
-        "If caffeine ingestion is suspected, immediately contact a veterinarian or emergency animal poison control. Early intervention is critical to prevent severe toxicity. Treatment may involve inducing vomiting, administering activated charcoal to limit absorption, intravenous fluids, and medications to control symptoms like seizures or arrhythmias. Prompt veterinary care significantly improves outcomes.",
+      question: "What are the early signs of caffeine toxicity in dogs?",
+      answer: "Initial symptoms include restlessness, rapid heartbeat, tremors, and excessive thirst appearing within 30-60 minutes of ingestion; severe cases progress to seizures and cardiac arrhythmias.",
     },
+    {
+      question: "How quickly should I seek veterinary help after my dog consumes caffeine?",
+      answer: "Contact your veterinarian immediately or call poison control if your dog ingested caffeine; treatment is most effective within 2-4 hours of consumption.",
+    },
+    {
+      question: "Can this calculator predict exact outcomes for my dog?",
+      answer: "This calculator estimates toxicity risk based on weight and caffeine amount, but individual sensitivity varies; it's a screening tool, not a diagnostic replacement for veterinary evaluation.",
+    },
+    {
+      question: "Are some dog breeds more sensitive to caffeine than others?",
+      answer: "While all dogs are caffeine-sensitive, breed differences are minimal; sensitivity depends more on individual metabolism, age, and overall health than breed type.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -207,109 +215,237 @@ export default function DogCaffeineToxicityCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Caffeine Toxicity Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Dog Caffeine Toxicity Calculator is a specialized veterinary tool designed to estimate the risk of caffeine poisoning in dogs based on their body weight and the amount of caffeine ingested. Caffeine, a common stimulant found in coffee, tea, chocolate, and energy drinks, can be highly toxic to dogs even in small quantities due to their different metabolism compared to humans. This calculator helps pet owners and veterinary professionals quickly assess the potential severity of caffeine exposure by calculating the dose in milligrams per kilogram (mg/kg) of body weight, which is the standard veterinary toxicology metric.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding the dose relative to the dog's weight is crucial because toxicity thresholds vary significantly with size. The calculator uses scientifically established toxic dose ranges to classify the risk level, from low risk to severe toxicity requiring emergency intervention. This approach allows for informed decision-making about when to seek veterinary care. By providing clear, evidence-based guidance, the calculator supports early recognition and management of caffeine poisoning, which can be life-saving given the rapid progression of symptoms in affected dogs.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Caffeine Toxicity Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your dog's risk level based on accidental caffeine ingestion. Enter your dog's weight in pounds and the amount of caffeine consumed to receive a toxicity assessment and recommended action.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include your dog's current weight in pounds and the total milligrams of caffeine ingested. If you don't know the exact amount, use the reference table to estimate caffeine content from the food or beverage source.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results will indicate whether exposure is in the safe, mild, moderate, or severe toxicity range. Green results suggest monitoring at home; yellow warrants veterinary consultation; red indicates emergency veterinary care is needed immediately.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using the Dog Caffeine Toxicity Calculator is straightforward and requires only two key pieces of information: your dog's weight and the estimated amount of caffeine ingested. First, select the unit system that corresponds to your preference or region—Imperial (pounds) or Metric (kilograms). Then, enter your dog's weight in the chosen unit. Next, input the total estimated caffeine amount your dog has consumed, measured in milligrams. This could be from coffee, tea, chocolate, or any other caffeine-containing product.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter the accurate weight of your dog. If unsure, use a recent veterinary measurement or weigh your dog using a reliable scale. The calculator converts units automatically if needed.
-          </li>
-          <li>
-            <strong>Caffeine Amount:</strong> Estimate the total caffeine ingested in milligrams. For example, an average cup of coffee contains about 95 mg of caffeine. Use product labels or reliable sources to estimate this value as precisely as possible.
-          </li>
+      {/* TABLE: Caffeine Content in Common Human Foods and Beverages */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Caffeine Content in Common Human Foods and Beverages</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference guide showing typical caffeine amounts in products dogs commonly access.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Item</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Serving Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Caffeine (mg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Brewed Coffee</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95-200</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Espresso</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 shot (1 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">63-75</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Black Tea</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-70</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Iced Tea</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 oz glass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-50</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dark Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 oz square</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-26</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Milk Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 oz square</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-15</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Energy Drink</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz can</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-300</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cola</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 oz can</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34-46</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Caffeine Pills</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Single tablet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Green Tea</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-50</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values are approximate and vary by brand, brewing method, and preparation time.</p>
+      </section>
+
+      {/* TABLE: Caffeine Toxicity Thresholds by Dog Weight */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Caffeine Toxicity Thresholds by Dog Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated risk levels showing when caffeine becomes concerning based on body weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mild Symptoms (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Toxicity (mg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severe Toxicity (mg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 lbs (2.3 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">185</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 lbs (4.5 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">370</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25 lbs (11 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">225</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">925</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50 lbs (23 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1850</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75 lbs (34 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">675</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1350</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2775</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100 lbs (45 kg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3700</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Mild symptoms appear around 20 mg/kg; moderate at 40 mg/kg; severe at &gt;80 mg/kg. Individual sensitivity varies.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep all coffee, tea, energy drinks, and chocolate in secure cabinets away from curious dogs to prevent accidental ingestion.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Be aware that some medications and diet pills contain caffeine—check labels before administering any human products to your dog.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If your dog weighs under 20 pounds, even small amounts of coffee or strong tea can pose serious risk due to their low toxicity threshold.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your dog for 6-12 hours after potential caffeine exposure and contact your vet immediately if tremors, rapid heartbeat, or restlessness develop.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering these values, click the Calculate button to receive an estimated caffeine dose per kilogram of body weight and a risk classification. The calculator will also provide warnings and recommendations based on veterinary toxicology guidelines. Always remember that this tool is for educational purposes and does not replace professional veterinary advice. If in doubt, seek immediate veterinary care.
-        </p>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming chocolate toxicity is the same as caffeine toxicity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Chocolate contains both caffeine and theobromine; use this calculator only for caffeine content, as chocolate requires separate theobromine toxicity assessment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring individual dog sensitivity variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Puppies, senior dogs, and dogs with heart conditions are more susceptible to caffeine effects than the calculator's standard dosing predicts.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying veterinary care based on mild symptom results</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even if results show mild toxicity risk, contact your vet if your dog exhibits any unusual symptoms; visible signs matter more than the calculator estimate.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating caffeine in decaffeinated products</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Decaf coffee still contains 2-10 mg per cup; only espresso decaf approaches zero caffeine, so never assume decaf is completely safe.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What caffeine dose is toxic to dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Dogs typically show toxicity symptoms at 20 mg/kg of body weight, with severe toxicity occurring above 40 mg/kg. A 50-pound dog could experience serious effects from as little as 450 mg of caffeine.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does dog weight affect caffeine toxicity risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Smaller dogs have much lower toxicity thresholds than larger dogs. A 10-pound chihuahua is at risk from 90 mg of caffeine, while a 80-pound labrador needs 720 mg to reach the same toxicity level.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which common foods and drinks contain dangerous caffeine levels for dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">One cup of coffee contains 95-200 mg of caffeine, dark chocolate has 12-26 mg per ounce, and energy drinks can have 80-300 mg per serving—all potentially toxic depending on dog size.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the early signs of caffeine toxicity in dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Initial symptoms include restlessness, rapid heartbeat, tremors, and excessive thirst appearing within 30-60 minutes of ingestion; severe cases progress to seizures and cardiac arrhythmias.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How quickly should I seek veterinary help after my dog consumes caffeine?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Contact your veterinarian immediately or call poison control if your dog ingested caffeine; treatment is most effective within 2-4 hours of consumption.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator predict exact outcomes for my dog?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator estimates toxicity risk based on weight and caffeine amount, but individual sensitivity varies; it's a screening tool, not a diagnostic replacement for veterinary evaluation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are some dog breeds more sensitive to caffeine than others?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While all dogs are caffeine-sensitive, breed differences are minimal; sensitivity depends more on individual metabolism, age, and overall health than breed type.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6466046/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Gwaltney-Brant SM. "Caffeine Toxicity in Dogs and Cats." Veterinary Clinics of North America: Small Animal Practice, 2019.
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive review of caffeine toxicity mechanisms, clinical signs, and treatment protocols in companion animals.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official poison control resource providing emergency guidance and case management for pet caffeine exposure.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.petpoisonhelpline.com/poison/caffeine/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Pet Poison Helpline - Caffeine Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource providing toxic dose thresholds, symptom descriptions, and emergency response guidelines for caffeine poisoning in pets.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary toxicology experts offering 24/7 consulting on caffeine and other toxin exposures in dogs.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.wsu.edu/outreach/Pet-Health-Topics/categories/toxicology/caffeine-toxicity-in-dogs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Washington State University - Caffeine Toxicity in Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational article detailing caffeine sources, toxic doses, clinical signs, and treatment options for dogs.
-            </p>
+          <li>
+            <a href="https://www.fda.gov/news-events/public-health-focus/caffeine-your-diet" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FDA: Caffeine in Foods and Dietary Supplements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official FDA data on caffeine content in common foods, beverages, and supplements for reference.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/toxicology/poisoning-in-dogs-and-cats/caffeine-and-theobromine-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Merck Veterinary Manual - Caffeine and Theobromine Toxicity
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative veterinary manual entry describing pathophysiology, clinical signs, diagnosis, and treatment of caffeine poisoning.
-            </p>
+          <li>
+            <a href="https://www.vin.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Information Network (VIN): Methylxanthine Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed veterinary resource detailing mechanisms and treatment of caffeine and theobromine toxicity in dogs.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

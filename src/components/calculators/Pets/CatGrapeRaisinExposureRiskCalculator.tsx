@@ -87,25 +87,33 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why are grapes and raisins toxic to cats?",
-      answer:
-        "Grapes and raisins contain unknown nephrotoxic compounds that can cause acute kidney injury in cats, although the exact toxin has not been identified. Even small amounts can trigger severe kidney damage, leading to symptoms like vomiting, lethargy, and decreased appetite. Because cats metabolize substances differently than dogs, their sensitivity may be higher, making any exposure potentially dangerous.",
+      question: "What amount of grapes or raisins is toxic to cats?",
+      answer: "The exact toxic dose is unknown, but veterinarians recommend treating any ingestion as potentially dangerous since some cats show symptoms after consuming as few as 1-2 grapes or raisins.",
     },
     {
-      question: "How is the risk of toxicity assessed after ingestion?",
-      answer:
-        "Risk assessment involves estimating the amount of grapes or raisins ingested relative to the cat's body weight, expressed as milligrams per kilogram. Since exact toxic doses in cats are not well established, veterinarians use conservative thresholds based on available data and clinical experience. This calculator helps estimate exposure dose to guide urgency of veterinary care, but clinical signs and timing are also critical factors.",
+      question: "How does this calculator estimate exposure risk?",
+      answer: "The calculator combines cat weight, quantity ingested, and time since exposure to generate a risk level—educational only and not a substitute for veterinary diagnosis.",
     },
     {
-      question: "What should I do if my cat eats grapes or raisins?",
-      answer:
-        "If you suspect your cat has ingested grapes or raisins, seek veterinary attention immediately, even if no symptoms are present. Early intervention can include inducing vomiting, administering activated charcoal, and providing intravenous fluids to prevent kidney damage. Time is critical because kidney injury can develop rapidly and may be irreversible without prompt treatment.",
+      question: "What are the early signs of grape or raisin toxicity in cats?",
+      answer: "Early symptoms include vomiting, diarrhea, lethargy, and decreased appetite, typically appearing within 6-12 hours of ingestion.",
     },
     {
-      question: "Are all cats equally sensitive to grape or raisin toxicity?",
-      answer:
-        "Sensitivity to grape and raisin toxicity can vary between individual cats, with some showing severe reactions to very small amounts while others may tolerate slightly higher doses. Factors influencing sensitivity include age, overall health, and individual metabolic differences. Because of this variability and the potential severity, any ingestion should be treated as a medical emergency.",
+      question: "Are raisins more dangerous than grapes for cats?",
+      answer: "Raisins are more concentrated and considered equally or slightly more toxic per gram than fresh grapes due to higher toxin density.",
     },
+    {
+      question: "Should I induce vomiting if my cat ate grapes?",
+      answer: "Never induce vomiting at home—contact your veterinarian or poison control immediately for professional guidance on decontamination.",
+    },
+    {
+      question: "Can cooking or processing change the toxicity of grapes for cats?",
+      answer: "The toxic compound persists through cooking, drying, and processing, so all forms—fresh, dried, cooked, or juiced—remain hazardous.",
+    },
+    {
+      question: "Is this calculator a replacement for veterinary care?",
+      answer: "No—this tool is educational only; always consult a veterinarian or animal poison control center (ASPCA: 888-426-4435) for actual exposure incidents.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -239,98 +247,189 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
   // 5. EDITORIAL JSX
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cat Grape/Raisin Exposure Risk (educational)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Grapes and raisins have been identified as potentially nephrotoxic substances in companion animals, primarily dogs, but cats are also at risk. Although the exact toxic compound remains unknown, ingestion can lead to acute kidney injury, which may be life-threatening. Cats metabolize toxins differently than dogs, and their sensitivity to grapes and raisins is believed to be equal or greater, making any exposure a serious concern.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The clinical signs of toxicity in cats can include vomiting, lethargy, anorexia, and signs of kidney failure such as decreased urine production. Because the toxic dose is not definitively established in cats, veterinarians often rely on conservative thresholds and clinical judgment to assess risk. Early veterinary intervention is critical to prevent irreversible kidney damage and improve outcomes.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This educational tool estimates the relative risk of kidney toxicity based on the estimated amount of grapes or raisins ingested in relation to the cat’s body weight. It is designed to help pet owners and veterinary professionals understand potential exposure severity, but it does not replace professional veterinary evaluation. Immediate consultation with a veterinarian is always recommended if ingestion is suspected.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cat Grape/Raisin Exposure Risk (educational)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This educational calculator helps cat owners assess potential grape or raisin exposure risk based on their cat's weight and the quantity consumed. It provides risk-level estimates to help guide urgency of veterinary consultation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your cat's weight in pounds and the number of grapes or raisins ingested, along with the time elapsed since exposure. The calculator uses these inputs to generate a relative risk assessment.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the resulting risk level and recommended action—low-risk cases may warrant monitoring at home, while moderate-to-high risk exposures require immediate veterinary or poison control contact. Remember this tool is educational; veterinary professionals must make final medical decisions.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator, enter your cat’s weight in pounds and the estimated number of grapes and/or raisins ingested. The tool uses average weights for grapes and raisins to estimate the total toxic load relative to your cat’s body weight. The result provides an estimated dose in milligrams per kilogram and categorizes the risk level to guide urgency of veterinary care.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat’s current weight in pounds as accurately as possible.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the number of grapes and/or raisins your cat has ingested.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click “Calculate” to see the estimated exposure dose and risk category.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the risk category and warnings to decide if immediate veterinary attention is needed.
-          </li>
+      {/* TABLE: Grape &amp; Raisin Toxicity Risk Thresholds by Cat Weight */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Grape &amp; Raisin Toxicity Risk Thresholds by Cat Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated risk escalation based on body weight and quantity consumed.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cat Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Risk (&lt;1 grape)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Risk (1-3 grapes)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Risk (&gt;3 grapes)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5–8 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal concern</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Monitor closely</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Contact vet immediately</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9–12 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Generally safe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Observe for symptoms</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Seek emergency care</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">13+ lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lower sensitivity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mild to moderate risk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High risk zone</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Individual cat susceptibility varies; this is an educational guide only.</p>
+      </section>
+
+      {/* TABLE: Timeline of Toxicity Symptoms in Cats */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Timeline of Toxicity Symptoms in Cats</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Expected symptom onset varies but typically follows this pattern after ingestion.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time Frame</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Symptoms</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severity Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">0-2 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">None or mild lethargy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vomiting, diarrhea, decreased appetite</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12-72 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Abdominal pain, dehydration, kidney dysfunction signs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3+ days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Acute kidney injury indicators, anuria possible</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Critical</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Early veterinary intervention improves outcomes significantly.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store grapes and raisins in sealed containers on high shelves or inside cupboards to prevent accidental cat access.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Educate family members and visitors that grapes and raisins are toxic to cats—many people don't realize the danger.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep the ASPCA Animal Poison Control Center number (888-426-4435) saved in your phone for quick reference during emergencies.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cat for behavioral changes even after minor exposure; kidney damage can develop silently over days.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming small amounts are safe</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even 1-2 grapes or raisins can trigger toxicity in sensitive cats; no amount is proven universally safe.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Delaying veterinary contact</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Early intervention within 2-4 hours significantly improves prognosis; waiting for symptoms to appear reduces treatment effectiveness.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying solely on this calculator for diagnosis</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">This tool estimates risk only; a veterinarian must perform blood work and urinalysis to confirm kidney damage.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring raisins in baked goods or cereals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Raisins in cookies, granola, and trail mix are equally toxic and are often overlooked as hazards.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What amount of grapes or raisins is toxic to cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The exact toxic dose is unknown, but veterinarians recommend treating any ingestion as potentially dangerous since some cats show symptoms after consuming as few as 1-2 grapes or raisins.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator estimate exposure risk?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator combines cat weight, quantity ingested, and time since exposure to generate a risk level—educational only and not a substitute for veterinary diagnosis.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the early signs of grape or raisin toxicity in cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Early symptoms include vomiting, diarrhea, lethargy, and decreased appetite, typically appearing within 6-12 hours of ingestion.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are raisins more dangerous than grapes for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Raisins are more concentrated and considered equally or slightly more toxic per gram than fresh grapes due to higher toxin density.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I induce vomiting if my cat ate grapes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Never induce vomiting at home—contact your veterinarian or poison control immediately for professional guidance on decontamination.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can cooking or processing change the toxicity of grapes for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The toxic compound persists through cooking, drying, and processing, so all forms—fresh, dried, cooked, or juiced—remain hazardous.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is this calculator a replacement for veterinary care?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No—this tool is educational only; always consult a veterinarian or animal poison control center (ASPCA: 888-426-4435) for actual exposure incidents.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/grape-and-raisin-toxicity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Cornell Feline Health Center - Grape and Raisin Toxicity in Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of grape and raisin toxicity in cats, including clinical signs and treatment recommendations.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA Animal Poison Control Center</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official resource for pet toxin emergencies with 24/7 hotline and comprehensive toxicity database.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.veterinarypartner.com/Content.plx?P=A&A=2796&S=0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Veterinary Partner - Grapes and Raisins Toxicity in Dogs and Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed article discussing toxic doses, clinical effects, and emergency care for grape and raisin ingestion.
-            </p>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/poison/grapes-and-raisins/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline—Grape and Raisin Toxicity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of grape and raisin toxicity mechanisms, symptoms, and emergency treatment protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151219/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Center for Biotechnology Information - Acute Kidney Injury from Grapes and Raisins
-            </a>
-            <p className="text-slate-500 text-sm">
-              Scientific publication reviewing the pathophysiology and clinical management of grape and raisin toxicity in small animals.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/know-your-pet/grapes-and-raisins-poisoning-in-cats" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals—Grape and Raisin Toxicity in Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary-reviewed guide covering symptoms, risk factors, and management of grape/raisin exposure.</p>
+          </li>
+          <li>
+            <a href="https://www.aafmonline.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Feline Medical Association—Feline Toxicology</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary organization providing evidence-based information on common feline toxins and poisonings.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

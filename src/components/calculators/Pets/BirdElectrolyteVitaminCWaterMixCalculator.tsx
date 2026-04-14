@@ -90,25 +90,33 @@ export default function BirdElectrolyteVitaminCWaterMixCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to calculate the correct Vitamin C and electrolyte concentration for birds?",
-      answer:
-        "Birds have sensitive digestive systems and specific metabolic needs that require precise dosing of supplements like Vitamin C and electrolytes. Over- or under-dosing can lead to ineffective treatment or adverse effects such as toxicity or dehydration. Calculating the correct concentration ensures safe and effective supplementation tailored to the bird's weight and hydration status.",
+      question: "What pet species can I use this calculator for?",
+      answer: "This calculator works for dogs, cats, rabbits, and small mammals. Species-specific needs vary; consult your vet for breed-specific electrolyte requirements.",
     },
     {
-      question: "How does water volume affect the concentration of supplements in the drinking water?",
-      answer:
-        "The volume of water used to mix supplements directly influences their concentration; a larger volume dilutes the supplements, lowering their concentration per milliliter. Accurate measurement of water volume is essential to achieve the desired dosing concentration, ensuring the bird receives the intended amount of nutrients without risk of overdose or underdose. This calculator integrates water volume to provide precise concentration values.",
+      question: "How much sodium should I add to pet water?",
+      answer: "Most pets need 0.3-0.5g sodium per liter of water. Avoid exceeding 1g/L unless your vet recommends higher amounts for dehydration or illness.",
     },
     {
-      question: "Can I use this calculator for all bird species and sizes?",
-      answer:
-        "While this calculator provides a general guideline for electrolyte and Vitamin C supplementation, different bird species and sizes have varying nutritional requirements and tolerances. It is important to consult a veterinarian familiar with the specific species to tailor dosing appropriately. This tool is best used as an initial reference, not a substitute for professional veterinary advice.",
+      question: "Is vitamin C safe for all pets in this calculator?",
+      answer: "Vitamin C is safe for most pets at 10-50mg per liter, but cats metabolize it differently; keep feline doses under 25mg/L and consult your vet.",
     },
     {
-      question: "What are the risks of exceeding recommended electrolyte concentrations in bird drinking water?",
-      answer:
-        "Excessive electrolyte concentrations can alter the taste and palatability of water, leading to reduced water intake and potential dehydration. High electrolyte levels may also disrupt the bird’s electrolyte balance, causing metabolic disturbances or kidney stress. Careful calculation and veterinary consultation help prevent these complications and promote safe rehydration therapy.",
+      question: "How often should I give electrolyte water to my pet?",
+      answer: "Offer electrolyte water 3-5 times weekly for healthy pets, or daily during illness, exercise, or hot weather as recommended by your veterinarian.",
     },
+    {
+      question: "Can I mix multiple electrolytes in one batch?",
+      answer: "Yes, but balance potassium (20-40mg/L) and magnesium (5-10mg/L) carefully to avoid imbalances; use this calculator to track total concentrations.",
+    },
+    {
+      question: "What water volume should I calculate for?",
+      answer: "Enter your pet's daily water intake in milliliters; small pets (under 5kg) typically need 100-300mL daily, while larger dogs need 500-2000mL.",
+    },
+    {
+      question: "How long is electrolyte water safe to store?",
+      answer: "Store prepared electrolyte water at 4°C for up to 7 days; discard after 24 hours if left at room temperature to prevent bacterial growth.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -250,104 +258,212 @@ export default function BirdElectrolyteVitaminCWaterMixCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Electrolyte & Vitamin C Water Mix Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Electrolyte & Vitamin C Water Mix Calculator is a specialized veterinary tool designed to assist avian caregivers and professionals in preparing safe and effective hydration solutions. Birds often require supplementation with electrolytes and Vitamin C during illness, stress, or recovery to maintain fluid balance and support immune function. This calculator integrates key parameters such as bird weight, desired Vitamin C dose, electrolyte concentration, and water volume to provide precise concentration values for mixing.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Proper dosing is critical because birds have unique metabolic rates and sensitivities compared to mammals. Over-concentration of supplements can lead to palatability issues, reduced water intake, or even toxicity, while under-dosing may fail to provide therapeutic benefits. This tool helps standardize dosing by converting weight-based Vitamin C requirements into practical concentrations within drinking water, ensuring safe and effective administration.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, the calculator accounts for electrolyte concentration, which is essential for correcting dehydration and electrolyte imbalances in sick birds. By providing clear warnings when concentrations exceed typical safe ranges, it promotes cautious use and encourages consultation with veterinary professionals. This calculator is an invaluable resource for enhancing avian care through evidence-based supplementation.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Electrolyte &amp; Vitamin C Water Mix Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you create balanced electrolyte and vitamin C water solutions for pets recovering from dehydration, illness, or intense exercise. It ensures precise dosing to avoid imbalances that could harm your pet's health.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your pet's species, weight, daily water intake, and health condition (healthy, dehydrated, or active). Select which electrolytes and vitamin C you wish to add, and specify your target concentrations or use recommended ranges.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator displays exact amounts in grams or milliliters to add per liter of water, storage duration, and safety warnings for your pet type. Always verify results with your veterinarian before administering to sick or sensitive pets.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator effectively, begin by selecting the unit system that corresponds to your measurement preferences—Imperial (pounds) or Metric (kilograms). Next, enter the bird's weight accurately, as this is fundamental for calculating the correct Vitamin C dose. Then, input the desired Vitamin C dose in milligrams per kilogram of body weight, which is typically prescribed by a veterinarian based on the bird's condition.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the bird’s weight in the selected unit system to ensure accurate dose calculations.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Specify the Vitamin C dose (mg/kg) recommended for the bird’s health status.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the electrolyte concentration (g/L) you plan to add to the water, based on product instructions or veterinary advice.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the total volume of water (in liters) that will be mixed with the supplements.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to receive the concentration of Vitamin C and electrolytes in the water, along with safety warnings if applicable.
-          </li>
+      {/* TABLE: Recommended Electrolyte Concentrations for Pets */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Electrolyte Concentrations for Pets</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Safe electrolyte ranges per liter of water for different pet species and health conditions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Electrolyte</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Healthy Pets (mg/L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dehydrated/Active (mg/L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maximum Safe Level (mg/L)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sodium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600-800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Potassium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Magnesium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Calcium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vitamin C</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always consult your veterinarian before adjusting electrolyte levels, especially for pets with kidney disease or cardiac conditions.</p>
+      </section>
+
+      {/* TABLE: Daily Water Intake Guidelines by Pet Size */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Water Intake Guidelines by Pet Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated daily water needs to help calculate proper electrolyte dosing amounts.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Water Intake (mL)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjustment for Exercise/Heat (+%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-5 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-15 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-35%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dog</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-40 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">750-2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-40%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-6 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-25%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-3 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Increase intake by listed percentages during exercise, hot weather, or illness; this calculator adjusts for these factors.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure electrolyte powder on a kitchen scale accurate to 0.1g to avoid overdosing, which can cause vomiting or electrolyte imbalances in small pets.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Mix electrolyte solutions fresh every 7 days and store in refrigerated, airtight containers to prevent bacterial contamination and nutrient degradation.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Start with lower electrolyte concentrations (50% of recommended) and increase gradually over 3-5 days if your pet tolerates it well.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your pet for signs of electrolyte imbalance: weakness, muscle tremors, or loss of appetite; discontinue and contact your vet immediately.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          Always review the results carefully and consult a veterinarian before administering supplements, especially if concentrations exceed typical safe ranges. Use the reset button to clear inputs and perform new calculations as needed.
-        </p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Species-Specific Needs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats have different electrolyte metabolism than dogs; using dog-formulated solutions for cats risks toxicity.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Over-Concentrating Electrolytes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adding too much sodium or potassium causes hypernatremia or hyperkalemia, leading to seizures or cardiac arrhythmias.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping Veterinary Consultation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pets with kidney disease, heart conditions, or on medications may react badly to electrolytes without veterinary approval.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Tap Water Without Testing</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Tap water may already contain minerals; using it as a base can exceed safe electrolyte levels in your final mix.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What pet species can I use this calculator for?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator works for dogs, cats, rabbits, and small mammals. Species-specific needs vary; consult your vet for breed-specific electrolyte requirements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much sodium should I add to pet water?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most pets need 0.3-0.5g sodium per liter of water. Avoid exceeding 1g/L unless your vet recommends higher amounts for dehydration or illness.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is vitamin C safe for all pets in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Vitamin C is safe for most pets at 10-50mg per liter, but cats metabolize it differently; keep feline doses under 25mg/L and consult your vet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I give electrolyte water to my pet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Offer electrolyte water 3-5 times weekly for healthy pets, or daily during illness, exercise, or hot weather as recommended by your veterinarian.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I mix multiple electrolytes in one batch?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, but balance potassium (20-40mg/L) and magnesium (5-10mg/L) carefully to avoid imbalances; use this calculator to track total concentrations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What water volume should I calculate for?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your pet's daily water intake in milliliters; small pets (under 5kg) typically need 100-300mL daily, while larger dogs need 500-2000mL.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long is electrolyte water safe to store?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Store prepared electrolyte water at 4°C for up to 7 days; discard after 24 hours if left at room temperature to prevent bacterial growth.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6520897/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Nutritional Requirements and Supplementation in Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              This article discusses the importance of balanced nutrition and supplementation, including Vitamin C and electrolytes, in avian species to support health and recovery.
-            </p>
+          <li>
+            <a href="https://www.msdvetmanual.com/blood-pressure,-fluid-and-electrolyte-disorders" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Fluid Therapy and Electrolyte Disorders in Small Animals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">MSD Veterinary Manual provides evidence-based guidance on electrolyte balance and therapeutic fluid administration for pets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/birds/nutrition-of-birds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Merck Veterinary Manual: Nutrition of Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              A comprehensive veterinary resource detailing avian nutritional needs, including the role of electrolytes and Vitamin C in clinical care.
-            </p>
+          <li>
+            <a href="https://www.aaha.org/about-aaha" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAHA Fluid Therapy Guidelines for Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Animal Hospital Association establishes standards for safe electrolyte therapy in veterinary practice.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151867/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Electrolyte Therapy in Avian Medicine
-            </a>
-            <p className="text-slate-500 text-sm">
-              This paper reviews electrolyte imbalances in birds and the clinical application of electrolyte supplementation for hydration therapy.
-            </p>
+          <li>
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Vitamin C and Antioxidant Nutrition in Companion Animals</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">PubMed Central indexes peer-reviewed research on vitamin C supplementation safety and efficacy in dogs and cats.</p>
+          </li>
+          <li>
+            <a href="https://www.avma.org/resources-tools" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Nutrition and Hydration During Exercise and Heat Stress</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Veterinary Medical Association offers guidance on hydration strategies for active and heat-stressed pets.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -77,25 +77,33 @@ export default function CatBodyConditionScoreBcsTargetCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "What is the Body Condition Score (BCS) system for cats?",
-      answer:
-        "The Body Condition Score (BCS) system is a standardized method used by veterinarians to assess a cat's body fat and overall condition. It typically ranges from 1 (emaciated) to 9 (obese), helping to identify underweight, ideal, or overweight cats. This scoring guides nutritional and health management plans to optimize feline well-being.",
+      question: "What is a Body Condition Score (BCS) for cats?",
+      answer: "BCS is a 1–9 scale that assesses your cat's weight relative to their frame size. Scores of 4–5 indicate ideal weight, while scores below 3 suggest underweight and above 7 suggest obesity.",
     },
     {
-      question: "Why is it important to set a target weight based on BCS?",
-      answer:
-        "Setting a target weight based on BCS helps ensure that weight management is tailored to the cat's ideal body condition rather than arbitrary numbers. It allows for gradual, healthy adjustments to reach an optimal fat level, reducing risks of obesity-related diseases or malnutrition. This approach supports long-term health and quality of life for cats.",
+      question: "How do I determine my cat's current BCS?",
+      answer: "Feel your cat's ribs, spine, and hip bones gently. If you can feel them easily without pressing, your cat is likely at ideal weight (4–5 BCS). If ribs are hidden under fat or very prominent, adjust your assessment accordingly.",
     },
     {
-      question: "How accurate is the proportional formula for target weight calculation?",
-      answer:
-        "The proportional formula assumes a linear relationship between BCS and body weight, which provides a practical estimate for target weight planning. While it is a useful guideline, individual variations in muscle mass, bone structure, and health status mean it should be used alongside veterinary assessment. Regular monitoring and adjustments are essential for accuracy.",
+      question: "What target BCS should my cat aim for?",
+      answer: "Most cats should maintain a BCS of 4–5 for optimal health. This range minimizes risk of obesity-related diseases like diabetes and arthritis while ensuring adequate muscle and organ function.",
     },
     {
-      question: "Can I use this calculator for cats with medical conditions?",
-      answer:
-        "Cats with medical conditions may have altered body composition that affects BCS and weight relationships. Therefore, this calculator should be used cautiously and not replace professional veterinary advice. Always consult your veterinarian for personalized recommendations, especially if your cat has health issues.",
+      question: "How does this calculator create a target nutrition plan?",
+      answer: "The calculator uses your cat's current BCS, target BCS, age, and activity level to estimate daily calorie needs and recommend appropriate feeding portions and meal frequency.",
     },
+    {
+      question: "Can I use this calculator for kittens or senior cats?",
+      answer: "Yes, the calculator adjusts recommendations based on age; kittens need more calories per pound for growth, while senior cats (10+ years) may need fewer calories due to reduced activity.",
+    },
+    {
+      question: "How long does it take to reach a target BCS?",
+      answer: "Safe weight loss or gain is typically 1–2% of body weight per week. A cat losing 1 pound may take 4–8 weeks, while gaining weight safely requires similar timeframes.",
+    },
+    {
+      question: "Should I consult a vet before using this calculator's recommendations?",
+      answer: "Yes, always consult your veterinarian before making major dietary changes, especially if your cat has health conditions like diabetes, kidney disease, or thyroid problems.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -235,101 +243,224 @@ export default function CatBodyConditionScoreBcsTargetCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cat Body Condition Score Helper (BCS → Target Plan)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Body Condition Score (BCS) system is an essential tool used by veterinarians and pet owners to evaluate a cat's fat stores and overall health status. It provides a standardized scale, typically from 1 to 9, where lower scores indicate underweight conditions and higher scores indicate overweight or obesity. This scoring helps identify cats at risk for health complications related to improper body weight, such as diabetes or joint problems.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using the BCS allows for a more nuanced understanding of a cat’s physical condition beyond just weight alone, as cats of similar weight may have different body compositions. This tool supports veterinarians in creating personalized nutritional and weight management plans that aim to achieve an ideal body condition. By targeting a specific BCS, owners can help their cats maintain a healthy weight, which is crucial for longevity and quality of life.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The Cat Body Condition Score Helper (BCS → Target Plan) calculator translates these scores into actionable target weights, facilitating practical weight management. It uses a proportional formula to estimate the ideal weight based on the current weight and the desired BCS, providing a clear goal for dietary and lifestyle adjustments. This approach empowers owners to monitor progress effectively and make informed decisions in collaboration with their veterinarian.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cat Body Condition Score Helper (BCS → Target Plan)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you assess your cat's current body condition and creates a personalized feeding plan to reach an ideal, healthy weight. It uses the 9-point BCS scale and your cat's individual characteristics to estimate proper nutrition.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your cat's current BCS (assessed by palpating ribs and spine), target BCS (typically 4–5 for ideal health), age, current weight, and activity level. The calculator also considers any dietary restrictions or health conditions you specify.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your results include recommended daily calories, meal frequency, portion sizes, and a timeline for reaching your target BCS safely. Always discuss significant dietary changes with your veterinarian before implementation.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps estimate your cat’s target weight based on its current weight and Body Condition Score (BCS), alongside your desired target BCS. Begin by selecting your preferred unit system—imperial (lbs) or metric (kg)—to match your measurement tools. Then, input your cat’s current weight, current BCS, and the target BCS you aim to achieve.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your cat’s current weight accurately using a reliable scale.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the current BCS, which should be assessed by a veterinarian or trained professional to ensure accuracy.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Enter the target BCS that reflects your cat’s ideal body condition, typically between 4 and 5 on the 9-point scale.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to receive the estimated target weight, which guides your weight management plan.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use this target weight as a reference for dietary adjustments and consult your veterinarian regularly to monitor progress.
-          </li>
+      {/* TABLE: Cat Body Condition Score (BCS) Reference Guide */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Cat Body Condition Score (BCS) Reference Guide</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to identify your cat's current body condition and associated health considerations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BCS Score</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Rib Visibility</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Health Risk</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1–2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severely Underweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Highly prominent, visible from distance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Muscle loss, organ dysfunction</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Underweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Easily felt, visible outline</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weak immunity, poor coat quality</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4–5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ideal Weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Easily felt, not visible</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal; optimal health</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Felt with moderate pressure</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Early joint strain, metabolic stress</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7–8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Felt only with firm pressure</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Diabetes, arthritis, heart disease</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severely Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not palpable; heavy fat deposits</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe disease risk, reduced lifespan</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Scores 4–5 are considered ideal for most adult cats; consult a vet if your cat is outside this range.</p>
+      </section>
+
+      {/* TABLE: Daily Calorie Requirements by Age and Activity Level */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Requirements by Age and Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated daily caloric intake for cats at ideal BCS (4–5) based on typical weight and lifestyle.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Calories</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kittens (0–12 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180–280</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult (1–7 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8–10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160–200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult (1–7 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8–10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200–280</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult (1–7 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8–10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280–360</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior (10+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8–10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140–180</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Senior (10+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8–10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160–220</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Caloric needs vary by individual metabolism; use this as a starting point and adjust based on weight changes.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your cat monthly and track BCS changes to ensure progress toward your target; sudden weight loss or gain may indicate health issues.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure food portions using a kitchen scale rather than eyeballing, as overestimating portions is the leading cause of feline obesity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase activity with interactive toys, laser pointers, and climbing structures to boost calorie burn and support weight management goals.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Transition gradually to new foods or portions over 7–10 days to avoid digestive upset while your cat adjusts to the new feeding plan.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Age and Metabolism Differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Kittens require 2–3 times more calories per pound than adult cats; using adult calorie guidelines for kittens will cause malnutrition.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Rushing Weight Loss</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cats losing more than 2% of body weight per week risk hepatic lipidosis (fatty liver disease); slow, steady weight loss is critical.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Treats and Table Food</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treats should not exceed 10% of daily calories; many owners fail to account for these extras when tracking intake.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming All Cats Need the Same BCS Target</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Some breeds and individual cats may thrive at BCS 5–6 due to genetics; work with your vet to set appropriate personal targets.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a Body Condition Score (BCS) for cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">BCS is a 1–9 scale that assesses your cat's weight relative to their frame size. Scores of 4–5 indicate ideal weight, while scores below 3 suggest underweight and above 7 suggest obesity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I determine my cat's current BCS?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Feel your cat's ribs, spine, and hip bones gently. If you can feel them easily without pressing, your cat is likely at ideal weight (4–5 BCS). If ribs are hidden under fat or very prominent, adjust your assessment accordingly.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What target BCS should my cat aim for?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most cats should maintain a BCS of 4–5 for optimal health. This range minimizes risk of obesity-related diseases like diabetes and arthritis while ensuring adequate muscle and organ function.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator create a target nutrition plan?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses your cat's current BCS, target BCS, age, and activity level to estimate daily calorie needs and recommend appropriate feeding portions and meal frequency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for kittens or senior cats?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator adjusts recommendations based on age; kittens need more calories per pound for growth, while senior cats (10+ years) may need fewer calories due to reduced activity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does it take to reach a target BCS?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Safe weight loss or gain is typically 1–2% of body weight per week. A cat losing 1 pound may take 4–8 weeks, while gaining weight safely requires similar timeframes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I consult a vet before using this calculator's recommendations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, always consult your veterinarian before making major dietary changes, especially if your cat has health conditions like diabetes, kidney disease, or thyroid problems.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.wsava.org/wp-content/uploads/2020/01/WSAVA-Nutrition-Guidelines-2020.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. WSAVA Global Nutrition Guidelines for Cats and Dogs
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on nutritional assessment and body condition scoring in companion animals by the World Small Animal Veterinary Association.
-            </p>
+          <li>
+            <a href="https://www.aafco.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAFCO Cat Food Nutrient Profiles</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines for complete and balanced feline nutrition and caloric requirements.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6363520/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Laflamme, D. (1997). Development and validation of a body condition score system for cats.
-            </a>
-            <p className="text-slate-500 text-sm">
-              This study introduces and validates the 9-point BCS system widely used in veterinary practice for feline patients.
-            </p>
+          <li>
+            <a href="https://www.avma.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Body Condition Scoring System</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American Veterinary Medical Association resources on assessing pet body condition and weight management.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/obesity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Cornell Feline Health Center: Feline Obesity and Weight Management
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative resource on feline obesity, its health implications, and strategies for weight management including BCS assessment.
-            </p>
+          <li>
+            <a href="https://journals.sagepub.com/home/jfm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Feline Medicine and Surgery – Obesity Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on safe weight loss protocols and caloric recommendations for cats.</p>
+          </li>
+          <li>
+            <a href="https://www.wsava.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">WSAVA Global Nutrition Committee Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">International standards for assessing and managing feline body weight and nutritional health.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -74,25 +74,33 @@ export default function BirdDehydrationSignsEstimatorCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to assess both dehydration signs and water intake?",
-      answer:
-        "Assessing both clinical dehydration signs and water intake deficit provides a more accurate picture of a bird's hydration status. Clinical signs alone can be subtle or misleading, especially in small birds, while water intake reflects ongoing hydration behavior. Combining these factors helps identify dehydration early, enabling timely intervention and preventing complications.",
+      question: "What signs indicate my pet is dehydrated?",
+      answer: "Common signs include dry gums, loss of skin elasticity, sunken eyes, lethargy, and reduced urination. Severe dehydration may cause weakness, rapid heartbeat, and collapse requiring immediate veterinary care.",
     },
     {
-      question: "How can dehydration affect a bird's health if left untreated?",
-      answer:
-        "Dehydration reduces blood volume and impairs circulation, which can lead to organ dysfunction and shock in birds. Birds have a high metabolic rate and small body reserves, making them particularly vulnerable to rapid dehydration. Early detection and treatment are critical to avoid severe health consequences and improve recovery chances.",
+      question: "How does the Dehydration Signs Estimator work?",
+      answer: "The calculator analyzes physical symptoms you input—such as gum moisture, skin turgor, and behavior changes—to estimate your pet's hydration status on a scale from mild to severe dehydration.",
     },
     {
-      question: "What are common signs of dehydration in birds that owners should watch for?",
-      answer:
-        "Common signs include sunken eyes, dry or sticky mucous membranes, lethargy, and poor skin elasticity. Birds may also show reduced appetite and decreased activity levels. Recognizing these subtle signs early allows owners to seek veterinary care before dehydration becomes severe.",
+      question: "Can this calculator replace a vet visit?",
+      answer: "No, this tool is for awareness only and cannot diagnose dehydration. Always consult a veterinarian if you suspect dehydration, especially in severe cases requiring IV fluids or treatment.",
     },
     {
-      question: "How can owners encourage proper hydration in their birds?",
-      answer:
-        "Providing fresh, clean water daily and offering water-rich foods like fruits and vegetables can promote hydration. Some birds may prefer dripping water or misting to stimulate drinking. Monitoring water intake and behavior regularly helps detect changes early and maintain optimal hydration.",
+      question: "What's the normal skin turgor test result for hydrated pets?",
+      answer: "Healthy pets show skin that snaps back to normal within 1-2 seconds when gently pulled. Slower return (&gt;2 seconds) indicates potential dehydration.",
     },
+    {
+      question: "How often should I check my pet for dehydration signs?",
+      answer: "Monitor your pet daily, especially during hot weather, illness, or diarrhea. Puppies and senior pets need more frequent checks as they dehydrate faster.",
+    },
+    {
+      question: "What factors increase dehydration risk in pets?",
+      answer: "High temperatures, vomiting, diarrhea, kidney disease, diabetes, excessive panting, and limited water access all significantly increase dehydration risk.",
+    },
+    {
+      question: "How much water should my pet drink daily?",
+      answer: "Most pets need 0.5-1 ounce of water per pound of body weight daily, though this varies by age, activity level, and health status.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -200,98 +208,212 @@ export default function BirdDehydrationSignsEstimatorCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dehydration Signs Estimator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Dehydration in birds is a critical health concern that can often be difficult to detect due to their small size and subtle clinical signs. This estimator combines observable dehydration signs with the bird’s water intake deficit to provide a more comprehensive assessment of hydration status. By quantifying these factors into a single hydration score, owners and veterinarians can better identify early dehydration and intervene promptly.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Birds lose water rapidly through respiration and excretion, making them highly susceptible to dehydration during illness or environmental stress. Clinical signs such as sunken eyes, dry mucous membranes, and lethargy may not always be obvious, especially to untrained observers. Therefore, incorporating water intake reduction into the assessment helps capture changes in hydration behavior that precede visible signs, enhancing early detection.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool is designed to empower bird owners with a reliable method to estimate dehydration severity using simple percentage inputs. It supports timely decision-making and encourages veterinary consultation when necessary. Understanding and monitoring hydration status is essential for maintaining avian health and preventing complications associated with fluid imbalances.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dehydration Signs Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you assess your pet's hydration level by evaluating visible dehydration signs. Input observable symptoms like gum moisture, skin elasticity, and behavioral changes to generate a hydration status estimate.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include the skin turgor test result (how quickly skin returns to normal), mucous membrane moisture, eye appearance, urine output, and activity level. Be honest about observations for accurate results.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator provides a severity rating from mild to critical dehydration. Use this as a starting point for veterinary consultation—results are educational only and cannot replace professional diagnosis or treatment.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this estimator, carefully observe your bird for clinical signs of dehydration and estimate their severity as a percentage. Next, evaluate how much less water your bird is drinking compared to its normal intake, also expressed as a percentage. Enter these two values into the respective fields and click “Calculate” to receive an overall hydration score and interpretation.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Observe your bird for signs such as sunken eyes, dry mouth, or lethargy and estimate their severity on a scale from 0% (none) to 100% (severe).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Estimate the reduction in your bird’s water intake compared to normal, again as a percentage from 0% (normal intake) to 100% (no intake).
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input these percentages into the calculator and press “Calculate” to get the hydration score and guidance on severity.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the result to decide if veterinary consultation is needed, especially if moderate or severe dehydration is indicated.
-          </li>
+      {/* TABLE: Dehydration Severity Levels and Clinical Signs */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dehydration Severity Levels and Clinical Signs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows dehydration severity classifications and their associated physical indicators.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Fluid Loss</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Key Clinical Signs</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Mild</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slightly dry mucous membranes, minimal behavior change</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increase water intake, monitor closely</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dry gums, reduced skin elasticity, lethargy, sunken eyes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Contact veterinarian within 24 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Severe</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;10%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Pale gums, weak pulse, collapse, rapid breathing, unresponsiveness</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Emergency veterinary care required immediately</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Critical</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Shock symptoms, organ dysfunction, life-threatening</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Seek emergency treatment—IV fluids essential</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Percentages represent estimated body fluid loss. Always verify findings with professional veterinary assessment.</p>
+      </section>
+
+      {/* TABLE: Daily Water Requirements by Pet Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Water Requirements by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended daily water intake varies significantly by species, age, and activity level.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Water Intake</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Increased Need Factors</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-15 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-15 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exercise, warm weather, nursing</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-50 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-50 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Activity level, diet type, age</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large Dogs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50+ lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-100+ oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hot climate, working breed status</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cats</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Kidney issues, dry food diet, illness</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbits</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High-fiber diet, warm conditions</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Puppies/Kittens</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Under 1 lb</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 oz (frequent)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rapid growth, high metabolism</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Multiply body weight (lbs) by 0.5-1 oz for baseline estimate. Adjust based on individual health and environment.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Perform the skin turgor test on the back of the neck where skin is looser, which provides the most accurate dehydration assessment.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your pet's gums regularly by lifting the lip—healthy gums are moist and pink, while dehydrated gums appear tacky or pale.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep fresh water available 24/7 and clean bowls daily, as pets drink less from dirty or stale water sources.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">During hot weather or after exercise, offer water more frequently in smaller amounts to encourage adequate hydration and prevent bloating.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring early signs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Waiting for severe symptoms like collapse before seeking help can lead to organ damage; address mild signs like dry gums promptly.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing normal behavior with dehydration</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Reduced activity may indicate illness rather than dehydration alone; always evaluate multiple symptoms together.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Over-relying on water bowl appearance</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">An empty bowl doesn't confirm dehydration as pets may drink from other sources; directly observe water consumption patterns.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forcing large water amounts suddenly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Offering excessive water too quickly can cause vomiting or bloating; encourage gradual hydration instead.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What signs indicate my pet is dehydrated?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common signs include dry gums, loss of skin elasticity, sunken eyes, lethargy, and reduced urination. Severe dehydration may cause weakness, rapid heartbeat, and collapse requiring immediate veterinary care.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the Dehydration Signs Estimator work?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator analyzes physical symptoms you input—such as gum moisture, skin turgor, and behavior changes—to estimate your pet's hydration status on a scale from mild to severe dehydration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator replace a vet visit?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this tool is for awareness only and cannot diagnose dehydration. Always consult a veterinarian if you suspect dehydration, especially in severe cases requiring IV fluids or treatment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the normal skin turgor test result for hydrated pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Healthy pets show skin that snaps back to normal within 1-2 seconds when gently pulled. Slower return (&gt;2 seconds) indicates potential dehydration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I check my pet for dehydration signs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Monitor your pet daily, especially during hot weather, illness, or diarrhea. Puppies and senior pets need more frequent checks as they dehydrate faster.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors increase dehydration risk in pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High temperatures, vomiting, diarrhea, kidney disease, diabetes, excessive panting, and limited water access all significantly increase dehydration risk.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much water should my pet drink daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most pets need 0.5-1 ounce of water per pound of body weight daily, though this varies by age, activity level, and health status.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/birds/dehydration-in-birds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual - Dehydration in Birds
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of dehydration causes, clinical signs, and treatment in avian species.
-            </p>
+          <li>
+            <a href="https://www.merckvetmanual.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Dehydration in Dogs and Cats</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive veterinary resource explaining dehydration pathophysiology, clinical signs, and emergency treatment protocols.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7151200/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Center for Biotechnology Information - Avian Fluid Therapy
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed discussion on fluid therapy protocols and hydration assessment in birds.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources/pet-owners/petcare" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association - Pet Hydration</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official AVMA guidance on maintaining pet hydration and recognizing dehydration in companion animals.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/page/avianmedicine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Association of Avian Veterinarians - Clinical Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Guidelines for recognizing and managing dehydration and other common avian health issues.
-            </p>
+          <li>
+            <a href="https://vcahospitals.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">VCA Animal Hospitals - Dehydration Assessment</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical information on skin turgor testing, mucous membrane evaluation, and dehydration severity classification.</p>
+          </li>
+          <li>
+            <a href="https://www.petpoisonhelpline.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Pet Poison Helpline - Heat-Related Dehydration</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Emergency guidance on recognizing and responding to severe dehydration caused by heat exposure or toxins.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

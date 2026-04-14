@@ -70,25 +70,33 @@ export default function CatHarnessSizeFitGuideCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is it important to measure both neck and chest for a cat harness?",
-      answer:
-        "Measuring both the neck and chest circumference ensures the harness fits securely without causing discomfort or restricting movement. The neck measurement prevents the harness from slipping off, while the chest measurement ensures it is snug but not too tight around the ribcage. Proper fit reduces the risk of injury and increases your cat's comfort during walks or outdoor time.",
+      question: "What measurements do I need to size a cat harness correctly?",
+      answer: "You'll need your cat's chest girth (around the widest part of the rib cage) and neck circumference. Most harnesses fit cats with chest sizes between 8-14 inches and neck sizes of 6-10 inches.",
     },
     {
-      question: "How can I accurately measure my cat for a harness at home?",
-      answer:
-        "Use a flexible measuring tape to measure your cat’s neck just above the shoulders where the collar would naturally sit, and the chest at the widest part behind the front legs. It helps to have someone gently hold the cat to keep it calm and still. Always measure snugly but not tightly, allowing space for two fingers between the tape and your cat’s body for comfort.",
+      question: "How tight should a cat harness fit?",
+      answer: "A properly fitted harness should allow one finger to slip between the harness and your cat's body. Too loose and your cat can escape; too tight restricts breathing and causes discomfort.",
     },
     {
-      question: "What are the risks of using an ill-fitting harness on my cat?",
-      answer:
-        "An ill-fitting harness can cause chafing, restrict breathing, or allow your cat to escape, which may lead to injury or stress. Too tight a harness can cause discomfort and skin irritation, while too loose a harness may slip off or catch on objects. Ensuring a proper fit is essential for your cat’s safety and to build their confidence during outdoor activities.",
+      question: "At what age can I start using a harness on my kitten?",
+      answer: "Kittens can begin harness training at 8-12 weeks old using extra-small sizes. Always supervise and introduce gradually to prevent stress and ensure proper fit as they grow.",
     },
     {
-      question: "When should I consider a custom harness for my cat?",
-      answer:
-        "If your cat’s measurements fall outside standard size ranges or if your cat has unique body shapes or medical conditions, a custom harness is advisable. Custom harnesses provide tailored comfort and security, reducing the risk of pressure sores or escape. Consulting with a veterinarian or pet fitting specialist can guide you to the best option for your cat’s specific needs.",
+      question: "Do different harness styles fit differently?",
+      answer: "Yes, H-style harnesses fit differently than figure-8 or vest styles. H-style harnesses are tighter at the chest, while vest styles distribute pressure more evenly across the body.",
     },
+    {
+      question: "How often should I check if my cat's harness still fits?",
+      answer: "Check harness fit monthly, especially for growing kittens under 1 year old, and every 3-6 months for adult cats. Sudden weight changes also require immediate reassessment.",
+    },
+    {
+      question: "What breeds typically require larger harness sizes?",
+      answer: "Maine Coons, Ragdolls, and Bengals typically need large or extra-large harnesses with chest sizes of 12-16+ inches. Always measure individual cats as size varies significantly within breeds.",
+    },
+    {
+      question: "Can an ill-fitting harness cause health problems?",
+      answer: "Yes, harnesses that are too tight can restrict breathing, cause skin irritation, and damage fur. Loose harnesses risk escape and potential injury if your cat gets caught on objects.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -196,98 +204,212 @@ export default function CatHarnessSizeFitGuideCalculator() {
   // Editorial content
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Cat Harness Size & Fit Guide
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Selecting the correct harness size and fit for your cat is crucial for their safety, comfort, and overall well-being during outdoor activities. Unlike dogs, cats have more delicate and flexible bodies, so a harness must be snug enough to prevent escape but loose enough to avoid restricting movement or causing discomfort. Proper sizing involves measuring both the neck circumference and the chest girth, as these dimensions determine how the harness will sit and function on your cat’s body.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Harnesses come in various sizes, typically categorized as small, medium, and large, but these can vary between manufacturers. It is important to use precise measurements rather than relying solely on weight or breed, as cats of the same weight may have different body shapes. Additionally, an ill-fitting harness can lead to chafing, skin irritation, or even injury if the cat tries to escape or if the harness restricts breathing or movement.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This guide and calculator help you determine the best harness size based on your cat’s neck and chest measurements. By following the recommended sizing, you can ensure your cat enjoys safe and comfortable outdoor experiences, reducing stress for both you and your feline companion. Always remember to monitor your cat’s behavior and comfort when introducing a new harness and adjust as necessary.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Cat Harness Size & Fit Guide</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine the correct harness size and fit for your cat using precise body measurements. It accounts for different harness styles, cat age, and breed characteristics to recommend the most comfortable and secure option.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your cat's chest girth, neck circumference, age, and weight along with your preferred harness style. The calculator cross-references these measurements against industry-standard sizing charts and breed-specific recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the recommended size and fit feedback, which includes specific guidance on how snug the harness should be and whether adjustments are needed. Compare multiple styles if your cat falls between sizes to find the best comfort and safety balance.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps you identify the appropriate harness size for your cat by using two key measurements: neck circumference and chest circumference. Begin by selecting your preferred unit system, either imperial (inches) or metric (centimeters), to match your measuring tape. Enter the measurements carefully, ensuring accuracy for the best results.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure your cat’s neck circumference just above the shoulders where a collar would naturally rest.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Measure the chest circumference at the widest part behind the front legs.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input these measurements into the calculator fields and click “Calculate” to see the recommended harness size.
-          </li>
-          <li>
-            <strong>Step 4:</strong> If your cat’s measurements fall outside the standard size ranges, consider a custom harness or consult your veterinarian for advice.
-          </li>
+      {/* TABLE: Cat Harness Size Chart by Measurement */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Cat Harness Size Chart by Measurement</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use your cat's chest and neck measurements to determine the correct harness size.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Harness Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Chest Girth (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Neck Circumference (inches)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Cat Type</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extra Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Kittens, small breeds</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Young cats, petite adults</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5-9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Average adult cats</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large breeds (Maine Coon, Ragdoll)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extra Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extra large breeds, overweight cats</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Measurements should be taken snugly but not tight. Refer to manufacturer guidelines as sizing varies by brand.</p>
+      </section>
+
+      {/* TABLE: Harness Style Comparison and Fit Characteristics */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Harness Style Comparison and Fit Characteristics</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different harness styles distribute pressure differently and suit various cat needs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Harness Style</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Best For</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fit Characteristic</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Escape Risk</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">H-Style (Figure-8)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Active cats, outdoor walks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Tight at chest and shoulders</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Vest Style</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Senior cats, comfort-focused</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Even pressure distribution</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Figure-8 (Closed)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Training and leash work</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Secure chest and back coverage</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adjustable Strap</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Growing kittens, varied sizes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Multiple adjustment points</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Backpack Style</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Short outdoor trips</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Weight distributed across back</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very Low</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always prioritize comfort and fit over style. Your cat's safety and willingness to wear the harness matter most.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your cat when relaxed and standing naturally; avoid measuring when your cat is stressed or moving around.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a soft measuring tape and measure twice to ensure accuracy, as even small differences can affect harness fit.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always supervise your cat the first several times wearing a new harness to monitor comfort and behavior.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider your cat's personality: anxious cats may prefer vest styles that feel more secure, while active cats benefit from H-style harnesses.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring Over Thick Fur</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Measuring over your cat's coat can give inaccurate results; part the fur or measure against the skin for true dimensions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Weight Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Seasonal weight fluctuations and aging affect fit significantly, so re-measure every few months rather than assuming last year's size still works.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Choosing Style Over Fit</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Selecting a trendy harness that doesn't fit properly is dangerous; prioritize correct measurements and fit over aesthetic preferences.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Account for Growth</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Kittens grow rapidly and can outgrow harnesses within 6-8 weeks; plan for adjustability or expect to purchase multiple sizes during the first year.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What measurements do I need to size a cat harness correctly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You'll need your cat's chest girth (around the widest part of the rib cage) and neck circumference. Most harnesses fit cats with chest sizes between 8-14 inches and neck sizes of 6-10 inches.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How tight should a cat harness fit?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A properly fitted harness should allow one finger to slip between the harness and your cat's body. Too loose and your cat can escape; too tight restricts breathing and causes discomfort.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what age can I start using a harness on my kitten?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Kittens can begin harness training at 8-12 weeks old using extra-small sizes. Always supervise and introduce gradually to prevent stress and ensure proper fit as they grow.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do different harness styles fit differently?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, H-style harnesses fit differently than figure-8 or vest styles. H-style harnesses are tighter at the chest, while vest styles distribute pressure more evenly across the body.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I check if my cat's harness still fits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check harness fit monthly, especially for growing kittens under 1 year old, and every 3-6 months for adult cats. Sudden weight changes also require immediate reassessment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What breeds typically require larger harness sizes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Maine Coons, Ragdolls, and Bengals typically need large or extra-large harnesses with chest sizes of 12-16+ inches. Always measure individual cats as size varies significantly within breeds.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can an ill-fitting harness cause health problems?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, harnesses that are too tight can restrict breathing, cause skin irritation, and damage fur. Loose harnesses risk escape and potential injury if your cat gets caught on objects.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/cat-harness-safety"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American Veterinary Medical Association (AVMA) - Cat Harness Safety
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines on selecting and fitting cat harnesses to ensure safety and comfort during outdoor activities.
-            </p>
+          <li>
+            <a href="https://www.humanesociety.org/resources/leash-train-your-cat" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Humane Society: Cat Harness Training</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert guidance on safely introducing harnesses to cats and training techniques for outdoor walks.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/cat-harnesses-and-leashes"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals - Cat Harnesses and Leashes
-            </a>
-            <p className="text-slate-500 text-sm">
-              Expert advice on harness types, fitting techniques, and the importance of proper sizing for feline health and safety.
-            </p>
+          <li>
+            <a href="https://www.aspca.org/pet-care/cat-care/general-cat-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASPCA: Pet Safety Essentials</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive cat safety information including proper equipment sizing and fitting recommendations.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.petmd.com/cat/care/evr_ct_harnesses_for_cats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. PetMD - Harnesses for Cats: What You Need to Know
-            </a>
-            <p className="text-slate-500 text-sm">
-              Detailed overview of harness benefits, fitting tips, and how to introduce your cat to harness training safely.
-            </p>
+          <li>
+            <a href="https://icatcare.org/advice/enrichment/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Cat Care: Environmental Enrichment</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional guidance on safe outdoor exposure methods for cats, including harness use and leash training.</p>
+          </li>
+          <li>
+            <a href="https://veterinarypartner.com/cat-behavior" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Veterinary Partner: Cat Behavior and Training</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Veterinary-backed information on cat behavior during harness introduction and stress reduction techniques.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

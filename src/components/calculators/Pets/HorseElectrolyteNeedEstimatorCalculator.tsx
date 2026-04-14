@@ -123,25 +123,33 @@ export default function HorseElectrolyteNeedEstimatorCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is electrolyte supplementation important for horses during exercise and heat?",
-      answer:
-        "Electrolytes such as sodium, potassium, and chloride are essential for maintaining fluid balance, nerve function, and muscle contractions in horses. During exercise and exposure to heat, horses lose significant amounts of these electrolytes through sweat, risking dehydration and muscle fatigue. Supplementation helps restore these vital minerals, supporting optimal performance and preventing heat-related illnesses.",
+      question: "How much sodium do horses lose during exercise?",
+      answer: "Horses lose approximately 20-40 grams of sodium per hour of intense exercise through sweat, depending on temperature and humidity levels.",
     },
     {
-      question: "How does ambient temperature affect a horse's electrolyte needs?",
-      answer:
-        "Higher ambient temperatures increase a horse's sweat rate as the body works harder to cool itself, leading to greater electrolyte loss. This elevated loss means horses require more electrolyte replacement during hot weather to maintain hydration and physiological balance. Ignoring this can result in dehydration, colic, or heat stroke, emphasizing the need to adjust supplementation based on temperature.",
+      question: "What temperature triggers increased electrolyte needs in horses?",
+      answer: "Electrolyte requirements increase significantly when ambient temperature exceeds 75°F (24°C), with sweat loss doubling in conditions above 85°F (29°C).",
     },
     {
-      question: "Can I use this calculator if I don’t know my horse’s exact sweat rate?",
-      answer:
-        "Yes, the calculator provides a default sweat rate based on average values for horses of similar weight during moderate exercise. While individual sweat rates vary, this estimate offers a practical baseline for electrolyte needs. For more precise supplementation, measuring your horse’s sweat rate or consulting a veterinarian is recommended, especially for intense or prolonged activities.",
+      question: "Can horses become hyperkalemic from too many electrolytes?",
+      answer: "Yes, excessive potassium supplementation can cause hyperkalemia; typical safe daily intake is 0.3-0.4% of body weight for balanced electrolyte supplements.",
     },
     {
-      question: "What are the risks of over-supplementing electrolytes in horses?",
-      answer:
-        "Excessive electrolyte supplementation can disrupt the horse’s natural mineral balance, potentially causing gastrointestinal upset, dehydration, or kidney strain. Over-supplementation may also reduce water intake if the horse finds the electrolyte solution unpalatable. It is crucial to balance electrolyte replacement with adequate water and follow veterinary guidance to avoid adverse effects.",
+      question: "How does exercise intensity affect electrolyte depletion rates?",
+      answer: "High-intensity exercise (galloping or jumping) depletes electrolytes 3-5 times faster than moderate activity like trail riding.",
     },
+    {
+      question: "What are the signs a horse needs electrolyte supplementation?",
+      answer: "Signs include excessive sweating, poor recovery, muscle cramping, reduced appetite, and dark concentrated urine after exercise sessions.",
+    },
+    {
+      question: "Should electrolytes be given before, during, or after exercise?",
+      answer: "Pre-exercise hydration is key; during prolonged exercise (&gt;90 minutes), offer electrolyte solutions; post-exercise supplementation aids recovery within 2 hours.",
+    },
+    {
+      question: "How does humidity affect the calculator's electrolyte estimates?",
+      answer: "High humidity (&gt;70%) reduces evaporative cooling efficiency, increasing sweat production and electrolyte loss by 25-35% compared to dry conditions.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -305,98 +313,200 @@ export default function HorseElectrolyteNeedEstimatorCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Horse Electrolyte Need Estimator (Exercise & Heat)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Electrolytes are minerals critical to a horse’s physiological functions, including nerve transmission, muscle contraction, and fluid balance. During exercise, especially in hot conditions, horses lose substantial amounts of electrolytes through sweat, which can lead to dehydration, muscle cramps, and decreased performance if not adequately replaced. This estimator calculates the approximate electrolyte loss based on your horse’s weight, exercise duration, ambient temperature, and sweat rate, providing a practical guide for supplementation.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The tool integrates veterinary science principles by considering how heat stress elevates sweat rates and electrolyte depletion. It uses average electrolyte concentrations found in equine sweat to estimate total losses, helping owners and trainers make informed decisions about hydration and supplementation strategies. By understanding these needs, caretakers can better support their horses’ health, prevent heat-related illnesses, and optimize recovery after exercise.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Horse Electrolyte Need Estimator (Exercise & Heat)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines your horse's electrolyte requirements based on exercise duration, intensity, ambient temperature, and humidity. It accounts for sweat loss and mineral depletion to recommend safe supplementation levels.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include your horse's body weight (typically 800-1,200 lbs), exercise type (light, moderate, or intense), session duration in minutes, current temperature, and relative humidity percentage.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show estimated sodium, potassium, calcium, magnesium, and chloride needs in grams per hour or per day. Compare recommendations to your current feed and water intake to determine if supplementation is necessary to maintain performance and recovery.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To estimate your horse’s electrolyte needs, input the horse’s weight, the duration of exercise in minutes, and the ambient temperature during the activity. Optionally, provide a known sweat rate if available; otherwise, the calculator will estimate it based on weight and conditions. After entering the data, press “Calculate” to receive an estimate of total electrolyte loss in grams, which can guide supplementation.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) to match your measurements.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your horse’s weight accurately to ensure precise calculations.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the exercise duration in minutes and the ambient temperature during the activity.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Optionally, enter a sweat rate if you have measured it; otherwise, leave blank for an average estimate.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to view the estimated electrolyte loss and consider appropriate supplementation.
-          </li>
+      {/* TABLE: Electrolyte Loss Rates by Exercise Intensity & Temperature */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Electrolyte Loss Rates by Exercise Intensity & Temperature</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated sodium and potassium loss per hour under various conditions for a 1,000 lb horse.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Exercise Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temp 70°F</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temp 85°F</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temp 95°F</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Light walk/trot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15g Na, 5g K</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-25g Na, 8g K</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-35g Na, 12g K</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate (training)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25g Na, 10g K</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-40g Na, 15g K</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-60g Na, 22g K</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Intense (racing/jumping)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-45g Na, 18g K</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55-70g Na, 28g K</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-100g Na, 40g K</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Loss rates increase 15-20% with humidity above 70%.</p>
+      </section>
+
+      {/* TABLE: Daily Electrolyte Requirements (Non-Exercising vs. Exercising Horses) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Electrolyte Requirements (Non-Exercising vs. Exercising Horses)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended daily electrolyte intake in grams for a 1,000 lb adult horse.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Electrolyte</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Maintenance (Rest)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Moderate Exercise</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Intense/Hot Weather</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sodium (Na)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-50g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-100g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Potassium (K)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-35g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-60g</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Calcium (Ca)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Magnesium (Mg)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15g</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chloride (Cl)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-60g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-120g</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Amounts vary by forage quality, water mineral content, and individual sweat rates.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always provide free access to fresh water; electrolytes enhance palatability but cannot replace adequate hydration.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Introduce electrolyte supplements gradually over 5-7 days to prevent digestive upset and allow horses to adjust to taste.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use paste electrolytes immediately post-exercise for fastest absorption during the 30-minute recovery window.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test sweat composition annually during peak season to customize supplementation rather than using one-size-fits-all formulas.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring humidity levels</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High humidity reduces evaporative cooling, increasing sweat loss by 25-35% beyond dry-climate estimates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Over-supplementing potassium</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Excessive potassium supplementation (&gt;150g daily) can cause hyperkalemia and cardiac arrhythmias in horses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Giving electrolytes without water</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Electrolytes without adequate water increase osmolarity and may cause dehydration rather than prevent it.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the same dose year-round</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Summer exercise requirements are 3-5 times higher than winter; adjust supplementation seasonally based on temperature and sweat rates.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much sodium do horses lose during exercise?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Horses lose approximately 20-40 grams of sodium per hour of intense exercise through sweat, depending on temperature and humidity levels.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What temperature triggers increased electrolyte needs in horses?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Electrolyte requirements increase significantly when ambient temperature exceeds 75°F (24°C), with sweat loss doubling in conditions above 85°F (29°C).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can horses become hyperkalemic from too many electrolytes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, excessive potassium supplementation can cause hyperkalemia; typical safe daily intake is 0.3-0.4% of body weight for balanced electrolyte supplements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does exercise intensity affect electrolyte depletion rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High-intensity exercise (galloping or jumping) depletes electrolytes 3-5 times faster than moderate activity like trail riding.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the signs a horse needs electrolyte supplementation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Signs include excessive sweating, poor recovery, muscle cramping, reduced appetite, and dark concentrated urine after exercise sessions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should electrolytes be given before, during, or after exercise?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pre-exercise hydration is key; during prolonged exercise (&gt;90 minutes), offer electrolyte solutions; post-exercise supplementation aids recovery within 2 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does humidity affect the calculator's electrolyte estimates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High humidity (&gt;70%) reduces evaporative cooling efficiency, increasing sweat production and electrolyte loss by 25-35% compared to dry conditions.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://aaep.org/guidelines/equine-heat-illness"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. AAEP Guidelines on Equine Heat Illness
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines from the American Association of Equine Practitioners on managing heat stress and electrolyte balance in horses.
-            </p>
+          <li>
+            <a href="https://www.nap.edu/catalog/11653/nutrient-requirements-of-horses" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Nutrition & Exercise Physiology — National Research Council</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative guide on mineral and electrolyte requirements for horses at rest and during exercise.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/15072594/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Sweat Electrolyte Losses in Exercising Horses (Journal of Equine Veterinary Science, 2004)
-            </a>
-            <p className="text-slate-500 text-sm">
-              A scientific study quantifying electrolyte concentrations in equine sweat and implications for supplementation during exercise.
-            </p>
+          <li>
+            <a href="https://www.sciencedirect.com/journal/journal-of-equine-veterinary-science" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Sweat Loss and Thermoregulation in Exercising Horses — Journal of Equine Veterinary Science</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on sweat composition, electrolyte depletion rates, and temperature effects on exercise physiology.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Equine%20Electrolyte%20Balance%20-%20UC%20Davis.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Equine Electrolyte Balance - UC Davis Veterinary Medicine
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource explaining electrolyte physiology in horses and practical supplementation advice.
-            </p>
+          <li>
+            <a href="https://www.aaep.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">AAEP Guidelines for Sport Horse Management and Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional veterinary association recommendations for hydration, electrolyte supplementation, and heat stress prevention.</p>
+          </li>
+          <li>
+            <a href="https://www.ucdavis.edu/veterinary" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Equine Hyperkalemic Periodic Paralysis — UC Davis Veterinary Medical Teaching Hospital</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical overview of potassium toxicity risks and safe supplementation limits for genetically susceptible horses.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

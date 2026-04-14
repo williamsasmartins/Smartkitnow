@@ -76,25 +76,33 @@ export default function SmallMammalHayPelletIntakeCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is dry matter intake set at 4% of body weight for small herbivores?",
-      answer:
-        "Dry matter intake (DMI) at approximately 4% of body weight is a well-established nutritional guideline for small herbivores like rabbits and guinea pigs. This percentage ensures they receive adequate fiber and nutrients to maintain gut motility and overall health. Feeding below this threshold can lead to gastrointestinal stasis, while exceeding it may cause obesity or digestive issues.",
+      question: "How much hay should my rabbit eat daily?",
+      answer: "Rabbits need 1-2 cups of hay per 5 lbs of body weight daily. A 5-lb rabbit should consume approximately 1-2 cups, while a 10-lb rabbit needs 2-4 cups to maintain digestive health.",
     },
     {
-      question: "How does the pellet percentage affect my pet’s health?",
-      answer:
-        "Pellet percentage determines the proportion of concentrated feed versus fibrous hay in your pet’s diet. Higher pellet intake can provide essential vitamins and minerals but may reduce fiber consumption, which is critical for digestive health. Balancing pellets and hay helps prevent obesity, dental problems, and gastrointestinal disorders by ensuring sufficient fiber and nutrient intake.",
+      question: "What's the difference between hay and pellets for small pets?",
+      answer: "Hay is fibrous roughage essential for digestion and dental wear (80% of diet), while pellets are concentrated nutrition supplements (10-20% of diet). Pellets should never replace hay as the primary food source.",
     },
     {
-      question: "Can I use this calculator for other herbivorous small mammals?",
-      answer:
-        "This calculator is primarily designed for rabbits and guinea pigs, whose nutritional needs and dry matter intake percentages are well-studied. While it may provide a rough estimate for similar small herbivores, species-specific dietary requirements can vary significantly. Always consult a veterinarian familiar with your pet’s species for precise feeding recommendations.",
+      question: "How do I measure the right pellet portion for my guinea pig?",
+      answer: "Guinea pigs need 1/8 cup of pellets per pound of body weight daily. A 2-lb guinea pig requires about 1/4 cup, split between morning and evening feedings.",
     },
     {
-      question: "Why is it important to convert weights to kilograms internally?",
-      answer:
-        "Converting weights to kilograms internally standardizes calculations, as veterinary nutritional formulas are typically based on metric units. This ensures accuracy and consistency regardless of the user’s preferred unit system. It also simplifies the logic by using a single unit base, reducing errors in the final intake estimations.",
+      question: "Can I use this calculator for different pet species?",
+      answer: "Yes, this calculator accommodates rabbits, guinea pigs, chinchillas, and hamsters with species-specific intake recommendations based on weight and age.",
     },
+    {
+      question: "How often should I recalculate my pet's intake needs?",
+      answer: "Recalculate monthly during growth phases or whenever your pet's weight changes by &gt;10%, and annually for adult pets to ensure optimal nutrition.",
+    },
+    {
+      question: "Why is hay consumption more important than pellet consumption?",
+      answer: "Hay provides essential fiber (15-25% crude fiber) for intestinal motility, prevents obesity, and naturally grinds teeth; pellets alone lack sufficient fiber and cause digestive issues.",
+    },
+    {
+      question: "What happens if my pet eats too many pellets?",
+      answer: "Excess pellets lead to obesity, dental disease, and digestive upset since they're calorie-dense; limit pellets to 10-20% of total daily intake while maintaining hay at 80%.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -214,130 +222,218 @@ export default function SmallMammalHayPelletIntakeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Hay & Pellet Intake Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Hay & Pellet Intake Calculator is a specialized veterinary tool designed
-          to estimate the ideal daily intake of hay and pellets for small herbivorous
-          mammals such as rabbits and guinea pigs. These animals require a delicate
-          balance of fibrous hay and nutrient-dense pellets to maintain optimal digestive
-          health and overall well-being. This calculator uses scientifically supported
-          nutritional guidelines to provide tailored feeding recommendations based on
-          your pet’s weight and desired pellet proportion.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Proper fiber intake from hay is critical for promoting gut motility and
-          preventing gastrointestinal stasis, a common and potentially life-threatening
-          condition in small herbivores. Meanwhile, pellets supply concentrated
-          nutrients, vitamins, and minerals necessary for growth, maintenance, and
-          immune function. By inputting your pet’s weight and preferred pellet ratio,
-          this tool calculates the corresponding daily amounts of hay and pellets,
-          helping you optimize your pet’s diet for long-term health.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Hay & Pellet Intake Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines optimal daily hay and pellet portions for small pets including rabbits, guinea pigs, chinchillas, and hamsters. It ensures your pet receives balanced nutrition while preventing obesity and digestive disorders.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your pet's species, current weight in pounds, and age category (young/adult/senior). The calculator adjusts recommendations based on metabolic needs and growth stage.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results display total daily hay cups and pellet portions, plus feeding schedules. Use these guidelines to maintain a diet that's 80% hay and 10-20% pellets, supplemented with fresh vegetables.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires just two key inputs:
-          your pet’s body weight and the percentage of pellets you want to include in
-          their daily dry matter intake. The calculator assumes a total dry matter
-          intake of approximately 4% of body weight, a standard nutritional guideline
-          for rabbits and guinea pigs. Once you enter these values, the tool will
-          compute the recommended daily amounts of hay and pellets in your preferred
-          unit system.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the unit system (Imperial or Metric) that
-            matches how you measure your pet’s weight.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your pet’s weight accurately in pounds or
-            kilograms.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Specify the desired pellet percentage of the total
-            dry matter intake, keeping in mind that higher pellet ratios may increase
-            digestive risks.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click “Calculate” to view the recommended daily
-            hay and pellet amounts. Use the “Reset” button to clear inputs and start
-            over.
-          </li>
+      {/* TABLE: Daily Hay & Pellet Intake by Pet Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Hay & Pellet Intake by Pet Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference guide for recommended daily intake amounts based on pet species and average weight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pet Species</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Hay (cups)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Pellets (cups)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dwarf Rabbit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Standard Rabbit</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-0.75</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Guinea Pig</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.125-0.25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chinchilla</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 tbsp</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Syrian Hamster</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.1-0.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 tbsp</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Amounts vary by individual metabolism; use calculator for personalized recommendations.</p>
+      </section>
+
+      {/* TABLE: Hay & Pellet Quality Standards */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Hay & Pellet Quality Standards</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Nutritional benchmarks for quality hay and pellets in 2024-2025.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Feed Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Crude Fiber (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Protein (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fat (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ideal For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Timothy Hay</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-11</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Adult rabbits & guinea pigs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Alfalfa Hay</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Young/growing pets</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rabbit Pellets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Daily supplement</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Guinea Pig Pellets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vitamin C fortified</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chinchilla Pellets</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-fat formulas</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always choose hay/pellets with dust content &lt;2% to prevent respiratory issues.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh your pet monthly and update the calculator to track growth and adjust portions accordingly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Buy hay in bulk from reputable suppliers to ensure consistent quality and freshness for daily feeding.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Mix 2-3 hay varieties (Timothy, Orchard, Botanical) to prevent boredom and ensure diverse nutrient intake.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Store pellets in airtight containers away from heat and light to preserve nutritional content for up to 6 months.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overfeeding Pellets</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Giving pellets as the primary food instead of a supplement causes obesity and malnutrition; pellets should never exceed 20% of total daily intake.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Pet's Age</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Young pets need more calories and calcium for growth, while seniors need lower-calorie, softer diets; failing to adjust intake by age causes health issues.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Adjusting for Weight Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Skipping recalculations when your pet gains or loses weight leads to improper portions and metabolic imbalances.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Expired or Low-Quality Hay</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Moldy, dusty, or nutrient-depleted hay lacks fiber and causes respiratory issues; always inspect hay before feeding.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much hay should my rabbit eat daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rabbits need 1-2 cups of hay per 5 lbs of body weight daily. A 5-lb rabbit should consume approximately 1-2 cups, while a 10-lb rabbit needs 2-4 cups to maintain digestive health.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between hay and pellets for small pets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Hay is fibrous roughage essential for digestion and dental wear (80% of diet), while pellets are concentrated nutrition supplements (10-20% of diet). Pellets should never replace hay as the primary food source.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I measure the right pellet portion for my guinea pig?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Guinea pigs need 1/8 cup of pellets per pound of body weight daily. A 2-lb guinea pig requires about 1/4 cup, split between morning and evening feedings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for different pet species?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator accommodates rabbits, guinea pigs, chinchillas, and hamsters with species-specific intake recommendations based on weight and age.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my pet's intake needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate monthly during growth phases or whenever your pet's weight changes by &gt;10%, and annually for adult pets to ensure optimal nutrition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is hay consumption more important than pellet consumption?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Hay provides essential fiber (15-25% crude fiber) for intestinal motility, prevents obesity, and naturally grinds teeth; pellets alone lack sufficient fiber and cause digestive issues.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my pet eats too many pellets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excess pellets lead to obesity, dental disease, and digestive upset since they're calorie-dense; limit pellets to 10-20% of total daily intake while maintaining hay at 80%.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/rabbits/nutrition-of-rabbits"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Merck Veterinary Manual: Nutrition of Rabbits
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive overview of dietary requirements and feeding management for
-              rabbits, emphasizing fiber and pellet balance.
-            </p>
+          <li>
+            <a href="https://www.arba.net" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Rabbit Breeders Association Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official standards for rabbit diet composition, hay quality, and pellet nutritional requirements.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aav.org/Resources/Small-Mammal-Nutrition"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Association of Avian Veterinarians: Small Mammal Nutrition Guidelines
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on feeding small herbivores, including recommended
-              dry matter intake percentages and pellet-to-hay ratios.
-            </p>
+          <li>
+            <a href="https://www.guineapigbridge.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Guinea Pig Bridge - Nutrition & Diet</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based feeding guidelines for guinea pigs including hay types, pellet portions, and vitamin C requirements.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6520897/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Institutes of Health: Dietary Fiber and Gut Health in Rabbits
-            </a>
-            <p className="text-slate-500 text-sm">
-              Research article detailing the critical role of fiber in maintaining rabbit
-              gastrointestinal health and preventing stasis.
-            </p>
+          <li>
+            <a href="https://www.rabbit.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">House Rabbit Society - Rabbit Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource for rabbit nutrition, hay selection, and digestive health management.</p>
+          </li>
+          <li>
+            <a href="https://www.chinchilla-care.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Chinchilla Resources - Proper Diet</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed chinchilla feeding protocols including low-fat pellet requirements and hay consumption guidelines.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

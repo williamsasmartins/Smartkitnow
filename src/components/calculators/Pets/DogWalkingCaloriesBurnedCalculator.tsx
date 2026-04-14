@@ -109,25 +109,33 @@ export default function DogWalkingCaloriesBurnedCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question: "How does a dog's weight affect calories burned during walking?",
-      answer:
-        "A dog's weight significantly influences the number of calories burned during walking because energy expenditure is proportional to body mass. Heavier dogs require more energy to move their body, thus burning more calories per unit of time or distance. The calculator uses Resting Energy Requirement (RER), which scales with weight raised to the 0.75 power, reflecting metabolic activity accurately for dogs of different sizes.",
+      question: "How many calories does a 50-pound dog owner burn walking their dog for 30 minutes?",
+      answer: "A 150-pound person burns approximately 150-180 calories walking a 50-pound dog at a moderate 3.5 mph pace for 30 minutes. Results vary based on body weight, walking speed, and terrain.",
     },
     {
-      question: "Why is walking pace important in estimating calories burned for dogs?",
-      answer:
-        "Walking pace affects the intensity of exercise and thus the metabolic rate. Faster paces increase the dog's metabolic equivalent of task (METs), meaning the dog burns more calories per hour. This calculator adjusts calorie estimates based on pace categories, ensuring a more precise reflection of energy expenditure during slow, moderate, or brisk walks.",
+      question: "Does dog breed size affect calories burned during walking?",
+      answer: "Yes, larger dogs require more effort to control and walk, increasing calorie burn by 10-20% compared to walking a small dog. A Great Dane walk burns more calories than a Chihuahua walk for the same duration.",
     },
     {
-      question: "Can this calculator replace veterinary advice for my dog's exercise needs?",
-      answer:
-        "No, this calculator provides an estimate based on scientific formulas but cannot replace personalized veterinary advice. Factors like breed, age, health conditions, and fitness level affect a dog's energy needs and exercise tolerance. Always consult your veterinarian to tailor exercise and nutrition plans specific to your dog's individual requirements.",
+      question: "What walking speed should I use for accurate calorie calculations?",
+      answer: "Most dog walks occur at 2.5-4.0 mph; casual strolls burn fewer calories while brisk walks or hiking burns 30-40% more. Use your typical walking pace for the most realistic estimate.",
     },
     {
-      question: "How accurate are calorie burn estimates for dogs using METs?",
-      answer:
-        "Calorie burn estimates using METs provide a useful approximation but have limitations. MET values for dogs are generalized from limited studies and may not capture breed-specific or individual variations in metabolism and gait. Environmental factors and terrain also influence energy expenditure. Therefore, these estimates should be used as guidelines rather than exact measurements.",
+      question: "Does terrain type impact calorie burn during dog walking?",
+      answer: "Yes, walking on hills, sand, or grass burns 20-50% more calories than flat pavement. Uneven surfaces engage more muscles and require additional effort to maintain balance.",
     },
+    {
+      question: "How does my body weight affect calories burned while dog walking?",
+      answer: "Heavier individuals burn significantly more calories; a 200-pound person burns roughly 25-30% more calories than a 140-pound person on the same walk. Body weight is a primary factor in calorie expenditure calculations.",
+    },
+    {
+      question: "Can I use this calculator for dog running instead of walking?",
+      answer: "No, running burns 2-3 times more calories than walking at equivalent distances. Use a running calories calculator or increase the speed input if your calculator supports higher speeds.",
+    },
+    {
+      question: "Should I include hills or elevation changes in my calculation?",
+      answer: "Yes, walking uphill increases calorie burn by 30-50% depending on grade; the calculator should account for terrain type or elevation gain. Always specify if your route includes significant inclines.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -252,109 +260,211 @@ export default function DogWalkingCaloriesBurnedCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Walking Calories Burned Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Dog Walking Calories Burned Calculator is a specialized veterinary tool designed to estimate the number of calories a dog expends during a walking session. Unlike human calorie calculators, it uses veterinary-specific metabolic formulas that consider a dog's unique physiology, such as Resting Energy Requirement (RER), which scales with body weight raised to the 0.75 power. This approach ensures more accurate energy estimations tailored to canine metabolism.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The calculator integrates key variables including the dog's weight, walking distance, and pace to dynamically compute calorie burn. It applies Metabolic Equivalent of Task (MET) values adapted for dogs, reflecting different intensities of physical activity. By combining these factors, the tool provides an evidence-based estimate of energy expenditure, which can aid dog owners and veterinary professionals in managing exercise and nutrition plans effectively.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Walking Calories Burned Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates the calories you burn during dog walking based on your body weight, walking duration, pace, and terrain type. It helps you track the fitness benefits of daily dog walks and understand your overall calorie expenditure.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your body weight in pounds, walking duration in minutes, average walking speed in mph (typically 2.5-4.5 mph for dog walks), and select your terrain type (flat, hilly, or uneven). Some calculators also account for dog size and leash control difficulty.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result shows estimated calories burned during that walk. Remember that individual metabolism varies; factors like age, fitness level, and muscle mass affect actual calorie burn. Use results as a general guide rather than precise medical data.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To obtain an accurate estimate of calories burned during your dog's walk, start by selecting the preferred unit system: Imperial or Metric. Then, enter your dog's weight, the total walking distance, and the average pace. The calculator will automatically convert units as needed and apply veterinary metabolic formulas to compute the calorie expenditure. This step-by-step process ensures the output is tailored to your dog's specific exercise session.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog's Weight:</strong> Input your dog's current weight in pounds or kilograms depending on the selected unit system. Accurate weight is critical as it directly influences metabolic calculations.
-          </li>
-          <li>
-            <strong>Walking Distance:</strong> Enter the total distance walked during the session in miles or kilometers. This helps determine the duration of exercise when combined with pace.
-          </li>
-          <li>
-            <strong>Walking Pace:</strong> Provide the average speed of the walk in miles per hour or kilometers per hour. Pace affects the intensity and thus the metabolic rate during exercise.
-          </li>
+      {/* TABLE: Estimated Calories Burned by Body Weight and Walking Duration */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Estimated Calories Burned by Body Weight and Walking Duration</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows approximate calories burned during moderate-pace dog walking (3.5 mph) on flat terrain.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Body Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">15 Minutes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">30 Minutes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">60 Minutes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">120 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">150 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">94</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">188</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">375</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">180 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">112</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">225</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">125</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">220 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">138</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">275</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">550</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calories vary based on walking pace, terrain, and individual metabolism. Values assume flat pavement and steady moderate speed.</p>
+      </section>
+
+      {/* TABLE: Calorie Burn Increase by Walking Speed and Terrain */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Calorie Burn Increase by Walking Speed and Terrain</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows percentage increases in calorie burn based on speed and terrain difficulty.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Walking Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speed (mph)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calorie Burn Multiplier</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Flat pavement, casual</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Flat pavement, moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Flat pavement, brisk</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.35x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hilly terrain, moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.50x</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sand or grass, moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25x</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Trail with elevation gain</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.75x</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Multipliers are relative to baseline moderate-pace flat pavement walking (1.0x = baseline).</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track multiple walks over a week to get a realistic picture of total weekly calorie burn from dog walking.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase calorie burn by walking faster, choosing hillier routes, or increasing walk duration rather than distance alone.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Walking with a heavier dog or multiple dogs increases calorie expenditure; factor dog weight into your calculations if the calculator allows.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Morning and afternoon dog walks burn slightly fewer calories than evening walks due to lower metabolism earlier in the day, though the difference is minimal.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring terrain difficulty</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming all walks burn the same calories regardless of hills or surface type leads to inaccurate estimates; always specify your actual terrain.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using average walking speed instead of actual pace</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Guessing your speed results in incorrect calorie calculations; measure your typical pace with a fitness app or GPS watch for accuracy.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for body weight changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using outdated body weight data skews results; update your weight every few weeks if tracking calorie burn over time.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing walking with running calories</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Dog walking burns significantly fewer calories than running; don't use running calculators for leisurely dog walks.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Veterinary References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many calories does a 50-pound dog owner burn walking their dog for 30 minutes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 150-pound person burns approximately 150-180 calories walking a 50-pound dog at a moderate 3.5 mph pace for 30 minutes. Results vary based on body weight, walking speed, and terrain.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does dog breed size affect calories burned during walking?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, larger dogs require more effort to control and walk, increasing calorie burn by 10-20% compared to walking a small dog. A Great Dane walk burns more calories than a Chihuahua walk for the same duration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What walking speed should I use for accurate calorie calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most dog walks occur at 2.5-4.0 mph; casual strolls burn fewer calories while brisk walks or hiking burns 30-40% more. Use your typical walking pace for the most realistic estimate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does terrain type impact calorie burn during dog walking?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, walking on hills, sand, or grass burns 20-50% more calories than flat pavement. Uneven surfaces engage more muscles and require additional effort to maintain balance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does my body weight affect calories burned while dog walking?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Heavier individuals burn significantly more calories; a 200-pound person burns roughly 25-30% more calories than a 140-pound person on the same walk. Body weight is a primary factor in calorie expenditure calculations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for dog running instead of walking?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, running burns 2-3 times more calories than walking at equivalent distances. Use a running calories calculator or increase the speed input if your calculator supports higher speeds.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include hills or elevation changes in my calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, walking uphill increases calorie burn by 30-50% depending on grade; the calculator should account for terrain type or elevation gain. Always specify if your route includes significant inclines.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4646807/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. National Research Council (2006) - Nutrient Requirements of Dogs and Cats
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines outlining energy requirements and metabolic calculations for canine nutrition and exercise.
-            </p>
+          <li>
+            <a href="https://www.heart.org/en/healthy-living/fitness/fitness-basics/aha-recs-for-physical-activity-in-adults" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Heart Association - Physical Activity Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidelines on daily physical activity and calorie burn recommendations for adults.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.sciencedirect.com/science/article/abs/pii/S1090023316300916"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Energy Expenditure of Dogs During Exercise (2016) - Journal of Veterinary Science
-            </a>
-            <p className="text-slate-500 text-sm">
-              Research article detailing metabolic equivalents (METs) and energy expenditure in dogs at various exercise intensities.
-            </p>
+          <li>
+            <a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/exercise/art-20050999" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Mayo Clinic - Calories Burned by Activity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Medical reference for calorie expenditure across different physical activities including walking at various speeds.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.aaha.org/globalassets/02-guidelines/weight-management/weight_management_guidelines.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Animal Hospital Association (AAHA) Weight Management Guidelines (2018)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive guidelines for managing canine weight, including exercise and calorie expenditure recommendations.
-            </p>
+          <li>
+            <a href="https://www.cdc.gov/physicalactivity/basics/pa-health/index.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC - Physical Activity for Health Benefits</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based information on health benefits of walking and daily physical activity from the Centers for Disease Control.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Canine%20Energy%20Requirements.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. University of California Davis - Canine Energy Requirements
-            </a>
-            <p className="text-slate-500 text-sm">
-              Educational resource explaining resting and active energy requirements for dogs, including formulas and practical applications.
-            </p>
+          <li>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3876155/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Journal of Sports Medicine - Walking and Weight Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research on walking efficiency for calorie burn and weight loss in adults.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

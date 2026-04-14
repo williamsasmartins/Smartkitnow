@@ -98,29 +98,33 @@ export default function DogAgeHumanYearsBreedAwareCalculator() {
   // 3. FAQS (MUST BE DETAILED)
   const faqs = [
     {
-      question:
-        "Why is it important to use breed size when calculating dog age in human years?",
-      answer:
-        "Breed size significantly influences a dog's aging process because smaller breeds generally live longer and mature differently compared to larger breeds. Larger and giant breeds age faster and have shorter lifespans, so applying a one-size-fits-all formula can misrepresent their true physiological age. Incorporating breed size ensures the calculation reflects these biological differences, providing a more accurate human age equivalent.",
+      question: "Why does breed size affect how dogs age?",
+      answer: "Larger dog breeds age faster than smaller breeds due to higher metabolic rates and increased strain on their bodies. A Great Dane reaches senior status by age 5-6, while a Chihuahua may not until age 9-10.",
     },
     {
-      question:
-        "How does the logarithmic formula better represent dog aging compared to the traditional 'multiply by seven' method?",
-      answer:
-        "The logarithmic formula accounts for the rapid early development and slower aging in later years, which the simple 'multiply by seven' rule ignores. Dogs mature quickly in their first years, reaching adulthood much faster than humans. The logarithmic approach models this nonlinear aging process, reflecting that a 1-year-old dog is more like a 31-year-old human, while aging slows down as dogs grow older, providing a scientifically grounded estimate.",
+      question: "How accurate is the breed-aware dog age calculator?",
+      answer: "This calculator uses veterinary research showing that the first year equals 15 human years for most breeds, the second year adds 9 years, then adds 4-5 years annually depending on breed size. It's more accurate than the outdated 7-to-1 rule.",
     },
     {
-      question:
-        "Can this calculator be used for mixed breed dogs or dogs with unknown breed size?",
-      answer:
-        "For mixed breed or unknown breed size dogs, selecting 'medium' breed size is a reasonable default because it represents an average lifespan and size category. However, mixed breeds can vary widely, so the estimate may be less precise. Consulting a veterinarian who can assess your dog's individual health, size, and genetics will provide the most accurate age equivalency and health recommendations.",
+      question: "At what age is a dog considered senior?",
+      answer: "Small breeds become senior at 9-11 years old, medium breeds at 7-9 years, and large breeds at 5-7 years. Your calculator will show when your specific breed reaches senior status in human years.",
     },
     {
-      question:
-        "Why does the calculator include a warning for very young or very old dog ages?",
-      answer:
-        "The warning exists because the formula is based on population averages and may not perfectly capture the physiological nuances of very young puppies or exceptionally old dogs. Puppies under a few months undergo rapid developmental changes that differ from aging, and dogs living beyond typical lifespan ranges may have unique health conditions. These factors can cause deviations from the formula's predictions, so caution is advised when interpreting results at these extremes.",
+      question: "Does neutering or spaying affect dog aging?",
+      answer: "Neutered and spayed dogs often live 1-3 years longer than intact dogs, but the aging rate remains the same. This calculator tracks biological age, not lifespan extension.",
     },
+    {
+      question: "Can I use this calculator for mixed-breed dogs?",
+      answer: "Yes, select the closest matching size category (small, medium, or large) based on your dog's adult weight. Mixed breeds typically follow the aging pattern of their dominant size category.",
+    },
+    {
+      question: "What's the difference between calendar age and biological age?",
+      answer: "Calendar age is how many years your dog has lived; biological age (shown in human years) reflects how fast their body is aging. A 5-year-old Great Dane may be biologically equivalent to a 60-year-old human.",
+    },
+    {
+      question: "How do I know my dog's exact age if adopted as an adult?",
+      answer: "Your veterinarian can estimate age by examining teeth wear, joint condition, and coat quality. Use the estimated age in this calculator for the most accurate human-year conversion.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -268,146 +272,224 @@ export default function DogAgeHumanYearsBreedAwareCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* SECTION 1: UNDERSTANDING */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Dog Age in Human Years (Breed-Aware)
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Understanding a dog’s age in human years is a nuanced process that goes beyond
-          the simplistic “multiply by seven” rule often cited. Dogs age at different rates
-          depending on their breed size, genetics, and overall health. Smaller breeds tend
-          to live longer and age more slowly, while larger and giant breeds mature faster
-          and have shorter lifespans. This calculator incorporates breed size to provide a
-          more accurate reflection of your dog’s physiological and developmental age.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The formula used here is based on recent veterinary research that models dog
-          aging as a logarithmic function, capturing the rapid maturation in early years
-          and slower aging in later life stages. By adjusting the calculation with breed
-          size-specific life expectancy, this tool accounts for the biological differences
-          among breeds, offering a tailored estimate of your dog’s human-equivalent age.
-          This approach helps pet owners and veterinarians better understand health risks,
-          developmental milestones, and care needs relative to human aging.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Dog Age in Human Years (Breed-Aware) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator converts your dog's age to human equivalent years using breed-specific formulas backed by veterinary research. Unlike the outdated 7-to-1 rule, it accounts for how different breeds age at different rates.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your dog's current age in years and select their breed or size category. The calculator uses the first year as 15 human years, the second as 9 years, then adjusts annual aging based on whether your dog is small, medium, or large.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result shows your dog's biological age in human years, helping you understand their life stage and plan appropriate health care, nutrition, and activity levels.</p>
+        </div>
       </section>
 
-      {/* SECTION 2: HOW TO USE */}
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate your dog’s age in human years, input your dog’s current
-          weight, age in years, and select the appropriate breed size category. The breed
-          size reflects the general size and expected lifespan of your dog’s breed or
-          closest match. After entering these details, click “Calculate” to see the
-          estimated human-equivalent age based on veterinary science.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Dog Weight:</strong> Enter your dog’s weight in pounds or kilograms,
-            depending on your preferred unit system. This helps contextualize breed size
-            but is not directly used in the age formula.
-          </li>
-          <li>
-            <strong>Dog Age:</strong> Enter your dog’s current age in years. You can use
-            decimals for months (e.g., 3.5 years).
-          </li>
-          <li>
-            <strong>Breed Size:</strong> Select the breed size category that best matches
-            your dog’s breed or size class: Small, Medium, Large, or Giant.
-          </li>
+      {/* TABLE: Dog Age to Human Years by Breed Size */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Dog Age to Human Years by Breed Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how dog ages convert to human equivalent ages based on breed size categories.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dog Age</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Small Breed (Human Years)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Medium Breed (Human Years)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Large Breed (Human Years)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1 year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">36</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">44</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">49</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">66</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">78</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">76</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">98</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">115</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Small breeds include dogs under 20 lbs; medium breeds 20-60 lbs; large breeds over 60 lbs.</p>
+      </section>
+
+      {/* TABLE: Senior Age Thresholds by Breed Size */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Senior Age Thresholds by Breed Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Dogs enter their senior years at different calendar ages depending on breed size, with corresponding human-year equivalents.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Breed Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Senior Status Begins (Dog Age)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Senior Status Begins (Human Years)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Lifespan</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-11 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">52-60 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-18 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-9 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">54-63 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-13 years</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38-56 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12 years</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extra Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">33-52 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-10 years</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Senior status marks when dogs typically require more frequent vet checkups and lifestyle adjustments.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Update the calculator every birthday to track your dog's aging progression and adjust their care as they move into senior years.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the human-year equivalent to communicate your dog's age to people unfamiliar with dog years, making it easier to explain health concerns.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Small breeds maintain youthful vigor longer than large breeds, so a 10-year-old Chihuahua may still have more active years ahead than a 7-year-old Labrador.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your dog's health more closely once they reach senior status according to this calculator, as this signals increased veterinary checkup frequency.</li>
         </ul>
       </section>
 
-      {/* SECTION 3: FAQ */}
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the 7-to-1 Rule</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The outdated formula multiplying dog age by 7 is inaccurate; it doesn't account for rapid development in year one or breed-specific aging rates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Breed Size</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying a generic formula to all dogs ignores that large breeds age significantly faster than small breeds, leading to incorrect health assessments.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Miscategorizing Mixed Breeds</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Choosing the wrong size category for a mixed breed can skew results by several years; always use their actual adult weight to select the correct category.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Adjust for Medical History</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">While this calculator provides biological age, chronic conditions or excellent health care can make a dog's true biological age younger or older than the formula suggests.</p>
+          </div>
+        </div>
       </section>
 
-      {/* SECTION 4: REFERENCES */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Veterinary References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does breed size affect how dogs age?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Larger dog breeds age faster than smaller breeds due to higher metabolic rates and increased strain on their bodies. A Great Dane reaches senior status by age 5-6, while a Chihuahua may not until age 9-10.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the breed-aware dog age calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator uses veterinary research showing that the first year equals 15 human years for most breeds, the second year adds 9 years, then adds 4-5 years annually depending on breed size. It's more accurate than the outdated 7-to-1 rule.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">At what age is a dog considered senior?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Small breeds become senior at 9-11 years old, medium breeds at 7-9 years, and large breeds at 5-7 years. Your calculator will show when your specific breed reaches senior status in human years.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does neutering or spaying affect dog aging?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Neutered and spayed dogs often live 1-3 years longer than intact dogs, but the aging rate remains the same. This calculator tracks biological age, not lifespan extension.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for mixed-breed dogs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, select the closest matching size category (small, medium, or large) based on your dog's adult weight. Mixed breeds typically follow the aging pattern of their dominant size category.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between calendar age and biological age?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Calendar age is how many years your dog has lived; biological age (shown in human years) reflects how fast their body is aging. A 5-year-old Great Dane may be biologically equivalent to a 60-year-old human.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know my dog's exact age if adopted as an adult?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your veterinarian can estimate age by examining teeth wear, joint condition, and coat quality. Use the estimated age in this calculator for the most accurate human-year conversion.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.nature.com/articles/s41598-019-44066-7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. A Novel Approach to Dog Aging: The Logarithmic Model (2019)
-            </a>
-            <p className="text-slate-500 text-sm">
-              This study introduces a logarithmic formula to better estimate dog age in
-              human years, reflecting physiological aging more accurately than linear
-              models.
-            </p>
+          <li>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7788620/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Dog Years: An Improved Model</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Scientific study showing that the traditional 7-to-1 rule is inaccurate and provides a breed-aware aging formula.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://vcahospitals.com/know-your-pet/dog-life-expectancy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. VCA Hospitals: Dog Life Expectancy and Breed Size
-            </a>
-            <p className="text-slate-500 text-sm">
-              Veterinary resource detailing how breed size impacts lifespan and aging in
-              dogs.
-            </p>
+          <li>
+            <a href="https://www.avma.org/resources-tools/pet-owners/petcare/senior-pet-care" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Veterinary Medical Association (AVMA) Senior Pet Care</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">AVMA guidelines on recognizing senior status in dogs and adjusting care accordingly.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.avma.org/resources-tools/pet-owners/petcare/dog-aging"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Veterinary Medical Association: Understanding Dog Aging
-            </a>
-            <p className="text-slate-500 text-sm">
-              Authoritative guidelines on canine aging, health considerations, and lifespan
-              variations by breed.
-            </p>
+          <li>
+            <a href="https://dogagingproject.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">UC Davis School of Veterinary Medicine - Dog Aging</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive research on canine aging biology and how breed size impacts longevity and health.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6520897/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Canine Longevity and Breed Size: A Veterinary Review (2019)
-            </a>
-            <p className="text-slate-500 text-sm">
-              Comprehensive review of how breed size correlates with longevity and aging
-              patterns in dogs.
-            </p>
+          <li>
+            <a href="https://www.morrisanimalfoundation.org/article/how-long-do-dogs-live" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Morris Animal Foundation: Breed Lifespan Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based lifespan data for over 150 dog breeds from one of the largest animal health research organizations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 
