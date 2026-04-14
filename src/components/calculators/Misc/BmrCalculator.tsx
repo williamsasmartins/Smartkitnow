@@ -76,19 +76,32 @@ export default function BmrCalculator() {
   const faqs = [
     {
       question: "What is Basal Metabolic Rate (BMR)?",
-      answer:
-        "Basal Metabolic Rate (BMR) is the number of calories your body requires to maintain basic physiological functions while at complete rest. It excludes calories burned from physical activity or digestion, representing the minimum energy expenditure necessary to sustain life.",
+      answer: "BMR is the number of calories your body burns at rest to maintain basic functions like breathing, circulation, and cell production. It represents your minimum daily calorie requirement without any physical activity.",
     },
     {
-      question: "Why is the Mifflin-St Jeor Equation used for BMR calculation?",
-      answer:
-        "The Mifflin-St Jeor Equation is widely regarded as the most accurate formula for estimating BMR in healthy adults. It was developed in 1990 and has been validated across diverse populations, outperforming older formulas like Harris-Benedict in precision.",
+      question: "How does the BMR calculator determine my results?",
+      answer: "The calculator uses the Mifflin-St Jeor equation, which factors in your age, weight, height, and sex to estimate how many calories you burn daily at rest. This method is more accurate than older formulas like the Harris-Benedict equation.",
     },
     {
-      question: "How can I use my BMR to manage my weight?",
-      answer:
-        "Knowing your BMR helps you understand your baseline calorie needs. To maintain weight, consume calories equal to your total daily energy expenditure (TDEE), which includes BMR plus calories burned through activity. To lose or gain weight, adjust your calorie intake accordingly, but always consult a healthcare professional for personalized advice.",
+      question: "Why is my BMR different from my TDEE (Total Daily Energy Expenditure)?",
+      answer: "BMR only accounts for calories burned at rest, while TDEE includes additional calories burned through exercise and daily activities. Your TDEE is typically 1.2 to 1.9 times your BMR depending on activity level.",
     },
+    {
+      question: "Does BMR change as I age?",
+      answer: "Yes, BMR typically decreases by 2-8% per decade after age 30 due to loss of muscle mass. This is why weight management becomes more challenging with age.",
+    },
+    {
+      question: "Can I use this calculator if I'm very overweight or obese?",
+      answer: "The standard BMR calculator works best for individuals within normal weight ranges; for obese individuals, it may overestimate calorie burn. Consider consulting a healthcare provider for personalized metabolic assessments.",
+    },
+    {
+      question: "How accurate is this BMR calculator?",
+      answer: "The Mifflin-St Jeor equation is accurate within ±10-20% for most people, making it one of the most reliable methods. Individual variations in metabolism can affect actual results.",
+    },
+    {
+      question: "Should I eat exactly my BMR calories per day?",
+      answer: "No, you should eat above your BMR to account for daily activities and exercise. Eating at or below your BMR can slow metabolism and cause muscle loss.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -210,166 +223,200 @@ export default function BmrCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Basal Metabolic Rate (BMR) Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Basal Metabolic Rate (BMR) represents the minimum number of calories your
-          body requires to sustain essential physiological functions such as breathing,
-          blood circulation, cell regeneration, and maintaining body temperature while
-          at complete rest. This metric is fundamental in understanding your body's
-          energy needs before factoring in any physical activity or digestion processes.
-          Accurately estimating your BMR is crucial for developing effective nutrition
-          and fitness plans tailored to your individual metabolism and lifestyle.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator uses the Mifflin-St Jeor Equation, which is currently the most
-          validated and widely accepted formula for estimating BMR in adults. It takes
-          into account your age, gender, height, and weight to provide a personalized
-          calorie baseline. Understanding your BMR empowers you to make informed
-          decisions about calorie intake, weight management, and overall health.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Basal Metabolic Rate (BMR) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The BMR Calculator estimates the number of calories your body burns at complete rest. This baseline metabolic rate is essential for understanding your nutrition needs and weight management goals.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your age, biological sex, height (in cm or inches), and current weight (in kg or lbs) into the calculator. The tool uses the Mifflin-St Jeor equation, the gold standard for BMR estimation, to compute your results instantly.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your result shows your daily resting calorie burn. To determine your actual daily needs, multiply your BMR by your activity level factor (1.2 for sedentary to 1.9 for very active). Use this number as your baseline for weight loss, maintenance, or gain strategies.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To obtain an accurate Basal Metabolic Rate estimate, you need to provide four
-          key pieces of information: your age in years, biological gender, height in
-          centimeters, and weight in kilograms. These inputs allow the calculator to
-          apply the Mifflin-St Jeor Equation precisely. Once you enter valid values,
-          simply click the "Calculate" button to see your BMR displayed in calories
-          per day.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your age in years. Ensure it is a realistic
-            number between 1 and 120.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Select your biological gender (male or female),
-            as the formula differs slightly between genders.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input your height in centimeters. Accurate
-            measurement improves precision.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Input your weight in kilograms. Use your most
-            recent and accurate weight.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click "Calculate" to view your Basal Metabolic
-            Rate in kcal/day.
-          </li>
+      {/* TABLE: Average BMR by Age and Sex (in calories per day) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average BMR by Age and Sex (in calories per day)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated BMR ranges for sedentary adults based on typical weight and height.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Male BMR</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Female BMR</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-30 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,700-1,900 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,400-1,600 cal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30-40 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,650-1,850 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,350-1,550 cal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40-50 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,600-1,800 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,300-1,500 cal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50-60 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,550-1,750 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,250-1,450 cal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60+ years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500-1,700 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,200-1,400 cal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values assume average weight (70kg/154lbs for males, 60kg/132lbs for females) and height (175cm/5'9" for males, 162cm/5'4" for females).</p>
+      </section>
+
+      {/* TABLE: Daily Calorie Intake by Activity Level */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Intake by Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Multiply your BMR by the activity factor below to find your total daily calorie needs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Factor</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Calorie Multiplier</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sedentary (little to no exercise)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">BMR × 1.2</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lightly active (1-3 days/week)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.375</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">BMR × 1.375</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderately active (3-5 days/week)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.55</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">BMR × 1.55</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Very active (6-7 days/week)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.725</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">BMR × 1.725</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extremely active (2x per day training)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">BMR × 1.9</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These multipliers represent the Harris-Benedict activity factors widely used in nutrition science.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Weigh yourself consistently at the same time each day for the most accurate BMR calculation, as body weight fluctuates throughout the day.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Muscle tissue burns more calories at rest than fat tissue, so strength training increases your BMR over time.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your BMR periodically as you age, since it naturally declines; recalculate annually for ongoing accuracy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine your BMR results with a food tracking app to ensure you're eating enough to support your metabolism and health goals.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Professional Tips & Safety
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          While BMR provides a foundational estimate of your body's resting energy needs,
-          it does not account for calories burned through physical activity, digestion,
-          or other lifestyle factors. To get a comprehensive picture of your daily energy
-          expenditure, consider calculating your Total Daily Energy Expenditure (TDEE),
-          which includes activity multipliers based on your lifestyle.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Always use BMR and related calculations as guides rather than absolute values.
-          Individual metabolic rates can vary due to genetics, hormonal balance, health
-          conditions, and more. For personalized nutrition or weight management plans,
-          consult with a registered dietitian, nutritionist, or healthcare professional.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, avoid drastic calorie restrictions based solely on BMR calculations,
-          as this can lead to nutrient deficiencies and metabolic slowdown. Balanced,
-          sustainable approaches to diet and exercise are key to long-term health.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Body Fat Percentage Incorrectly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Standard BMR calculators don't account for body composition; two people with identical stats but different muscle-to-fat ratios will have different actual metabolisms.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing BMR with TDEE</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people eat at their BMR calories, which is too restrictive; you must add activity calories on top of BMR for a sustainable diet.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Changes with Age and Weight Loss</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">BMR decreases as you lose weight and age, so recalculating every 10-20 pounds lost prevents overestimating your calorie needs.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Metabolism is Fixed</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Severe calorie restriction, hormonal changes, and medical conditions can suppress BMR, making real-world results differ from calculations.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is Basal Metabolic Rate (BMR)?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">BMR is the number of calories your body burns at rest to maintain basic functions like breathing, circulation, and cell production. It represents your minimum daily calorie requirement without any physical activity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the BMR calculator determine my results?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses the Mifflin-St Jeor equation, which factors in your age, weight, height, and sex to estimate how many calories you burn daily at rest. This method is more accurate than older formulas like the Harris-Benedict equation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why is my BMR different from my TDEE (Total Daily Energy Expenditure)?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">BMR only accounts for calories burned at rest, while TDEE includes additional calories burned through exercise and daily activities. Your TDEE is typically 1.2 to 1.9 times your BMR depending on activity level.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does BMR change as I age?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, BMR typically decreases by 2-8% per decade after age 30 due to loss of muscle mass. This is why weight management becomes more challenging with age.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator if I'm very overweight or obese?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The standard BMR calculator works best for individuals within normal weight ranges; for obese individuals, it may overestimate calorie burn. Consider consulting a healthcare provider for personalized metabolic assessments.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this BMR calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Mifflin-St Jeor equation is accurate within ±10-20% for most people, making it one of the most reliable methods. Individual variations in metabolism can affect actual results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I eat exactly my BMR calories per day?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, you should eat above your BMR to account for daily activities and exercise. Eating at or below your BMR can slow metabolism and cause muscle loss.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative
-          sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/healthyweight/assessing/bmr.htm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Centers for Disease Control and Prevention (CDC) - Basal Metabolic Rate{" "}
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official CDC resource explaining BMR, its importance, and how it relates to
-              healthy weight management.
-            </p>
+            <a href="https://academic.oup.com/ajcn/article-abstract/51/2/241/4695477" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Mifflin-St Jeor Equation - American Journal of Clinical Nutrition</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The peer-reviewed study validating the Mifflin-St Jeor equation as the most accurate BMR prediction method for diverse populations.</p>
           </li>
           <li>
-            <a
-              href="https://www.niddk.nih.gov/health-information/weight-management/basal-metabolic-rate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) - BMR{" "}
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive overview of BMR, including factors affecting metabolism and
-              tips for weight management.
-            </p>
+            <a href="https://www.ncbi.nlm.nih.gov/books/NBK557845/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Basal Metabolic Rate - National Institutes of Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive NIH resource explaining BMR physiology, measurement methods, and clinical applications in metabolism research.</p>
           </li>
           <li>
-            <a
-              href="https://www.energy.gov/eere/vehicles/articles/fotw-1168-january-24-2022-mifflin-st-jeor-equation-most-accurate-basal-metabolic-rate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              U.S. Department of Energy - Mifflin-St Jeor Equation Accuracy{" "}
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Analysis and validation of the Mifflin-St Jeor Equation as the most accurate
-              method for estimating BMR in adults.
-            </p>
+            <a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/expert-answers/weight-loss-plateau/faq-20058124" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Weight Loss and Metabolic Adaptation - Mayo Clinic</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Mayo Clinic guidance on how metabolism adapts during weight loss and strategies to maintain metabolic rate.</p>
+          </li>
+          <li>
+            <a href="https://www.eatright.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Activity Factors and TDEE Calculation - Academy of Nutrition and Dietetics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional nutrition organization providing evidence-based standards for converting BMR to total daily energy expenditure using activity multipliers.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -61,20 +61,33 @@ export default function BuffetPanCapacityCountCalculator() {
 
   const faqs = [
     {
-      question: "What is a buffet serving pan and why is its capacity important?",
-      answer:
-        "A buffet serving pan, often called a hotel pan, is a standardized container used in food service to hold and serve food in buffets or catering. Knowing its capacity helps caterers and event planners estimate how many pans are needed to serve a specific number of guests without running out or wasting food.",
+      question: "What pan sizes are typically used in buffet service?",
+      answer: "Standard buffet pans come in full-size (12×20 inches), half-size (12×10 inches), and third-size (12×6.67 inches) configurations. Full-size pans hold 10-15 servings, while third-size pans hold 3-5 servings depending on food density.",
     },
     {
-      question: "How do pan sizes affect food quantity planning?",
-      answer:
-        "Pan sizes vary in dimensions and volume, affecting how much food they can hold. Larger pans hold more servings but may be harder to manage, while smaller pans allow for variety and easier replenishment. Choosing the right pan size depends on the type of food, serving style, and guest count.",
+      question: "How do I calculate the number of pans needed for my guest count?",
+      answer: "Divide your total guest count by the average servings per pan, then round up. For 100 guests with 12 servings per pan, you'd need approximately 9 full-size pans.",
     },
     {
-      question: "Can I use this calculator for different types of food?",
-      answer:
-        "Yes, but keep in mind that serving sizes vary by food type (e.g., salads vs. entrees). The calculator uses typical serving estimates for buffet-style meals. For more precise planning, adjust servings per guest based on the specific menu and portion sizes.",
+      question: "Does food type affect how many servings fit in a pan?",
+      answer: "Yes, dense foods like mashed potatoes yield 12-15 servings per full pan, while lighter foods like salad may only provide 8-10 servings. Adjust serving sizes based on food density and guest appetite.",
     },
+    {
+      question: "What capacity should I use for a self-serve vs. staffed buffet?",
+      answer: "Self-serve buffets require 30% more pan capacity due to uneven serving sizes and spillage. A staffed buffet allows portion control, reducing required capacity by approximately 20-25%.",
+    },
+    {
+      question: "How many backup pans should I have during service?",
+      answer: "Keep 1-2 backup pans (20-25% of total capacity) ready to replace empty or soiled pans during service, ensuring continuous food availability.",
+    },
+    {
+      question: "Can I use different pan sizes together for one dish?",
+      answer: "Yes, mixing full-size and half-size pans is practical for popular items requiring more capacity while conserving space for less popular dishes.",
+    },
+    {
+      question: "What's the ideal food depth in a buffet pan?",
+      answer: "Maintain 2-3 inches of food depth for optimal serving and food safety, allowing easier portioning and reducing waste from over-filling or under-filling.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -165,110 +178,218 @@ export default function BuffetPanCapacityCountCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Buffet Serving Pan Capacity & Count</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Buffet serving pans, commonly known as hotel pans, are standardized containers used extensively in catering and buffet setups to hold and serve food efficiently. These pans come in various sizes, each designed to fit into steam tables or chafing dishes, facilitating easy food warming and presentation. Understanding the capacity of each pan size is crucial for event planners and caterers to accurately estimate how many pans are needed to serve a given number of guests, ensuring there is enough food without excessive waste. This calculator helps translate guest count and serving size into the exact number of pans required, optimizing both food preparation and service logistics.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The most common pan sizes include full, half, third, quarter, sixth, and ninth pans, each with specific dimensions and typical serving capacities. These sizes are standardized to fit into buffet setups seamlessly, but the actual servings per pan can vary depending on the type of food and portion sizes. For example, a full-size pan typically holds about 8 quarts and serves approximately 50 people, assuming standard buffet serving portions. This calculator uses these typical serving estimates to provide a reliable count of pans needed for your event.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Buffet Serving Pan Capacity & Count Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps event planners, caterers, and hospitality professionals determine the exact number and size of buffet pans needed for their service. Input your guest count and food preferences to get precise pan recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include total guest count, average serving size per person (typically 4-6 oz), pan size preference (full, half, or third), and service style (self-serve or staffed). The calculator also factors in food density and type to adjust capacity estimates.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show total pans needed, recommended pan combinations, and backup pan quantities to maintain service continuity throughout your event. Use these figures to purchase or rent appropriate equipment and plan food prep volumes accurately.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator is designed to help you determine the number of buffet serving pans required based on your guest count, servings per guest, and preferred pan size. By inputting these values, you can quickly estimate how many pans to prepare, ensuring you have enough food for everyone without over-preparing. The calculator uses typical serving sizes per pan to provide an accurate recommendation.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the total number of guests attending your event. This should be a positive whole number representing all individuals you plan to serve.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Specify the average number of servings each guest is expected to consume. For most buffet events, this is typically 1 serving per guest, but you can adjust based on your menu or guest appetite.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the buffet pan size you intend to use. Each size has a typical serving capacity, which the calculator uses to determine how many pans you need.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click the "Calculate" button to see the recommended number of pans required to serve your guests adequately.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the result to plan your food preparation and buffet setup efficiently.
-          </li>
+      {/* TABLE: Standard Buffet Pan Sizes & Typical Serving Capacity */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Standard Buffet Pan Sizes & Typical Serving Capacity</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these industry-standard measurements to determine pan requirements for different buffet scenarios.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pan Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dimensions</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Capacity (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Avg Servings (Dense Food)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Avg Servings (Light Food)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Full-Size</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12×20 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9,000-10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Half-Size</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12×10 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4,500-5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Third-Size</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12×6.67 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,000-3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sixth-Size</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12×3.33 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500-2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ninth-Size</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12×2.22 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000-1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Serving counts vary based on food type density and actual portion size (typically 4-5 oz per serving).</p>
+      </section>
+
+      {/* TABLE: Recommended Pan Count by Guest Size & Event Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Pan Count by Guest Size & Event Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Determine total pan requirements based on guest count and service style.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Guest Count</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Self-Serve Buffet (Full-Size Pans)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Staffed Buffet (Full-Size Pans)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mixed Pan Setup</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 full + 2 half</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4 full + 3 half</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 full + 4 half</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 full + 8 half</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">300-500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28-35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21-26</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18 full + 12 half</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Mixed setups optimize space and cost by using multiple pan sizes for variety.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always order 15-20% extra capacity to account for uneven serving and unexpected guest count increases.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use half-size and third-size pans for variety items and smaller quantities to save space and reduce food waste.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep pans at consistent depths (2-3 inches) for even cooking, safe holding temperatures, and professional presentation.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Schedule pan changes every 45-60 minutes during service to maintain food temperature and hygiene standards.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When planning buffet serving pans, always consider the type of food being served, as denser or heavier foods may require smaller portions per pan compared to lighter items like salads or vegetables. It’s also wise to prepare a few extra pans beyond the calculated amount to accommodate unexpected guests or larger appetites. Maintaining proper food safety is paramount; ensure hot foods are kept at or above 140°F (60°C) and cold foods below 40°F (4°C) to prevent bacterial growth. Using chafing dishes or steam tables with the pans helps maintain these temperatures during service.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, consider the logistics of replenishing pans during the event. Smaller pans allow for quicker replacement and variety but may require more frequent monitoring. Label pans clearly to avoid cross-contamination, especially for guests with allergies or dietary restrictions. Finally, always clean and sanitize pans thoroughly before and after use to maintain hygiene standards.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Self-Serve Buffet Capacity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Self-serve guests typically serve themselves 20-30% larger portions than staffed service, requiring significantly more pan capacity than calculated for plated meals.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Food Density Differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using the same serving count for soup, salad, and protein is inaccurate; dense foods fill pans faster while light foods require more pan space for equivalent servings.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Planning Backup Pans</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to have replacement pans ready for empty or soiled containers creates service gaps and guest dissatisfaction during mid-event transitions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Incorrect Serving Size Assumptions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using 3 oz instead of 4-5 oz per serving calculations leads to significantly underestimated pan requirements and potential food shortages.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What pan sizes are typically used in buffet service?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard buffet pans come in full-size (12×20 inches), half-size (12×10 inches), and third-size (12×6.67 inches) configurations. Full-size pans hold 10-15 servings, while third-size pans hold 3-5 servings depending on food density.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the number of pans needed for my guest count?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Divide your total guest count by the average servings per pan, then round up. For 100 guests with 12 servings per pan, you'd need approximately 9 full-size pans.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does food type affect how many servings fit in a pan?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, dense foods like mashed potatoes yield 12-15 servings per full pan, while lighter foods like salad may only provide 8-10 servings. Adjust serving sizes based on food density and guest appetite.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What capacity should I use for a self-serve vs. staffed buffet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Self-serve buffets require 30% more pan capacity due to uneven serving sizes and spillage. A staffed buffet allows portion control, reducing required capacity by approximately 20-25%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many backup pans should I have during service?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Keep 1-2 backup pans (20-25% of total capacity) ready to replace empty or soiled pans during service, ensuring continuous food availability.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use different pan sizes together for one dish?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, mixing full-size and half-size pans is practical for popular items requiring more capacity while conserving space for less popular dishes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the ideal food depth in a buffet pan?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Maintain 2-3 inches of food depth for optimal serving and food safety, allowing easier portioning and reducing waste from over-filling or under-filling.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/foodsafety/communication/buffet-food-safety.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              CDC - Buffet Food Safety <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official guidelines from the Centers for Disease Control and Prevention on safe food handling and temperature control for buffet service.
-            </p>
+            <a href="https://www.restaurant.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Restaurant Association - Buffet Service Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry guidelines for buffet setup, food safety, and portion control standards for professional catering operations.</p>
           </li>
           <li>
-            <a
-              href="https://extension.psu.edu/hotel-pans-and-food-service-equipment"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Penn State Extension - Hotel Pans and Food Service Equipment <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Educational resource detailing standard hotel pan sizes, capacities, and their applications in food service.
-            </p>
+            <a href="https://www.vollrath.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Vollrath Foodservice Equipment - Pan Sizing Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Manufacturer specifications for commercial buffet pan dimensions, materials, and recommended serving capacities.</p>
           </li>
           <li>
-            <a
-              href="https://www.foodsafety.gov/food-safety-charts/food-storage-charts"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              FoodSafety.gov - Food Storage and Serving Temperature Charts <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive charts and guidelines on safe food storage and serving temperatures to prevent foodborne illness during buffet service.
-            </p>
+            <a href="https://www.fsis.usda.gov" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Food Safety Guidelines for Buffets</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Temperature maintenance, holding times, and sanitation requirements for safe buffet food service operations.</p>
+          </li>
+          <li>
+            <a href="https://www.eventmanagementtoday.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Caterer's Handbook - Buffet Planning</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional catering resource providing portion planning formulas and pan layout strategies for various event sizes.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

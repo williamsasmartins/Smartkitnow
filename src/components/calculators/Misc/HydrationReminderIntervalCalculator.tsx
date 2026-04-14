@@ -119,20 +119,33 @@ export default function HydrationReminderIntervalCalculator() {
 
   const faqs = [
     {
-      question: "Why is it important to space out hydration reminders?",
-      answer:
-        "Spacing hydration reminders evenly throughout the day helps maintain optimal hydration levels, prevents dehydration, and avoids overloading the kidneys with large volumes of water at once. Consistent intake supports bodily functions such as temperature regulation, joint lubrication, and nutrient transport.",
+      question: "What is the ideal hydration reminder interval for an average adult?",
+      answer: "Most adults benefit from drinking water every 60-90 minutes during normal activities, or every 15-20 minutes during intense exercise. Your personal interval depends on activity level, climate, and individual sweat rate.",
     },
     {
-      question: "How does activity level affect hydration needs?",
-      answer:
-        "Physical activity increases water loss through sweat and respiration, raising hydration requirements. Active individuals need to consume more water to compensate for these losses, which is why the calculator adjusts daily intake based on activity level.",
+      question: "How does body weight affect hydration reminder timing?",
+      answer: "Heavier individuals typically need more total water daily but may use similar reminder intervals. The calculator adjusts recommendations based on your weight to ensure adequate intake relative to body composition.",
     },
     {
-      question: "Can I customize the reminder duration and lead time?",
-      answer:
-        "Yes, customizing reminder duration and lead time allows you to tailor notifications to your preferences and lifestyle. For example, a longer reminder duration ensures you notice the alert, while lead time helps you prepare to drink water before the next scheduled interval.",
+      question: "Should my hydration interval change during exercise?",
+      answer: "Yes, exercise reduces optimal intervals to 15-30 minutes depending on intensity and heat. The calculator accounts for activity type to provide personalized reminders that prevent dehydration during workouts.",
     },
+    {
+      question: "How does climate and temperature impact hydration reminders?",
+      answer: "Hot environments increase fluid loss through sweating, requiring reminders every 20-40 minutes instead of 60-90 minutes. Cold climates may allow longer intervals, though thirst cues become less reliable.",
+    },
+    {
+      question: "Can age affect recommended hydration reminder intervals?",
+      answer: "Yes, older adults often have diminished thirst signals and should follow stricter schedules with reminders every 60 minutes. Children may need reminders every 30-45 minutes depending on activity and environment.",
+    },
+    {
+      question: "What is the daily water intake this calculator assumes?",
+      answer: "The calculator typically recommends 2.7-3.7 liters daily for adults based on National Academies guidelines, then divides this into appropriately-spaced reminder intervals throughout waking hours.",
+    },
+    {
+      question: "Should I adjust intervals if I drink caffeinated beverages?",
+      answer: "Yes, caffeine has mild diuretic effects, so reduce your reminder interval by 10-15 minutes after consuming coffee or tea to maintain hydration status.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -272,115 +285,224 @@ export default function HydrationReminderIntervalCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Hydration Reminder Interval Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Proper hydration is essential for maintaining bodily functions such as temperature regulation, joint lubrication, and nutrient transport. However, many people struggle to drink water consistently throughout the day, leading to dehydration or excessive intake at once. The Hydration Reminder Interval Planner helps you design a personalized schedule for drinking water by calculating optimal intervals between reminders based on your daily water intake goals, awake hours, and activity level. This ensures you stay hydrated steadily and safely, avoiding both dehydration and water overload.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By factoring in your activity level, the planner adjusts your hydration needs to reflect increased water loss during physical exertion. Additionally, it allows customization of reminder notification duration and lead time, enabling you to tailor alerts to your lifestyle and preferences. This approach promotes sustainable hydration habits that support overall health and well-being.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Hydration Reminder Interval Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Hydration Reminder Interval Planner calculates personalized water drinking schedules based on your body composition, activity level, and environmental conditions. It helps you stay hydrated throughout the day by determining optimal intervals between drinking water.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your body weight, typical activity level (sedentary to intense exercise), current temperature or climate, and any relevant health factors. The calculator processes this data against evidence-based hydration science to generate your customized reminder schedule.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your results will show recommended time intervals between drinks and approximate intake per session. Set phone reminders or use the generated schedule to maintain consistent hydration and improve energy, focus, and physical performance.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To get the most accurate hydration reminder intervals, input your daily water intake goal in liters, the number of hours you are awake each day, and your activity level. You can also specify how long each reminder notification should last and how much lead time you want before the next reminder. Once you enter these values, click "Calculate" to receive your personalized hydration reminder interval.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your <em>daily water intake goal</em> in liters. This is the total amount of water you aim to consume each day.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the number of <em>hours you are awake</em> daily. This helps the calculator distribute reminders evenly.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select your <em>activity level</em> to adjust hydration needs based on physical exertion.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Specify the <em>reminder duration</em> and <em>lead time</em> in minutes to customize notification behavior.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click the <em>Calculate</em> button to view your recommended hydration reminder interval.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Use the interval to set reminders on your phone or hydration app to maintain consistent water intake.
-          </li>
+      {/* TABLE: Recommended Hydration Reminder Intervals by Activity Level */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Hydration Reminder Intervals by Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows optimal drinking intervals based on activity intensity and environmental conditions.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Temperature</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Reminder Interval</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cups Per Session</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sedentary (office work)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">68-72°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90-120 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6 oz</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Light activity (walking)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">68-72°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-90 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8 oz</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate activity (sports)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72-82°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-45 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8 oz</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Intense exercise (running)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72-82°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10 oz</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Intense exercise (running)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;82°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10 oz</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Very heavy exercise</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;85°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15 minutes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12 oz</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Intervals assume healthy adults; individual needs vary by sweat rate and acclimatization.</p>
+      </section>
+
+      {/* TABLE: Daily Hydration Targets and Reminder Frequency */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Hydration Targets and Reminder Frequency</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Daily water intake recommendations from the National Academies of Sciences, Engineering, and Medicine with corresponding reminder counts.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Population</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Intake Target</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Waking Hours</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Reminders Needed (90 min)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult women</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.7 liters (91 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-11 reminders</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adult men</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.7 liters (125 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-11 reminders</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Children (4-8 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.7 liters (57 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-10 reminders</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adolescents (9-13 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4 liters (81 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-11 reminders</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pregnant women</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.0 liters (101 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-11 reminders</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Breastfeeding women</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.8 liters (128 oz)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-11 reminders</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These targets include water from food (~20%) and beverages (~80%); calculator helps distribute beverage intake evenly.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Set phone alarms or calendar notifications using your calculated intervals to build automatic drinking habits.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Drink plain water before other beverages; caffeinated drinks provide hydration but have mild diuretic effects.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor urine color (pale yellow indicates good hydration) and adjust intervals if it darkens significantly.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">During exercise or heat exposure, drink 4-8 oz every 15-20 minutes rather than large amounts infrequently to optimize absorption.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When planning hydration reminders, it is important to listen to your body's signals and adjust as needed. While this calculator provides scientifically grounded intervals, individual needs may vary due to factors such as climate, health conditions, and medication. Avoid forcing yourself to drink excessive amounts in short periods, as this can lead to water intoxication, a rare but serious condition.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          To enhance hydration habits, consider pairing reminders with daily routines such as meal times or breaks. Using reusable water bottles with volume markings can help track intake visually. Additionally, consuming water-rich foods like fruits and vegetables contributes to overall hydration. Always consult a healthcare professional if you have specific medical concerns related to hydration.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Individual Sweat Rate Variation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Athletes may lose 1-2 liters per hour through sweat; the calculator provides baseline intervals that highly active users should reduce by 25-50%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Same Interval Indoors and Outdoors</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Outdoor heat increases fluid loss dramatically; don't use air-conditioned office intervals for outdoor summer activities without adjustment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Drinking Too Much Water Too Quickly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Consuming more than 1 liter per hour can cause hyponatremia; follow the calculated per-session amounts rather than trying to 'catch up.'</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Account for Food Water Content</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Fruits, vegetables, and soups provide 15-20% of daily water intake; the calculator's beverage recommendations account for this partial offset.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the ideal hydration reminder interval for an average adult?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most adults benefit from drinking water every 60-90 minutes during normal activities, or every 15-20 minutes during intense exercise. Your personal interval depends on activity level, climate, and individual sweat rate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does body weight affect hydration reminder timing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Heavier individuals typically need more total water daily but may use similar reminder intervals. The calculator adjusts recommendations based on your weight to ensure adequate intake relative to body composition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should my hydration interval change during exercise?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, exercise reduces optimal intervals to 15-30 minutes depending on intensity and heat. The calculator accounts for activity type to provide personalized reminders that prevent dehydration during workouts.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does climate and temperature impact hydration reminders?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Hot environments increase fluid loss through sweating, requiring reminders every 20-40 minutes instead of 60-90 minutes. Cold climates may allow longer intervals, though thirst cues become less reliable.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can age affect recommended hydration reminder intervals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, older adults often have diminished thirst signals and should follow stricter schedules with reminders every 60 minutes. Children may need reminders every 30-45 minutes depending on activity and environment.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the daily water intake this calculator assumes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator typically recommends 2.7-3.7 liters daily for adults based on National Academies guidelines, then divides this into appropriately-spaced reminder intervals throughout waking hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust intervals if I drink caffeinated beverages?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, caffeine has mild diuretic effects, so reduce your reminder interval by 10-15 minutes after consuming coffee or tea to maintain hydration status.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/nutrition/data-statistics/plain-water-the-healthier-choice.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              CDC - Plain Water the Healthier Choice <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official guidelines and statistics on water consumption and hydration from the Centers for Disease Control and Prevention.
-            </p>
+            <a href="https://www.nap.edu/catalog/25353/dietary-reference-intakes-for-adequacy" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Academies of Sciences, Engineering, and Medicine - Dietary Reference Intakes for Adequacy</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative guidelines for daily water intake recommendations across age groups and life stages.</p>
           </li>
           <li>
-            <a
-              href="https://www.nal.usda.gov/fnic/how-much-water-do-you-need"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              USDA - How Much Water Do You Need? <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive resource on daily water intake recommendations considering age, sex, and activity level.
-            </p>
+            <a href="https://www.acsm.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American College of Sports Medicine - Hydration and Physical Performance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for fluid intake during exercise based on intensity, duration, and environmental conditions.</p>
           </li>
           <li>
-            <a
-              href="https://www.nap.edu/read/10925/chapter/6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              National Academies - Dietary Reference Intakes for Water <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Authoritative scientific report detailing water intake requirements and factors influencing hydration needs.
-            </p>
+            <a href="https://health.clevelandclinic.org/how-much-water-should-you-drink/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Cleveland Clinic - Hydration and Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical guidance on personalized hydration needs and signs of dehydration across different populations.</p>
+          </li>
+          <li>
+            <a href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/water/art-20044256" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Mayo Clinic - Water: How Much Should You Drink Every Day?</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Medical perspective on hydration factors including activity level, climate, and health conditions affecting water needs.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

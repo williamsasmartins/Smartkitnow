@@ -71,20 +71,33 @@ export default function PropaneTankBurnTimeCalculator() {
 
   const faqs = [
     {
-      question: "What factors affect propane tank burn time?",
-      answer:
-        "Propane tank burn time depends primarily on the tank size and the appliance's BTU consumption rate. Environmental factors such as temperature can also affect pressure and flow rate, but the main calculation is based on energy content and usage rate.",
+      question: "How do I calculate propane burn time for my grill?",
+      answer: "Enter your tank size (in lbs or gallons), the BTU output of your appliance, and the calculator divides tank capacity by hourly consumption to estimate runtime in hours.",
     },
     {
-      question: "Can I use this calculator for any propane appliance?",
-      answer:
-        "Yes, this calculator works for any propane appliance as long as you know its BTU consumption per hour. Common appliances include grills, heaters, generators, and stoves. Always verify the appliance's BTU rating from the manufacturer for accurate estimates.",
+      question: "What's the difference between water weight and propane weight on a tank?",
+      answer: "Water weight is the tank's empty container weight; propane weight is the actual fuel inside. Always use propane weight for burn time calculations.",
     },
     {
-      question: "Why is propane density important in this calculation?",
-      answer:
-        "Propane density (weight per gallon) is crucial because the energy content is measured per pound of propane. Knowing how many pounds of propane are in a gallon allows us to convert tank volume into total energy available, which is then divided by appliance consumption to estimate burn time.",
+      question: "How many BTUs does a standard propane grill use per hour?",
+      answer: "Most residential grills operate between 30,000–60,000 BTUs per hour; check your grill's manual for the exact specification.",
     },
+    {
+      question: "Can I estimate burn time for a propane heater or fireplace?",
+      answer: "Yes—input the heater's BTU rating and tank size; most space heaters range from 10,000–40,000 BTUs per hour depending on model and setting.",
+    },
+    {
+      question: "Why does my propane tank feel full but the calculator shows fewer hours?",
+      answer: "Propane expands and contracts with temperature changes, affecting gauge readings; the calculator uses actual fuel weight, which is more reliable than visual gauges.",
+    },
+    {
+      question: "How accurate is this burn time estimate?",
+      answer: "The estimate assumes steady BTU output; real-world usage varies by weather, appliance condition, and usage patterns, so treat results as approximate guidelines.",
+    },
+    {
+      question: "What should I do when my propane tank reaches 20% capacity?",
+      answer: "Schedule a refill when tank capacity drops below 20% to ensure you don't run out unexpectedly; most suppliers recommend this threshold for safety.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -185,112 +198,222 @@ export default function PropaneTankBurnTimeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Propane Tank Burn Time Estimator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Propane is a widely used fuel source for outdoor grills, heaters, generators, and other appliances due to its portability and high energy content. Estimating how long a propane tank will last under continuous use is essential for planning and safety. This calculator uses the tank size in gallons and the appliance's BTU consumption rate to estimate the total burn time in hours. The calculation is grounded in the energy content of propane, which is approximately 21,548 BTUs per pound, and the density of liquid propane, roughly 4.24 pounds per gallon.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          By understanding these parameters, users can avoid running out of fuel unexpectedly and optimize their propane usage for efficiency and cost savings. This tool is designed to be the most authoritative and user-friendly propane burn time estimator available online.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Propane Tank Burn Time Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates how many hours your propane tank will last based on tank size and appliance BTU consumption. Input your tank capacity and the BTU rating of your grill, heater, or other propane appliance to get an estimate.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include the propane tank size (in pounds or gallons), the appliance's BTU per hour rating, and optionally the current fuel level if you're estimating remaining runtime. Find your appliance's BTU specification in its manual or on the manufacturer's nameplate.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result shows estimated burn hours under steady-state conditions; actual runtime varies based on weather, appliance settings, and maintenance. Use this estimate to plan refills and avoid running out during critical times like outdoor events or winter heating.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires only two key inputs: the size of your propane tank in gallons and the BTU consumption rate of your appliance. The appliance type selector helps contextualize your inputs but does not affect the calculation directly. Follow these steps to get an accurate estimate:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the propane tank size in gallons. Common sizes include 20 lb tanks (~4.7 gallons) or larger tanks for home heating.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input your appliance’s BTU usage per hour. This information is typically found on the appliance label or in the user manual.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the appliance type to help you keep track of your calculation context.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click the Calculate button to see the estimated burn time in hours.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Review the results and any warnings to ensure your inputs are reasonable.
-          </li>
+      {/* TABLE: Common Propane Appliance BTU Ratings */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Propane Appliance BTU Ratings</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these typical BTU ranges to estimate burn time for your specific appliance.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Appliance Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BTU Range (Per Hour)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Usage</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Propane Grill</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30,000–60,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High heat cooking</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Space Heater</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,000–40,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Room heating</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Propane Fireplace</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15,000–50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Ambiance &amp; warmth</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Propane Cooktop</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25,000–35,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Stovetop cooking</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Propane Water Heater</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30,000–50,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24/7 hot water</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Propane Oven</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20,000–30,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Baking &amp; roasting</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Patio Heater</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40,000–90,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Outdoor warmth</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Check your appliance manual for exact BTU output; ratings vary by brand and model.</p>
+      </section>
+
+      {/* TABLE: Propane Tank Sizes &amp; Typical Burn Times */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Propane Tank Sizes &amp; Typical Burn Times</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated burn hours for standard residential tank sizes at mid-range BTU consumption.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tank Size (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tank Size (gallons)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hours at 40,000 BTU/hr</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hours at 60,000 BTU/hr</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.5 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15.8 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.5 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">52.5 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35 hours</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">63 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42 hours</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">117.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">262.5 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">175 hours</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Times assume 90% fuel usability; actual burn duration depends on appliance BTU rating and outdoor temperature.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always verify your appliance's exact BTU rating from the manual rather than guessing—wrong input values lead to inaccurate estimates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for seasonal temperature swings; propane density changes with weather, affecting actual burn efficiency and runtime.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Keep propane tank pressure gauges separate from calculator estimates—gauges are visual only; weight-based calculations are more precise.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Refill when the tank reaches 20% capacity to maintain adequate backup supply and avoid midnight supply runs.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When working with propane, safety is paramount. Always ensure your propane tanks are stored upright and in well-ventilated areas away from ignition sources. Regularly inspect hoses and connections for leaks using soapy water or approved leak detection solutions. Additionally, keep in mind that colder temperatures can reduce propane pressure, potentially affecting appliance performance and burn time.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          For longer burn times, consider using larger tanks or multiple tanks with proper switching systems. Always follow manufacturer guidelines for your specific appliances and never attempt to modify tanks or regulators. Proper maintenance and usage not only extend the life of your equipment but also ensure your safety and efficiency.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Water Weight Instead of Fuel Weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Tank labels show both weights; using the empty tank weight instead of propane weight inflates burn time estimates by 10–20%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Variable BTU Settings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many appliances operate at reduced BTU on low settings, which increases runtime; the calculator assumes constant output unless adjusted.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting About Tank Reserve Regulations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Propane tanks legally retain a 10% minimum reserve for pressure maintenance, reducing usable fuel below tank capacity.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming Constant Burn Rate in Cold Weather</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Propane density decreases in cold temperatures, reducing fuel efficiency and actual burn hours compared to warm-weather estimates.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate propane burn time for my grill?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your tank size (in lbs or gallons), the BTU output of your appliance, and the calculator divides tank capacity by hourly consumption to estimate runtime in hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between water weight and propane weight on a tank?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Water weight is the tank's empty container weight; propane weight is the actual fuel inside. Always use propane weight for burn time calculations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many BTUs does a standard propane grill use per hour?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most residential grills operate between 30,000–60,000 BTUs per hour; check your grill's manual for the exact specification.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I estimate burn time for a propane heater or fireplace?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—input the heater's BTU rating and tank size; most space heaters range from 10,000–40,000 BTUs per hour depending on model and setting.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does my propane tank feel full but the calculator shows fewer hours?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Propane expands and contracts with temperature changes, affecting gauge readings; the calculator uses actual fuel weight, which is more reliable than visual gauges.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this burn time estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The estimate assumes steady BTU output; real-world usage varies by weather, appliance condition, and usage patterns, so treat results as approximate guidelines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do when my propane tank reaches 20% capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Schedule a refill when tank capacity drops below 20% to ensure you don't run out unexpectedly; most suppliers recommend this threshold for safety.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.energy.gov/eere/fuelcells/propane"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              U.S. Department of Energy - Propane (Energy.gov) <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive information on propane as a fuel source, including energy content and usage considerations.
-            </p>
+            <a href="https://www.propane.com/safety/tank-sizing-guide/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Propane.com — Tank Sizing Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guide to residential propane tank sizes, capacity ratings, and selection criteria.</p>
           </li>
           <li>
-            <a
-              href="https://extension.uga.edu/publications/detail.html?number=C1000"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              University of Georgia Extension - Propane Fuel Facts <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Detailed facts about propane properties, storage, and safety from a trusted university extension program.
-            </p>
+            <a href="https://www.api.org/products-and-services/standards/standards-development-process" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Petroleum Institute — Propane Storage Safety</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards and safety requirements for propane tank design and maintenance.</p>
           </li>
           <li>
-            <a
-              href="https://www.cdc.gov/niosh/topics/propane/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              CDC NIOSH - Propane Safety and Health Information <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Authoritative guidance on propane safety, health risks, and best practices from the Centers for Disease Control and Prevention.
-            </p>
+            <a href="https://www.energy.gov/energysaver/propane" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Energy — Propane Efficiency Tips</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal resources on propane efficiency, safety, and cost-saving strategies for homeowners.</p>
+          </li>
+          <li>
+            <a href="https://www.npga.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Propane Gas Association — Consumer Information</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Trade association providing propane safety standards, certification programs, and consumer education.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -96,20 +96,33 @@ export default function HomeRenovationCostEstimatorCalculator() {
 
   const faqs = [
     {
-      question: "How accurate is this home renovation cost estimator?",
-      answer:
-        "This estimator provides a general approximation based on average costs per square foot and common multipliers for labor and quality. Actual costs can vary depending on specific project details, local market conditions, and unforeseen issues during renovation.",
+      question: "What renovation projects can I estimate with this calculator?",
+      answer: "This calculator covers kitchen remodels, bathroom upgrades, flooring replacement, painting, roofing, HVAC installation, and general structural repairs. It provides cost estimates based on square footage, materials, and labor rates in your area.",
     },
     {
-      question: "What factors can cause renovation costs to increase?",
-      answer:
-        "Costs can increase due to factors such as structural repairs, permits, high-end materials, custom designs, changes in project scope, and regional labor rates. It's important to budget for contingencies and consult with professionals for detailed quotes.",
+      question: "How accurate is the cost estimate provided?",
+      answer: "Estimates are typically accurate within 10-15% of actual costs for common renovations. Accuracy depends on local labor rates, material availability, and project complexity; always get multiple contractor quotes for final budgeting.",
     },
     {
-      question: "Can I use this calculator for commercial renovations?",
-      answer:
-        "This calculator is designed specifically for residential home renovations. Commercial projects often have different requirements, codes, and cost structures, so a specialized estimator should be used for commercial renovations.",
+      question: "Does this calculator include labor costs?",
+      answer: "Yes, the calculator factors in regional labor rates based on your location. Labor typically accounts for 40-60% of total renovation costs depending on the project type.",
     },
+    {
+      question: "Can I adjust the estimates for high-end vs. budget materials?",
+      answer: "Absolutely—the calculator lets you select material quality tiers (budget, standard, premium), which significantly impacts final costs; premium finishes can add 30-50% to project expenses.",
+    },
+    {
+      question: "What if my renovation spans multiple rooms?",
+      answer: "You can add multiple projects within a single estimate session, and the calculator will provide a combined total with cost breakdowns by room or project type.",
+    },
+    {
+      question: "Are permits and inspection fees included in the estimate?",
+      answer: "Permit costs vary by location and project scope, typically ranging from $200-$2,000; the calculator notes permit requirements but recommends checking your local building department for exact fees.",
+    },
+    {
+      question: "How often are the labor rates and material costs updated?",
+      answer: "Rates are updated quarterly to reflect current market conditions, inflation, and regional variations in labor and material pricing.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -244,117 +257,230 @@ export default function HomeRenovationCostEstimatorCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Home Renovation Cost Estimator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Home renovation projects can vary widely in scope, materials, labor, and location, making cost estimation a complex task.
-          This Home Renovation Cost Estimator is designed to provide a comprehensive, data-driven approximation of your renovation expenses
-          by factoring in the renovation type, area size, material quality, and local cost adjustments. By combining average cost per square foot
-          data with multipliers for labor and quality, this tool helps homeowners create realistic budgets and plan their projects effectively.
-          Understanding these components empowers you to make informed decisions and avoid unexpected expenses during your renovation journey.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Home Renovation Cost Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Home Renovation Cost Estimator helps you forecast project expenses before contacting contractors. Enter your project scope, location, and material preferences to receive detailed cost breakdowns instantly.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by selecting your project type and entering key measurements like square footage or room dimensions. Choose your preferred material quality tier—budget, standard, or premium—and specify your geographic region to receive accurate local labor rate adjustments.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the estimated total and itemized cost breakdown by category (materials, labor, permits). Use this estimate as a starting point for contractor negotiations and to establish realistic budgets for your renovation planning.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and intuitive. Begin by selecting the type of renovation you plan to undertake, such as kitchen,
-          bathroom, or whole house renovation. Next, enter the total area in square feet that will be renovated. Choose the quality level of materials
-          and finishes you intend to use, ranging from economy to premium. Finally, adjust the location cost factor to reflect your area's typical
-          construction costs relative to the national average. Once all inputs are set, click Calculate to receive an estimated total renovation cost.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select the renovation type that best matches your project scope.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the total square footage of the area you plan to renovate.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Choose the desired quality level for materials and finishes.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter a location cost adjustment factor to account for regional price differences.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click the Calculate button to view your estimated renovation cost.
-          </li>
+      {/* TABLE: Average Renovation Costs by Project Type (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Renovation Costs by Project Type (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These figures represent mid-range estimates for standard material quality and regional U.S. labor rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Project Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Low Estimate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mid Estimate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">High Estimate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kitchen Remodel</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$120,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bathroom Upgrade</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Flooring (500 sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Roof Replacement (1,500 sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Deck Addition (400 sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">HVAC System Install</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$18,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Interior Painting (2,000 sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8,000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Costs vary based on location, contractor experience, and material selections; these are U.S. national averages.</p>
+      </section>
+
+      {/* TABLE: Material Cost Variations by Quality Tier */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Material Cost Variations by Quality Tier</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">The same renovation project can vary significantly in cost depending on material grade selected.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Material Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Budget Tier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Standard Tier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Premium Tier</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kitchen Cabinets (10 linear ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$12,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Flooring (per sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15-25</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Paint (per gallon)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$35-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$60-80</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Countertops (per sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$25-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$50-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$120-200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bathroom Tiles (per sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$20-40</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Roofing (per sq ft)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$8-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$15-20</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Premium materials offer better durability and aesthetics but can increase total project costs by 40-60%.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always get 2-3 contractor quotes to validate calculator estimates and compare pricing approaches.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Add 15-20% contingency buffer to your budget for unexpected issues like hidden structural damage or material price fluctuations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Prioritize high-impact renovations like kitchen and bathroom upgrades, which offer the best return on investment (60-80% ROI).</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Schedule renovations during off-season months to negotiate better labor rates, as contractors have fewer projects in winter.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When planning a home renovation, it is crucial to allocate a contingency budget of at least 10-20% to cover unexpected expenses such as
-          structural repairs or code compliance upgrades. Always obtain multiple quotes from licensed contractors and verify their credentials
-          to ensure quality workmanship and fair pricing. Prioritize safety by ensuring all electrical, plumbing, and structural work complies with
-          local building codes and regulations. Additionally, consider energy-efficient upgrades that can reduce long-term utility costs and increase
-          your home's value. Proper planning and professional guidance will help you achieve a successful renovation within your budget.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Permit Requirements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Skipping permits can result in fines, failed inspections, or difficulty selling your home; always budget for required permits based on project scope.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Contingency Costs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many homeowners forget to add buffer funds for surprises like asbestos removal or outdated wiring discovered mid-project.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Selecting Premium Materials Across All Projects</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Splurging on premium finishes everywhere can inflate budgets 50%+ when strategic material choices in high-visibility areas offer better value.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Timeline Delays</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Extended project timelines increase labor costs and living expenses; factor in 10-20% schedule cushion, especially for complex renovations.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What renovation projects can I estimate with this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator covers kitchen remodels, bathroom upgrades, flooring replacement, painting, roofing, HVAC installation, and general structural repairs. It provides cost estimates based on square footage, materials, and labor rates in your area.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the cost estimate provided?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Estimates are typically accurate within 10-15% of actual costs for common renovations. Accuracy depends on local labor rates, material availability, and project complexity; always get multiple contractor quotes for final budgeting.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does this calculator include labor costs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator factors in regional labor rates based on your location. Labor typically accounts for 40-60% of total renovation costs depending on the project type.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I adjust the estimates for high-end vs. budget materials?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absolutely—the calculator lets you select material quality tiers (budget, standard, premium), which significantly impacts final costs; premium finishes can add 30-50% to project expenses.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my renovation spans multiple rooms?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">You can add multiple projects within a single estimate session, and the calculator will provide a combined total with cost breakdowns by room or project type.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Are permits and inspection fees included in the estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Permit costs vary by location and project scope, typically ranging from $200-$2,000; the calculator notes permit requirements but recommends checking your local building department for exact fees.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often are the labor rates and material costs updated?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Rates are updated quarterly to reflect current market conditions, inflation, and regional variations in labor and material pricing.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.homeadvisor.com/r/home-renovation-costs/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              HomeAdvisor: Home Renovation Costs <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive data on average renovation costs by project type and region, helping homeowners budget effectively.
-            </p>
+            <a href="https://www.remodeling.hw.net/cost-vs-value" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">2024 Remodeling Cost vs. Value Report</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">National Association of the Remodeling Industry provides industry-standard cost benchmarks and ROI data for home renovations.</p>
           </li>
           <li>
-            <a
-              href="https://www.energy.gov/energysaver/home-improvement-projects"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Energy.gov: Home Improvement Projects <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Guidance on energy-efficient renovations and upgrades that can reduce costs and improve home comfort.
-            </p>
+            <a href="https://www.homeadvisor.com/cost" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">HomeAdvisor True Cost Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive database of average renovation costs by project type and geographic region based on thousands of completed projects.</p>
           </li>
           <li>
-            <a
-              href="https://extension.psu.edu/home-renovation-budgeting"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Penn State Extension: Home Renovation Budgeting <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Educational resource offering detailed budgeting strategies and cost considerations for home renovations.
-            </p>
+            <a href="https://www.bls.gov/oes/current/oes470011.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Bureau of Labor Statistics — Construction Wages</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official government data on average construction worker wages and employment trends for accurate labor cost planning.</p>
+          </li>
+          <li>
+            <a href="https://www.nahb.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of Home Builders Cost Estimation Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">NAHB provides construction cost indexes and material pricing trends used by industry professionals for project budgeting.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

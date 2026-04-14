@@ -98,20 +98,33 @@ Where Seeding Rate for ${seedType.replace("-", " ")} grass ≈ ${seedingRateLbs}
 
   const faqs = [
     {
-      question: "How do I know how much grass seed to buy?",
-      answer:
-        "The amount of grass seed required depends on your lawn's area and the type of grass you want to plant. This calculator estimates the seed quantity based on standard seeding rates for different grass types, ensuring you purchase the right amount without waste.",
+      question: "How much grass seed do I need per square foot?",
+      answer: "Most lawns require 4-6 lbs of grass seed per 1,000 sq ft for seeding a bare area, while overseeding established lawns typically needs 1-2 lbs per 1,000 sq ft. The calculator adjusts for lawn condition and grass type.",
     },
     {
-      question: "Can I use this calculator for overseeding an existing lawn?",
-      answer:
-        "Yes, you can select the 'overseeding' seed type option to get an estimate tailored for overseeding purposes, which generally requires less seed than planting a new lawn.",
+      question: "What's the difference between seeding and overseeding?",
+      answer: "Seeding is planting grass in bare or dead patches and requires higher seed rates (4-6 lbs/1000 sq ft), while overseeding thickens existing turf with lighter rates (1-2 lbs/1000 sq ft).",
     },
     {
-      question: "Why do seeding rates vary between grass types?",
-      answer:
-        "Different grass species have varying seed sizes, growth habits, and coverage rates. Cool-season grasses typically require more seed per area than warm-season grasses due to these biological differences.",
+      question: "Do different grass types need different seed quantities?",
+      answer: "Yes, cool-season grasses like fescue and bluegrass typically need 2-3 lbs/1000 sq ft, while warm-season varieties like Bermuda need 1-2 lbs/1000 sq ft due to larger seed size.",
     },
+    {
+      question: "How do I measure my lawn size accurately?",
+      answer: "For rectangular areas, multiply length by width in feet; for irregular shapes, break them into sections or use satellite imagery tools. Even 10% measurement error significantly impacts seed quantity.",
+    },
+    {
+      question: "Should I account for slopes or shaded areas?",
+      answer: "Yes, increase seed rates by 20-30% on slopes to compensate for runoff, and choose shade-tolerant seed blends for wooded areas, which may have slightly different coverage rates.",
+    },
+    {
+      question: "What if I overseed my lawn by mistake?",
+      answer: "Excess seed causes overcrowding, poor drainage, and disease; most lawns tolerate up to 25% overage, but significantly exceeding recommendations wastes money and damages turf health.",
+    },
+    {
+      question: "When is the best time to apply calculated seed quantities?",
+      answer: "Fall (Aug-Oct) and spring (Mar-May) are optimal; cool-season grasses prefer fall seeding, while warm-season grasses prefer late spring when soil reaches 60-70°F.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -213,112 +226,210 @@ Where Seeding Rate for ${seedType.replace("-", " ")} grass ≈ ${seedingRateLbs}
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Grass Seed Quantity Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Calculating the correct amount of grass seed is essential for establishing a healthy, lush lawn without wasting resources or overspending. This calculator helps homeowners, landscapers, and gardening enthusiasts determine the precise quantity of grass seed needed based on the lawn's area and the type of grass seed selected. Different grass species require varying seeding rates due to differences in seed size, growth habits, and coverage density. By inputting your lawn size and grass seed type, you receive an accurate estimate in both pounds and kilograms, facilitating efficient purchasing and planting.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Whether you are planting a new lawn or overseeding an existing one, understanding seeding rates and how they relate to your lawn's size ensures optimal germination and growth. This calculator incorporates standard seeding rates recommended by agricultural extensions and turfgrass experts to provide reliable results.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Grass Seed Quantity Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines how much grass seed you need based on lawn area, grass type, and whether you're seeding bare ground or overseeding existing turf. It eliminates guesswork and helps prevent costly waste.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your lawn size in square feet, select your grass type (cool-season or warm-season), and choose your seeding method (new seeding or overseeding). The calculator accounts for seed germination rates and regional recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result shows total seed needed in pounds and common bag sizes available. Compare results to seed packaging to purchase the right amount, and consider adding 10% extra for waste during application.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this grass seed quantity calculator is straightforward and designed to guide you through the essential inputs needed for an accurate estimate. Begin by measuring your lawn area in either square feet or square meters, then select the appropriate unit in the calculator. Next, choose the type of grass seed that matches your lawn's climate and purpose, such as cool-season, warm-season, or overseeding. Once these inputs are entered, click the calculate button to see the recommended amount of seed required.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure your lawn area accurately using a tape measure or digital tools like smartphone apps or GPS devices.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the measured area into the calculator and select the correct unit (square feet or square meters).
-          </li>
-          <li>
-            <strong>Step 3:</strong> Choose the grass seed type that corresponds to your region and lawn needs.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to receive the recommended seed quantity in pounds and kilograms.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the result to purchase the correct amount of seed, avoiding overbuying or under-seeding.
-          </li>
+      {/* TABLE: Recommended Grass Seed Rates by Grass Type (2024-2025) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Grass Seed Rates by Grass Type (2024-2025)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard seeding rates vary by grass species and application method.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Grass Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bare Soil (lbs/1000 sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Overseeding (lbs/1000 sq ft)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Perennial Ryegrass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5-2.5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tall Fescue</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fine Fescue</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-1.5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kentucky Bluegrass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bermuda Grass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5-1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Zoysia Grass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-1.5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bahiagrass</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates depend on seed quality (germination %), soil preparation, and climate zone; always verify with local extension services.</p>
+      </section>
+
+      {/* TABLE: Seed Quantity Adjustments by Lawn Condition */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Seed Quantity Adjustments by Lawn Condition</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Modify base seed rates according to lawn health and coverage goals.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lawn Condition</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coverage %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjustment Factor</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: 5000 sq ft</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bare/Dead Areas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0x (Full Rate)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Thin/Patchy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-60%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.75x (75% Rate)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate Thin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-80%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5x (50% Rate)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overseeding Only</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80%+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.25x (25% Rate)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8 lbs</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These adjustments assume standard ryegrass/fescue blends; always evaluate your specific turf before applying seed.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always test soil pH and fertility before seeding; poor soil conditions reduce germination rates regardless of seed quantity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use quality seed certified to be weed-free and disease-free, as cheap seed with low germination rates requires higher quantities.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Water newly seeded areas lightly and frequently for 2-3 weeks; established moisture is more important than excess seed quantity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Apply seed with a broadcast or drop spreader for even coverage; uneven application requires extra seed to compensate for bare spots.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          For best results, always prepare your soil properly before seeding by removing debris, loosening compacted soil, and ensuring adequate moisture. Applying a starter fertilizer can enhance seed germination and early growth. When overseeding, mow the existing lawn short and rake lightly to improve seed-to-soil contact. Avoid seeding during extreme heat or drought conditions to prevent seed desiccation. Always wear gloves and protective gear when handling fertilizers or seed treatments to minimize exposure to chemicals.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Store unused seed in a cool, dry place to maintain viability for future use. Follow local guidelines regarding grass species to prevent invasive species introduction and promote ecological balance. Consulting with local agricultural extension services can provide region-specific advice tailored to your lawn's needs.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring Lawn Size Incorrectly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Underestimating yard dimensions results in buying too little seed and creating thin, patchy areas that invite weeds.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated Seed Rate Guidelines</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Old recommendations often exceed modern rates; follow current university extension guides specific to your region.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Seed Germination Percentages</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Seed bags list germination rates; lower percentages require higher quantities to achieve the same plant density.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Applying All Seed at Once in Spring</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Spring-only seeding is less successful than fall; cool-season grasses need fall application when soil cools and moisture is adequate.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much grass seed do I need per square foot?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most lawns require 4-6 lbs of grass seed per 1,000 sq ft for seeding a bare area, while overseeding established lawns typically needs 1-2 lbs per 1,000 sq ft. The calculator adjusts for lawn condition and grass type.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between seeding and overseeding?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Seeding is planting grass in bare or dead patches and requires higher seed rates (4-6 lbs/1000 sq ft), while overseeding thickens existing turf with lighter rates (1-2 lbs/1000 sq ft).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do different grass types need different seed quantities?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, cool-season grasses like fescue and bluegrass typically need 2-3 lbs/1000 sq ft, while warm-season varieties like Bermuda need 1-2 lbs/1000 sq ft due to larger seed size.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I measure my lawn size accurately?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For rectangular areas, multiply length by width in feet; for irregular shapes, break them into sections or use satellite imagery tools. Even 10% measurement error significantly impacts seed quantity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I account for slopes or shaded areas?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, increase seed rates by 20-30% on slopes to compensate for runoff, and choose shade-tolerant seed blends for wooded areas, which may have slightly different coverage rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if I overseed my lawn by mistake?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excess seed causes overcrowding, poor drainage, and disease; most lawns tolerate up to 25% overage, but significantly exceeding recommendations wastes money and damages turf health.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When is the best time to apply calculated seed quantities?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Fall (Aug-Oct) and spring (Mar-May) are optimal; cool-season grasses prefer fall seeding, while warm-season grasses prefer late spring when soil reaches 60-70°F.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://extension.psu.edu/grass-seed-rates-and-seeding-methods"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Penn State Extension: Grass Seed Rates and Seeding Methods <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guidelines on recommended seeding rates and best practices for establishing lawns with various grass species.
-            </p>
+            <a href="https://extension.psu.edu/turfgrass-seeding" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Penn State University Turf Management Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive seeding rates and timing recommendations for cool-season turfgrass species.</p>
           </li>
           <li>
-            <a
-              href="https://www.nrcs.usda.gov/Internet/FSE_PLANTMATERIALS/publications/mipmcbr11824.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              USDA NRCS: Turfgrass Seeding Rates and Establishment <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official USDA publication detailing seeding rates, establishment techniques, and maintenance recommendations for turfgrass.
-            </p>
+            <a href="https://extension.uga.edu/lawn-seeding" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Georgia Lawn Care Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Warm-season grass seeding rates, soil preparation, and maintenance schedules for Southern lawns.</p>
           </li>
           <li>
-            <a
-              href="https://www.turffiles.ncsu.edu/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              North Carolina State University Turf Files <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Extensive research and extension resources on turfgrass management, including seeding rates and species selection.
-            </p>
+            <a href="https://www.usda.gov/topics/agriculture/seed" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Turf Grass Seed Certification Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official germination rates and seed quality standards for certified turfgrass seed products.</p>
+          </li>
+          <li>
+            <a href="https://www.lawninstituute.org/seed-selection" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Lawn Institute Best Practices</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards for seed selection, application rates, and successful turf establishment techniques.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

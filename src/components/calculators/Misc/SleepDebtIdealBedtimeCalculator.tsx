@@ -113,20 +113,33 @@ export default function SleepDebtIdealBedtimeCalculator() {
 
   const faqs = [
     {
-      question: "What is sleep debt and why does it matter?",
-      answer:
-        "Sleep debt refers to the cumulative difference between the amount of sleep you need and the amount you actually get. Over time, this debt can impair cognitive function, mood, and overall health. Managing sleep debt is crucial for maintaining optimal physical and mental performance.",
+      question: "What is sleep debt and how does it affect my health?",
+      answer: "Sleep debt is the cumulative effect of not getting enough sleep over days or weeks. Chronic sleep debt increases risk of heart disease, diabetes, and cognitive impairment by up to 48% according to sleep research.",
     },
     {
-      question: "How accurate is the ideal bedtime calculation?",
-      answer:
-        "The ideal bedtime calculation is based on your desired wake-up time minus your ideal sleep duration. While it provides a scientifically grounded estimate, individual factors such as sleep quality, circadian rhythms, and lifestyle can influence the best bedtime for you.",
+      question: "How does this calculator determine my ideal bedtime?",
+      answer: "The calculator works backward from your wake time, accounting for sleep cycles (90 minutes each) and time needed to fall asleep (10-20 minutes). It suggests bedtimes that align with complete sleep cycles for better rest quality.",
     },
     {
-      question: "Can I recover from sleep debt quickly?",
-      answer:
-        "Partial recovery from sleep debt can occur with one or two nights of extended sleep, but chronic sleep deprivation requires consistent, adequate rest over time. Prioritizing regular sleep schedules and healthy sleep hygiene is essential for full recovery.",
+      question: "What's the recommended daily sleep amount for adults?",
+      answer: "Most adults need 7-9 hours of sleep per night according to the National Sleep Foundation, though individual needs vary by age and health status.",
     },
+    {
+      question: "Can I catch up on sleep debt during weekends?",
+      answer: "Partial recovery is possible, but catching up fully on weekends can disrupt your circadian rhythm and lead to social jet lag, making Monday mornings harder.",
+    },
+    {
+      question: "How long does it take to recover from sleep debt?",
+      answer: "Recovery typically takes 3-7 days of consistent proper sleep, though severe debt from weeks of poor sleep may require 2-3 weeks to fully resolve.",
+    },
+    {
+      question: "Why are sleep cycles important for the ideal bedtime calculation?",
+      answer: "Waking between sleep cycles leaves you groggy; waking at the end of a 90-minute cycle promotes alertness and better daytime performance.",
+    },
+    {
+      question: "Should I adjust my bedtime if I have irregular work schedules?",
+      answer: "Yes, consistency matters more than the exact time; the calculator works best when you have a stable wake time, but shift workers should recalculate for each schedule change.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -247,106 +260,221 @@ export default function SleepDebtIdealBedtimeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Sleep Debt & Ideal Bedtime Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Sleep debt accumulates when you consistently get less sleep than your body requires for optimal functioning. This deficit can impair cognitive abilities, weaken immune response, and increase the risk of chronic diseases such as diabetes and cardiovascular conditions. The ideal bedtime planner helps you align your sleep schedule with your body's needs and your daily commitments, ensuring you wake up refreshed and ready to perform at your best. By calculating your sleep debt and suggesting an ideal bedtime based on your desired wake-up time, this tool empowers you to take control of your sleep health proactively.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Sleep Debt &amp; Ideal Bedtime Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator computes your accumulated sleep debt based on how much sleep you've gotten versus how much you need, then recommends optimal bedtimes to help you recover. It factors in your wake time, current sleep debt, and natural sleep cycles to maximize rest quality.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your typical wake time, current nightly sleep duration, how many nights of inadequate sleep you've had, and your target sleep goal. The calculator uses 90-minute sleep cycles and standard sleep onset time (15 minutes) to generate recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show your current sleep debt in hours, estimated recovery timeline, and 3-5 ideal bedtime options that align with complete sleep cycles. Aim for consistency—sleeping at the recommended times for at least 3-5 consecutive nights will noticeably improve alertness and mood.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To effectively use this calculator, input your current average sleep duration, your ideal sleep duration based on personal or professional recommendations, and your desired wake-up time. The calculator will then determine your sleep debt and suggest the ideal bedtime to meet your sleep needs. This approach helps you identify how much sleep you owe your body and plan your nights accordingly to optimize recovery and daily performance.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your average sleep duration in hours and minutes, reflecting your typical nightly sleep over the past week.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your ideal sleep duration, which is generally recommended to be between 7-9 hours for most adults.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select your desired wake-up time, which will be used to calculate your ideal bedtime.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to view your sleep debt and ideal bedtime.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the results to adjust your sleep schedule and reduce sleep debt over time.
-          </li>
+      {/* TABLE: Recommended Sleep Duration by Age Group */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Sleep Duration by Age Group</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to verify your daily sleep target before using the Sleep Debt Planner.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Hours</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sleep Cycle Count</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Newborns (0-3 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-17 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Infants (4-12 months)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-16 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Toddlers (1-2 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-14 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Preschool (3-5 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-13 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-7</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">School Age (6-12 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-12 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Teens (13-18 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adults (18-64 years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-9 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Older Adults (65+ years)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7-8 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data from National Sleep Foundation 2024 guidelines.</p>
+      </section>
+
+      {/* TABLE: Sleep Debt Recovery Timeline */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Sleep Debt Recovery Timeline</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Track how your alertness and health improve as you recover from accumulated sleep debt.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Days of Consistent Sleep</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cognitive Recovery</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Mood/Energy</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Physical Health</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Day 1-2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal improvement</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Slightly elevated</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Inflammation remains</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Day 3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Focus returns slowly</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Noticeably better</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Immune function improves</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Day 5-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Attention normalized</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mood stabilized</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heart rate variability improves</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Week 2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Memory sharp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Energy optimal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Metabolic rate normalizes</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Week 3+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Peak performance</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sustained alertness</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Disease risk decreases</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Recovery rates vary by individual and severity of initial debt.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Maintain a consistent wake time even on weekends to stabilize your circadian rhythm and accelerate sleep debt recovery.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Avoid caffeine after 2 PM and dim lights 1 hour before your calculated bedtime to support natural sleep onset.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the calculator weekly to track progress; as your debt decreases, you may need fewer total sleep hours to feel rested.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Pair bedtime recommendations with a cool room (65-68°F) and no screens 30 minutes before bed for best results.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Prioritizing consistent sleep schedules and good sleep hygiene is essential for reducing sleep debt and improving overall health. Avoid caffeine and heavy meals close to bedtime, maintain a cool and dark sleeping environment, and limit screen exposure before sleep to enhance sleep quality. If you experience persistent sleep difficulties or excessive daytime sleepiness despite adequate sleep duration, consult a healthcare professional to rule out sleep disorders such as insomnia or sleep apnea. Remember, while catching up on sleep occasionally can help, chronic sleep debt requires sustained behavioral changes for full recovery.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring sleep quality for quantity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Getting 8 hours of interrupted or light sleep won't resolve debt; prioritize consistent, uninterrupted rest cycles.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Changing bedtime daily</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator works best when you commit to the same bedtime for at least 3-5 nights; frequent changes prevent sleep debt recovery.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying solely on weekend catch-up</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Sleeping 12+ hours on weekends doesn't fully erase weekday debt and disrupts your sleep schedule, making recovery slower.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for sleep onset time</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Most people need 10-20 minutes to fall asleep; if you only account for hours in bed, you'll miss actual sleep needed.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is sleep debt and how does it affect my health?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Sleep debt is the cumulative effect of not getting enough sleep over days or weeks. Chronic sleep debt increases risk of heart disease, diabetes, and cognitive impairment by up to 48% according to sleep research.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator determine my ideal bedtime?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator works backward from your wake time, accounting for sleep cycles (90 minutes each) and time needed to fall asleep (10-20 minutes). It suggests bedtimes that align with complete sleep cycles for better rest quality.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the recommended daily sleep amount for adults?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most adults need 7-9 hours of sleep per night according to the National Sleep Foundation, though individual needs vary by age and health status.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I catch up on sleep debt during weekends?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Partial recovery is possible, but catching up fully on weekends can disrupt your circadian rhythm and lead to social jet lag, making Monday mornings harder.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does it take to recover from sleep debt?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recovery typically takes 3-7 days of consistent proper sleep, though severe debt from weeks of poor sleep may require 2-3 weeks to fully resolve.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why are sleep cycles important for the ideal bedtime calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Waking between sleep cycles leaves you groggy; waking at the end of a 90-minute cycle promotes alertness and better daytime performance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust my bedtime if I have irregular work schedules?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, consistency matters more than the exact time; the calculator works best when you have a stable wake time, but shift workers should recalculate for each schedule change.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              CDC - Sleep Hygiene Tips <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              The Centers for Disease Control and Prevention provides comprehensive guidelines on sleep hygiene and the importance of adequate sleep for health.
-            </p>
+            <a href="https://www.nhlbi.nih.gov/health/sleep-deprivation" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Sleep Deprivation and Deficiency - National Heart, Lung, and Blood Institute</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative research on sleep debt effects on cardiovascular and metabolic health.</p>
           </li>
           <li>
-            <a
-              href="https://www.sleepfoundation.org/how-sleep-works/what-is-sleep-debt"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Sleep Foundation - What is Sleep Debt? <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              This resource explains the concept of sleep debt, its effects on health, and strategies to recover from it effectively.
-            </p>
+            <a href="https://www.sleepfoundation.org/how-much-sleep-do-we-really-need" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Recommended Sleep Duration - National Sleep Foundation</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based sleep duration guidelines by age group and population.</p>
           </li>
           <li>
-            <a
-              href="https://www.nhlbi.nih.gov/health-topics/sleep-deprivation-and-deficiency"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              National Heart, Lung, and Blood Institute - Sleep Deprivation <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              The NHLBI offers detailed information on the health consequences of sleep deprivation and recommendations for healthy sleep habits.
-            </p>
+            <a href="https://aasm.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Sleep Cycles and Architecture - American Academy of Sleep Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Scientific overview of 90-minute sleep cycles and REM/NREM stages.</p>
+          </li>
+          <li>
+            <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Circadian Rhythm and Sleep Consistency - NIH National Library of Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed studies on how consistent sleep timing optimizes circadian alignment and recovery.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

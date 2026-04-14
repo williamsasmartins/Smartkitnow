@@ -97,20 +97,33 @@ export default function HomePaintTouchUpCalculator() {
 
   const faqs = [
     {
-      question: "How accurate is this paint touch-up estimator?",
-      answer:
-        "This estimator provides a close approximation based on average paint coverage rates and typical spot sizes. Actual paint usage may vary depending on surface texture, paint brand, and application method. Always consider buying a little extra paint to account for these variables.",
+      question: "How much paint do I need for a small touch-up job?",
+      answer: "Most small touch-ups require 1-4 ounces of paint, depending on wall size and coverage. A quart (32 oz) typically covers 100-150 sq ft and is sufficient for multiple small repairs.",
     },
     {
-      question: "Can I use this calculator for outdoor surfaces?",
-      answer:
-        "While this calculator is primarily designed for interior surfaces, it can be used for outdoor touch-ups by selecting the appropriate surface type. Keep in mind that outdoor paints may have different coverage rates, so verify the paint specifications for best results.",
+      question: "What's the difference between interior and exterior touch-up paint coverage?",
+      answer: "Exterior paint generally covers 250-400 sq ft per gallon due to thicker formulation, while interior latex covers 350-400 sq ft per gallon under standard conditions.",
     },
     {
-      question: "Why is there a 10% extra paint added in the calculation?",
-      answer:
-        "The 10% extra accounts for paint wastage, absorption by the surface, and multiple coats that may be necessary for proper coverage. This buffer helps ensure you have enough paint to complete your touch-up project without running short.",
+      question: "Do I need to account for multiple coats in touch-up estimates?",
+      answer: "Yes, most touch-ups require 2 coats for proper blending and color matching, which doubles your material estimate compared to a single-coat calculation.",
     },
+    {
+      question: "How does wall texture affect paint coverage estimates?",
+      answer: "Textured walls absorb 10-20% more paint than smooth surfaces; popcorn ceilings and rough stucco can reduce coverage by up to 25%.",
+    },
+    {
+      question: "What paint sheen should I use for touch-ups?",
+      answer: "Match the original sheen (flat, eggshell, satin, or gloss); using a different finish will create visible inconsistencies even with the same color.",
+    },
+    {
+      question: "How accurate is this estimator for oddly-shaped rooms?",
+      answer: "Break down irregular rooms into rectangles and add the areas together for highest accuracy; the calculator works best with standard wall dimensions.",
+    },
+    {
+      question: "Should I buy slightly more paint than estimated?",
+      answer: "Yes, purchasing 10-15% extra accounts for waste, variation in application, and ensures you have leftover for future touch-ups.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -267,103 +280,228 @@ export default function HomePaintTouchUpCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Home Paint Touch-Up Estimator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Home Paint Touch-Up Estimator is a specialized calculator designed to help homeowners and professionals accurately estimate the amount of paint required for small repairs and touch-ups on interior surfaces. Unlike full-room painting calculators, this tool focuses on the cumulative area of minor spots such as scratches, chips, or small patches that need repainting. By considering factors such as the number of spots, their average size, paint type, and surface material, the estimator provides a precise paint quantity recommendation, minimizing waste and saving costs.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This estimator accounts for typical paint coverage rates and adjusts for surface absorption and paint type differences. It also includes a buffer for wastage and multiple coats, ensuring you have enough paint to complete your touch-up project without unnecessary excess.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Home Paint Touch-Up Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the amount of paint needed for interior or exterior touch-up projects by analyzing wall dimensions, surface type, and finish. Input your room measurements and paint specifications to get precise material estimates.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include total wall area (length × height), wall texture type (smooth, textured, popcorn), paint sheen (flat, eggshell, satin, gloss), and number of coats. The calculator accounts for coverage variations across different paint formulations and surface conditions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show gallons or quarts needed, along with adjusted estimates for texture and multiple coats. Use these figures to purchase the correct paint quantity and reduce waste while ensuring complete coverage.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To get an accurate estimate, you need to provide some basic information about your room and the touch-up areas. Start by entering the dimensions of the room to help contextualize the size of the touch-up spots relative to the total wall area. Then, input the number of spots that require touch-up and their average size in square feet. Select the type of paint you plan to use and the surface material to adjust coverage accordingly.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>Step 1: Measure and enter the length, width, and height of the room to understand the total wall area.</li>
-          <li>Step 2: Count the number of touch-up spots and estimate their average size in square feet.</li>
-          <li>Step 3: Choose the paint type you will use (latex, oil-based, enamel) as coverage varies.</li>
-          <li>Step 4: Select the surface type (drywall, wood trim, metal) to adjust for absorption and texture.</li>
-          <li>Step 5: Click "Calculate" to see the estimated paint quantity needed for your touch-ups.</li>
-          <li>Step 6: Use the result to purchase the appropriate amount of paint, considering the recommended buffer.</li>
+      {/* TABLE: Paint Coverage by Type and Finish */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Paint Coverage by Type and Finish</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard coverage rates vary by paint type and sheen level for single-coat applications.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Paint Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sheen</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coverage (sq ft/gallon)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Interior Latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Flat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350-400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Interior Latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Eggshell</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350-375</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Interior Latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Satin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">325-375</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Interior Latex</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Gloss</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-350</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Exterior Acrylic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Flat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-350</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Exterior Acrylic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Satin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-300</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Primer</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">All</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-250</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual coverage depends on wall texture, color change magnitude, and application technique.</p>
+      </section>
+
+      {/* TABLE: Common Touch-Up Project Sizes and Paint Needs */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Touch-Up Project Sizes and Paint Needs</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimate material quantities based on typical residential touch-up scenarios.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Project Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Paint Required</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Coats</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Patch repair</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Accent wall touch-up</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">½ quart</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Closet interior</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 quart</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bedroom refresh</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400-500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-1.5 quarts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Living room walls</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600-800</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 quarts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Textured surface</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5 quarts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Popcorn ceiling</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 quarts</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Add 15% extra for waste and future touch-ups; textured surfaces require more material than smooth walls.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always measure twice before calculating; even 10 sq ft errors compound across large touch-up areas.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Bring a paint sample or color code from the original can to ensure perfect color matching and sheen consistency.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Apply primer before paint on patched drywall, stains, or color transitions to prevent bleed-through and improve adhesion.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Buy paint in the smallest container available for small repairs; quarts (32 oz) are ideal for touch-ups rather than gallons.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When performing paint touch-ups, preparation is key to achieving a seamless finish. Clean the surface thoroughly to remove dust, grease, or loose paint, and lightly sand the edges of the damaged area to ensure proper adhesion. Use a primer if the spot exposes bare material or stains to prevent bleeding through the new paint. Always apply paint in thin, even coats, allowing sufficient drying time between layers to avoid drips and uneven texture.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          For safety, ensure proper ventilation when using oil-based or enamel paints, as their fumes can be harmful. Wear protective gloves and masks to minimize skin contact and inhalation of volatile organic compounds (VOCs). Dispose of paint and cleaning materials responsibly according to local regulations to protect the environment.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring textured surfaces</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Textured walls absorb significantly more paint than smooth drywall; always select the correct texture type in the calculator.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating for multiple coats</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Most touch-ups require 2 coats for proper color coverage, especially when changing from light to dark or covering stains.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Matching wrong paint finish</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using a different sheen than the original creates visible inconsistencies; verify eggshell vs. satin before purchasing.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for waste</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Brush strokes, spills, and application variations consume 10-15% more paint than theoretical coverage calculations.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much paint do I need for a small touch-up job?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most small touch-ups require 1-4 ounces of paint, depending on wall size and coverage. A quart (32 oz) typically covers 100-150 sq ft and is sufficient for multiple small repairs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between interior and exterior touch-up paint coverage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Exterior paint generally covers 250-400 sq ft per gallon due to thicker formulation, while interior latex covers 350-400 sq ft per gallon under standard conditions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do I need to account for multiple coats in touch-up estimates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, most touch-ups require 2 coats for proper blending and color matching, which doubles your material estimate compared to a single-coat calculation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does wall texture affect paint coverage estimates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Textured walls absorb 10-20% more paint than smooth surfaces; popcorn ceilings and rough stucco can reduce coverage by up to 25%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What paint sheen should I use for touch-ups?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Match the original sheen (flat, eggshell, satin, or gloss); using a different finish will create visible inconsistencies even with the same color.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this estimator for oddly-shaped rooms?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Break down irregular rooms into rectangles and add the areas together for highest accuracy; the calculator works best with standard wall dimensions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I buy slightly more paint than estimated?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, purchasing 10-15% extra accounts for waste, variation in application, and ensures you have leftover for future touch-ups.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.epa.gov/indoor-air-quality-iaq/volatile-organic-compounds-impact-indoor-air-quality"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              EPA - Volatile Organic Compounds' Impact on Indoor Air Quality <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Provides detailed information on paint-related VOCs and safety recommendations for indoor painting projects.
-            </p>
+            <a href="https://www.sherwin-williams.com/homeowners/more/faqs/coverage-calculator" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Sherwin-Williams Paint Coverage Chart</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official paint coverage guidelines and calculator for residential interior and exterior projects.</p>
           </li>
           <li>
-            <a
-              href="https://extension.oregonstate.edu/gardening/techniques/painting-preparation-and-techniques"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Oregon State University Extension - Painting Preparation and Techniques <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Offers expert guidance on surface preparation and painting best practices for home improvement projects.
-            </p>
+            <a href="https://www.epa.gov/indoor-air-quality-iaq/painting-your-home" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA Guide to Painting and Color Selection</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government resource on paint types, coverage estimates, and indoor air quality considerations for touch-ups.</p>
           </li>
           <li>
-            <a
-              href="https://www.energy.gov/energysaver/weatherize/painting-and-staining"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Energy.gov - Painting and Staining Tips for Energy Efficiency <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Explains how paint types and application affect home energy efficiency and durability.
-            </p>
+            <a href="https://www.benjaminmoore.com/en-us/paint-color/coverage-calculator" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Benjamin Moore Paint Coverage Calculator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional paint manufacturer's tool for calculating coverage based on surface type and application method.</p>
+          </li>
+          <li>
+            <a href="https://www.thespruce.com/how-much-paint-needed-4845865" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce: How Much Paint Do You Need</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide explaining paint coverage formulas and adjustment factors for different wall conditions.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

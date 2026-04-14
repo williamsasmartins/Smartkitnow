@@ -117,20 +117,33 @@ export default function LaundryDetergentDosageCalculator() {
 
   const faqs = [
     {
-      question: "Why does water hardness affect detergent dosage?",
-      answer:
-        "Water hardness refers to the concentration of minerals like calcium and magnesium in water. Hard water reduces detergent effectiveness by binding with detergent molecules, requiring higher detergent amounts to achieve the same cleaning power. Adjusting dosage ensures optimal cleaning without wasting detergent.",
+      question: "How much detergent should I use for a small load?",
+      answer: "For a small load (2-4 lbs), use 1/4 to 1/2 cup of liquid detergent or 1-2 tablespoons of concentrated powder, depending on soil level and water hardness.",
     },
     {
-      question: "Can using too much detergent harm my clothes or washing machine?",
-      answer:
-        "Yes, overdosing detergent can leave residues on clothes, cause skin irritation, and lead to excess suds that may damage washing machine components or reduce cleaning efficiency. It's important to follow recommended dosages for your load size and water conditions.",
+      question: "What's the difference between HE and standard detergent dosing?",
+      answer: "HE (High Efficiency) washers require 1/4 to 1/2 the detergent of standard machines because they use less water; using too much HE detergent can leave residue and reduce cleaning effectiveness.",
     },
     {
-      question: "How do I know my water hardness level?",
-      answer:
-        "Water hardness can be determined by checking your local water utility report or using home water hardness test kits available online or in stores. Knowing your water hardness helps optimize detergent usage and improve laundry results.",
+      question: "Does water hardness affect detergent dosage?",
+      answer: "Yes, hard water requires 10-25% more detergent than soft water because minerals reduce soap effectiveness; consider using a water softener or increasing dose in hard water areas.",
     },
+    {
+      question: "How do I calculate detergent for a medium vs. large load?",
+      answer: "Medium loads (5-8 lbs) need 1/2 to 3/4 cup liquid detergent, while large loads (9-14 lbs) require 3/4 to 1 cup; heavily soiled loads may need additional 10-15% more.",
+    },
+    {
+      question: "Can I use the same dosage for both cold and hot water?",
+      answer: "Cold water may require 10-15% more detergent than hot water since detergent dissolves and activates faster in heat; concentrate-based detergents work better in cold water.",
+    },
+    {
+      question: "What happens if I use too much detergent?",
+      answer: "Excess detergent leaves residue on clothes, reduces absorbency, causes buildup in the machine, and wastes money; it can also trigger allergies and irritate sensitive skin.",
+    },
+    {
+      question: "How do I adjust detergent dosage for lightly vs. heavily soiled clothes?",
+      answer: "Lightly soiled clothes (normal wear) use baseline dosage, while heavily soiled items (work clothes, sports gear) need 25-50% more detergent for effective cleaning.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -240,112 +253,242 @@ export default function LaundryDetergentDosageCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Laundry Detergent Dosage by Load Size
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Proper laundry detergent dosage is essential for achieving clean clothes while preserving fabric quality and protecting your washing machine. The amount of detergent needed varies significantly based on the size of the laundry load, the type of detergent used, and the hardness of your water supply. Overusing detergent can lead to residue buildup, skin irritation, and machine damage, while underusing it can result in poorly cleaned clothes. This calculator helps you determine the optimal detergent amount tailored to your specific laundry conditions, ensuring efficiency, cost savings, and environmental responsibility.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Load size is typically measured by the weight of dry clothes, with categories ranging from small to extra-large loads. Detergent types differ in concentration and formulation, with High Efficiency (HE) detergents requiring less volume than standard liquids or powders. Water hardness, caused by dissolved minerals, affects detergent performance by binding with cleaning agents, necessitating dosage adjustments to maintain cleaning effectiveness.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Laundry Detergent Dosage by Load Size Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the optimal amount of laundry detergent needed based on load size, helping you achieve clean clothes while avoiding waste and residue buildup. It accounts for different machine types, water conditions, and soil levels to provide personalized dosage recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include load weight (small, medium, large), machine type (standard or HE), soil level (light, normal, or heavy), and water hardness (soft, medium, or hard). Some calculators also factor in detergent concentration and water temperature for more precise results.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show the recommended detergent amount in cups or milliliters. Using the exact dosage prevents over-sudsing, reduces detergent residue on fabrics, extends washing machine lifespan, and saves money on detergent purchases over time.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately calculate the recommended detergent dosage, select your laundry load size, the type of detergent you are using, and your water hardness level. This calculator uses established manufacturer guidelines and water chemistry principles to provide a precise dosage recommendation. Follow these steps to ensure optimal results:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Determine your laundry load size by weighing your dry clothes or estimating based on typical load weights.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Select the detergent type you use, such as standard liquid, HE liquid, or powder.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Identify your water hardness level by consulting your local water utility report or using a home test kit.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to see the recommended detergent dosage tailored to your inputs.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the recommended amount for your laundry load to maximize cleaning efficiency and minimize waste.
-          </li>
+      {/* TABLE: Laundry Load Size & Detergent Dosage Chart */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Laundry Load Size & Detergent Dosage Chart</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Standard dosage recommendations for liquid detergent across load sizes in standard washing machines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Load Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Soil Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Detergent Amount</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extra Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/8 - 1/4 cup</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/4 - 1/2 cup</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/2 - 3/4 cup</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/2 - 3/4 cup</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3/4 - 1 cup</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-14 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3/4 - 1 cup</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-14 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 - 1.25 cups</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extra Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15+ lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.25 - 1.5 cups</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Measurements assume standard washers; HE machines require 50% less detergent.</p>
+      </section>
+
+      {/* TABLE: HE Detergent Dosage by Load Size */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">HE Detergent Dosage by Load Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended liquid detergent amounts for high-efficiency washing machines, which use significantly less water.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Load Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Soil Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">HE Detergent Amount</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/8 - 1/4 cup</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-4 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/4 - 3/8 cup</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/4 - 3/8 cup</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-8 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3/8 - 1/2 cup</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-14 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Light</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3/8 - 1/2 cup</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9-14 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1/2 - 5/8 cup</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extra Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15+ lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Heavy</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5/8 - 3/4 cup</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">HE machines concentrate detergent in less water; overdosing causes poor rinsing and residue buildup.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always check your detergent bottle's dosage instructions, as concentrated formulas require less product than standard detergents.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a measuring cup or dispenser cap rather than pouring directly to avoid over-dosing, which is the most common laundry mistake.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Reduce detergent by 25-50% if using soft water or a high-efficiency machine to prevent residue and save money.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">For heavily soiled loads, pre-treat stains instead of adding extra detergent, which is more effective than increasing dosage.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Laundry professionals emphasize the importance of following detergent manufacturer instructions and adjusting dosage based on load size and water conditions. Using too much detergent not only wastes money but can also cause buildup on fabrics and inside your washing machine, leading to odors and mechanical issues. Always measure detergent carefully using dosing caps or scoops, and avoid mixing different detergent types to prevent chemical reactions. For sensitive skin, consider hypoallergenic detergents and rinse cycles with extra water. Additionally, regularly clean your washing machine to prevent residue accumulation and maintain optimal performance.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Environmental considerations are also important; using the correct detergent amount reduces water pollution and energy consumption. High Efficiency washers require HE detergents and lower dosages to function properly, so avoid using standard detergents in HE machines. Lastly, store detergents safely out of reach of children and pets, and dispose of empty containers responsibly.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using the Same Dosage for All Loads</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Different load sizes require different amounts; using one-size-fits-all dosing wastes detergent on small loads and leaves clothes inadequately cleaned on large loads.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring HE Machine Requirements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using standard detergent amounts in HE machines creates excessive suds and residue; HE machines need 50% less detergent due to lower water levels.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Water Hardness</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Hard water significantly reduces detergent effectiveness, requiring 15-25% more product; ignoring this results in poorly cleaned clothes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Adding Extra Detergent for Heavy Soil</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Excess detergent doesn't improve cleaning and leaves buildup on clothes; pre-treating stains and using appropriate temperature water is more effective.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much detergent should I use for a small load?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For a small load (2-4 lbs), use 1/4 to 1/2 cup of liquid detergent or 1-2 tablespoons of concentrated powder, depending on soil level and water hardness.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between HE and standard detergent dosing?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">HE (High Efficiency) washers require 1/4 to 1/2 the detergent of standard machines because they use less water; using too much HE detergent can leave residue and reduce cleaning effectiveness.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does water hardness affect detergent dosage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, hard water requires 10-25% more detergent than soft water because minerals reduce soap effectiveness; consider using a water softener or increasing dose in hard water areas.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate detergent for a medium vs. large load?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Medium loads (5-8 lbs) need 1/2 to 3/4 cup liquid detergent, while large loads (9-14 lbs) require 3/4 to 1 cup; heavily soiled loads may need additional 10-15% more.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the same dosage for both cold and hot water?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Cold water may require 10-15% more detergent than hot water since detergent dissolves and activates faster in heat; concentrate-based detergents work better in cold water.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if I use too much detergent?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Excess detergent leaves residue on clothes, reduces absorbency, causes buildup in the machine, and wastes money; it can also trigger allergies and irritate sensitive skin.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I adjust detergent dosage for lightly vs. heavily soiled clothes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Lightly soiled clothes (normal wear) use baseline dosage, while heavily soiled items (work clothes, sports gear) need 25-50% more detergent for effective cleaning.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.epa.gov/saferchoice/safer-laundry-guide"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              EPA Safer Choice: Safer Laundry Guide <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official Environmental Protection Agency guidelines on selecting and using laundry detergents safely and effectively.
-            </p>
+            <a href="https://www.cleaninginstitute.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Cleaning Institute - Detergent Dosage Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative resource on detergent science, dosage recommendations, and machine-specific guidelines for optimal laundry results.</p>
           </li>
           <li>
-            <a
-              href="https://extension.oregonstate.edu/gardening/techniques/water-hardness-and-its-effect-detergent-performance"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Oregon State University Extension: Water Hardness and Detergent Performance <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Research-based explanation of how water hardness impacts detergent effectiveness and laundry outcomes.
-            </p>
+            <a href="https://www.ftc.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FTC Guide to Laundry Care Symbols</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Trade Commission guidance on laundry care standards and detergent product labeling requirements.</p>
           </li>
           <li>
-            <a
-              href="https://www.energy.gov/energysaver/washing-machines"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Energy.gov: Washing Machines and Detergent Use <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              U.S. Department of Energy guidance on efficient washing machine use, including detergent dosage recommendations.
-            </p>
+            <a href="https://www.consumerreports.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Reports - Laundry Detergent Reviews</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Independent testing and recommendations for detergent products, dosage effectiveness, and machine compatibility.</p>
+          </li>
+          <li>
+            <a href="https://www.cleaninginstitute.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Cleaning Institute - Water Quality Impact</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical information on how water hardness and temperature affect detergent performance and required dosing.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

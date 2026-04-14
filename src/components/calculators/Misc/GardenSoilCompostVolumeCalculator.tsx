@@ -103,20 +103,33 @@ export default function GardenSoilCompostVolumeCalculator() {
 
   const faqs = [
     {
-      question: "Why is it important to calculate soil or compost volume accurately?",
-      answer:
-        "Accurately calculating soil or compost volume ensures you purchase the right amount of material, preventing waste and saving money. Overestimating leads to excess material that may degrade if unused, while underestimating can delay your project and increase costs due to multiple purchases.",
+      question: "How do I calculate soil volume for a raised bed?",
+      answer: "Measure the length, width, and depth of your raised bed in feet, then enter these dimensions into the calculator. It will instantly convert to cubic feet or cubic yards needed.",
     },
     {
-      question: "Can I use this calculator for raised garden beds of irregular shapes?",
-      answer:
-        "This calculator assumes rectangular or square beds. For irregular shapes, you can approximate by dividing the area into rectangles or use specialized calculators for circles or polygons. Accurate measurements are key for precise volume estimation.",
+      question: "What's the difference between garden soil and compost?",
+      answer: "Garden soil is mineral-based with nutrients, while compost is decomposed organic matter rich in beneficial microbes. Most gardeners blend 50-70% soil with 30-50% compost for optimal results.",
     },
     {
-      question: "How does soil compaction affect volume calculations?",
-      answer:
-        "Soil and compost can compact over time, reducing their volume. This calculator estimates loose volume. If compacting is expected, consider ordering slightly more material or consulting with a soil expert to adjust quantities accordingly.",
+      question: "How much does a cubic yard of garden soil weigh?",
+      answer: "A cubic yard of dry garden soil weighs approximately 1,300-1,500 lbs, while wet soil can weigh 1,600-2,000 lbs depending on moisture and composition.",
     },
+    {
+      question: "Can I use this calculator for container gardening?",
+      answer: "Yes, simply measure your container's length, width, and depth in inches or feet, and the calculator will compute the exact volume needed to fill it.",
+    },
+    {
+      question: "How do I convert cubic feet to bags of soil?",
+      answer: "Standard soil bags are typically 2 cubic feet. Divide your total cubic feet by 2 to get the number of bags needed, accounting for settling.",
+    },
+    {
+      question: "Should I account for soil settling when ordering?",
+      answer: "Yes, add 10-15% extra to your calculated volume since soil settles over time, especially in the first few weeks after planting.",
+    },
+    {
+      question: "What measurements do I need for an irregularly shaped garden bed?",
+      answer: "Break irregular shapes into smaller rectangles, calculate each section separately, then add the volumes together for a total amount needed.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -254,165 +267,218 @@ export default function GardenSoilCompostVolumeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Garden Soil/Compost Volume Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Calculating the volume of soil or compost needed for your garden beds is a
-          fundamental step in successful gardening and landscaping projects. This
-          calculator helps you determine the exact amount of material required to fill
-          raised beds, planters, or garden plots based on your specified dimensions.
-          By inputting the length, width, and depth of your garden bed, you receive an
-          accurate volume estimate in both cubic feet and cubic yards, along with an
-          approximate weight based on the material type. This precision prevents
-          overbuying or underbuying, saving you money and reducing waste.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding the volume also aids in planning for transportation and
-          storage logistics, especially when dealing with bulk materials like topsoil
-          or compost. Additionally, knowing the weight helps ensure safe handling and
-          application. This calculator incorporates standard densities for common
-          garden materials to provide a comprehensive estimate tailored to your needs.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Garden Soil/Compost Volume Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the exact volume of garden soil or compost needed to fill raised beds, containers, or garden plots. Simply input your garden dimensions and the tool computes cubic feet, cubic yards, and bag quantities instantly.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter the length, width, and depth of your garden area in either feet or inches. The calculator accepts multiple beds, allowing you to add sections separately for complex garden layouts.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results display total volume needed in cubic feet and cubic yards, plus the number of standard 2-cubic-foot bags required. Always add 10-15% extra for settling, and double-check soil density if ordering by weight rather than volume.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed for gardeners of all
-          experience levels. Begin by measuring your garden bed's length and width in
-          feet, then determine the desired depth of soil or compost in inches. Select
-          the type of material you plan to use—topsoil, compost, or a mix of both.
-          After entering these details, click the calculate button to receive your
-          volume estimate.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure the length of your garden bed in feet,
-            ensuring accuracy by using a tape measure.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Measure the width of your garden bed in feet.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Decide on the depth of soil or compost you want
-            to apply, and enter this measurement in inches.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Select the material type from the dropdown menu.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click "Calculate" to view the volume and weight
-            estimates.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Use the results to purchase the correct amount
-            of material, avoiding excess or shortage.
-          </li>
+      {/* TABLE: Common Garden Bed Dimensions &amp; Soil Requirements */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Garden Bed Dimensions &amp; Soil Requirements</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference guide showing standard raised bed sizes and their soil volume needs.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bed Dimensions (L×W×H)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Volume (Cu. Ft.)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Volume (Cu. Yds.)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bags of Soil (2 cu. ft.)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4×4×12 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4×8×12 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8×8×12 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">64</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4×4×18 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4×8×18 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8×8×18 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">96</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Add 10-15% for settling. Prices vary by region and soil type.</p>
+      </section>
+
+      {/* TABLE: Soil Density &amp; Weight per Volume */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Soil Density &amp; Weight per Volume</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Soil weight varies based on composition, moisture, and compaction.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Soil Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight per Cu. Yard (Dry)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight per Cu. Yard (Wet)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Density (lbs/cu. ft.)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Garden Soil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,300-1,500 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,600-2,000 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">48-55</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Compost</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">800-1,000 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,100-1,400 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-37</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Potting Mix</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600-800 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900-1,100 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Clay Soil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,600-1,700 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000-2,200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">59-63</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sandy Soil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,200-1,300 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,400-1,600 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">44-48</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Wet weights include typical soil moisture content. Actual values depend on organic matter percentage.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure twice to avoid ordering too little soil, which disrupts planting schedules and increases per-unit costs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Order soil from local suppliers to reduce delivery fees, which can exceed product costs for large volumes.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Blend 60-70% garden soil with 30-40% compost for nutrient-rich growing medium that retains moisture.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for seasonal differences: wet soil in spring is heavier, while dry soil in summer may settle faster.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Professional Tips & Safety
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When working with soil and compost, it is essential to consider both quality
-          and safety. Always source your materials from reputable suppliers to ensure
-          they are free from contaminants such as heavy metals, pathogens, or weed
-          seeds. Wearing gloves and a dust mask during handling can protect you from
-          potential allergens or irritants commonly found in organic materials.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Additionally, consider the moisture content of your soil or compost, as wet
-          materials are heavier and may affect transportation and application. If you
-          plan to mix soil and compost, blend them thoroughly to achieve uniform
-          texture and nutrient distribution. Finally, store unused materials in a dry,
-          covered area to maintain quality and prevent nutrient loss.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Add Settling Buffer</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Soil compacts significantly after watering; failing to add 10-15% extra leaves you short for proper planting depth.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing Up Cubic Feet and Cubic Yards</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">One cubic yard equals 27 cubic feet; ordering 4 cubic yards thinking it's cubic feet results in ordering 27× more soil than needed.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Interior Bed Measurements Instead of Total Depth</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Measure total bed height including any lip or rim, not just the soil depth, to avoid underestimating volume needed.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Soil Weight Limits for Structures</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Wet compost weighs up to 1,400 lbs per cubic yard; lightweight decks or containers may not support this load safely.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate soil volume for a raised bed?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Measure the length, width, and depth of your raised bed in feet, then enter these dimensions into the calculator. It will instantly convert to cubic feet or cubic yards needed.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between garden soil and compost?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Garden soil is mineral-based with nutrients, while compost is decomposed organic matter rich in beneficial microbes. Most gardeners blend 50-70% soil with 30-50% compost for optimal results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much does a cubic yard of garden soil weigh?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A cubic yard of dry garden soil weighs approximately 1,300-1,500 lbs, while wet soil can weigh 1,600-2,000 lbs depending on moisture and composition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for container gardening?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, simply measure your container's length, width, and depth in inches or feet, and the calculator will compute the exact volume needed to fill it.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I convert cubic feet to bags of soil?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard soil bags are typically 2 cubic feet. Divide your total cubic feet by 2 to get the number of bags needed, accounting for settling.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I account for soil settling when ordering?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, add 10-15% extra to your calculated volume since soil settles over time, especially in the first few weeks after planting.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What measurements do I need for an irregularly shaped garden bed?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Break irregular shapes into smaller rectangles, calculate each section separately, then add the volumes together for a total amount needed.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative
-          sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://extension.umn.edu/soil-management/estimating-soil-volume-and-weight"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              University of Minnesota Extension: Estimating Soil Volume and Weight{" "}
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guide on calculating soil volume and weight for gardening
-              projects, including practical examples and formulas.
-            </p>
+            <a href="https://extension.umn.edu/garden-yard-and-landscape/soil" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Minnesota Extension: Garden Soil Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research-based guide on soil composition, testing, and amendment recommendations for home gardens.</p>
           </li>
           <li>
-            <a
-              href="https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/edu/?cid=nrcs142p2_054273"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              USDA Natural Resources Conservation Service: Soil Quality and Volume{" "}
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official resource on soil properties, including density and volume
-              considerations for agricultural and gardening applications.
-            </p>
+            <a href="https://www.nrcs.usda.gov/conservation-basics/natural-resource-concerns/soil" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Natural Resources Conservation Service: Soil Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal resource explaining soil properties, organic matter benefits, and sustainable garden practices.</p>
           </li>
           <li>
-            <a
-              href="https://www.epa.gov/soils/soil-quality"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              EPA: Soil Quality and Composting Basics{" "}
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Environmental Protection Agency's guidelines on soil quality, composting,
-              and best practices for sustainable gardening.
-            </p>
+            <a href="https://extension.psu.edu/growing-plants-in-containers" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Penn State College of Agricultural Sciences: Container Gardening</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Detailed guide on soil mixes, container sizes, and volume calculations for successful container gardening.</p>
+          </li>
+          <li>
+            <a href="https://extension.oregonstate.edu/ask-expert/featured/how-deep-should-my-raised-bed-be" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Oregon State University: Raised Bed Gardening</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Expert recommendations for raised bed depth, soil selection, and amendments based on crop types.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -93,20 +93,33 @@ Reheat Time based on method`,
 
   const faqs = [
     {
-      question: "Why is it important to cool leftovers quickly?",
-      answer:
-        "Rapid cooling of leftovers is crucial to prevent the growth of harmful bacteria. The USDA recommends cooling food from 140°F to 70°F within 2 hours, and then to 40°F within an additional 4 hours to minimize foodborne illness risks.",
+      question: "How long should leftovers cool before refrigerating?",
+      answer: "Leftovers should cool to room temperature within 2 hours, or 1 hour if the room is above 90°F, to prevent bacterial growth before refrigeration.",
+    },
+    {
+      question: "What's the safest internal temperature for reheated leftovers?",
+      answer: "Reheat all leftovers to an internal temperature of 165°F (74°C) for food safety, regardless of the original cooking temperature.",
+    },
+    {
+      question: "How long can leftovers safely stay in the refrigerator?",
+      answer: "Most cooked leftovers are safe for 3–4 days in the refrigerator at 40°F (4°C) or below; soups and broths can last up to 5 days.",
     },
     {
       question: "Can I reheat leftovers multiple times?",
-      answer:
-        "It is not recommended to reheat leftovers more than once, as repeated heating and cooling cycles increase the risk of bacterial contamination and food spoilage. Always reheat only the portion you plan to consume.",
+      answer: "No, reheat leftovers only once; reheating multiple times increases bacterial contamination risk and food spoilage.",
     },
     {
-      question: "What is the safest way to reheat leftovers?",
-      answer:
-        "The safest reheating methods are those that heat food evenly to an internal temperature of 165°F, such as microwaving, oven baking, or stovetop heating. Use a food thermometer to ensure proper temperature is reached.",
+      question: "Is it better to reheat leftovers in a microwave or oven?",
+      answer: "Ovens provide more even heating at 350°F (175°C), while microwaves are faster; both work if leftovers reach 165°F throughout.",
     },
+    {
+      question: "How do I know if leftovers have gone bad?",
+      answer: "Discard leftovers with off odors, mold, slimy texture, or discoloration; when in doubt, throw it out.",
+    },
+    {
+      question: "Does freezing leftovers extend their shelf life?",
+      answer: "Yes, frozen leftovers are safe indefinitely, but best quality is maintained for 2–3 months; thaw in the refrigerator before reheating.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -237,100 +250,218 @@ Reheat Time based on method`,
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Leftovers Cooling & Reheat Time</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Proper handling of leftovers is essential to prevent foodborne illnesses caused by bacterial growth. When food is left at unsafe temperatures for too long, bacteria such as Clostridium perfringens and Salmonella can multiply rapidly. The cooling process must be swift to bring the temperature down from the danger zone (between 140°F and 40°F) within the recommended time frames. Additionally, reheating leftovers to the correct internal temperature ensures that any bacteria present are effectively destroyed, making the food safe to consume again.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator helps estimate the safe cooling and reheating times based on portion size, food type, and methods used. By following these guidelines, you can minimize the risk of spoilage and foodborne illness, ensuring your leftovers remain safe and enjoyable.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Leftovers Cooling & Reheat Time Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates safe cooling times for hot food and reheating duration for leftovers. It helps you follow USDA food safety guidelines to prevent foodborne illness and spoilage.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input the food type, initial temperature, portion size, and desired final temperature. The calculator accounts for food density and thermal properties to predict cooling curves and reheating requirements.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the estimated cooling time before refrigeration and reheating time to reach 165°F. Always verify with a food thermometer and discard leftovers older than 3–4 days.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To get an accurate estimate of the safe cooling and reheating times for your leftovers, provide the following information in the input fields below. This calculator uses established food safety standards and scientific data to provide reliable guidance.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li><strong>Step 1:</strong> Select the portion size of your leftovers. Smaller portions cool faster, while larger portions require more time.</li>
-          <li><strong>Step 2:</strong> Choose the type of food you are storing, such as meat, vegetables, dairy-based dishes, or mixed meals, as perishability varies.</li>
-          <li><strong>Step 3:</strong> Indicate the cooling method you will use. Shallow containers and refrigeration speed up cooling compared to deep containers.</li>
-          <li><strong>Step 4:</strong> Select your reheating method. Different methods require varying times to reach the safe internal temperature.</li>
-          <li><strong>Step 5:</strong> Click "Calculate" to see the recommended cooling and reheating times along with safety notes.</li>
+      {/* TABLE: Safe Cooling Times by Food Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Safe Cooling Times by Food Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different foods cool at different rates depending on density, volume, and initial temperature.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Initial Temp</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cooling to 70°F</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cooling to 40°F</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Thin broth or soup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">212°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–30 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40–60 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cooked rice or pasta</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">212°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45–60 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90–120 min</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Thick stew or casserole</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">212°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60–90 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120–180 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Roasted chicken</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30–45 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60–90 min</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cooked ground meat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–40 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50–80 min</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Times vary based on portion size, container depth, and room temperature. Use shallow containers to speed cooling.</p>
+      </section>
+
+      {/* TABLE: Safe Reheating Times & Temperatures */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Safe Reheating Times & Temperatures</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Proper reheating requires reaching the target temperature throughout the food to eliminate harmful pathogens.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Target Temp</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stovetop Time</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Microwave Time (1 lb)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Oven Time (350°F)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Soup or broth</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–10 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–20 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Rice or pasta</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–8 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–4 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–15 min</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Casserole</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–15 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4–6 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–30 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chicken</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–10 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–25 min</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ground meat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165°F</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–8 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–4 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–20 min</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Always check internal temperature with a food thermometer. Microwave times assume defrosted food; add 50% for frozen items.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use shallow, wide containers to speed cooling; avoid deep pots that trap heat and slow the cooling process.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Place hot food in an ice bath or divide into smaller portions to cut cooling time in half.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always use a food thermometer to verify internal temperature rather than relying on visual appearance or feel.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Label and date all leftovers when storing to track freshness and avoid consuming expired food.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Food safety experts emphasize the importance of rapid cooling and thorough reheating to prevent foodborne illnesses. Always divide large portions into smaller, shallow containers to accelerate cooling. Avoid leaving leftovers at room temperature for extended periods, as this promotes bacterial growth. Use a food thermometer to verify that reheated leftovers reach at least 165°F internally. Additionally, never reheat leftovers more than once, and discard any food left out for more than two hours.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Proper storage and handling not only protect your health but also reduce food waste by extending the safe consumption window of your meals. Following these guidelines ensures your leftovers remain safe, tasty, and nutritious.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Leaving hot food at room temperature too long</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Bacteria multiply rapidly between 40°F and 140°F; cool leftovers within 2 hours or 1 hour if above 90°F.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Refrigerating food that's still steaming</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Hot food raises freezer/fridge temperature and can contaminate adjacent items; cool first, then refrigerate.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Reheating without checking internal temperature</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Cold spots harbor pathogens; always use a thermometer to confirm 165°F throughout before eating.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Keeping leftovers beyond 4 days</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Even properly stored leftovers deteriorate in quality and safety after 3–4 days; freeze for longer storage.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long should leftovers cool before refrigerating?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Leftovers should cool to room temperature within 2 hours, or 1 hour if the room is above 90°F, to prevent bacterial growth before refrigeration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the safest internal temperature for reheated leftovers?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Reheat all leftovers to an internal temperature of 165°F (74°C) for food safety, regardless of the original cooking temperature.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long can leftovers safely stay in the refrigerator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most cooked leftovers are safe for 3–4 days in the refrigerator at 40°F (4°C) or below; soups and broths can last up to 5 days.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I reheat leftovers multiple times?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, reheat leftovers only once; reheating multiple times increases bacterial contamination risk and food spoilage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is it better to reheat leftovers in a microwave or oven?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Ovens provide more even heating at 350°F (175°C), while microwaves are faster; both work if leftovers reach 165°F throughout.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I know if leftovers have gone bad?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Discard leftovers with off odors, mold, slimy texture, or discoloration; when in doubt, throw it out.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does freezing leftovers extend their shelf life?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, frozen leftovers are safe indefinitely, but best quality is maintained for 2–3 months; thaw in the refrigerator before reheating.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/foodsafety/keep-food-safe.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              CDC - Food Safety (https://www.cdc.gov/foodsafety/keep-food-safe.html) <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guidelines on safe food handling, cooling, and reheating to prevent foodborne illnesses.
-            </p>
+            <a href="https://www.foodsafety.gov/keep-food-safe/food-poisoning" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Food Safety: Cooling Cooked Foods</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official USDA guidance on safe cooling practices and temperature control for cooked foods.</p>
           </li>
           <li>
-            <a
-              href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/leftovers-and-food-safety"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              USDA FSIS - Leftovers and Food Safety (https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/leftovers-and-food-safety) <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official USDA guidelines on how to properly cool, store, and reheat leftovers to ensure safety.
-            </p>
+            <a href="https://www.cdc.gov/foodsafety/symptoms/index.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC Foodborne Illness Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CDC recommendations on preventing foodborne illness through proper storage and reheating.</p>
           </li>
           <li>
-            <a
-              href="https://extension.umn.edu/food-safety-0/safe-cooling-and-reheating-leftovers"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              University of Minnesota Extension - Safe Cooling and Reheating Leftovers (https://extension.umn.edu/food-safety-0/safe-cooling-and-reheating-leftovers) <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Educational resource detailing best practices for cooling and reheating leftovers safely at home.
-            </p>
+            <a href="https://www.usda.gov/our-agency/news-information/news-releases-statements/usda-fsis-safe-minimum-cooking-temperature-chart" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Safe Internal Food Temperatures (USDA)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive USDA chart showing minimum internal temperatures for all food types.</p>
+          </li>
+          <li>
+            <a href="https://www.foodkeeper.fsis.usda.gov" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FoodKeeper App & Storage Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Interactive tool from USDA providing precise refrigerator and freezer storage times for leftovers.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

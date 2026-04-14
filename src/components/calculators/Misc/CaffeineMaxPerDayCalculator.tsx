@@ -148,55 +148,33 @@ export default function CaffeineMaxPerDayCalculator() {
 
   const faqs = [
     {
-      question: "What is the safe daily caffeine limit for adults?",
-      answer:
-        "For most healthy adults, up to 400 mg of caffeine per day is considered safe by the FDA — roughly four 8-ounce cups of brewed coffee. Individual tolerance varies based on body weight, genetics, and health status. Sensitive individuals may experience side effects at much lower doses.",
+      question: "What is the recommended maximum daily caffeine intake?",
+      answer: "The FDA recommends a maximum of 400 mg of caffeine per day for healthy adults, equivalent to about 4 cups of coffee. Pregnant women should limit intake to 200 mg or less daily.",
     },
     {
-      question: "How much caffeine is in a cup of coffee?",
-      answer:
-        "An 8-oz cup of brewed coffee contains approximately 80–100 mg of caffeine (average 95 mg). Espresso has about 63 mg per 1-oz shot. Instant coffee typically has 30–90 mg per cup. Cold brew can contain 150–200 mg depending on brew strength and cup size.",
+      question: "How does body weight affect caffeine tolerance?",
+      answer: "Caffeine sensitivity is dose-dependent on body weight; heavier individuals typically tolerate more caffeine than lighter individuals at the same intake level. The calculator adjusts recommendations based on your weight for personalized guidance.",
+    },
+    {
+      question: "Can this calculator help me with caffeine sensitivity?",
+      answer: "Yes, the calculator accounts for individual factors like age, weight, and health conditions to estimate your personal caffeine threshold, which varies widely among individuals.",
+    },
+    {
+      question: "Does pregnancy change my caffeine limit?",
+      answer: "Pregnant women should reduce caffeine intake to 200 mg daily or less due to increased miscarriage risk, which the calculator adjusts for if pregnancy status is selected.",
     },
     {
       question: "How long does caffeine stay in your system?",
-      answer:
-        "Caffeine has a half-life of about 5–6 hours in most adults, meaning half of it is still in your system 5–6 hours after consumption. It can take up to 10 hours to fully clear. Consuming caffeine after 2–3 PM can disrupt sleep in people sensitive to it.",
+      answer: "Caffeine has a half-life of 3-7 hours, meaning it takes 5-10 hours to leave your system almost entirely, which affects how much you can safely consume throughout the day.",
     },
     {
-      question: "What happens if you drink too much caffeine?",
-      answer:
-        "Excessive caffeine (above 400–600 mg/day) commonly causes jitteriness, rapid heartbeat, anxiety, headaches, and insomnia. Very high doses (above 1,200 mg) can cause seizures or cardiac arrhythmia. Chronic overconsumption can lead to dependence and withdrawal symptoms like fatigue and headaches when stopping.",
+      question: "What medications interact with caffeine?",
+      answer: "Certain medications like some antidepressants, antibiotics, and heart medications can increase caffeine sensitivity, so consulting a doctor before using this calculator is recommended if you take medications.",
     },
     {
-      question: "Is 400 mg of caffeine too much?",
-      answer:
-        "400 mg is the upper safe limit recommended by the FDA for healthy adults. Whether it's too much depends on your body weight, tolerance, and health conditions. A 60 kg person's limit is about 240 mg (4 mg/kg), so 400 mg would exceed their threshold. Use this calculator to find your personal limit.",
-    },
-    {
-      question: "Can caffeine cause anxiety?",
-      answer:
-        "Yes. Caffeine stimulates the central nervous system and can trigger or worsen anxiety, especially in people with anxiety disorders or low tolerance. Doses above 200 mg can cause palpitations and nervousness in sensitive individuals. Switching to lower-caffeine options like green tea may help.",
-    },
-    {
-      question: "How much caffeine is safe during pregnancy?",
-      answer:
-        "The American College of Obstetricians and Gynecologists (ACOG) recommends limiting caffeine to under 200 mg per day during pregnancy — about one 12-oz cup of coffee. Higher intake is associated with increased risk of low birth weight and pregnancy loss.",
-    },
-    {
-      question: "What time should I stop drinking coffee to sleep well?",
-      answer:
-        "Most sleep experts recommend stopping caffeine intake at least 6 hours before bedtime. For a 10 PM bedtime, stop by 4 PM. People with slower caffeine metabolism (certain genetic variants) may need to cut off even earlier, around 2 PM.",
-    },
-    {
-      question: "How much caffeine does tea have compared to coffee?",
-      answer:
-        "Black tea has 40–70 mg per 8-oz cup, compared to coffee's 80–100 mg. Green tea has 20–45 mg. White tea has 15–30 mg. Herbal teas are typically caffeine-free. Matcha is surprisingly high at 70–140 mg per cup depending on preparation.",
-    },
-    {
-      question: "Can you build a tolerance to caffeine?",
-      answer:
-        "Yes. Regular caffeine use leads to tolerance, where the same dose produces less effect over time. This typically develops within 1–4 days of consistent use. Tolerance resets after 1–2 weeks of abstinence. Cycling caffeine (e.g., only on weekdays) helps preserve its effectiveness.",
-    },
+      question: "Why do some people need less caffeine than others?",
+      answer: "Genetics, age, medications, liver function, and habitual caffeine use all affect how quickly your body metabolizes caffeine and your tolerance level.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -374,143 +352,230 @@ export default function CaffeineMaxPerDayCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What Is a Safe Daily Caffeine Limit?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Caffeine is the world's most widely consumed psychoactive substance, found naturally in coffee beans, tea leaves, cacao, and guarana. The FDA recommends a maximum of <strong>400 mg per day</strong> for healthy adults — roughly four 8-oz cups of brewed coffee. However, that's a general ceiling, not a target. Your personal safe limit depends on body weight, age, medications, and health conditions.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator uses the <strong>4 mg per kg of body weight</strong> guideline — the same benchmark used by sports nutrition researchers and the European Food Safety Authority (EFSA). A 70 kg (154 lb) adult has a daily limit of roughly 280 mg. A 50 kg person's limit drops to 200 mg. Enter your details above to get your personal number.
-        </p>
-      </section>
 
-      <section id="caffeine-table" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Caffeine Content by Beverage</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Knowing how much caffeine is in each drink helps you track intake accurately. Amounts vary by brand, brew strength, and serving size.
-        </p>
-        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
-          <table className="w-full text-sm text-left">
-            <thead className="bg-slate-100 dark:bg-slate-800">
-              <tr>
-                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Beverage</th>
-                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Serving Size</th>
-                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Caffeine (mg)</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
-              {[
-                ["Brewed Coffee", "8 oz (240 ml)", "80–100 mg"],
-                ["Espresso", "1 oz (30 ml) shot", "60–65 mg"],
-                ["Cold Brew Coffee", "8 oz (240 ml)", "150–200 mg"],
-                ["Instant Coffee", "8 oz (240 ml)", "30–90 mg"],
-                ["Black Tea", "8 oz (240 ml)", "40–70 mg"],
-                ["Green Tea", "8 oz (240 ml)", "20–45 mg"],
-                ["Matcha (prepared)", "8 oz (240 ml)", "70–140 mg"],
-                ["Cola Soda", "12 oz (355 ml)", "34–46 mg"],
-                ["Energy Drink (Red Bull)", "8.4 oz (250 ml)", "80 mg"],
-                ["Energy Drink (Monster)", "16 oz (473 ml)", "160 mg"],
-                ["Dark Chocolate", "1 oz (28 g)", "12–25 mg"],
-                ["Decaf Coffee", "8 oz (240 ml)", "2–15 mg"],
-              ].map(([bev, size, mg]) => (
-                <tr key={bev} className="bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800">
-                  <td className="px-4 py-2 text-slate-700 dark:text-slate-300 font-medium">{bev}</td>
-                  <td className="px-4 py-2 text-slate-600 dark:text-slate-400">{size}</td>
-                  <td className="px-4 py-2 text-blue-700 dark:text-blue-400 font-semibold">{mg}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Caffeine Max per Day Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines your personalized daily caffeine limit based on FDA guidelines adjusted for your individual factors. It helps you safely manage caffeine consumption and avoid health risks like sleep disruption, anxiety, and cardiovascular issues.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your age, body weight, pregnancy status, and any relevant health conditions. The calculator uses these factors to estimate how your body metabolizes caffeine and sets a safe maximum for your daily intake.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review your personalized caffeine limit and cross-reference it with the beverage guide to track your daily consumption. If your limit is lower than 400 mg, follow your calculated threshold; if you exceed it, gradually reduce intake to avoid withdrawal headaches.</p>
         </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <ol className="list-decimal pl-5 space-y-3 text-slate-700 dark:text-slate-300">
-          <li><strong>Enter your body weight</strong> in kg or lbs. This is the primary factor in your caffeine limit.</li>
-          <li><strong>Add your age</strong> (optional). Under 18? The limit drops to 2.5 mg/kg following AAP guidelines.</li>
-          <li><strong>Select pregnancy status.</strong> Pregnant? The ACOG recommends staying under 200 mg/day regardless of weight.</li>
-          <li><strong>Note any heart conditions.</strong> Heart issues trigger a 25% reduction in your calculated limit.</li>
-          <li><strong>Log your daily beverages</strong> using the serving counters. The calculator totals your intake and shows remaining safe allowance.</li>
-        </ol>
-        <p className="mt-4 text-slate-600 dark:text-slate-400 text-sm">
-          Example: A 75 kg healthy adult who drank 2 coffees (190 mg) and 1 energy drink (80 mg) has consumed 270 mg out of a 300 mg limit — leaving 30 mg of safe headroom.
-        </p>
+      {/* TABLE: Caffeine Content in Common Beverages */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Caffeine Content in Common Beverages</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference guide showing typical caffeine amounts in popular drinks.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Beverage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Serving Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Caffeine (mg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Brewed Coffee</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95-200</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Espresso</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 oz shot</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">63-75</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Black Tea</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-70</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Green Tea</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-50</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Energy Drink</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz can</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-300</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cola Soft Drink</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12 oz can</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34-46</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Decaffeinated Coffee</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hot Chocolate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 oz cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values are approximate and vary by brand, brewing method, and product formulation.</p>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Tips for Managing Caffeine Intake</h2>
-        <ul className="list-disc pl-5 space-y-3 text-slate-700 dark:text-slate-300">
-          <li><strong>Stop caffeine 6+ hours before bed.</strong> Caffeine's half-life is 5–6 hours. A 4 PM coffee is half-strength at 10 PM.</li>
-          <li><strong>Track hidden sources.</strong> Pre-workout supplements, some pain relievers (Excedrin = 65 mg/tablet), and protein bars contain caffeine.</li>
-          <li><strong>Don't use caffeine to mask fatigue.</strong> It blocks adenosine receptors but doesn't replenish energy — only sleep does.</li>
-          <li><strong>Cycle your intake.</strong> Tolerance builds in 1–4 days. Taking 1–2 caffeine-free days per week maintains sensitivity.</li>
-          <li><strong>Stay hydrated.</strong> Caffeine has a mild diuretic effect. Drink an extra glass of water for every 2 cups of coffee.</li>
+      {/* TABLE: Daily Caffeine Limits by Population Group */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Caffeine Limits by Population Group</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recommended maximum daily caffeine intake varies by age and health status.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Population Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Max Daily Caffeine</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Key Consideration</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Healthy Adults</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">FDA standard recommendation</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pregnant Women</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Reduces miscarriage risk</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Breastfeeding Women</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Limit infant caffeine exposure</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Adolescents (12-18)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Developing bodies more sensitive</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Children (Under 12)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not recommended by pediatricians</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Individuals with Anxiety Disorders</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-100 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">May worsen symptoms</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">People with Heart Conditions</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-200 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Consult cardiologist first</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Elderly Adults (65+)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increased sensitivity and side effects</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Individual tolerance varies; consult healthcare providers for personalized limits.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Avoid caffeine after 2 PM to prevent sleep disruption, as it takes 5-10 hours to fully leave your system.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Gradually reduce caffeine intake instead of quitting abruptly to avoid withdrawal headaches and fatigue.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor energy drinks and supplements for hidden caffeine content, as they often contain more than advertised.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your daily caffeine from all sources including coffee, tea, chocolate, and medications for accurate totals.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Hidden Caffeine Sources</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many foods and supplements contain caffeine not listed on labels, leading to accidental overconsumption above your calculated limit.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Individual Sensitivity Variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using only the 400 mg FDA guideline without adjusting for personal factors like medications, anxiety, or poor sleep quality can exceed your safe threshold.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Caffeine Half-Life Timing</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Consuming caffeine too late in the day can disrupt sleep even if the total daily amount is within your limit due to the 3-7 hour half-life.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Medication Interactions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Certain medications significantly increase caffeine sensitivity, making your calculated limit unsafe without medical consultation.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended maximum daily caffeine intake?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The FDA recommends a maximum of 400 mg of caffeine per day for healthy adults, equivalent to about 4 cups of coffee. Pregnant women should limit intake to 200 mg or less daily.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does body weight affect caffeine tolerance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Caffeine sensitivity is dose-dependent on body weight; heavier individuals typically tolerate more caffeine than lighter individuals at the same intake level. The calculator adjusts recommendations based on your weight for personalized guidance.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator help me with caffeine sensitivity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator accounts for individual factors like age, weight, and health conditions to estimate your personal caffeine threshold, which varies widely among individuals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does pregnancy change my caffeine limit?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pregnant women should reduce caffeine intake to 200 mg daily or less due to increased miscarriage risk, which the calculator adjusts for if pregnancy status is selected.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does caffeine stay in your system?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Caffeine has a half-life of 3-7 hours, meaning it takes 5-10 hours to leave your system almost entirely, which affects how much you can safely consume throughout the day.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What medications interact with caffeine?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Certain medications like some antidepressants, antibiotics, and heart medications can increase caffeine sensitivity, so consulting a doctor before using this calculator is recommended if you take medications.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do some people need less caffeine than others?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Genetics, age, medications, liver function, and habitual caffeine use all affect how quickly your body metabolizes caffeine and your tolerance level.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.fda.gov/food/food-additives-petitions/caffeine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              U.S. Food & Drug Administration (FDA) - Caffeine Information <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official FDA guidelines and safety information regarding caffeine consumption and its effects.
-            </p>
+            <a href="https://www.fda.gov/consumers/consumer-updates/spilled-beans-how-much-caffeine-too-much" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FDA Guidance on Caffeine Consumption</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official FDA guidance recommending 400 mg daily maximum for healthy adults with safety information.</p>
           </li>
           <li>
-            <a
-              href="https://www.acog.org/womens-health/faqs/caffeine-during-pregnancy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              American College of Obstetricians and Gynecologists (ACOG) - Caffeine During Pregnancy <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Evidence-based recommendations on caffeine intake limits for pregnant individuals to ensure fetal health.
-            </p>
+            <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2010/08/moderate-caffeine-consumption-during-pregnancy" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American College of Obstetricians and Gynecologists - Caffeine in Pregnancy</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Clinical guidance limiting caffeine to 200 mg daily during pregnancy to reduce miscarriage risk.</p>
           </li>
           <li>
-            <a
-              href="https://www.cdc.gov/nutrition/data-statistics/know-your-limit-for-caffeine.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Centers for Disease Control and Prevention (CDC) - Know Your Limit for Caffeine <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive overview of caffeine consumption guidelines and health considerations from the CDC.
-            </p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NIH Study on Caffeine Metabolism and Genetics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Research demonstrating genetic variations affecting how individuals metabolize caffeine differently.</p>
+          </li>
+          <li>
+            <a href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/caffeine/art-20045431" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Mayo Clinic - Caffeine Health Effects</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive overview of caffeine's effects on sleep, anxiety, heart health, and safe consumption limits.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

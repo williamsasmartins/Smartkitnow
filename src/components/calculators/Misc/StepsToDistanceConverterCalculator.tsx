@@ -109,20 +109,33 @@ export default function StepsToDistanceConverterCalculator() {
 
   const faqs = [
     {
-      question: "How accurate is the steps to distance conversion?",
-      answer:
-        "The accuracy depends largely on the precision of your stride length measurement. Stride length can vary based on walking speed, terrain, and individual biomechanics. For best results, measure your average stride length by walking a known distance and dividing by the number of steps taken.",
+      question: "How many steps equal 1 mile?",
+      answer: "The average person takes approximately 2,000 steps to walk 1 mile, though this varies based on stride length, which ranges from 2.1 to 2.5 feet for most adults.",
     },
     {
-      question: "Can I use this calculator for running steps?",
-      answer:
-        "Yes, but keep in mind that running stride lengths are typically longer than walking strides. If you want an accurate distance for running, use your average running stride length instead of walking stride length.",
+      question: "Does stride length affect the conversion accuracy?",
+      answer: "Yes, significantly. A person with a 2-foot stride and one with a 2.5-foot stride will cover different distances in the same number of steps; most converters use 2.2 feet as a standard average.",
     },
     {
-      question: "Why do stride lengths vary between people?",
-      answer:
-        "Stride length varies due to factors such as height, leg length, walking speed, and fitness level. Taller individuals generally have longer strides, but walking style and terrain also influence stride length.",
+      question: "Can I use this converter for running distances?",
+      answer: "Running stride is typically 20-30% longer than walking stride, so you'll need to adjust your input or use a running-specific stride length of 2.5–3 feet for accurate results.",
     },
+    {
+      question: "What if I know my exact stride length in centimeters?",
+      answer: "Convert centimeters to feet by dividing by 30.48, then input that value; for example, 67 cm equals approximately 2.2 feet.",
+    },
+    {
+      question: "How do fitness trackers calculate step distance?",
+      answer: "Most fitness trackers use proprietary algorithms and stored stride data from user setup; some allow manual stride length input for greater accuracy.",
+    },
+    {
+      question: "Is there a difference between steps and strides?",
+      answer: "Yes—a stride is two steps (left and right), so 1,000 strides equals 2,000 steps; conversion tools typically measure in steps, not strides.",
+    },
+    {
+      question: "Why do my daily step counts vary in distance traveled?",
+      answer: "Terrain, walking speed, fitness level, and footwear all affect stride length; inclines and uneven surfaces typically shorten your stride and reduce distance per step.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -228,111 +241,206 @@ export default function StepsToDistanceConverterCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Steps → Distance Converter
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Converting steps to distance is a practical way to estimate how far you have traveled during walking or running activities without relying on GPS devices. This conversion hinges on the concept of stride length, which is the distance covered in one step. Since stride length varies among individuals due to factors like height, walking speed, and terrain, this calculator allows you to input your personal stride length for a more accurate distance estimate. By multiplying the number of steps by the stride length and converting to your preferred distance unit, you gain a reliable approximation of your traveled distance.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool is especially useful for fitness enthusiasts, health professionals, and researchers who want to track physical activity levels or analyze walking patterns without specialized equipment. Understanding your stride length and how it affects distance calculations can also help improve your walking or running efficiency.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Steps → Distance Converter</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This converter transforms your step count into distance measurements (miles, kilometers, or feet). It's ideal for tracking daily activity, fitness goals, and validating data from fitness trackers or pedometers.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your total step count and, if available, your personal stride length in feet or centimeters. The standard default is 2.2 feet; inputting your actual stride ensures maximum accuracy for your unique body metrics.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The tool will calculate distance in multiple units instantly. Compare results against your fitness tracker's estimates to verify accuracy, or use the output to plan walking routes and distance-based fitness goals.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires just a few inputs. First, enter the total number of steps you have taken during your walk or run. Next, provide your average stride length, which is the distance covered in one step, and select the unit of measurement for your stride length. Finally, choose the unit in which you want the distance result displayed. Once all inputs are provided, click the calculate button to see your estimated distance.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure or estimate your average stride length. This can be done by walking a known distance and dividing by the number of steps taken.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the total steps you want to convert into distance.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the units for stride length and desired output distance.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to get your distance estimate.
-          </li>
+      {/* TABLE: Average Steps to Distance by Stride Length */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Steps to Distance by Stride Length</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how many steps are needed to cover common distances based on typical stride lengths.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Stride Length (feet)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Steps per 1 Mile</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Steps per 5 Miles</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Steps per 10 Miles</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,640</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26,400</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24,000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">22,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,112</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,560</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21,120</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Stride lengths are typical for average adults; actual values vary by height, fitness, and walking speed.</p>
+      </section>
+
+      {/* TABLE: Daily Step Goals and Equivalent Distances */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Step Goals and Equivalent Distances</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Reference table for common daily step targets and their distance equivalents at a 2.2-foot average stride.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Step Goal</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Distance (Miles)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Distance (Kilometers)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Time at 3 mph</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38 minutes</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56 minutes</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">76 minutes</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">114 minutes</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">152 minutes</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Times assume consistent 3 mph walking pace; actual duration varies with terrain and fitness level.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your stride length by walking 10 steps, dividing total distance by 10, and entering the result for personalized accuracy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this converter to validate your fitness tracker's distance calculations—significant differences may indicate calibration issues.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for inclines and terrain; uphill and uneven surfaces reduce stride length by 5–15% compared to flat ground.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track stride length changes over time; improved fitness often increases stride length, altering your steps-to-distance ratio.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          For the most accurate results, it is recommended to measure your stride length under conditions similar to your typical walking or running environment. Stride length can change with speed, fatigue, and terrain, so consider measuring multiple times and averaging the results. Additionally, if you use this calculator for health or fitness tracking, remember that step counts from different devices may vary due to sensor sensitivity and placement.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Always ensure your walking or running activities are done safely, especially when outdoors. Wear appropriate footwear, stay hydrated, and be aware of your surroundings. If you have any medical conditions or concerns, consult a healthcare professional before starting a new physical activity regimen.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Steps with Strides</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">One stride equals two steps, so entering stride count will produce results half the actual distance—always convert to steps first.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using One Stride Length for All Activities</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Running stride is significantly longer than walking stride; use 2.5–3 feet for running and 2.0–2.2 feet for walking.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Height and Gender Differences</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Taller individuals and men typically have longer strides; using a generic 2.2-foot average may underestimate their distance by 10–15%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Failing to Account for Footwear</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Wearing shoes versus barefoot, or switching between sneakers and heels, noticeably changes stride length and should be adjusted in conversions.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many steps equal 1 mile?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The average person takes approximately 2,000 steps to walk 1 mile, though this varies based on stride length, which ranges from 2.1 to 2.5 feet for most adults.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does stride length affect the conversion accuracy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, significantly. A person with a 2-foot stride and one with a 2.5-foot stride will cover different distances in the same number of steps; most converters use 2.2 feet as a standard average.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this converter for running distances?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Running stride is typically 20-30% longer than walking stride, so you'll need to adjust your input or use a running-specific stride length of 2.5–3 feet for accurate results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if I know my exact stride length in centimeters?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Convert centimeters to feet by dividing by 30.48, then input that value; for example, 67 cm equals approximately 2.2 feet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do fitness trackers calculate step distance?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most fitness trackers use proprietary algorithms and stored stride data from user setup; some allow manual stride length input for greater accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is there a difference between steps and strides?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—a stride is two steps (left and right), so 1,000 strides equals 2,000 steps; conversion tools typically measure in steps, not strides.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do my daily step counts vary in distance traveled?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Terrain, walking speed, fitness level, and footwear all affect stride length; inclines and uneven surfaces typically shorten your stride and reduce distance per step.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/physicalactivity/basics/measuring/index.htm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              CDC - Measuring Physical Activity <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guidelines on how to measure physical activity including step counts and distance estimation.
-            </p>
+            <a href="https://www.heart.org/en/healthy-living/fitness/fitness-basics/walking" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Heart Association: Walking for Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Provides guidelines on step counts and walking distance for cardiovascular health benefits.</p>
           </li>
           <li>
-            <a
-              href="https://www.verywellfit.com/how-to-measure-your-stride-length-3432827"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Verywell Fit - How to Measure Your Stride Length <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Detailed instructions and tips for accurately measuring your walking and running stride length.
-            </p>
+            <a href="https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/10000-steps/art-20317059" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Mayo Clinic: How Many Steps a Day</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Explains the science behind daily step goals and how step count relates to health outcomes.</p>
           </li>
           <li>
-            <a
-              href="https://www.energy.gov/eere/vehicles/articles/how-far-can-you-walk-step-counts-and-distance"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              U.S. Department of Energy - Step Counts and Distance <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Insights into step counting and distance conversion for energy expenditure and fitness tracking.
-            </p>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3820844/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NIH National Center for Biotechnology: Stride Length and Gait Analysis</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Scientific research on how stride length varies by age, height, and fitness level.</p>
+          </li>
+          <li>
+            <a href="https://www.cdc.gov/physicalactivity/basics/index.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC Physical Activity Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official recommendations for daily physical activity and step-based fitness tracking.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

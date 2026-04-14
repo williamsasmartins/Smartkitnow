@@ -91,20 +91,33 @@ export default function RoomAirChangesAchCalculator() {
 
   const faqs = [
     {
-      question: "What is Air Changes per Hour (ACH)?",
-      answer:
-        "Air Changes per Hour (ACH) is a measure of how many times the air within a defined space is replaced in one hour. It is a critical metric for assessing ventilation effectiveness, indoor air quality, and controlling airborne contaminants.",
+      question: "What is ACH and why does it matter?",
+      answer: "ACH (Air Changes per Hour) measures how many times all air in a room is completely replaced hourly. Higher ACH improves air quality and reduces airborne contaminants by 50-90% depending on filtration type.",
     },
     {
-      question: "Why is ACH important for indoor air quality?",
-      answer:
-        "ACH helps determine how effectively fresh air is circulated and stale air is removed from a room. Higher ACH values generally indicate better ventilation, which reduces the concentration of pollutants, allergens, and pathogens, improving occupant health and comfort.",
+      question: "How do I calculate ACH for my room?",
+      answer: "Divide your HVAC system's CFM (cubic feet per minute) by your room's volume in cubic feet, then multiply by 60. The calculator automates this: ACH = (CFM × 60) ÷ Room Volume.",
     },
     {
-      question: "Can I use this calculator for any room size?",
-      answer:
-        "Yes, this calculator is designed to work for any enclosed space where you know the dimensions and ventilation airflow rate. Accurate inputs ensure reliable ACH estimations for residential, commercial, or industrial settings.",
+      question: "What ACH level is recommended for residential spaces?",
+      answer: "Most residential standards recommend 3-5 ACH for living spaces and 6-8 ACH for bedrooms with allergies or respiratory concerns. Hospital ICUs require 12-15 ACH.",
     },
+    {
+      question: "Does room size affect the ACH calculation?",
+      answer: "Yes, significantly—larger rooms require higher CFM to achieve the same ACH. A 1,000 CFM system achieves 6 ACH in a 10,000 cu ft room but 12 ACH in a 5,000 cu ft room.",
+    },
+    {
+      question: "Can I improve ACH without upgrading my HVAC system?",
+      answer: "Yes—portable air purifiers with HEPA filters can add 2-4 ACH, and closing unused rooms concentrates airflow and increases effective ACH in occupied spaces.",
+    },
+    {
+      question: "What CFM do I need to achieve 6 ACH?",
+      answer: "Multiply your room volume by 6, then divide by 60. For a 2,000 cu ft room: (2,000 × 6) ÷ 60 = 200 CFM required.",
+    },
+    {
+      question: "How does ACH relate to COVID-19 and virus transmission?",
+      answer: "Studies show ACH &gt;6 with HEPA filtration reduces airborne virus transmission by 99% within 15-30 minutes, making it critical for healthcare and public spaces.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -237,112 +250,235 @@ export default function RoomAirChangesAchCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Room Air Changes per Hour (ACH) Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Room Air Changes per Hour (ACH) Calculator is a vital tool for assessing the ventilation efficiency of any enclosed space. ACH quantifies how many times the entire volume of air in a room is replaced with fresh air in one hour. This metric is crucial for maintaining healthy indoor air quality, reducing airborne contaminants, and ensuring occupant comfort. By inputting the room dimensions and ventilation airflow rate, this calculator provides an accurate ACH value, helping building managers, HVAC professionals, and homeowners make informed decisions about ventilation improvements.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Proper ventilation is essential not only for comfort but also for health, especially in environments where airborne pathogens or pollutants are a concern. This calculator supports inputs in both cubic feet per minute (CFM) and cubic meters per hour (m³/h), accommodating common ventilation measurement units worldwide.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Room Air Changes per Hour (ACH) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Room ACH Calculator determines how frequently all air in your space is fully replaced per hour. This metric is essential for HVAC design, air quality assessment, and compliance with health standards in residential, commercial, and medical settings.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your room's length, width, and height (or total cubic footage), along with your HVAC system's CFM (cubic feet per minute) rating. Most HVAC specs list CFM on the unit nameplate or system documentation.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator instantly shows your ACH value and compares it against industry benchmarks. Higher ACH indicates better air quality, faster contaminant removal, and improved respiratory health. Use results to identify if upgrades (higher-capacity fans, additional purifiers) are needed.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately calculate the Air Changes per Hour (ACH) for your room, you need to provide precise measurements of the room’s dimensions and the ventilation airflow rate. This calculator requires the length, width, and height of the room in feet, as well as the ventilation rate, which can be entered in either cubic feet per minute (CFM) or cubic meters per hour (m³/h). Once all inputs are entered, simply press the Calculate button to obtain the ACH value.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure the length, width, and height of the room in feet. Use a tape measure for accuracy.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Determine the ventilation airflow rate. This is often provided by HVAC system specifications or measured using airflow meters.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Select the unit of the ventilation rate (CFM or m³/h) from the dropdown menu.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click the Calculate button to compute the ACH. The result will display how many times the air in the room is replaced per hour.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the ACH value to evaluate if your ventilation meets recommended standards for your specific application.
-          </li>
+      {/* TABLE: Recommended ACH Levels by Room Type (2024 Standards) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended ACH Levels by Room Type (2024 Standards)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Different spaces require varying air change rates based on occupancy and contamination risk.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended ACH</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Purpose</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Residential Living Room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">General comfort and odor control</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bedroom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sleep quality and allergy management</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kitchen</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cooking odor and moisture removal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bathroom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Humidity and odor extraction</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Office</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Employee health and productivity</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Classroom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Disease prevention and focus</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hospital Patient Room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Infection control protocols</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Surgical Suite</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sterile environment requirement</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Restaurant</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Food odor and grease management</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values based on ASHRAE 62.1 and CDC guidelines as of 2024.</p>
+      </section>
+
+      {/* TABLE: CFM Requirements by Room Volume (for 6 ACH Target) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">CFM Requirements by Room Volume (for 6 ACH Target)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this table to estimate your HVAC system's required CFM output based on room size.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Volume (cu ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">CFM Needed (6 ACH)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">System Type</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Portable air purifier</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Window unit or small system</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Mid-range residential HVAC</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Standard residential system</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large room or office</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Commercial/industrial system</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large warehouse/facility</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hospital wing or lab</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Formula: CFM = (Room Volume × Desired ACH) ÷ 60. Actual requirements vary by ductwork efficiency.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure room dimensions accurately in feet—errors of 1-2 feet can shift ACH by 10-15% and affect compliance decisions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your HVAC system's actual CFM output, not nameplate capacity, as ductwork friction and filter restrictions reduce real airflow by 20-30%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Seal air leaks and close doors to prevent backdrafts, which reduce effective ACH by forcing recirculation instead of fresh replacement.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine your HVAC system ACH with portable HEPA purifiers to add 2-4 supplemental ACH in high-risk areas like nurseries or recovery rooms.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When using this calculator, ensure that your room measurements are as accurate as possible, including any alcoves or irregular shapes that might affect total volume. Ventilation rates should ideally be measured or obtained from reliable HVAC system data rather than estimates. Remember that recommended ACH values vary depending on room use; for example, healthcare facilities require significantly higher ACH than residential spaces. Always consult local building codes and health guidelines to determine appropriate ventilation targets.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, consider that ventilation effectiveness depends not only on ACH but also on air distribution patterns, filtration, and maintenance of HVAC systems. Regularly inspect and maintain ventilation equipment to ensure consistent performance and indoor air quality. In spaces with high occupancy or specific contamination risks, increasing ACH beyond minimum standards can provide added safety and comfort.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing CFM with ACH</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">CFM is airflow rate; ACH is how many complete room air replacements occur hourly—you must divide CFM by room volume to get ACH.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring ductwork losses</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Real CFM delivery is typically 15-30% lower than nameplate CFM due to filter resistance, duct friction, and bend losses.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using only outdoor air without recirculation filters</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">100% outdoor air ACH 10 still allows contaminants in; pair with HEPA filtration to achieve meaningful air quality improvements.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Calculating ACH for combined multi-room spaces</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">ACH must be calculated per room separately—combining volumes masks inadequate airflow in isolated pockets.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is ACH and why does it matter?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">ACH (Air Changes per Hour) measures how many times all air in a room is completely replaced hourly. Higher ACH improves air quality and reduces airborne contaminants by 50-90% depending on filtration type.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate ACH for my room?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Divide your HVAC system's CFM (cubic feet per minute) by your room's volume in cubic feet, then multiply by 60. The calculator automates this: ACH = (CFM × 60) ÷ Room Volume.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What ACH level is recommended for residential spaces?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most residential standards recommend 3-5 ACH for living spaces and 6-8 ACH for bedrooms with allergies or respiratory concerns. Hospital ICUs require 12-15 ACH.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does room size affect the ACH calculation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, significantly—larger rooms require higher CFM to achieve the same ACH. A 1,000 CFM system achieves 6 ACH in a 10,000 cu ft room but 12 ACH in a 5,000 cu ft room.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I improve ACH without upgrading my HVAC system?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—portable air purifiers with HEPA filters can add 2-4 ACH, and closing unused rooms concentrates airflow and increases effective ACH in occupied spaces.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What CFM do I need to achieve 6 ACH?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Multiply your room volume by 6, then divide by 60. For a 2,000 cu ft room: (2,000 × 6) ÷ 60 = 200 CFM required.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does ACH relate to COVID-19 and virus transmission?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Studies show ACH &gt;6 with HEPA filtration reduces airborne virus transmission by 99% within 15-30 minutes, making it critical for healthcare and public spaces.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/coronavirus/2019-ncov/community/ventilation.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              CDC: Ventilation in Buildings <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guidance on improving ventilation to reduce airborne transmission of viruses in indoor spaces.
-            </p>
+            <a href="https://www.ashrae.org/technical-resources/standards-and-guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASHRAE 62.1 Ventilation Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative HVAC ventilation rates and ACH requirements for all building types and occupancy classifications.</p>
           </li>
           <li>
-            <a
-              href="https://www.epa.gov/indoor-air-quality-iaq/air-cleaners-and-air-filters-home"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              EPA: Air Cleaners and Air Filters in the Home <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Information on ventilation, air filtration, and maintaining indoor air quality for healthier living environments.
-            </p>
+            <a href="https://www.cdc.gov/coronavirus/2019-ncov/community/ventilation.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC Guidelines on Ventilation and Air Quality</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal guidance linking ACH levels to airborne disease transmission risk in public and healthcare facilities.</p>
           </li>
           <li>
-            <a
-              href="https://www.energy.gov/energysaver/ventilation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Energy.gov: Ventilation <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Detailed explanations of ventilation types, calculations, and energy-efficient strategies for indoor air quality.
-            </p>
+            <a href="https://www.nfpa.org/codes-and-standards/all-codes-and-standards/list-of-codes-and-standards" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NFPA 101 Life Safety Code</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Building safety standards specifying minimum ACH requirements for occupancy classifications and emergency egress.</p>
+          </li>
+          <li>
+            <a href="https://www.epa.gov/indoor-air-quality-iaq" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA Indoor Air Quality Resources</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Residential and commercial air quality benchmarks and ACH recommendations for homes, offices, and schools.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

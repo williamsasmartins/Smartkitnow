@@ -104,19 +104,32 @@ export default function WaterHeaterRecoveryTimeCalculator() {
   const faqs = [
     {
       question: "What is water heater recovery time?",
-      answer:
-        "Water heater recovery time is the duration it takes for a water heater to heat a full tank of water from its current temperature to the desired temperature. This metric helps users understand how quickly their water heater can supply hot water after the tank has been depleted.",
+      answer: "Recovery time is how long it takes your water heater to reheat a full tank after hot water is depleted. A 50-gallon tank with an 4 kW element typically recovers in 1-2 hours.",
     },
     {
-      question: "How does efficiency affect recovery time?",
-      answer:
-        "Efficiency represents how effectively a water heater converts energy into heat. A higher efficiency means less energy loss and faster heating, resulting in shorter recovery times. Typical efficiencies range from 80% to 95%, depending on the water heater type and condition.",
+      question: "How does tank size affect recovery time?",
+      answer: "Larger tanks take longer to heat; a 75-gallon tank requires 50% more recovery time than a 50-gallon tank with identical heating elements.",
     },
     {
-      question: "Can I improve my water heater’s recovery time?",
-      answer:
-        "Yes, improving recovery time can be achieved by increasing heating power, reducing temperature rise (setting a lower hot water temperature), improving insulation, or upgrading to a more efficient water heater model. Regular maintenance also ensures optimal performance.",
+      question: "What's the difference between gas and electric recovery times?",
+      answer: "Gas water heaters recover 2-3 times faster than electric models; a gas 40-gallon tank recovers in 30-40 minutes versus 1-2 hours for electric.",
     },
+    {
+      question: "Does incoming water temperature affect recovery time?",
+      answer: "Yes—cold incoming water (40°F) requires more energy to heat than warm water (60°F), extending recovery time by 15-25% depending on climate.",
+    },
+    {
+      question: "Can I reduce my water heater recovery time?",
+      answer: "Upgrade to a higher-capacity heating element, insulate the tank, or consider a tankless water heater for instant recovery and 24-44% energy savings.",
+    },
+    {
+      question: "What heater wattage should I use in calculations?",
+      answer: "Standard electric elements are 4-6 kW (3,800-5,500 watts); check your water heater's nameplate or manual for exact specifications.",
+    },
+    {
+      question: "How accurate is this recovery time estimate?",
+      answer: "Estimates assume 100°F temperature rise and optimal heating conditions; actual times vary 10-20% based on thermostat settings and element efficiency.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -227,112 +240,218 @@ export default function WaterHeaterRecoveryTimeCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Water Heater Recovery Time Estimator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The water heater recovery time estimator calculates how long it takes for your water heater to heat a full tank of water from its current temperature to the desired temperature. This is a critical performance metric that helps homeowners and professionals assess the efficiency and capacity of their water heating system. Recovery time depends on several factors including the tank size, heating element power, temperature difference, and the efficiency of the unit. Understanding this metric can help you optimize your hot water usage, plan for peak demand, and decide if an upgrade or maintenance is necessary.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The formula used in this calculator is based on thermodynamic principles, converting electrical or gas energy input into heat energy required to raise the water temperature. It accounts for the weight of water per gallon and the efficiency losses inherent in the heating process. By inputting accurate values, users receive a reliable estimate of the recovery time, enabling better household or commercial water heating management.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Water Heater Recovery Time Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines how long your water heater takes to reheat a full tank after use. Enter your tank size, heating element wattage or BTU output, and desired temperature rise to get an accurate recovery time estimate.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include tank capacity (in gallons), heating element power (in watts or BTU/hour), and the temperature difference between incoming water and your target temperature. The calculator uses these values to compute energy requirements and heating duration.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show recovery time in minutes or hours. Compare estimates across different tank and element combinations to identify which setup best matches your household's hot water demand and usage patterns.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To estimate your water heater’s recovery time, you need to provide four key inputs: the tank capacity in gallons, the heating power of your water heater in kilowatts (kW), the temperature rise in degrees Fahrenheit (the difference between the cold water temperature and the desired hot water temperature), and the efficiency percentage of your water heater. These inputs allow the calculator to determine how quickly your water heater can replenish hot water after depletion.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your water heater’s tank capacity, typically found on the unit’s label or manual.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the heating power rating of your water heater. For electric heaters, this is usually in kilowatts (kW). For gas heaters, convert BTU/hr to kW if necessary.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Specify the temperature rise, which is the difference between the incoming cold water temperature and the desired hot water temperature. For example, if your cold water is 50°F and you want 120°F hot water, the rise is 70°F.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the efficiency of your water heater as a percentage. Typical efficiencies range from 80% to 95%. If unknown, 90% is a reasonable default.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click “Calculate” to see the estimated recovery time in minutes.
-          </li>
+      {/* TABLE: Typical Water Heater Recovery Times by Type and Size */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Typical Water Heater Recovery Times by Type and Size</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Recovery times vary significantly based on fuel type, tank capacity, and heating element power.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tank Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Electric (4 kW)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Electric (5.5 kW)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Gas (40,000 BTU)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Tankless</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Instant</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Instant</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">54 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Instant</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">75 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">113 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">81 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">52 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Instant</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">108 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Instant</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Times assume 100°F temperature rise and average incoming water temperature of 50°F. Gas recovery based on standard residential BTU ratings.</p>
+      </section>
+
+      {/* TABLE: Water Heater Element Specifications and Energy Output */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Water Heater Element Specifications and Energy Output</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Heating element wattage and BTU output directly impact recovery time calculations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Element Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Wattage (Watts)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BTU/Hour</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Recovery (50-gal)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Standard Electric</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3,800–4,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13,000–13,650</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75–85 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Efficiency Electric</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5,500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18,770</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">54–60 min</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dual Element (Simultaneous)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,000–9,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27,300–30,700</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40–45 min</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Standard Gas (Residential)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40,000 BTU</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40,000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35–40 min</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">High-Capacity Gas</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50,000+ BTU</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50,000+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–30 min</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Electric wattage conversions: 1 watt ≈ 3.41 BTU/hour. Dual-element systems heat from top and bottom simultaneously, reducing recovery time significantly.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Insulate your water heater tank and hot water pipes to reduce heat loss and improve effective recovery by up to 10–15%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Choose a higher-wattage heating element (5.5 kW instead of 4 kW) to reduce recovery time by 25–30% with minimal cost increase.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your water heater's nameplate rating—nameplate wattage is more accurate than estimates when calculating true recovery time.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Consider tankless water heaters if recovery time is critical; they provide unlimited hot water without tank-based recovery delays.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Maintaining your water heater is essential for optimal recovery time and safety. Regularly flushing the tank to remove sediment buildup can improve heat transfer efficiency and extend the unit’s lifespan. Insulating your water heater and hot water pipes reduces heat loss, effectively shortening recovery time and saving energy. Always ensure your water heater’s thermostat is set to a safe temperature (typically 120°F) to prevent scalding and reduce energy consumption. If you notice unusually long recovery times, it may indicate a failing heating element or other mechanical issues requiring professional inspection.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          When working with water heaters, always follow manufacturer guidelines and local codes. Turn off power or gas supply before performing maintenance. If unsure, consult a licensed plumber or technician to avoid risks such as electric shock, gas leaks, or water damage.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing Tank Capacity with Recovery Volume</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Recovery time applies to reheating the entire tank—not partial refills; using only half your tank capacity will cut recovery time by roughly 50%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Incoming Water Temperature Variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Seasonal changes shift incoming water temperature from 40°F (winter) to 60°F (summer), varying recovery time by 15–20% without changing your heater.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Nameplate vs. Actual Element Wattage</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Older or degraded heating elements deliver less power than their nameplate rating; actual recovery times may be 10–20% longer than theoretical estimates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Thermostat Setpoint Impact</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Setting your thermostat lower (120°F vs. 140°F) reduces recovery time; each 10°F reduction cuts recovery by roughly 8–10%.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is water heater recovery time?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recovery time is how long it takes your water heater to reheat a full tank after hot water is depleted. A 50-gallon tank with an 4 kW element typically recovers in 1-2 hours.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does tank size affect recovery time?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Larger tanks take longer to heat; a 75-gallon tank requires 50% more recovery time than a 50-gallon tank with identical heating elements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between gas and electric recovery times?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gas water heaters recover 2-3 times faster than electric models; a gas 40-gallon tank recovers in 30-40 minutes versus 1-2 hours for electric.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does incoming water temperature affect recovery time?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—cold incoming water (40°F) requires more energy to heat than warm water (60°F), extending recovery time by 15-25% depending on climate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I reduce my water heater recovery time?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Upgrade to a higher-capacity heating element, insulate the tank, or consider a tankless water heater for instant recovery and 24-44% energy savings.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What heater wattage should I use in calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Standard electric elements are 4-6 kW (3,800-5,500 watts); check your water heater's nameplate or manual for exact specifications.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this recovery time estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Estimates assume 100°F temperature rise and optimal heating conditions; actual times vary 10-20% based on thermostat settings and element efficiency.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.energy.gov/energysaver/water-heaters"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Energy Saver - Water Heaters <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guide by the U.S. Department of Energy on water heater types, efficiency, and maintenance best practices.
-            </p>
+            <a href="https://www.energy.gov/energysaver/water-heating" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Department of Energy - Water Heating Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on water heater types, efficiency ratings, and recovery time optimization strategies.</p>
           </li>
           <li>
-            <a
-              href="https://extension.oregonstate.edu/gardening/techniques/energy-efficiency-water-heaters"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Oregon State University Extension - Energy Efficiency of Water Heaters <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Educational resource explaining water heater efficiency, recovery rates, and energy-saving tips.
-            </p>
+            <a href="https://www.ashrae.org/technical-resources/standards-and-guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ASHRAE Standards for Water Heater Performance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards for water heater testing, recovery time measurement, and efficiency benchmarks.</p>
           </li>
           <li>
-            <a
-              href="https://www.cdc.gov/healthywater/emergency/extreme-heat/water-heaters.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              CDC - Water Heater Safety <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official guidelines on safe water heater temperature settings and preventing scald injuries.
-            </p>
+            <a href="https://www.energystar.gov/products/water_heaters" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Water Heater Buyer's Guide - Energy Star</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Energy Star certified water heater comparisons, recovery time data, and long-term operating cost estimates.</p>
+          </li>
+          <li>
+            <a href="https://www.awwa.org/resources-tools/standards" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Water Works Association - Water Quality Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical standards for residential water heating systems and temperature maintenance requirements.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

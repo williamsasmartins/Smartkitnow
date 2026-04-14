@@ -60,20 +60,33 @@ export default function LightBulbCostPerYearCalculator() {
 
   const faqs = [
     {
-      question: "How does the wattage of a bulb affect its electricity cost?",
-      answer:
-        "Wattage indicates the power consumption of a light bulb. Higher wattage bulbs consume more electricity per hour, increasing your energy costs. For example, a 60W incandescent bulb uses more energy than a 10W LED bulb for the same amount of light output, resulting in higher annual costs.",
+      question: "How does the calculator determine annual light bulb cost?",
+      answer: "The calculator multiplies wattage by hours used per year and your local electricity rate ($/kWh) to estimate yearly energy cost for a single bulb.",
     },
     {
-      question: "Why is the cost per kWh important in this calculation?",
-      answer:
-        "The cost per kilowatt-hour (kWh) is the rate your utility company charges for electricity. This value varies by location and provider. Using your actual cost per kWh ensures the calculator provides an accurate estimate of your annual lighting expenses.",
+      question: "What's the difference between incandescent and LED bulb costs?",
+      answer: "LED bulbs use 75-80% less energy than incandescent bulbs; a 60W incandescent costs ~$6.50/year while an equivalent 9W LED costs ~$0.97/year at $0.12/kWh.",
     },
     {
-      question: "Can I use this calculator to compare LED and incandescent bulbs?",
-      answer:
-        "Absolutely. By inputting the wattage and usage hours for different bulb types, you can compare their annual electricity costs side-by-side. This helps in making informed decisions about energy-efficient lighting upgrades.",
+      question: "Should I include bulb replacement cost in the calculator?",
+      answer: "The calculator focuses on energy costs; however, LEDs last 25,000+ hours while incandescent bulbs last only 1,000 hours, making total ownership cost significantly lower for LEDs.",
     },
+    {
+      question: "How do I find my local electricity rate for the calculator?",
+      answer: "Check your electric bill for the per-kilowatt-hour (kWh) rate, typically between $0.10–$0.18 depending on your region and utility provider.",
+    },
+    {
+      question: "Can I use this calculator for outdoor or commercial lighting?",
+      answer: "Yes, the calculator works for any bulb type; just enter the wattage, daily usage hours, and your electricity rate for accurate cost estimates.",
+    },
+    {
+      question: "How does bulb brightness (lumens) affect operating cost?",
+      answer: "Lumens (brightness) don't directly affect cost—only wattage consumption does; higher-efficiency bulbs deliver more lumens per watt, lowering costs.",
+    },
+    {
+      question: "What's the payback period for switching from incandescent to LED?",
+      answer: "LED bulbs typically pay for themselves within 1-3 years through energy savings, despite higher upfront costs of $3-5 per bulb versus $0.50 for incandescent.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -194,112 +207,212 @@ export default function LightBulbCostPerYearCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Light Bulb Cost per Year Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Light Bulb Cost per Year Calculator is a practical tool designed to estimate the annual electricity expense associated with using one or more light bulbs in your home or workplace. By inputting the wattage of the bulb, average daily usage hours, your local electricity rate, and the number of bulbs, you receive a clear picture of how much energy your lighting consumes and what it costs you annually. This calculator empowers consumers to make informed decisions about lighting choices, encouraging energy-efficient upgrades that can lead to significant savings over time.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding the cost implications of different bulb types, such as incandescent, CFL, or LED, helps in selecting options that balance brightness, longevity, and energy consumption. This tool also highlights the impact of usage patterns and electricity rates on your overall lighting costs, making it an essential resource for budgeting and sustainability efforts.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Light Bulb Cost per Year Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates the annual energy cost of operating a light bulb based on its power consumption, daily usage, and your local electricity rate. Use it to compare costs across different bulb types and make informed purchasing decisions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter three key inputs: the bulb's wattage (found on the package or bulb itself), average daily hours used, and your electricity rate in $/kWh (check your utility bill). The calculator automatically multiplies these values to project yearly costs.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The result shows your annual operating expense for that single bulb. Multiply this by the number of bulbs in your home to estimate total lighting costs, and compare incandescent, CFL, and LED options to identify savings opportunities.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and requires only a few key pieces of information. First, identify the wattage of your light bulb, which is usually printed on the bulb itself or its packaging. Next, estimate how many hours per day the bulb is typically turned on. Then, enter your local electricity cost per kilowatt-hour (kWh), which can be found on your utility bill or provider's website. Finally, specify how many bulbs you want to calculate for.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the wattage of your light bulb (e.g., 10W for LED, 60W for incandescent).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the average number of hours the bulb is used daily (between 1 and 24).
-          </li>
-          <li>
-            <strong>Step 3:</strong> Provide your electricity cost per kWh, which varies by location and provider.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Specify the number of bulbs you want to calculate for to get total cost.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click "Calculate" to see your estimated annual electricity cost for lighting.
-          </li>
+      {/* TABLE: Annual Energy Cost by Bulb Type (Based on 3 Hours Daily Use) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Annual Energy Cost by Bulb Type (Based on 3 Hours Daily Use)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows yearly operating costs for common bulb types at the average US rate of $0.12/kWh.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Bulb Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Wattage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual kWh Used</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Cost</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Incandescent</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">65.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$7.88</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Halogen</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">47.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$5.64</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">CFL</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.70</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">LED</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.19</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Smart LED</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10W</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.32</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations assume 365 days/year × 3 hours/day. Actual costs vary by electricity rate and usage patterns.</p>
+      </section>
+
+      {/* TABLE: Impact of Daily Usage Hours on Annual LED Cost */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Impact of Daily Usage Hours on Annual LED Cost</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">LED bulb annual operating costs increase proportionally with daily usage hours at $0.12/kWh.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Hours Used</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual kWh (9W LED)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Annual Cost</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Cost</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1 hour</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.03</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.19</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.10</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1.97</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.16</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$3.16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.26</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24 hours (continuous)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">78.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$9.46</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0.79</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Continuous operation at 24 hours/day is unrealistic for most household bulbs but included for reference.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check your electric bill for the exact per-kWh rate rather than using national averages, as rates vary significantly by region.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">LED bulbs have lower wattage but similar brightness output; compare lumens (brightness) not watts to find true equivalents.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Calculate total cost of ownership by adding bulb purchase price to annual energy costs, favoring LEDs' 25,000+ hour lifespan.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this calculator when evaluating smart bulbs, color-changing LEDs, and specialty lighting to compare against standard bulbs.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When selecting light bulbs, consider not only the wattage but also the lumens, which indicate brightness. Opting for LED bulbs can drastically reduce your energy consumption and costs due to their high efficiency and long lifespan. Additionally, always ensure bulbs are compatible with your fixtures and dimmers to avoid electrical hazards. Regularly check for any flickering or unusual heat, which can indicate a faulty bulb or wiring issue that should be addressed promptly by a qualified electrician.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          To maximize savings, turn off lights when not in use and consider installing timers or motion sensors in frequently unoccupied areas. Also, keep bulbs and fixtures clean, as dust can reduce light output and efficiency. By combining smart usage habits with energy-efficient bulbs, you can significantly lower your lighting costs while contributing to environmental sustainability.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Lumens Instead of Wattage</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Lumens measure brightness, not energy consumption; always enter the bulb's wattage for accurate cost calculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Update Electricity Rate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using an outdated or incorrect $/kWh rate can skew results by 20-40%; verify your current rate from your latest utility bill.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming All Bulbs With Same Brightness Cost the Same</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 60W incandescent and 9W LED both produce ~800 lumens but cost $7.88 and $1.19 annually—efficiency matters more than perceived equivalence.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Seasonal Usage Variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator uses a fixed daily average; winter months with shorter daylight may require more artificial light, increasing actual costs.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator determine annual light bulb cost?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator multiplies wattage by hours used per year and your local electricity rate ($/kWh) to estimate yearly energy cost for a single bulb.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between incandescent and LED bulb costs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">LED bulbs use 75-80% less energy than incandescent bulbs; a 60W incandescent costs ~$6.50/year while an equivalent 9W LED costs ~$0.97/year at $0.12/kWh.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I include bulb replacement cost in the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator focuses on energy costs; however, LEDs last 25,000+ hours while incandescent bulbs last only 1,000 hours, making total ownership cost significantly lower for LEDs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I find my local electricity rate for the calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Check your electric bill for the per-kilowatt-hour (kWh) rate, typically between $0.10–$0.18 depending on your region and utility provider.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for outdoor or commercial lighting?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the calculator works for any bulb type; just enter the wattage, daily usage hours, and your electricity rate for accurate cost estimates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does bulb brightness (lumens) affect operating cost?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Lumens (brightness) don't directly affect cost—only wattage consumption does; higher-efficiency bulbs deliver more lumens per watt, lowering costs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the payback period for switching from incandescent to LED?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">LED bulbs typically pay for themselves within 1-3 years through energy savings, despite higher upfront costs of $3-5 per bulb versus $0.50 for incandescent.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.energy.gov/energysaver/save-electricity-and-fuel/lighting-choices-save-you-money"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Energy Saver - Lighting Choices Save You Money <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guide by the U.S. Department of Energy on how different lighting options affect energy consumption and costs.
-            </p>
+            <a href="https://www.eia.gov/electricity/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Energy Information Administration - Electricity Prices</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official source for average US electricity rates by state and region updated monthly.</p>
           </li>
           <li>
-            <a
-              href="https://www.epa.gov/energy/green-tips-lighting"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              EPA Green Tips: Lighting <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Environmental Protection Agency's tips on energy-efficient lighting and how it contributes to cost savings and environmental benefits.
-            </p>
+            <a href="https://www.energystar.gov/products/lighting_fans/light_bulbs" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ENERGY STAR - Light Bulb Comparison Guide</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource comparing energy consumption, lifespan, and cost savings across bulb types certified by ENERGY STAR.</p>
           </li>
           <li>
-            <a
-              href="https://extension.usu.edu/energy/energy-efficiency/lighting"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Utah State University Extension - Energy Efficient Lighting <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Educational resource explaining lighting efficiency, cost calculations, and practical advice for consumers.
-            </p>
+            <a href="https://consumer.ftc.gov/articles/how-save-money-lighting" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">FTC - Shopping for Light Bulbs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal Trade Commission guidance on understanding lighting labels, energy costs, and calculating long-term savings.</p>
+          </li>
+          <li>
+            <a href="https://www.energy.gov/energysaver/led-lighting" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Department of Energy - LED Lighting Facts</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">DOE resource providing technical specifications, efficiency data, and consumer information on LED technology and benefits.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

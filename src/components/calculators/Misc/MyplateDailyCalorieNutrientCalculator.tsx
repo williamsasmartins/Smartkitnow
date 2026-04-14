@@ -152,19 +152,32 @@ export default function MyplateDailyCalorieNutrientCalculator() {
   const faqs = [
     {
       question: "What is the MyPlate Daily Calorie/Nutrient Planner?",
-      answer:
-        "The MyPlate Daily Calorie/Nutrient Planner is a comprehensive calculator designed to estimate your daily calorie needs and provide nutrient distribution recommendations based on the USDA's MyPlate guidelines. It helps you plan balanced meals by considering your age, gender, height, weight, and activity level to promote a healthy lifestyle.",
+      answer: "This calculator estimates your daily calorie needs and recommended nutrient intake based on USDA MyPlate guidelines. It uses your age, sex, weight, height, and activity level to personalize recommendations.",
     },
     {
-      question: "How accurate is this calculator for my personal needs?",
-      answer:
-        "This calculator uses scientifically validated formulas such as the Mifflin-St Jeor Equation for Basal Metabolic Rate and adjusts for activity level to estimate your Total Daily Energy Expenditure. While it provides a strong baseline, individual needs may vary due to metabolism, health conditions, and lifestyle factors. It is recommended to consult a healthcare professional for personalized advice.",
+      question: "How does the calculator determine my daily calorie needs?",
+      answer: "It applies the Mifflin-St Jeor equation to calculate your basal metabolic rate, then multiplies by your activity factor (sedentary, moderate, or active) to estimate total daily energy expenditure.",
     },
     {
-      question: "Can I use this planner if I have dietary restrictions or special health conditions?",
-      answer:
-        "Yes, you can use this planner as a general guideline. However, if you have specific dietary restrictions, chronic illnesses, or special health conditions, it is important to consult with a registered dietitian or healthcare provider to tailor your nutrition plan accordingly.",
+      question: "What nutrients does MyPlate include in its recommendations?",
+      answer: "MyPlate provides guidance on calories, protein, carbohydrates, fiber, fat, sodium, and key vitamins and minerals like iron, calcium, and vitamin D based on USDA dietary guidelines.",
     },
+    {
+      question: "Can I use this calculator if I'm pregnant or breastfeeding?",
+      answer: "No, this standard calculator doesn't account for pregnancy or lactation; consult a healthcare provider for personalized recommendations during these periods.",
+    },
+    {
+      question: "How often should I update my information in this calculator?",
+      answer: "Recalculate every 3-6 months if your weight, activity level, or age changes significantly to keep recommendations accurate.",
+    },
+    {
+      question: "Does the MyPlate calculator work for children?",
+      answer: "While some versions include children's data, pediatric recommendations differ significantly; consult a pediatrician or registered dietitian for children under 18.",
+    },
+    {
+      question: "What if my calculated needs seem too high or too low?",
+      answer: "Individual metabolism varies; if results seem off, monitor your weight for 2-3 weeks and adjust intake by 200-300 calories as needed, or consult a registered dietitian.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -293,109 +306,210 @@ export default function MyplateDailyCalorieNutrientCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding MyPlate Daily Calorie/Nutrient Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The MyPlate Daily Calorie/Nutrient Planner is an advanced tool designed to help individuals estimate their daily caloric needs and understand the ideal distribution of macronutrients based on the USDA's MyPlate dietary guidelines. This planner integrates scientifically validated formulas, such as the Mifflin-St Jeor Equation for calculating Basal Metabolic Rate (BMR), and adjusts for physical activity levels to provide a personalized Total Daily Energy Expenditure (TDEE). By aligning calorie needs with nutrient recommendations, users can plan balanced meals that support overall health, weight management, and energy balance. This approach emphasizes the importance of consuming appropriate portions of fruits, vegetables, grains, protein foods, and dairy to meet nutritional requirements effectively.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the MyPlate Daily Calorie/Nutrient Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The MyPlate Daily Calorie/Nutrient Planner calculates your personalized daily calorie goal and recommended nutrient intake based on USDA MyPlate guidelines. It translates general nutrition science into actionable, individualized targets for your specific body and lifestyle.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your age, biological sex, current weight, height, and activity level (sedentary, lightly active, moderately active, very active, or extremely active). The calculator uses these inputs to estimate your basal metabolic rate and total daily energy expenditure.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review your personalized calorie goal and nutrient targets (protein, carbohydrates, fiber, fat, sodium, and micronutrients). Use these numbers as a reference when meal planning, grocery shopping, and tracking food intake to stay aligned with healthy nutrition goals.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To obtain an accurate estimate of your daily calorie and nutrient needs, input your personal information into the calculator fields. This includes your age, gender, height in centimeters, weight in kilograms, and your typical activity level. The calculator uses these inputs to compute your Basal Metabolic Rate and adjusts it according to your activity level to estimate your Total Daily Energy Expenditure. The results will provide you with a recommended calorie intake and a breakdown of macronutrients aligned with MyPlate guidelines.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter your age in years. The calculator is optimized for adults aged 18 to 120.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Select your gender to apply the correct BMR formula adjustment.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input your height in centimeters and weight in kilograms for precise metabolic calculations.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Choose your activity level from sedentary to extra active to reflect your daily energy expenditure.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click "Calculate" to view your estimated daily calorie needs and nutrient distribution.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Use the provided nutrient and serving size recommendations to plan balanced meals following MyPlate guidelines.
-          </li>
+      {/* TABLE: Daily Calorie Needs by Activity Level (Adult Female, 30 years, 5'5", 140 lbs) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Needs by Activity Level (Adult Female, 30 years, 5'5", 140 lbs)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimated daily calorie requirements vary based on physical activity patterns.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Description</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Estimated Daily Calories</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sedentary</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Little or no exercise</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800-2,000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lightly Active</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exercise 1-3 days/week</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,050-2,250</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderately Active</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exercise 3-5 days/week</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,300-2,500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Very Active</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exercise 6-7 days/week</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,550-2,800</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Extremely Active</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Athletic training daily</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,850-3,100</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calculations use Mifflin-St Jeor equation; individual needs vary by metabolism.</p>
+      </section>
+
+      {/* TABLE: MyPlate Daily Nutrient Recommendations (Adult Female, 2,000 calories) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">MyPlate Daily Nutrient Recommendations (Adult Female, 2,000 calories)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">USDA guidelines for essential macronutrients and micronutrients at a 2,000-calorie intake level.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Nutrient</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Target</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Source Examples</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Protein</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-60g (10-12% calories)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Poultry, beans, nuts, yogurt</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Carbohydrates</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">225-325g (45-65% calories)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Whole grains, fruits, vegetables</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dietary Fiber</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Oats, beans, berries, vegetables</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Total Fat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">44-78g (20-35% calories)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Olive oil, avocados, fish</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sodium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;2,300mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Limit processed foods, salt</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Calcium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,000mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dairy, leafy greens, fortified foods</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Iron</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18mg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Red meat, spinach, fortified cereals</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Recommendations follow 2020-2025 USDA Dietary Guidelines for Americans.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your current weight accurately on a digital scale to ensure your calorie and nutrient recommendations are based on your true body composition.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Select the activity level that matches your typical week—be honest about exercise frequency to avoid overestimating or underestimating calorie needs.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use your nutrient targets as ranges rather than rigid limits; aim to stay within 10% above or below the recommendation for macronutrients.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Pair this calculator with a food tracking app to monitor actual nutrient intake and compare it against your personalized MyPlate recommendations.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          While this planner offers a scientifically grounded estimate of your daily calorie and nutrient needs, individual variations such as metabolism, medical conditions, and lifestyle factors can influence actual requirements. It is advisable to use this tool as a guideline rather than an absolute prescription. For those with specific health concerns, dietary restrictions, or goals such as weight loss, muscle gain, or managing chronic diseases, consulting a registered dietitian or healthcare professional is essential. Additionally, gradual changes to diet and activity levels are recommended to ensure sustainable and safe health improvements.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating Activity Level</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Choosing a higher activity level than your actual routine inflates calorie recommendations, leading to unintended weight gain.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Micronutrient Targets</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Focusing only on calories while neglecting fiber, sodium, and minerals misses key health markers that MyPlate emphasizes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Outdated Personal Data</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Plugging in old weight or activity information produces inaccurate recommendations that don't reflect your current lifestyle.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Applying Results Too Rigidly</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Treating calculated targets as absolute rules instead of guidelines can lead to disordered eating; allow for natural daily variation.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the MyPlate Daily Calorie/Nutrient Planner?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator estimates your daily calorie needs and recommended nutrient intake based on USDA MyPlate guidelines. It uses your age, sex, weight, height, and activity level to personalize recommendations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does the calculator determine my daily calorie needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">It applies the Mifflin-St Jeor equation to calculate your basal metabolic rate, then multiplies by your activity factor (sedentary, moderate, or active) to estimate total daily energy expenditure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What nutrients does MyPlate include in its recommendations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">MyPlate provides guidance on calories, protein, carbohydrates, fiber, fat, sodium, and key vitamins and minerals like iron, calcium, and vitamin D based on USDA dietary guidelines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator if I'm pregnant or breastfeeding?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this standard calculator doesn't account for pregnancy or lactation; consult a healthcare provider for personalized recommendations during these periods.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I update my information in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate every 3-6 months if your weight, activity level, or age changes significantly to keep recommendations accurate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the MyPlate calculator work for children?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While some versions include children's data, pediatric recommendations differ significantly; consult a pediatrician or registered dietitian for children under 18.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my calculated needs seem too high or too low?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Individual metabolism varies; if results seem off, monitor your weight for 2-3 weeks and adjust intake by 200-300 calories as needed, or consult a registered dietitian.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/nutrition/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Centers for Disease Control and Prevention - Nutrition (CDC) <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive information on nutrition, dietary guidelines, and public health recommendations to promote healthy eating habits.
-            </p>
+            <a href="https://www.myplate.gov" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA MyPlate Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official USDA resource for personalized nutrition recommendations and MyPlate food group guidance.</p>
           </li>
           <li>
-            <a
-              href="https://www.choosemyplate.gov/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              USDA Choose MyPlate <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official USDA resource providing detailed guidance on balanced meal planning and portion recommendations based on the MyPlate model.
-            </p>
+            <a href="https://www.dietaryguidelines.gov" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Dietary Guidelines for Americans 2020-2025</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based nutrition recommendations from the USDA and HHS covering calorie, nutrient, and food group targets.</p>
           </li>
           <li>
-            <a
-              href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              National Heart, Lung, and Blood Institute - BMI and Calorie Needs <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Provides tools and calculators for estimating calorie needs and understanding body mass index for health management.
-            </p>
+            <a href="https://bwsimulator.niddk.nih.gov" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NIH Body Weight Planner</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Advanced calculator using the Mifflin-St Jeor equation and weight projection modeling for personalized calorie planning.</p>
+          </li>
+          <li>
+            <a href="https://www.eatright.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Academy of Nutrition and Dietetics</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional organization providing evidence-based nutrition information and registered dietitian referrals.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

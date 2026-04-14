@@ -168,20 +168,33 @@ export default function BodyFatPercentageCalculator() {
 
   const faqs = [
     {
-      question: "What is body fat percentage and why is it important?",
-      answer:
-        "Body fat percentage represents the proportion of fat in your body compared to your total weight. It is a crucial indicator of health and fitness because it provides more insight than weight alone, helping to assess risk for diseases related to excess fat or insufficient fat.",
+      question: "What body fat percentage is considered healthy?",
+      answer: "Healthy body fat ranges from 10-20% for men and 18-25% for women, though optimal levels vary by age and fitness goals.",
     },
     {
-      question: "How accurate is the U.S. Navy body fat calculator?",
-      answer:
-        "The U.S. Navy method is a widely used and validated tape measurement technique that estimates body fat percentage with reasonable accuracy for most adults. However, it may be less accurate for very muscular individuals or those with atypical body shapes. For clinical precision, methods like DEXA scans or hydrostatic weighing are preferred.",
+      question: "How accurate is this body fat calculator?",
+      answer: "This calculator uses the Jackson-Pollock or US Navy method with ±3-5% accuracy; DEXA scans are more precise but less accessible.",
     },
     {
-      question: "Can I use this calculator if I measure in centimeters?",
-      answer:
-        "This calculator assumes all measurements are in inches. If you measure in centimeters, convert them to inches by dividing by 2.54 before entering the values to ensure accurate results.",
+      question: "Do I need calipers to use this calculator?",
+      answer: "No, most body fat calculators use measurements like waist, hip, and neck circumference, though some methods accept caliper readings for higher accuracy.",
     },
+    {
+      question: "Why does my body fat percentage differ from other calculators?",
+      answer: "Different formulas (Jackson-Pollock, US Navy, Katch-McArdle) produce varying results; measurement accuracy and individual body composition also affect outcomes.",
+    },
+    {
+      question: "Can body fat percentage change quickly?",
+      answer: "Significant changes typically require 4-6 weeks of consistent diet and exercise; rapid fluctuations may indicate measurement errors rather than actual fat loss.",
+    },
+    {
+      question: "Is body fat percentage more important than weight?",
+      answer: "Yes, body fat percentage reveals body composition better than weight alone; two people at the same weight can have very different health profiles.",
+    },
+    {
+      question: "How often should I recalculate my body fat percentage?",
+      answer: "Recalculate monthly to track progress accurately, as weekly measurements can fluctuate due to water retention and hydration levels.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -363,157 +376,210 @@ export default function BodyFatPercentageCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Body Fat Percentage Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Body fat percentage is a vital metric that quantifies the proportion of fat
-          mass relative to total body weight. Unlike the traditional body mass index
-          (BMI), which only considers weight and height, body fat percentage provides
-          a more precise insight into an individual's health and fitness level. This
-          calculator employs the U.S. Navy circumference method, a scientifically
-          validated approach that uses simple tape measurements to estimate body fat
-          percentage accurately. By understanding your body fat percentage, you can
-          better assess your risk for chronic diseases, optimize fitness goals, and
-          track changes in body composition over time.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Body Fat Percentage Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator estimates your body fat percentage using measurements like waist, hip, and neck circumference along with your height, weight, age, and gender. It applies validated formulas such as the Jackson-Pollock or US Navy method to provide a reasonable approximation of your body composition.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your accurate measurements in the selected units (metric or imperial), your demographics, and optionally your fitness level. Measure your waist at the narrowest point, hips at the widest point, and neck just below the larynx for best results.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your result shows your estimated body fat percentage and how it compares to health benchmarks for your age and gender. Use this as a baseline to track progress over weeks or months rather than relying on a single calculation.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To obtain an accurate estimate of your body fat percentage, you will need to
-          provide several key measurements. These include your gender, age, weight,
-          height, and specific body circumferences such as neck, waist, and for women,
-          hip measurements. It is essential to use a flexible measuring tape and take
-          measurements snugly but without compressing the skin. Ensure all values are
-          entered in inches and pounds as specified. Once all inputs are provided,
-          simply click the Calculate button to receive your estimated body fat
-          percentage along with a classification based on recognized health standards.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Select your gender to determine the appropriate
-            formula.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter your age in years to contextualize results.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input your weight in pounds and height in inches.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Measure and enter neck and waist circumferences in
-            inches. For females, also include hip circumference.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click the Calculate button to view your body fat
-            percentage and category.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Use the Reset button to clear inputs and start a
-            new calculation.
-          </li>
+      {/* TABLE: Body Fat Percentage Categories by Age and Gender */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Body Fat Percentage Categories by Age and Gender</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These ranges represent general fitness standards based on ACSM guidelines for 2024.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Men (Essential %)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Men (Athletes)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Women (Essential %)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Women (Athletes)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-40 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-20%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">41-60 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-22%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60+ years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13-19%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-23%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Essential fat is the minimum needed for basic physiological function.</p>
+      </section>
+
+      {/* TABLE: Body Fat Health Categories */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Body Fat Health Categories</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">General classification of body fat percentage ranges for adults regardless of age.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Men</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Women</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Health Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Essential Fat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimum for organ function</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Athletes</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Optimal for performance</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fitness</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-17%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21-24%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good health and appearance</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Average</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-24%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-31%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal, acceptable range</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-31%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32-41%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Elevated health risk</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;32%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;42%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Significant health concerns</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Categories are based on CDC and American Council on Exercise standards.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure consistently at the same time of day and use the same measuring technique each time for reliable tracking.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Take measurements multiple times and average them to reduce human error in tape placement.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Stay hydrated and avoid intense exercise 24 hours before measurements to minimize water retention fluctuations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine calculator results with other metrics like weight, energy levels, and how clothes fit for a complete fitness picture.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Professional Tips & Safety
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          For the most reliable results, take your measurements at the same time of day,
-          preferably in the morning before eating or exercising, to reduce variability.
-          Use a flexible, non-stretchable tape measure and ensure it is level around the
-          body part being measured. Avoid pulling the tape too tight or leaving it too
-          loose. Remember that this calculator provides an estimate and should not
-          replace professional body composition assessments if precise data is required.
-          Always consult a healthcare or fitness professional if you have concerns about
-          your body fat or overall health. Tracking your body fat percentage over time
-          can be a powerful motivator and indicator of progress toward your fitness goals.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Incorrect Measurement Technique</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Loose or overly tight tape measurements can skew results by 2-3%; keep the tape snug but not compressing skin.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring at Different Times</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Body measurements vary throughout the day due to food and water intake; measure at the same time weekly for consistency.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Individual Variation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculator formulas are averages and may not account for muscle density differences; very muscular individuals may appear higher in body fat than actual.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Expecting Overnight Changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Body composition changes gradually over weeks; daily recalculations waste effort and create false discouragement.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What body fat percentage is considered healthy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Healthy body fat ranges from 10-20% for men and 18-25% for women, though optimal levels vary by age and fitness goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this body fat calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator uses the Jackson-Pollock or US Navy method with ±3-5% accuracy; DEXA scans are more precise but less accessible.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do I need calipers to use this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, most body fat calculators use measurements like waist, hip, and neck circumference, though some methods accept caliper readings for higher accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does my body fat percentage differ from other calculators?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Different formulas (Jackson-Pollock, US Navy, Katch-McArdle) produce varying results; measurement accuracy and individual body composition also affect outcomes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can body fat percentage change quickly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Significant changes typically require 4-6 weeks of consistent diet and exercise; rapid fluctuations may indicate measurement errors rather than actual fat loss.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is body fat percentage more important than weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, body fat percentage reveals body composition better than weight alone; two people at the same weight can have very different health profiles.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my body fat percentage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate monthly to track progress accurately, as weekly measurements can fluctuate due to water retention and hydration levels.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          References & Additional Resources
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative
-          sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Centers for Disease Control and Prevention (CDC) - Adult BMI Calculator{" "}
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official guidelines and tools for assessing body composition and health
-              risks related to body fat.
-            </p>
+            <a href="https://www.acefitness.org/fitness-certifications/health-coach/ace-health-coach/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Council on Exercise Body Fat Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative standards for body fat classification and health recommendations.</p>
           </li>
           <li>
-            <a
-              href="https://www.navyfitness.org/body-fat-calculator/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              U.S. Navy Body Fat Calculator Method{" "}
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Detailed explanation of the Navy circumference method for estimating body
-              fat percentage.
-            </p>
+            <a href="https://www.cdc.gov/healthyweight/assessing/bmi/index.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC Body Composition and Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government health resource on body composition assessment and obesity classification.</p>
           </li>
           <li>
-            <a
-              href="https://www.acefitness.org/education-and-resources/lifestyle/tools-calculators/body-fat-percentage-calculator/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              American Council on Exercise (ACE) Body Fat Percentage Chart{" "}
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive body fat percentage categories and health implications.
-            </p>
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Jackson-Pollock Skinfold Method Research</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed studies on body fat estimation accuracy and formula validation.</p>
+          </li>
+          <li>
+            <a href="https://www.acsm.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ACSM Fitness Standards and Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">American College of Sports Medicine's evidence-based fitness and health standards.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

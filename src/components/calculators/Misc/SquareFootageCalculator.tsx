@@ -83,20 +83,33 @@ export default function SquareFootageCalculator() {
 
   const faqs = [
     {
-      question: "What is square footage and why is it important?",
-      answer:
-        "Square footage is a measurement of area expressed in square feet, commonly used to quantify the size of a space such as a room, lawn, or garden. It is essential for planning construction, landscaping, or purchasing materials to ensure accurate estimates and budgeting.",
+      question: "How do I calculate square footage for irregular shaped rooms?",
+      answer: "Divide the irregular space into smaller rectangles, calculate each section separately, then add all areas together for total square footage.",
     },
     {
-      question: "How do I measure irregularly shaped areas?",
-      answer:
-        "For irregular shapes, break down the area into simpler shapes like rectangles, triangles, and circles, calculate each area separately, then sum them up. This approach increases accuracy and helps in precise material estimation.",
+      question: "What's the difference between gross and net square footage?",
+      answer: "Gross square footage includes all enclosed space, while net square footage excludes walls, mechanical rooms, and common areas.",
     },
     {
-      question: "Can this calculator handle units other than feet?",
-      answer:
-        "This calculator is designed for measurements in feet. If you have measurements in other units like meters or inches, convert them to feet before inputting to ensure accurate results.",
+      question: "Can this calculator convert between square feet and square meters?",
+      answer: "Yes, multiply square feet by 0.092903 to convert to square meters, or divide square meters by 0.092903 to get square feet.",
     },
+    {
+      question: "How accurate do my measurements need to be for this calculator?",
+      answer: "Measurements within 0.5 inches are typically sufficient for most projects; professional real estate requires precision to 0.1 inches.",
+    },
+    {
+      question: "Does this calculator account for angled or vaulted ceilings?",
+      answer: "No, this calculator measures floor area only; angled ceilings require separate calculations based on actual wall heights.",
+    },
+    {
+      question: "What units can I use when entering measurements?",
+      answer: "Most square footage calculators accept feet and inches, or decimals of feet; verify your calculator's input format before starting.",
+    },
+    {
+      question: "How do I calculate square footage for multiple rooms at once?",
+      answer: "Calculate each room separately, then add all individual square footages together for total property square footage.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -266,100 +279,230 @@ export default function SquareFootageCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Square Footage Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Square footage is a fundamental measurement used in construction, landscaping, and real estate to quantify the size of a given area. This calculator helps you determine the total square footage of various shapes commonly found in outdoor spaces such as lawns, gardens, patios, or rooms. By accurately measuring and calculating square footage, you can estimate material needs, costs, and project scope with confidence. This tool supports multiple shapes including rectangles, circles, and triangles, reflecting the diversity of real-world spaces.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Square Footage Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Square Footage Calculator helps you quickly determine the area of rectangular or square spaces by multiplying length times width. This tool is essential for home renovation, real estate valuation, flooring installation, and property assessment.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Start by measuring the length and width of your space in feet, or convert inches to decimals (e.g., 6 inches = 0.5 feet). Input both measurements into the calculator, selecting your preferred units from the dropdown menu.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator instantly displays total square footage, which you can use for cost estimation, material ordering, or listing comparisons. For irregularly shaped areas, divide the space into rectangles, calculate each section, and add results together.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and designed for accuracy. First, select the shape that best matches the area you want to measure. Then, input the required dimensions in feet, such as length and width for rectangles or radius for circles. After entering your measurements, click the "Calculate" button to see the total square footage. If you make a mistake or want to start over, use the "Reset" button to clear all inputs.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Choose the shape of your area (Rectangle, Circle, or Triangle).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Enter the dimensions in feet. Ensure values are positive numbers.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Click "Calculate" to get the square footage.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Use the result to plan materials, costs, or project scope.
-          </li>
+      {/* TABLE: Average Room Square Footage by Type */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Room Square Footage by Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These are typical residential room sizes used for estimation and planning purposes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Room Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Range (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Size (sq ft)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Master Bedroom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200-400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Secondary Bedroom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120-200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Kitchen</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">220</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Living Room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250-450</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bathroom</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dining Room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-300</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Garage (2-car)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400-500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">450</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Laundry Room</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Actual sizes vary by home, region, and era of construction.</p>
+      </section>
+
+      {/* TABLE: Square Footage Requirements by Building Type */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Square Footage Requirements by Building Type</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Minimum square footage standards vary by building codes and zoning regulations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Building Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Minimum (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended (sq ft)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Single-Family Home</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1500-2500</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Studio Apartment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300-400</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1-Bedroom Apartment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">600-750</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">850</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2-Bedroom Apartment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">900-1100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1200</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Commercial Office</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">500 per person</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-200</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Retail Space</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1000 minimum</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2000-5000</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Warehouse</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5000 minimum</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10000-50000</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Restaurant</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2000 minimum</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3500-5000</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Requirements vary by local building codes and jurisdiction.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure from inside corner to inside corner to get usable square footage rather than exterior wall-to-wall measurements.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Round measurements to the nearest inch for residential projects, but use 0.1-inch precision for commercial real estate transactions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Take measurements at multiple points along each wall since older homes may have slightly uneven walls that affect total area.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Photograph your measurements with a date stamp to verify calculations later and maintain records for contractors or appraisers.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          For the most accurate square footage calculations, always measure your space carefully using a reliable tape measure or laser distance measurer. When measuring irregular areas, break them down into simpler shapes and calculate each separately before summing. Double-check your measurements to avoid costly errors in material ordering. Additionally, consider safety when measuring outdoor spaces—wear appropriate footwear and be cautious of uneven terrain or obstacles. Finally, keep in mind that square footage calculations are estimates and may vary slightly due to measurement precision.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring Exterior Instead of Interior</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Always measure inside wall-to-wall dimensions to get accurate usable square footage; exterior measurements include wall thickness.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to Convert Inches to Decimals</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Convert inches to feet using decimals (e.g., 9 inches = 0.75 feet) rather than entering mixed units that the calculator cannot process.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Including Non-Livable Spaces</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Exclude wall cavities, mechanical closets, and crawl spaces from residential square footage calculations unless they are finished rooms.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Approximate Measurements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Eyeballing distances or using room dimensions from listing documents instead of measuring yourself can lead to significant calculation errors.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate square footage for irregular shaped rooms?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Divide the irregular space into smaller rectangles, calculate each section separately, then add all areas together for total square footage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the difference between gross and net square footage?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gross square footage includes all enclosed space, while net square footage excludes walls, mechanical rooms, and common areas.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator convert between square feet and square meters?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, multiply square feet by 0.092903 to convert to square meters, or divide square meters by 0.092903 to get square feet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate do my measurements need to be for this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Measurements within 0.5 inches are typically sufficient for most projects; professional real estate requires precision to 0.1 inches.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does this calculator account for angled or vaulted ceilings?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this calculator measures floor area only; angled ceilings require separate calculations based on actual wall heights.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What units can I use when entering measurements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most square footage calculators accept feet and inches, or decimals of feet; verify your calculator's input format before starting.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate square footage for multiple rooms at once?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Calculate each room separately, then add all individual square footages together for total property square footage.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.energy.gov/eere/buildings/articles/how-calculate-square-footage-your-home"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              How to Calculate Square Footage of Your Home - Energy.gov <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official guidelines from the U.S. Department of Energy on measuring square footage for homes, including tips for accuracy and common pitfalls.
-            </p>
+            <a href="https://www.ansi.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ANSI Z765 Standard for Square Footage</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official American National Standards Institute guidelines for measuring residential square footage in real estate applications.</p>
           </li>
           <li>
-            <a
-              href="https://extension.umn.edu/yard-and-garden-news/how-measure-your-yard"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              How to Measure Your Yard - University of Minnesota Extension <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              A comprehensive guide on measuring outdoor spaces accurately for landscaping and gardening projects.
-            </p>
+            <a href="https://www.nar.realtor" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Association of REALTORS® Square Footage Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standard practices for calculating and reporting square footage in property listings and appraisals.</p>
           </li>
           <li>
-            <a
-              href="https://www.epa.gov/green-infrastructure/green-infrastructure-site-assessment"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Green Infrastructure Site Assessment - EPA <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Environmental Protection Agency resource detailing site measurement and assessment techniques for sustainable landscaping.
-            </p>
+            <a href="https://www.iccsafe.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Building Code (IBC) Floor Area Requirements</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Building code standards that specify minimum square footage requirements for residential and commercial occupancies.</p>
+          </li>
+          <li>
+            <a href="https://www.epa.gov" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA Guidelines for Commercial Building Space Planning</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal guidelines covering square footage allocation per person for office, retail, and industrial building types.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

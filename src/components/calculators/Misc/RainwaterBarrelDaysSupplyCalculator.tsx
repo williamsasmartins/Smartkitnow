@@ -75,20 +75,33 @@ export default function RainwaterBarrelDaysSupplyCalculator() {
 
   const faqs = [
     {
-      question: "What is 'Days of Supply' in the context of rainwater barrels?",
-      answer:
-        "Days of Supply refers to the number of days your stored rainwater will last based on your average daily water usage. It helps gardeners and homeowners understand how long their rainwater reserves can sustain irrigation or other uses during dry periods.",
+      question: "What does the Rainwater Barrel Days of Supply calculator measure?",
+      answer: "This calculator determines how many days your rainwater barrel can supply water based on barrel capacity, daily water usage, and local rainfall. It helps you assess whether your barrel meets your household or garden watering needs.",
     },
     {
-      question: "How can I estimate my daily water usage for irrigation?",
-      answer:
-        "Estimating daily water usage depends on factors such as garden size, plant types, and climate. A general guideline is that most gardens require about 0.5 to 1 inch of water per week, which translates to roughly 0.62 gallons per square foot per week. Dividing this by seven gives a daily average. For precise measurement, consider using a water meter or tracking irrigation volumes.",
+      question: "How do I calculate days of supply from my barrel capacity?",
+      answer: "Divide your barrel capacity (in gallons) by your daily water consumption (in gallons per day). For example, a 100-gallon barrel with 10 GPD usage provides 10 days of supply before refilling.",
     },
     {
-      question: "Can this calculator help me decide the size of rainwater barrels I need?",
-      answer:
-        "Yes, by inputting your estimated daily water usage and desired days of supply, you can reverse-engineer the required barrel volume. This helps in planning and purchasing the appropriate rainwater storage capacity for your needs.",
+      question: "What daily water usage should I input for garden watering?",
+      answer: "Typical garden watering ranges from 5–20 GPD depending on plant type, climate, and season. A vegetable garden uses roughly 1–2 inches weekly, equal to 600–1,200 gallons per 1,000 sq ft.",
     },
+    {
+      question: "How does rainfall affect my barrel's days of supply?",
+      answer: "Regular rainfall replenishes your barrel, extending supply days significantly. In areas receiving 1 inch of rain weekly on a 200 sq ft roof, you gain approximately 830 gallons, adding 83 days of supply at 10 GPD usage.",
+    },
+    {
+      question: "Can multiple barrels increase my days of supply?",
+      answer: "Yes, combining barrels multiplies your capacity directly. Two 100-gallon barrels equal 200 gallons total, doubling your days of supply compared to a single barrel.",
+    },
+    {
+      question: "What barrel size should I use for year-round watering?",
+      answer: "For dry seasons lasting 60–90 days with 10 GPD usage, a 600–900 gallon barrel is recommended. Larger systems or seasonal adjustments may be needed in arid climates.",
+    },
+    {
+      question: "How do seasonal changes impact my barrel's effectiveness?",
+      answer: "Summer increases water demand (15–25 GPD) while reducing rainfall, cutting supply days by 30–50%. Winter lowers demand but provides inconsistent precipitation in many regions.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -181,110 +194,212 @@ export default function RainwaterBarrelDaysSupplyCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Rainwater Barrel Days of Supply</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The concept of "Days of Supply" for a rainwater barrel is a critical metric for gardeners, homeowners, and sustainability enthusiasts who rely on harvested rainwater for irrigation or other non-potable uses. It quantifies how long the stored water in your barrel will last given your typical daily consumption. This measure helps in planning water usage during dry spells, ensuring that your plants or garden receive adequate hydration without exhausting your reserves prematurely. By understanding this, you can optimize your rainwater harvesting system, avoid overuse, and contribute to water conservation efforts.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Calculating days of supply involves two main factors: the total volume of water stored in your barrel and your average daily water usage. The ratio of these two values gives a straightforward estimate of supply duration. However, real-world factors such as rainfall frequency, evaporation, and seasonal water needs can influence this estimate. This calculator provides a foundational estimate to guide your water management decisions effectively.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Rainwater Barrel Days of Supply Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Rainwater Barrel Days of Supply calculator estimates how long your stored rainwater will sustain your household or garden needs. It combines barrel capacity, daily water consumption, and rainfall data to project your water independence timeline.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Enter your barrel capacity in gallons, your average daily water usage in gallons per day, and your region's typical monthly rainfall. The calculator uses these inputs to determine supply duration and suggests optimization strategies.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret results as the maximum days your barrel can supply water without additional rainfall. Lower numbers indicate need for larger barrels, multiple systems, or reduced usage; higher numbers show strong water security during dry periods.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To get an accurate estimate of how long your rainwater barrel will supply water, you need to input three key pieces of information. First, enter the total volume of your rainwater barrel in gallons. This is typically marked on the barrel or available from the manufacturer. Second, estimate your average daily water usage in gallons, which might include watering plants, washing, or other outdoor uses. Lastly, optionally provide the average number of days between rainfall events to contextualize how often your barrel is replenished.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Measure or find out your rain barrel's capacity in gallons.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Estimate your daily water usage by considering your garden size and watering habits.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Optionally, input the average days between rainfall to understand replenishment frequency.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Click "Calculate" to see how many days your stored rainwater will last.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Use the results to plan irrigation schedules and water conservation strategies.
-          </li>
+      {/* TABLE: Barrel Capacity vs. Days of Supply */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Barrel Capacity vs. Days of Supply</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how many days different barrel sizes supply water at various consumption rates.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Barrel Capacity (Gallons)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5 GPD Usage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">10 GPD Usage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">20 GPD Usage</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 days</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 days</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 days</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Days of supply = Barrel Capacity ÷ Daily Usage. Results assume no rainfall replenishment.</p>
+      </section>
+
+      {/* TABLE: Rainfall Collection by Roof Area */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Rainfall Collection by Roof Area</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Monthly water collection varies based on roof size and average rainfall intensity.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Roof Area (sq ft)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">0.5 inch Rain</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1 inch Rain</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2 inch Rain</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">62 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">124 gallons</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">62 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">124 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">248 gallons</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">500</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">155 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">310 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">620 gallons</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">310 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">620 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1240 gallons</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2000</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">620 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1240 gallons</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2480 gallons</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Collection = Roof Area × Rainfall Depth × 0.62 gallons/sq ft per inch. Assumes 85% collection efficiency.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure actual daily usage by tracking garden watering time; most lawns need 0.5–1 inch weekly, roughly 300–600 gallons per 1,000 sq ft.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Install first-flush diverters to discard initial roof runoff, improving water quality and extending barrel supply by 15–20%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Position barrels on level ground and elevate them slightly for gravity-fed irrigation, reducing pump energy costs by up to 40%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine multiple smaller barrels instead of one large barrel to improve water distribution and accommodate multiple garden zones simultaneously.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When managing rainwater barrels, it is essential to maintain water quality and ensure safety. Always cover your barrels to prevent mosquito breeding and debris contamination. Regularly clean your barrels and gutters to avoid algae growth and sediment buildup, which can reduce water quality and storage capacity. Additionally, consider installing a first-flush diverter to prevent contaminants from the initial runoff from entering your barrel. Monitoring water usage and adjusting irrigation based on weather conditions can maximize the utility of your stored rainwater.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          From a professional standpoint, sizing your rainwater storage to match your garden's needs and local rainfall patterns is crucial. Oversized barrels may lead to stagnant water, while undersized barrels might not provide sufficient supply during dry spells. Use this calculator as a guide but complement it with local extension service advice and weather data for optimal results.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Collection Loss</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming 100% of rainfall reaches your barrel ignores roof debris, gutter leaks, and system inefficiency; actual collection is 75–90% of theoretical yield.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Underestimating Summer Usage</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many users calculate annual averages without accounting for peak summer demand, which can be 2–3× higher than winter, drastically reducing effective supply days.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Barrel Maintenance Loss</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Evaporation and sediment loss consume 5–15% of stored water monthly, particularly in hot climates, reducing your actual available supply.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overlooking Non-Potable Water Quality</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Rainwater barrels collect sediment and debris unsuitable for drinking; using untreated barrel water for potable purposes risks contamination.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does the Rainwater Barrel Days of Supply calculator measure?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator determines how many days your rainwater barrel can supply water based on barrel capacity, daily water usage, and local rainfall. It helps you assess whether your barrel meets your household or garden watering needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate days of supply from my barrel capacity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Divide your barrel capacity (in gallons) by your daily water consumption (in gallons per day). For example, a 100-gallon barrel with 10 GPD usage provides 10 days of supply before refilling.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What daily water usage should I input for garden watering?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Typical garden watering ranges from 5–20 GPD depending on plant type, climate, and season. A vegetable garden uses roughly 1–2 inches weekly, equal to 600–1,200 gallons per 1,000 sq ft.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does rainfall affect my barrel's days of supply?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Regular rainfall replenishes your barrel, extending supply days significantly. In areas receiving 1 inch of rain weekly on a 200 sq ft roof, you gain approximately 830 gallons, adding 83 days of supply at 10 GPD usage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can multiple barrels increase my days of supply?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, combining barrels multiplies your capacity directly. Two 100-gallon barrels equal 200 gallons total, doubling your days of supply compared to a single barrel.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What barrel size should I use for year-round watering?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For dry seasons lasting 60–90 days with 10 GPD usage, a 600–900 gallon barrel is recommended. Larger systems or seasonal adjustments may be needed in arid climates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do seasonal changes impact my barrel's effectiveness?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Summer increases water demand (15–25 GPD) while reducing rainfall, cutting supply days by 30–50%. Winter lowers demand but provides inconsistent precipitation in many regions.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.epa.gov/soakuptherain/soak-rain-rain-barrels"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              EPA - Soak Up The Rain: Rain Barrels <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guidance on rainwater harvesting, barrel maintenance, and water conservation best practices from the U.S. Environmental Protection Agency.
-            </p>
+            <a href="https://www.epa.gov/watersense" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">EPA Water Sense: Rainwater Harvesting</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal guidance on residential water conservation and rainwater harvesting best practices.</p>
           </li>
           <li>
-            <a
-              href="https://extension.umn.edu/water-management/rainwater-harvesting"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              University of Minnesota Extension - Rainwater Harvesting <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Detailed educational resources on rainwater harvesting techniques, system sizing, and water usage estimation tailored for residential and community gardens.
-            </p>
+            <a href="https://www.nrcs.usda.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Natural Resources Conservation Service: Water Harvesting</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Technical resources for designing and maintaining residential rainwater collection systems.</p>
           </li>
           <li>
-            <a
-              href="https://www.energy.gov/energysaver/water-heating"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Energy.gov - Water Use and Conservation <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              While focused on energy, this resource provides valuable insights into water usage patterns and conservation strategies applicable to rainwater harvesting.
-            </p>
+            <a href="https://www.arcsa.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Rainwater Catchment Systems Association</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry standards and guidelines for safe, effective rainwater harvesting and storage.</p>
+          </li>
+          <li>
+            <a href="https://www.weather.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Weather Service: Local Precipitation Data</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Historical rainfall and climate data by region for accurate barrel supply calculations.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

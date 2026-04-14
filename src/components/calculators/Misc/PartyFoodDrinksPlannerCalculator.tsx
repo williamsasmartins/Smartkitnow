@@ -139,20 +139,33 @@ export default function PartyFoodDrinksPlannerCalculator() {
 
   const faqs = [
     {
-      question: "How do I estimate food quantities for different types of parties?",
-      answer:
-        "Food quantities vary depending on the party type. Casual parties typically require more servings per guest per hour (about 1.5), while formal events tend to have lighter portions (around 1.0). Adjusting for vegetarian or non-vegetarian preferences also affects serving sizes, with vegetarian servings generally smaller in weight.",
+      question: "How many appetizers should I plan per person at a cocktail party?",
+      answer: "Plan 8-12 pieces per person for a 2-3 hour cocktail party, or 12-15 pieces if it's the main event without dinner.",
     },
     {
-      question: "How can I calculate drink amounts to avoid shortages or waste?",
-      answer:
-        "Estimate drinks based on guest count, party duration, and drink preferences. Alcoholic drinks average about 2 per guest per hour, while non-alcoholic drinks average 3. Mixed preferences fall in between. Always consider providing a variety of beverages and some buffer to ensure guests stay hydrated and satisfied.",
+      question: "What's the recommended amount of beverages per guest?",
+      answer: "Estimate 2-3 drinks per person for a 4-hour party; 1.5 drinks for a 2-hour event; and 3-4 drinks for a 5+ hour celebration.",
     },
     {
-      question: "Why is pizza included in the planner?",
-      answer:
-        "Pizza is a popular party food and serves as a convenient way to estimate portions for casual gatherings. Assuming 2 slices per guest and 8 slices per pizza helps you order the right number of pizzas without excess or shortage.",
+      question: "How much main dish should I prepare for 50 people?",
+      answer: "Plan 6-8 ounces of protein per person for a sit-down dinner, or 4-5 ounces if serving with substantial sides and appetizers.",
     },
+    {
+      question: "Can I use this calculator for dietary restrictions?",
+      answer: "Yes; the planner helps you estimate base quantities, then adjust percentages for vegetarian, vegan, gluten-free, and allergy-friendly options.",
+    },
+    {
+      question: "How do I account for non-drinkers at my party?",
+      answer: "Reduce your alcohol estimate by 15-20% and increase non-alcoholic beverages like water, juice, and mocktails by the same percentage.",
+    },
+    {
+      question: "What's the best way to handle leftovers in my calculations?",
+      answer: "Add 10-15% extra to your totals to ensure you don't run out; most perishable items can be repurposed for post-party meals.",
+    },
+    {
+      question: "Should I adjust quantities based on party type?",
+      answer: "Yes; casual backyard BBQs need less per person than formal seated dinners, and afternoon events require fewer drinks than evening parties.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -289,115 +302,218 @@ export default function PartyFoodDrinksPlannerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Party Food & Drinks Planner
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Planning the right amount of food and drinks for a party is crucial to ensure your guests are satisfied without excessive waste. This planner uses proven serving size guidelines and consumption rates based on party type, duration, and guest preferences to provide accurate estimates. By considering factors such as vegetarian or non-vegetarian food choices and alcoholic or non-alcoholic drink preferences, it tailors recommendations to your unique event. Additionally, it includes pizza calculations, a popular party staple, to help you order the perfect quantity.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool is designed to be flexible and adaptable for various party scenarios, from casual backyard barbecues to formal dinners. It helps hosts avoid the common pitfalls of under or overestimating quantities, saving money and reducing food waste while keeping guests happy and well-fed.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Party Food & Drinks Planner</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine exact quantities of food and beverages needed for any celebration. Simply enter your guest count, party type, and duration to receive customized recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Key inputs include total guests, event duration, party style (cocktail, dinner, casual), and any dietary restrictions or preferences. You can also specify your crowd's drinking habits and eating patterns.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Results show total food quantities (appetizers, mains, sides, desserts) and beverage estimates (alcoholic and non-alcoholic). Use these figures to create shopping lists and adjust based on your kitchen capacity and budget.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this planner is straightforward and intuitive. Begin by entering the number of guests attending your party and the expected duration in hours. Next, select the type of party you are hosting—casual or formal—as this affects portion sizes. Then, specify your guests' food preferences, choosing between vegetarian, non-vegetarian, or a mix of both. Finally, select the drink preferences, which influence the quantity and type of beverages needed.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the total number of guests expected to attend.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Input the duration of your event in hours.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Choose the party type to adjust serving sizes accordingly.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Select food preferences to tailor the food quantity.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Select drink preferences to estimate beverage needs.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Click "Calculate" to view your personalized food and drink quantities.
-          </li>
+      {/* TABLE: Food Quantities by Party Type (Per Person) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Food Quantities by Party Type (Per Person)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these benchmarks to estimate total food needed for your event.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Party Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Appetizers (pieces)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Main Dish (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Sides (oz)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dessert (oz)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cocktail Reception</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lunch Buffet</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dinner Party</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">BBQ/Casual</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Formal Seated Dinner</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Adjust upward for heavy drinkers or athletic crowds; reduce for elderly guests or afternoon events.</p>
+      </section>
+
+      {/* TABLE: Beverage Guidelines by Event Duration */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Beverage Guidelines by Event Duration</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Estimate total drinks needed based on party length and guest count.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Event Duration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Drinks Per Person</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: 30 Guests</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Alcohol:Non-Alcohol Ratio</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45 drinks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60:40</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60-75 drinks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60:40</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4 hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-90 drinks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55:45</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5+ hours</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90-120 drinks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50:50</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">All-day event (8+ hrs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120-150 drinks</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45:55</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Increase non-alcoholic options for daytime events, afternoon guests, and those with designated drivers.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always add 10-15% buffer to your food estimates to prevent running short mid-party.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Ask guests about dietary restrictions at least 2 weeks ahead so you can plan alternative options accurately.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Pre-cut and prep ingredients the day before to reduce stress and ensure consistent portion control.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the 60:40 alcohol-to-non-alcohol ratio as a baseline, adjusting for your specific guest demographics.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When planning food and drinks for your party, always consider the diversity of your guests' dietary needs and preferences. Offering a variety of options, including vegetarian and non-alcoholic beverages, ensures inclusivity and satisfaction. Keep in mind that longer events may require additional servings to keep guests comfortable and energized. Additionally, practicing safe food handling and storage is essential to prevent foodborne illnesses; keep cold foods refrigerated and hot foods properly heated.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          For alcoholic beverages, encourage responsible consumption and provide plenty of water and non-alcoholic options. Consider local regulations and guidelines regarding alcohol service. Lastly, always prepare a little extra to accommodate unexpected guests or larger appetites, but avoid excessive over-purchasing to minimize waste and environmental impact.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting About Hungry Guests</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Underestimating portions for active crowds or those coming straight from work often results in empty platters.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Accounting for Party Duration</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 2-hour cocktail party requires far less food and drink than a 5-hour celebration; duration significantly impacts consumption rates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Dietary Restrictions</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Assuming everyone eats the same foods leads to waste and disappointed guests; always ask about allergies and preferences upfront.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Over-Buying Perishables Without a Plan</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Purchasing excessive quantities of items that don't store well results in food waste and unnecessary expense.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many appetizers should I plan per person at a cocktail party?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Plan 8-12 pieces per person for a 2-3 hour cocktail party, or 12-15 pieces if it's the main event without dinner.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the recommended amount of beverages per guest?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Estimate 2-3 drinks per person for a 4-hour party; 1.5 drinks for a 2-hour event; and 3-4 drinks for a 5+ hour celebration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much main dish should I prepare for 50 people?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Plan 6-8 ounces of protein per person for a sit-down dinner, or 4-5 ounces if serving with substantial sides and appetizers.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for dietary restrictions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; the planner helps you estimate base quantities, then adjust percentages for vegetarian, vegan, gluten-free, and allergy-friendly options.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I account for non-drinkers at my party?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Reduce your alcohol estimate by 15-20% and increase non-alcoholic beverages like water, juice, and mocktails by the same percentage.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What's the best way to handle leftovers in my calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Add 10-15% extra to your totals to ensure you don't run out; most perishable items can be repurposed for post-party meals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust quantities based on party type?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; casual backyard BBQs need less per person than formal seated dinners, and afternoon events require fewer drinks than evening parties.</p>
+          </div>
+        </div>
       </section>
 
-      {/* NEW RICH REFERENCES SECTION */}
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://www.cdc.gov/foodsafety/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              CDC Food Safety (https://www.cdc.gov/foodsafety/index.html) <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guidelines on safe food handling and preparation to prevent foodborne illnesses during events.
-            </p>
+            <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Food Safety Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on food safety, storage times, and proper handling for large-scale food preparation.</p>
           </li>
           <li>
-            <a
-              href="https://extension.umn.edu/food-safety"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              University of Minnesota Extension - Food Safety (https://extension.umn.edu/food-safety) <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Expert advice on food safety practices and portion planning for gatherings and events.
-            </p>
+            <a href="https://www.restaurant.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Restaurant Association Portion Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Industry-standard serving sizes and quantity recommendations for various menu items and event types.</p>
           </li>
           <li>
-            <a
-              href="https://www.eatright.org/food/planning-and-prep/food-labels-and-packaging/portion-control"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Academy of Nutrition and Dietetics - Portion Control (https://www.eatright.org/food/planning-and-prep/food-labels-and-packaging/portion-control) <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Authoritative resource on understanding serving sizes and portion control to optimize food planning.
-            </p>
+            <a href="https://www.thespruceeats.com/party-planning-4159731" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">The Spruce Eats Party Planning Resource</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide covering appetizer quantities, beverage planning, and budget-friendly party food ideas.</p>
+          </li>
+          <li>
+            <a href="https://www.cdc.gov/foodsafety/communication/index.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC Food Safety at Gatherings</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for maintaining food safety during large gatherings and outdoor events.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

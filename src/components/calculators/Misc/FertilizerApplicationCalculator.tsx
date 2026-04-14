@@ -182,20 +182,33 @@ export default function FertilizerApplicationCalculator() {
 
   const faqs = [
     {
-      question: "Why do I need to know the nutrient percentages in my fertilizer?",
-      answer:
-        "Knowing the nutrient percentages (N-P-K) in your fertilizer is essential because it determines how much fertilizer you need to apply to meet your crop or lawn nutrient requirements. Fertilizers vary widely in nutrient content, and applying too little or too much can lead to poor plant growth or environmental harm.",
+      question: "How do I calculate the correct fertilizer rate for my lawn?",
+      answer: "Enter your lawn size in square feet, soil test results (nitrogen, phosphorus, potassium levels), and grass type. The calculator divides total nutrient needs by fertilizer concentration to determine pounds needed per 1,000 sq ft.",
     },
     {
-      question: "Can I use this calculator for any crop or lawn type?",
-      answer:
-        "Yes, this calculator provides a general method to estimate fertilizer amounts based on nutrient needs and fertilizer composition. However, nutrient requirements vary by crop type, soil conditions, and growth stage. For precise recommendations, consult local agricultural extension services or soil tests.",
+      question: "What nutrient ratios should I use for different crops?",
+      answer: "Common ratios: corn needs 150-180 lbs N/acre, soybeans need 0-20 lbs N/acre, and wheat needs 100-150 lbs N/acre depending on soil conditions and yield goals.",
     },
     {
-      question: "What units should I use for area and nutrient rates?",
-      answer:
-        "You can input area in square feet or square meters and select your preferred unit system (imperial or metric). Nutrient application rates should correspond to the unit system: pounds per acre for imperial, kilograms per hectare for metric. Consistency ensures accurate calculations.",
+      question: "Can I apply more fertilizer than the calculator recommends?",
+      answer: "Over-application wastes money and risks nutrient runoff, leaching, and environmental damage; apply only what soil tests and the calculator indicate is needed for optimal yields.",
     },
+    {
+      question: "How does soil pH affect fertilizer application rates?",
+      answer: "Soil pH influences nutrient availability; acidic soils (&lt;6.0) may need lime added, while alkaline soils (&gt;7.5) may lock up certain micronutrients, affecting recommended application rates.",
+    },
+    {
+      question: "What is the difference between broadcast and spot application calculations?",
+      answer: "Broadcast spreads fertilizer uniformly across the entire area, while spot application concentrates nutrients in specific zones; the calculator adjusts rates based on your application method.",
+    },
+    {
+      question: "How often should I recalculate fertilizer needs?",
+      answer: "Update soil tests every 2-3 years to account for nutrient depletion and changes in soil composition, then recalculate application rates using the calculator.",
+    },
+    {
+      question: "Does the calculator account for organic matter in soil?",
+      answer: "Yes; soils with 5%+ organic matter release 20-40 lbs N/acre annually, so the calculator reduces synthetic nitrogen recommendations based on this input.",
+    }
   ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -388,108 +401,211 @@ export default function FertilizerApplicationCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Fertilizer Application Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Fertilizer application is a critical component of successful crop and lawn management, ensuring plants receive the essential nutrients they need for optimal growth. This calculator helps you determine the precise amount of fertilizer required based on your area size, the nutrient content of your fertilizer, and the desired nutrient application rates. By accurately calculating fertilizer needs, you can avoid over-application, which can harm the environment, and under-application, which can reduce yield and plant health. This tool supports sustainable and efficient fertilization practices by providing clear, science-based guidance.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Fertilizer Application Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines the precise amount of fertilizer needed based on your specific soil conditions, crop type, and yield goals. It eliminates guesswork and prevents over- or under-application.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Input your field or lawn size in acres or square feet, current soil nutrient levels from a soil test, desired crop or grass type, and the fertilizer product you plan to use. The calculator uses these inputs to compute application rates in pounds.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Review the recommended total fertilizer amount and per-1000-sq-ft rate. Cross-reference your chosen product's N-P-K ratio to ensure proper nutrient delivery, then adjust equipment settings to match the calculated spread rate.</p>
+        </div>
       </section>
 
-      <section id="how-to" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator effectively, you need to input the size of the area you intend to fertilize, select the unit system that corresponds with your measurements, and enter the nutrient percentages of your fertilizer product. Additionally, specify the desired application rates for nitrogen (N), phosphorus (P₂O₅), and potassium (K₂O) based on soil test recommendations or agronomic guidelines. The calculator will then compute the total amount of fertilizer required to meet these nutrient needs over your specified area.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Step 1:</strong> Enter the area size and select the correct unit (square feet or square meters).
-          </li>
-          <li>
-            <strong>Step 2:</strong> Choose your preferred unit system (imperial or metric) to match your nutrient application rates.
-          </li>
-          <li>
-            <strong>Step 3:</strong> Input the nutrient percentages (N-P-K) from your fertilizer label.
-          </li>
-          <li>
-            <strong>Step 4:</strong> Enter the desired nutrient application rates per acre or hectare.
-          </li>
-          <li>
-            <strong>Step 5:</strong> Click "Calculate" to see the total fertilizer amount required.
-          </li>
-          <li>
-            <strong>Step 6:</strong> Use the results to guide your fertilizer purchase and application planning.
-          </li>
+      {/* TABLE: Recommended Nutrient Rates by Crop Type (lbs/acre) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Nutrient Rates by Crop Type (lbs/acre)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These benchmarks represent standard nutrient applications for major crops based on 2024 agronomic guidelines.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Crop</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Nitrogen (N)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Phosphorus (P₂O₅)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Potassium (K₂O)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Corn (yield goal: 150 bu/acre)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Soybeans (yield goal: 45 bu/acre)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Wheat (yield goal: 60 bu/acre)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Alfalfa (established stand)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cool-season grass (lawns)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4 per 1000 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1-2 per 1000 sq ft</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-3 per 1000 sq ft</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Rates vary by soil test results, organic matter, and regional recommendations; always follow soil test guidance.</p>
+      </section>
+
+      {/* TABLE: Common Fertilizer Products and N-P-K Concentrations */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Fertilizer Products and N-P-K Concentrations</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use these typical product concentrations when inputting fertilizer type into the calculator.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Product Name</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">N-P-K Ratio</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Primary Use</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ammonium Nitrate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34-0-0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High nitrogen source</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Triple Superphosphate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-46-0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Phosphorus boost</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Muriate of Potash</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0-0-60</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Potassium source</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10-10-10 Balanced</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-10-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lawn and garden maintenance</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">46-0-0 Urea</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">46-0-0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cost-effective nitrogen</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5-10-10 Starter</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Corn and soybean starter</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Product formulations vary by manufacturer; verify N-P-K on product labels before application.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Always conduct a soil test before using the calculator to ensure accurate nutrient recommendations and avoid costly over-application.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Convert your field measurements to the calculator's preferred units (acres or square feet) for more precise results.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Factor in split applications for nitrogen-heavy crops like corn to maximize nutrient uptake and minimize leaching losses.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Check weather forecasts before applying fertilizer; avoid application 24 hours before rain to reduce runoff and ensure soil absorption.</li>
         </ul>
       </section>
 
-      <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Applying fertilizer correctly is not only about quantity but also timing, method, and safety. Always perform a soil test before fertilizing to understand your soil’s nutrient status and avoid unnecessary applications. Apply fertilizer during periods when plants can uptake nutrients efficiently, typically during active growth phases. Use protective equipment such as gloves and masks to avoid skin contact and inhalation of fertilizer dust. Store fertilizers in a cool, dry place away from children and pets, and follow local regulations for fertilizer use to protect water quality and the environment.
-        </p>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Skipping soil testing</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying fertilizer without soil test data leads to wasteful over-application or nutrient deficiencies that reduce yields.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using old soil test results</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Soil nutrient levels change yearly; using 5-year-old test data produces inaccurate calculator recommendations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing product concentration with application rate</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A 46-0-0 urea product requires different spreader settings than a 10-10-10 balanced fertilizer; input the correct product concentration into the calculator.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring organic matter content</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">High-organic soils naturally release nitrogen; failing to account for this causes over-fertilization and environmental runoff.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate the correct fertilizer rate for my lawn?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter your lawn size in square feet, soil test results (nitrogen, phosphorus, potassium levels), and grass type. The calculator divides total nutrient needs by fertilizer concentration to determine pounds needed per 1,000 sq ft.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What nutrient ratios should I use for different crops?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Common ratios: corn needs 150-180 lbs N/acre, soybeans need 0-20 lbs N/acre, and wheat needs 100-150 lbs N/acre depending on soil conditions and yield goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I apply more fertilizer than the calculator recommends?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Over-application wastes money and risks nutrient runoff, leaching, and environmental damage; apply only what soil tests and the calculator indicate is needed for optimal yields.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does soil pH affect fertilizer application rates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Soil pH influences nutrient availability; acidic soils (&lt;6.0) may need lime added, while alkaline soils (&gt;7.5) may lock up certain micronutrients, affecting recommended application rates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between broadcast and spot application calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Broadcast spreads fertilizer uniformly across the entire area, while spot application concentrates nutrients in specific zones; the calculator adjusts rates based on your application method.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate fertilizer needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Update soil tests every 2-3 years to account for nutrient depletion and changes in soil composition, then recalculate application rates using the calculator.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the calculator account for organic matter in soil?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes; soils with 5%+ organic matter release 20-40 lbs N/acre annually, so the calculator reduces synthetic nitrogen recommendations based on this input.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For further reading and verification, please refer to these authoritative sources:
-        </p>
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
           <li>
-            <a
-              href="https://extension.psu.edu/fertilizer-application-rates-and-methods"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              Penn State Extension: Fertilizer Application Rates and Methods <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Comprehensive guidelines on calculating and applying fertilizer rates effectively for various crops and soils.
-            </p>
+            <a href="https://www.nrcs.usda.gov/conservation-basics/natural-resource-concerns/soils/nutrient-management" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA Natural Resources Conservation Service (NRCS) — Nutrient Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Federal guidance on sustainable fertilizer application and soil testing standards.</p>
           </li>
           <li>
-            <a
-              href="https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/technical/nra/rca/?cid=nrcs143_014203"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              USDA NRCS: Nutrient Management <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Official resource on nutrient management planning, including fertilizer application calculations and environmental stewardship.
-            </p>
+            <a href="https://extension.psu.edu/soil-testing" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Penn State College of Agricultural Sciences — Soil Testing and Fertility</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">University extension resource with soil test interpretation tables and nutrient recommendation guidelines.</p>
           </li>
           <li>
-            <a
-              href="https://www.epa.gov/nutrient-policy-data/fertilizer-management"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-blue-600 hover:underline flex items-center gap-1"
-            >
-              EPA: Fertilizer Management and Environmental Protection <ExternalLink className="w-3 h-3" />
-            </a>
-            <p className="text-sm text-slate-500 mt-1">
-              Information on best practices for fertilizer use to minimize environmental impacts such as nutrient runoff and water pollution.
-            </p>
+            <a href="https://extension.umn.edu/corn/corn-nutrient-recommendations" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">University of Minnesota Extension — Corn Nutrient Recommendations</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Crop-specific nutrient rate recommendations based on yield goals and soil conditions.</p>
+          </li>
+          <li>
+            <a href="https://www.epa.gov/nutrientpollution/sources-and-solutions" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Environmental Protection Agency (EPA) — Nutrient Pollution</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Information on how over-fertilization contributes to water pollution and best management practices.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 
