@@ -1,80 +1,80 @@
 {
-  "date": "April 16, 2026",
+  "date": "April 17, 2026",
   "hero": {
-    "text": "Believe in your dreams, they were given to you for a reason.",
-    "author": "Katrina Mayer"
+    "text": "Embrace the challenges; they are the stepping stones to your success.",
+    "author": "Unknown"
   },
   "aries": {
-    "general": "A burst of energy ignites your creativity today, Aries. Use it to tackle projects you've been putting off.",
-    "love": "Passion flares, making this a great day for romance. Be open to deep conversations.",
-    "career": "Take the lead on a team project; your enthusiasm can inspire others.",
-    "luckyNumbers": "3, 7, 12"
+    "general": "Today is a day to take risks and venture outside your comfort zone. Trust your instincts.",
+    "love": "Passionate moments await, but be sure to communicate your feelings openly.",
+    "career": "Expect new opportunities to arise; your efforts will be noticed. Don't hesitate to step up.",
+    "luckyNumbers": "5, 8, 14"
   },
   "taurus": {
-    "general": "Today calls for a grounded approach. Focus on stability in your relationships and finances.",
-    "love": "Express your feelings with sincerity and clarity; your partner will appreciate it.",
-    "career": "Tread carefully at work; patience will yield better results than rash decisions.",
-    "luckyNumbers": "4, 10, 22"
+    "general": "Stability is key today. Focus on your long-term goals and avoid impulsive decisions.",
+    "love": "A calm and steady approach will strengthen your romantic connections.",
+    "career": "Look for ways to improve efficiency at work; collaboration will lead to success.",
+    "luckyNumbers": "3, 11, 20"
   },
   "gemini": {
-    "general": "Your social skills will shine today, Gemini. Networking can lead to exciting opportunities.",
-    "love": "A light-hearted approach can inject fun into your romantic life; plan something playful.",
-    "career": "Creative collaboration could lead to innovative solutions; reach out to your colleagues.",
-    "luckyNumbers": "5, 8, 19"
+    "general": "Your communication skills are highlighted today; make the most of them in all interactions.",
+    "love": "A spontaneous date could ignite the spark in your relationship once more.",
+    "career": "Use your adaptability to handle any surprises at work with grace.",
+    "luckyNumbers": "2, 7, 31"
   },
   "cancer": {
-    "general": "Emotional clarity will help you navigate personal challenges. Trust your intuition.",
-    "love": "Deep connections strengthen your bond; plan a heartfelt date to reinforce your relationship.",
-    "career": "Your empathy at work will be valued. Listen closely to your team’s needs.",
-    "luckyNumbers": "2, 11, 14"
+    "general": "Emotional insights could guide your decisions today. Trust your intuition.",
+    "love": "Sensitivity towards your partner will enhance your bond and bring you closer.",
+    "career": "Consider networking; new connections could provide unexpected benefits.",
+    "luckyNumbers": "4, 13, 21"
   },
   "leo": {
-    "general": "Your confidence draws people in, Leo. Use it to inspire those around you.",
-    "love": "A surprise gesture could rekindle the flame in your relationship.",
-    "career": "A promotional opportunity might arise; present your strengths boldly.",
-    "luckyNumbers": "1, 6, 16"
+    "general": "Your creativity will shine today. Use it to inspire others around you.",
+    "love": "Expect romantic gestures that will sweep you off your feet.",
+    "career": "Take charge of projects and don't shy away from showcasing your leadership skills.",
+    "luckyNumbers": "6, 9, 22"
   },
   "virgo": {
-    "general": "A meticulous approach will serve you well today. Focus on details.",
-    "love": "Communication is key; express your thoughts to avoid misunderstandings.",
-    "career": "Your organizational skills will shine and help keep the team on track.",
-    "luckyNumbers": "9, 15, 21"
+    "general": "Attention to detail will serve you well today; double-check your work.",
+    "love": "Consider honesty as the best policy in resolving any relationship issues.",
+    "career": "Your analytical mind will find solutions to problems that others miss.",
+    "luckyNumbers": "1, 10, 19"
   },
   "libra": {
-    "general": "Balance is essential today. Seek harmony in your surroundings and relationships.",
-    "love": "Your charm is magnetic; use it to strengthen existing bonds.",
-    "career": "Teamwork will be crucial to your success; collaborate effectively.",
-    "luckyNumbers": "2, 18, 25"
+    "general": "Balance is essential today; strive to find harmony in your personal and professional life.",
+    "love": "A discussion about future plans will bring you closer to your partner.",
+    "career": "Focus on teamwork; collaborating with others will yield great results.",
+    "luckyNumbers": "12, 15, 23"
   },
   "scorpio": {
-    "general": "Embrace change today; it brings growth and new opportunities.",
-    "love": "A moment of vulnerability can enhance intimacy; don’t shy away from sharing.",
-    "career": "A risk might pay off; evaluate potential rewards before acting.",
-    "luckyNumbers": "3, 5, 9"
+    "general": "Your strong intuition will guide you today; trust your gut feelings.",
+    "love": "Deep conversations will foster intimacy with your loved ones.",
+    "career": "Expect some challenges but trust that your determination will see you through.",
+    "luckyNumbers": "3, 18, 27"
   },
   "sagittarius": {
-    "general": "Adventure is calling. Be spontaneous in your plans today.",
-    "love": "A fun outing can invigorate your partnership; try something new together.",
-    "career": "Opportunities for exploration in your career could arise; stay open to new ideas.",
-    "luckyNumbers": "7, 13, 23"
+    "general": "Adventure calls! Be open to new experiences and ideas throughout the day.",
+    "love": "A sense of freedom in your relationship will enhance your bond.",
+    "career": "Dare to share your innovative ideas; they may lead to exciting ventures.",
+    "luckyNumbers": "7, 16, 24"
   },
   "capricorn": {
-    "general": "Focus on long-term goals today; your dedication will pay off.",
-    "love": "Stability is key—make sure to nurture your relationship's foundation.",
-    "career": "Hard work will lead to recognition; stay goal-oriented.",
-    "luckyNumbers": "4, 14, 20"
+    "general": "Focus on your goals today; set a clear plan and stick to it.",
+    "love": "Romantic stability will come from providing support and understanding to your partner.",
+    "career": "Your hard work will soon pay off; recognition is on the horizon.",
+    "luckyNumbers": "2, 8, 29"
   },
   "aquarius": {
-    "general": "Innovative ideas will flourish today. Share your thoughts freely.",
-    "love": "Engaging in deep discussions will bring you closer to your partner.",
-    "career": "A unique approach to a project could impress your superiors.",
-    "luckyNumbers": "6, 10, 27"
+    "general": "A day of breakthroughs is ahead; think outside the box!",
+    "love": "Expect surprises in your love life; spontaneity will reign.",
+    "career": "Embrace collaboration; sharing ideas will lead to innovative solutions.",
+    "luckyNumbers": "5, 14, 32"
   },
   "pisces": {
-    "general": "Creative energy flows today; use it to express yourself artistically.",
-    "love": "Romantic gestures will strengthen your relationship. Be thoughtful.",
-    "career": "Your intuition about a work project will serve you well; trust your gut.",
-    "luckyNumbers": "1, 15, 17"
+    "general": "Get in touch with your creative side; artistic pursuits will be fulfilling today.",
+    "love": "Expressing your emotions will strengthen your relationships significantly.",
+    "career": "Trust your instincts when faced with dilemmas; they won’t lead you astray.",
+    "luckyNumbers": "8, 17, 26"
   },
   "content": {
     "professional": [
@@ -88,24 +88,24 @@
       },
       {
         "id": 2,
-        "text": "The best way to predict the future is to create it.",
-        "author": "Peter Drucker",
+        "text": "Opportunities don't happen; you create them.",
+        "author": "Chris Grosser",
         "tags": [
           "career"
         ]
       },
       {
         "id": 3,
-        "text": "Don't watch the clock; do what it does. Keep going.",
-        "author": "Sam Levenson",
+        "text": "The only way to do great work is to love what you do.",
+        "author": "Steve Jobs",
         "tags": [
           "career"
         ]
       },
       {
         "id": 4,
-        "text": "Opportunities don't happen, you create them.",
-        "author": "Chris Grosser",
+        "text": "It's not about the cards you're dealt, but how you play the hand.",
+        "author": "Randy Pausch",
         "tags": [
           "career"
         ]
@@ -120,8 +120,8 @@
       },
       {
         "id": 6,
-        "text": "What we fear doing most is usually what we most need to do.",
-        "author": "Tim Ferriss",
+        "text": "Dream big and dare to fail.",
+        "author": "Norman Vaughan",
         "tags": [
           "career"
         ]
@@ -130,48 +130,48 @@
     "motivation": [
       {
         "id": 1,
-        "text": "The future belongs to those who believe in the beauty of their dreams.",
-        "author": "Eleanor Roosevelt",
+        "text": "Don't watch the clock; do what it does. Keep going.",
+        "author": "Sam Levenson",
         "tags": [
           "motivation"
         ]
       },
       {
         "id": 2,
-        "text": "Your limitation—it's only your imagination.",
-        "author": "Anonymous",
+        "text": "Believe you can and you're halfway there.",
+        "author": "Theodore Roosevelt",
         "tags": [
           "motivation"
         ]
       },
       {
         "id": 3,
-        "text": "Push yourself, because no one else is going to do it for you.",
-        "author": "Anonymous",
+        "text": "Act as if what you do makes a difference. It does.",
+        "author": "William James",
         "tags": [
           "motivation"
         ]
       },
       {
         "id": 4,
-        "text": "Great things never come from comfort zones.",
-        "author": "Anonymous",
+        "text": "Limit your 'always' and your 'nevers.'",
+        "author": "Amy Poehler",
         "tags": [
           "motivation"
         ]
       },
       {
         "id": 5,
-        "text": "Dream it. Wish it. Do it.",
-        "author": "Anonymous",
+        "text": "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+        "author": "Ralph Waldo Emerson",
         "tags": [
           "motivation"
         ]
       },
       {
         "id": 6,
-        "text": "Wake up with determination. Go to bed with satisfaction.",
-        "author": "Anonymous",
+        "text": "Keep your face always toward the sunshine—and shadows will fall behind you.",
+        "author": "Walt Whitman",
         "tags": [
           "motivation"
         ]
@@ -180,80 +180,56 @@
     "captions": [
       {
         "id": 1,
-        "text": "Shine bright like the star you are!",
-        "author": "Anonymous",
+        "text": "Life is short; make every selfie count.",
+        "author": "Unknown",
         "tags": [
-          "caption"
+          "fun"
         ]
       },
       {
         "id": 2,
-        "text": "Every day is a fresh start.",
-        "author": "Anonymous",
+        "text": "Collect moments, not things.",
+        "author": "Unknown",
         "tags": [
-          "caption"
+          "fun"
         ]
       },
       {
         "id": 3,
-        "text": "Embrace the glorious mess that you are.",
-        "author": "Elizabeth Gilbert",
+        "text": "When nothing goes right, go left.",
+        "author": "Unknown",
         "tags": [
-          "caption"
+          "fun"
         ]
       },
       {
         "id": 4,
-        "text": "Life is short, make every hair flip fabulous.",
-        "author": "Anonymous",
+        "text": "Be a voice, not an echo.",
+        "author": "Unknown",
         "tags": [
-          "caption"
+          "fun"
         ]
       },
       {
         "id": 5,
-        "text": "Sparkle every single day.",
-        "author": "Anonymous",
+        "text": "If you were waiting for a sign, here it is.",
+        "author": "Unknown",
         "tags": [
-          "caption"
+          "fun"
         ]
       },
       {
         "id": 6,
-        "text": "Do more of what makes you sparkle.",
-        "author": "Anonymous",
+        "text": "Sometimes you just need to disconnect and enjoy life.",
+        "author": "Unknown",
         "tags": [
-          "caption"
+          "fun"
         ]
       }
     ],
     "tech": [
       {
         "id": 1,
-        "text": "Technology is best when it brings people together.",
-        "author": "Matt Mullenweg",
-        "tags": [
-          "tech"
-        ]
-      },
-      {
-        "id": 2,
-        "text": "The great myth of our times is that technology is communication.",
-        "author": "Libby Larsen",
-        "tags": [
-          "tech"
-        ]
-      },
-      {
-        "id": 3,
-        "text": "Technology is evolving faster than the ability to adopt it.",
-        "author": "Anonymous",
-        "tags": [
-          "tech"
-        ]
-      },
-      {
-        "id": 4,
         "text": "Innovation distinguishes between a leader and a follower.",
         "author": "Steve Jobs",
         "tags": [
@@ -261,17 +237,41 @@
         ]
       },
       {
+        "id": 2,
+        "text": "The best way to predict the future is to invent it.",
+        "author": "Alan Kay",
+        "tags": [
+          "tech"
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Technology is best when it brings people together.",
+        "author": "Matt Mullenweg",
+        "tags": [
+          "tech"
+        ]
+      },
+      {
+        "id": 4,
+        "text": "It's not a faith in technology. It's faith in people.",
+        "author": "Steve Jobs",
+        "tags": [
+          "tech"
+        ]
+      },
+      {
         "id": 5,
-        "text": "It has become appallingly obvious that our technology has exceeded our humanity.",
-        "author": "Albert Einstein",
+        "text": "The greatest danger in times of turbulence is not the turbulence; it is to act with yesterday's logic.",
+        "author": "Peter Drucker",
         "tags": [
           "tech"
         ]
       },
       {
         "id": 6,
-        "text": "We are changing the world with technology.",
-        "author": "Bill Gates",
+        "text": "Any sufficiently advanced technology is indistinguishable from magic.",
+        "author": "Arthur C. Clarke",
         "tags": [
           "tech"
         ]
@@ -280,14 +280,38 @@
     "fun": [
       {
         "id": 1,
-        "text": "Laughter is timeless, imagination has no age, and dreams are forever.",
-        "author": "Walt Disney",
+        "text": "I'm on a seafood diet. I see food, and I eat it!",
+        "author": "Unknown",
         "tags": [
           "fun"
         ]
       },
       {
         "id": 2,
+        "text": "Why don’t scientists trust atoms? Because they make up everything!",
+        "author": "Unknown",
+        "tags": [
+          "fun"
+        ]
+      },
+      {
+        "id": 3,
+        "text": "I told my computer I needed a break, and now it won’t stop sending me beach wallpapers.",
+        "author": "Unknown",
+        "tags": [
+          "fun"
+        ]
+      },
+      {
+        "id": 4,
+        "text": "I would agree with you, but then we’d both be wrong.",
+        "author": "Unknown",
+        "tags": [
+          "fun"
+        ]
+      },
+      {
+        "id": 5,
         "text": "A day without laughter is a day wasted.",
         "author": "Charlie Chaplin",
         "tags": [
@@ -295,33 +319,9 @@
         ]
       },
       {
-        "id": 3,
-        "text": "Life is more fun if you play games.",
-        "author": "Roald Dahl",
-        "tags": [
-          "fun"
-        ]
-      },
-      {
-        "id": 4,
-        "text": "Don't take life too seriously. You'll never get out of it alive.",
-        "author": "Elbert Hubbard",
-        "tags": [
-          "fun"
-        ]
-      },
-      {
-        "id": 5,
-        "text": "We don't stop playing because we grow old; we grow old because we stop playing.",
-        "author": "George Bernard Shaw",
-        "tags": [
-          "fun"
-        ]
-      },
-      {
         "id": 6,
-        "text": "If you can't laugh at yourself, make fun of other people.",
-        "author": "JC Villafan",
+        "text": "I’m not arguing, I’m just explaining why I’m right.",
+        "author": "Unknown",
         "tags": [
           "fun"
         ]
@@ -330,7 +330,7 @@
     "faith": [
       {
         "id": 1,
-        "text": "Faith is taking the first step even when you don’t see the whole staircase.",
+        "text": "Faith is taking the first step even when you don't see the whole staircase.",
         "author": "Martin Luther King Jr.",
         "tags": [
           "faith"
@@ -346,32 +346,32 @@
       },
       {
         "id": 3,
-        "text": "What we think, we become.",
-        "author": "Buddha",
+        "text": "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+        "author": "Christian D. Larson",
         "tags": [
           "faith"
         ]
       },
       {
         "id": 4,
-        "text": "Faith is not belief. Belief is passive. Faith is active.",
-        "author": "Edwin Land",
+        "text": "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+        "author": "Ralph Waldo Emerson",
         "tags": [
           "faith"
         ]
       },
       {
         "id": 5,
-        "text": "Your faith can move mountains.",
-        "author": "Anonymous",
+        "text": "Faith is the strength by which a shattered world shall emerge into the light.",
+        "author": "Helen Keller",
         "tags": [
           "faith"
         ]
       },
       {
         "id": 6,
-        "text": "When you focus on the goodness in your life, you create more of it.",
-        "author": "Oprah Winfrey",
+        "text": "It does not matter how slowly you go as long as you do not stop.",
+        "author": "Confucius",
         "tags": [
           "faith"
         ]
@@ -380,30 +380,6 @@
     "wisdom": [
       {
         "id": 1,
-        "text": "The only true wisdom is in knowing you know nothing.",
-        "author": "Socrates",
-        "tags": [
-          "wisdom"
-        ]
-      },
-      {
-        "id": 2,
-        "text": "In seeking wisdom, you will find a treasure.",
-        "author": "Anonymous",
-        "tags": [
-          "wisdom"
-        ]
-      },
-      {
-        "id": 3,
-        "text": "The fool doth think he is wise, but the wise man knows himself to be a fool.",
-        "author": "William Shakespeare",
-        "tags": [
-          "wisdom"
-        ]
-      },
-      {
-        "id": 4,
         "text": "Wisdom begins in wonder.",
         "author": "Socrates",
         "tags": [
@@ -411,17 +387,41 @@
         ]
       },
       {
+        "id": 2,
+        "text": "The only true wisdom is in knowing you know nothing.",
+        "author": "Socrates",
+        "tags": [
+          "wisdom"
+        ]
+      },
+      {
+        "id": 3,
+        "text": "It is not what you look at that matters, it's what you see.",
+        "author": "Henry David Thoreau",
+        "tags": [
+          "wisdom"
+        ]
+      },
+      {
+        "id": 4,
+        "text": "A wise man will make more opportunities than he finds.",
+        "author": "Francis Bacon",
+        "tags": [
+          "wisdom"
+        ]
+      },
+      {
         "id": 5,
-        "text": "Knowledge speaks, but wisdom listens.",
-        "author": "Jimi Hendrix",
+        "text": "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.",
+        "author": "Buddha",
         "tags": [
           "wisdom"
         ]
       },
       {
         "id": 6,
-        "text": "The greatest wisdom is in knowing your own mind.",
-        "author": "Anonymous",
+        "text": "The mind is everything. What you think you become.",
+        "author": "Buddha",
         "tags": [
           "wisdom"
         ]
