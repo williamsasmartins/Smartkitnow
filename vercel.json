@@ -44,6 +44,14 @@
   ],
   "rewrites": [
     {
+      "source": "/pets/cat-water-intake",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cat-water-intake/:path*",
+      "destination": "/api/404"
+    },
+    {
       "source": "/recipes",
       "destination": "/api/404"
     },
@@ -424,22 +432,22 @@
     },
     {
       "source": "/financial/income-budget-expenses/savings-rate-tracker/",
-      "destination": "/financial",
+      "destination": "/financial/savings-rate-tracker",
       "permanent": true
     },
     {
       "source": "/financial/income-budget-expenses/savings-rate-tracker",
-      "destination": "/financial",
+      "destination": "/financial/savings-rate-tracker",
       "permanent": true
     },
     {
       "source": "/time/calendar-extras/day-of-week-for-date/",
-      "destination": "/time",
+      "destination": "/time/day-of-week-for-date",
       "permanent": true
     },
     {
       "source": "/time/calendar-extras/day-of-week-for-date",
-      "destination": "/time",
+      "destination": "/time/day-of-week-for-date",
       "permanent": true
     },
     {
@@ -649,12 +657,12 @@
     },
     {
       "source": "/video/audio-processing-engineering/decibel-power-ratio-calculator/",
-      "destination": "/video",
+      "destination": "/video/decibel-power-ratio-calculator",
       "permanent": true
     },
     {
       "source": "/video/audio-processing-engineering/decibel-power-ratio-calculator",
-      "destination": "/video",
+      "destination": "/video/decibel-power-ratio-calculator",
       "permanent": true
     },
     {
@@ -704,17 +712,12 @@
     },
     {
       "source": "/pets/dogs/dog-chocolate-toxicity",
-      "destination": "/pets/dogs/dog-chocolate-toxicity-calculator",
-      "permanent": true
-    },
-    {
-      "source": "/pets/dog-chocolate-toxicity",
-      "destination": "/pets/dogs/dog-chocolate-toxicity-calculator",
+      "destination": "/pets/dog-chocolate-toxicity",
       "permanent": true
     },
     {
       "source": "/pets/dog-chocolate",
-      "destination": "/pets/dogs/dog-chocolate-toxicity-calculator",
+      "destination": "/pets/dog-chocolate-toxicity",
       "permanent": true
     },
     {
@@ -918,8 +921,28 @@
       "permanent": true
     },
     {
+      "source": "/video/audio-processing-engineering/speaker-crossover-calculator/",
+      "destination": "/video/speaker-crossover-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/video/audio-processing-engineering/speaker-crossover-calculator",
+      "destination": "/video/speaker-crossover-calculator",
+      "permanent": true
+    },
+    {
       "source": "/video/audio-processing-engineering/:path*",
       "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/sports/running-cycling-triathlon-performance/pool-length-time-converter/",
+      "destination": "/sports/pool-length-time-converter",
+      "permanent": true
+    },
+    {
+      "source": "/sports/running-cycling-triathlon-performance/pool-length-time-converter",
+      "destination": "/sports/pool-length-time-converter",
       "permanent": true
     },
     {
@@ -1025,6 +1048,16 @@
     {
       "source": "/construction/wall-ceiling-calculators/:path*",
       "destination": "/construction",
+      "permanent": true
+    },
+    {
+      "source": "/video/resolution-aspect-ratio-pixels/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper/",
+      "destination": "/video/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper",
+      "permanent": true
+    },
+    {
+      "source": "/video/resolution-aspect-ratio-pixels/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper",
+      "destination": "/video/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper",
       "permanent": true
     },
     {

@@ -1,3 +1,3 @@
 export default function handler(request, response) {
-  return response.status(404).send('404 Not Found');
+  return response.status(410).send('410 Gone');
 }
