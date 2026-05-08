@@ -18,7 +18,7 @@
     "test:run": "vitest run",
     "check:loaders": "tsx scripts/check-loaders.ts",
     "check:expected": "tsx scripts/check-expected.ts",
-    "check:registry": "tsx scripts/verify-registry.ts || echo 'verify-registry optional'",
+    "check:registry": "node scripts/verify-registry.mjs",
     "prepare": "husky"
   },
   "dependencies": {
