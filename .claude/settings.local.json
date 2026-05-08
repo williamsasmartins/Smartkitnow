@@ -23,7 +23,11 @@
       "Bash(python scripts/generate_faq_upgrade_list.py)",
       "Bash(npx tsx:*)",
       "Bash(grep -v \"import\\\\|//\")",
-      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/Williams Martins/OneDrive/Documentos/WBSmartKitNow/smartkit-onepage-wonder/vercel.json','utf8'\\)\\); console.log\\('JSON valid'\\)\")"
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/Williams Martins/OneDrive/Documentos/WBSmartKitNow/smartkit-onepage-wonder/vercel.json','utf8'\\)\\); console.log\\('JSON valid'\\)\")",
+      "Bash(git config *)",
+      "Bash(findstr /i \"gpg sign hook commit\")",
+      "PowerShell(git config --global commit.gpgsign)",
+      "PowerShell(Get-ChildItem \".husky\" -Force -Recurse 2>$null; if \\(-not \\(Test-Path \".husky\"\\)\\) { \"No .husky dir at all\" })"
     ]
   }
 }
