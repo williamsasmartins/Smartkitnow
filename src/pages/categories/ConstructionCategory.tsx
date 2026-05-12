@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
+import SEOHead from "@/components/SEOHead";
 
 // Estrutura espelhada da página FinancialCategory
 
@@ -86,6 +87,12 @@ export default function ConstructionCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Construction Calculators | Smart Kit Now"
+        description="Free construction calculators for concrete, drywall, paint, flooring, lumber, fencing, roofing, and building material estimates."
+        canonical="https://www.smartkitnow.com/construction"
+        robots="index,follow"
+      />
       {/* empurra tudo abaixo do header fixo */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />

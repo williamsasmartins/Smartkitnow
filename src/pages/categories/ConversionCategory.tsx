@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
+import SEOHead from "@/components/SEOHead";
 
 type Item = { name: string; slug: string };
 
@@ -62,6 +63,12 @@ export default function ConversionCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Conversion Calculators | Smart Kit Now"
+        description="Free unit conversion calculators for length, weight, volume, temperature, speed, area, energy, pressure, and data storage."
+        canonical="https://www.smartkitnow.com/conversion"
+        robots="index,follow"
+      />
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />
 

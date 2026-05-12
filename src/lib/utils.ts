@@ -1,6 +1,15 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+/** Serialize JSON-LD safely: escapes </script> so the tag can't be broken. */
+export function safeJsonLd(data: object): string {
+  try {
+    return JSON.stringify(data).replace(/<\/script>/gi, "<\\/script>");
+  } catch {
+    return "{}";
+  }
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

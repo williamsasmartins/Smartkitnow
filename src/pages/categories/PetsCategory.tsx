@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
+import SEOHead from "@/components/SEOHead";
 
 type Item = { name: string; slug: string };
 
@@ -67,6 +68,12 @@ export default function PetsCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Pets & Companion Animals Calculators | Smart Kit Now"
+        description="Free pet calculators for dogs and cats: food portions, water intake, calorie needs, toxicity checks, weight management, and health tracking."
+        canonical="https://www.smartkitnow.com/pets"
+        robots="index,follow"
+      />
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />
 

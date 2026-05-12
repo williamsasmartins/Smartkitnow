@@ -1,5 +1,6 @@
 import { ReactNode, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { safeJsonLd } from "@/lib/utils";
 import { Maximize2, Minimize2, Share2, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -50,7 +51,7 @@ export default function GameLayout({
         
         {/* Schema.org para Jogos (Google adora isso) */}
         <script type="application/ld+json">
-          {JSON.stringify({
+          {safeJsonLd({
             "@context": "https://schema.org",
             "@type": "VideoGame",
             "name": title,

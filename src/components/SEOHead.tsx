@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import seoConfig from '@/config/seo.json';
+import { safeJsonLd } from '@/lib/utils';
 
 interface OgProps {
   type?: string;
@@ -48,7 +49,11 @@ export default function SEOHead({
 
   const finalTitle = title || seoData?.title || 'SmartKitNow - Free Online Calculators';
   const finalDescription = description || seoData?.description || 'Free online calculators for every need.';
-  const finalCanonical = canonical || seoData?.url || '';
+  const BASE = 'https://www.smartkitnow.com';
+  const rawCanonical = canonical || seoData?.url || '';
+  const finalCanonical = rawCanonical && !rawCanonical.startsWith('http')
+    ? `${BASE}${rawCanonical.startsWith('/') ? rawCanonical : '/' + rawCanonical}`
+    : rawCanonical;
   const schemas = seoData?.schema || {};
 
   const ogType = og?.type || 'website';
@@ -94,7 +99,7 @@ export default function SEOHead({
       {/* JSON-LD from seo.json config */}
       {schemas.webApp && (
         <script type="application/ld+json">
-          {JSON.stringify(schemas.webApp)}
+          {safeJsonLd(schemas.webApp)}
         </script>
       )}
       {/* schemas.faq omitted: FAQ JSON-LD is emitted by each calculator

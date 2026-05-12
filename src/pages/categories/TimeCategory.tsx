@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
+import SEOHead from "@/components/SEOHead";
 
 // Estrutura idêntica à página FinancialCategory
 
@@ -61,6 +62,12 @@ export default function TimeCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Time & Date Calculators | Smart Kit Now"
+        description="Free time and date calculators for duration, age, countdowns, business days, time zones, epoch conversion, and scheduling."
+        canonical="https://www.smartkitnow.com/time"
+        robots="index,follow"
+      />
       {/* empurra tudo abaixo do header fixo */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />

@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
+import SEOHead from "@/components/SEOHead";
 
 type Item = { name: string; slug: string };
 
@@ -58,6 +59,12 @@ export default function HealthCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Health & Fitness Calculators | Smart Kit Now"
+        description="Free health calculators for BMI, BMR, TDEE, body fat percentage, nutrition macros, calorie intake, weight loss planning, and fitness tracking."
+        canonical="https://www.smartkitnow.com/health"
+        robots="index,follow"
+      />
       {/* empurra tudo abaixo do header fixo */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />

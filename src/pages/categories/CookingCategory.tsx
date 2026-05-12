@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
+import SEOHead from "@/components/SEOHead";
 
 type Item = { name: string; slug: string };
 
@@ -55,6 +56,12 @@ export default function CookingCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Cooking & Baking Calculators | Smart Kit Now"
+        description="Free cooking calculators for recipe scaling, ingredient conversions, oven temperature, baking ratios, portion sizing, and kitchen measurements."
+        canonical="https://www.smartkitnow.com/cooking"
+        robots="index,follow"
+      />
       {/* empurra tudo abaixo do header fixo */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />

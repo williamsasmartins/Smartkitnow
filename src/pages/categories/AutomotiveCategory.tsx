@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import SuggestionBox from "@/components/SuggestionBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
+import SEOHead from "@/components/SEOHead";
 
 // Estrutura espelhada da página FinancialCategory
 
@@ -103,6 +104,12 @@ export default function AutomotiveCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Automotive Calculators | Smart Kit Now"
+        description="Free automotive calculators for fuel efficiency, car loan payments, tire size, horsepower, vehicle costs, and road trip planning."
+        canonical="https://www.smartkitnow.com/automotive"
+        robots="index,follow"
+      />
       {/* empurra tudo abaixo do header fixo */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />

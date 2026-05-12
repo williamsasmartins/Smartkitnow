@@ -9,6 +9,7 @@ import SEOHead from "@/components/SEOHead";
 import RelatedCalculatorsComponent from "../RelatedCalculators";
 import { CATEGORIES } from "@/data/categoryMeta";
 import { Helmet } from 'react-helmet-async';
+import { safeJsonLd } from '@/lib/utils';
 
 // ================================================================
 // AD SLOTS CONFIGURATION
@@ -328,7 +329,7 @@ export default function CalculatorVerticalLayout({
       {jsonLd ? (
         <Helmet>
           <script type="application/ld+json">
-            {JSON.stringify(jsonLd)}
+            {safeJsonLd(jsonLd as object)}
           </script>
         </Helmet>
       ) : null}

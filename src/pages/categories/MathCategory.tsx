@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
+import SEOHead from "@/components/SEOHead";
 
 type Item = { name: string; slug: string };
 
@@ -71,6 +72,12 @@ export default function MathCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Math & Algebra Calculators | Smart Kit Now"
+        description="Free math calculators for percentages, fractions, algebra, geometry, trigonometry, statistics, probability, and number theory."
+        canonical="https://www.smartkitnow.com/math"
+        robots="index,follow"
+      />
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />
 

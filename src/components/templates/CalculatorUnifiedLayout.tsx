@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { safeJsonLd } from "@/lib/utils";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import SuggestionBox from "@/components/SuggestionBox";
 import LegalDisclaimer from "@/components/LegalDisclaimer";
@@ -181,9 +182,10 @@ export default function CalculatorUnifiedLayout({
       `}</style>
 
       {jsonLd ? (
-        <script type="application/ld+json" suppressHydrationWarning>
-          {JSON.stringify(jsonLd)}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd as object) }}
+        />
       ) : null}
 
       <div

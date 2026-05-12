@@ -14,8 +14,6 @@ Disallow: /fr/
 Disallow: /de/
 Disallow: /es/
 Disallow: /pt-pt/
-Disallow: /tv/
-
 # Utility pages — no indexable content
 Disallow: /search
 Disallow: /cookie-settings

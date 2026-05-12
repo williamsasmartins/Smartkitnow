@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
+import SEOHead from "@/components/SEOHead";
 
 // Estrutura espelhada da página FinancialCategory
 
@@ -68,6 +69,12 @@ export default function ElectricalCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Electrical Calculators | Smart Kit Now"
+        description="Free electrical calculators for Ohm's law, power, voltage, current, resistance, LED resistor sizing, wire gauge, and circuit calculations."
+        canonical="https://www.smartkitnow.com/electrical"
+        robots="index,follow"
+      />
       {/* empurra tudo abaixo do header fixo */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />

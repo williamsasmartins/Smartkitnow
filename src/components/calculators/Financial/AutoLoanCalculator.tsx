@@ -699,7 +699,6 @@ export default function AutoLoanCalculator() {
     <CalculatorVerticalLayout
       title="Auto Loan Calculator"
       description="Calculate your auto loan payments accurately. Factor in trade-in value, sales tax, and fees to get a clear picture of your car purchase."
-      canonical="/financial/auto-loan"
       jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}

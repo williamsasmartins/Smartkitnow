@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
+import SEOHead from "@/components/SEOHead";
 
 type Item = { name: string; slug: string };
 
@@ -73,6 +74,12 @@ export default function ScienceCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Science Calculators | Smart Kit Now"
+        description="Free science calculators for physics, chemistry, and biology: force, energy, density, pH, molarity, and unit conversions."
+        canonical="https://www.smartkitnow.com/science"
+        robots="index,follow"
+      />
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />
 
