@@ -3,14 +3,10 @@ import AdSlot from "@/components/ads/AdSlot";
 import RightRailAds from "@/components/ads/RightRailAds";
 
 const ENV: any = (typeof import.meta !== "undefined" && (import.meta as any).env) || {};
-const ADSENSE_CLIENT_ID =
-  ENV.VITE_ADSENSE_CLIENT_ID ?? ENV.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "";
-const SLOT_TOP_BANNER =
-  ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER ?? "";
-const SLOT_BOTTOM_BANNER =
-  ENV.VITE_ADSENSE_SLOT_BOTTOM_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER ?? "";
-const SLOT_SIDEBAR =
-  ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR ?? "";
+const ADSENSE_CLIENT_ID = ENV.VITE_ADSENSE_CLIENT_ID ?? "";
+const SLOT_TOP_BANNER = ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? "";
+const SLOT_BOTTOM_BANNER = ENV.VITE_ADSENSE_SLOT_BOTTOM_BANNER ?? "";
+const SLOT_SIDEBAR = ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? "";
 
 type AdRailLayoutProps = {
   /** cabeçalho/título da página (back + h1 etc.) */

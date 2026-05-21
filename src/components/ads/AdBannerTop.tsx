@@ -1,8 +1,7 @@
 import AdUnit from "@/components/AdUnit";
 
 const ENV: any = (typeof import.meta !== "undefined" && (import.meta as any).env) || {};
-const SLOT_TOP_BANNER =
-  ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER ?? "pending";
+const SLOT_TOP_BANNER = ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? "pending";
 
 /**
  * Top banner ad for category pages.

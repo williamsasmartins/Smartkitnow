@@ -14,13 +14,12 @@ import { safeJsonLd } from '@/lib/utils';
 // ================================================================
 // AD SLOTS CONFIGURATION
 // ================================================================
-// Suporte seguro para Vite (import.meta.env) e compatibilidade com NEXT_PUBLIC_*
 const ENV: any = (typeof import.meta !== 'undefined' && (import.meta as any).env) || {};
-const SLOT_TOP_BANNER = ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER ?? "pending";
-const SLOT_SIDEBAR = ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR ?? "pending";
-const SLOT_BOTTOM_BANNER = ENV.VITE_ADSENSE_SLOT_BOTTOM_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER ?? "pending";
+const SLOT_TOP_BANNER = ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? "pending";
+const SLOT_SIDEBAR = ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? "pending";
+const SLOT_BOTTOM_BANNER = ENV.VITE_ADSENSE_SLOT_BOTTOM_BANNER ?? "pending";
 // In-article slot: usa slot próprio se configurado, caso contrário cai no top banner
-const SLOT_IN_ARTICLE = ENV.VITE_ADSENSE_SLOT_IN_ARTICLE ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_IN_ARTICLE ?? SLOT_TOP_BANNER;
+const SLOT_IN_ARTICLE = ENV.VITE_ADSENSE_SLOT_IN_ARTICLE ?? SLOT_TOP_BANNER;
 
 // ================================================================
 // "ON THIS PAGE" NAVIGATION - FINTECH STYLE

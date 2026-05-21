@@ -3,14 +3,9 @@ import React, { useEffect } from "react";
 // ================================================================
 // CONFIGURAÇÃO: Trocar em .env quando for aprovado
 // ================================================================
-// Suporte seguro para Vite (import.meta.env) e compatibilidade com NEXT_PUBLIC_*
 const ENV: any = (typeof import.meta !== 'undefined' && (import.meta as any).env) || {};
-const ADSENSE_ENABLED = (
-  (ENV.VITE_ADSENSE_ENABLED ?? ENV.NEXT_PUBLIC_ADSENSE_ENABLED ?? 'false')
-) === 'true';
-const ADSENSE_CLIENT_ID = (
-  ENV.VITE_ADSENSE_CLIENT_ID ?? ENV.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? ''
-);
+const ADSENSE_ENABLED = (ENV.VITE_ADSENSE_ENABLED ?? 'false') === 'true';
+const ADSENSE_CLIENT_ID = ENV.VITE_ADSENSE_CLIENT_ID ?? '';
 
 // ================================================================
 // TIPOS DE ANÚNCIOS PRÉ-CONFIGURADOS

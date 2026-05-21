@@ -1,8 +1,7 @@
 import AdUnit from "@/components/AdUnit";
 
 const ENV: any = (typeof import.meta !== "undefined" && (import.meta as any).env) || {};
-const SLOT_SIDEBAR =
-  ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR ?? "pending";
+const SLOT_SIDEBAR = ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? "pending";
 
 /**
  * Sidebar ad for category pages.
