@@ -20,7 +20,7 @@ import {
     CommandSeparator,
 } from "@/components/ui/command";
 import { calculatorRegistry, calcLink } from "@/data/calculatorRegistry";
-import { GAMES } from "@/data/gamesRegistry";
+import { GAME_REGISTRY } from "@/data/gameRegistry";
 import { DialogProps } from "@radix-ui/react-dialog";
 
 interface GlobalSearchProps extends DialogProps {
@@ -78,7 +78,7 @@ export function GlobalSearch({
         })),
 
         // --- Games (Dynamic) ---
-        ...GAMES.map(game => ({
+        ...GAME_REGISTRY.map(game => ({
             title: game.title,
             href: `/games/${game.slug}`,
             category: "Games",

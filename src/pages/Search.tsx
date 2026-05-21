@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { calculatorRegistry } from "@/data/calculatorRegistry";
-import { GAMES } from "@/data/gamesRegistry";
+import { GAME_REGISTRY } from "@/data/gameRegistry";
 import { getCategoryMeta, getDisplaySubcategory } from "@/data/categoryMeta";
 import AdBannerTop from "@/components/ads/AdBannerTop";
 import AdSidebarRight from "@/components/ads/AdSidebarRight";
@@ -59,7 +59,7 @@ export default function Search() {
       description: e.description
     }));
 
-    const gameMatches: SearchResult[] = GAMES.filter((g) => {
+    const gameMatches: SearchResult[] = GAME_REGISTRY.filter((g) => {
       const hay = [g.title, g.slug, g.description, "game", "play"].join(" ").toLowerCase();
       return hay.includes(needle);
     }).map(g => ({
