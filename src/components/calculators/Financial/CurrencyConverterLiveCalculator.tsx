@@ -1,32 +1,104 @@
 import { useState, useMemo, useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, TrendingUp } from "lucide-react";
+import ErrorBoundary from "@/components/common/ErrorBoundary";
+import CalculatorSkeleton from "@/components/common/CalculatorSkeleton";
+import CalculatorErrorState from "@/components/common/CalculatorErrorState";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+const ONE_HOUR_MS = 60 * 60 * 1000;
+
+interface FrankfurterResponse {
+  amount: number;
+  base: string;
+  date: string;
+  rates: Record<string, number>;
+}
+
+async function fetchExchangeRate(
+  base: string,
+  target: string,
+): Promise<FrankfurterResponse> {
+  if (base === target) {
+    return {
+      amount: 1,
+      base,
+      date: new Date().toISOString().slice(0, 10),
+      rates: { [target]: 1 },
+    };
+  }
+
+  const url = `https://api.frankfurter.app/latest?from=${encodeURIComponent(
+    base,
+  )}&to=${encodeURIComponent(target)}`;
+
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch exchange rate (${response.status} ${response.statusText})`,
+    );
+  }
+
+  const data: FrankfurterResponse = await response.json();
+  if (!data?.rates || typeof data.rates[target] !== "number") {
+    throw new Error(`Rate for ${target} not available from ${base}`);
+  }
+  return data;
+}
+
 export default function CurrencyConverterLiveCalculator() {
-  // STATE
-  const [inputs, setInputs] = useState({ 
-    amount: "", 
-    fromCurrency: "", 
-    toCurrency: "" 
+  const [inputs, setInputs] = useState({
+    amount: "",
+    fromCurrency: "",
+    toCurrency: "",
   });
-  const [exchangeRate, setExchangeRate] = useState(0);
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
 
-  // HELPER FUNCTION (MANDATORY)
+  const baseCurrency = inputs.fromCurrency.trim().toUpperCase();
+  const targetCurrency = inputs.toCurrency.trim().toUpperCase();
+  const currenciesValid =
+    /^[A-Z]{3}$/.test(baseCurrency) && /^[A-Z]{3}$/.test(targetCurrency);
+
+  const {
+    data,
+    isLoading,
+    isFetching,
+    isError,
+    error,
+    refetch,
+    isStale,
+  } = useQuery<FrankfurterResponse, Error>({
+    queryKey: ["fx-rate", baseCurrency, targetCurrency],
+    queryFn: () => fetchExchangeRate(baseCurrency, targetCurrency),
+    enabled: currenciesValid,
+    staleTime: ONE_HOUR_MS,
+    gcTime: ONE_HOUR_MS * 2,
+    retry: 1,
+    refetchOnWindowFocus: false,
+  });
+
+  const exchangeRate = data?.rates?.[targetCurrency] ?? 0;
+  const rateDate = data?.date ?? null;
+
   const formatCurrency = (value: number, currency: string): string => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(value);
+    const code = currency.trim().toUpperCase();
+    try {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: code || "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(value);
+    } catch {
+      return `${value.toFixed(2)} ${code}`;
+    }
   };
 
   const faqs = [
@@ -70,226 +142,251 @@ export default function CurrencyConverterLiveCalculator() {
 
   const faqJsonLd = useFaqJsonLd(faqs);
 
-  // CALCULATIONS
   const results = useMemo(() => {
-    // Parse inputs
     const amountValue = parseFloat(inputs.amount) || 0;
 
-    // Validate
     if (amountValue <= 0 || exchangeRate <= 0) {
-      return { 
-        convertedAmount: 0, 
-        rateUsed: exchangeRate, 
-        scheduleData: [] 
+      return {
+        convertedAmount: 0,
+        rateUsed: exchangeRate,
+        scheduleData: [] as { month: number; convertedValue: number; exchangeRate: number }[],
       };
     }
 
-    // Perform currency conversion
     const convertedAmount = amountValue * exchangeRate;
 
-    // Generate schedule data if applicable
     const scheduleData = Array.from({ length: 12 }, (_, i) => ({
       month: i + 1,
       convertedValue: convertedAmount,
-      exchangeRate: exchangeRate,
+      exchangeRate,
     }));
 
-    return { 
-      convertedAmount, 
-      rateUsed: exchangeRate, 
-      scheduleData 
-    };
-  }, [inputs, exchangeRate]);
+    return { convertedAmount, rateUsed: exchangeRate, scheduleData };
+  }, [inputs.amount, exchangeRate]);
 
-  // HANDLERS
   const handleCalculate = () => {
-    // Simulate fetching live exchange rate
-    setExchangeRate(1.2); // Example rate
+    if (!currenciesValid) return;
+    refetch();
     setTimeout(() => {
-      resultsRef.current?.scrollIntoView({ 
-        behavior: "smooth", 
-        block: "center" 
+      resultsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
       });
     }, 100);
   };
 
   const handleReset = () => {
     setInputs({ amount: "", fromCurrency: "", toCurrency: "" });
-    setExchangeRate(0);
   };
 
-  // WIDGET JSX (200-250 LINES)
+  const showLoading = currenciesValid && (isLoading || isFetching) && !data;
+  const showError = currenciesValid && isError && !data;
+
   const widget = (
-    <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-      {/* INPUT SECTION */}
-      <div className="space-y-4">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="space-y-2">
-            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <DollarSign className="w-4 h-4 text-blue-600"/>
-              Amount
-            </Label>
-            <Input
-              type="number"
-              placeholder="e.g., 1000"
-              value={inputs.amount}
-              onChange={(e) => setInputs({ ...inputs, amount: e.target.value })}
-              className="text-lg"
-            />
-          </div>
+    <ErrorBoundary
+      calculatorName="Currency Converter"
+      showDetails={import.meta.env.DEV}
+    >
+      <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+        <div className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                <DollarSign className="w-4 h-4 text-blue-600" />
+                Amount
+              </Label>
+              <Input
+                type="number"
+                placeholder="e.g., 1000"
+                value={inputs.amount}
+                onChange={(e) => setInputs({ ...inputs, amount: e.target.value })}
+                className="text-lg"
+              />
+            </div>
 
-          <div className="space-y-2">
-            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <TrendingUp className="w-4 h-4 text-green-600"/>
-              From Currency
-            </Label>
-            <Input
-              type="text"
-              placeholder="e.g., USD"
-              value={inputs.fromCurrency}
-              onChange={(e) => setInputs({ ...inputs, fromCurrency: e.target.value })}
-              className="text-lg"
-            />
-          </div>
+            <div className="space-y-2">
+              <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                <TrendingUp className="w-4 h-4 text-green-600" />
+                From Currency
+              </Label>
+              <Input
+                type="text"
+                placeholder="e.g., USD"
+                value={inputs.fromCurrency}
+                onChange={(e) => setInputs({ ...inputs, fromCurrency: e.target.value.toUpperCase() })}
+                maxLength={3}
+                className="text-lg uppercase"
+              />
+            </div>
 
-          <div className="space-y-2 md:col-span-2">
-            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <Calculator className="w-4 h-4 text-purple-600"/>
-              To Currency
-            </Label>
-            <Input
-              type="text"
-              placeholder="e.g., EUR"
-              value={inputs.toCurrency}
-              onChange={(e) => setInputs({ ...inputs, toCurrency: e.target.value })}
-              className="text-lg"
-            />
+            <div className="space-y-2 md:col-span-2">
+              <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                <Calculator className="w-4 h-4 text-purple-600" />
+                To Currency
+              </Label>
+              <Input
+                type="text"
+                placeholder="e.g., EUR"
+                value={inputs.toCurrency}
+                onChange={(e) => setInputs({ ...inputs, toCurrency: e.target.value.toUpperCase() })}
+                maxLength={3}
+                className="text-lg uppercase"
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* BUTTONS */}
-      <div className="flex gap-4 mt-6">
-        <Button 
-          onClick={handleCalculate} 
-          className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
-        >
-          <Calculator className="mr-2 h-4 w-4"/> 
-          Convert
-        </Button>
-        <Button 
-          onClick={handleReset} 
-          variant="outline"
-          className="border-gray-300 dark:border-gray-600"
-        >
-          Reset
-        </Button>
-      </div>
-
-      {/* RESULTS SECTION - GRID 2x2 (MANDATORY) */}
-      {results.convertedAmount > 0 && (
-        <div ref={resultsRef} className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Conversion Results</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* MAIN RESULT - Full Width Gradient (MANDATORY STYLE) */}
-            <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-xl">
-              <CardContent className="pt-8 pb-8">
-                <div className="flex items-center justify-between">
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
-                      Converted Amount
-                    </p>
-                    <p className="text-5xl font-bold text-blue-600 dark:text-blue-400">
-                      {formatCurrency(results.convertedAmount, inputs.toCurrency)}
-                    </p>
-                  </div>
-                  <DollarSign className="w-16 h-16 text-blue-600 dark:text-blue-400 opacity-20" />
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* SECONDARY RESULT 1 */}
-            <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-              <CardContent className="pt-6 pb-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
-                      Exchange Rate Used
-                    </p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                      {results.rateUsed.toFixed(2)}
-                    </p>
-                  </div>
-                  <TrendingUp className="w-10 h-10 text-gray-400" />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* SCHEDULE TABLE (if applicable) */}
-          {results.scheduleData && results.scheduleData.length > 0 && (
-            <Card className="mt-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-              <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-                <CardTitle className="flex justify-between items-center">
-                  <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
-                    Conversion Schedule
-                  </span>
-                  {results.scheduleData.length > 12 && (
-                    <Button 
-                      onClick={() => setShowFullTable(!showFullTable)} 
-                      variant="outline"
-                      size="sm"
-                      className="border-gray-300 dark:border-gray-600"
-                    >
-                      {showFullTable 
-                        ? 'Show Less' 
-                        : `Show All ${results.scheduleData.length} Entries`}
-                    </Button>
-                  )}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="bg-gray-50 dark:bg-gray-900">
-                        <TableHead className="font-semibold">Month</TableHead>
-                        <TableHead className="font-semibold">Converted Value</TableHead>
-                        <TableHead className="font-semibold">Exchange Rate</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {results.scheduleData
-                        .slice(0, showFullTable ? undefined : 12)
-                        .map((row, idx) => (
-                          <TableRow 
-                            key={idx} 
-                            className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
-                          >
-                            <TableCell className="font-medium">{row.month}</TableCell>
-                            <TableCell>{formatCurrency(row.convertedValue, inputs.toCurrency)}</TableCell>
-                            <TableCell className="font-semibold">
-                              {row.exchangeRate.toFixed(2)}
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+        <div className="flex gap-4 mt-6">
+          <Button
+            onClick={handleCalculate}
+            disabled={!currenciesValid || isFetching}
+            className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+          >
+            <Calculator className="mr-2 h-4 w-4" />
+            {isFetching && currenciesValid ? "Fetching rate…" : "Convert"}
+          </Button>
+          <Button
+            onClick={handleReset}
+            variant="outline"
+            className="border-gray-300 dark:border-gray-600"
+          >
+            Reset
+          </Button>
         </div>
-      )}
-    </Card>
+
+        {showLoading && (
+          <div className="mt-8">
+            <CalculatorSkeleton rows={2} />
+          </div>
+        )}
+
+        {showError && (
+          <div className="mt-8">
+            <CalculatorErrorState
+              title="Couldn't load exchange rate"
+              message={
+                error instanceof Error
+                  ? error.message
+                  : "The exchange rate service is unavailable. Please try again."
+              }
+              onRetry={() => refetch()}
+              retryLabel="Retry"
+            />
+          </div>
+        )}
+
+        {!showLoading && !showError && results.convertedAmount > 0 && (
+          <div
+            ref={resultsRef}
+            className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
+          >
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              Conversion Results
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-xl">
+                <CardContent className="pt-8 pb-8">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                        Converted Amount
+                      </p>
+                      <p className="text-5xl font-bold text-blue-600 dark:text-blue-400">
+                        {formatCurrency(results.convertedAmount, targetCurrency)}
+                      </p>
+                      {rateDate && (
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
+                          Rate as of {rateDate}
+                          {isStale ? " (cached)" : ""}
+                        </p>
+                      )}
+                    </div>
+                    <DollarSign className="w-16 h-16 text-blue-600 dark:text-blue-400 opacity-20" />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                <CardContent className="pt-6 pb-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                        Exchange Rate Used
+                      </p>
+                      <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                        1 {baseCurrency} = {results.rateUsed.toFixed(4)} {targetCurrency}
+                      </p>
+                    </div>
+                    <TrendingUp className="w-10 h-10 text-gray-400" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {results.scheduleData && results.scheduleData.length > 0 && (
+              <Card className="mt-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+                  <CardTitle className="flex justify-between items-center">
+                    <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                      Conversion Schedule
+                    </span>
+                    {results.scheduleData.length > 12 && (
+                      <Button
+                        onClick={() => setShowFullTable(!showFullTable)}
+                        variant="outline"
+                        size="sm"
+                        className="border-gray-300 dark:border-gray-600"
+                      >
+                        {showFullTable
+                          ? "Show Less"
+                          : `Show All ${results.scheduleData.length} Entries`}
+                      </Button>
+                    )}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow className="bg-gray-50 dark:bg-gray-900">
+                          <TableHead className="font-semibold">Month</TableHead>
+                          <TableHead className="font-semibold">Converted Value</TableHead>
+                          <TableHead className="font-semibold">Exchange Rate</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {results.scheduleData
+                          .slice(0, showFullTable ? undefined : 12)
+                          .map((row, idx) => (
+                            <TableRow
+                              key={idx}
+                              className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                            >
+                              <TableCell className="font-medium">{row.month}</TableCell>
+                              <TableCell>
+                                {formatCurrency(row.convertedValue, targetCurrency)}
+                              </TableCell>
+                              <TableCell className="font-semibold">
+                                {row.exchangeRate.toFixed(4)}
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        )}
+      </Card>
+    </ErrorBoundary>
   );
 
-  // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
     <div className="space-y-12">
 
-      {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Currency Converter (Live Rates)</h2>
         <div className="space-y-3">
@@ -299,7 +396,6 @@ export default function CurrencyConverterLiveCalculator() {
         </div>
       </section>
 
-      {/* TABLE: Major Currency Pairs and Their April 2025 Volatility */}
       <section id="table-1" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Major Currency Pairs and Their April 2025 Volatility</h2>
         <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the most heavily traded currency pairs and their typical daily volatility ranges, helping you understand which conversions are most stable.</p>
@@ -362,7 +458,6 @@ export default function CurrencyConverterLiveCalculator() {
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Volatility and spreads widen significantly during off-peak hours and major economic announcements. Data based on April 2025 market conditions.</p>
       </section>
 
-      {/* TABLE: Typical Currency Conversion Costs: Live Rate vs. Bank Rate */}
       <section id="table-2" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Typical Currency Conversion Costs: Live Rate vs. Bank Rate</h2>
         <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This comparison shows the real cost difference when converting $10,000 USD to various currencies using live interbank rates versus typical bank retail rates.</p>
@@ -433,7 +528,6 @@ export default function CurrencyConverterLiveCalculator() {
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Bank rates vary by institution and account type. Conversion costs shown for illustrative purposes based on April 2025 rates. Actual rates may differ.</p>
       </section>
 
-      {/* TABLE: Exchange Rate Volatility During Key Economic Events (Historical Data) */}
       <section id="table-3" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Exchange Rate Volatility During Key Economic Events (Historical Data)</h2>
         <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how major currency pairs typically move during significant economic announcements, demonstrating the importance of timing when converting large amounts.</p>
@@ -497,7 +591,6 @@ export default function CurrencyConverterLiveCalculator() {
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Volatility varies based on consensus expectations versus actual data. Moves are larger when actual results differ significantly from forecasts.</p>
       </section>
 
-      {/* TIPS */}
       <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
         <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
         <ul className="list-disc pl-5 space-y-2">
@@ -508,7 +601,6 @@ export default function CurrencyConverterLiveCalculator() {
         </ul>
       </section>
 
-      {/* MISTAKES */}
       <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
         <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
@@ -531,54 +623,26 @@ export default function CurrencyConverterLiveCalculator() {
         </div>
       </section>
 
-      {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What exchange rates does the live currency converter use?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The live currency converter pulls real-time exchange rates from major financial data providers that update rates multiple times per minute during market hours. These rates reflect the interbank market rates and are typically within 1-2% of what banks offer to retail customers. Rates can fluctuate significantly during volatile market conditions, especially during major economic announcements or geopolitical events.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often are exchange rates updated in this converter?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Exchange rates are updated every 1-5 seconds during forex market hours (Sunday 5 PM to Friday 4 PM EST). Outside these hours, the converter displays the last available rate from market close. Weekend and holiday rates may have a wider bid-ask spread due to lower trading volume, typically 2-3 times larger than weekday spreads.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why do the rates in this converter differ from my bank's rates?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Banks typically add a markup of 2-5% above the interbank mid-market rate to generate profit on currency conversions. This converter shows the interbank rate, which is the true market rate, while your bank's retail rate will be less favorable. Additionally, some banks may delay rate updates by 15-30 minutes, meaning you're seeing outdated information.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I lock in today's exchange rate for a future transaction?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this converter shows only current rates and does not offer forward contracts or rate locks. To lock in a rate for a future date, you would need to contact your bank or use a currency broker that offers forward contracts, typically available for amounts over $10,000 USD. Forward contracts usually have fees ranging from 0.5-2% of the transaction amount.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the bid-ask spread in currency markets?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The bid-ask spread is the difference between what buyers will pay and what sellers ask for a currency pair, typically ranging from 0.0001 to 0.0005 pips for major pairs like EUR/USD during peak trading hours. This spread widens to 0.001-0.005 pips during low-volume periods or for emerging market currencies. This converter usually displays the mid-market rate, which is the average between bid and ask prices.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I use this converter to compare costs when traveling internationally?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter the amount you plan to spend in your home currency to see the equivalent in your destination currency at live rates. Remember to account for additional costs: ATM fees (typically $2-5 per withdrawal), credit card foreign transaction fees (1-3%), and the 2-5% markup your bank adds to the live rate. For a $5,000 trip to Europe, these fees could add $150-300 in total costs.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Which currency pairs have the tightest spreads and fastest updates?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Major pairs like EUR/USD, GBP/USD, and USD/JPY have the tightest spreads (0.0001-0.0002 pips) and update most frequently because they have the highest trading volume, exceeding $1 trillion daily. Emerging market pairs like USD/INR or USD/BRL have spreads of 0.0005-0.005 pips and less frequent updates due to lower liquidity. Exotic pairs may update only every 30-60 seconds with spreads exceeding 0.01 pips.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does this converter account for inflation differences between countries?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, this converter shows only the nominal exchange rate and does not adjust for purchasing power parity (PPP) or inflation differentials between countries. A currency may appear expensive at face value but offer better purchasing power due to lower inflation. To assess true affordability when moving or investing internationally, you should research the real exchange rate, which factors in inflation rates—for example, a country with 5% inflation may effectively devalue its currency relative to one with 2% inflation.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors cause real-time exchange rate fluctuations?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Exchange rates fluctuate based on interest rate differentials, inflation expectations, geopolitical risk, trade flows, and central bank actions. For example, when the Federal Reserve raises rates, the USD typically strengthens by 0.5-2% within days as investors seek higher returns. A single major economic report (like non-farm payrolls) can move major currency pairs by 0.5-1% in minutes, while broader economic trends cause multi-week shifts of 3-10%.</p>
-          </div>
+          {faqs.map((faq, idx) => (
+            <div key={idx} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* REFERENCES */}
       <section id="references" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
         <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
         <ul className="space-y-4">
+          <li>
+            <a href="https://www.frankfurter.app/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Frankfurter API - Free Foreign Exchange Rates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Open-source API that tracks reference exchange rates published by the European Central Bank, used as the data source for this converter.</p>
+          </li>
           <li>
             <a href="https://www.xe.com/currency_charts/usd_eur_h.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">xe.com - Historical Exchange Rates and Currency Data</a>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Provides historical exchange rate data and charts for all major and minor currency pairs with real-time updates.</p>
@@ -601,7 +665,6 @@ export default function CurrencyConverterLiveCalculator() {
     </div>
   );
 
-  // RETURN STATEMENT
   return (
     <CalculatorVerticalLayout
       title="Currency Converter (Live Rates)"
@@ -626,15 +689,15 @@ export default function CurrencyConverterLiveCalculator() {
       }}
       example={{
         title: "Example Calculation",
-        scenario: "Imagine you want to convert 1000 USD to EUR with an exchange rate of 1.2.",
+        scenario: "Imagine you want to convert 1000 USD to EUR with an exchange rate of 0.92.",
         steps: [
-          { 
-            step: 1, 
-            calculation: "1000 × 1.2 = 1200", 
-            description: "Calculate the equivalent amount in EUR." 
+          {
+            step: 1,
+            calculation: "1000 × 0.92 = 920",
+            description: "Calculate the equivalent amount in EUR."
           }
         ],
-        result: "The final result is €1,200, meaning you will receive 1,200 Euros for 1,000 US Dollars."
+        result: "The final result is €920, meaning you will receive 920 Euros for 1,000 US Dollars."
       }}
       relatedCalculators={[
         {"title":"Loan Payment Calculator (Principal, Rate, Term)","url":"/financial/loan-payment","icon":"💵"},
