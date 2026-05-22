@@ -29,7 +29,9 @@
       "PowerShell(git config --global commit.gpgsign)",
       "PowerShell(Get-ChildItem \".husky\" -Force -Recurse 2>$null; if \\(-not \\(Test-Path \".husky\"\\)\\) { \"No .husky dir at all\" })",
       "Bash(echo \"EXIT=$?\")",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(gh pr create --title 'feat: static canonical injection at build time' --body ' *)",
+      "Bash(gh pr create --title 'feat: static canonical injection at build time' --head feat/static-canonical-injection --body ' *)"
     ]
   }
 }
