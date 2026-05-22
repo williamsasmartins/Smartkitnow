@@ -28,7 +28,8 @@
       "Bash(findstr /i \"gpg sign hook commit\")",
       "PowerShell(git config --global commit.gpgsign)",
       "PowerShell(Get-ChildItem \".husky\" -Force -Recurse 2>$null; if \\(-not \\(Test-Path \".husky\"\\)\\) { \"No .husky dir at all\" })",
-      "Bash(echo \"EXIT=$?\")"
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(git checkout *)"
     ]
   }
 }
