@@ -12,6 +12,7 @@
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "sitemap:js": "node scripts/sitemap.mjs",
     "prebuild": "tsx scripts/generate-sitemap.ts",
+    "postbuild": "node scripts/inject-canonicals.mjs",
     "generate:sitemap": "node scripts/generate-sitemap-extended.mjs",
     "scaffold:calculators": "tsx scripts/scaffold-missing.ts",
     "test": "vitest",
