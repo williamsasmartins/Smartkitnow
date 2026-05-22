@@ -194,6 +194,72 @@ VITE_ADSENSE_SLOT_BOTTOM_BANNER=...
 - ESLint (eslint.config.js) + Husky + lint-staged
 - Auto-fix on staged files: `eslint --fix`
 
+### Error Handling (MANDATORY on every calculator)
+
+Every calculator must use the three reusable primitives in `src/components/common/`:
+
+| Component | Purpose | When to use |
+|---|---|---|
+| `ErrorBoundary` | Catches render-time exceptions thrown by the calculator subtree and shows a recoverable fallback | Wrap every calculator widget; mounts once per calculator |
+| `CalculatorSkeleton` | Animated placeholder matching the widget grid (inputs, buttons, result card) | Suspense fallback for lazy-loaded calculators and any in-widget loading state (async fetches, deferred compute) |
+| `CalculatorErrorState` | User-facing error card with title, message, optional details, and retry button | Validation failures, fetch failures, computation errors — anywhere you previously rendered ad-hoc red text |
+
+**Rules:**
+1. Never `try/catch` and silently swallow — always surface via `CalculatorErrorState`.
+2. Async work (fetch, lazy import) must render `CalculatorSkeleton` while pending and `CalculatorErrorState` on failure.
+3. `ErrorBoundary` is the outermost wrapper inside the calculator component, **inside** `CalculatorVerticalLayout`'s `widget` slot.
+4. Pass `calculatorName` to `ErrorBoundary` so logs and the default fallback identify the source.
+5. Do not log errors to `console.log` — `ErrorBoundary` already calls `console.error` with the component stack. Use the `onError` prop to forward to analytics.
+
+**Reference pattern:**
+
+```tsx
+import { Suspense, useState } from "react";
+import ErrorBoundary from "@/components/common/ErrorBoundary";
+import CalculatorSkeleton from "@/components/common/CalculatorSkeleton";
+import CalculatorErrorState from "@/components/common/CalculatorErrorState";
+
+export default function ExampleCalculator() {
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  async function handleCalculate() {
+    setError(null);
+    setLoading(true);
+    try {
+      // ... fetch live rate, run heavy compute, etc.
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Calculation failed");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const widget = (
+    <ErrorBoundary calculatorName="Example Calculator" showDetails={import.meta.env.DEV}>
+      {loading && <CalculatorSkeleton rows={4} />}
+
+      {!loading && error && (
+        <CalculatorErrorState
+          message={error}
+          onRetry={() => setError(null)}
+        />
+      )}
+
+      {!loading && !error && (
+        <>
+          {/* inputs, buttons, result card */}
+        </>
+      )}
+    </ErrorBoundary>
+  );
+
+  return <CalculatorVerticalLayout widget={widget} {/* ...rest */} />;
+}
+```
+
+**Lazy-loaded calculators** (`calculatorRegistry.ts` loader) — `CalculatorPage` wraps the dynamic import in `<Suspense fallback={<CalculatorSkeleton />}>` and an outer `<ErrorBoundary />`; individual calculators only need the inner boundary for their own runtime errors.
+
 ---
 
 ## Key Utility Scripts (root-level)
