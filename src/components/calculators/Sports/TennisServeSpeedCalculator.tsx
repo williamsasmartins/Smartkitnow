@@ -4,11 +4,8 @@
  * Palette: #0a1f14 (court noir) · #c8f564 (neon lime) · #e8f0e4 (court cream)
  * DFII: 13 — Execute fully
  */
-import { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 // ⚠️ FULL ICON IMPORT
 import {
   Timer,
@@ -232,7 +229,6 @@ export default function TennisServeSpeedCalculator() {
   const [unit, setUnit]     = useState<"metric" | "imperial">("metric");
   const [inputs, setInputs] = useState({ distance: "", time: "" });
   const [hasResult, setHasResult] = useState(false);
-  const resultRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = useCallback(
     (n: string, v: string) => setInputs((p) => ({ ...p, [n]: v })),
@@ -679,7 +675,7 @@ export default function TennisServeSpeedCalculator() {
 
           {/* ── Results ── */}
           {results.kmh !== null && !results.warning && (
-            <div className="cn-result-enter" ref={resultRef} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <div className="cn-result-enter" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
 
               <div className="cn-divider" />
 
