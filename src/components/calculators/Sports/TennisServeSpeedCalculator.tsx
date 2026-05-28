@@ -1,6 +1,11 @@
-import { useState, useMemo, useCallback } from "react";
-import CalculatorVerticalLayout from '@/components/templates/CalculatorVerticalLayout';
-import { Card, CardContent } from "@/components/ui/card";
+/**
+ * TennisServeSpeedCalculator — COURT NOIR aesthetic
+ * Design: Luxury Minimal · DM Serif Display + DM Sans
+ * Palette: #0a1f14 (court noir) · #c8f564 (neon lime) · #e8f0e4 (court cream)
+ * DFII: 13 — Execute fully
+ */
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -10,7 +15,6 @@ import {
   TrendingUp,
   Trophy,
   Flag,
-  Zap,
   RotateCcw,
   AlertTriangle,
   ExternalLink,
@@ -19,122 +23,192 @@ import {
 } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-// ── Pro player benchmark data ─────────────────────────────────────
-const PRO_BENCHMARKS = [
-  { player: "John Isner",      country: "🇺🇸", kmh: 253, category: "ATP Record",  gender: "Men"   },
-  { player: "Sam Groth",       country: "🇦🇺", kmh: 263, category: "Fastest Ever", gender: "Men"   },
-  { player: "Novak Djokovic",  country: "🇷🇸", kmh: 220, category: "Top 10 ATP",  gender: "Men"   },
-  { player: "Roger Federer",   country: "🇨🇭", kmh: 215, category: "Top 10 ATP",  gender: "Men"   },
-  { player: "Rafael Nadal",    country: "🇪🇸", kmh: 217, category: "Top 10 ATP",  gender: "Men"   },
-  { player: "Average ATP Pro", country: "🏆",  kmh: 193, category: "ATP Average", gender: "Men"   },
-  { player: "Sabine Lisicki",  country: "🇩🇪", kmh: 211, category: "WTA Record",  gender: "Women" },
-  { player: "Serena Williams", country: "🇺🇸", kmh: 207, category: "Top WTA",     gender: "Women" },
-  { player: "Average WTA Pro", country: "🏆",  kmh: 163, category: "WTA Average", gender: "Women" },
-  { player: "Club Player",     country: "🎾",  kmh: 130, category: "Amateur",     gender: "Both"  },
-];
+// ─── Design tokens (COURT NOIR) ───────────────────────────────────
+const CN = {
+  noir:   "#0a1f14",
+  deep:   "#0e2a1a",
+  mid:    "#1a3d28",
+  muted:  "#2b5e3a",
+  accent: "#c8f564",
+  cream:  "#e8f0e4",
+  dim:    "#7ea88a",
+} as const;
 
-// ── Conversion helpers ───────────────────────────────────────────
-const mToFt = (m: number) => m * 3.28084;
-const ftToM = (ft: number) => ft / 3.28084;
+// ─── Data ─────────────────────────────────────────────────────────
+const PRO_BENCHMARKS = [
+  { player: "Sam Groth",       country: "🇦🇺", kmh: 263, tag: "All-Time Record"  },
+  { player: "John Isner",      country: "🇺🇸", kmh: 253, tag: "ATP Record"       },
+  { player: "Novak Djokovic",  country: "🇷🇸", kmh: 220, tag: "Top ATP"          },
+  { player: "Rafael Nadal",    country: "🇪🇸", kmh: 217, tag: "Top ATP"          },
+  { player: "Roger Federer",   country: "🇨🇭", kmh: 215, tag: "Top ATP"          },
+  { player: "Sabine Lisicki",  country: "🇩🇪", kmh: 211, tag: "WTA Record"       },
+  { player: "Serena Williams", country: "🇺🇸", kmh: 207, tag: "Top WTA"          },
+  { player: "ATP Average",     country: "🏆",  kmh: 193, tag: "Tour Average"     },
+  { player: "WTA Average",     country: "🏆",  kmh: 163, tag: "Tour Average"     },
+  { player: "Club Player",     country: "🎾",  kmh: 130, tag: "Amateur"          },
+].sort((a, b) => b.kmh - a.kmh);
+
+// ─── Helpers ──────────────────────────────────────────────────────
+const ftToM    = (ft: number) => ft / 3.28084;
 const kmhToMph = (kmh: number) => kmh * 0.621371;
 
-// ── Speedometer SVG (pure SVG, no lib) ───────────────────────────
-function Speedometer({ speedKmh, maxKmh = 300 }: { speedKmh: number; maxKmh?: number }) {
-  const clampedKmh = Math.min(speedKmh, maxKmh);
-  const pct = clampedKmh / maxKmh;          // 0–1
-  const START_ANGLE = -220;                  // degrees (left side)
-  const SWEEP       = 260;                   // total arc degrees
-  const angle       = START_ANGLE + pct * SWEEP;
-  const cx = 110, cy = 110, r = 85;
+// ─── SVG Speedometer — COURT NOIR styled ─────────────────────────
+function CourtNoir_Speedometer({
+  speedKmh,
+  animated,
+}: {
+  speedKmh: number;
+  animated: boolean;
+}) {
+  const MAX = 300;
+  const clamped = Math.min(speedKmh, MAX);
+  const pct = clamped / MAX;
 
-  // Arc path helper
-  const polarToXY = (deg: number, radius: number) => {
+  // Arc geometry
+  const cx = 120, cy = 115, R = 90;
+  const START = -215, SWEEP = 250;
+  const toXY = (deg: number, r: number) => {
     const rad = (deg * Math.PI) / 180;
-    return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
+    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
   };
+  const s = toXY(START, R);
+  const e = toXY(START + SWEEP, R);
+  const needle = toXY(START + pct * SWEEP, R - 8);
 
-  const startPt = polarToXY(START_ANGLE, r);
-  const endPt   = polarToXY(START_ANGLE + SWEEP, r);
-  const needlePt = polarToXY(angle, r - 12);
+  // Tick marks
+  const ticks = Array.from({ length: 11 }, (_, i) => {
+    const a = START + (i / 10) * SWEEP;
+    const inner = toXY(a, R - 14);
+    const outer = toXY(a, R - 4);
+    return { inner, outer, major: i % 5 === 0 };
+  });
 
-  // Speed colour: green → yellow → red
-  const speedColor =
-    pct < 0.4 ? "#4ade80"
-    : pct < 0.65 ? "#facc15"
-    : pct < 0.85 ? "#fb923c"
-    : "#ef4444";
+  const mph = kmhToMph(speedKmh).toFixed(0);
 
   return (
-    <svg viewBox="0 0 220 160" className="w-full max-w-[280px] mx-auto select-none">
-      {/* Background arc (grey) */}
+    <svg
+      viewBox="0 0 240 175"
+      className="w-full max-w-[300px] mx-auto select-none"
+      style={{ filter: "drop-shadow(0 0 18px rgba(200,245,100,0.18))" }}
+    >
+      {/* Outer ring */}
+      <circle cx={cx} cy={cy} r={R + 10} fill={CN.deep} />
+      <circle cx={cx} cy={cy} r={R + 10} fill="none" stroke={CN.mid} strokeWidth="1" />
+
+      {/* Track */}
       <path
-        d={`M ${startPt.x} ${startPt.y} A ${r} ${r} 0 1 1 ${endPt.x} ${endPt.y}`}
+        d={`M ${s.x} ${s.y} A ${R} ${R} 0 1 1 ${e.x} ${e.y}`}
         fill="none"
-        stroke="#e2e8f0"
-        strokeWidth="14"
+        stroke={CN.muted}
+        strokeWidth="8"
         strokeLinecap="round"
       />
-      {/* Coloured filled arc */}
-      {pct > 0 && (
+
+      {/* Filled arc */}
+      {pct > 0.001 && (
         <path
-          d={`M ${startPt.x} ${startPt.y} A ${r} ${r} 0 ${pct > 0.5 ? 1 : 0} 1 ${needlePt.x} ${needlePt.y}`}
+          d={`M ${s.x} ${s.y} A ${R} ${R} 0 ${pct > 0.5 ? 1 : 0} 1 ${needle.x} ${needle.y}`}
           fill="none"
-          stroke={speedColor}
-          strokeWidth="14"
+          stroke={CN.accent}
+          strokeWidth="8"
           strokeLinecap="round"
+          style={{
+            transition: animated ? "all 0.8s cubic-bezier(0.34,1.56,0.64,1)" : "none",
+          }}
         />
       )}
-      {/* Needle dot */}
-      <circle cx={needlePt.x} cy={needlePt.y} r="7" fill={speedColor} />
-      {/* Center dot */}
-      <circle cx={cx} cy={cy} r="5" fill="#94a3b8" />
-      {/* Speed text */}
-      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="22" fontWeight="800" fill={speedColor}>
+
+      {/* Tick marks */}
+      {ticks.map((t, i) => (
+        <line
+          key={i}
+          x1={t.inner.x} y1={t.inner.y}
+          x2={t.outer.x} y2={t.outer.y}
+          stroke={t.major ? CN.cream : CN.muted}
+          strokeWidth={t.major ? 1.5 : 0.8}
+        />
+      ))}
+
+      {/* Needle glow */}
+      {pct > 0.001 && (
+        <circle
+          cx={needle.x}
+          cy={needle.y}
+          r="6"
+          fill={CN.accent}
+          style={{ filter: "drop-shadow(0 0 6px #c8f564)" }}
+        />
+      )}
+
+      {/* Center hub */}
+      <circle cx={cx} cy={cy} r="6" fill={CN.mid} stroke={CN.dim} strokeWidth="1" />
+
+      {/* km/h display */}
+      <text
+        x={cx}
+        y={cy + 22}
+        textAnchor="middle"
+        fontSize="30"
+        fontWeight="700"
+        fontFamily="'DM Serif Display', Georgia, serif"
+        fill={CN.accent}
+        style={{ letterSpacing: "-1px" }}
+      >
         {speedKmh.toFixed(0)}
       </text>
-      <text x={cx} y={cy + 44} textAnchor="middle" fontSize="10" fill="#94a3b8">
-        km/h
+      <text x={cx} y={cy + 36} textAnchor="middle" fontSize="8" fill={CN.dim} fontFamily="'DM Sans', sans-serif" letterSpacing="3">
+        KM/H
       </text>
-      <text x={cx} y={cy + 58} textAnchor="middle" fontSize="9" fill="#94a3b8">
-        {kmhToMph(speedKmh).toFixed(0)} mph
+      <text x={cx} y={cy + 50} textAnchor="middle" fontSize="10" fill={CN.cream} fontFamily="'DM Sans', sans-serif">
+        {mph} mph
       </text>
-      {/* Min/Max labels */}
-      <text x="22" y="148" fontSize="9" fill="#94a3b8">0</text>
-      <text x="185" y="148" fontSize="9" fill="#94a3b8">{maxKmh}</text>
+
+      {/* Scale labels */}
+      <text x="26" y="160" fontSize="8" fill={CN.dim} fontFamily="'DM Sans', sans-serif">0</text>
+      <text x="196" y="160" fontSize="8" fill={CN.dim} fontFamily="'DM Sans', sans-serif">{MAX}</text>
     </svg>
   );
 }
 
-// ── Comparison bar chart ──────────────────────────────────────────
-function ComparisonChart({ userKmh }: { userKmh: number }) {
+// ─── Comparison bars ───────────────────────────────────────────────
+function CourtNoir_Chart({ userKmh }: { userKmh: number }) {
   const MAX = 280;
   const rows = [
-    { label: "Fastest Ever (Sam Groth)", kmh: 263, color: "#ef4444" },
-    { label: "Serena Williams (WTA Rec.)", kmh: 207, color: "#a855f7" },
-    { label: "Top ATP Average",           kmh: 193, color: "#f97316" },
-    { label: "Your Serve",               kmh: userKmh, color: "#22c55e" },
-    { label: "Average Club Player",       kmh: 130, color: "#64748b" },
+    { label: "Sam Groth — All-Time Record", kmh: 263, accent: "#ef4444" },
+    { label: "Serena Williams — WTA Record", kmh: 207, accent: "#d97706" },
+    { label: "ATP Tour Average",            kmh: 193, accent: "#6366f1" },
+    { label: "⚡ Your Serve",              kmh: userKmh, accent: CN.accent, isUser: true },
+    { label: "Club Player Average",         kmh: 130, accent: CN.dim },
   ].sort((a, b) => b.kmh - a.kmh);
 
   return (
-    <div className="space-y-3 mt-4">
+    <div className="space-y-3">
       {rows.map((row) => {
-        const barPct = Math.min((row.kmh / MAX) * 100, 100);
-        const isUser = row.label === "Your Serve";
+        const pct = Math.min((row.kmh / MAX) * 100, 100);
         return (
           <div key={row.label}>
-            <div className="flex justify-between text-xs font-semibold mb-1">
-              <span className={isUser ? "text-green-600 dark:text-green-400 font-bold" : "text-slate-600 dark:text-slate-400"}>
-                {isUser ? "⚡ " : ""}{row.label}
+            <div className="flex justify-between items-baseline mb-1">
+              <span
+                className="text-xs font-semibold"
+                style={{ color: row.isUser ? CN.accent : CN.cream, fontFamily: "'DM Sans', sans-serif" }}
+              >
+                {row.label}
               </span>
-              <span className="font-mono text-slate-700 dark:text-slate-300">
+              <span className="text-xs font-mono" style={{ color: CN.dim }}>
                 {row.kmh.toFixed(0)} km/h · {kmhToMph(row.kmh).toFixed(0)} mph
               </span>
             </div>
-            <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-3 overflow-hidden">
+            <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: CN.mid }}>
               <div
-                className="h-3 rounded-full transition-all duration-700"
-                style={{ width: `${barPct}%`, backgroundColor: row.color }}
+                className="h-2 rounded-full"
+                style={{
+                  width: `${pct}%`,
+                  background: row.isUser
+                    ? `linear-gradient(90deg, ${CN.accent}, #a3f065)`
+                    : row.accent,
+                  boxShadow: row.isUser ? `0 0 8px ${CN.accent}80` : "none",
+                  transition: "width 0.9s cubic-bezier(0.34,1.2,0.64,1)",
+                }}
               />
             </div>
           </div>
@@ -144,317 +218,574 @@ function ComparisonChart({ userKmh }: { userKmh: number }) {
   );
 }
 
-// ── Main component ────────────────────────────────────────────────
+// ─── Speed tier ────────────────────────────────────────────────────
+function getTier(kmh: number) {
+  if (kmh >= 240) return { label: "MONSTER SERVE", sub: "Top 1% worldwide", glow: true };
+  if (kmh >= 210) return { label: "PRO-LEVEL",     sub: "ATP / WTA territory", glow: true };
+  if (kmh >= 180) return { label: "ADVANCED",      sub: "Strong amateur game", glow: false };
+  if (kmh >= 140) return { label: "CLUB PLAYER",   sub: "Solid recreational", glow: false };
+  return              { label: "DEVELOPING",       sub: "Keep training!",      glow: false };
+}
+
+// ─── Main component ────────────────────────────────────────────────
 export default function TennisServeSpeedCalculator() {
-  const [unit, setUnit] = useState<"metric" | "imperial">("metric");
+  const [unit, setUnit]     = useState<"metric" | "imperial">("metric");
   const [inputs, setInputs] = useState({ distance: "", time: "" });
-  const handleInputChange = useCallback((n: string, v: string) => setInputs((p) => ({ ...p, [n]: v })), []);
+  const [hasResult, setHasResult] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  const handleInputChange = useCallback(
+    (n: string, v: string) => setInputs((p) => ({ ...p, [n]: v })),
+    []
+  );
 
   const results = useMemo(() => {
     const rawDist = parseFloat(inputs.distance);
     const time    = parseFloat(inputs.time);
-
     if (isNaN(rawDist) || isNaN(time) || rawDist <= 0 || time <= 0) {
-      return { kmh: null, mph: null, warning: "Please enter valid positive numbers for distance and time." };
+      return { kmh: null, mph: null, warning: "Enter valid positive numbers for distance and time." };
     }
-
     const distMeters = unit === "imperial" ? ftToM(rawDist) : rawDist;
-    const speedMs    = distMeters / time;
-    const kmh        = speedMs * 3.6;
-    const mph        = kmhToMph(kmh);
-    return { kmh, mph, warning: null };
+    const kmh = (distMeters / time) * 3.6;
+    return { kmh, mph: kmhToMph(kmh), warning: null };
   }, [inputs, unit]);
 
-  // Speed tier label
-  const speedTier = useMemo(() => {
-    if (!results.kmh) return null;
-    if (results.kmh >= 240) return { label: "🔥 Monster Serve!", color: "text-red-500" };
-    if (results.kmh >= 200) return { label: "⚡ Pro-Level!", color: "text-orange-500" };
-    if (results.kmh >= 170) return { label: "💪 Advanced", color: "text-yellow-500" };
-    if (results.kmh >= 130) return { label: "🎾 Club Player", color: "text-green-600" };
-    return { label: "🌱 Keep Training!", color: "text-blue-500" };
-  }, [results.kmh]);
+  // Animate result in on first valid calculation
+  useEffect(() => {
+    if (results.kmh !== null && !results.warning) {
+      setHasResult(true);
+    }
+  }, [results.kmh, results.warning]);
 
-  // Percentile vs ATP
-  const percentile = useMemo(() => {
-    if (!results.kmh) return null;
-    if (results.kmh >= 240) return 99;
-    if (results.kmh >= 220) return 95;
-    if (results.kmh >= 200) return 85;
-    if (results.kmh >= 185) return 70;
-    if (results.kmh >= 160) return 50;
-    if (results.kmh >= 130) return 25;
-    return 10;
-  }, [results.kmh]);
+  const tier       = results.kmh ? getTier(results.kmh) : null;
+  const percentile = results.kmh
+    ? results.kmh >= 240 ? 99 : results.kmh >= 220 ? 95 : results.kmh >= 200 ? 85
+      : results.kmh >= 185 ? 70 : results.kmh >= 160 ? 50 : results.kmh >= 130 ? 25 : 10
+    : null;
 
-  const distLabel = unit === "metric" ? "meters (m)" : "feet (ft)";
+  const distLabel = unit === "metric" ? "m" : "ft";
   const distPlaceholder = unit === "metric" ? "e.g. 18.3" : "e.g. 60";
 
+  // ── FAQs ─────────────────────────────────────────────────────────
   const faqs = [
     {
       question: "How accurate is the Tennis Serve Speed Calculator?",
-      answer:
-        "The calculator provides an estimate based on the distance the ball travels and the time it takes. Factors like ball spin, air resistance, and measurement precision can affect accuracy. For professional precision, radar guns or high-speed cameras are recommended.",
+      answer: "The calculator gives an estimate based on distance and time. Factors like ball spin and air resistance can affect accuracy. For professional-grade precision, radar guns or Hawk-Eye systems are recommended.",
     },
     {
       question: "What is the fastest tennis serve ever recorded?",
-      answer:
-        "Sam Groth (Australia) holds the official record at 263.4 km/h (163.7 mph), set in 2012. John Isner's 253 km/h remains the fastest in Grand Slam competition. On the women's side, Sabine Lisicki recorded 211 km/h (131 mph).",
+      answer: "Sam Groth (Australia) holds the official record at 263.4 km/h (163.7 mph), set in 2012. John Isner holds the Grand Slam record at 253 km/h. On the women's side, Sabine Lisicki recorded 211 km/h (131 mph).",
     },
     {
-      question: "Can I use feet instead of meters for the distance?",
-      answer:
-        "Yes! Toggle the unit switch to Imperial to enter distance in feet. The calculator automatically converts feet to meters internally to compute the correct speed in both km/h and mph.",
+      question: "Can I enter distance in feet instead of meters?",
+      answer: "Yes — toggle the Imperial button to switch to feet. The calculator automatically converts feet to meters before computing speed, and always shows results in both km/h and mph.",
     },
     {
       question: "What is the average serve speed on the ATP Tour?",
-      answer:
-        "The average first serve speed on the ATP Tour is approximately 185–200 km/h (115–124 mph). On the WTA Tour, the average is around 155–165 km/h (96–103 mph). Club-level players typically serve between 100–140 km/h (62–87 mph).",
+      answer: "ATP first-serve average is approximately 185–200 km/h (115–124 mph). WTA average is around 155–165 km/h (96–103 mph). Club players typically serve between 100–140 km/h (62–87 mph).",
     },
     {
-      question: "How do I measure my serve time accurately?",
-      answer:
-        "The most accurate method is slow-motion video analysis. Film your serve at 120fps or higher, count frames from ball impact to bounce, then divide by frame rate to get time in seconds. Free apps like Ubersense or Coach's Eye can help.",
+      question: "How do I measure serve time accurately?",
+      answer: "Film at 120fps or higher. Count frames from ball-racket contact to first bounce, then divide by your frame rate to get seconds. Apps like Ubersense or Coach's Eye make this straightforward.",
     },
     {
       question: "What is a good serve speed for a recreational player?",
-      answer:
-        "For recreational players, 100–140 km/h (62–87 mph) is typical. Breaking 160 km/h (100 mph) is considered strong for an amateur. Consistent placement and spin are often more valuable than raw speed at the club level.",
+      answer: "100–140 km/h (62–87 mph) is typical. Breaking 160 km/h (100 mph) is a strong milestone for amateurs. At the club level, placement and spin often matter more than raw speed.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
+  // ── Widget ────────────────────────────────────────────────────────
   const widget = (
-    <div className="space-y-6">
-      {/* Tennis court header banner */}
-      <div className="relative rounded-xl overflow-hidden bg-gradient-to-r from-[#2d6a4f] via-[#40916c] to-[#52b788] p-5 text-white shadow-inner">
-        {/* Court lines decoration */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white" />
-          <div className="absolute top-1/2 left-0 right-0 h-px bg-white" />
-          <div className="absolute left-1/4 top-0 bottom-0 w-px bg-white" />
-          <div className="absolute right-1/4 top-0 bottom-0 w-px bg-white" />
-          <div className="absolute top-1/3 left-1/4 right-1/4 h-px bg-white" />
+    <>
+      {/* COURT NOIR font import */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+        .cn-widget {
+          background: ${CN.noir};
+          border-radius: 20px;
+          overflow: hidden;
+          font-family: 'DM Sans', sans-serif;
+        }
+        .cn-header {
+          position: relative;
+          padding: 28px 28px 24px;
+          border-bottom: 1px solid ${CN.mid};
+          overflow: hidden;
+        }
+        /* Subtle court lines in header */
+        .cn-header::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(90deg, transparent 33%, ${CN.mid} 33%, ${CN.mid} 33.3%, transparent 33.3%),
+            linear-gradient(90deg, transparent 66%, ${CN.mid} 66%, ${CN.mid} 66.3%, transparent 66.3%),
+            linear-gradient(180deg, transparent 50%, ${CN.mid} 50%, ${CN.mid} 50.4%, transparent 50.4%);
+          opacity: 0.3;
+          pointer-events: none;
+        }
+        .cn-body { padding: 24px 28px; }
+        .cn-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          color: ${CN.dim};
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: 8px;
+        }
+        .cn-input {
+          background: ${CN.deep} !important;
+          border: 1px solid ${CN.mid} !important;
+          color: ${CN.cream} !important;
+          font-family: 'DM Sans', sans-serif !important;
+          font-size: 15px !important;
+          border-radius: 10px !important;
+          height: 48px !important;
+          transition: border-color 0.2s, box-shadow 0.2s !important;
+        }
+        .cn-input::placeholder { color: ${CN.muted} !important; }
+        .cn-input:focus {
+          border-color: ${CN.accent} !important;
+          box-shadow: 0 0 0 3px ${CN.accent}22 !important;
+          outline: none !important;
+        }
+        .cn-btn-primary {
+          background: ${CN.accent};
+          color: ${CN.noir};
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 700;
+          font-size: 13px;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          border: none;
+          border-radius: 10px;
+          height: 48px;
+          width: 100%;
+          cursor: pointer;
+          transition: transform 0.15s, box-shadow 0.15s;
+          box-shadow: 0 0 0 0 ${CN.accent}00;
+        }
+        .cn-btn-primary:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 6px 20px ${CN.accent}40;
+        }
+        .cn-btn-primary:active { transform: translateY(0); }
+        .cn-btn-ghost {
+          background: transparent;
+          color: ${CN.dim};
+          font-family: 'DM Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+          border: 1px solid ${CN.mid};
+          border-radius: 10px;
+          height: 48px;
+          width: 100%;
+          cursor: pointer;
+          transition: border-color 0.15s, color 0.15s;
+        }
+        .cn-btn-ghost:hover { border-color: ${CN.dim}; color: ${CN.cream}; }
+        .cn-toggle {
+          display: flex;
+          background: ${CN.deep};
+          border: 1px solid ${CN.mid};
+          border-radius: 10px;
+          overflow: hidden;
+        }
+        .cn-toggle-btn {
+          flex: 1;
+          padding: 9px 16px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          border: none;
+          cursor: pointer;
+          transition: background 0.2s, color 0.2s;
+        }
+        .cn-toggle-btn.active {
+          background: ${CN.accent};
+          color: ${CN.noir};
+        }
+        .cn-toggle-btn:not(.active) {
+          background: transparent;
+          color: ${CN.dim};
+        }
+        .cn-toggle-btn:not(.active):hover { color: ${CN.cream}; }
+
+        .cn-result-enter {
+          animation: cnResultIn 0.6s cubic-bezier(0.34,1.3,0.64,1) both;
+        }
+        @keyframes cnResultIn {
+          from { opacity: 0; transform: scale(0.94) translateY(8px); }
+          to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .cn-speed-card {
+          background: ${CN.deep};
+          border: 1px solid ${CN.mid};
+          border-radius: 14px;
+          padding: 20px;
+          text-align: center;
+          flex: 1;
+        }
+        .cn-speed-label {
+          font-size: 9px;
+          letter-spacing: 3px;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: ${CN.dim};
+          margin-bottom: 6px;
+        }
+        .cn-speed-value {
+          font-family: 'DM Serif Display', Georgia, serif;
+          font-size: 52px;
+          line-height: 1;
+          color: ${CN.accent};
+          text-shadow: 0 0 20px ${CN.accent}60;
+        }
+        .cn-speed-value.mph {
+          color: ${CN.cream};
+          text-shadow: none;
+          font-size: 48px;
+        }
+        .cn-speed-unit {
+          font-size: 10px;
+          color: ${CN.dim};
+          margin-top: 4px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+        .cn-tier {
+          text-align: center;
+          padding: 16px;
+          background: ${CN.deep};
+          border: 1px solid ${CN.mid};
+          border-radius: 14px;
+        }
+        .cn-tier-label {
+          font-family: 'DM Serif Display', Georgia, serif;
+          font-size: 26px;
+          color: ${CN.accent};
+        }
+        .cn-tier-label.glow { text-shadow: 0 0 24px ${CN.accent}80; }
+        .cn-tier-sub {
+          font-size: 12px;
+          color: ${CN.dim};
+          margin-top: 2px;
+        }
+        .cn-tier-pct {
+          display: inline-block;
+          margin-top: 8px;
+          font-size: 11px;
+          color: ${CN.cream};
+          background: ${CN.mid};
+          border-radius: 100px;
+          padding: 3px 12px;
+        }
+        .cn-gauge-wrap {
+          background: ${CN.deep};
+          border: 1px solid ${CN.mid};
+          border-radius: 14px;
+          padding: 16px 16px 8px;
+        }
+        .cn-gauge-label {
+          font-size: 9px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          color: ${CN.dim};
+          text-align: center;
+          margin-bottom: 4px;
+        }
+        .cn-chart-wrap {
+          background: ${CN.deep};
+          border: 1px solid ${CN.mid};
+          border-radius: 14px;
+          padding: 20px;
+        }
+        .cn-chart-title {
+          font-family: 'DM Serif Display', Georgia, serif;
+          font-size: 17px;
+          color: ${CN.cream};
+          margin-bottom: 4px;
+        }
+        .cn-chart-sub {
+          font-size: 11px;
+          color: ${CN.dim};
+          margin-bottom: 16px;
+        }
+        .cn-warn {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: #fbbf24;
+          font-size: 13px;
+          padding: 12px 16px;
+          background: #78350f22;
+          border: 1px solid #78350f;
+          border-radius: 10px;
+        }
+        .cn-divider {
+          height: 1px;
+          background: ${CN.mid};
+          margin: 0;
+        }
+      `}</style>
+
+      <div className="cn-widget">
+        {/* ── Header ── */}
+        <div className="cn-header">
+          <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 14 }}>
+            <span style={{ fontSize: 40, lineHeight: 1 }}>🎾</span>
+            <div>
+              <div style={{
+                fontFamily: "'DM Serif Display', Georgia, serif",
+                fontSize: 22,
+                color: CN.cream,
+                lineHeight: 1.1,
+              }}>
+                Serve Speed Calculator
+              </div>
+              <div style={{ fontSize: 12, color: CN.dim, marginTop: 3, letterSpacing: 1 }}>
+                km/h · mph · Pro benchmarks
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="relative flex items-center gap-3">
-          <span className="text-4xl" aria-hidden>🎾</span>
+
+        {/* ── Body ── */}
+        <div className="cn-body" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+
+          {/* Unit toggle */}
           <div>
-            <p className="font-extrabold text-lg leading-tight">Tennis Serve Speed Calculator</p>
-            <p className="text-green-100 text-sm">Results in both km/h and mph · Compare vs. the pros</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Unit toggle */}
-      <div className="flex items-center gap-3">
-        <span className="text-sm font-semibold text-slate-600 dark:text-slate-400">Unit system:</span>
-        <div className="flex rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
-          <button
-            id="unit-metric"
-            onClick={() => { setUnit("metric"); setInputs({ distance: "", time: "" }); }}
-            className={`px-4 py-2 text-sm font-semibold transition-colors ${
-              unit === "metric"
-                ? "bg-[#40916c] text-white"
-                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700"
-            }`}
-          >
-            Metric (m · km/h)
-          </button>
-          <button
-            id="unit-imperial"
-            onClick={() => { setUnit("imperial"); setInputs({ distance: "", time: "" }); }}
-            className={`px-4 py-2 text-sm font-semibold transition-colors ${
-              unit === "imperial"
-                ? "bg-[#40916c] text-white"
-                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700"
-            }`}
-          >
-            <ArrowRightLeft className="inline w-3 h-3 mr-1" />Imperial (ft · mph)
-          </button>
-        </div>
-      </div>
-
-      {/* Inputs */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="distance" className="flex items-center gap-1 mb-1 font-semibold text-slate-700 dark:text-slate-300">
-            <Flag className="w-4 h-4 text-[#40916c]" /> Distance ({distLabel})
-          </Label>
-          <Input
-            id="distance"
-            type="number"
-            min="0"
-            step="0.01"
-            placeholder={distPlaceholder}
-            value={inputs.distance}
-            onChange={(e) => handleInputChange("distance", e.target.value)}
-            aria-describedby="distance-desc"
-            className="border-slate-300 focus:border-[#40916c] focus:ring-[#40916c]"
-          />
-          <p id="distance-desc" className="text-xs text-slate-500 mt-1">
-            Straight-line distance from serve impact to first bounce.
-          </p>
-        </div>
-        <div>
-          <Label htmlFor="time" className="flex items-center gap-1 mb-1 font-semibold text-slate-700 dark:text-slate-300">
-            <Timer className="w-4 h-4 text-[#40916c]" /> Time (seconds)
-          </Label>
-          <Input
-            id="time"
-            type="number"
-            min="0"
-            step="0.001"
-            placeholder="e.g. 0.35"
-            value={inputs.time}
-            onChange={(e) => handleInputChange("time", e.target.value)}
-            aria-describedby="time-desc"
-            className="border-slate-300 focus:border-[#40916c] focus:ring-[#40916c]"
-          />
-          <p id="time-desc" className="text-xs text-slate-500 mt-1">
-            Time from serve impact to first bounce.
-          </p>
-        </div>
-      </div>
-
-      {/* Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3">
-        <Button
-          id="calculate-btn"
-          className="flex-1 h-11 bg-[#40916c] hover:bg-[#2d6a4f] text-white shadow-md"
-          onClick={() => setInputs((p) => ({ ...p }))}
-          aria-label="Calculate serve speed"
-        >
-          <Gauge className="mr-2 h-4 w-4" /> Calculate Speed
-        </Button>
-        <Button
-          id="reset-btn"
-          variant="outline"
-          onClick={() => setInputs({ distance: "", time: "" })}
-          className="flex-1 h-11 border-slate-300"
-          aria-label="Reset inputs"
-        >
-          <RotateCcw className="mr-2 h-4 w-4" /> Reset
-        </Button>
-      </div>
-
-      {/* Warning */}
-      {results.warning && (
-        <p className="text-amber-600 dark:text-amber-400 font-semibold mt-2 flex items-center gap-2">
-          <AlertTriangle className="w-5 h-5" /> {results.warning}
-        </p>
-      )}
-
-      {/* Results */}
-      {results.kmh !== null && !results.warning && (
-        <div className="space-y-6 mt-2">
-          {/* Speed readout cards */}
-          <div className="grid grid-cols-2 gap-4">
-            <Card className="border-2 border-[#40916c]/30 bg-gradient-to-br from-[#d8f3dc] to-[#b7e4c7] dark:from-[#1b4332] dark:to-[#2d6a4f] shadow-lg">
-              <CardContent className="p-5 text-center">
-                <p className="text-xs font-bold text-[#2d6a4f] dark:text-green-300 uppercase tracking-widest mb-1">
-                  km/h
-                </p>
-                <p className="text-5xl font-extrabold text-[#1b4332] dark:text-white leading-none">
-                  {results.kmh.toFixed(1)}
-                </p>
-                <p className="text-xs text-[#40916c] dark:text-green-400 mt-1 font-semibold">kilometers/hour</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-blue-300/50 bg-gradient-to-br from-blue-50 to-sky-100 dark:from-blue-950 dark:to-sky-900 shadow-lg">
-              <CardContent className="p-5 text-center">
-                <p className="text-xs font-bold text-blue-700 dark:text-blue-300 uppercase tracking-widest mb-1">
-                  mph
-                </p>
-                <p className="text-5xl font-extrabold text-blue-900 dark:text-white leading-none">
-                  {results.mph!.toFixed(1)}
-                </p>
-                <p className="text-xs text-blue-600 dark:text-blue-400 mt-1 font-semibold">miles/hour</p>
-              </CardContent>
-            </Card>
+            <div className="cn-label"><ArrowRightLeft size={11} /> Unit System</div>
+            <div className="cn-toggle">
+              <button
+                id="unit-metric"
+                className={`cn-toggle-btn${unit === "metric" ? " active" : ""}`}
+                onClick={() => { setUnit("metric"); setInputs({ distance: "", time: "" }); setHasResult(false); }}
+              >
+                Metric — m / km/h
+              </button>
+              <button
+                id="unit-imperial"
+                className={`cn-toggle-btn${unit === "imperial" ? " active" : ""}`}
+                onClick={() => { setUnit("imperial"); setInputs({ distance: "", time: "" }); setHasResult(false); }}
+              >
+                Imperial — ft / mph
+              </button>
+            </div>
           </div>
 
-          {/* Tier badge */}
-          {speedTier && (
-            <div className="text-center">
-              <span className={`text-2xl font-extrabold ${speedTier.color}`}>{speedTier.label}</span>
-              {percentile !== null && (
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                  Faster than approximately <strong>{percentile}%</strong> of all tennis players
-                </p>
-              )}
+          {/* Inputs */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div>
+              <div className="cn-label"><Flag size={11} /> Distance ({distLabel})</div>
+              <input
+                id="distance"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder={distPlaceholder}
+                value={inputs.distance}
+                onChange={(e) => handleInputChange("distance", e.target.value)}
+                className="cn-input"
+                style={{
+                  background: CN.deep,
+                  border: `1px solid ${CN.mid}`,
+                  color: CN.cream,
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 15,
+                  borderRadius: 10,
+                  height: 48,
+                  width: "100%",
+                  paddingLeft: 14,
+                  boxSizing: "border-box",
+                  outline: "none",
+                  transition: "border-color 0.2s, box-shadow 0.2s",
+                }}
+                aria-describedby="distance-desc"
+              />
+              <p id="distance-desc" style={{ fontSize: 11, color: CN.dim, marginTop: 5 }}>
+                Baseline to first bounce
+              </p>
+            </div>
+            <div>
+              <div className="cn-label"><Timer size={11} /> Time (seconds)</div>
+              <input
+                id="time"
+                type="number"
+                min="0"
+                step="0.001"
+                placeholder="e.g. 0.35"
+                value={inputs.time}
+                onChange={(e) => handleInputChange("time", e.target.value)}
+                className="cn-input"
+                style={{
+                  background: CN.deep,
+                  border: `1px solid ${CN.mid}`,
+                  color: CN.cream,
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 15,
+                  borderRadius: 10,
+                  height: 48,
+                  width: "100%",
+                  paddingLeft: 14,
+                  boxSizing: "border-box",
+                  outline: "none",
+                  transition: "border-color 0.2s, box-shadow 0.2s",
+                }}
+                aria-describedby="time-desc"
+              />
+              <p id="time-desc" style={{ fontSize: 11, color: CN.dim, marginTop: 5 }}>
+                Impact to bounce
+              </p>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 10 }}>
+            <button
+              id="calculate-btn"
+              className="cn-btn-primary"
+              onClick={() => setInputs((p) => ({ ...p }))}
+              aria-label="Calculate serve speed"
+            >
+              <Gauge size={14} style={{ display: "inline", marginRight: 8, verticalAlign: "middle" }} />
+              Calculate Speed
+            </button>
+            <button
+              id="reset-btn"
+              className="cn-btn-ghost"
+              style={{ width: 80 }}
+              onClick={() => { setInputs({ distance: "", time: "" }); setHasResult(false); }}
+              aria-label="Reset"
+            >
+              <RotateCcw size={14} style={{ display: "inline", marginRight: 6, verticalAlign: "middle" }} />
+              Reset
+            </button>
+          </div>
+
+          {/* Warning */}
+          {results.warning && inputs.distance && inputs.time && (
+            <div className="cn-warn">
+              <AlertTriangle size={16} /> {results.warning}
             </div>
           )}
 
-          {/* Speedometer */}
-          <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-700">
-            <p className="text-center text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">
-              <Gauge className="inline w-3 h-3 mr-1" />Speed Gauge
-            </p>
-            <Speedometer speedKmh={results.kmh} maxKmh={300} />
-          </div>
+          {/* ── Results ── */}
+          {results.kmh !== null && !results.warning && (
+            <div className="cn-result-enter" ref={resultRef} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
 
-          {/* Comparison bar chart */}
-          <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm">
-            <p className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2 mb-1">
-              <TrendingUp className="w-4 h-4 text-[#40916c]" /> How do you compare?
-            </p>
-            <p className="text-xs text-slate-500 mb-3">Your speed vs. professional benchmarks</p>
-            <ComparisonChart userKmh={results.kmh} />
-          </div>
+              <div className="cn-divider" />
+
+              {/* Speed cards */}
+              <div style={{ display: "flex", gap: 12 }}>
+                <div className="cn-speed-card">
+                  <div className="cn-speed-label">km / h</div>
+                  <div className="cn-speed-value">{results.kmh.toFixed(1)}</div>
+                  <div className="cn-speed-unit">kilometers · hour</div>
+                </div>
+                <div className="cn-speed-card">
+                  <div className="cn-speed-label">mph</div>
+                  <div className="cn-speed-value mph">{results.mph!.toFixed(1)}</div>
+                  <div className="cn-speed-unit">miles · hour</div>
+                </div>
+              </div>
+
+              {/* Tier badge */}
+              {tier && (
+                <div className="cn-tier">
+                  <div className={`cn-tier-label${tier.glow ? " glow" : ""}`}>{tier.label}</div>
+                  <div className="cn-tier-sub">{tier.sub}</div>
+                  {percentile !== null && (
+                    <div className="cn-tier-pct">
+                      Faster than ~{percentile}% of all players
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Gauge */}
+              <div className="cn-gauge-wrap">
+                <div className="cn-gauge-label"><Gauge size={10} style={{ display: "inline", marginRight: 4 }} />Speed Gauge</div>
+                <CourtNoir_Speedometer speedKmh={results.kmh} animated={hasResult} />
+              </div>
+
+              {/* Comparison chart */}
+              <div className="cn-chart-wrap">
+                <div className="cn-chart-title">
+                  <TrendingUp size={16} style={{ display: "inline", marginRight: 8, color: CN.accent, verticalAlign: "middle" }} />
+                  How do you compare?
+                </div>
+                <div className="cn-chart-sub">Your serve vs. world benchmarks</div>
+                <CourtNoir_Chart userKmh={results.kmh} />
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 
-  // ── Benchmark table ─────────────────────────────────────────────
+  // ── Benchmark table ────────────────────────────────────────────────
   const benchmarkTable = (
     <section id="benchmark-table" className="scroll-mt-32">
       <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
-        <Trophy className="w-7 h-7 text-[#40916c]" /> Pro Player Speed Benchmarks
+        <Trophy className="w-7 h-7" style={{ color: CN.accent }} /> Pro Player Speed Benchmarks
       </h2>
       <p className="text-slate-600 dark:text-slate-400 mb-5 leading-relaxed">
-        See how your calculated serve speed stacks up against the world's top players. All values are official
-        tournament or validated measurements.
+        Official tournament measurements and validated records — sorted from fastest to slowest.
+        Results shown in both km/h and mph.
       </p>
-      <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-700 shadow-md">
+      <div className="overflow-x-auto rounded-2xl shadow-lg" style={{ border: `1px solid ${CN.mid}` }}>
         <table className="w-full text-sm border-collapse">
           <thead>
-            <tr className="bg-[#2d6a4f] text-white">
-              <th className="text-left px-4 py-3 font-bold rounded-tl-2xl">Player</th>
-              <th className="text-center px-4 py-3 font-bold">Flag</th>
-              <th className="text-center px-4 py-3 font-bold">Category</th>
-              <th className="text-right px-4 py-3 font-bold">km/h</th>
-              <th className="text-right px-4 py-3 font-bold rounded-tr-2xl">mph</th>
+            <tr style={{ background: CN.noir, color: CN.cream }}>
+              <th className="text-left px-4 py-3 font-semibold" style={{ fontFamily: "'DM Sans', sans-serif", letterSpacing: "0.5px" }}>Player</th>
+              <th className="text-center px-4 py-3 font-semibold">Flag</th>
+              <th className="text-center px-4 py-3 font-semibold">Category</th>
+              <th className="text-right px-4 py-3 font-semibold">km/h</th>
+              <th className="text-right px-4 py-3 font-semibold">mph</th>
             </tr>
           </thead>
           <tbody>
-            {PRO_BENCHMARKS.sort((a, b) => b.kmh - a.kmh).map((row, i) => (
+            {PRO_BENCHMARKS.map((row, i) => (
               <tr
                 key={row.player}
-                className={`border-t border-slate-100 dark:border-slate-800 transition-colors hover:bg-[#d8f3dc] dark:hover:bg-[#1b4332]/40 ${
-                  i % 2 === 0 ? "bg-white dark:bg-slate-900" : "bg-slate-50 dark:bg-slate-800/50"
-                }`}
+                className="border-t transition-colors"
+                style={{
+                  background: i % 2 === 0
+                    ? "white"
+                    : "#f8faf8",
+                  borderColor: "#e5ede8",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLTableRowElement).style.background = "#e8f5ec"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLTableRowElement).style.background = i % 2 === 0 ? "white" : "#f8faf8"; }}
               >
-                <td className="px-4 py-3 font-semibold text-slate-800 dark:text-slate-200">{row.player}</td>
+                <td className="px-4 py-3 font-semibold text-slate-800">{row.player}</td>
                 <td className="px-4 py-3 text-center text-lg">{row.country}</td>
                 <td className="px-4 py-3 text-center">
                   <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
-                    row.category.includes("Record") || row.category.includes("Ever")
-                      ? "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300"
-                      : row.category.includes("Average")
-                      ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300"
-                      : row.category.includes("Amateur")
-                      ? "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300"
-                      : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300"
+                    row.tag.includes("Record") || row.tag.includes("All-Time")
+                      ? "bg-red-100 text-red-700"
+                      : row.tag.includes("Average")
+                      ? "bg-blue-100 text-blue-700"
+                      : row.tag === "Amateur"
+                      ? "bg-slate-100 text-slate-600"
+                      : "bg-yellow-100 text-yellow-700"
                   }`}>
-                    {row.category}
+                    {row.tag}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-right font-mono font-bold text-[#2d6a4f] dark:text-[#74c69d]">
+                <td className="px-4 py-3 text-right font-mono font-bold" style={{ color: CN.muted }}>
                   {row.kmh}
                 </td>
-                <td className="px-4 py-3 text-right font-mono font-bold text-blue-700 dark:text-blue-400">
+                <td className="px-4 py-3 text-right font-mono font-bold text-blue-700">
                   {kmhToMph(row.kmh).toFixed(1)}
                 </td>
               </tr>
@@ -463,14 +794,14 @@ export default function TennisServeSpeedCalculator() {
         </table>
       </div>
       <p className="text-xs text-slate-400 mt-3 italic">
-        * Sources: ATP/WTA official records, Tennis Abstract, Sports Reference. Values may vary slightly across measurements.
+        Sources: ATP/WTA official records, Tennis Abstract, Sports Reference.
       </p>
     </section>
   );
 
+  // ── Editorial ──────────────────────────────────────────────────────
   const editorial = (
     <div className="space-y-12">
-      {/* Benchmark table inside editorial */}
       {benchmarkTable}
 
       <section id="what-is" className="scroll-mt-32">
@@ -478,51 +809,41 @@ export default function TennisServeSpeedCalculator() {
           Understanding Tennis Serve Speed
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Tennis Serve Speed Calculator estimates the velocity of a tennis serve using two measurements:
-          the distance the ball travels from impact to first bounce, and the time taken to cover that distance.
-          Serve speed is a critical performance metric — it determines how much time the opponent has to react,
-          directly affecting point win probability.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The calculator supports both <strong>metric</strong> (meters, km/h) and <strong>imperial</strong>{" "}
-          (feet, mph) units. American players and coaches typically use mph — the same unit displayed on
-          Hawk-Eye systems at US Open and ATP events in the United States.
+          Serve speed is measured from the moment of ball contact to the first bounce. This calculator
+          applies the physics formula <em>Speed = Distance ÷ Time</em> and outputs results in both
+          <strong> km/h</strong> (used internationally and on the ATP/WTA Tour) and <strong>mph</strong>
+          (the standard on US broadcasts and Hawk-Eye displays at the US Open).
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          For reference, professional ATP players average around 193 km/h (120 mph) on first serves, while
-          the all-time record stands at 263 km/h (163 mph) set by Sam Groth in 2012. A good club player
-          typically serves between 100–140 km/h (62–87 mph).
+          The average ATP first serve is around 193 km/h (120 mph). The all-time record — 263 km/h
+          (163.7 mph) by Sam Groth — remains one of the most impressive athletic feats in sport.
+          A strong club player typically serves between 100–140 km/h (62–87 mph).
         </p>
       </section>
 
       <section id="how-to" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          You need two measurements: the distance the ball traveled (in meters <em>or</em> feet) and the time
-          in seconds from ball impact to first bounce. Both can be obtained from slow-motion video or a
-          stopwatch and tape measure.
-        </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li><strong>Step 1:</strong> Choose your unit system — Metric (m) for international, Imperial (ft) for US.</li>
-          <li><strong>Step 2:</strong> Measure the distance from the serve impact point to where the ball first bounces.</li>
-          <li><strong>Step 3:</strong> Record the time from ball contact to bounce (slow-motion video recommended).</li>
-          <li><strong>Step 4:</strong> Enter both values and click <strong>Calculate Speed</strong>.</li>
-          <li><strong>Step 5:</strong> Read your speed in <strong>both km/h and mph</strong>, and compare vs. the benchmarks.</li>
+          <li><strong>Step 1:</strong> Choose <em>Metric</em> (meters) or <em>Imperial</em> (feet).</li>
+          <li><strong>Step 2:</strong> Measure the straight-line distance from serve impact to first bounce.</li>
+          <li><strong>Step 3:</strong> Record the time in seconds (slow-motion video recommended).</li>
+          <li><strong>Step 4:</strong> Click <strong>Calculate Speed</strong> to see km/h and mph instantly.</li>
+          <li><strong>Step 5:</strong> Use the gauge and comparison chart to benchmark against the pros.</li>
         </ul>
-        <div className="mt-5 p-4 bg-[#d8f3dc] dark:bg-[#1b4332]/60 border border-[#95d5b2] dark:border-[#40916c] rounded-xl text-sm text-[#1b4332] dark:text-green-100">
-          <strong>🎾 Pro tip:</strong> On a standard service box, the distance from the baseline to the service
-          line is 18.29 m (60 ft). Use this as your reference distance to calibrate your measurements.
+        <div className="mt-5 p-4 rounded-xl text-sm" style={{ background: "#e8f5ec", border: `1px solid #95d5b2`, color: CN.noir }}>
+          <strong>🎾 Court reference:</strong> The baseline-to-service-line distance is exactly 18.29 m (60 ft).
+          This is a reliable standard distance for serve measurements.
         </div>
       </section>
 
       <section id="tips" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Training Tips to Increase Serve Speed</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
-            { icon: "💪", title: "Leg Drive", desc: "80% of serve power originates in the legs and core. Practice knee bend and explosive jump mechanics." },
-            { icon: "🔄", title: "Hip Rotation", desc: "Maximize hip-to-shoulder separation (kinetic chain). Yoga and rotational exercises help open this range." },
-            { icon: "🎯", title: "Contact Point", desc: "Strike the ball at full extension above your dominant shoulder. A higher contact point increases angle and speed." },
-            { icon: "📏", title: "Track Progress", desc: "Use this calculator regularly during practice. Even 5 km/h (3 mph) gains per month add up significantly over a season." },
+            { icon: "💪", title: "Leg Drive", desc: "80% of serve power starts from the legs. Practice explosive knee bend and upward drive mechanics." },
+            { icon: "🔄", title: "Hip-Shoulder Separation", desc: "Maximize the kinetic chain. Rotational strength drills and yoga help open this critical range of motion." },
+            { icon: "🎯", title: "Contact Point", desc: "Reach full extension at contact — higher is faster. A ball toss slightly in front and above creates the optimal strike zone." },
+            { icon: "📈", title: "Track Progress", desc: "Even 5 km/h (3 mph) per month compounds dramatically over a full season. Use this calculator at every practice session." },
           ].map((tip) => (
             <div key={tip.title} className="flex gap-3 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
               <span className="text-2xl flex-shrink-0">{tip.icon}</span>
@@ -551,29 +872,13 @@ export default function TennisServeSpeedCalculator() {
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Additional Resources</h2>
         <ul className="space-y-4">
           {[
-            {
-              href: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3761736/",
-              title: "Biomechanics of the Tennis Serve",
-              desc: "Comprehensive NIH study on the biomechanics of tennis serves and factors affecting velocity.",
-            },
-            {
-              href: "https://www.itftennis.com/en/news-and-media/articles/tennis-serve-speed-how-to-improve-your-serve/",
-              title: "ITF Tennis: How to Improve Your Serve Speed",
-              desc: "Expert training advice from the International Tennis Federation.",
-            },
-            {
-              href: "https://www.sportsci.org/jour/9804/wilson.html",
-              title: "Physics of Tennis Ball Speed",
-              desc: "Academic article on the physics principles governing tennis ball velocity.",
-            },
+            { href: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3761736/",     title: "Biomechanics of the Tennis Serve",            desc: "NIH-published study on serve mechanics and velocity factors." },
+            { href: "https://www.itftennis.com/en/news-and-media/articles/tennis-serve-speed-how-to-improve-your-serve/", title: "ITF: How to Improve Your Serve Speed", desc: "Expert coaching guidance from the International Tennis Federation." },
+            { href: "https://www.sportsci.org/jour/9804/wilson.html",             title: "Physics of Tennis Ball Speed",               desc: "Academic analysis of physics principles governing ball velocity." },
           ].map((ref) => (
             <li key={ref.href}>
-              <a
-                href={ref.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-[#40916c] hover:underline flex items-center gap-1"
-              >
+              <a href={ref.href} target="_blank" rel="noopener noreferrer"
+                className="font-bold hover:underline flex items-center gap-1" style={{ color: CN.muted }}>
                 {ref.title} <ExternalLink className="w-3 h-3" />
               </a>
               <p className="text-sm text-slate-500 mt-1">{ref.desc}</p>
@@ -587,7 +892,7 @@ export default function TennisServeSpeedCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Tennis Serve Speed Calculator"
-      description="Calculate your tennis serve speed in km/h and mph. Compare your result with ATP & WTA pros using our benchmark table and visual speed gauge."
+      description="Calculate tennis serve speed in km/h and mph. Compare your result with ATP & WTA professionals using our benchmark table, speed gauge, and visual comparison chart."
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd}
@@ -595,39 +900,38 @@ export default function TennisServeSpeedCalculator() {
         title: "Formula",
         formula: "Speed (km/h) = (Distance (m) ÷ Time (s)) × 3.6",
         variables: [
-          { symbol: "Distance (m)", description: "Straight-line distance from serve impact to ball bounce in meters (convert feet ÷ 3.281 if using imperial)" },
-          { symbol: "Time (s)",     description: "Time elapsed from serve impact to ball bounce in seconds" },
-          { symbol: "Speed (km/h)", description: "Estimated average serve speed in km/h; divide by 1.609 to get mph" },
+          { symbol: "Distance (m)", description: "Straight-line distance from serve impact to first bounce in meters (feet ÷ 3.281 for imperial)" },
+          { symbol: "Time (s)",     description: "Time from ball contact to first bounce in seconds" },
+          { symbol: "Speed (km/h)", description: "Average serve speed in km/h; divide by 1.609 for mph" },
         ],
       }}
       example={{
-        title: "Real Life Example (Imperial)",
-        scenario:
-          "A player serves the ball and it travels 60 feet (≈ 18.3 m) before bouncing. The slow-motion video shows 0.35 seconds from impact to bounce.",
+        title: "Real-World Example (Imperial)",
+        scenario: "A player serves 60 ft (≈ 18.3 m) and slow-motion video shows 0.35 s from impact to bounce.",
         steps: [
           { label: "Step 1", explanation: "Convert distance: 60 ft ÷ 3.281 = 18.29 m." },
-          { label: "Step 2", explanation: "Time measured: 0.35 seconds." },
+          { label: "Step 2", explanation: "Time: 0.35 seconds (from 120fps video)." },
           { label: "Step 3", explanation: "Speed (m/s) = 18.29 ÷ 0.35 = 52.26 m/s." },
           { label: "Step 4", explanation: "Speed (km/h) = 52.26 × 3.6 = 188.1 km/h." },
           { label: "Step 5", explanation: "Speed (mph) = 188.1 ÷ 1.609 = 116.9 mph." },
         ],
-        result: "Serve speed ≈ 188 km/h · 117 mph — Advanced club / lower ATP level.",
+        result: "Serve ≈ 188 km/h · 117 mph — Advanced club / entry-level ATP territory.",
       }}
       relatedCalculators={[
-        { title: "Tennis ELO / Rating Progress", url: "/sports/tennis-elo-rating-progress", icon: "🎾" },
-        { title: "Race Time Predictor (Riegel Formula)", url: "/sports/race-time-predictor-riegel", icon: "🏆" },
-        { title: "Fantasy Team Points Projections", url: "/sports/fantasy-team-points-projections", icon: "🏆" },
-        { title: "Wilks Coefficient Calculator", url: "/sports/wilks-coefficient", icon: "🏋️" },
-        { title: "Basketball Pace & ORtg/DRtg", url: "/sports/basketball-pace-ortg-drtg", icon: "🏀" },
-        { title: "BABIP Calculator", url: "/sports/babip-calculator", icon: "⚾" },
+        { title: "Tennis ELO / Rating Progress",          url: "/sports/tennis-elo-rating-progress",       icon: "🎾" },
+        { title: "Race Time Predictor (Riegel Formula)",  url: "/sports/race-time-predictor-riegel",       icon: "🏆" },
+        { title: "Fantasy Team Points Projections",       url: "/sports/fantasy-team-points-projections",  icon: "🏆" },
+        { title: "Wilks Coefficient Calculator",          url: "/sports/wilks-coefficient",                icon: "🏋️" },
+        { title: "Basketball Pace & ORtg/DRtg",          url: "/sports/basketball-pace-ortg-drtg",        icon: "🏀" },
+        { title: "BABIP Calculator",                      url: "/sports/babip-calculator",                 icon: "⚾" },
       ]}
       onThisPage={[
-        { id: "benchmark-table", label: "🏆 Pro Benchmarks" },
-        { id: "what-is",        label: "Understanding Serve Speed" },
-        { id: "how-to",         label: "How to Use" },
-        { id: "tips",           label: "Training Tips" },
-        { id: "faq",            label: "FAQ" },
-        { id: "references",     label: "References" },
+        { id: "benchmark-table", label: "🏆 Pro Benchmarks"   },
+        { id: "what-is",         label: "Understanding Speed" },
+        { id: "how-to",          label: "How to Use"          },
+        { id: "tips",            label: "Training Tips"       },
+        { id: "faq",             label: "FAQ"                 },
+        { id: "references",      label: "References"          },
       ]}
       showTopBanner
       showSidebar
