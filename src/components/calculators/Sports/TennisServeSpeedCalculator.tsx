@@ -387,7 +387,6 @@ export default function TennisServeSpeedCalculator() {
         }
         .cn-btn-ghost:hover { border-color: ${CN.dim}; color: ${CN.cream}; }
         .cn-toggle {
-          display: flex;
           background: ${CN.deep};
           border: 1px solid ${CN.mid};
           border-radius: 10px;
@@ -559,26 +558,26 @@ export default function TennisServeSpeedCalculator() {
           {/* Unit toggle */}
           <div>
             <div className="cn-label"><ArrowRightLeft size={11} /> Unit System</div>
-            <div className="cn-toggle">
+            <div className="cn-toggle flex flex-col sm:flex-row">
               <button
                 id="unit-metric"
                 className={`cn-toggle-btn${unit === "metric" ? " active" : ""}`}
                 onClick={() => { setUnit("metric"); setInputs({ distance: "", time: "" }); setHasResult(false); }}
               >
-                Metric — m / km/h
+                Metric (m, km/h)
               </button>
               <button
                 id="unit-imperial"
                 className={`cn-toggle-btn${unit === "imperial" ? " active" : ""}`}
                 onClick={() => { setUnit("imperial"); setInputs({ distance: "", time: "" }); setHasResult(false); }}
               >
-                Imperial — ft / mph
+                Imperial (ft, mph)
               </button>
             </div>
           </div>
 
           {/* Inputs */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <div className="cn-label"><Flag size={11} /> Distance ({distLabel})</div>
               <input
@@ -644,10 +643,10 @@ export default function TennisServeSpeedCalculator() {
           </div>
 
           {/* Buttons */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 10 }}>
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               id="calculate-btn"
-              className="cn-btn-primary"
+              className="cn-btn-primary flex-1"
               onClick={() => setInputs((p) => ({ ...p }))}
               aria-label="Calculate serve speed"
             >
@@ -656,8 +655,7 @@ export default function TennisServeSpeedCalculator() {
             </button>
             <button
               id="reset-btn"
-              className="cn-btn-ghost"
-              style={{ width: 80 }}
+              className="cn-btn-ghost w-full sm:w-auto px-6"
               onClick={() => { setInputs({ distance: "", time: "" }); setHasResult(false); }}
               aria-label="Reset"
             >
@@ -680,7 +678,7 @@ export default function TennisServeSpeedCalculator() {
               <div className="cn-divider" />
 
               {/* Speed cards */}
-              <div style={{ display: "flex", gap: 12 }}>
+              <div className="flex flex-col sm:flex-row gap-3">
                 <div className="cn-speed-card">
                   <div className="cn-speed-label">km / h</div>
                   <div className="cn-speed-value">{results.kmh.toFixed(1)}</div>
