@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import DailyHoroscopeWidget from "@/components/calculators/DailyQuotes/DailyHoroscopeWidget";
 import QuoteCard, { DailyQuoteItem } from "@/components/calculators/DailyQuotes/QuoteCard";
@@ -346,6 +347,12 @@ export default function DailyQuotesPage() {
   );
 
   return (
+    <>
+    <SEOHead
+      title="Daily Inspiration Hub | Smart Kit Now"
+      description="Start your day with horoscope forecasts, dream meanings, and motivational quotes. Free daily inspiration on Smart Kit Now."
+      canonical="https://www.smartkitnow.com/daily-quotes"
+    />
     <CalculatorVerticalLayout
       title="Daily Inspiration Hub"
       description=""
@@ -444,5 +451,6 @@ export default function DailyQuotesPage() {
       showBottomBanner
       hideLegalDisclaimer
     />
+    </>
   );
 }

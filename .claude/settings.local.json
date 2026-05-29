@@ -31,7 +31,15 @@
       "Bash(echo \"EXIT=$?\")",
       "Bash(git checkout *)",
       "Bash(gh pr create --title 'feat: static canonical injection at build time' --body ' *)",
-      "Bash(gh pr create --title 'feat: static canonical injection at build time' --head feat/static-canonical-injection --body ' *)"
+      "Bash(gh pr create --title 'feat: static canonical injection at build time' --head feat/static-canonical-injection --body ' *)",
+      "PowerShell($xml = Get-Content \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\public\\\\sitemap.xml\" -Raw; $count = \\([regex]::Matches\\($xml, '<loc>'\\)\\).Count; Write-Host \"Sitemap URL count: $count\"; $lastmods = [regex]::Matches\\($xml, '<lastmod>\\([^<]+\\)</lastmod>'\\) | ForEach-Object { $_.Groups[1].Value } | Select-Object -Unique; Write-Host \"Unique lastmod values:\"; $lastmods | ForEach-Object { Write-Host $_ })",
+      "PowerShell($content = Get-Content \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\data\\\\calculatorRegistry.ts\" -Raw; $slugCount = \\([regex]::Matches\\($content, '\"slug\":'\\)\\).Count; Write-Host \"Registry slug count: $slugCount\")",
+      "PowerShell($content = Get-Content \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\data\\\\calculatorRegistry.ts\" -Raw; $slugCount = \\([regex]::Matches\\($content, 'slug:'\\)\\).Count; Write-Host \"Registry slug count: $slugCount\")",
+      "Bash(Get-Content \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\config\\\\seo.json\")",
+      "Bash(Measure-Object -Line)",
+      "PowerShell(\\(Get-Content \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\config\\\\seo.json\" | Measure-Object -Line\\).Lines)",
+      "Bash(Remove-Item \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\components\\\\seo\\\\SeoHead.tsx\")",
+      "PowerShell(Remove-Item \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\components\\\\seo\\\\SeoHead.tsx\" -Confirm:$false)"
     ]
   }
 }

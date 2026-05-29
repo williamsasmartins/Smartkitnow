@@ -1,13 +1,14 @@
-import SeoHead from "@/components/seo/SeoHead";
+import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 export default function Cookies() {
   return (
     <div className="min-h-screen bg-background">
-      <SeoHead 
+      <SEOHead
         title="Cookie Policy | Smart Kit Now"
         description="Learn about how Smart Kit Now uses cookies to improve your experience."
+        canonical="https://www.smartkitnow.com/cookies"
       />
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         <h1 className="text-4xl font-bold mb-8">Cookie Policy</h1>

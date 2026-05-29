@@ -1,19 +1,6 @@
 User-agent: *
 Allow: /
 
-# Removed sections — no longer exist on this site
-Disallow: /recipes/
-Disallow: /culinary/
-Disallow: /discover/
-Disallow: /pt/
-Disallow: /it/
-Disallow: /sv/
-Disallow: /pl/
-Disallow: /nl/
-Disallow: /fr/
-Disallow: /de/
-Disallow: /es/
-Disallow: /pt-pt/
 # Utility pages — no indexable content
 Disallow: /search
 Disallow: /cookie-settings

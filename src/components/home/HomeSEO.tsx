@@ -6,7 +6,7 @@ export default function HomeSEO(): JSX.Element {
     <>
       <SEOHead
         title="Smart Kit Now - Your Ultimate Smart Tools Collection"
-        description="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow. Your ultimate collection awaits."
+        description="Free online calculators for finance, health, cooking, math, and more. Fast, accurate tools for everyday calculations — no signup required."
         canonical="https://www.smartkitnow.com/"
       />
       <JsonLd

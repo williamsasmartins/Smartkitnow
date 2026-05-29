@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
-import { getEntry, FRIENDLY_TITLES, SUBCATEGORY_TITLES } from "@/data/calculatorRegistry";
+import { getEntry } from "@/data/calculatorRegistry";
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
 import NotFound from "./NotFound";
@@ -38,12 +38,8 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
   // do componente CalculatorVerticalLayout, evitando duplicação de espaços.
   const containerClasses = "w-full px-4 md:px-8 lg:px-10";
 
-  // Build BreadcrumbList JSON-LD
-  // Use calcLink logic (or explicitly check urlStyle) to determine the correct path structure
   const catSlug = entry.category;
   const subSlug = entry.subcategory;
-  const catName = FRIENDLY_TITLES[catSlug] || catSlug;
-  const subName = (subSlug && SUBCATEGORY_TITLES[catSlug]?.[subSlug]) || subSlug;
 
   const origin = "https://www.smartkitnow.com";
 
@@ -53,56 +49,13 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
   // If explicitly flat, OR if there's no subcategory (common default)
   const useNested = !isFlat && subSlug && subSlug !== "general";
 
-  const itemListElement = [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": `${origin}/`
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": catName,
-      "item": `${origin}/${catSlug}`
-    }
-  ];
-
   let calculatedPath = "";
 
   if (useNested) {
-    // breadcrumb for subcategory
-    itemListElement.push({
-      "@type": "ListItem",
-      "position": 3,
-      "name": subName || "",
-      "item": `${origin}/${catSlug}/${subSlug}`
-    });
-    // breadcrumb for item
-    itemListElement.push({
-      "@type": "ListItem",
-      "position": 4,
-      "name": entry.title,
-      "item": `${origin}/${catSlug}/${subSlug}/${entry.slug}`
-    });
     calculatedPath = `/${catSlug}/${subSlug}/${entry.slug}`;
   } else {
-    // Flat or no-sub
-    // item is directly under category
-    itemListElement.push({
-      "@type": "ListItem",
-      "position": 3,
-      "name": entry.title,
-      "item": `${origin}/${catSlug}/${entry.slug}`
-    });
     calculatedPath = `/${catSlug}/${entry.slug}`;
   }
-
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": itemListElement
-  };
 
   const seoTitle = entry.seoTitle
     ? `${entry.seoTitle} | Smart Kit Now`
@@ -125,34 +78,6 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
     "url": `${origin}${calculatedPath}`
   };
 
-  const howToJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": `How to Use the ${entry.title}`,
-    "description": seoDescription,
-    "url": `${origin}${calculatedPath}`,
-    "step": [
-      {
-        "@type": "HowToStep",
-        "position": 1,
-        "name": "Enter your values",
-        "text": `Fill in the labeled input fields with your specific data for the ${entry.title}. Each field is clearly labeled to guide you on what information is required.`
-      },
-      {
-        "@type": "HowToStep",
-        "position": 2,
-        "name": "Get your result",
-        "text": "Click the calculate button or watch results update in real time as you type. The main result is displayed prominently in the output section."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 3,
-        "name": "Interpret and apply the result",
-        "text": "Read the calculated result alongside the benchmarks and explanations on this page to understand what your number means and what action to take next."
-      }
-    ]
-  };
-
   return (
     <div className={containerClasses}>
       <SEOHead
@@ -161,9 +86,7 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
         description={seoDescription}
         canonical={`${origin}${calculatedPath}`}
       />
-      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={softwareAppJsonLd} />
-      <JsonLd data={howToJsonLd} />
       {/* max-w-none permite que o CalculatorVerticalLayout controle a largura interna */}
       <div className="max-w-none">
         <Suspense fallback={<div className="py-10 text-muted-foreground text-center">Loading Calculator...</div>}>
