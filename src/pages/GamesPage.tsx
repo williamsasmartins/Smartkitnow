@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { GAME_REGISTRY, CATEGORY_LABELS, GameCategory } from "@/data/gameRegistry";
@@ -10,10 +10,12 @@ export default function GamesPage() {
 
     return (
         <>
-            <Helmet>
-                <title>Play Free Online Games - Arcade, Puzzle & More | Smart Kit Now</title>
-                <meta name="description" content="Play 70+ free online games including Arcade, Puzzle, Board, Card, and Strategy games. No download required. Play now on Smart Kit Now." />
-            </Helmet>
+            <SEOHead
+                title="Play Free Online Games - Arcade, Puzzle & More | Smart Kit Now"
+                description="Play 70+ free online games including Arcade, Puzzle, Board, Card, and Strategy games. No download required. Play now on Smart Kit Now."
+                canonical="https://www.smartkitnow.com/games"
+                og={{ title: "Play Free Online Games - Arcade, Puzzle & More | Smart Kit Now", description: "Play 70+ free online games including Arcade, Puzzle, Board, Card, and Strategy games. No download required. Play now on Smart Kit Now." }}
+            />
 
             <main className="container mx-auto px-4 pt-48 sm:pt-20 pb-8 max-w-7xl">
                 {/* HERO SECTION */}

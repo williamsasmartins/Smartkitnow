@@ -5,11 +5,9 @@ import ShareThisPageBox from "../ShareThisPageBox";
 import SuggestionBox from "../SuggestionBox";
 import LegalDisclaimer from "../LegalDisclaimer";
 import { getEntry } from "@/data/calculatorRegistry";
-import SEOHead from "@/components/SEOHead";
+import JsonLd from "@/components/seo/JsonLd";
 import RelatedCalculatorsComponent from "../RelatedCalculators";
 import { CATEGORIES } from "@/data/categoryMeta";
-import { Helmet } from 'react-helmet-async';
-import { safeJsonLd } from '@/lib/utils';
 
 // ================================================================
 // AD SLOTS CONFIGURATION
@@ -319,19 +317,7 @@ export default function CalculatorVerticalLayout({
           </button>
         </div>
       )}
-      <SEOHead
-        title={title}
-        description={resolvedDescription}
-        canonical={canonical}
-      />
-
-      {jsonLd ? (
-        <Helmet>
-          <script type="application/ld+json">
-            {safeJsonLd(jsonLd as object)}
-          </script>
-        </Helmet>
-      ) : null}
+      {jsonLd ? <JsonLd data={jsonLd as Record<string, unknown>} /> : null}
 
       {/* MAIN CONTAINER (Max 1200px, Centered) */}
       <div className="mx-auto pb-10" style={{ maxWidth: 1200 }}>

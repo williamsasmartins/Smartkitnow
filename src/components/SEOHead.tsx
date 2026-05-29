@@ -56,10 +56,42 @@ export default function SEOHead({
     : rawCanonical;
   const schemas = seoData?.schema || {};
 
+  const CATEGORY_OG_IMAGES: Record<string, string> = {
+    financial: '/og-financial.png',
+    health: '/og-health.png',
+    cooking: '/og-cooking.png',
+    conversion: '/og-conversion.png',
+    math: '/og-math.png',
+    science: '/og-science.png',
+    time: '/og-time.png',
+    pets: '/og-pets.png',
+    automotive: '/og-automotive.png',
+    construction: '/og-construction.png',
+    electrical: '/og-electrical.png',
+    everyday: '/og-everyday.png',
+    sports: '/og-sports.png',
+    funny: '/og-funny.png',
+    video: '/og-video.png',
+    marketing: '/og-marketing.png',
+    games: '/og-games.png',
+  };
+
+  let categorySlug = '';
+  if (finalCanonical) {
+    try {
+      categorySlug = new URL(finalCanonical).pathname.split('/').filter(Boolean)[0] ?? '';
+    } catch {
+      // invalid URL — fall through
+    }
+  }
+  const categoryOgImage = categorySlug && CATEGORY_OG_IMAGES[categorySlug]
+    ? `${BASE}${CATEGORY_OG_IMAGES[categorySlug]}`
+    : `${BASE}/og-image.png`;
+
   const ogType = og?.type || 'website';
   const ogUrl = og?.url || finalCanonical;
   const ogSiteName = og?.siteName || 'SmartKitNow';
-  const ogImage = og?.image || 'https://www.smartkitnow.com/og-image.png';
+  const ogImage = og?.image || categoryOgImage;
 
   const twitterCard = twitter?.card || 'summary_large_image';
   const twitterImage = twitter?.image || ogImage;
@@ -70,6 +102,8 @@ export default function SEOHead({
       <meta name="description" content={finalDescription} />
       {robots && <meta name="robots" content={robots} />}
       {finalCanonical && <link rel="canonical" href={finalCanonical} />}
+      {finalCanonical && <link rel="alternate" href={finalCanonical} hrefLang="en" />}
+      {finalCanonical && <link rel="alternate" href={finalCanonical} hrefLang="x-default" />}
 
       {/* Open Graph */}
       <meta property="og:title" content={finalTitle} />

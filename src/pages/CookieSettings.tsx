@@ -5,7 +5,7 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
-import SeoHead from '@/components/seo/SeoHead';
+import SEOHead from '@/components/SEOHead';
 
 export default function CookieSettings() {
   const { consent, saveConsent } = useCookieConsent();
@@ -33,7 +33,7 @@ export default function CookieSettings() {
 
   return (
     <div className="min-h-screen bg-gradient-soft">
-      <SeoHead
+      <SEOHead
         title="Cookie Settings | Smart Kit Now"
         description="Manage your cookie preferences for Smart Kit Now."
         robots="noindex, follow"
