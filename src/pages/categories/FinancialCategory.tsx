@@ -110,7 +110,6 @@ const currencyTax: Item[] = [
   { name: "Sales Tax Calculator", slug: "sales-tax" },
   { name: "VAT/GST Calculator", slug: "vat-gst" },
   { name: "Tip & Split Bill Calculator", slug: "tip-split-bill" },
-  { name: "Discount & Final Price Calculator", slug: "discount-final-price" },
 ];
 
 const TOTAL =

@@ -489,11 +489,6 @@ export default function FishFoodFeedingRateCalculator() {
       }}
       relatedCalculators={[
         {
-          title: "Prednisolone Dose Calculator for Cats",
-          url: "/pets/cat-prednisolone-dose",
-          icon: "🐱",
-        },
-        {
           title: "Dog Treat Calories & Daily Allowance Calculator",
           url: "/pets/dog-treat-calories-daily-allowance",
           icon: "🐶",

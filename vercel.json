@@ -53,11 +53,11 @@
     },
     {
       "source": "/recipes",
-      "destination": "/api/404"
+      "destination": "/api/gone"
     },
     {
       "source": "/recipes/:path*",
-      "destination": "/api/404"
+      "destination": "/api/gone"
     },
 
     { "source": "/en",       "destination": "/api/404" },
@@ -148,11 +148,11 @@
     { "source": "/xmlrpc.php",  "destination": "/api/404" },
     {
       "source": "/culinary",
-      "destination": "/api/404"
+      "destination": "/api/gone"
     },
     {
       "source": "/culinary/:path*",
-      "destination": "/api/404"
+      "destination": "/api/gone"
     },
     {
       "source": "/discover",
@@ -294,6 +294,9 @@
       "source": "/marketing/content-marketing-roi-calculator",
       "destination": "/api/404"
     },
+    { "source": "/smart-tips/~partytown",        "destination": "/api/gone" },
+    { "source": "/marketing/~partytown",          "destination": "/api/gone" },
+    { "source": "/marketing/~partytown/:path*",   "destination": "/api/gone" },
     {
       "source": "/:path*",
       "destination": "/"

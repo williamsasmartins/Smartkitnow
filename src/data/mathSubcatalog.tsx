@@ -141,12 +141,6 @@ export const MATH_SUBCATALOG: Record<string, SubcatSection> = {
     description: "Average, proportion (rule of three), ratios, LCM/GCD.",
     items: [
       {
-        slug: "average-calculator",
-        label: "Average Calculator",
-        to: "/math/everyday-math/average-calculator",
-        icon: <IconBadge node={<Calculator className="h-5 w-5" />} color="emerald" />,
-      },
-      {
         slug: "ratio-calculator",
         label: "Ratio Calculator",
         to: "/math/everyday-math/ratio-calculator",
