@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 import { useTheme } from 'next-themes';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useToast } from '@/hooks/use-toast';
 
 const TRANSLATIONS = {
   "en-US": {
@@ -148,6 +149,7 @@ const t = (key: keyof typeof TRANSLATIONS['en-US']) => {
 
 const QRCodeGenerator = () => {
   const { resolvedTheme } = useTheme();
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<'url' | 'text' | 'contact'>('url');
   const [qrData, setQrData] = useState('');
   const [copied, setCopied] = useState(false);
@@ -232,6 +234,7 @@ const QRCodeGenerator = () => {
     } catch (error) {
       console.error('Error creating QR code:', error);
       generateFallbackQR(text);
+      toast({ title: 'QR generation error', description: 'Using fallback renderer. Try a different format or size.', variant: 'destructive' });
     }
   };
 
@@ -345,6 +348,7 @@ const QRCodeGenerator = () => {
         setTimeout(() => setCopied(false), 2000);
       } catch (err) {
         console.error('Failed to copy text: ', err);
+        toast({ title: 'Copy failed', description: 'Could not copy to clipboard. Try selecting the text manually.', variant: 'destructive' });
       }
     }
   };

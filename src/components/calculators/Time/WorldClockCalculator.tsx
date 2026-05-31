@@ -5,7 +5,7 @@ import CalculatorVerticalLayout from '@/components/templates/CalculatorVerticalL
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-import { cityMapping } from 'city-timezones';
+import type { CityData } from 'city-timezones';
 
 // Generate a robust list of timezones/cities
 const getAllTimezones = () => {
@@ -49,6 +49,11 @@ export default function WorldClockCalculator() {
   const [now, setNow] = useState(new Date());
   const [selectedCity, setSelectedCity] = useState(INITIAL_QUICK_CITIES[0]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [cityMappingData, setCityMappingData] = useState<CityData[]>([]);
+
+  useEffect(() => {
+    import('city-timezones').then(m => setCityMappingData(m.cityMapping));
+  }, []);
 
   // Clean interval unmount prevents memory leaks.
   useEffect(() => {
@@ -73,7 +78,7 @@ export default function WorldClockCalculator() {
     });
 
     // 2. Search City Database for missing locations (e.g., Santos, Vancouver, etc.)
-    for (const c of cityMapping) {
+    for (const c of cityMappingData) {
       if (resultsMap.size >= 30) break; // Performance limit
       if (
         normalizeString(c.city).includes(lowerQ) ||
@@ -90,7 +95,7 @@ export default function WorldClockCalculator() {
     }
 
     return Array.from(resultsMap.values()).slice(0, 30);
-  }, [searchQuery]);
+  }, [searchQuery, cityMappingData]);
 
   // Format time HH:mm:ss for selected timezone
   const formatterTime = new Intl.DateTimeFormat('en-US', {

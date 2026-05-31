@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import CalculatorErrorState from "@/components/common/CalculatorErrorState";
 import { useNavigate, useParams } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
@@ -40,6 +41,9 @@ export default function DailyQuotesPage() {
   const [data, setData] = useState<DailyDataPacket | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey | null>(null);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [dreamError, setDreamError] = useState<string | null>(null);
+  const [retryKey, setRetryKey] = useState(0);
 
   // Sync URL param with state
   useEffect(() => {
@@ -61,6 +65,8 @@ export default function DailyQuotesPage() {
   // FETCH REAL DATA
   useEffect(() => {
     const fetchData = async () => {
+      setFetchError(null);
+      setLoading(true);
       try {
         // Appends timestamp to avoid aggressive browser caching
         const res = await fetch(`${DATA_URL}?t=${new Date().getTime()}`);
@@ -68,14 +74,13 @@ export default function DailyQuotesPage() {
         const json = await res.json();
         setData(json);
       } catch (error) {
-        console.error("Error fetching data:", error);
-        // Silent fail - user sees loading state or empty state handled below
+        setFetchError(error instanceof Error ? error.message : "Failed to load daily inspiration");
       } finally {
         setLoading(false);
       }
     };
     fetchData();
-  }, []);
+  }, [retryKey]);
 
   const toggleLike = (id: number) => {
     const next = new Set(liked);
@@ -93,6 +98,7 @@ export default function DailyQuotesPage() {
     if (!dreamInput.trim()) return;
     setIsInterpreting(true);
     setInterpretation(null);
+    setDreamError(null);
 
     try {
       const res = await fetch("https://n8n.sweetslove.ca/webhook/dream-interpreter", {
@@ -116,8 +122,7 @@ export default function DailyQuotesPage() {
       }
 
     } catch (error) {
-      console.error("Dream API Error:", error);
-      toast("The oracle is silent right now. Please try again.");
+      setDreamError(error instanceof Error ? error.message : "The oracle is silent right now. Please try again.");
     } finally {
       setIsInterpreting(false);
     }
@@ -229,6 +234,14 @@ export default function DailyQuotesPage() {
                 </>
               )}
             </Button>
+
+            {dreamError && (
+              <CalculatorErrorState
+                title="Interpretation failed"
+                message={dreamError}
+                onRetry={() => setDreamError(null)}
+              />
+            )}
           </div>
 
           {/* Result Section */}
@@ -363,6 +376,12 @@ export default function DailyQuotesPage() {
               <Loader2 className="w-10 h-10 animate-spin text-primary" />
               <p className="text-muted-foreground animate-pulse">Connecting to the stars...</p>
             </div>
+          ) : fetchError ? (
+            <CalculatorErrorState
+              title="Could not load daily content"
+              message={fetchError}
+              onRetry={() => setRetryKey(k => k + 1)}
+            />
           ) : (
             <>
               {/* Hero Section from real JSON */}

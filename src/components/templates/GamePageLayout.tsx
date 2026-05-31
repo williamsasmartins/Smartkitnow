@@ -1,5 +1,5 @@
 import { ReactNode, useRef, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import { safeJsonLd } from "@/lib/utils";
 import { Maximize2, Minimize2, Share2, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,25 +44,26 @@ export default function GameLayout({
 
   return (
     <>
-      <Helmet>
-        <title>{title} - Play Free Online | Smart Kit Now</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        
-        {/* Schema.org para Jogos (Google adora isso) */}
-        <script type="application/ld+json">
-          {safeJsonLd({
+      <SEOHead
+        title={`${title} - Play Free Online | Smart Kit Now`}
+        description={description}
+        canonical={canonicalUrl}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonLd({
             "@context": "https://schema.org",
             "@type": "VideoGame",
-            "name": title,
-            "description": description,
-            "genre": category,
-            "playMode": "SinglePlayer",
-            "url": canonicalUrl,
-            "inLanguage": "en",
-          })}
-        </script>
-      </Helmet>
+            name: title,
+            description: description,
+            genre: category,
+            playMode: "SinglePlayer",
+            url: canonicalUrl,
+            inLanguage: "en",
+          }),
+        }}
+      />
 
       <div className="container mx-auto px-4 py-6 max-w-7xl">
         {/* --- AD SPACE (TOP BANNER) --- */}

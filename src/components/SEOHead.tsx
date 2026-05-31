@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import seoConfig from '@/config/seo.json';
+import { useState, useEffect } from 'react';
 import { safeJsonLd } from '@/lib/utils';
 
 interface OgProps {
@@ -45,7 +45,14 @@ export default function SEOHead({
   twitter,
   extra,
 }: SEOHeadProps) {
-  const seoData = slug ? (seoConfig as Record<string, any>)[slug] : null;
+  const [seoData, setSeoData] = useState<Record<string, any> | null>(null);
+
+  useEffect(() => {
+    if (!slug) return;
+    import('@/config/seo.json').then((m) => {
+      setSeoData((m.default as Record<string, any>)[slug] ?? null);
+    });
+  }, [slug]);
 
   const finalTitle = title || seoData?.title || 'SmartKitNow - Free Online Calculators';
   const finalDescription = description || seoData?.description || 'Free online calculators for every need.';
