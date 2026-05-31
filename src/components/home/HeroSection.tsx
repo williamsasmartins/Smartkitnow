@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
-import logoImage from "@/assets/logo-skn-new.svg";
 import { POPULAR_PILLS } from "@/data/home/popularPills";
 
 interface HeroSectionProps {
@@ -20,7 +19,7 @@ export default function HeroSection({ onOpenSearch }: HeroSectionProps): JSX.Ele
           <picture>
             <source srcSet="/logo-skn-new.svg" type="image/svg+xml" />
             <img
-              src={logoImage}
+              src="/logo-smartkitnow.webp"
               alt="Smart Kit Now Logo"
               width={1000}
               height={300}

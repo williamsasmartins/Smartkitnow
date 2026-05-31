@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { calculatorRegistry } from "@/data/calculatorRegistry";
 import { GAME_REGISTRY } from "@/data/gameRegistry";
@@ -82,9 +82,12 @@ export default function Search() {
 
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <meta name="robots" content="noindex, follow" />
-      </Helmet>
+      <SEOHead
+        title="Search | Smart Kit Now"
+        description="Search across all free online calculators, games, and smart tips on Smart Kit Now."
+        canonical="https://www.smartkitnow.com/search"
+        robots="noindex, follow"
+      />
       <AdBannerTop />
 
       <main className="mx-auto max-w-7xl px-4 pb-16 lg:pr-[65px]">

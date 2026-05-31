@@ -39,7 +39,20 @@
       "Bash(Measure-Object -Line)",
       "PowerShell(\\(Get-Content \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\config\\\\seo.json\" | Measure-Object -Line\\).Lines)",
       "Bash(Remove-Item \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\components\\\\seo\\\\SeoHead.tsx\")",
-      "PowerShell(Remove-Item \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\components\\\\seo\\\\SeoHead.tsx\" -Confirm:$false)"
+      "PowerShell(Remove-Item \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\components\\\\seo\\\\SeoHead.tsx\" -Confirm:$false)",
+      "Bash(Get-Content \"C:\\\\Users\\\\Williams Martins\\\\.claude\\\\projects\\\\c--Users-Williams-Martins-Projetos-Smartkitnow\\\\7beb9d08-ffc3-416c-afa6-8c9f6f0ef39d\\\\tool-results\\\\b9m6uysu2.txt\")",
+      "Bash(Select-String -Pattern \"warn|error|WARNING|ERROR\" -CaseSensitive)",
+      "Bash(Select-Object -First 50)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); scripts=d.get\\('scripts',{}\\); [print\\(k,':',v\\) for k,v in scripts.items\\(\\)]\")",
+      "Bash(awk '$5 > 200000 {print $5, $9}')",
+      "Bash(awk '$5 > 100000 {print $5, $9}')",
+      "Bash(sort -k5 -rn)",
+      "Bash(awk '$5 > 400000')",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\dist\\\\assets\" | Sort-Object Length -Descending | Select-Object -First 20 | Format-Table Name, @{Name=\"Size_KB\";Expression={[math]::Round\\($_.Length/1KB,1\\)}})",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\node_modules\\\\city-timezones\" -Recurse -File | Sort-Object Length -Descending | Select-Object -First 5 | Format-Table Name, @{Name=\"Size_KB\";Expression={[math]::Round\\($_.Length/1KB,1\\)}})",
+      "Bash(grep -v \"//\")",
+      "PowerShell($content = Get-Content \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\assets\\\\logo-skn-new.svg\" -Raw; $content.Length; $content.Substring\\(0, 500\\))",
+      "Bash(Remove-Item \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\components\\\\SEO.tsx\" -Force)"
     ]
   }
 }

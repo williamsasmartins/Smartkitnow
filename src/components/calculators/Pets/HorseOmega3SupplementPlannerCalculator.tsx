@@ -495,11 +495,6 @@ export default function HorseOmega3SupplementPlannerCalculator() {
           icon: "🐱",
         },
         {
-          title: "Prednisolone Dose Calculator for Cats",
-          url: "/pets/cat-prednisolone-dose",
-          icon: "🐱",
-        },
-        {
           title: "Benadryl (Diphenhydramine) Dose Calculator for Dogs",
           url: "/pets/dog-benadryl-diphenhydramine-dose",
           icon: "🐶",

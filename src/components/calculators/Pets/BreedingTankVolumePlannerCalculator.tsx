@@ -568,11 +568,6 @@ export default function BreedingTankVolumePlannerCalculator() {
           icon: "🐶",
         },
         {
-          title: "Prednisolone Dose Calculator for Cats",
-          url: "/pets/cat-prednisolone-dose",
-          icon: "🐱",
-        },
-        {
           title: "Meloxicam/Metacam Dose Calculator for Dogs",
           url: "/pets/dog-meloxicam-metacam-dose",
           icon: "🐶",

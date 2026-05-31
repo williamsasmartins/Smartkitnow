@@ -1,6 +1,5 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
-import logoImage from "@/assets/logo-skn-new.svg";
 import { getCategoryIcon } from "@/lib/navigation";
 import { Button } from "@/components/ui/button";
 import { GlobalSearch } from "./GlobalSearch";
@@ -87,7 +86,7 @@ export function Header() {
           <picture>
             <source srcSet="/logo-skn-new.svg" type="image/svg+xml" />
             <img
-              src={logoImage}
+              src="/logo-smartkitnow.webp"
               alt="Smart Kit Now"
               width={1000}
               height={300}
@@ -163,7 +162,7 @@ export function Header() {
           <picture>
             <source srcSet="/logo-skn-new.svg" type="image/svg+xml" />
             <img
-              src={logoImage}
+              src="/logo-smartkitnow.webp"
               alt="Smart Kit Now Logo"
               width={1000}
               height={300}

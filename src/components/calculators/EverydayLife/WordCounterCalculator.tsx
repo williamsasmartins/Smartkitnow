@@ -12,7 +12,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { jsPDF } from 'jspdf';
 import { Switch } from '@/components/ui/switch';
 
 const TRANSLATIONS = {
@@ -267,7 +266,7 @@ const WordCounterCalculator = () => {
         }
     };
 
-    const handleDownload = (format: 'txt' | 'doc' | 'pdf') => {
+    const handleDownload = async (format: 'txt' | 'doc' | 'pdf') => {
         if (!text) return alert("Write some text to download.");
         if (format === 'txt' || format === 'doc') {
             const type = format === 'doc' ? 'application/msword' : 'text/plain';
@@ -278,6 +277,7 @@ const WordCounterCalculator = () => {
             a.click();
         } else if (format === 'pdf') {
             try {
+                const { jsPDF } = await import('jspdf');
                 const doc = new jsPDF();
                 doc.text(text, 10, 10, { maxWidth: 190 });
                 doc.save('document.pdf');
