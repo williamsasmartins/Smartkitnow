@@ -32,10 +32,12 @@ function xmlEscape(s: string): string {
   return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" }[c] as string));
 }
 
+const TODAY = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+
 function toUrl(loc: string, priority = "0.5", changefreq = "monthly") {
   const cleanLoc = loc.replace(/\/+$/, "");
   const full = `${ORIGIN}${cleanLoc}`;
-  return `  <url>\n    <loc>${xmlEscape(full)}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+  return `  <url>\n    <loc>${xmlEscape(full)}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 }
 
 /**

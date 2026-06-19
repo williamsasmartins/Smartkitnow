@@ -279,13 +279,22 @@ export default function CalculatorVerticalLayout({
   children,
 }: CalculatorVerticalLayoutProps) {
   const location = useLocation();
-  const resolvedDescription = useMemo(() => {
-    return description;
-  }, [description]);
 
   const paths = location.pathname.split("/").filter(Boolean);
   const slug = paths.pop();
   const entry = slug ? getEntry(slug) : null;
+
+  const resolvedDescription = useMemo(() => {
+    // Detect generic boilerplate descriptions generated for automotive calculators
+    // (pattern: "Professional <category> calculator: <Name>. Get accurate estimates...")
+    // and replace them with the unique registry description for better SEO.
+    const isBoilerplate = description && /^Professional \w+ calculator:.*Get accurate estimates/i.test(description);
+    if (isBoilerplate) {
+      return entry?.seoDescription || entry?.description || description || null;
+    }
+    // If no description prop provided at all, fall back to registry entry description
+    return description || entry?.seoDescription || entry?.description || null;
+  }, [description, entry]);
 
   // Sticky "Back to Calculator" button — aparece quando o widget sai da viewport
   const widgetRef = useRef<HTMLDivElement>(null);
