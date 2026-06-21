@@ -288,6 +288,9 @@ interface FaqItem { question: string; answer: string; }
 
 // ─── Props ───────────────────────────────────────────────────────────────────
 
+interface FormulaVar { symbol: string; description: string; }
+interface ExampleStep { step: string; formula: string; result: string; }
+
 interface ConverterProps {
   initialCat?: string;
   initialFrom?: string;
@@ -295,6 +298,9 @@ interface ConverterProps {
   title?: string;
   description?: string;
   faqs?: FaqItem[];
+  editorial?: React.ReactNode;
+  formula?: { formula: string; variables: FormulaVar[]; title?: string };
+  example?: { title: string; scenario: string; steps: ExampleStep[]; result: string };
 }
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -306,6 +312,9 @@ function SmartUnitConverter({
   title       = "Smart Unit Converter",
   description = "Convert between any units instantly — length, weight, temperature, volume, area, speed, pressure, energy, data, angle, and power. Bidirectional. No signup.",
   faqs,
+  editorial,
+  formula,
+  example,
 }: ConverterProps) {
   const [catId, setCatId] = useState(initialCat);
   const [fromId, setFromId] = useState(initialFrom);
