@@ -13,6 +13,7 @@ import { CATEGORIES } from "@/data/categoryMeta";
 // AD SLOTS CONFIGURATION
 // ================================================================
 const ENV: any = (typeof import.meta !== 'undefined' && (import.meta as any).env) || {};
+const ADSENSE_ENABLED = (ENV.VITE_ADSENSE_ENABLED ?? 'false') === 'true';
 const SLOT_TOP_BANNER = ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? "pending";
 const SLOT_SIDEBAR = ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? "pending";
 const SLOT_BOTTOM_BANNER = ENV.VITE_ADSENSE_SLOT_BOTTOM_BANNER ?? "pending";
@@ -40,7 +41,7 @@ function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
   };
 
   return (
-    <nav className="bg-white dark:bg-slate-900 border-l-4 border-indigo-500 dark:border-indigo-400 p-6 rounded-xl mb-8 shadow-lg shadow-indigo-500/10">
+    <nav className="bg-white dark:bg-slate-900 border-l-4 border-teal-500 dark:border-teal-400 p-6 rounded-xl mb-8 shadow-lg shadow-teal-500/10">
       <p className="font-extrabold text-slate-900 dark:text-slate-100 mb-4 text-base tracking-tight">
         On this page:
       </p>
@@ -50,7 +51,7 @@ function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
             <a
               href={`#${section.id}`}
               onClick={(e) => handleClick(e, section.id)}
-              className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 hover:underline text-sm font-semibold transition-all duration-200 cursor-pointer block"
+              className="text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 hover:underline text-sm font-semibold transition-all duration-200 cursor-pointer block"
             >
               {section.label}
             </a>
@@ -79,10 +80,10 @@ function FormulaBox({
   title?: string;
 }) {
   return (
-    <div className="my-12 p-4 md:p-8 rounded-2xl border-2 border-indigo-200 dark:border-indigo-800 bg-gradient-to-br from-indigo-50 via-violet-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-violet-950 shadow-xl shadow-indigo-500/10">
+    <div className="my-12 p-4 md:p-8 rounded-2xl border-2 border-teal-200 dark:border-teal-800 bg-gradient-to-br from-teal-50 via-teal-50 to-teal-50 dark:from-slate-900 dark:via-teal-950 dark:to-teal-950 shadow-xl shadow-teal-500/10">
       {/* Title */}
       <div className="text-center mb-8">
-        <div className="inline-block bg-white dark:bg-slate-900 rounded-xl px-8 py-4 shadow-lg shadow-indigo-500/10 border border-indigo-100 dark:border-indigo-900">
+        <div className="inline-block bg-white dark:bg-slate-900 rounded-xl px-8 py-4 shadow-lg shadow-teal-500/10 border border-teal-100 dark:border-teal-900">
           <h3 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
             {title}
           </h3>
@@ -90,21 +91,21 @@ function FormulaBox({
       </div>
 
       {/* Formula */}
-      <div className="bg-white dark:bg-slate-900 rounded-xl p-8 mb-8 shadow-lg border border-indigo-100 dark:border-indigo-900">
+      <div className="bg-white dark:bg-slate-900 rounded-xl p-8 mb-8 shadow-lg border border-teal-100 dark:border-teal-900">
         <p className="text-center text-3xl font-mono font-bold text-slate-900 dark:text-slate-100 break-words">
           {formula}
         </p>
       </div>
 
       {/* Variables */}
-      <div className="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-lg border border-indigo-100 dark:border-indigo-900">
+      <div className="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-lg border border-teal-100 dark:border-teal-900">
         <p className="font-extrabold text-slate-900 dark:text-slate-100 mb-5 text-lg tracking-tight">
           Where:
         </p>
         <div className="space-y-3">
           {variables.map((variable) => (
             <div key={variable.symbol} className="flex items-start gap-4">
-              <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400 text-lg min-w-[3rem]">
+              <span className="font-mono font-bold text-teal-600 dark:text-teal-400 text-lg min-w-[3rem]">
                 {variable.symbol}
               </span>
               <span className="text-slate-700 dark:text-slate-300">
@@ -167,7 +168,7 @@ function ExampleSection({
                 }`}
             </p>
             {step.calculation && (
-              <p className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+              <p className="font-mono text-sm text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950 p-4 rounded-lg border border-teal-200 dark:border-teal-800">
                 {step.calculation}
               </p>
             )}
@@ -199,7 +200,7 @@ function RelatedCalculators({ calculators }: { calculators: RelatedCalc[] }) {
   if (!calculators || calculators.length === 0) return null;
 
   return (
-    <div className="my-10 p-4 md:p-8 rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 dark:from-slate-900 dark:to-violet-950 border-2 border-violet-200 dark:border-violet-800 shadow-xl">
+    <div className="my-10 p-4 md:p-8 rounded-2xl bg-gradient-to-br from-teal-50 to-teal-50 dark:from-slate-900 dark:to-teal-950 border-2 border-teal-200 dark:border-teal-800 shadow-xl">
       <h3 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-6 flex items-center gap-3 tracking-tight">
         <span>🔗</span> Related Calculators
       </h3>
@@ -210,10 +211,10 @@ function RelatedCalculators({ calculators }: { calculators: RelatedCalc[] }) {
             <a
               key={calc.url}
               href={calc.url}
-              className="flex items-center gap-4 p-5 bg-white dark:bg-slate-900 rounded-xl border border-violet-200 dark:border-violet-800 hover:shadow-xl hover:scale-[1.02] transition-all duration-200 group"
+              className="flex items-center gap-4 p-5 bg-white dark:bg-slate-900 rounded-xl border border-teal-200 dark:border-teal-800 hover:shadow-xl hover:scale-[1.02] transition-all duration-200 group"
             >
               <span className="text-3xl">{icon}</span>
-              <span className="text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 font-semibold">
+              <span className="text-teal-600 dark:text-teal-400 group-hover:text-teal-700 dark:group-hover:text-teal-300 font-semibold">
                 {calc.title}
               </span>
             </a>
@@ -279,13 +280,22 @@ export default function CalculatorVerticalLayout({
   children,
 }: CalculatorVerticalLayoutProps) {
   const location = useLocation();
-  const resolvedDescription = useMemo(() => {
-    return description;
-  }, [description]);
 
   const paths = location.pathname.split("/").filter(Boolean);
   const slug = paths.pop();
   const entry = slug ? getEntry(slug) : null;
+
+  const resolvedDescription = useMemo(() => {
+    // Detect generic boilerplate descriptions generated for automotive calculators
+    // (pattern: "Professional <category> calculator: <Name>. Get accurate estimates...")
+    // and replace them with the unique registry description for better SEO.
+    const isBoilerplate = description && /^Professional \w+ calculator:.*Get accurate estimates/i.test(description);
+    if (isBoilerplate) {
+      return entry?.seoDescription || entry?.description || description || null;
+    }
+    // If no description prop provided at all, fall back to registry entry description
+    return description || entry?.seoDescription || entry?.description || null;
+  }, [description, entry]);
 
   // Sticky "Back to Calculator" button — aparece quando o widget sai da viewport
   const widgetRef = useRef<HTMLDivElement>(null);
@@ -310,7 +320,7 @@ export default function CalculatorVerticalLayout({
         <div className="fixed bottom-20 sm:bottom-5 left-1/2 -translate-x-1/2 z-50">
           <button
             onClick={() => widgetRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
-            className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-semibold rounded-full shadow-xl shadow-indigo-500/40 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 active:bg-teal-800 text-white text-sm font-semibold rounded-full shadow-xl shadow-teal-500/40 transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6" /></svg>
             Back to Calculator
@@ -327,9 +337,9 @@ export default function CalculatorVerticalLayout({
         )}
 
         {/* LAYOUT WITH SIDEBAR + CONTENT */}
-        <div className="relative xl:flex xl:justify-center xl:gap-12">
+        <div className={`relative ${ADSENSE_ENABLED ? "xl:flex xl:justify-center xl:gap-12" : ""}`}>
           {/* CENTERED CONTENT (Dynamic Max Width) */}
-          <div className={`w-full ${contentMaxWidth} mx-auto xl:mx-0 px-4 sm:px-6 min-w-0`}>
+          <div className={`w-full ${contentMaxWidth} mx-auto ${ADSENSE_ENABLED ? "xl:mx-0" : ""} px-4 sm:px-6 min-w-0`}>
             {/* TITLE SECTION */}
             <header className="mb-8">
               {/* BREADCRUMBS */}
@@ -376,7 +386,7 @@ export default function CalculatorVerticalLayout({
             {children ? (
               <div ref={widgetRef} className="mb-10">{children}</div>
             ) : (
-              <section ref={widgetRef} className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200">
+              <section ref={widgetRef} className="mb-10 rounded-2xl overflow-hidden border-2 border-teal-200 dark:border-teal-800 bg-white dark:bg-slate-900 shadow-2xl shadow-teal-500/10 transition-all duration-200">
                 <div className="p-4 md:p-8">{widget}</div>
               </section>
             )}
@@ -446,8 +456,8 @@ export default function CalculatorVerticalLayout({
             <SuggestionBox />
           </div>
 
-          {/* FLOATING SIDEBAR (Desktop Only, STICKY) */}
-          {showSidebar && (
+          {/* FLOATING SIDEBAR (Desktop Only, STICKY) — only when ads enabled */}
+          {showSidebar && ADSENSE_ENABLED && (
             <aside className="hidden xl:block w-[300px] flex-shrink-0">
               <div className="sticky top-[120px]">
                 <AdUnit slot={SLOT_SIDEBAR} type="sidebar" />

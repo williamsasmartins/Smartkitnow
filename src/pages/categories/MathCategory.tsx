@@ -176,11 +176,7 @@ export default function MathCategory() {
             </div>
           </div>
 
-          <aside className="hidden xl:block w-[300px] flex-shrink-0">
-            <div className="sticky" style={{ top: "var(--skn-rail-top)" }}>
-              <AdSidebarRight topOffset={0} />
-            </div>
-          </aside>
+          <AdSidebarRight topOffset={0} />
         </div>
       </main>
     </div>
@@ -210,7 +206,7 @@ function Section({
   return (
     <section className="mb-12">
       <div className="flex items-center gap-2 mb-3">
-        <span className="inline-grid place-items-center h-8 w-8 rounded-lg border bg-card">
+        <span className="inline-grid place-items-center h-8 w-8 rounded-lg bg-teal-50 dark:bg-teal-900/40 border border-teal-100 dark:border-teal-800 text-teal-600 dark:text-teal-400">
           <EmojiIcon symbol={emoji} size={20} />
         </span>
         <h2 className="text-2xl font-semibold text-primary">{title}</h2>

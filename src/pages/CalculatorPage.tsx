@@ -89,7 +89,19 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
       <JsonLd data={softwareAppJsonLd} />
       {/* max-w-none permite que o CalculatorVerticalLayout controle a largura interna */}
       <div className="max-w-none">
-        <Suspense fallback={<div className="py-10 text-muted-foreground text-center">Loading Calculator...</div>}>
+        <Suspense fallback={
+          <div className="py-10 px-4 max-w-3xl mx-auto">
+            <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+              {entry.seoTitle || entry.title}
+            </h1>
+            {(entry.seoDescription || entry.description) && (
+              <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
+                {entry.seoDescription || entry.description}
+              </p>
+            )}
+            <div className="text-muted-foreground text-center py-6">Loading calculator…</div>
+          </div>
+        }>
           <main className="min-w-0">
             <LazyCalc />
           </main>

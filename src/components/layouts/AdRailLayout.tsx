@@ -3,6 +3,7 @@ import AdSlot from "@/components/ads/AdSlot";
 import RightRailAds from "@/components/ads/RightRailAds";
 
 const ENV: any = (typeof import.meta !== "undefined" && (import.meta as any).env) || {};
+const ADSENSE_ENABLED = (ENV.VITE_ADSENSE_ENABLED ?? 'false') === 'true';
 const ADSENSE_CLIENT_ID = ENV.VITE_ADSENSE_CLIENT_ID ?? "";
 const SLOT_TOP_BANNER = ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? "";
 const SLOT_BOTTOM_BANNER = ENV.VITE_ADSENSE_SLOT_BOTTOM_BANNER ?? "";
@@ -39,8 +40,8 @@ export default function AdRailLayout({
   showRightRail,
   className,
 }: AdRailLayoutProps) {
-  const leftEnabled = showRails && (showLeftRail ?? true);
-  const rightEnabled = showRails && (showRightRail ?? true);
+  const leftEnabled = ADSENSE_ENABLED && showRails && (showLeftRail ?? true);
+  const rightEnabled = ADSENSE_ENABLED && showRails && (showRightRail ?? true);
 
   return (
     <section className={`container mx-auto px-4 py-8 ${className ?? ""}`}>
@@ -63,7 +64,7 @@ export default function AdRailLayout({
 
         {/* CENTRO */}
         <div className="min-w-0 flex-1">
-          {topCenterAd ? (
+          {ADSENSE_ENABLED && topCenterAd ? (
             <div className="mx-auto mb-6 flex justify-center">
               <AdSlot
                 variant="banner"
@@ -76,7 +77,7 @@ export default function AdRailLayout({
 
           {children}
 
-          {bottomCenterAd ? (
+          {ADSENSE_ENABLED && bottomCenterAd ? (
             <div className="mx-auto mt-6 flex justify-center">
               <AdSlot
                 variant="banner"

@@ -52,7 +52,8 @@
       "PowerShell(Get-ChildItem \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\node_modules\\\\city-timezones\" -Recurse -File | Sort-Object Length -Descending | Select-Object -First 5 | Format-Table Name, @{Name=\"Size_KB\";Expression={[math]::Round\\($_.Length/1KB,1\\)}})",
       "Bash(grep -v \"//\")",
       "PowerShell($content = Get-Content \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\assets\\\\logo-skn-new.svg\" -Raw; $content.Length; $content.Substring\\(0, 500\\))",
-      "Bash(Remove-Item \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\components\\\\SEO.tsx\" -Force)"
+      "Bash(Remove-Item \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\src\\\\components\\\\SEO.tsx\" -Force)",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\Williams Martins\\\\Projetos\\\\Smartkitnow\\\\dist\\\\assets\" | Sort-Object Length -Descending | Select-Object -First 15 | Format-Table Name, @{Name=\"KB\";Expression={[math]::Round\\($_.Length/1KB,1\\)}})"
     ]
   }
 }
