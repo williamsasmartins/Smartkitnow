@@ -15,7 +15,15 @@ const Command = React.forwardRef<
     filter={(value, search) => {
       const v = value.toLowerCase();
       const searchWords = search.toLowerCase().split(/\s+/).filter(Boolean);
-      return searchWords.every(word => v.includes(word)) ? 1 : 0;
+      return searchWords.every(word => {
+        // Short terms (≤3 chars like "mm", "cm", "kg"): match as whole word only
+        // so "mm" doesn't match inside "common", "recommend", etc.
+        if (word.length <= 3) {
+          const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          return new RegExp(`(?:^|\\s)${escaped}(?:\\s|$)`).test(v);
+        }
+        return v.includes(word);
+      }) ? 1 : 0;
     }}
     className={cn(
       "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",

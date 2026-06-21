@@ -3,42 +3,42 @@
 export const expectedDogs = [];
 
 export const expectedCats = [
-  // Medication & Dosing (7)
-  { slug: "cat-benadryl-dose" },
+  // Medication & Dosing
+  { slug: "cat-benadryl-diphenhydramine-dose" },
   { slug: "cat-cephalexin-dose" },
   { slug: "cat-meloxicam-dose" },
   { slug: "cat-gabapentin-dose" },
   { slug: "cat-prednisolone-dose" },
-  { slug: "cat-omega3-supplement" },
-  { slug: "cat-insulin-starter-info" },
-  // Growth, Size & Body (5)
+  { slug: "cat-omega-3-epa-dha-supplement" },
+  { slug: "cat-insulin-starter-reference" },
+  // Growth, Size & Body
   { slug: "kitten-adult-weight-predictor" },
-  { slug: "cat-bcs-helper" },
-  { slug: "cat-bmi-index" },
-  { slug: "cat-carrier-size" },
-  { slug: "cat-harness-size" },
-  // Activity & Lifestyle (3)
+  { slug: "cat-body-condition-score-bcs-target" },
+  { slug: "cat-bmi-body-index-educational" },
+  { slug: "cat-carrier-size-fit-guide" },
+  { slug: "cat-harness-size-fit-guide" },
+  // Activity & Lifestyle
   { slug: "cat-activity-calorie-adjuster" },
   { slug: "cat-play-session-planner" },
-  { slug: "cat-rest-active-balance" },
-  // Age, Life Stage & Longevity (3)
-  { slug: "cat-age-human-years" },
-  { slug: "senior-cat-readiness-checklist" },
-  { slug: "cat-life-expectancy" },
-  // Urinary & Kidney Health (3)
-  { slug: "cat-litter-output-tracker" },
-  { slug: "cat-intake-vs-urine-balance" },
-  { slug: "cat-phosphorus-per-meal" },
-  // Reproduction (2)
-  { slug: "cat-gestation-due-date" },
-  { slug: "kitten-weaning-timeline" },
-  // Grooming & Care (2)
-  { slug: "cat-shedding-combing-planner" },
-  { slug: "cat-nail-trim-interval" },
-  // Behavior & Environment (3)
-  { slug: "multi-cat-litterbox-count" },
-  { slug: "cat-enrichment-planner" },
-  { slug: "cat-stress-score-playtime-offset" },
+  { slug: "cat-resting-active-hours-balance-tracker" },
+  // Age, Life Stage & Longevity
+  { slug: "cat-age-human-years-breed-size-aware" },
+  { slug: "senior-cat-care-readiness-checklist" },
+  { slug: "cat-life-expectancy-estimator" },
+  // Urinary & Kidney Health
+  { slug: "cat-litter-box-output-tracker" },
+  { slug: "cat-fluid-intake-urine-output-balance" },
+  { slug: "cat-phosphorus-per-meal-estimator" },
+  // Reproduction
+  { slug: "cat-pregnancy-gestation-due-date" },
+  { slug: "kitten-weaning-timeline-feeding-amounts" },
+  // Grooming & Care
+  { slug: "cat-shedding-combing-time-planner" },
+  { slug: "cat-nail-trim-interval-planner" },
+  // Behavior & Environment
+  { slug: "multi-cat-litter-box-count-calculator" },
+  { slug: "cat-environmental-enrichment-planner" },
+  { slug: "cat-stress-score-playtime-offset-planner" },
 ];
 
 export const expectedAll = [...expectedDogs, ...expectedCats];
