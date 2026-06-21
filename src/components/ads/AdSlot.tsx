@@ -76,6 +76,9 @@ export default function AdSlot({
     }
   }, [canRenderAds, inView]);
 
+  // Ads not available — render nothing (no wasted space in dev or when unconfigured)
+  if (!canRenderAds) return null;
+
   // Banner variant
   if (variant === "banner") {
     return (
@@ -86,7 +89,7 @@ export default function AdSlot({
         aria-label={label || "Ad banner"}
         style={style}
       >
-        {inView && canRenderAds ? (
+        {inView && (
           <ins
             className="adsbygoogle"
             style={{ display: "block" }}
@@ -95,19 +98,6 @@ export default function AdSlot({
             data-ad-format={adFormat}
             data-full-width-responsive={fullWidthResponsive ? "true" : "false"}
           />
-        ) : (
-          <div
-            className="
-              w-[320px] h-[100px]
-              sm:w-[728px] sm:h-[90px]
-              xl:w-[970px] xl:h-[90px]
-              max-w-full
-              flex items-center justify-center
-              text-xs text-muted-foreground
-            "
-          >
-            {label || (adFormat === "autorelaxed" ? "Ad - Multiplex (Google AdSense)" : "Ad - Banner (Google AdSense)")}
-          </div>
         )}
       </div>
     );

@@ -1,16 +1,19 @@
 import AdUnit from "@/components/AdUnit";
 
 const ENV: any = (typeof import.meta !== "undefined" && (import.meta as any).env) || {};
+const ADSENSE_ENABLED = (ENV.VITE_ADSENSE_ENABLED ?? 'false') === 'true';
 const SLOT_SIDEBAR = ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? "pending";
 
 /**
  * Sidebar ad for category pages.
- * Delegates to AdUnit which handles dev/prod toggling and responsive sizes.
+ * Returns null when ads are disabled — no wasted space in the flex layout.
+ * Includes its own outer <aside> wrapper so callers don't need one.
  */
 export default function AdSidebarRight({ topOffset = 0 }: { topOffset?: number }) {
+  if (!ADSENSE_ENABLED) return null;
   return (
-    <aside className="hidden lg:block lg:w-[320px]">
-      <div className="sticky space-y-4" style={{ top: topOffset }}>
+    <aside className="hidden xl:block w-[300px] flex-shrink-0">
+      <div className="sticky" style={{ top: topOffset > 0 ? topOffset : "var(--skn-rail-top)" }}>
         <AdUnit slot={SLOT_SIDEBAR} type="sidebar" />
       </div>
     </aside>

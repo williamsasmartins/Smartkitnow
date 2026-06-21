@@ -1,13 +1,34 @@
 import { useNavigate } from "react-router-dom";
-import { Search } from "lucide-react";
+import { CheckCircle2, Search } from "lucide-react";
 import { POPULAR_PILLS } from "@/data/home/popularPills";
+import { useEffect, useRef, useState } from "react";
 
 interface HeroSectionProps {
   onOpenSearch: () => void;
 }
 
+function useCountUp(target: number, duration = 1400) {
+  const [count, setCount] = useState(0);
+  const started = useRef(false);
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      setCount(Math.floor(ease * target));
+      if (p < 1) requestAnimationFrame(tick);
+      else setCount(target);
+    };
+    requestAnimationFrame(tick);
+  }, [target, duration]);
+  return count;
+}
+
 export default function HeroSection({ onOpenSearch }: HeroSectionProps): JSX.Element {
   const navigate = useNavigate();
+  const calcCount = useCountUp(720);
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-teal-50 via-white to-white dark:from-teal-950/25 dark:via-background dark:to-background">
@@ -34,7 +55,7 @@ export default function HeroSection({ onOpenSearch }: HeroSectionProps): JSX.Ele
         </div>
 
         <p className="text-xs font-mono tracking-[0.18em] uppercase text-teal-600 dark:text-teal-400 mb-3">
-          720+ Free Calculators
+          <span className="tabular-nums">{calcCount}</span>+ Free Calculators
         </p>
 
         <h1 className="text-3xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight mb-3">
@@ -60,7 +81,18 @@ export default function HeroSection({ onOpenSearch }: HeroSectionProps): JSX.Ele
           </kbd>
         </button>
 
-        <div className="flex flex-wrap justify-center gap-2 mt-4">
+        {/* Trust stats */}
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-6 mb-5">
+          {(["720+ Tools", "16 Categories", "100% Free", "No Signup"] as const).map((s) => (
+            <span key={s} className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              <CheckCircle2 className="w-3.5 h-3.5 text-teal-500 shrink-0" aria-hidden />
+              {s}
+            </span>
+          ))}
+        </div>
+
+        {/* Popular pills */}
+        <div className="flex flex-wrap justify-center gap-2">
           {POPULAR_PILLS.map(({ label, path }) => (
             <button
               key={label}

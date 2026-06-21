@@ -253,7 +253,7 @@ export default function Breadcrumbs() {
                 {isLast ? (
                   // Current page — non-clickable, visually distinct
                   <span
-                    className="font-medium text-slate-800 dark:text-slate-100 truncate max-w-[200px]"
+                    className="font-medium text-teal-700 dark:text-teal-400 truncate max-w-[200px]"
                     aria-current="page"
                     itemProp="name"
                   >

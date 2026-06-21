@@ -8,31 +8,47 @@ const year = new Date().getFullYear();
 
 const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
   {
-    title: "Calculators",
+    title: "Categories",
     links: [
-      { label: "Cooking", to: "/cooking" },
-      { label: "Conversion", to: "/conversion" },
-      { label: "Math & Algebra", to: "/math" },
-      { label: "Health & Fitness", to: "/health" },
       { label: "Financial", to: "/financial" },
-      { label: "Pet Care", to: "/pets" },
-      { label: "Science", to: "/science" },
-      { label: "Time & Date", to: "/time" },
-      { label: "Video", to: "/video" },
+      { label: "Health & Fitness", to: "/health" },
+      { label: "Cooking & Baking", to: "/cooking" },
+      { label: "Math & Algebra", to: "/math" },
+      { label: "Unit Conversion", to: "/conversion" },
       { label: "Construction", to: "/construction" },
+      { label: "Automotive", to: "/automotive" },
       { label: "Electrical", to: "/electrical" },
+      { label: "Science", to: "/science" },
+      { label: "Pet Care", to: "/pets" },
+      { label: "Everyday Life", to: "/everyday" },
     ],
   },
   {
-    title: "Resources",
+    title: "Popular Tools",
     links: [
-      { label: "Automotive", to: "/automotive" },
-      { label: "Everyday Life", to: "/everyday" },
-      { label: "Sports", to: "/sports" },
-      { label: "Funny Calculators", to: "/funny" },
+      { label: "BMI Calculator", to: "/health/bmi-body-mass-index" },
+      { label: "Loan Calculator", to: "/financial/loan-payment" },
+      { label: "Tip & Bill Splitter", to: "/financial/tip-split-bill" },
+      { label: "Calorie Calculator", to: "/health/daily-calorie-needs-goal" },
+      { label: "Concrete Calculator", to: "/construction/concrete-slab-volume" },
+      { label: "Percentage Calculator", to: "/math/percentage-calculator" },
+      { label: "QR Code Generator", to: "/everyday/qr-code-generator" },
+      { label: "Age Calculator", to: "/health/age-calculator" },
+      { label: "Mortgage Calculator", to: "/financial/mortgage-payment" },
+      { label: "Paint Calculator", to: "/construction/paint-coverage-gallons" },
+      { label: "Fuel Cost Calculator", to: "/automotive/fuel-cost-trip" },
+    ],
+  },
+  {
+    title: "Explore",
+    links: [
       { label: "Games Zone", to: "/games" },
       { label: "Daily Quotes", to: "/daily-quotes" },
       { label: "Smart Tips", to: "/smart-tips" },
+      { label: "Funny Calculators", to: "/funny" },
+      { label: "Sports", to: "/sports" },
+      { label: "Time & Date", to: "/time" },
+      { label: "Marketing Tools", to: "/marketing" },
     ],
   },
   {
@@ -72,7 +88,7 @@ export function Footer() {
     <footer className="mt-0 border-t border-border bg-background">
       {/* Wide container: 96% width, centered with smooth transitions */}
       <div className="mx-auto w-[96%] max-w-[1920px] px-4 md:px-6 py-10 transition-all duration-300 ease-in-out">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="space-y-4">
             <form action="https://formspree.io/f/xanpypnb" method="POST" className="flex items-center gap-2">
               <input type="email" name="email" required placeholder="Your email" className="w-full rounded-md border border-neutral-300 dark:border-neutral-700 bg-background px-3 py-2 text-sm" />

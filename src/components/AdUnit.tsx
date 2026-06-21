@@ -58,61 +58,8 @@ export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
   // MODO DESENVOLVIMENTO (Placeholder)
   // ================================================================
   if (!ADSENSE_ENABLED) {
-    return (
-      <div className={`skn-ad-placeholder ${className}`}>
-        {/* Desktop */}
-        <div 
-          className="hidden lg:flex flex-col items-center justify-center mx-auto rounded-lg border border-dashed border-border bg-muted/40 text-muted-foreground"
-          style={{ 
-            width: config.desktop.width,
-            height: config.desktop.height,
-          }}
-        >
-          <span className="text-xs font-semibold uppercase tracking-wider mb-1">
-            {config.label} Space
-          </span>
-          <span className="text-[10px] opacity-70">
-            Desktop: {config.desktop.width}×{config.desktop.height}
-          </span>
-        </div>
-
-        {/* Tablet (se configurado) */}
-        {config.tablet && (
-          <div 
-            className="hidden md:flex lg:hidden flex-col items-center justify-center mx-auto rounded-lg border border-dashed border-border bg-muted/40 text-muted-foreground"
-            style={{ 
-              width: config.tablet.width,
-              height: config.tablet.height,
-            }}
-          >
-            <span className="text-xs font-semibold uppercase tracking-wider mb-1">
-              {config.label} Space
-            </span>
-            <span className="text-[10px] opacity-70">
-              Tablet: {config.tablet.width}×{config.tablet.height}
-            </span>
-          </div>
-        )}
-
-        {/* Mobile (se configurado) */}
-        {config.mobile && (
-          <div 
-            className="flex md:hidden flex-col items-center justify-center mx-auto rounded-lg border border-dashed border-border bg-muted/40 text-muted-foreground"
-            style={{ 
-              width: config.mobile.width,
-              height: config.mobile.height,
-            }}
-          >
-            <span className="text-xs font-semibold uppercase tracking-wider mb-1">
-              {config.label} Space
-            </span>
-            <span className="text-[10px] opacity-70">
-              Mobile: {config.mobile.width}×{config.mobile.height}
-            </span>
-          </div>
-        )}
-      </div>
-    );
+    // Ads disabled — render nothing, no wasted space
+    return null;
   }
 
   // ================================================================
