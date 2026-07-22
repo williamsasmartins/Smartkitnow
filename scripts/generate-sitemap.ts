@@ -32,12 +32,25 @@ function xmlEscape(s: string): string {
   return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" }[c] as string));
 }
 
-const TODAY = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+// Route prefixes that no longer exist on the site — must never re-enter the sitemap.
+// Language dirs return 410 via /api/404; /culinary and /recipes return 410 via /api/gone.
+const DEPRECATED_PREFIXES = [
+  "/culinary", "/recipes",
+  "/sv", "/it", "/es", "/pt", "/nl", "/pl", "/de", "/fr",
+  "/en", "/zh", "/ja", "/ko", "/ru", "/ar", "/tr", "/tv",
+];
 
+function isDeprecated(loc: string): boolean {
+  return DEPRECATED_PREFIXES.some((p) => loc === p || loc.startsWith(`${p}/`));
+}
+
+// No fake <lastmod>: stamping every URL with the build date on each deploy is a
+// known trust-eroding signal for Google (it learns to ignore lastmod entirely).
+// Omit it and let changefreq/priority carry the crawl hints.
 function toUrl(loc: string, priority = "0.5", changefreq = "monthly") {
   const cleanLoc = loc.replace(/\/+$/, "");
   const full = `${ORIGIN}${cleanLoc}`;
-  return `  <url>\n    <loc>${xmlEscape(full)}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+  return `  <url>\n    <loc>${xmlEscape(full)}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 }
 
 /**
@@ -67,6 +80,23 @@ function main() {
   parts.push(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`);
 
   let count = 0;
+  const seen = new Set<string>();
+  const skipped: string[] = [];
+
+  const pushUrl = (loc: string, priority: string, changefreq: string) => {
+    const clean = loc.replace(/\/+$/, "") || "/";
+    if (isDeprecated(clean)) {
+      skipped.push(`deprecated: ${clean}`);
+      return;
+    }
+    if (seen.has(clean)) {
+      skipped.push(`duplicate: ${clean}`);
+      return;
+    }
+    seen.add(clean);
+    parts.push(toUrl(clean, priority, changefreq));
+    count++;
+  };
 
   // Static
   // Category priorities match their calculator priorities + 0.08 (hubs outrank leaf pages)
@@ -82,30 +112,24 @@ function main() {
     const catPriority = CATEGORY_PRIORITY[p];
     const priority = isHome ? "1.0" : catPriority ?? "0.55";
     const changefreq = isHome ? "daily" : catPriority ? "weekly" : "monthly";
-    parts.push(toUrl(p, priority, changefreq));
-    count++;
+    pushUrl(p, priority, changefreq);
   }
 
   // Calculators from registry
   for (const e of REGISTRY) {
-    const shortPath = calcLink(e);
-    parts.push(toUrl(shortPath, priorityForCategory(e.category), "monthly"));
-    count++;
+    pushUrl(calcLink(e), priorityForCategory(e.category), "monthly");
   }
 
   // Games — sourced from gameSlugs.ts (mirrors gameRegistry.tsx RAW_GAMES, no JSX deps)
   for (const slug of GAME_SLUGS) {
-    parts.push(toUrl(`/games/${slug}`, priorityForCategory("games"), "monthly"));
-    count++;
+    pushUrl(`/games/${slug}`, priorityForCategory("games"), "monthly");
   }
 
   // Smart Tips
   for (const cat of smartTipsCategories) {
-    parts.push(toUrl(`/smart-tips/${cat.slug}`, priorityForCategory("smart-tips"), "weekly"));
-    count++;
+    pushUrl(`/smart-tips/${cat.slug}`, priorityForCategory("smart-tips"), "weekly");
     for (const tip of cat.tips) {
-      parts.push(toUrl(`/smart-tip/${tip.slug}`, "0.4", "monthly"));
-      count++;
+      pushUrl(`/smart-tip/${tip.slug}`, "0.4", "monthly");
     }
   }
 
@@ -116,8 +140,11 @@ function main() {
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, "sitemap.xml"), xml, "utf-8");
 
-  console.log(`✅ Sitemap generated: ${count} routes found.`);
-  console.log(`Sitemap atualizado com ${count} URLs`);
+  console.log(`✅ Sitemap generated: ${count} unique routes.`);
+  if (skipped.length > 0) {
+    console.warn(`⚠️ Skipped ${skipped.length} URLs:`);
+    for (const s of skipped) console.warn(`   ${s}`);
+  }
 }
 
 main();

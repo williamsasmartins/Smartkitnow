@@ -135,8 +135,6 @@ export default function App() {
 
               {/* Decommissioned Routes */}
               <Route path="/home" element={<Navigate to="/" replace />} />
-              <Route path="/recipes" element={<Navigate to="/" replace />} />
-              <Route path="/recipes/*" element={<Navigate to="/" replace />} />
 
               {/* Legacy URL: /everyday-life/* → /everyday/* */}
               <Route path="/everyday-life" element={<Navigate to="/everyday" replace />} />
