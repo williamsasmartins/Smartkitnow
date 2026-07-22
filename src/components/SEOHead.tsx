@@ -57,7 +57,14 @@ export default function SEOHead({
   const finalTitle = title || seoData?.title || 'SmartKitNow - Free Online Calculators';
   const finalDescription = description || seoData?.description || 'Free online calculators for every need.';
   const BASE = 'https://www.smartkitnow.com';
-  const rawCanonical = canonical || seoData?.url || '';
+  // Strict canonical enforcement: every page gets a self-referencing canonical.
+  // Fallback to the current pathname (query/hash excluded) when no explicit
+  // canonical is provided, so no indexable page ever ships without one.
+  const pathFallback =
+    typeof window !== 'undefined'
+      ? window.location.pathname.replace(/\/+$/, '') || '/'
+      : '';
+  const rawCanonical = canonical || seoData?.url || pathFallback;
   const finalCanonical = rawCanonical && !rawCanonical.startsWith('http')
     ? `${BASE}${rawCanonical.startsWith('/') ? rawCanonical : '/' + rawCanonical}`
     : rawCanonical;

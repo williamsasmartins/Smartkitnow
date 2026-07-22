@@ -49,6 +49,23 @@ const PRO_BENCHMARKS = [
 const ftToM    = (ft: number) => ft / 3.28084;
 const kmhToMph = (kmh: number) => kmh * 0.621371;
 
+// ─── Aerodynamic drag model ───────────────────────────────────────
+// Radar guns report the PEAK speed right off the racket (V0), not the
+// average over the flight. Air drag slows a serve so the ball reaches
+// the first bounce at roughly 65% of V0 (~35% loss — standard
+// approximation for a flat pro serve).
+// With exponential decay v(t) = V0·e^(−λt) and retention r = Vf/V0:
+//   distance d = V0·(1 − r)/λ  and  λT = −ln(r)
+//   ⇒ V_avg = d/T = V0·(1 − r)/(−ln r)
+//   ⇒ V0 = V_avg · (−ln r)/(1 − r)  ≈ V_avg × 1.2308  for r = 0.65
+export const DRAG_RETENTION = 0.65; // fraction of V0 remaining at first bounce
+export const AVG_TO_INITIAL = Math.log(1 / DRAG_RETENTION) / (1 - DRAG_RETENTION);
+
+/** Initial serve speed off the racket (km/h) from distance (m) and flight time (s). */
+export function serveInitialSpeedKmh(distanceMeters: number, timeSeconds: number): number {
+  return (distanceMeters / timeSeconds) * 3.6 * AVG_TO_INITIAL;
+}
+
 // ─── SVG Speedometer — COURT NOIR styled ─────────────────────────
 function CourtNoir_Speedometer({
   speedKmh,
@@ -239,11 +256,13 @@ export default function TennisServeSpeedCalculator() {
     const rawDist = parseFloat(inputs.distance);
     const time    = parseFloat(inputs.time);
     if (isNaN(rawDist) || isNaN(time) || rawDist <= 0 || time <= 0) {
-      return { kmh: null, mph: null, warning: "Enter valid positive numbers for distance and time." };
+      return { kmh: null, mph: null, avgKmh: null, bounceKmh: null, warning: "Enter valid positive numbers for distance and time." };
     }
     const distMeters = unit === "imperial" ? ftToM(rawDist) : rawDist;
-    const kmh = (distMeters / time) * 3.6;
-    return { kmh, mph: kmhToMph(kmh), warning: null };
+    const avgKmh    = (distMeters / time) * 3.6;
+    const kmh       = avgKmh * AVG_TO_INITIAL;   // initial speed off the racket (radar-gun standard)
+    const bounceKmh = kmh * DRAG_RETENTION;      // estimated speed at first bounce
+    return { kmh, mph: kmhToMph(kmh), avgKmh, bounceKmh, warning: null };
   }, [inputs, unit]);
 
   // Animate result in on first valid calculation
@@ -266,7 +285,11 @@ export default function TennisServeSpeedCalculator() {
   const faqs = [
     {
       question: "How accurate is the Tennis Serve Speed Calculator?",
-      answer: "The calculator gives an estimate based on distance and time. Factors like ball spin and air resistance can affect accuracy. For professional-grade precision, radar guns or Hawk-Eye systems are recommended.",
+      answer: "The calculator estimates the initial speed off the racket from distance and flight time, applying a standard aerodynamic drag correction (the ball loses roughly 35% of its speed by the first bounce). This matches the radar-gun standard used in pro tournaments. Spin, altitude, and ball wear still add variance; for professional-grade precision, radar guns or Hawk-Eye systems are recommended.",
+    },
+    {
+      question: "Why does the calculator apply an air-resistance correction?",
+      answer: "Distance ÷ time only gives the average speed over the whole flight. But pro tournaments report the peak speed right off the racket, measured by radar guns at contact. Because air drag slows the ball by about 35% before it bounces, the average is roughly 19% lower than the initial speed. The calculator corrects for this (V0 = average speed × 1.2308) so your result is directly comparable to ATP/WTA radar numbers.",
     },
     {
       question: "What is the fastest tennis serve ever recorded?",
@@ -680,15 +703,36 @@ export default function TennisServeSpeedCalculator() {
               {/* Speed cards */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="cn-speed-card">
-                  <div className="cn-speed-label">km / h</div>
+                  <div className="cn-speed-label">Initial Speed · km/h</div>
                   <div className="cn-speed-value">{results.kmh.toFixed(1)}</div>
-                  <div className="cn-speed-unit">kilometers · hour</div>
+                  <div className="cn-speed-unit">off the racket</div>
                 </div>
                 <div className="cn-speed-card">
-                  <div className="cn-speed-label">mph</div>
+                  <div className="cn-speed-label">Initial Speed · mph</div>
                   <div className="cn-speed-value mph">{results.mph!.toFixed(1)}</div>
-                  <div className="cn-speed-unit">miles · hour</div>
+                  <div className="cn-speed-unit">off the racket</div>
                 </div>
+              </div>
+
+              {/* Drag model note */}
+              <div
+                style={{
+                  fontSize: 11.5,
+                  color: CN.dim,
+                  textAlign: "center",
+                  lineHeight: 1.6,
+                  padding: "10px 14px",
+                  background: CN.deep,
+                  border: `1px solid ${CN.mid}`,
+                  borderRadius: 10,
+                }}
+              >
+                ⓘ Result is the estimated{" "}
+                <strong style={{ color: CN.cream }}>initial speed off the racket</strong> — the
+                radar-gun standard used in pro tournaments. The model accounts for aerodynamic drag
+                (≈35% speed loss by the first bounce): average flight speed{" "}
+                {results.avgKmh!.toFixed(1)} km/h · estimated speed at bounce{" "}
+                {results.bounceKmh!.toFixed(1)} km/h.
               </div>
 
               {/* Tier badge */}
@@ -803,10 +847,13 @@ export default function TennisServeSpeedCalculator() {
           Understanding Tennis Serve Speed
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Serve speed is measured from the moment of ball contact to the first bounce. This calculator
-          applies the physics formula <em>Speed = Distance ÷ Time</em> and outputs results in both
-          <strong> km/h</strong> (used internationally and on the ATP/WTA Tour) and <strong>mph</strong>
-          (the standard on US broadcasts and Hawk-Eye displays at the US Open).
+          Pro tournaments measure serve speed with a radar gun at the moment of ball contact — the
+          <strong> peak initial speed off the racket (V₀)</strong>, not the average over the flight.
+          This calculator first computes the average flight speed (<em>Distance ÷ Time</em>), then
+          applies an aerodynamic drag correction: a serve loses roughly <strong>35%</strong> of its
+          speed to air resistance by the first bounce, so V₀ ≈ average speed × 1.2308. Results are
+          shown in both <strong>km/h</strong> (used internationally and on the ATP/WTA Tour) and
+          <strong> mph</strong> (the standard on US broadcasts and Hawk-Eye displays at the US Open).
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
           The average ATP first serve is around 193 km/h (120 mph). The all-time record — 263 km/h
@@ -886,17 +933,18 @@ export default function TennisServeSpeedCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Tennis Serve Speed Calculator"
-      description="Calculate tennis serve speed in km/h and mph. Compare your result with ATP & WTA professionals using our benchmark table, speed gauge, and visual comparison chart."
+      description="Calculate your initial serve speed off the racket in km/h and mph — drag-corrected to match pro radar guns. Compare with ATP & WTA professionals using our benchmark table, speed gauge, and visual comparison chart."
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd}
       formula={{
-        title: "Formula",
-        formula: "Speed (km/h) = (Distance (m) ÷ Time (s)) × 3.6",
+        title: "Formula (with aerodynamic drag)",
+        formula: "V₀ (km/h) = (Distance (m) ÷ Time (s)) × 3.6 × 1.2308",
         variables: [
           { symbol: "Distance (m)", description: "Straight-line distance from serve impact to first bounce in meters (feet ÷ 3.281 for imperial)" },
           { symbol: "Time (s)",     description: "Time from ball contact to first bounce in seconds" },
-          { symbol: "Speed (km/h)", description: "Average serve speed in km/h; divide by 1.609 for mph" },
+          { symbol: "1.2308",       description: "Drag correction factor: converts average flight speed to initial speed off the racket, assuming the ball retains ~65% of V₀ at the bounce (exponential decay: −ln(0.65) ÷ 0.35)" },
+          { symbol: "V₀ (km/h)",    description: "Initial serve speed off the racket — the value pro radar guns report; divide by 1.609 for mph" },
         ],
       }}
       example={{
@@ -905,11 +953,11 @@ export default function TennisServeSpeedCalculator() {
         steps: [
           { label: "Step 1", explanation: "Convert distance: 60 ft ÷ 3.281 = 18.29 m." },
           { label: "Step 2", explanation: "Time: 0.35 seconds (from 120fps video)." },
-          { label: "Step 3", explanation: "Speed (m/s) = 18.29 ÷ 0.35 = 52.26 m/s." },
-          { label: "Step 4", explanation: "Speed (km/h) = 52.26 × 3.6 = 188.1 km/h." },
-          { label: "Step 5", explanation: "Speed (mph) = 188.1 ÷ 1.609 = 116.9 mph." },
+          { label: "Step 3", explanation: "Average flight speed = 18.29 ÷ 0.35 = 52.26 m/s (188.1 km/h)." },
+          { label: "Step 4", explanation: "Apply drag correction: V₀ = 52.26 × 1.2308 = 64.32 m/s." },
+          { label: "Step 5", explanation: "V₀ (km/h) = 64.32 × 3.6 = 231.6 km/h · ÷ 1.609 = 143.9 mph." },
         ],
-        result: "Serve ≈ 188 km/h · 117 mph — Advanced club / entry-level ATP territory.",
+        result: "Initial serve speed ≈ 232 km/h · 144 mph off the racket — pro-level territory (the ball crosses the court slower because drag bleeds ~35% of that speed by the bounce).",
       }}
       relatedCalculators={[
         { title: "Tennis ELO / Rating Progress",          url: "/sports/tennis-elo-rating-progress",       icon: "🎾" },

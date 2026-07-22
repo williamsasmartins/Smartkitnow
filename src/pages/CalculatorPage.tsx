@@ -78,6 +78,24 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
     "url": `${origin}${calculatedPath}`
   };
 
+  const categoryTitle = catSlug.charAt(0).toUpperCase() + catSlug.slice(1);
+  const breadcrumbItems = [
+    { name: "Home", path: "/" },
+    { name: categoryTitle, path: `/${catSlug}` },
+    ...(useNested ? [{ name: subSlug!, path: `/${catSlug}/${subSlug}` }] : []),
+    { name: entry.title, path: calculatedPath },
+  ];
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbItems.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": item.name,
+      "item": `${origin}${item.path === "/" ? "" : item.path}` || origin,
+    })),
+  };
+
   return (
     <div className={containerClasses}>
       <SEOHead
@@ -87,6 +105,7 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
         canonical={`${origin}${calculatedPath}`}
       />
       <JsonLd data={softwareAppJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       {/* max-w-none permite que o CalculatorVerticalLayout controle a largura interna */}
       <div className="max-w-none">
         <Suspense fallback={

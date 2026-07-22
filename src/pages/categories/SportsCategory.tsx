@@ -66,7 +66,7 @@ const ballSportsMetrics: Item[] = [
 const individualGameMgmt: Item[] = [
   { name: "Golf Handicap Differential & Index", slug: "golf-handicap-differential-index" },
   { name: "Golf Expected Putts per Round (educational)", slug: "golf-expected-putts-per-round" },
-  { name: "Tennis Serve Speed Calculator (distance/time)", slug: "tennis-serve-speed" },
+  { name: "Tennis Serve Speed Calculator (radar-gun estimate)", slug: "tennis-serve-speed" },
   { name: "Tennis ELO / Rating Progress (educational)", slug: "tennis-elo-rating-progress" },
   { name: "Rowing Split (500m) ↔ Pace", slug: "rowing-split-500m-pace" },
   { name: "Climbing Grade Converter (YDS ↔ French ↔ European)", slug: "climbing-grade-converter-yds-french-eu" },

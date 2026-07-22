@@ -363,7 +363,7 @@ export const sportsEntries: CalculatorEntry[] = [
       title: "Tennis Serve Speed Calculator",
       category: "sports",
       subcategory: "individual-game-management",
-      description: "Calculate tennis serve speed. Estimate velocity based on the distance and time between impact and bounce.",
+      description: "Calculate tennis serve speed the way pro radar guns do: initial speed off the racket, with aerodynamic drag accounted for between impact and bounce.",
       loader: () => import("@/components/calculators/Sports/TennisServeSpeedCalculator"),
       urlStyle: "flat"
     },
