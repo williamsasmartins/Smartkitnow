@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FORMSPREE_ENDPOINT } from "@/config/contact";
 
 export default function SuggestionBox() {
   const [name, setName] = useState("");
@@ -42,7 +43,7 @@ export default function SuggestionBox() {
       if (page) data.append("page", page);
       data.append("_subject", "New Smart Kit Now suggestion");
 
-      const res = await fetch("https://formspree.io/f/xanpypnb", {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },

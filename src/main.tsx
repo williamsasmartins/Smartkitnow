@@ -31,13 +31,27 @@ if (ENABLE_SENTRY && SENTRY_DSN && SENTRY_DSN !== "REPLACE_WITH_YOUR_SENTRY_DSN"
     })
 }
 
-// Injeta Speed Insights somente se explicitamente habilitado e fora de localhost
-const ENABLE_SPEED_INSIGHTS = (import.meta.env.VITE_ENABLE_SPEED_INSIGHTS?.trim() === 'true')
-if (ENABLE_SPEED_INSIGHTS && !IS_LOCAL && !IS_SMARTKIT_DOMAIN) {
+// Injeta Speed Insights fora de localhost.
+// Nota: o domínio de produção NÃO é excluído — é justamente onde as métricas
+// reais precisam ser coletadas (o gate anterior desligava o Speed Insights em
+// smartkitnow.com, deixando o painel da Vercel sem dados).
+const ENABLE_SPEED_INSIGHTS = (import.meta.env.VITE_ENABLE_SPEED_INSIGHTS?.trim() !== 'false')
+if (ENABLE_SPEED_INSIGHTS && !IS_LOCAL) {
   // Dynamic import to prevent bundling when disabled
   import('@vercel/speed-insights')
     .then(mod => {
       try { mod.injectSpeedInsights?.() } catch { /* ignore */ }
+    })
+    .catch(() => { /* ignore */ })
+}
+
+// Vercel Web Analytics — pageviews e visitantes, sem cookies (compatível com GDPR).
+// Injetado fora de localhost; faz patch no History API para captar navegação SPA.
+const ENABLE_WEB_ANALYTICS = (import.meta.env.VITE_ENABLE_WEB_ANALYTICS?.trim() !== 'false')
+if (ENABLE_WEB_ANALYTICS && !IS_LOCAL) {
+  import('@vercel/analytics')
+    .then(mod => {
+      try { mod.inject?.() } catch { /* ignore */ }
     })
     .catch(() => { /* ignore */ })
 }

@@ -46,8 +46,9 @@ export default function BodyFatPercentageCalculator() {
 
   // Body Fat % Calculation for Athletes using U.S. Navy Method adapted for athletes
   // Formula differs by gender:
-  // Male: %BF = 86.010 * log10(waist - neck) - 70.041 * log10(height) + 36.76
-  // Female: %BF = 163.205 * log10(waist + hip - neck) - 97.684 * log10(height) - 78.387
+  // US Navy method, metric (cm) constants:
+  // Male: %BF = 86.010 * log10(waist - neck) - 70.041 * log10(height) + 30.30
+  // Female: %BF = 163.205 * log10(waist + hip - neck) - 97.684 * log10(height) - 104.912
   // Height, neck, waist, hip in cm
   // Weight in kg (used for BMI reference but not in formula)
   // Age is for reference only here
@@ -109,10 +110,12 @@ export default function BodyFatPercentageCalculator() {
           formulaUsed: "",
         };
       }
+      // US Navy formula — METRIC (cm) constant is 30.30, not the 36.76
+      // used with inches; mixing them overstates body fat by ~6.5 points.
       bfPercent =
-        86.010 * log10(w - n) - 70.041 * log10(h) + 36.76;
+        86.010 * log10(w - n) - 70.041 * log10(h) + 30.30;
       formulaUsed =
-        "86.010 × log₁₀(waist - neck) - 70.041 × log₁₀(height) + 36.76";
+        "86.010 × log₁₀(waist - neck) - 70.041 × log₁₀(height) + 30.30 (cm)";
     } else if (gender === "female") {
       if (w + hi <= n) {
         return {
@@ -124,10 +127,12 @@ export default function BodyFatPercentageCalculator() {
           formulaUsed: "",
         };
       }
+      // US Navy formula — METRIC (cm) constant is -104.912, not the -78.387
+      // used with inches; mixing them overstates body fat by ~26.5 points.
       bfPercent =
-        163.205 * log10(w + hi - n) - 97.684 * log10(h) - 78.387;
+        163.205 * log10(w + hi - n) - 97.684 * log10(h) - 104.912;
       formulaUsed =
-        "163.205 × log₁₀(waist + hip - neck) - 97.684 × log₁₀(height) - 78.387";
+        "163.205 × log₁₀(waist + hip - neck) - 97.684 × log₁₀(height) - 104.912 (cm)";
     }
 
     if (bfPercent !== null) {
@@ -475,7 +480,7 @@ export default function BodyFatPercentageCalculator() {
       formula={{
         title: "Formula",
         formula:
-          "Male: 86.010 × log₁₀(waist - neck) - 70.041 × log₁₀(height) + 36.76; Female: 163.205 × log₁₀(waist + hip - neck) - 97.684 × log₁₀(height) - 78.387",
+          "Male: 86.010 × log₁₀(waist - neck) - 70.041 × log₁₀(height) + 30.30; Female: 163.205 × log₁₀(waist + hip - neck) - 97.684 × log₁₀(height) - 104.912 (all measurements in cm)",
         variables: [
           { symbol: "waist", description: "Waist circumference in cm" },
           { symbol: "neck", description: "Neck circumference in cm" },
@@ -502,7 +507,7 @@ export default function BodyFatPercentageCalculator() {
           },
           {
             label: "Step 4",
-            explanation: "Calculate using the formula: 86.010 × log₁₀(80 - 40) - 70.041 × log₁₀(180) + 36.76.",
+            explanation: "Calculate using the metric formula: 86.010 × log₁₀(80 - 40) - 70.041 × log₁₀(180) + 30.30 ≈ 10.1% body fat.",
           },
         ],
         result: "Estimated body fat percentage is approximately 14.5%.",

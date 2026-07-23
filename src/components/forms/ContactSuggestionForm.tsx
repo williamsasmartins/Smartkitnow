@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FORMSPREE_ENDPOINT } from "@/config/contact";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -15,7 +16,7 @@ export default function ContactSuggestionForm() {
     const data = new FormData(form);
 
     try {
-      const res = await fetch("https://formspree.io/f/xanpypnb", {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },

@@ -31,3 +31,5 @@ bun.lockb
 !.env.example
 
 .vercel
+
+.obsidian/

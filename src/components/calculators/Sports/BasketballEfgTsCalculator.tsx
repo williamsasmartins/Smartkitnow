@@ -54,6 +54,7 @@ export default function BasketballEfgTsCalculator() {
   // Calculate eFG% and TS%
   const results = useMemo(() => {
     // Validation
+    // FTA may legitimately be 0 — the TS% denominator still works via FGA.
     if (
       isNaN(fgm) ||
       isNaN(fga) ||
@@ -61,13 +62,13 @@ export default function BasketballEfgTsCalculator() {
       isNaN(fta) ||
       isNaN(pts) ||
       fga === 0 ||
-      fta === 0
+      fta < 0
     ) {
       return {
         value: null,
         label: "",
         subtext: null,
-        warning: "Please enter valid numbers greater than zero for all fields.",
+        warning: "Please enter valid numbers (FGA must be greater than zero; FTA can be zero).",
         formulaUsed: "",
       };
     }

@@ -15,6 +15,7 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
     gender: "male",
     weight: "",
     timeMinutes: "",
+    heartRate: "",
     distanceMeters: "",
   });
   const handleInputChange = useCallback((name, value) => {
@@ -26,12 +27,13 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
 
   // VO2max calculation logic
   const results = useMemo(() => {
-    const { testType, age, gender, weight, timeMinutes, distanceMeters } = inputs;
+    const { testType, age, gender, weight, timeMinutes, heartRate, distanceMeters } = inputs;
 
     // Parse inputs
     const ageNum = parseInt(age, 10);
     const weightNum = parseFloat(weight);
     const timeNum = parseFloat(timeMinutes);
+    const hrNum = parseFloat(heartRate);
     const distanceNum = parseFloat(distanceMeters);
 
     // Basic input validation
@@ -48,6 +50,9 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
       }
       if (!isNumber(timeNum) || timeNum < 6 || timeNum > 20) {
         return { value: null, label: null, subtext: "Please enter a valid time between 6 and 20 minutes.", warning: null, formulaUsed: "" };
+      }
+      if (!isNumber(hrNum) || hrNum < 50 || hrNum > 220) {
+        return { value: null, label: null, subtext: "Please enter a valid heart rate between 50 and 220 bpm (measured at the end of the walk).", warning: null, formulaUsed: "" };
       }
     } else {
       return { value: null, label: null, subtext: "Please select a valid test type.", warning: null, formulaUsed: "" };
@@ -77,25 +82,22 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
       };
     }
 
-    // Rockport Walk Test VO2max estimation
-    // Formula (ml/kg/min):
-    // VO2max = 132.853 - (0.0769 × Weight in lbs) - (0.3877 × Age) + (6.315 × Gender) - (3.2649 × Time in minutes) - (0.1565 × HR)
-    // Since HR is not provided, use simplified formula from Rockport 1-mile walk test:
-    // VO2max = 132.853 - (0.0769 × weight in lbs) - (0.3877 × age) + (6.315 × gender) - (3.2649 × time in minutes)
-    // Gender: male = 1, female = 0
-    // Weight conversion: kg to lbs = kg * 2.20462
-    // Time is time to walk 1 mile (1.609 km), so user inputs time in minutes
+    // Rockport Walk Test VO2max estimation — full Kline et al. (1987) equation.
+    // The heart-rate term is REQUIRED: the 132.853 intercept was fitted with it,
+    // so omitting HR inflates VO2max by roughly 0.1565 × HR (≈ 15–25 ml/kg/min).
+    // VO2max = 132.853 - (0.0769 × Weight lbs) - (0.3877 × Age) + (6.315 × Gender) - (3.2649 × Time min) - (0.1565 × HR)
+    // Gender: male = 1, female = 0; HR = heart rate (bpm) at the end of the walk
 
     if (testType === "rockport") {
       const genderNum = gender === "male" ? 1 : 0;
       const weightLbs = weightNum * 2.20462;
-      // Use timeMinutes as time to walk 1 mile
       const vo2max =
         132.853 -
         0.0769 * weightLbs -
         0.3877 * ageNum +
         6.315 * genderNum -
-        3.2649 * timeNum;
+        3.2649 * timeNum -
+        0.1565 * hrNum;
       if (vo2max < 10 || vo2max > 80) {
         return {
           value: vo2max.toFixed(2),
@@ -103,16 +105,16 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
           subtext: "Result is outside typical physiological range; please verify inputs.",
           warning: "⚠️ Unusual result",
           formulaUsed:
-            "VO2max = 132.853 - (0.0769 × Weight (lbs)) - (0.3877 × Age) + (6.315 × Gender) - (3.2649 × Time (min))",
+            "VO2max = 132.853 - (0.0769 × Weight (lbs)) - (0.3877 × Age) + (6.315 × Gender) - (3.2649 × Time (min)) - (0.1565 × HR (bpm))",
         };
       }
       return {
         value: vo2max.toFixed(2),
         label: "Estimated VO2max (ml/kg/min)",
-        subtext: "Based on Rockport 1-mile walk test.",
+        subtext: "Based on the Rockport 1-mile walk test (Kline et al. equation with end-of-walk heart rate).",
         warning: null,
         formulaUsed:
-          "VO2max = 132.853 - (0.0769 × Weight (lbs)) - (0.3877 × Age) + (6.315 × Gender) - (3.2649 × Time (min))",
+          "VO2max = 132.853 - (0.0769 × Weight (lbs)) - (0.3877 × Age) + (6.315 × Gender) - (3.2649 × Time (min)) - (0.1565 × HR (bpm))",
       };
     }
 
@@ -276,6 +278,28 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
               </p>
             </CardContent>
           </Card>
+
+          <Card>
+            <CardContent>
+              <Label htmlFor="heartRate" className="mb-1 flex items-center gap-1">
+                Heart Rate at End of Walk (bpm) <Heart className="w-4 h-4 text-red-600" />
+              </Label>
+              <Input
+                id="heartRate"
+                type="number"
+                min="50"
+                max="220"
+                step="1"
+                placeholder="e.g. 120"
+                value={inputs.heartRate}
+                onChange={(e) => handleInputChange("heartRate", e.target.value)}
+                aria-describedby="heartRateHelp"
+              />
+              <p id="heartRateHelp" className="text-sm text-slate-500 mt-1">
+                Measure your pulse immediately after finishing the 1-mile walk.
+              </p>
+            </CardContent>
+          </Card>
         </>
       )}
 
@@ -298,6 +322,7 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
               gender: "male",
               weight: "",
               timeMinutes: "",
+              heartRate: "",
               distanceMeters: "",
             })
           }
@@ -352,7 +377,7 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
             <strong>Cooper Test:</strong> Enter the total distance you ran in meters during the 12-minute test.
           </li>
           <li>
-            <strong>Rockport Test:</strong> Provide your age, gender, weight in kilograms, and the time it took to walk 1 mile in minutes.
+            <strong>Rockport Test:</strong> Provide your age, gender, weight in kilograms, the time it took to walk 1 mile in minutes, and your heart rate (bpm) measured at the end of the walk.
           </li>
           <li>Review the results and consider the provided notes and warnings for context.</li>
           <li>Use the &quot;Reset&quot; button to clear inputs and perform new calculations.</li>
@@ -442,19 +467,20 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
       formula={{
         title: "Formulas Used",
         formula:
-          "Cooper: VO2max = (Distance (m) - 504.9) / 44.73\nRockport: VO2max = 132.853 - (0.0769 × Weight (lbs)) - (0.3877 × Age) + (6.315 × Gender) - (3.2649 × Time (min))",
+          "Cooper: VO2max = (Distance (m) - 504.9) / 44.73\nRockport: VO2max = 132.853 - (0.0769 × Weight (lbs)) - (0.3877 × Age) + (6.315 × Gender) - (3.2649 × Time (min)) - (0.1565 × HR (bpm))",
         variables: [
           { symbol: "Distance", description: "Distance covered in meters during 12-minute run (Cooper test)" },
           { symbol: "Weight", description: "Body weight in pounds (Rockport test)" },
           { symbol: "Age", description: "Age in years (Rockport test)" },
           { symbol: "Gender", description: "1 for male, 0 for female (Rockport test)" },
           { symbol: "Time", description: "Time in minutes to walk 1 mile (Rockport test)" },
+          { symbol: "HR", description: "Heart rate in bpm measured at the end of the 1-mile walk (Rockport test)" },
         ],
       }}
       example={{
         title: "Real Life Example",
         scenario:
-          "A 28-year-old male completes the Cooper test by running 2800 meters in 12 minutes. Alternatively, the same individual performs the Rockport test by walking 1 mile in 14 minutes, weighing 75 kg.",
+          "A 28-year-old male completes the Cooper test by running 2800 meters in 12 minutes. Alternatively, the same individual performs the Rockport test by walking 1 mile in 14 minutes, weighing 75 kg, with a heart rate of 120 bpm at the end of the walk.",
         steps: [
           {
             label: "Step 1",
@@ -464,7 +490,7 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
           {
             label: "Step 2",
             explanation:
-              "For the Rockport test, input age (28), gender (male), weight (75 kg), and time (14 minutes). The calculator converts weight to pounds and applies the Rockport formula.",
+              "For the Rockport test, input age (28), gender (male), weight (75 kg), time (14 minutes), and end-of-walk heart rate (120 bpm). The calculator converts weight to pounds and applies the full Rockport formula.",
           },
           {
             label: "Step 3",
@@ -473,7 +499,7 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
           },
         ],
         result:
-          "Cooper test VO2max estimate: approximately 50.3 ml/kg/min. Rockport test VO2max estimate: approximately 47.9 ml/kg/min. Both indicate excellent aerobic capacity for age and gender.",
+          "Cooper test VO2max estimate: approximately 51.3 ml/kg/min. Rockport test VO2max estimate: approximately 51.1 ml/kg/min. Both indicate excellent aerobic capacity for age and gender.",
       }}
       relatedCalculators={[
         { title: "Heart-Rate Zones Calculator (Karvonen Method)", url: "/sports/heart-rate-zones-karvonen", icon: "🔥" },

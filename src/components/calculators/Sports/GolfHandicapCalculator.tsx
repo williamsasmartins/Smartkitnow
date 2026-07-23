@@ -10,22 +10,16 @@ import { Activity, Timer, TrendingUp, Dumbbell, Trophy, Medal, Flag, Flame, Zap,
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 function calculateHandicapIndex(scores, courseRatings, slopeRatings) {
-  // According to USGA Handicap System:
-  // 1. Calculate Handicap Differentials for each score:
-  //    Differential = (Adjusted Gross Score - Course Rating) * 113 / Slope Rating
-  // 2. Use best differentials based on number of scores:
-  //    3-6 scores: lowest 1 differential
-  //    7-8 scores: lowest 2 differentials
-  //    9-10 scores: lowest 3 differentials
-  //    11-12 scores: lowest 4 differentials
-  //    13-14 scores: lowest 5 differentials
-  //    15-16 scores: lowest 6 differentials
-  //    17 scores: lowest 7 differentials
-  //    18 scores: lowest 8 differentials
-  //    19 scores: lowest 9 differentials
-  //    20+ scores: lowest 10 differentials
-  // 3. Average the selected differentials and multiply by 0.96 (USGA standard)
-  // 4. Handicap Index is truncated (not rounded) to one decimal place
+  // World Handicap System (WHS, 2020+):
+  // 1. Score Differential = (Adjusted Gross Score - Course Rating) × 113 / Slope Rating
+  // 2. Select and average the lowest differentials per the WHS table
+  //    (with a fixed adjustment for very small score counts):
+  //    3 scores: lowest 1, −2.0 | 4: lowest 1, −1.0 | 5: lowest 1
+  //    6: avg lowest 2, −1.0 | 7-8: avg lowest 2 | 9-11: lowest 3
+  //    12-14: lowest 4 | 15-16: lowest 5 | 17-18: lowest 6
+  //    19: lowest 7 | 20: lowest 8
+  // 3. No 0.96 multiplier — that was the pre-2020 USGA system.
+  // 4. Handicap Index is truncated (not rounded) to one decimal place.
 
   if (
     !scores.length ||
@@ -43,24 +37,26 @@ function calculateHandicapIndex(scores, courseRatings, slopeRatings) {
 
   differentials.sort((a, b) => a - b);
 
-  let countToUse = 0;
   const n = differentials.length;
   if (n < 3) return null; // Minimum 3 scores required
 
-  if (n >= 3 && n <= 6) countToUse = 1;
-  else if (n <= 8) countToUse = 2;
-  else if (n <= 10) countToUse = 3;
-  else if (n <= 12) countToUse = 4;
-  else if (n <= 14) countToUse = 5;
-  else if (n <= 16) countToUse = 6;
-  else if (n === 17) countToUse = 7;
-  else if (n === 18) countToUse = 8;
-  else if (n === 19) countToUse = 9;
-  else countToUse = 10;
+  let countToUse;
+  let adjustment = 0;
+  if (n === 3) { countToUse = 1; adjustment = -2.0; }
+  else if (n === 4) { countToUse = 1; adjustment = -1.0; }
+  else if (n === 5) { countToUse = 1; }
+  else if (n === 6) { countToUse = 2; adjustment = -1.0; }
+  else if (n <= 8) { countToUse = 2; }
+  else if (n <= 11) { countToUse = 3; }
+  else if (n <= 14) { countToUse = 4; }
+  else if (n <= 16) { countToUse = 5; }
+  else if (n <= 18) { countToUse = 6; }
+  else if (n === 19) { countToUse = 7; }
+  else { countToUse = 8; }
 
   const bestDiffs = differentials.slice(0, countToUse);
-  const avg = bestDiffs.reduce((a, b) => a + b, 0) / countToUse;
-  const handicapIndex = Math.floor(avg * 0.96 * 10) / 10; // truncate to 1 decimal
+  const avg = bestDiffs.reduce((a, b) => a + b, 0) / countToUse + adjustment;
+  const handicapIndex = Math.floor(avg * 10) / 10; // truncate to 1 decimal
 
   return handicapIndex >= 0 ? handicapIndex.toFixed(1) : "0.0";
 }
@@ -546,12 +542,12 @@ export default function GolfHandicapCalculator() {
           {
             label: "Step 3",
             explanation:
-              "It selects the best differentials based on the number of rounds and averages them.",
+              "It selects the best differentials per the World Handicap System table (for 5 rounds: the lowest 1) and averages them.",
           },
           {
             label: "Step 4",
             explanation:
-              "The average is multiplied by 0.96 and truncated to one decimal place to give the handicap index.",
+              "The average is truncated to one decimal place to give the handicap index (the old ×0.96 USGA multiplier no longer applies under the WHS).",
           },
         ],
         result: "The golfer's handicap index is calculated as 12.4.",
