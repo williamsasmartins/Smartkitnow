@@ -1,10 +1,11 @@
 import { useForm, ValidationError } from "@formspree/react";
 import { useEffect, useState } from "react";
+import { FORMSPREE_FORM_ID } from "@/config/contact";
 
 type Props = { title?: string; includeFile?: boolean; compact?: boolean; };
 
 export default function SiteFeedbackForm({ title = "Questions or suggestions?", includeFile = false, compact = false }: Props) {
-  const [state, handleSubmit] = useForm("xanpypnb");
+  const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID);
   const [page, setPage] = useState<string>("");
 
   useEffect(() => { if (typeof window !== "undefined") setPage(window.location.pathname); }, []);

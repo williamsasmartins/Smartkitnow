@@ -70,10 +70,11 @@ export default function BasketballPaceOrtgDrtgCalculator() {
     const tOffPoss = parseFloat(teamOffensivePossessions);
     const tDefPoss = parseFloat(teamDefensivePossessions);
 
-    // Validate inputs for Pace calculation
-    // We assume 48 minutes per game and 5 players on court
-    // Pace formula denominator = 2 * (48 / 5) = 2 * 9.6 = 19.2
-    const denominator = 19.2;
+    // Pace (Basketball-Reference definition):
+    // Pace = 48 × ((Tm Poss + Opp Poss) / (2 × (Team Minutes / 5)))
+    // For a regulation 48-minute game, Team Minutes = 240, so
+    // 2 × (240 / 5) = 96 and Pace reduces to (Tm Poss + Opp Poss) / 2.
+    const teamMinutes = 240; // regulation game (48 min × 5 players)
 
     let pace = null;
     let ortg = null;
@@ -86,7 +87,7 @@ export default function BasketballPaceOrtgDrtgCalculator() {
       tp > 0 &&
       op > 0
     ) {
-      pace = (48 * ((tp + op) / 2)) / denominator;
+      pace = (48 * (tp + op)) / (2 * (teamMinutes / 5));
       pace = Math.round(pace * 10) / 10; // round to 1 decimal
     }
 
@@ -127,7 +128,7 @@ export default function BasketballPaceOrtgDrtgCalculator() {
       drtg: drtg !== null ? drtg.toFixed(1) : null,
       warning,
       formulaUsed:
-        "Pace = 48 * ((Team Possessions + Opponent Possessions) / 2) / (2 * (48 / 5)) | ORtg = 100 * (Team Points / Team Offensive Possessions) | DRtg = 100 * (Opponent Points / Team Defensive Possessions)",
+        "Pace = 48 × (Team Possessions + Opponent Possessions) / (2 × (Team Minutes / 5)) — regulation game: (Tm Poss + Opp Poss) / 2 | ORtg = 100 × (Team Points / Team Offensive Possessions) | DRtg = 100 × (Opponent Points / Team Defensive Possessions)",
     };
   }, [inputs]);
 
@@ -468,7 +469,7 @@ export default function BasketballPaceOrtgDrtgCalculator() {
       formula={{
         title: "Formulas Used",
         formula:
-          "Pace = 48 * ((Team Possessions + Opponent Possessions) / 2) / (2 * (48 / 5)) | ORtg = 100 * (Team Points / Team Offensive Possessions) | DRtg = 100 * (Opponent Points / Team Defensive Possessions)",
+          "Pace = 48 × (Team Possessions + Opponent Possessions) / (2 × (Team Minutes / 5)) — for a regulation 48-min game this equals (Tm Poss + Opp Poss) / 2 | ORtg = 100 × (Team Points / Team Offensive Possessions) | DRtg = 100 × (Opponent Points / Team Defensive Possessions)",
         variables: [
           { symbol: "Team Possessions", description: "Number of possessions your team used" },
           { symbol: "Opponent Possessions", description: "Number of possessions opponent used" },
@@ -491,7 +492,7 @@ export default function BasketballPaceOrtgDrtgCalculator() {
           {
             label: "Step 2",
             explanation:
-              "Calculate Pace: 48 * ((100 + 98) / 2) / (2 * (48 / 5)) = 48 * 99 / 19.2 ≈ 2472 / 19.2 ≈ 128.75 (rounded to 128.8).",
+              "Calculate Pace: 48 × (100 + 98) / (2 × (240 / 5)) = 9504 / 96 = 99.0 possessions per 48 minutes.",
           },
           {
             label: "Step 3",
@@ -505,7 +506,7 @@ export default function BasketballPaceOrtgDrtgCalculator() {
           },
         ],
         result:
-          "Pace: 128.8, Offensive Rating: 110.0, Defensive Rating: 107.1",
+          "Pace: 99.0, Offensive Rating: 110.0, Defensive Rating: 107.1",
       }}
       relatedCalculators={[
         { title: "Tournament Bracket Seeding Helper", url: "/sports/tournament-bracket-seeding-helper", icon: "🏆" },

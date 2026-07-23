@@ -54,13 +54,13 @@ export default function GolfHandicapDifferentialIndexCalculator() {
       ? roundToOneDecimal(((score - courseRating) * 113) / slopeRating)
       : null;
 
-  // Calculate Handicap Index from differentials
+  // Calculate Handicap Index from differentials (World Handicap System, 2020+)
   // Steps:
   // 1. Sort differentials ascending
   // 2. Use the lowest 'numDifferentials' differentials (or all if less)
-  // 3. Average them
-  // 4. Multiply by 0.96 (USGA standard)
-  // 5. Round to one decimal place
+  //    — under the WHS this is the best 8 of the last 20 scores
+  // 3. Average them (the pre-2020 ×0.96 USGA multiplier no longer applies)
+  // 4. Round to one decimal place
 
   const sortedDifferentials = [...differentialsArray].sort((a, b) => a - b);
   const differentialsToUse = sortedDifferentials.slice(0, numDifferentials);
@@ -71,7 +71,7 @@ export default function GolfHandicapDifferentialIndexCalculator() {
       : null;
 
   const handicapIndex =
-    averageDifferential !== null ? roundToOneDecimal(averageDifferential * 0.96) : null;
+    averageDifferential !== null ? roundToOneDecimal(averageDifferential) : null;
 
   // Result label and subtext
   const results = useMemo(() => {
@@ -107,8 +107,8 @@ export default function GolfHandicapDifferentialIndexCalculator() {
       value += handicapIndex.toFixed(1);
       label += label ? " & Handicap Index" : "Handicap Index";
       formulaUsed += formulaUsed
-        ? " & Handicap Index = Average of lowest differentials × 0.96"
-        : "Handicap Index = Average of lowest differentials × 0.96";
+        ? " & Handicap Index = Average of lowest differentials (WHS — best 8 of last 20)"
+        : "Handicap Index = Average of lowest differentials (WHS — best 8 of last 20)";
       subtext +=
         subtext +
         ` | Using lowest ${differentialsToUse.length} differential${
@@ -144,7 +144,7 @@ export default function GolfHandicapDifferentialIndexCalculator() {
     {
       question: "How is the Handicap Index calculated from differentials?",
       answer:
-        "The Handicap Index is computed by averaging the lowest Handicap Differentials from your recent rounds, typically the best 5 out of your last 20 scores. This average is then multiplied by 0.96 to provide a slightly conservative estimate of your playing ability, ensuring fairness in competition.",
+        "Under the World Handicap System (2020+), the Handicap Index is computed by averaging your lowest Score Differentials — the best 8 out of your last 20 scores. The result is truncated to one decimal place. The old USGA ×0.96 'bonus for excellence' multiplier no longer applies.",
     },
     {
       question: "Why do I need to input multiple differentials?",
@@ -173,7 +173,7 @@ export default function GolfHandicapDifferentialIndexCalculator() {
           The Course Rating represents the expected score for a scratch golfer on a particular course, while the Slope Rating indicates the relative difficulty for a bogey golfer compared to a scratch golfer. By incorporating these ratings, the Handicap Differential normalizes scores, making handicaps equitable and meaningful.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Your Handicap Index is calculated by averaging the lowest Handicap Differentials from your recent rounds, typically the best 5 out of your last 20. This average is then multiplied by a factor of 0.96 to provide a slight buffer, ensuring the index reflects your potential rather than your average performance.
+          Under the World Handicap System (in effect since 2020), your Handicap Index is calculated by averaging your lowest Score Differentials — the best 8 out of your last 20 rounds — and truncating the result to one decimal place. This design makes the index reflect your demonstrated potential rather than your average performance.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
           Maintaining an accurate Handicap Index allows golfers of varying skill levels to compete fairly, fostering enjoyment and sportsmanship in the game. Understanding these concepts is crucial for anyone serious about tracking and improving their golf performance.
@@ -188,7 +188,7 @@ export default function GolfHandicapDifferentialIndexCalculator() {
           This calculator helps you determine your Handicap Differential for a single round and your overall Handicap Index based on multiple differentials. To use it effectively, you need to input your round score, the course rating, and the slope rating of the course you played.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Additionally, you can input a list of your recent Handicap Differentials to calculate your Handicap Index. The calculator will use the lowest differentials based on the number you specify (between 3 and 20), average them, and apply the USGA multiplier of 0.96.
+          Additionally, you can input a list of your recent Handicap Differentials to calculate your Handicap Index. The calculator will use the lowest differentials based on the number you specify (between 3 and 20) and average them, following the World Handicap System (best 8 of last 20; no 0.96 multiplier).
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
           Follow the steps below to get your results:
@@ -305,10 +305,10 @@ export default function GolfHandicapDifferentialIndexCalculator() {
       {
         label: "Step 4",
         explanation:
-          "Multiply by 0.96 to get Handicap Index: 11.92 × 0.96 = 11.44, rounded to 11.4",
+          "Truncate the average to one decimal to get the Handicap Index: 11.92 → 11.9 (the WHS applies no 0.96 multiplier).",
       },
     ],
-    result: "Handicap Differential: 11.7 | Handicap Index: 11.4",
+    result: "Handicap Differential: 11.7 | Handicap Index: 11.9",
   };
 
   // Formula display

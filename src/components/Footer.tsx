@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import { siX, siInstagram, siWhatsapp, siFacebook } from "simple-icons";
 import logoImage from "@/assets/logo-skn.png";
+import { FORMSPREE_ENDPOINT } from "@/config/contact";
 
 const year = new Date().getFullYear();
 
@@ -90,7 +91,7 @@ export function Footer() {
       <div className="mx-auto w-[96%] max-w-[1920px] px-4 md:px-6 py-10 transition-all duration-300 ease-in-out">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="space-y-4">
-            <form action="https://formspree.io/f/xanpypnb" method="POST" className="flex items-center gap-2">
+            <form action={FORMSPREE_ENDPOINT} method="POST" className="flex items-center gap-2">
               <input type="email" name="email" required placeholder="Your email" className="w-full rounded-md border border-neutral-300 dark:border-neutral-700 bg-background px-3 py-2 text-sm" />
               <button type="submit" className="rounded-md bg-primary hover:bg-primary/90 text-primary-foreground text-sm px-3 py-2">Subscribe</button>
               <input type="hidden" name="_subject" value="Newsletter signup" />

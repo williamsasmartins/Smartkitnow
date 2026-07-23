@@ -31,7 +31,7 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const MAX_FRAMES = 10;
 
-function calculateBowlingScore(frames) {
+export function calculateBowlingScore(frames) {
   // frames: array of objects [{rolls: [roll1, roll2, roll3?]}]
   // Each roll is pins knocked down (0-10)
   // Calculate total score with strike/spare bonuses
@@ -44,6 +44,13 @@ function calculateBowlingScore(frames) {
     const first = rolls[0] ?? 0;
     const second = rolls[1] ?? 0;
     const third = rolls[2] ?? 0;
+
+    // 10th frame: all rolls count at face value (bonus rolls are the
+    // extra throws themselves) — a strike must not skip the second roll.
+    if (i === 9) {
+      totalScore += first + second + third;
+      continue;
+    }
 
     // Strike
     if (first === 10) {
@@ -80,11 +87,6 @@ function calculateBowlingScore(frames) {
     // Open frame
     else {
       totalScore += first + second;
-    }
-
-    // 10th frame special case: add third roll if any
-    if (i === 9) {
-      totalScore += third;
     }
   }
   return totalScore;
