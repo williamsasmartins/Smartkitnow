@@ -20,9 +20,13 @@ export default function CatBodyConditionScoreBcsTargetCalculator() {
   });
 
   // 2. LOGIC ENGINE
-  // Formula logic:
-  // Target Weight = Current Weight * (Target BCS / Current BCS)
-  // This assumes linear proportionality between BCS and weight for target planning.
+  // BCS scale 1–9, ideal = 5. WSAVA: each BCS point away from ideal ≈ 10% of
+  // ideal body weight, so weight scales linearly AROUND the ideal (not from
+  // zero). A plain (target/current) ratio overestimates the required change
+  // (e.g. BCS 8→5 would imply a 37% loss instead of the correct ~23%), which
+  // is a dangerous over-aggressive target for cats (risk of hepatic lipidosis).
+  //   overFactor(bcs) = 1 + 0.10 × (bcs − 5)
+  //   Target Weight = Current Weight × overFactor(target) ÷ overFactor(current)
   const results = useMemo(() => {
     const cw = parseFloat(inputs.currentWeight);
     const cbcs = parseFloat(inputs.currentBcs);
@@ -47,8 +51,9 @@ export default function CatBodyConditionScoreBcsTargetCalculator() {
     // Convert current weight to kg if imperial
     const currentWeightKg = unit === "imperial" ? cw / 2.20462 : cw;
 
-    // Calculate target weight in kg
-    const targetWeightKg = currentWeightKg * (tbcs / cbcs);
+    // Calculate target weight in kg (linear ~10% per BCS point around ideal = 5)
+    const overFactor = (bcs: number) => 1 + 0.10 * (bcs - 5);
+    const targetWeightKg = currentWeightKg * (overFactor(tbcs) / overFactor(cbcs));
 
     // Convert back to imperial if needed
     const targetWeight =
@@ -474,12 +479,13 @@ export default function CatBodyConditionScoreBcsTargetCalculator() {
       // ⚠️ CLEAN FORMULA: ONLY ONE LINE. NO COMPLICATED MATH DUMPS.
       formula={{
         title: "Scientific Formula",
-        formula: "Target Weight = Current Weight × (Target BCS / Current BCS)",
+        formula: "Target Weight = Current Weight × (1 + 0.10×(Target BCS − 5)) ÷ (1 + 0.10×(Current BCS − 5))",
         variables: [
           { symbol: "Current Weight", description: "Your cat's current weight in kg or lbs" },
-          { symbol: "Current BCS", description: "Your cat's current Body Condition Score (1-9)" },
-          { symbol: "Target BCS", description: "Desired Body Condition Score (1-9)" },
-          { symbol: "Target Weight", description: "Estimated ideal weight based on BCS ratio" },
+          { symbol: "Current BCS", description: "Your cat's current Body Condition Score (1-9, ideal = 5)" },
+          { symbol: "Target BCS", description: "Desired Body Condition Score (1-9, usually 5)" },
+          { symbol: "0.10 per point", description: "Each BCS point away from ideal (5) ≈ 10% of ideal body weight (WSAVA)" },
+          { symbol: "Target Weight", description: "Estimated ideal weight for the target BCS" },
         ],
       }}
       example={{
@@ -490,15 +496,15 @@ export default function CatBodyConditionScoreBcsTargetCalculator() {
           {
             label: "1",
             explanation:
-              "Calculate the target weight by multiplying current weight by the ratio of target BCS to current BCS: 10 × (5/7) ≈ 7.14 lbs.",
+              "BCS 7 is 2 points over ideal ≈ 20% overweight, so target weight = 10 × 1.0 ÷ 1.2 ≈ 8.33 lbs — a safe ~17% reduction.",
           },
           {
             label: "2",
             explanation:
-              "This target weight guides the weight loss plan to achieve a healthier body condition.",
+              "This target weight guides a gradual weight loss plan. Cats should lose no more than ~0.5–2% of body weight per week to avoid hepatic lipidosis.",
           },
         ],
-        result: "Target Weight ≈ 7.14 lbs (ideal weight for BCS 5).",
+        result: "Target Weight ≈ 8.33 lbs (ideal weight for BCS 5).",
       }}
       relatedCalculators={[
         {

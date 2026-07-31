@@ -46,13 +46,17 @@ export default function DogBodyConditionScoreBcsTargetCalculator() {
     // Convert weight to kg if imperial
     const currentWeightKg = unit === "imperial" ? currentWeightRaw / 2.20462 : currentWeightRaw;
 
-    // Body Condition Score scale is 1 (emaciated) to 9 (obese)
-    // Ideal BCS is usually 4-5
-    // Weight is roughly proportional to BCS (linear approx)
-    // Target Weight = Current Weight * (Target BCS / Current BCS)
-    // This assumes fat mass changes proportionally with BCS score
-
-    const targetWeightKg = currentWeightKg * (targetBcsRaw / currentBcsRaw);
+    // Body Condition Score scale is 1 (emaciated) to 9 (obese); ideal is 5.
+    // WSAVA guidance: each BCS point away from ideal ≈ 10% of ideal body weight.
+    // So body weight scales linearly AROUND the ideal, not from zero — a simple
+    // (target/current) ratio wildly overestimates the needed weight change
+    // (e.g. BCS 7→5 would imply a 29% loss instead of the correct ~17%).
+    //   overFactor(bcs) = 1 + 0.10 × (bcs − 5)
+    //   Target Weight = Current Weight × overFactor(target) ÷ overFactor(current)
+    const PCT_PER_BCS_POINT = 0.10;
+    const overFactor = (bcs: number) => 1 + PCT_PER_BCS_POINT * (bcs - 5);
+    const targetWeightKg =
+      currentWeightKg * (overFactor(targetBcsRaw) / overFactor(currentBcsRaw));
 
     // Calculate Resting Energy Requirement (RER) for target weight
     // RER = 70 * (weight in kg)^0.75
@@ -464,13 +468,14 @@ export default function DogBodyConditionScoreBcsTargetCalculator() {
       formula={{
         title: "Scientific Formula",
         formula:
-          "Target Weight (kg) = Current Weight (kg) × (Target BCS / Current BCS)\n" +
+          "Target Weight (kg) = Current Weight × (1 + 0.10×(Target BCS − 5)) ÷ (1 + 0.10×(Current BCS − 5))\n" +
           "RER (kcal) = 70 × (Target Weight in kg)^0.75\n" +
           "MER (kcal) = RER × Activity Factor (typically 1.4 for neutered adult dogs)",
         variables: [
           { symbol: "Current Weight (kg)", description: "Your dog's current body weight in kilograms" },
-          { symbol: "Current BCS", description: "Your dog's current Body Condition Score (1-9 scale)" },
-          { symbol: "Target BCS", description: "Desired Body Condition Score to achieve (1-9 scale)" },
+          { symbol: "Current BCS", description: "Your dog's current Body Condition Score (1-9 scale, ideal = 5)" },
+          { symbol: "Target BCS", description: "Desired Body Condition Score to achieve (1-9 scale, usually 5)" },
+          { symbol: "0.10 per point", description: "Each BCS point away from ideal (5) represents ~10% of ideal body weight (WSAVA guidance)" },
           { symbol: "RER", description: "Resting Energy Requirement in kilocalories" },
           { symbol: "MER", description: "Maintenance Energy Requirement in kilocalories" },
           { symbol: "Activity Factor", description: "Multiplier for daily activity level, typically 1.4" },
@@ -484,16 +489,16 @@ export default function DogBodyConditionScoreBcsTargetCalculator() {
           {
             label: "Step 1",
             explanation:
-              "Convert weight to kg if needed (30 lb ÷ 2.20462 = 13.6 kg). Calculate target weight: 13.6 × (5 / 7) = 9.7 kg.",
+              "Convert weight to kg if needed (30 lb ÷ 2.20462 = 13.6 kg). BCS 7 is 2 points over ideal ≈ 20% overweight, so target weight = 13.6 × 1.0 ÷ 1.2 = 11.3 kg.",
           },
           {
             label: "Step 2",
             explanation:
-              "Calculate RER: 70 × 9.7^0.75 ≈ 70 × 5.3 = 371 kcal. Calculate MER: 371 × 1.4 = 520 kcal/day estimated for maintenance at target weight.",
+              "Calculate RER: 70 × 11.3^0.75 ≈ 70 × 6.17 = 432 kcal. Calculate MER: 432 × 1.4 = 605 kcal/day estimated for maintenance at target weight.",
           },
         ],
         result:
-          "The dog’s target weight is approximately 21.4 lbs (9.7 kg), with an estimated daily calorie intake of 520 kcal to maintain this weight.",
+          "The dog’s target weight is approximately 25 lbs (11.3 kg) — a realistic ~17% reduction — with an estimated daily calorie intake of 605 kcal to maintain this weight.",
       }}
       relatedCalculators={[
         { title: "Dog Calorie Needs (RER/MER) Calculator", url: "/pets/dog-calorie-needs-rer-mer", icon: "🐶" },
