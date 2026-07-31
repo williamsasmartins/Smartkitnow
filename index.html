@@ -78,21 +78,17 @@
       var meta = document.querySelector('meta[name="google-adsense-account"]');
       var client = meta ? meta.getAttribute('content') : '';
       if (!isLocal && client && client.startsWith('ca-pub-')) {
+        // Carrega apenas a lib do AdSense para os anúncios MANUAIS (slots <ins>
+        // colocados via AdSlot em páginas de calculadora com conteúdo real).
+        // Auto Ads / page-level ads (enable_page_level_ads) e o anchor overlay
+        // foram REMOVIDOS: colocavam anúncios em páginas de navegação/thin
+        // (categorias, busca, loading), violando a política
+        // "Google-served ads on screens without publisher-content".
         const s = document.createElement('script');
         s.async = true;
         s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client;
         s.crossOrigin = 'anonymous';
         document.head.appendChild(s);
-        // Habilitar Auto Ads + Anchor overlay (sticky bottom — especialmente mobile)
-        s.addEventListener('load', function() {
-          try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: client,
-              enable_page_level_ads: true,
-              overlays: { bottom: true }
-            });
-          } catch(e) {}
-        });
       }
     })();
   </script>

@@ -24,7 +24,6 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
   "daily-quotes": { key: "daily-quotes", path: "daily-quotes", display: "Daily Quotes", icon: "Quote", emoji: "📝" },
   "everyday": { key: "everyday", path: "everyday", display: "Everyday Life Calculators", icon: "House", emoji: "🧰" },
   "sports": { key: "sports", path: "sports", display: "Sports", icon: "Trophy", emoji: "🏅" },
-  "funny": { key: "funny", path: "funny", display: "Funny Calculators", icon: "Sparkles", emoji: "🤪" },
   "automotive": { key: "automotive", path: "automotive", display: "Automotive Calculators", icon: "Car", emoji: "🚗" },
   "construction": { key: "construction", path: "construction", display: "Construction Calculators", icon: "Hammer", emoji: "🏗️" },
   "electrical": { key: "electrical", path: "electrical", display: "Electrical Calculators", icon: "Plug", emoji: "⚡" },

@@ -20,7 +20,7 @@ const STATIC_URLS = [
   // Base Categories
   "/financial", "/health", "/cooking", "/conversion", "/math",
   "/science", "/time", "/pets", "/automotive", "/construction",
-  "/electrical", "/everyday", "/sports", "/funny", "/video", "/marketing",
+  "/electrical", "/everyday", "/sports", "/video", "/marketing",
   // Features
   "/smart-tips",
   "/games",
@@ -35,7 +35,7 @@ function xmlEscape(s: string): string {
 // Route prefixes that no longer exist on the site — must never re-enter the sitemap.
 // Language dirs return 410 via /api/404; /culinary and /recipes return 410 via /api/gone.
 const DEPRECATED_PREFIXES = [
-  "/culinary", "/recipes",
+  "/culinary", "/recipes", "/funny",
   "/sv", "/it", "/es", "/pt", "/nl", "/pl", "/de", "/fr",
   "/en", "/zh", "/ja", "/ko", "/ru", "/ar", "/tr", "/tv",
 ];
