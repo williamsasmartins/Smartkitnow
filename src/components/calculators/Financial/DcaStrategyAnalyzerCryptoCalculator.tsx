@@ -10,10 +10,11 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function DcaStrategyAnalyzerCryptoCalculator() {
   // STATE
-  const [inputs, setInputs] = useState({ 
-    investmentAmount: "", 
-    interval: "", 
-    duration: "" 
+  const [inputs, setInputs] = useState({
+    investmentAmount: "",
+    interval: "",
+    duration: "",
+    expectedReturn: ""
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -73,37 +74,56 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
     const investmentAmount = parseFloat(inputs.investmentAmount) || 0;
-    const interval = parseFloat(inputs.interval) || 0;
-    const duration = parseFloat(inputs.duration) || 0;
+    const interval = parseFloat(inputs.interval) || 0;      // months between buys
+    const duration = parseFloat(inputs.duration) || 0;      // total months
+    const expectedReturn = parseFloat(inputs.expectedReturn) || 0; // annual %
 
     // Validate
-    if (investmentAmount <= 0 || interval <= 0 || duration <= 0) {
-      return { 
-        mainResult: 0, 
-        totalInvested: 0, 
-        totalValue: 0, 
-        scheduleData: [] 
+    if (investmentAmount <= 0 || interval <= 0 || duration <= 0 || interval > duration) {
+      return {
+        mainResult: 0,
+        totalInvested: 0,
+        totalValue: 0,
+        scheduleData: []
       };
     }
 
-    // Perform calculations here
-    const totalInvested = investmentAmount * duration;
-    const averagePrice = investmentAmount / interval;
-    const totalValue = totalInvested * (1 + averagePrice);
+    // Dollar-Cost Averaging future value (ordinary annuity model).
+    // A fixed amount is invested every `interval` months for `duration` months.
+    //   N  = number of contributions = floor(duration / interval)
+    //   rp = periodic return over one interval = annualReturn × (interval / 12)
+    //   Each contribution grows for its remaining time until the end, so
+    //   FV = PMT × [ ((1 + rp)^N − 1) / rp ]   (rp > 0)
+    //      = PMT × N                            (rp = 0)
+    const N = Math.floor(duration / interval);
+    const rp = (expectedReturn / 100) * (interval / 12);
+    const totalInvested = investmentAmount * N;
+    const totalValue =
+      rp === 0
+        ? totalInvested
+        : investmentAmount * ((Math.pow(1 + rp, N) - 1) / rp);
 
-    // Generate schedule data if applicable (e.g., investment schedule)
-    const scheduleData = Array.from({ length: duration }, (_, i) => ({
-      month: i + 1,
-      investment: investmentAmount,
-      cumulativeInvestment: investmentAmount * (i + 1),
-      estimatedValue: (investmentAmount * (i + 1)) * (1 + averagePrice),
-    }));
+    // Per-contribution schedule: cumulative invested vs value grown to the end.
+    const scheduleData = Array.from({ length: N }, (_, i) => {
+      const contributionsSoFar = i + 1;
+      // Value at the end of the horizon of everything invested up to period i
+      const valueToDate =
+        rp === 0
+          ? investmentAmount * contributionsSoFar
+          : investmentAmount * ((Math.pow(1 + rp, contributionsSoFar) - 1) / rp);
+      return {
+        month: contributionsSoFar * interval,
+        investment: investmentAmount,
+        cumulativeInvestment: investmentAmount * contributionsSoFar,
+        estimatedValue: valueToDate,
+      };
+    });
 
-    return { 
-      mainResult: totalValue, 
-      totalInvested, 
-      totalValue, 
-      scheduleData 
+    return {
+      mainResult: totalValue,
+      totalInvested,
+      totalValue,
+      scheduleData
     };
   }, [inputs]);
 
@@ -118,7 +138,7 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ investmentAmount: "", interval: "", duration: "" });
+    setInputs({ investmentAmount: "", interval: "", duration: "", expectedReturn: "" });
   };
 
   // WIDGET JSX (200-250 LINES)
@@ -155,7 +175,7 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
             />
           </div>
 
-          <div className="space-y-2 md:col-span-2">
+          <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
               <Calculator className="w-4 h-4 text-purple-600"/>
               Duration (months)
@@ -165,6 +185,20 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
               placeholder="e.g., 12"
               value={inputs.duration}
               onChange={(e) => setInputs({ ...inputs, duration: e.target.value })}
+              className="text-lg"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <TrendingUp className="w-4 h-4 text-amber-600"/>
+              Expected Annual Return (%)
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 7"
+              value={inputs.expectedReturn}
+              onChange={(e) => setInputs({ ...inputs, expectedReturn: e.target.value })}
               className="text-lg"
             />
           </div>
@@ -601,35 +635,36 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
         { id: "references", label: "References & Resources" }
       ]}
       formula={{
-        formula: "Total Value = Total Invested × (1 + Average Price)",
+        formula: "FV = PMT × [ ((1 + rp)^N − 1) / rp ]   (ordinary annuity)",
         variables: [
-          { symbol: "Total Invested", description: "Investment Amount × Duration" },
-          { symbol: "Average Price", description: "Investment Amount / Interval" },
-          { symbol: "Total Value", description: "Estimated value of the investment" }
+          { symbol: "PMT", description: "Investment Amount contributed each interval" },
+          { symbol: "N", description: "Number of contributions = Duration ÷ Interval (months ÷ months)" },
+          { symbol: "rp", description: "Periodic return over one interval = Annual Return × (Interval ÷ 12)" },
+          { symbol: "FV", description: "Projected value at the end of the horizon (Total Invested when return is 0)" }
         ],
         title: "Calculation Formula"
       }}
       example={{
         title: "Example Calculation",
-        scenario: "Imagine you invest $100 every month for 12 months.",
+        scenario: "You invest $100 every month for 12 months, assuming a 7% expected annual return.",
         steps: [
-          { 
-            label: "Step 1", 
-            calculation: "100 × 12 = 1200", 
-            explanation: "Calculate the total amount invested over the duration." 
+          {
+            label: "Step 1",
+            calculation: "N = 12 ÷ 1 = 12 contributions; Total invested = 100 × 12 = $1,200",
+            explanation: "Count the contributions and the total capital deployed."
           },
-          { 
-            label: "Step 2", 
-            calculation: "100 / 1 = 100", 
-            explanation: "Determine the average price per interval." 
+          {
+            label: "Step 2",
+            calculation: "rp = 7% × (1 ÷ 12) = 0.5833% per month",
+            explanation: "Convert the annual return to the per-interval (monthly) rate."
           },
-          { 
-            label: "Step 3", 
-            calculation: "1200 × (1 + 100) = 132000", 
-            explanation: "Calculate the estimated total value of the investment." 
+          {
+            label: "Step 3",
+            calculation: "FV = 100 × ((1.005833^12 − 1) / 0.005833) ≈ 100 × 12.39 = $1,239",
+            explanation: "Each contribution compounds only for its remaining months, so the gain is realistic — not the whole sum compounded for the full period."
           }
         ],
-        result: "The final result is $132,000, indicating the potential value of your investment after 12 months."
+        result: "Projected value ≈ $1,239 on $1,200 invested (~$39 gain), assuming a steady 7% annual return."
       }}
       relatedCalculators={[
         { title: "Loan Payment Calculator (Principal, Rate, Term)", url: "/financial/loan-payment", icon: "💵" },

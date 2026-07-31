@@ -10,10 +10,11 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CryptoDcaStrategyCalculator() {
   // STATE
-  const [inputs, setInputs] = useState({ 
-    investmentAmount: "", 
-    frequency: "", 
-    duration: "" 
+  const [inputs, setInputs] = useState({
+    investmentAmount: "",
+    frequency: "",
+    duration: "",
+    expectedReturn: ""
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -32,37 +33,56 @@ export default function CryptoDcaStrategyCalculator() {
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
     const investmentAmount = parseFloat(inputs.investmentAmount) || 0;
-    const frequency = parseFloat(inputs.frequency) || 0;
-    const duration = parseFloat(inputs.duration) || 0;
+    const frequency = parseFloat(inputs.frequency) || 0;      // buys per year
+    const duration = parseFloat(inputs.duration) || 0;        // years
+    const expectedReturn = parseFloat(inputs.expectedReturn) || 0; // annual %
 
     // Validate
     if (investmentAmount <= 0 || frequency <= 0 || duration <= 0) {
-      return { 
-        mainResult: 0, 
-        totalInvested: 0, 
-        totalValue: 0, 
-        scheduleData: [] 
+      return {
+        mainResult: 0,
+        totalInvested: 0,
+        totalValue: 0,
+        scheduleData: []
       };
     }
 
-    // Perform calculations here
-    const totalInvested = investmentAmount * frequency * duration;
-    const estimatedGrowthRate = 0.07; // Example growth rate
-    const totalValue = totalInvested * Math.pow(1 + estimatedGrowthRate, duration);
+    // Dollar-Cost Averaging future value (ordinary annuity model).
+    // A fixed amount is invested `frequency` times per year for `duration` years.
+    //   N  = total contributions = frequency × duration
+    //   rp = periodic return per contribution = annualReturn ÷ frequency
+    //   FV = PMT × [ ((1 + rp)^N − 1) / rp ]   (rp > 0), else PMT × N
+    // The previous version grew the ENTIRE invested sum by (1+r)^years, which
+    // wrongly compounds late contributions for the full horizon and grossly
+    // overstates the result.
+    const N = Math.round(frequency * duration);
+    const rp = (expectedReturn / 100) / frequency;
+    const totalInvested = investmentAmount * N;
+    const totalValue =
+      rp === 0
+        ? totalInvested
+        : investmentAmount * ((Math.pow(1 + rp, N) - 1) / rp);
 
-    // Generate schedule data if applicable (e.g., investment schedule)
-    const scheduleData = Array.from({ length: duration * frequency }, (_, i) => ({
-      period: i + 1,
-      investment: investmentAmount,
-      growth: investmentAmount * Math.pow(1 + estimatedGrowthRate, i / frequency),
-      total: investmentAmount * (i + 1) + investmentAmount * Math.pow(1 + estimatedGrowthRate, i / frequency)
-    }));
+    // Per-contribution schedule: cumulative invested vs value grown to the end.
+    const scheduleData = Array.from({ length: N }, (_, i) => {
+      const contributionsSoFar = i + 1;
+      const valueToDate =
+        rp === 0
+          ? investmentAmount * contributionsSoFar
+          : investmentAmount * ((Math.pow(1 + rp, contributionsSoFar) - 1) / rp);
+      return {
+        period: contributionsSoFar,
+        investment: investmentAmount,
+        growth: valueToDate - investmentAmount * contributionsSoFar,
+        total: valueToDate
+      };
+    });
 
-    return { 
-      mainResult: totalValue, 
-      totalInvested, 
-      totalValue, 
-      scheduleData 
+    return {
+      mainResult: totalValue,
+      totalInvested,
+      totalValue,
+      scheduleData
     };
   }, [inputs]);
 
@@ -77,7 +97,7 @@ export default function CryptoDcaStrategyCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ investmentAmount: "", frequency: "", duration: "" });
+    setInputs({ investmentAmount: "", frequency: "", duration: "", expectedReturn: "" });
   };
 
   const faqs = [
@@ -155,7 +175,7 @@ export default function CryptoDcaStrategyCalculator() {
             />
           </div>
 
-          <div className="space-y-2 md:col-span-2">
+          <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
               <Calculator className="w-4 h-4 text-purple-600"/>
               Duration (years)
@@ -165,6 +185,20 @@ export default function CryptoDcaStrategyCalculator() {
               placeholder="e.g., 5"
               value={inputs.duration}
               onChange={(e) => setInputs({ ...inputs, duration: e.target.value })}
+              className="text-lg"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <TrendingUp className="w-4 h-4 text-amber-600"/>
+              Expected Annual Return (%)
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 7"
+              value={inputs.expectedReturn}
+              onChange={(e) => setInputs({ ...inputs, expectedReturn: e.target.value })}
               className="text-lg"
             />
           </div>
@@ -618,37 +652,37 @@ export default function CryptoDcaStrategyCalculator() {
         { id: "references", label: "References & Resources" }
       ]}
       formula={{
-        formula: "Total Value = Investment Amount × Frequency × Duration × (1 + Growth Rate) ^ Duration",
+        formula: "FV = PMT × [ ((1 + rp)^N − 1) / rp ]   (ordinary annuity)",
         variables: [
-          { symbol: "Investment Amount", description: "The fixed amount invested each period" },
-          { symbol: "Frequency", description: "Number of times investments are made per year" },
-          { symbol: "Duration", description: "Total number of years the investment is held" },
-          { symbol: "Growth Rate", description: "Estimated annual growth rate of the investment" }
+          { symbol: "PMT", description: "The fixed amount invested each period" },
+          { symbol: "N", description: "Total contributions = Frequency × Duration (buys/yr × years)" },
+          { symbol: "rp", description: "Periodic return per contribution = Annual Return ÷ Frequency" },
+          { symbol: "FV", description: "Projected value at the end of the horizon (Total Invested when return is 0)" }
         ],
         title: "Calculation Formula"
       }}
       jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
-        scenario: "Imagine you invest $100 monthly for 5 years with an estimated annual growth rate of 7%.",
+        scenario: "You invest $100 monthly for 5 years with an estimated 7% annual return.",
         steps: [
-          { 
-            label: "Step 1", 
-            calculation: "100 × 12 = 1200", 
-            explanation: "Calculate the total annual investment." 
+          {
+            label: "Step 1",
+            calculation: "N = 12 × 5 = 60 contributions; Total invested = 100 × 60 = $6,000",
+            explanation: "Count the contributions and total capital deployed."
           },
-          { 
-            label: "Step 2", 
-            calculation: "1200 × 5 = 6000", 
-            explanation: "Determine the total investment over 5 years." 
+          {
+            label: "Step 2",
+            calculation: "rp = 7% ÷ 12 = 0.5833% per month",
+            explanation: "Convert the annual return to the per-contribution (monthly) rate."
           },
-          { 
-            label: "Step 3", 
-            calculation: "6000 × (1 + 0.07)^5 = 8420.48", 
-            explanation: "Calculate the total value with growth." 
+          {
+            label: "Step 3",
+            calculation: "FV = 100 × ((1.005833^60 − 1) / 0.005833) ≈ 100 × 71.59 = $7,159",
+            explanation: "Each contribution compounds only for its remaining months — early buys grow more than recent ones, giving a realistic result."
           }
         ],
-        result: "The final result is $8,420.48, meaning your investment has grown by $2,420.48 over 5 years."
+        result: "Projected value ≈ $7,159 on $6,000 invested (~$1,159 gain), assuming a steady 7% annual return."
       }}
       relatedCalculators={[
         {"title":"Loan Payment Calculator (Principal, Rate, Term)","url":"/financial/loan-payment","icon":"💵"},
