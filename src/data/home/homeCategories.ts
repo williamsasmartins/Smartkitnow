@@ -13,7 +13,6 @@ import {
   Quote,
   Home,
   Dumbbell,
-  Smile,
   TrendingUp,
   QrCode,
   BookOpen,
@@ -151,15 +150,6 @@ export const HOME_CATEGORIES: HomeCategory[] = [
     path: "/sports",
     description:
       "Training, performance, and fitness calculators for athletes and enthusiasts across multiple sports.",
-  },
-  {
-    key: "funny",
-    name: "Funny Calculators",
-    icon: Smile,
-    color: "text-pink-500",
-    path: "/funny",
-    description:
-      "Lighthearted tools for fun estimations, playful math, and humorous calculations.",
   },
   {
     key: "marketing",

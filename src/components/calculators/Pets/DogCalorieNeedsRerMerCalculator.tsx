@@ -23,6 +23,19 @@ import {
   Scale,
   BookOpen,
 } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+
+// Mirrors the FAQ Q&A rendered in the editorial below; used to emit FAQPage
+// JSON-LD so the answers are eligible for rich results in Google Search.
+const faqs = [
+  { question: "What is RER and how does it differ from MER?", answer: "RER (Resting Energy Requirement) is the baseline calories a dog needs at rest, while MER (Maintenance Energy Requirement) adjusts RER based on activity level and life stage. MER is typically 1.2–1.8 times RER depending on the dog's lifestyle." },
+  { question: "How is RER calculated for dogs?", answer: "RER is calculated using the formula: 70 × (body weight in kg)^0.75. This metabolic equation accounts for a dog's size and metabolic rate more accurately than simple calorie-per-pound estimates." },
+  { question: "What activity multipliers should I use for my dog?", answer: "Sedentary dogs use 1.2–1.4×, moderately active dogs use 1.5–1.6×, and highly active/working dogs use 1.7–2.0× RER. Puppies and senior dogs may need adjustments based on individual health status." },
+  { question: "Can this calculator work for puppies and senior dogs?", answer: "Yes, but puppies typically need 1.5–2.0× their RER due to growth demands, while seniors may need 0.8–1.2× RER depending on metabolism and activity level. Individual health conditions should be considered." },
+  { question: "Why do larger dogs have lower calorie needs per pound than smaller dogs?", answer: "The 0.75 exponent in the RER formula reflects that larger dogs have slower metabolic rates per unit of body weight, making calorie density lower for big breeds compared to small ones." },
+  { question: "Should I adjust calories based on neutering or spaying?", answer: "Yes, neutered or spayed dogs typically need 25–30% fewer calories than intact dogs due to hormonal changes that lower metabolic rate. Adjust the MER multiplier downward accordingly." },
+  { question: "How often should I recalculate my dog's calorie needs?", answer: "Recalculate every 3–6 months as your dog's weight, activity level, and age change, or immediately after significant life events like surgery, illness, or lifestyle shifts." },
+];
 
 
 // ---------------------------------------------------------------------
@@ -138,6 +151,7 @@ interface Results {
 export default function DogCalorieNeedsRerMerCalculator() {
   // ESTADO
   const { unit, setUnit } = useWeightUnitPreference();
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   const [inputs, setInputs] = useState({
     weight: "",
@@ -681,6 +695,7 @@ export default function DogCalorieNeedsRerMerCalculator() {
       description="Estimate your dog's Resting Energy Requirement (RER) and Maintenance Energy Requirement (MER) to find a safe daily calorie range based on weight, life stage, activity level, and body condition."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "how-to-use", label: "How to Use This Calculator" },
         { id: "formula", label: "RER & MER Formula" },

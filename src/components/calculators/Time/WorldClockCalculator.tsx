@@ -4,6 +4,35 @@ import { Clock, Calendar, Globe2, Search, MapPin } from 'lucide-react';
 import CalculatorVerticalLayout from '@/components/templates/CalculatorVerticalLayout';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import useFaqJsonLd from '@/hooks/useFaqJsonLd';
+
+const faqs = [
+  {
+    question: "How does this world clock stay accurate?",
+    answer:
+      "The clock reads your device's system time and applies each city's IANA time zone rules (including daylight saving transitions) using the browser's built-in Intl API. It updates every second locally, so accuracy depends on your device clock being correct — if your computer's time is synced to the internet, the world clock is accurate to the second.",
+  },
+  {
+    question: "Does it handle daylight saving time automatically?",
+    answer:
+      "Yes. Each city is mapped to its IANA time zone (e.g. America/New_York), which carries the full historical and future DST rules. When a region enters or leaves daylight saving, the displayed time shifts automatically on the correct date — you never need to add or subtract an hour manually.",
+  },
+  {
+    question: "Why does another city show a different date, not just a different time?",
+    answer:
+      "Time zones span more than 24 hours across the globe, so when it is late evening in the Americas it can already be the next calendar day in Asia or Oceania. The clock accounts for this day-wrapping across the International Date Line, showing both the correct local time and the correct local date for every city.",
+  },
+  {
+    question: "What is UTC and why does it matter for scheduling?",
+    answer:
+      "UTC (Coordinated Universal Time) is the global reference from which every time zone is offset (UTC+9 for Tokyo, UTC-5 for New York in winter). Because UTC never observes daylight saving, converting all meeting times to UTC first — then back to each participant's local time — is the most reliable way to avoid cross-zone scheduling errors.",
+  },
+  {
+    question: "Is my location or time data sent to a server?",
+    answer:
+      "No. All time calculations run entirely in your browser using local system time and the built-in time zone database. No location or clock data is transmitted or stored, so the tool works the same whether you are online or offline once loaded.",
+  },
+];
 
 import type { CityData } from 'city-timezones';
 
@@ -50,6 +79,7 @@ export default function WorldClockCalculator() {
   const [selectedCity, setSelectedCity] = useState(INITIAL_QUICK_CITIES[0]);
   const [searchQuery, setSearchQuery] = useState('');
   const [cityMappingData, setCityMappingData] = useState<CityData[]>([]);
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   useEffect(() => {
     import('city-timezones').then(m => setCityMappingData(m.cityMapping));
@@ -233,6 +263,20 @@ export default function WorldClockCalculator() {
         </p>
       </section>
 
+      <section id="faq" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Frequently Asked Questions
+        </h2>
+        <ul className="space-y-6">
+          {faqs.map((item, i) => (
+            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
+              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{item.answer}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
     </div>
   );
 
@@ -242,6 +286,12 @@ export default function WorldClockCalculator() {
       description="A dynamic digital clock displaying time and date exactly as it stands worldwide. Choose local, popular cities, or search globally."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
+      onThisPage={[
+        { id: "features", label: "Features" },
+        { id: "use-cases", label: "Why It Matters" },
+        { id: "faq", label: "FAQ" },
+      ]}
       contentMaxWidth="max-w-4xl"
       showSidebar={false}
     />
