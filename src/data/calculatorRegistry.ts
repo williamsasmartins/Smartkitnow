@@ -32,7 +32,6 @@ export const FRIENDLY_TITLES: Record<string, string> = {
   time: "Time Calculators",
   "everyday": "Everyday Life Calculators",
   sports: "Sports Calculators",
-  funny: "Funny Calculators",
   automotive: "Automotive Calculators",
   construction: "Construction Calculators",
   electrical: "Electrical Calculators",
@@ -96,7 +95,6 @@ export function categoryIcon(category?: string): string {
     time: "⏱️",
     "everyday": "🏠",
     sports: "🏅",
-    funny: "😄",
     automotive: "🚗",
     construction: "🏗️",
     electrical: "⚡",
@@ -147,7 +145,9 @@ import { constructionEntries } from "@/components/calculators/Construction/regis
 import { electricalEntries } from "@/components/calculators/Electrical/registry";
 import { everydayEntries } from "@/components/calculators/EverydayLife/registry";
 import { sportsEntries } from "@/components/calculators/Sports/registry";
-import { funnyEntries } from "@/components/calculators/Funny/registry";
+// /funny category pruned (AdSense "low value content" cleanup) — entries no
+// longer registered so no routes/sitemap URLs are generated. Server returns
+// 410 for /funny/* via vercel.json.
 import { videoEntries } from "@/components/calculators/Video/registry";
 import { marketingEntries } from "@/components/calculators/Marketing/registry";
 import { generalEntries } from "@/components/calculators/Misc/registry";
@@ -172,7 +172,6 @@ export const calculatorRegistry: CalculatorEntry[] = [
   ...electricalEntries,
   ...everydayEntries,
   ...sportsEntries,
-  ...funnyEntries,
   ...videoEntries,
   ...marketingEntries,
   ...generalEntries,

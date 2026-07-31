@@ -29,7 +29,6 @@ const ConstructionCategory = lazy(() => import("@/pages/categories/ConstructionC
 const ElectricalCategory = lazy(() => import("@/pages/categories/ElectricalCategory"));
 const EverydayCategory = lazy(() => import("@/pages/categories/EverydayCategory"));
 const SportsCategory = lazy(() => import("@/pages/categories/SportsCategory"));
-const FunnyCategory = lazy(() => import("@/pages/categories/FunnyCategory"));
 const VideoCategory = lazy(() => import("@/pages/categories/VideoCategory"));
 const MarketingCategory = lazy(() => import("@/pages/categories/MarketingCategory"));
 
@@ -126,7 +125,6 @@ export default function App() {
               <Route path="/electrical" element={<ElectricalCategory />} />
               <Route path="/everyday" element={<EverydayCategory />} />
               <Route path="/sports" element={<SportsCategory />} />
-              <Route path="/funny" element={<FunnyCategory />} />
               <Route path="/video" element={<VideoCategory />} />
               <Route path="/marketing" element={<MarketingCategory />} />
 
