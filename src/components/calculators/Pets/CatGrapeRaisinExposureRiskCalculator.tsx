@@ -26,11 +26,14 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
   // Toxicity threshold in cats is not well established, but we use a conservative approach:
   // Toxic dose estimated ~0.5 g/kg of grapes/raisins (based on dog data, cats likely similar or more sensitive)
   // Average grape weight ~5 g, raisin ~1 g
-  // Calculate total grape/raisin weight ingested, then mg/kg dose
-  // Risk categories:
-  //   Low: < 10 mg/kg
-  //   Moderate: 10-50 mg/kg
-  //   High: > 50 mg/kg
+  // Calculate total grape/raisin weight ingested, then dose in g/kg body weight.
+  // Grape/raisin toxicity is conventionally expressed in grams per kg (matching
+  // the dog calculator and veterinary literature ~0.3–0.7 g/kg). Cats are treated
+  // conservatively since a feline toxic dose is not well established.
+  // Risk categories (g/kg):
+  //   Low: < 0.15 g/kg
+  //   Moderate: 0.15–0.3 g/kg
+  //   High: >= 0.3 g/kg (raisin toxic threshold, conservative)
   const results = useMemo(() => {
     const grapesNum = parseInt(inputs.grapes);
     const raisinsNum = parseInt(inputs.raisins);
@@ -59,25 +62,25 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
     const raisinWeightG = raisinsNum * 1; // 1 g per raisin
     const totalIngestedG = grapeWeightG + raisinWeightG;
 
-    // Dose in mg/kg
-    const doseMgPerKg = (totalIngestedG * 1000) / weightKg;
+    // Dose in grams per kg body weight
+    const doseGPerKg = totalIngestedG / weightKg;
 
     let riskLabel = "Low Risk";
     let warning = null;
 
-    if (doseMgPerKg >= 50) {
+    if (doseGPerKg >= 0.3) {
       riskLabel = "High Risk";
       warning =
         "This exposure level is considered high risk for kidney toxicity in cats. Immediate veterinary evaluation is strongly recommended.";
-    } else if (doseMgPerKg >= 10) {
+    } else if (doseGPerKg >= 0.15) {
       riskLabel = "Moderate Risk";
       warning =
         "This exposure level poses a moderate risk. Monitor your cat closely and consult your veterinarian promptly.";
     }
 
     return {
-      value: doseMgPerKg.toFixed(1),
-      label: `Estimated Grape/Raisin Exposure Dose (mg/kg) - ${riskLabel}`,
+      value: doseGPerKg.toFixed(2),
+      label: `Estimated Grape/Raisin Exposure Dose (g/kg) - ${riskLabel}`,
       subtext:
         "Dose calculated based on estimated grape and raisin weights relative to cat's body weight.",
       warning,
@@ -443,11 +446,11 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
       // ⚠️ CLEAN FORMULA: ONLY ONE LINE. NO COMPLICATED MATH DUMPS.
       formula={{
         title: "Scientific Formula",
-        formula: "Exposure Dose (mg/kg) = (Number of Grapes × 5000 + Number of Raisins × 1000) / Cat Weight (g)",
+        formula: "Exposure Dose (g/kg) = ((Number of Grapes × 5 g) + (Number of Raisins × 1 g)) ÷ Cat Weight (kg)",
         variables: [
           { symbol: "Number of Grapes", description: "Count of grapes ingested" },
           { symbol: "Number of Raisins", description: "Count of raisins ingested" },
-          { symbol: "Cat Weight (g)", description: "Cat body weight in grams" },
+          { symbol: "Cat Weight (kg)", description: "Cat body weight in kilograms" },
         ],
       }}
       example={{
@@ -458,7 +461,7 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
           {
             label: "1",
             explanation:
-              "Convert cat weight to grams: 10 lb × 453.592 = 4535.92 g.",
+              "Convert cat weight to kilograms: 10 lb ÷ 2.20462 = 4.54 kg.",
           },
           {
             label: "2",
@@ -468,15 +471,15 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
           {
             label: "3",
             explanation:
-              "Calculate exposure dose: (20,000 mg) / 4535.92 g = 4.41 mg/g = 4.41 mg/kg.",
+              "Calculate exposure dose: 20 g ÷ 4.54 kg = 4.41 g/kg.",
           },
           {
             label: "4",
             explanation:
-              "Interpret dose: 4.41 mg/kg is considered low risk but still warrants monitoring and veterinary consultation.",
+              "Interpret dose: 4.41 g/kg far exceeds the 0.3 g/kg high-risk threshold. Grapes are dangerous even in small quantities for cats — seek immediate veterinary care.",
           },
         ],
-        result: "Estimated exposure dose is 4.4 mg/kg, categorized as Low Risk.",
+        result: "Estimated exposure dose is 4.41 g/kg, categorized as High Risk.",
       }}
       relatedCalculators={[
         { title: "Dog Walking Calories Burned Calculator", url: "/pets/dog-walking-calories-burned", icon: "🐶" },
