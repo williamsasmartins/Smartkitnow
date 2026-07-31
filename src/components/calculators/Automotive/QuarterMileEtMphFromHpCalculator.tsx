@@ -25,8 +25,8 @@ export default function QuarterMileEtMphFromHpCalculator() {
    * Using a common empirical formula for quarter mile ET (elapsed time) and trap speed (MPH)
    * based on horsepower and weight:
    *
-   * ET = 5.825 * (weight / hp)^(1/3)
-   * MPH = 234 / ET
+   * ET  = 5.825 × (weight / hp)^(1/3)      (Roger Huntington elapsed-time formula)
+   * MPH = 234 × (hp / weight)^(1/3)         (Huntington trap-speed formula)
    *
    * These formulas provide a reasonable estimate for typical street cars.
    */
@@ -44,11 +44,13 @@ export default function QuarterMileEtMphFromHpCalculator() {
       };
     }
 
-    // Calculate ET (seconds)
+    // Calculate ET (seconds) — Huntington elapsed-time formula
     const et = 5.825 * Math.cbrt(weight / hp);
 
-    // Calculate MPH (trap speed)
-    const mph = 234 / et;
+    // Calculate MPH (trap speed) — Huntington trap-speed formula.
+    // NOTE: trap speed depends on the power-to-weight ratio, NOT on 234/ET
+    // (the old 234/ET form gave absurd ~21 mph for a 450 HP / 3200 lb car).
+    const mph = 234 * Math.cbrt(hp / weight);
 
     // Format results
     const etFormatted = et.toFixed(2) + " sec";
@@ -123,15 +125,13 @@ export default function QuarterMileEtMphFromHpCalculator() {
       },
       {
         label: "Step 4: Calculate the trap speed (MPH)",
-        explanation: "MPH = 234 / 11.18 ≈ 20.93 mph (Note: This seems low, check formula)"
-      },
-      {
-        label: "Correction:",
         explanation:
-          "The formula for MPH is typically 234 / ET, but 20.93 mph is unrealistically low for this ET. The formula is correct, so the ET or constants might need adjustment. Using the formula as is, the ET is 11.18 sec and MPH is 20.93 mph, but in practice, a 450 HP car at 3200 lbs would run closer to 120+ mph trap speed. This highlights the formula's limitations and the need for empirical tuning."
+          "Trap speed uses the power-to-weight ratio: MPH = 234 × (HP / weight)^(1/3)\n" +
+          "HP / weight = 450 / 3200 = 0.1406; ∛0.1406 ≈ 0.520\n" +
+          "MPH = 234 × 0.520 ≈ 121.7 mph"
       }
     ],
-    result: "Estimated quarter mile ET: 11.18 seconds, Trap speed: 20.9 mph (approximate)"
+    result: "Estimated quarter mile ET: 11.18 seconds, Trap speed: 121.7 mph (approximate)"
   };
 
   // --- 3. REFERENCES ---
