@@ -13,7 +13,7 @@ export default function HpToTorqueConverterCalculator() {
   const [inputs, setInputs] = useState({
     unit: "imperial",
     hp: "",
-    weight: ""
+    rpm: ""
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -21,68 +21,39 @@ export default function HpToTorqueConverterCalculator() {
   };
 
   /**
-   * Calculation Logic:
-   * Given Horsepower (HP) and Vehicle Weight (lbs or kg),
-   * estimate 0-60 mph time (seconds) and approximate speed (mph).
-   *
-   * Formula for 0-60 time estimate (empirical):
-   * 0-60 time ≈ 5.825 * (weight / hp)^(1/3)
-   *
-   * Approximate torque (lb-ft or Nm) from HP and RPM:
-   * Torque = (HP * 5252) / RPM
-   * 
-   * Since RPM is unknown, we estimate torque at peak HP RPM ~ 5000 rpm:
-   * Torque ≈ (HP * 5252) / 5000 ≈ HP * 1.05 (lb-ft)
-   * For metric: Torque (Nm) = Torque (lb-ft) * 1.3558
-   *
-   * Output:
-   * - Estimated 0-60 mph time (seconds)
-   * - Estimated torque (lb-ft or Nm)
-   * - Estimated speed (mph or km/h) at peak power (approximate)
+   * Horsepower ↔ Torque conversion.
+   * Power and torque are linked by engine speed (RPM):
+   *   HP = (Torque_lbft × RPM) / 5252   ⇔   Torque_lbft = (HP × 5252) / RPM
+   * The 5252 constant is the RPM at which the HP and lb-ft curves always cross
+   * (it comes from 33,000 ft·lb/min per HP ÷ 2π). A real conversion REQUIRES the
+   * RPM — torque at 300 HP is 315 lb-ft at 5000 RPM but 525 lb-ft at 3000 RPM.
+   * Metric torque: Nm = lb-ft × 1.35582.
    */
 
   const results = useMemo(() => {
     const hpNum = parseFloat(inputs.hp);
-    const weightNum = parseFloat(inputs.weight);
-    if (isNaN(hpNum) || hpNum <= 0 || isNaN(weightNum) || weightNum <= 0) {
+    const rpmNum = parseFloat(inputs.rpm);
+    if (isNaN(hpNum) || hpNum <= 0 || isNaN(rpmNum) || rpmNum <= 0) {
       return {
         primary: "Invalid input",
         secondary: "",
         details: "",
-        feedback: "Please enter positive numeric values for horsepower and weight."
+        feedback: "Please enter positive numeric values for horsepower and RPM."
       };
     }
 
-    // Calculate 0-60 time estimate (seconds)
-    // Empirical formula: t = 5.825 * (weight/hp)^(1/3)
-    const zeroToSixty = 5.825 * Math.cbrt(weightNum / hpNum);
-
-    // Estimate torque at 5000 rpm
-    // Torque (lb-ft) = (HP * 5252) / RPM
-    // RPM assumed 5000 for peak power
-    const torque = (hpNum * 5252) / 5000; // lb-ft
-
-    // Convert units if metric
-    let torqueDisplay = torque;
-    let speedDisplay = 60; // mph or km/h for 0-60 mph or 0-100 km/h approx
-    let zeroToSixtyDisplay = zeroToSixty;
-
-    if (inputs.unit === "metric") {
-      // Convert weight lbs to kg if needed (assuming input is kg)
-      // Assume input weight is in kg, so no conversion needed for weight here.
-      // Convert torque lb-ft to Nm
-      torqueDisplay = torque * 1.3558;
-      // Convert speed mph to km/h
-      speedDisplay = 96.56; // 0-60 mph ~ 0-100 km/h
-      // Adjust zeroToSixty to 0-100 km/h time approx (multiply by 1.15)
-      zeroToSixtyDisplay = zeroToSixty * 1.15;
-    }
+    // Torque (lb-ft) = (HP × 5252) / RPM
+    const torqueLbFt = (hpNum * 5252) / rpmNum;
+    const torqueDisplay = inputs.unit === "metric" ? torqueLbFt * 1.35582 : torqueLbFt;
+    const torqueUnit = inputs.unit === "metric" ? "Nm" : "lb-ft";
 
     return {
-      primary: zeroToSixtyDisplay.toFixed(2) + (inputs.unit === "imperial" ? " sec (0-60 mph)" : " sec (0-100 km/h)"),
-      secondary: torqueDisplay.toFixed(1) + (inputs.unit === "imperial" ? " lb-ft torque" : " Nm torque"),
-      details: `Estimated torque calculated at ~5000 RPM. Weight: ${weightNum} ${inputs.unit === "imperial" ? "lbs" : "kg"}, Horsepower: ${hpNum} HP.`,
-      feedback: "This is an estimate based on typical vehicle performance formulas."
+      primary: `${torqueDisplay.toFixed(1)} ${torqueUnit}`,
+      secondary: inputs.unit === "metric"
+        ? `${torqueLbFt.toFixed(1)} lb-ft`
+        : `${(torqueLbFt * 1.35582).toFixed(1)} Nm`,
+      details: `Torque at ${rpmNum.toLocaleString()} RPM for ${hpNum} HP, using Torque = (HP × 5252) / RPM.`,
+      feedback: "Use the RPM at which the horsepower figure is quoted for an accurate result."
     };
   }, [inputs]);
 
@@ -131,28 +102,25 @@ export default function HpToTorqueConverterCalculator() {
   const example = {
     title: "Real World Example",
     scenario:
-      "Calculating the estimated 0-60 mph time and torque for a 300 HP sports car weighing 3500 lbs using imperial units.",
+      "Converting 300 HP to torque for an engine that produces that power at 5,000 RPM, using imperial units.",
     steps: [
       {
-        label: "Step 1: Input Horsepower and Weight",
-        explanation: "Horsepower (HP) = 300, Weight = 3500 lbs"
+        label: "Step 1: Input Horsepower and RPM",
+        explanation: "Horsepower (HP) = 300, Engine Speed = 5,000 RPM"
       },
       {
-        label: "Step 2: Calculate 0-60 mph time",
+        label: "Step 2: Apply the conversion formula",
         explanation:
-          "Using the formula: 0-60 time ≈ 5.825 * (weight / hp)^(1/3)\n" +
-          "Calculate (3500 / 300) = 11.67\n" +
-          "Cube root of 11.67 ≈ 2.28\n" +
-          "Multiply by 5.825: 5.825 * 2.28 ≈ 13.28 seconds (estimate)"
+          "Torque (lb-ft) = (HP × 5252) / RPM\n" +
+          "Torque = (300 × 5252) / 5000 = 315.12 lb-ft"
       },
       {
-        label: "Step 3: Estimate torque at 5000 RPM",
+        label: "Step 3: Convert to metric if needed",
         explanation:
-          "Torque (lb-ft) = (HP * 5252) / RPM\n" +
-          "Torque = (300 * 5252) / 5000 = 315.12 lb-ft"
+          "Torque (Nm) = 315.12 × 1.35582 ≈ 427.2 Nm"
       }
     ],
-    result: "Estimated 0-60 mph time: 13.28 seconds, Estimated torque: 315.1 lb-ft"
+    result: "300 HP at 5,000 RPM = 315.1 lb-ft (427.2 Nm) of torque"
   };
 
   // --- 3. REFERENCES ---
@@ -207,14 +175,14 @@ export default function HpToTorqueConverterCalculator() {
           />
         </div>
         <div className="space-y-2">
-          <Label>Vehicle Weight ({inputs.unit === "imperial" ? "lbs" : "kg"})</Label>
+          <Label>Engine Speed (RPM)</Label>
           <Input
             type="number"
             min="0"
             step="any"
-            placeholder={inputs.unit === "imperial" ? "e.g. 3500" : "e.g. 1587"}
-            value={inputs.weight}
-            onChange={(e) => handleInputChange("weight", e.target.value)}
+            placeholder="e.g. 5000"
+            value={inputs.rpm}
+            onChange={(e) => handleInputChange("rpm", e.target.value)}
           />
         </div>
       </div>
