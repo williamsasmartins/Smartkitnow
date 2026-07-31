@@ -48,8 +48,8 @@ export default function GutterSizeCalculator() {
   /**
    * Calculation logic:
    * Step 1: Calculate runoff volume from roof area:
-   *   Runoff (L/s) = Roof Area (m²) × Rainfall Intensity (mm/hr) × 0.278
-   *   (0.278 converts mm/hr over m² to L/s)
+   *   Runoff (L/s) = Roof Area (m²) × Rainfall Intensity (mm/hr) × 0.000278
+   *   (1/3600 converts mm/hr over m² to L/s: 1 mm/hr over 1 m² = 1 L/hr)
    *
    * Step 2: Convert runoff to cubic feet per second (cfs) if imperial
    *
@@ -85,13 +85,16 @@ export default function GutterSizeCalculator() {
 
   // Runoff volume in L/s (metric)
   const runoffLps = useMemo(() => {
-    // Runoff (L/s) = Area (m²) * Rainfall (mm/hr) * 0.278
+    // Runoff (L/s) = Area (m²) × Rainfall (mm/hr) × 0.000278
+    // 1 mm/hr over 1 m² = 1 L/hr = 1/3600 L/s = 0.000278 L/s.
+    // (The 0.278 form of the Rational method is for area in km², not m².)
+    const RUNOFF_FACTOR = 1 / 3600; // ≈ 0.000278 L/s per m² per mm/hr
     if (inputs.unit === "metric") {
-      return roofArea * rainfallIntensityMetric * 0.278;
+      return roofArea * rainfallIntensityMetric * RUNOFF_FACTOR;
     }
     // For imperial, convert area ft² to m² (1 ft² = 0.092903 m²)
     const areaM2 = roofArea * 0.092903;
-    return areaM2 * rainfallIntensityMetric * 0.278;
+    return areaM2 * rainfallIntensityMetric * RUNOFF_FACTOR;
   }, [roofArea, rainfallIntensityMetric, inputs.unit]);
 
   // Gutter capacity in L/s based on gutter size (approximate)
@@ -202,7 +205,7 @@ export default function GutterSizeCalculator() {
   const example = {
     title: "Real World Example",
     scenario:
-      "You have a residential roof area measuring 10 meters in length and 8 meters in width. The local rainfall intensity is 50 mm/hr. You want to use a 6-inch aluminum gutter and include a 10% waste margin.",
+      "You have a residential roof area measuring 10 meters in length and 8 meters in width. The local rainfall intensity is 50 mm/hr. You want to size an aluminum gutter and include a 10% waste margin.",
     steps: [
       {
         label: "1. Calculate Roof Area",
@@ -211,12 +214,12 @@ export default function GutterSizeCalculator() {
       {
         label: "2. Calculate Runoff Volume",
         explanation:
-          "Runoff = 80 × 50 × 0.278 = 1112 L/s (liters per second)",
+          "Runoff = 80 × 50 × 0.000278 = 1.11 L/s (liters per second)",
       },
       {
         label: "3. Check Gutter Capacity",
         explanation:
-          "6-inch gutter capacity ~7.1 L/s, which is less than runoff, so consider larger gutter or additional downspouts.",
+          "A 5-inch gutter carries ~4.25 L/s, comfortably above the 1.11 L/s runoff, so a 5-inch gutter is sufficient.",
       },
       {
         label: "4. Calculate Gutter Length with Waste",
@@ -225,17 +228,17 @@ export default function GutterSizeCalculator() {
       },
       {
         label: "5. Final Order",
-        explanation: "Order 11 meters of 6-inch aluminum gutter.",
+        explanation: "Order 11 meters of 5-inch aluminum gutter.",
       },
     ],
-    result: "Final Order: 11 meters of 6-inch aluminum gutter",
+    result: "Final Order: 11 meters of 5-inch aluminum gutter",
   };
 
   // --- 3. FORMULA DEFINITION ---
   const formula = {
     title: "Calculation Formula",
     formula:
-      "Runoff (L/s) = Roof Area (m²) × Rainfall Intensity (mm/hr) × 0.278",
+      "Runoff (L/s) = Roof Area (m²) × Rainfall Intensity (mm/hr) × 0.000278",
     variables: [
       { symbol: "Roof Area", description: "Length × Width of roof area (m²)" },
       {
@@ -243,9 +246,9 @@ export default function GutterSizeCalculator() {
         description: "Rainfall rate in millimeters per hour (mm/hr)",
       },
       {
-        symbol: "0.278",
+        symbol: "0.000278",
         description:
-          "Conversion factor from mm/hr over m² to liters per second (L/s)",
+          "Conversion factor (1/3600) from mm/hr over m² to liters per second: 1 mm/hr over 1 m² = 1 L/hr = 0.000278 L/s",
       },
     ],
   };
