@@ -70,9 +70,13 @@ export default function BodyFatUsNavy3SitesCalculator() {
     const waistCm = toCm(w);
     const hipCm = gender === "female" ? toCm(hi) : 0;
 
-    // US Navy Body Fat % formulas:
-    // Male: 86.010 * log10(waist - neck) - 70.041 * log10(height) + 36.76
-    // Female: 163.205 * log10(waist + hip - neck) - 97.684 * log10(height) - 78.387
+    // US Navy Body Fat % formulas — METRIC (cm) constants.
+    // All measurements above are converted to cm, so the intercepts must be the
+    // cm-form constants (30.30 male, -104.912 female), NOT the inch-form
+    // constants (36.76 / -78.387). Feeding cm into the inch formula overstates
+    // body fat by ~6.5 points (male) / ~26.5 points (female).
+    // Male:   86.010 * log10(waist - neck) - 70.041 * log10(height) + 30.30
+    // Female: 163.205 * log10(waist + hip - neck) - 97.684 * log10(height) - 104.912
 
     // Use Math.log10 for log base 10
     let bodyFat = 0;
@@ -80,12 +84,12 @@ export default function BodyFatUsNavy3SitesCalculator() {
       if (gender === "male") {
         const val = 86.010 * Math.log10(waistCm - neckCm) -
           70.041 * Math.log10(heightCm) +
-          36.76;
+          30.30;
         bodyFat = val;
       } else {
         const val = 163.205 * Math.log10(waistCm + hipCm - neckCm) -
           97.684 * Math.log10(heightCm) -
-          78.387;
+          104.912;
         bodyFat = val;
       }
     } catch {
@@ -622,7 +626,7 @@ export default function BodyFatUsNavy3SitesCalculator() {
       formula={{
         title: "The Math Formula",
         formula:
-          "Male: 86.010 × log10(waist - neck) - 70.041 × log10(height) + 36.76\nFemale: 163.205 × log10(waist + hip - neck) - 97.684 × log10(height) - 78.387",
+          "Male: 86.010 × log10(waist - neck) - 70.041 × log10(height) + 30.30\nFemale: 163.205 × log10(waist + hip - neck) - 97.684 × log10(height) - 104.912\n(all measurements in cm)",
         variables: [
           { symbol: "waist", description: "Waist circumference (cm)" },
           { symbol: "neck", description: "Neck circumference (cm)" },
@@ -644,7 +648,7 @@ export default function BodyFatUsNavy3SitesCalculator() {
           {
             label: "Step 2",
             explanation:
-              "Apply the formula: 86.010 × log10(waist - neck) - 70.041 × log10(height) + 36.76",
+              "Apply the metric formula: 86.010 × log10(waist - neck) - 70.041 × log10(height) + 30.30",
           },
           {
             label: "Step 3",
@@ -654,10 +658,10 @@ export default function BodyFatUsNavy3SitesCalculator() {
           {
             label: "Step 4",
             explanation:
-              "Body Fat % = 86.010 × 1.660 - 70.041 × 2.250 + 36.76 ≈ 142.77 - 157.59 + 36.76 = 21.94%",
+              "Body Fat % = 86.010 × 1.660 - 70.041 × 2.250 + 30.30 ≈ 142.79 - 157.59 + 30.30 = 15.5%",
           },
         ],
-        result: "John's estimated body fat percentage is approximately 21.9%, categorized as 'Average' for males.",
+        result: "John's estimated body fat percentage is approximately 15.5%, categorized as 'Fitness' for males.",
       }}
       relatedCalculators={[
         {
