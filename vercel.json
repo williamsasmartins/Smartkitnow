@@ -1190,6 +1190,16 @@
       "source": "/pets/guinea-pig-vitamin-c-intake",
       "destination": "/pets/guinea-pig-vitamin-c-requirement",
       "permanent": true
+    },
+    {
+      "source": "/everyday/bmi-calculator",
+      "destination": "/health/bmi-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/everyday/bmr-calculator",
+      "destination": "/health/bmr-calculator",
+      "permanent": true
     }
   ]
 }
