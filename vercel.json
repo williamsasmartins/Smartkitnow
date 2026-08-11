@@ -310,6 +310,12 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "smartkitnow.com" }],
+      "destination": "https://www.smartkitnow.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/home",
       "destination": "/",
       "permanent": true
