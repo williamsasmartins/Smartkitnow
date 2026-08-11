@@ -5,146 +5,115 @@ import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalL
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Calculator,
-  DollarSign,
-  TrendingUp,
-  HelpCircle,
-  BookOpen,
-  Info,
-  CheckCircle,
-  Share2
-} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Calculator, DollarSign, Home, TrendingUp, Share2 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-type InputsState = {
-  income: string;
-  expenses: string;
-  savingsGoal: string;
-};
-
-type ScheduleRow = {
-  month: number;
-  savings: number;
-  cumulativeSavings: number;
-  goalReached: boolean;
-};
-
-export default function MonthlyBudgetPlannerCalculator() {
+export default function MortgageAmortizationCalculator() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // STATE
-  const [inputs, setInputs] = useState<InputsState>({
-    income: searchParams.get("income") || "",
-    expenses: searchParams.get("expenses") || "",
-    savingsGoal: searchParams.get("goal") || "",
+  const [inputs, setInputs] = useState({
+    homePrice: searchParams.get("price") || "",
+    downPayment: searchParams.get("down") || "",
+    interestRate: searchParams.get("rate") || "",
+    loanTerm: searchParams.get("term") || "",
   });
   const [showFullTable, setShowFullTable] = useState(false);
-  const resultsRef = useRef<HTMLDivElement | null>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
-  // Auto-calculate
+  // Auto-scroll to results if params exist on mount
   useEffect(() => {
-    if (searchParams.size > 0 && inputs.income && inputs.expenses) {
+    if (searchParams.size > 0 && inputs.homePrice && inputs.interestRate && inputs.loanTerm) {
       setTimeout(() => {
         resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 500);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // HELPER: format currency
-  const formatCurrency = (value: number): string =>
-    new Intl.NumberFormat("en-US", {
+  // HELPER
+  const formatCurrency = (value: number): string => {
+    return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(value);
+  };
 
   // CALCULATIONS
   const results = useMemo(() => {
-    const incomeValue = parseFloat(inputs.income) || 0;
-    const expensesValue = parseFloat(inputs.expenses) || 0;
-    const savingsGoalValue = parseFloat(inputs.savingsGoal) || 0;
+    const homePriceValue = parseFloat(inputs.homePrice) || 0;
+    const downPaymentValue = parseFloat(inputs.downPayment) || 0;
+    const annualRate = parseFloat(inputs.interestRate) || 0;
+    const monthlyRate = annualRate / 100 / 12;
+    const termMonths = (parseFloat(inputs.loanTerm) || 0) * 12;
 
-    if (incomeValue <= 0 || expensesValue < 0) {
+    // Principal is home price minus down payment
+    let principal = homePriceValue - downPaymentValue;
+
+    // Validate
+    if (principal <= 0 || monthlyRate <= 0 || termMonths <= 0) {
       return {
-        netIncome: 0,
-        savingsRate: 0,
-        monthsToGoal: 0,
-        scheduleData: [] as ScheduleRow[],
+        monthlyPayment: 0,
+        totalInterest: 0,
+        totalPayment: 0,
+        loanAmount: principal > 0 ? principal : 0,
+        scheduleData: [] as Array<{
+          month: number;
+          payment: number;
+          principal: number;
+          interest: number;
+          balance: number;
+        }>,
       };
     }
 
-    const netIncome = incomeValue - expensesValue;
-    const savingsRate =
-      incomeValue > 0 ? (netIncome / incomeValue) * 100 : 0;
-    const monthsToGoal =
-      savingsGoalValue > 0 && netIncome > 0
-        ? Math.ceil(savingsGoalValue / netIncome)
-        : 0;
+    const loanAmount = principal;
 
-    const scheduleData: ScheduleRow[] =
-      monthsToGoal > 0
-        ? Array.from({ length: monthsToGoal }, (_, i) => {
-          const month = i + 1;
-          const cumulativeSavings = netIncome * month;
-          return {
-            month,
-            savings: netIncome,
-            cumulativeSavings,
-            goalReached: cumulativeSavings >= savingsGoalValue,
-          };
-        })
-        : [];
+    // Standard amortization formula
+    const monthlyPayment =
+      (principal * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -termMonths));
+    const totalPayment = monthlyPayment * termMonths;
+    const totalInterest = totalPayment - principal;
 
-    return {
-      netIncome,
-      savingsRate,
-      monthsToGoal,
-      scheduleData,
-    };
+    // Build amortization schedule
+    const scheduleData = Array.from({ length: termMonths }, (_, i) => {
+      const interestPayment = principal * monthlyRate;
+      const principalPayment = monthlyPayment - interestPayment;
+      principal -= principalPayment;
+      return {
+        month: i + 1,
+        payment: monthlyPayment,
+        principal: principalPayment,
+        interest: interestPayment,
+        balance: principal > 0 ? principal : 0,
+      };
+    });
+
+    return { monthlyPayment, totalInterest, totalPayment, loanAmount, scheduleData };
   }, [inputs]);
 
   // HANDLERS
   const handleCalculate = () => {
-    // Apenas para scroll suave até os resultados
     setTimeout(() => {
-      resultsRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }, 120);
+      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 100);
   };
 
   const handleReset = () => {
-    setInputs({
-      income: "",
-      expenses: "",
-      savingsGoal: "",
-    });
-    setShowFullTable(false);
+    setInputs({ homePrice: "", downPayment: "", interestRate: "", loanTerm: "" });
     setSearchParams({});
   };
 
   const handleShare = () => {
     const params = new URLSearchParams();
-    if (inputs.income) params.set("income", inputs.income);
-    if (inputs.expenses) params.set("expenses", inputs.expenses);
-    if (inputs.savingsGoal) params.set("goal", inputs.savingsGoal);
+    if (inputs.homePrice) params.set("price", inputs.homePrice);
+    if (inputs.downPayment) params.set("down", inputs.downPayment);
+    if (inputs.interestRate) params.set("rate", inputs.interestRate);
+    if (inputs.loanTerm) params.set("term", inputs.loanTerm);
 
     const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params.toString()}`;
     window.history.replaceState({}, "", newUrl);
@@ -152,74 +121,111 @@ export default function MonthlyBudgetPlannerCalculator() {
     toast.success("Link copied to clipboard!");
   };
 
-  // WIDGET (formulário + resultados)
+  const faqs = [
+    {
+      question: "What is a mortgage amortization schedule?",
+      answer:
+        "A mortgage amortization schedule is a table showing every monthly payment across the life of your loan, split into how much goes toward interest and how much reduces your principal balance. Early in a 30-year mortgage, the vast majority of each payment covers interest; over time, that ratio shifts toward principal. For a $320,000 loan at 6.5% over 30 years, your first payment applies roughly $1,733 to interest and only $290 to principal, while your final payments are almost entirely principal. This calculator builds the full schedule so you can see exactly when you cross the halfway point on equity.",
+    },
+    {
+      question: "How much should my down payment be?",
+      answer:
+        "A 20% down payment is the classic benchmark because it lets you avoid Private Mortgage Insurance (PMI), which typically costs 0.5%–1.5% of the loan amount annually. On a $400,000 home, 20% means $80,000 down and an $320,000 loan. Many buyers put down less—FHA loans allow as little as 3.5%, and conventional loans can go to 3%—but a smaller down payment means a larger loan, higher monthly payments, more total interest, and usually PMI until you reach 20% equity. Enter different down payment amounts above to see the impact instantly.",
+    },
+    {
+      question: "Does this calculator include property tax, insurance, and PMI?",
+      answer:
+        "No—this calculator shows the principal and interest (P&I) portion of your payment only, which is the core mortgage math. Your actual monthly housing cost also includes property taxes (roughly 0.5%–2.5% of home value per year depending on your state), homeowners insurance ($1,000–$3,000/year typically), and PMI if your down payment is under 20%. These are often bundled into your payment through an escrow account. To estimate your true monthly cost, add roughly 1/12 of your annual tax + insurance + PMI to the P&I figure this calculator produces.",
+    },
+    {
+      question: "How does the loan term affect my mortgage?",
+      answer:
+        "A shorter term means higher monthly payments but dramatically less total interest. On a $320,000 loan at 6.5%, a 30-year term costs about $2,023/month with roughly $408,000 in total interest, while a 15-year term costs about $2,787/month but only about $181,000 in total interest—a savings of over $225,000. The trade-off is affordability: the 15-year payment is about $764 higher each month. Use the term field above to compare 15, 20, and 30-year scenarios for your own numbers.",
+    },
+    {
+      question: "What is the difference between interest rate and APR on a mortgage?",
+      answer:
+        "The interest rate is the raw cost of borrowing your principal, while the APR (Annual Percentage Rate) folds in lender fees, points, and certain closing costs to reflect the loan's true annual cost. A mortgage might advertise a 6.25% interest rate but carry a 6.45% APR once origination fees and points are included. This calculator uses the interest rate for the payment math (which is how lenders compute your actual monthly payment), but you should compare loan offers using APR to understand the full cost.",
+    },
+    {
+      question: "How can I pay off my mortgage faster?",
+      answer:
+        "Making extra principal payments is the most effective strategy. Adding just $200/month to a $320,000 loan at 6.5% over 30 years can shave off roughly 5 years and save over $90,000 in interest. Other approaches include making biweekly payments (which results in 13 full payments per year instead of 12), refinancing to a shorter term when rates drop, or applying windfalls like tax refunds directly to principal. Because early payments are mostly interest, extra principal early in the loan has the biggest impact on total interest saved.",
+    },
+    {
+      question: "When does it make sense to refinance my mortgage?",
+      answer:
+        "Refinancing generally makes sense when you can lower your interest rate by at least 0.5%–1%, and you plan to stay in the home long enough to recoup the closing costs (typically 2%–5% of the loan amount). For example, refinancing a $320,000 loan from 7.5% to 6.5% could lower your payment by about $215/month; if closing costs are $8,000, your break-even point is about 37 months. Refinancing also lets you switch from a 30-year to a 15-year term or convert an adjustable-rate mortgage to a fixed rate.",
+    },
+    {
+      question: "What credit score do I need for the best mortgage rate?",
+      answer:
+        "A credit score of 760 or higher typically qualifies you for the lowest available mortgage rates. Scores between 700–759 still get competitive rates, while scores in the 620–699 range face progressively higher rates and may require a larger down payment. The difference is substantial: a borrower with a 760 score might get 6.25% while a 660-score borrower gets 7.25% on the same loan—on a $320,000 30-year mortgage, that 1% gap adds about $215/month and over $77,000 in total interest. Check and improve your credit before applying.",
+    },
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
+
+  // WIDGET
   const widget = (
-    <Card className="p-6 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+    <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
       {/* INPUTS */}
       <div className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <DollarSign className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-              Monthly income (after tax)
+              <Home className="w-4 h-4 text-blue-600" />
+              Home Price
             </Label>
             <Input
               type="number"
-              inputMode="decimal"
-              placeholder="e.g., 5000"
-              value={inputs.income}
-              onChange={(e) =>
-                setInputs((prev) => ({
-                  ...prev,
-                  income: e.target.value,
-                }))
-              }
+              placeholder="e.g., 400000"
+              value={inputs.homePrice}
+              onChange={(e) => setInputs({ ...inputs, homePrice: e.target.value })}
               className="text-lg"
             />
           </div>
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              Total monthly expenses
+              <DollarSign className="w-4 h-4 text-emerald-600" />
+              Down Payment
             </Label>
             <Input
               type="number"
-              inputMode="decimal"
-              placeholder="e.g., 3200"
-              value={inputs.expenses}
-              onChange={(e) =>
-                setInputs((prev) => ({
-                  ...prev,
-                  expenses: e.target.value,
-                }))
-              }
+              placeholder="e.g., 80000"
+              value={inputs.downPayment}
+              onChange={(e) => setInputs({ ...inputs, downPayment: e.target.value })}
               className="text-lg"
             />
           </div>
 
-          <div className="space-y-2 md:col-span-2">
+          <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <Calculator className="w-4 h-4 text-violet-600 dark:text-violet-400" />
-              Savings goal (optional)
+              <TrendingUp className="w-4 h-4 text-green-600" />
+              Interest Rate (%)
             </Label>
             <Input
               type="number"
-              inputMode="decimal"
-              placeholder="e.g., 20000"
-              value={inputs.savingsGoal}
-              onChange={(e) =>
-                setInputs((prev) => ({
-                  ...prev,
-                  savingsGoal: e.target.value,
-                }))
-              }
+              placeholder="e.g., 6.5"
+              value={inputs.interestRate}
+              onChange={(e) => setInputs({ ...inputs, interestRate: e.target.value })}
               className="text-lg"
             />
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-              If you enter a savings goal, the planner will estimate how many
-              months it would take to get there with your current budget.
-            </p>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <Calculator className="w-4 h-4 text-purple-600" />
+              Loan Term (years)
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 30"
+              value={inputs.loanTerm}
+              onChange={(e) => setInputs({ ...inputs, loanTerm: e.target.value })}
+              className="text-lg"
+            />
           </div>
         </div>
       </div>
@@ -231,14 +237,9 @@ export default function MonthlyBudgetPlannerCalculator() {
           className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
         >
           <Calculator className="mr-2 h-4 w-4" />
-          Calculate budget
+          Calculate
         </Button>
-        <Button
-          type="button"
-          variant="outline"
-          onClick={handleReset}
-          className="border-gray-300 dark:border-gray-700"
-        >
+        <Button onClick={handleReset} variant="outline" className="border-gray-300 dark:border-gray-600">
           Reset
         </Button>
         <Button
@@ -252,21 +253,16 @@ export default function MonthlyBudgetPlannerCalculator() {
       </div>
 
       {/* RESULTS */}
-      {results.netIncome > 0 && (
-        <div
-          ref={resultsRef}
-          className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            Your monthly budget snapshot
-          </h3>
+      {results.monthlyPayment > 0 && (
+        <div ref={resultsRef} className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Your Results</h3>
 
-          {/* BUDGET ALLOCATION CHART */}
+          {/* CHART */}
           <Card className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg flex items-center gap-2 text-gray-800 dark:text-gray-100">
                 <TrendingUp className="h-5 w-5 text-blue-600" />
-                Income Allocation
+                Cost Breakdown (Principal vs. Interest)
               </CardTitle>
             </CardHeader>
             <CardContent className="h-[300px] w-full flex justify-center items-center">
@@ -274,8 +270,8 @@ export default function MonthlyBudgetPlannerCalculator() {
                 <PieChart>
                   <Pie
                     data={[
-                      { name: 'Expenses', value: parseFloat(inputs.expenses) || 0, fill: '#ef4444' },
-                      { name: 'Savings (Net Income)', value: results.netIncome, fill: '#10b981' }
+                      { name: "Principal", value: results.loanAmount, fill: "#3b82f6" },
+                      { name: "Interest", value: results.totalInterest, fill: "#f43f5e" },
                     ]}
                     cx="50%"
                     cy="50%"
@@ -284,10 +280,7 @@ export default function MonthlyBudgetPlannerCalculator() {
                     paddingAngle={5}
                     dataKey="value"
                   >
-                    {[
-                      { name: 'Expenses', fill: '#ef4444' },
-                      { name: 'Savings (Net Income)', fill: '#10b981' }
-                    ].map((entry, index) => (
+                    {[{ fill: "#3b82f6" }, { fill: "#f43f5e" }].map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.fill} />
                     ))}
                   </Pie>
@@ -298,7 +291,7 @@ export default function MonthlyBudgetPlannerCalculator() {
                       backgroundColor: "rgba(255, 255, 255, 0.95)",
                       borderRadius: "8px",
                       border: "1px solid #e5e7eb",
-                      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+                      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                     }}
                   />
                   <Legend verticalAlign="bottom" height={36} />
@@ -308,120 +301,123 @@ export default function MonthlyBudgetPlannerCalculator() {
           </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Net income */}
-            <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-md">
-              <CardContent className="pt-6 pb-6 flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Net income after expenses
-                  </p>
-                  <p className="text-4xl font-bold text-blue-700 dark:text-blue-300">
-                    {formatCurrency(results.netIncome)}
-                  </p>
-                  <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
-                    This is what&apos;s left each month after your current
-                    expenses.
-                  </p>
+            {/* MAIN RESULT */}
+            <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-xl">
+              <CardContent className="pt-8 pb-8">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                      Monthly Payment (Principal &amp; Interest)
+                    </p>
+                    <p className="text-5xl font-bold text-blue-600 dark:text-blue-400">
+                      {formatCurrency(results.monthlyPayment)}
+                    </p>
+                  </div>
+                  <Home className="w-16 h-16 text-blue-600 dark:text-blue-400 opacity-20" />
                 </div>
-                <DollarSign className="w-14 h-14 text-blue-600 dark:text-blue-300 opacity-20" />
               </CardContent>
             </Card>
 
-            {/* Savings rate */}
-            <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
-              <CardContent className="pt-6 pb-6 flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Savings rate
-                  </p>
-                  <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
-                    {results.savingsRate.toFixed(1)}%
-                  </p>
-                  <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
-                    The percentage of your income that could go to savings or
-                    extra debt payments.
-                  </p>
+            {/* LOAN AMOUNT */}
+            <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-6 pb-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Loan Amount</p>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      {formatCurrency(results.loanAmount)}
+                    </p>
+                  </div>
+                  <DollarSign className="w-10 h-10 text-gray-400" />
                 </div>
-                <TrendingUp className="w-10 h-10 text-emerald-500 dark:text-emerald-400 opacity-60" />
               </CardContent>
             </Card>
 
-            {/* Months to goal */}
-            <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
-              <CardContent className="pt-6 pb-6 flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Months to reach your goal
-                  </p>
-                  <p className="text-3xl font-bold text-violet-600 dark:text-violet-400">
-                    {results.monthsToGoal > 0
-                      ? results.monthsToGoal
-                      : "—"}
-                  </p>
-                  <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
-                    Based on your current surplus and savings goal.
-                  </p>
+            {/* TOTAL INTEREST */}
+            <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-6 pb-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Total Interest</p>
+                    <p className="text-2xl font-bold text-red-600 dark:text-red-400">
+                      {formatCurrency(results.totalInterest)}
+                    </p>
+                  </div>
+                  <TrendingUp className="w-10 h-10 text-gray-400" />
                 </div>
-                <Calculator className="w-10 h-10 text-violet-500 dark:text-violet-400 opacity-60" />
+              </CardContent>
+            </Card>
+
+            {/* TOTAL PAYMENT */}
+            <Card className="col-span-full bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-6 pb-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                      Total of All Payments (over full term)
+                    </p>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      {formatCurrency(results.totalPayment)}
+                    </p>
+                  </div>
+                  <Calculator className="w-10 h-10 text-gray-400" />
+                </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Schedule table */}
+          {/* AMORTIZATION TABLE */}
           {results.scheduleData.length > 0 && (
-            <Card className="mt-4 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
-              <CardHeader className="flex flex-row items-center justify-between gap-4 border-b border-gray-200 dark:border-gray-800">
-                <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                  Savings schedule
+            <Card className="mt-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+                <CardTitle className="flex justify-between items-center">
+                  <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                    Amortization Schedule
+                  </span>
+                  {results.scheduleData.length > 12 && (
+                    <Button
+                      onClick={() => setShowFullTable(!showFullTable)}
+                      variant="outline"
+                      size="sm"
+                      className="border-gray-300 dark:border-gray-600"
+                    >
+                      {showFullTable
+                        ? "Show Less"
+                        : `Show All ${results.scheduleData.length} Payments`}
+                    </Button>
+                  )}
                 </CardTitle>
-                {results.scheduleData.length > 12 && (
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant="outline"
-                    className="border-gray-300 dark:border-gray-700"
-                    onClick={() => setShowFullTable((prev) => !prev)}
-                  >
-                    {showFullTable
-                      ? "Show first 12 months"
-                      : `Show all ${results.scheduleData.length} months`}
-                  </Button>
-                )}
               </CardHeader>
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
                   <Table>
                     <TableHeader>
-                      <TableRow className="bg-gray-50 dark:bg-gray-950/40">
-                        <TableHead>Month</TableHead>
-                        <TableHead>Monthly savings</TableHead>
-                        <TableHead>Cumulative savings</TableHead>
-                        <TableHead>Goal reached?</TableHead>
+                      <TableRow className="bg-gray-50 dark:bg-gray-900">
+                        <TableHead className="font-semibold">Month</TableHead>
+                        <TableHead className="font-semibold">Payment</TableHead>
+                        <TableHead className="font-semibold">Principal</TableHead>
+                        <TableHead className="font-semibold">Interest</TableHead>
+                        <TableHead className="font-semibold">Balance</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {results.scheduleData
                         .slice(0, showFullTable ? undefined : 12)
-                        .map((row) => (
+                        .map((row, idx) => (
                           <TableRow
-                            key={row.month}
-                            className="hover:bg-gray-50 dark:hover:bg-gray-900/60"
+                            key={idx}
+                            className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                           >
-                            <TableCell className="font-medium">
-                              {row.month}
+                            <TableCell className="font-medium">{row.month}</TableCell>
+                            <TableCell>{formatCurrency(row.payment)}</TableCell>
+                            <TableCell className="text-green-600 dark:text-green-400">
+                              {formatCurrency(row.principal)}
                             </TableCell>
-                            <TableCell>
-                              {formatCurrency(row.savings)}
+                            <TableCell className="text-red-600 dark:text-red-400">
+                              {formatCurrency(row.interest)}
                             </TableCell>
-                            <TableCell className="text-emerald-600 dark:text-emerald-400">
-                              {formatCurrency(row.cumulativeSavings)}
-                            </TableCell>
-                            <TableCell>
-                              {row.goalReached ? (
-                                <CheckCircle className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
-                              ) : (
-                                "No"
-                              )}
+                            <TableCell className="font-semibold">
+                              {formatCurrency(row.balance)}
                             </TableCell>
                           </TableRow>
                         ))}
@@ -439,192 +435,218 @@ export default function MonthlyBudgetPlannerCalculator() {
   // EDITORIAL
   const editorial = (
     <div className="space-y-12">
-
       {/* GUIDE */}
       <section id="guide" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Monthly Budget Planner</h2>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          How to Use the Mortgage Payment &amp; Amortization Calculator
+        </h2>
         <div className="space-y-3">
-          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Monthly Budget Planner is a financial tool designed to help you track income and expenses, allocate funds across spending categories, and monitor progress toward savings goals. By creating a detailed monthly budget, you gain visibility into your cash flow, identify spending patterns, and make informed decisions about money. This calculator transforms budgeting from a vague concept into a concrete action plan that increases financial control and reduces financial stress.</p>
-          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the planner effectively, start by entering your total monthly income (after taxes). Then list all fixed expenses (rent, insurance, loan payments) and variable expenses (groceries, utilities, entertainment) across distinct categories. The calculator allows you to set spending targets for each category—most users benefit from organizing categories into 8-12 groups covering needs, wants, and savings. Input realistic figures based on your actual spending history or industry benchmarks provided in this guide.</p>
-          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Interpret your planner results by comparing actual spending to budgeted amounts each week. A positive balance means you're under budget; negative indicates overspending in that category. Use monthly totals to assess whether you're meeting the 50/30/20 rule or your custom allocation goals, then adjust future months accordingly. Over time, consistent tracking reveals which categories consistently overshoot, allowing you to make targeted lifestyle changes or increase allocation limits to reflect reality.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+            This mortgage calculator estimates your monthly home loan payment and builds a full
+            amortization schedule so you can see how each payment splits between principal and
+            interest over the life of the loan. Enter your home price, down payment, interest rate,
+            and loan term to instantly see your monthly principal-and-interest payment, your total
+            interest cost, and the complete month-by-month breakdown of how your balance shrinks.
+          </p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+            The four inputs are: (1) <strong>Home Price</strong>—the purchase price of the property;
+            (2) <strong>Down Payment</strong>—the cash you pay upfront, which is subtracted from the
+            price to determine your loan amount; (3) <strong>Interest Rate</strong>—your annual
+            mortgage rate as a percentage; and (4) <strong>Loan Term</strong>—the length of the loan
+            in years, most commonly 15 or 30. Your loan amount (the principal) is simply the home
+            price minus your down payment.
+          </p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+            Your results show four key figures: the monthly principal-and-interest payment, the loan
+            amount financed, the total interest paid across the full term, and the total of all
+            payments combined. The amortization table below reveals a crucial pattern—in the early
+            years, most of each payment goes to interest, while in the later years it shifts almost
+            entirely to principal. Remember this calculator covers principal and interest only;
+            budget separately for property taxes, homeowners insurance, and PMI.
+          </p>
         </div>
       </section>
 
-      {/* TABLE: Recommended Monthly Budget Allocation (50/30/20 Rule) */}
+      {/* TABLE 1: Payment by term */}
       <section id="table-1" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Monthly Budget Allocation (50/30/20 Rule)</h2>
-        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the standard budget breakdown recommended by financial experts for household expenses based on take-home income.</p>
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">
+          Monthly Payment &amp; Total Interest by Loan Term ($320,000 loan at 6.5% APR)
+        </h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+          This comparison shows how choosing a shorter term raises your monthly payment but slashes
+          the total interest you pay over the life of the loan.
+        </p>
         <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
           <table className="w-full text-sm border-collapse">
             <thead className="bg-slate-100 dark:bg-slate-800">
               <tr>
-                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Budget Category</th>
-                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Percentage of Income</th>
-                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example (Monthly Income: $5,000)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Term</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment (P&amp;I)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Interest Paid</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Paid</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Essential Needs (housing, food, utilities, insurance, transportation)</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50%</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,500</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal Wants (dining out, entertainment, hobbies, shopping)</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30%</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,500</td>
-                </tr>
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Savings & Debt Repayment (emergency fund, retirement, loan payments)</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000</td>
-                </tr>
+              <tr className="bg-white dark:bg-slate-900">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15 years</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,787</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$181,600</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$501,600</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-800/50">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20 years</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,385</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$252,500</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$572,500</td>
+              </tr>
+              <tr className="bg-white dark:bg-slate-900">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30 years</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,023</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$408,200</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$728,200</td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">This is a guideline; adjust percentages based on personal circumstances. Those with high debt may allocate more to debt repayment; those with stable income may increase savings.</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+          Figures are principal and interest only and assume a fixed rate. Moving from a 30-year to a
+          15-year term on this loan saves about $226,600 in interest.
+        </p>
       </section>
 
-      {/* TABLE: Average Monthly Household Expenses by Category (2024-2025) */}
+      {/* TABLE 2: Down payment impact */}
       <section id="table-2" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Average Monthly Household Expenses by Category (2024-2025)</h2>
-        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table displays typical monthly spending benchmarks for a family of four earning $75,000 annually, helping you compare your budget planner entries to national averages.</p>
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">
+          Impact of Down Payment ($400,000 home, 6.5% APR, 30 years)
+        </h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+          A larger down payment lowers your loan amount, your monthly payment, your total interest,
+          and helps you avoid PMI once you reach 20% down.
+        </p>
         <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
           <table className="w-full text-sm border-collapse">
             <thead className="bg-slate-100 dark:bg-slate-800">
               <tr>
-                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expense Category</th>
-                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Monthly Cost</th>
-                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Percentage of $6,250 Take-Home</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Down Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">% Down</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Loan Amount</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Monthly Payment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">PMI Required?</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Housing (rent/mortgage, property tax, insurance, maintenance)</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,875</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30%</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Groceries & Food</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$750</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12%</td>
-                </tr>
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Utilities (electricity, gas, water, internet)</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$275</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.4%</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Transportation (car payment, gas, insurance, maintenance)</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$625</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
-                </tr>
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Childcare & Education</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$500</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8%</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Insurance (health, auto, home, life)</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.4%</td>
-                </tr>
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal & Entertainment</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$375</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6%</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dining Out & Subscriptions</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$250</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4%</td>
-                </tr>
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Savings & Emergency Fund</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$625</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Miscellaneous & Buffer</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$175</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.8%</td>
-                </tr>
+              <tr className="bg-white dark:bg-slate-900">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$14,000</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5%</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$386,000</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,440</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-800/50">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$40,000</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10%</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$360,000</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,275</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Yes</td>
+              </tr>
+              <tr className="bg-white dark:bg-slate-900">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$80,000</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20%</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$320,000</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,023</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-800/50">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">$120,000</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30%</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$280,000</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,770</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No</td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Figures are U.S. Bureau of Labor Statistics 2024 averages. Your actual expenses will vary based on location, family size, and lifestyle. Urban areas typically spend 15-25% more on housing and transportation.</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+          Reaching 20% down eliminates PMI, which can save $150–$400 per month on a loan of this
+          size. Payments shown are principal and interest only.
+        </p>
       </section>
 
-      {/* TABLE: Monthly Budget Planner: Suggested Category Limits & Goals */}
+      {/* TABLE 3: How a payment splits over time */}
       <section id="table-3" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Monthly Budget Planner: Suggested Category Limits & Goals</h2>
-        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table provides recommended spending caps and savings targets for each major budget category to help you set realistic goals in your monthly planner.</p>
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">
+          How a Payment Splits Over Time ($320,000 loan, 6.5%, 30 years)
+        </h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+          Every payment is the same $2,023, but the share going to principal grows each year while
+          the interest share falls—this is the heart of amortization.
+        </p>
         <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
           <table className="w-full text-sm border-collapse">
             <thead className="bg-slate-100 dark:bg-slate-800">
               <tr>
-                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Category</th>
-                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Monthly Limit</th>
-                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Common Overspending Risk</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Payment #</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toward Interest</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Toward Principal</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Remaining Balance</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Groceries (family of 4)</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$600-$800</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Eating out unplanned, impulse purchases</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Entertainment & Hobbies</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200-$400</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Subscriptions, streaming, event tickets</td>
-                </tr>
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Dining Out & Coffee</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150-$300</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Convenience purchases, daily habits</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Utilities</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150-$250</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Seasonal increases, inefficient usage</td>
-                </tr>
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Personal Care & Clothing</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$100-$200</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Sales, impulse fashion buys</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Emergency Fund Contribution</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400-$1,000</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Deprioritizing for immediate wants</td>
-                </tr>
-                <tr className="bg-white dark:bg-slate-900">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Debt Repayment (beyond minimum)</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$200-$500</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Insufficient allocation to principal</td>
-                </tr>
-                <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Transportation</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$400-$600</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fuel volatility, maintenance surprises</td>
-                </tr>
+              <tr className="bg-white dark:bg-slate-900">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Month 1</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,733</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$290</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$319,710</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-800/50">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Month 120 (year 10)</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,470</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$553</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$270,600</td>
+              </tr>
+              <tr className="bg-white dark:bg-slate-900">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Month 240 (year 20)</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$938</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,085</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$171,100</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-800/50">
+                <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Month 360 (final)</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$11</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$2,012</td>
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$0</td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Limits depend on income and regional costs. Using your monthly budget planner with these targets creates accountability and prevents category creep.</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+          It takes roughly 19 years on a 30-year loan before more of your payment goes to principal
+          than to interest. Extra principal payments accelerate this dramatically.
+        </p>
       </section>
 
       {/* TIPS */}
       <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
         <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
         <ul className="list-disc pl-5 space-y-2">
-          <li className="text-sm text-slate-700 dark:text-slate-300">Use the 50/30/20 rule as your starting framework — allocate 50% of after-tax income to needs, 30% to wants, and 20% to savings and debt repayment. Adjust these percentages within your planner if your situation requires more debt payoff (increase to 40%) or aggressive saving (increase to 30%), but stay disciplined about the total.</li>
-          <li className="text-sm text-slate-700 dark:text-slate-300">Track every expense in your budget planner within 24-48 hours of spending to maintain accuracy and catch errors early. Studies show that people who log expenses within 2 days are 85% more likely to stick to their budget than those who log weekly or monthly.</li>
-          <li className="text-sm text-slate-700 dark:text-slate-300">Create a separate 'miscellaneous' category with a 5% buffer (typically $250-$500 for most households) to capture unexpected small expenses without derailing your entire budget. This prevents frustration and maintains realistic planning for irregular one-off costs.</li>
-          <li className="text-sm text-slate-700 dark:text-slate-300">Review and adjust your budget planner monthly, not annually. Set a recurring calendar reminder for the first Sunday of each month to review the previous month's actual spending, celebrate wins in under-budget categories, and redistribute funds from surplus areas to deficit areas.</li>
-          <li className="text-sm text-slate-700 dark:text-slate-300">Automate savings by scheduling transfers to a separate savings account immediately after payday—treat 'savings' as a non-negotiable expense in your planner. Automating even $300-500 monthly removes willpower from the equation and ensures consistent progress toward your emergency fund or financial goals.</li>
-          <li className="text-sm text-slate-700 dark:text-slate-300">Identify your personal spending triggers within the planner and proactively address them. If your entertainment category consistently overspends by $100-200, investigate whether it's streaming subscriptions, concert tickets, or dining out—then set sub-category limits to control that specific leak.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">
+            Aim for a 20% down payment to avoid PMI—on a $400,000 home that means $80,000 down, and
+            skipping PMI can save $150–$400 every month until you would otherwise reach 20% equity.
+          </li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">
+            Compare a 15-year and a 30-year term in the calculator above—the shorter term costs more
+            monthly but can save you well over $200,000 in interest on a typical loan if you can
+            afford the higher payment.
+          </li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">
+            Add an extra principal payment when you can—because early payments are mostly interest,
+            even $200/month extra early in the loan can cut years off the term and tens of thousands
+            off total interest.
+          </li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">
+            Remember to budget beyond principal and interest—property taxes, homeowners insurance,
+            HOA dues, and PMI can add 25%–40% on top of the payment this calculator shows.
+          </li>
         </ul>
       </section>
 
@@ -633,178 +655,167 @@ export default function MonthlyBudgetPlannerCalculator() {
         <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
         <div className="space-y-4">
           <div>
-            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using Gross Income Instead of Net Income</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Many people budget based on gross salary without subtracting taxes, Social Security, and health insurance, leading to overspending within weeks. Always use your net (take-home) income as the foundation for your monthly budget planner to avoid unrealistic allocations.</p>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
+              Treating the P&amp;I payment as your full housing cost
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              This calculator shows principal and interest only. Your real monthly outlay also
+              includes property taxes, homeowners insurance, and often PMI—commonly adding 25%–40%
+              on top of the number shown here.
+            </p>
           </div>
           <div>
-            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting Irregular or Annual Expenses</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Failing to account for car insurance, property taxes, holiday gifts, or annual subscriptions creates budget surprises that derail planning. Divide annual irregular expenses by 12 and add them as monthly line items in your planner to smooth cash flow.</p>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
+              Entering the home price as the loan amount
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Your loan is the home price minus your down payment. This calculator subtracts the down
+              payment for you, so enter the full purchase price in the Home Price field and your cash
+              down separately.
+            </p>
           </div>
           <div>
-            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Setting Unrealistic Spending Limits</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Many budgeters allocate $300 monthly to groceries when they historically spend $600, leading to immediate budget failure and discouragement. Use 3-6 months of actual bank statements to establish realistic baseline categories, then adjust downward by 5-10% as a stretch goal.</p>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
+              Choosing the longest term just for a lower payment
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              A 30-year term has the lowest monthly payment but by far the highest total interest.
+              Always look at the total interest figure, not just the monthly payment, before locking
+              in a term.
+            </p>
           </div>
           <div>
-            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not Updating Your Budget for Life Changes</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Significant events like job changes, marriage, children, or relocation alter income and expenses dramatically, but many people continue using outdated budget templates. Review and rebuild your budget planner whenever major life events occur to ensure all categories reflect current reality.</p>
-          </div>
-          <div>
-            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Neglecting the Emergency Fund</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Prioritizing wants over emergency savings leaves you vulnerable to debt when unexpected expenses arise. Treat emergency fund contributions (10-15% of income) as a non-negotiable line item in your planner, even if other categories must shrink temporarily.</p>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
+              Using an advertised rate instead of your actual quoted rate
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Headline rates assume excellent credit and specific conditions. Get a personalized rate
+              quote and enter that into the calculator—a difference of even 0.5% meaningfully changes
+              your payment and total cost.
+            </p>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
       <section id="faq" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Frequently Asked Questions
+        </h2>
         <div className="space-y-6">
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What income should I include in my monthly budget planner?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Include all regular monthly income sources such as salary, wages, freelance earnings, rental income, and investment returns. Use your net income (after taxes) rather than gross income for more accurate budgeting. If your income varies, use the average of the last 3-6 months to create a realistic baseline.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I categorize my expenses in the monthly budget planner?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Organize expenses into fixed costs (rent, insurance, loan payments) and variable costs (groceries, utilities, entertainment). The typical budget breakdown follows the 50/30/20 rule: 50% for needs, 30% for wants, and 20% for savings and debt repayment. Your monthly budget planner should track at least 8-10 spending categories for better insights.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended emergency fund percentage in a monthly budget?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Financial experts recommend allocating 10-15% of your monthly budget to emergency savings, building toward 3-6 months of living expenses in a dedicated fund. For a household with $5,000 monthly expenses, this means saving $500-750 per month until reaching $15,000-30,000 in emergency reserves. This buffer protects against job loss, medical emergencies, or unexpected repairs.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I update my monthly budget planner?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Review and update your budget monthly, ideally within the first week of each month before spending occurs. Track actual spending against budgeted amounts and adjust categories as needed based on seasonal changes or life events. A quarterly deeper review (every 3 months) helps identify spending trends and refine long-term goals.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the monthly budget planner help me reduce debt?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the budget planner helps by showing exactly how much you can allocate to debt payments each month. Using the avalanche method (highest interest rate first) or snowball method (smallest balance first), you can direct extra funds from the planner toward principal payments. Even adding $100-200 monthly toward debt can reduce repayment time by 12-24 months on average.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What percentage should groceries represent in my monthly budget?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The USDA recommends spending 8-12% of household income on groceries for a moderate-cost plan. For a household earning $5,000 monthly, this equates to $400-600 in groceries. Using your monthly budget planner to track this category helps identify overspending and opportunities to optimize food costs.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I handle irregular or seasonal expenses in my budget planner?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Divide annual irregular expenses (car insurance, holidays, property taxes) by 12 and add them as monthly line items. For example, if car insurance costs $1,200 annually, allocate $100 monthly in your budget. This smooths cash flow and prevents budget surprises during peak spending months.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a healthy savings rate to include in my monthly budget?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Financial advisors recommend saving 15-20% of gross income monthly, though 10% is a reasonable starting point. For someone earning $6,000 monthly, this means saving $600-1,200. Your budget planner should prioritize allocating savings before discretionary spending to automate wealth building.</p>
-          </div>
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How can I use the monthly budget planner to track spending in real-time?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Enter budgeted amounts upfront, then log actual expenses daily or weekly to see your spending against targets. Most planners show remaining balance for each category, letting you adjust spending mid-month. Reviewing daily for just 2-3 minutes increases awareness and reduces budget overruns by 15-30%.</p>
-          </div>
+          {faqs.map((faq, idx) => (
+            <div key={idx} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
+                {faq.question}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* REFERENCES */}
       <section id="references" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
-        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2025</p>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References &amp; Resources
+        </h2>
         <ul className="space-y-4">
           <li>
-            <a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Federal Reserve Economic Data (FRED) — Consumer Expenditure Survey</a>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official U.S. economic data on average household spending patterns and income statistics used to benchmark budget allocations.</p>
+            <a href="https://www.consumerfinance.gov/owning-a-home/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+              Consumer Financial Protection Bureau — Owning a Home
+            </a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Official government guides on mortgages, closing costs, and comparing loan offers by APR.
+            </p>
           </li>
           <li>
-            <a href="https://www.consumerfinance.gov/consumer-tools/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Consumer Financial Protection Bureau (CFPB) — Budgeting Tools & Resources</a>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government-backed guidance on budgeting best practices, expense tracking, and creating realistic monthly spending plans.</p>
+            <a href="https://www.federalreserve.gov/releases/h15/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+              Federal Reserve — Selected Interest Rates
+            </a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Authoritative source for current benchmark interest rate data that influences mortgage rates.
+            </p>
           </li>
           <li>
-            <a href="https://www.bls.gov/news.release/cesan.nr0.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">U.S. Bureau of Labor Statistics — Average Energy Costs & Consumer Expenditure</a>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official statistics on typical household expenses by category, region, and family size to validate budget planner benchmarks.</p>
+            <a href="https://www.hud.gov/topics/buying_a_home" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+              U.S. Department of Housing and Urban Development — Buying a Home
+            </a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+              HUD resources on FHA loans, down payment assistance, and the home-buying process.
+            </p>
           </li>
           <li>
-            <a href="https://www.investopedia.com/articles/personal-finance/032916/how-create-budget.asp" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Investopedia — How to Create a Budget (50/30/20 Rule Explained)</a>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive guide to the 50/30/20 budgeting framework and practical strategies for implementing a monthly budget plan.</p>
+            <a href="https://www.fanniemae.com/education" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+              Fannie Mae — Homebuyer Education
+            </a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Educational materials on mortgage qualification, PMI, and understanding amortization.
+            </p>
           </li>
         </ul>
       </section>
-
     </div>
   );
 
   return (
     <CalculatorVerticalLayout
-      title="Monthly Budget Planner"
-      description="Estimate your monthly surplus, savings rate, and how long it may take to reach a savings goal based on your income and expenses."
+      title="Mortgage Payment & Amortization Calculator"
+      description="Estimate your monthly mortgage payment and see the full amortization schedule. Enter home price, down payment, rate, and term to view principal, interest, and total cost."
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[
-        { id: "introduction", label: "How this planner works" },
-        { id: "formula", label: "Formula & calculations" },
-        { id: "factors", label: "What affects your budget" },
-        { id: "faq", label: "Frequently asked questions" },
-        { id: "references", label: "References & resources" },
+        { id: "guide", label: "How to Use This Calculator" },
+        { id: "table-1", label: "Payment by Loan Term" },
+        { id: "table-2", label: "Down Payment Impact" },
+        { id: "table-3", label: "How a Payment Splits Over Time" },
+        { id: "tips", label: "Pro Tips" },
+        { id: "mistakes", label: "Common Mistakes" },
+        { id: "faq", label: "Frequently Asked Questions" },
+        { id: "references", label: "References & Resources" },
       ]}
       formula={{
-        title: "Monthly budget formulas",
-        formula: "Net income = Income − Expenses",
+        formula: "M = P[r(1+r)^n] / [(1+r)^n – 1]",
         variables: [
-          {
-            symbol: "Income",
-            description: "Your total take-home pay per month.",
-          },
-          {
-            symbol: "Expenses",
-            description: "All monthly bills, living costs, and debt payments.",
-          },
-          {
-            symbol: "Net income",
-            description:
-              "What is left after expenses and potentially available for savings.",
-          },
+          { symbol: "M", description: "Monthly payment (principal & interest)" },
+          { symbol: "P", description: "Loan amount = home price − down payment" },
+          { symbol: "r", description: "Monthly interest rate (annual rate ÷ 12)" },
+          { symbol: "n", description: "Number of payments (loan term in years × 12)" },
         ],
+        title: "Mortgage Payment Formula",
       }}
       example={{
-        title: "Example – planning a savings goal",
+        title: "Example Calculation",
         scenario:
-          "Imagine you bring home $5,000 per month after tax, your total monthly expenses are $3,200, and you want to save $18,000.",
+          "A $400,000 home with an $80,000 (20%) down payment, a 6.5% interest rate, and a 30-year term.",
         steps: [
           {
-            label: "Step 1 – Net income",
-            calculation: "Net income = $5,000 − $3,200 = $1,800",
-            explanation:
-              "This is the amount you could allocate to savings, extra debt payments, or other goals.",
+            label: "Step 1",
+            calculation: "Loan amount: $400,000 − $80,000 = $320,000",
+            explanation: "Subtract the down payment from the home price to get the principal.",
           },
           {
-            label: "Step 2 – Savings rate",
-            calculation: "Savings rate = ($1,800 ÷ $5,000) × 100 = 36%",
-            explanation:
-              "You are setting aside about 36% of your take-home pay each month.",
+            label: "Step 2",
+            calculation: "Monthly rate: 6.5% ÷ 12 = 0.0054167; Payments: 30 × 12 = 360",
+            explanation: "Convert the annual rate to monthly and the term to months.",
           },
           {
-            label: "Step 3 – Months to goal",
-            calculation: "Months to goal = $18,000 ÷ $1,800 = 10 months",
-            explanation:
-              "If you keep this budget, you could reach your $18,000 goal in about 10 months.",
+            label: "Step 3",
+            calculation:
+              "M = 320000[0.0054167(1.0054167)^360] / [(1.0054167)^360 − 1] ≈ $2,023",
+            explanation: "Apply the amortization formula to get the monthly principal & interest.",
           },
         ],
         result:
-          "In this scenario, maintaining the same income and expenses would let you reach your savings goal in roughly 10 months.",
+          "The monthly principal-and-interest payment is approximately $2,023, with about $408,200 paid in total interest over the 30-year term.",
       }}
       relatedCalculators={[
-        {
-          title: "Loan payment calculator",
-          url: "/financial/loan-payment",
-          icon: "💳",
-        },
-        {
-          title: "Mortgage payment & amortization",
-          url: "/financial/mortgage-amortization",
-          icon: "🏠",
-        },
-        {
-          title: "Extra payments & payoff time",
-          url: "/financial/extra-payments-payoff",
-          icon: "📈",
-        },
-        {
-          title: "Debt payoff snowball planner",
-          url: "/financial/debt-snowball-planner",
-          icon: "❄️",
-        },
+        { title: "Auto Loan Calculator", url: "/financial/auto-loan", icon: "🚗" },
+        { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+        { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+        { title: "Extra Payments & Payoff Time Calculator", url: "/financial/extra-payments-payoff", icon: "📈" },
+        { title: "HELOC Payment Estimator", url: "/financial/heloc-payment-estimator", icon: "🏦" },
+        { title: "House Affordability Calculator", url: "/financial/house-affordability", icon: "🏠" },
       ]}
     />
   );
