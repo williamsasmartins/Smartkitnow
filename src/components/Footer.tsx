@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { siX, siInstagram, siWhatsapp, siFacebook } from "simple-icons";
+import { siX, siInstagram, siWhatsapp, siFacebook } from "@/lib/brandIcons";
 import logoImage from "@/assets/logo-skn.png";
 import { FORMSPREE_ENDPOINT } from "@/config/contact";
 

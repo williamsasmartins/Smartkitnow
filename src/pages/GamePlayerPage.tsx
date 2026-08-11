@@ -1,7 +1,14 @@
+import { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import NotFound from "@/pages/NotFound";
 import { getGameBySlug } from "@/data/gameRegistry";
 import GameLayout from "@/components/templates/GamePageLayout";
+
+const GameLoadingFallback = () => (
+    <div className="flex items-center justify-center py-20 text-slate-500 dark:text-slate-400">
+        Loading game…
+    </div>
+);
 
 export default function GamePlayerPage() {
     const { slug } = useParams();
@@ -15,7 +22,11 @@ export default function GamePlayerPage() {
 
     // Direct render for games that handle their own layout (page components, not just board components)
     if (game.useCustomLayout) {
-        return <GameComponent />;
+        return (
+            <Suspense fallback={<GameLoadingFallback />}>
+                <GameComponent />
+            </Suspense>
+        );
     }
 
     return (
@@ -24,7 +35,11 @@ export default function GamePlayerPage() {
             description={game.description}
             slug={game.slug}
             category={game.category}
-            gameComponent={<GameComponent />}
+            gameComponent={
+                <Suspense fallback={<GameLoadingFallback />}>
+                    <GameComponent />
+                </Suspense>
+            }
             instructions={
                 <div className="space-y-4">
                     <p>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Mail } from "lucide-react";
-import { siX, siWhatsapp, siFacebook, siLinkedin, siTelegram } from "simple-icons";
+import { siX, siWhatsapp, siFacebook, siLinkedin, siTelegram } from "@/lib/brandIcons";
 
 type Props = { url: string; title?: string };
 

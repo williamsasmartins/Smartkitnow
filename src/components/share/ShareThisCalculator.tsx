@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { siX, siWhatsapp, siFacebook, siLinkedin, siReddit, siTelegram } from "simple-icons";
+import { siX, siWhatsapp, siFacebook, siLinkedin, siReddit, siTelegram } from "@/lib/brandIcons";
 import { Mail } from "lucide-react";
 
 export default function ShareThisCalculator() {
