@@ -6,6 +6,7 @@ import { REGISTRY, calcLink } from "../src/data/calculatorRegistry";
 // gameRegistry.tsx cannot be imported here because it contains React component imports.
 import { GAME_SLUGS } from "../src/data/gameSlugs";
 import { smartTipsCategories } from "../src/data/smartTipsData";
+import { blogPosts } from "../src/data/blogData";
 
 const ORIGIN = "https://www.smartkitnow.com";
 
@@ -24,6 +25,7 @@ const STATIC_URLS = [
   // Features
   "/smart-tips",
   "/games",
+  "/blog",
   "/daily-quotes",
   "/daily-quotes/horoscopo"
 ];
@@ -131,6 +133,11 @@ function main() {
     for (const tip of cat.tips) {
       pushUrl(`/smart-tip/${tip.slug}`, "0.4", "monthly");
     }
+  }
+
+  // Blog
+  for (const post of blogPosts) {
+    pushUrl(`/blog/${post.slug}`, "0.6", "monthly");
   }
 
   parts.push(`</urlset>`);

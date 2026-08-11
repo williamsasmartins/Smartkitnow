@@ -44,6 +44,7 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
     title: "Explore",
     links: [
       { label: "Games Zone", to: "/games" },
+      { label: "Blog", to: "/blog" },
       { label: "Daily Quotes", to: "/daily-quotes" },
       { label: "Smart Tips", to: "/smart-tips" },
       { label: "Sports", to: "/sports" },

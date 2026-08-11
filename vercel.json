@@ -123,8 +123,6 @@
     { "source": "/sl",       "destination": "/api/404" },
     { "source": "/sl/:path*","destination": "/api/404" },
 
-    { "source": "/blog",        "destination": "/api/404" },
-    { "source": "/blog/:path*", "destination": "/api/404" },
     { "source": "/tools",        "destination": "/api/404" },
     { "source": "/tools/:path*", "destination": "/api/404" },
     { "source": "/calculator",        "destination": "/api/404" },

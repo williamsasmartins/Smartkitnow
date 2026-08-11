@@ -116,6 +116,11 @@
     <priority>0.68</priority>
   </url>
   <url>
+    <loc>https://www.smartkitnow.com/blog</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
     <loc>https://www.smartkitnow.com/daily-quotes</loc>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
@@ -4694,5 +4699,10 @@
     <loc>https://www.smartkitnow.com/smart-tip/document-repairs-maintenance-photos-dates</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/how-to-calculate-your-mortgage-payment</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

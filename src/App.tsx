@@ -52,6 +52,9 @@ const SmartTips = lazy(() => import("@/pages/SmartTips"));
 const SmartTipsSubCategory = lazy(() => import("@/pages/SmartTipsSubCategory"));
 const SmartTipDetail = lazy(() => import("@/pages/SmartTipDetail"));
 
+const BlogIndex = lazy(() => import("@/pages/BlogIndex"));
+const BlogPost = lazy(() => import("@/pages/BlogPost"));
+
 const DailyQuotesPage = lazy(() => import("@/pages/DailyQuotesPage"));
 const DailyHoroscopeCalculator = lazy(() => import("@/components/calculators/DailyQuotes/DailyHoroscopeCalculator"));
 const CategoryIndex = lazy(() => import("@/pages/CategoryIndex"));
@@ -93,6 +96,10 @@ export default function App() {
               <Route path="/smart-tips" element={<SmartTips />} />
               <Route path="/smart-tips/:subcategory" element={<SmartTipsSubCategory />} />
               <Route path="/smart-tip/:slug" element={<SmartTipDetail />} />
+
+              {/* Blog */}
+              <Route path="/blog" element={<BlogIndex />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
 
 
 
