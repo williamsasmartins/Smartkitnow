@@ -380,6 +380,74 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Compare an EV and a gas car over five years the right way: purchase price, incentives, fuel, maintenance, insurance, and depreciation. Free ownership-cost calculators.",
   },
+  {
+    slug: "how-to-calculate-your-car-loan-payment",
+    title: "How to Calculate Your Car Loan Payment (With a Real Example)",
+    excerpt:
+      "A $30,000 auto loan at 6.5% for 5 years runs about $587 a month. Here's the formula behind that number, a worked example, and how term and down payment change what you pay.",
+    category: "Personal Finance",
+    date: "2026-08-11",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "A $30,000 auto loan at 6.5% APR over 60 months comes out to about $587 a month, with roughly $5,220 in total interest by the time it's paid off. That number comes from the same amortization formula used for any installment loan, but auto loans add a few extra pieces — trade-in value, sales tax, and fees — that change what you're actually financing. This guide walks through the math with real figures, shows how term length trades a lower payment for more interest, and points you to calculators that do the arithmetic for you.",
+    sections: [
+      {
+        heading: "The formula behind every auto loan payment",
+        paragraphs: [
+          "Car loans use the standard fixed-rate installment formula: M = P[r(1+r)^n] / [(1+r)^n − 1]. M is the monthly payment, P is the amount financed, r is the monthly interest rate (your annual APR divided by 12), and n is the number of monthly payments (loan term in years times 12).",
+          "It's the identical formula behind a mortgage — only the size and term of the loan differ. A car loan usually runs 3 to 7 years instead of 15 or 30, which is why the interest portion is smaller in dollar terms even though the rate is often similar or higher than a mortgage rate.",
+        ],
+      },
+      {
+        heading: "A worked example: $30,000 over 5 years",
+        paragraphs: [
+          "Finance $30,000 at 6.5% APR for 60 months. The monthly rate is 6.5% ÷ 12 = 0.5417%, and there are 60 payments. Running those through the formula gives a monthly payment of about $587. Over 60 months you pay roughly $35,220 total, meaning about $5,220 of that is interest.",
+          "Stretch the same $30,000 loan to 72 months at the same rate and the payment drops to about $504 a month — a saving of roughly $83 a month. But total interest climbs to about $6,309, which is around $1,090 more than the 5-year loan. The lower payment isn't free; you're renting the extra room in your budget by paying more for the car overall.",
+        ],
+      },
+      {
+        heading: "What actually goes into your loan amount",
+        paragraphs: [
+          "The amount you finance is rarely just the sticker price. Say you're buying a $32,000 car with a $4,000 down payment and a $3,000 trade-in, and your state charges 6% sales tax on the price after the trade-in credit. Tax works out to 6% × ($32,000 − $3,000) = 6% × $29,000 = $1,740.",
+          "Your amount financed is then $32,000 − $4,000 down − $3,000 trade-in + $1,740 tax = $26,740. Documentation fees, title and registration charges, and any add-ons like an extended warranty typically get rolled in the same way, so it's worth listing every line item before you assume you know your real loan amount.",
+        ],
+      },
+      {
+        heading: "Term length and down payment are the two levers you control",
+        paragraphs: [
+          "A bigger down payment or trade-in lowers the amount financed directly, which lowers both the monthly payment and the total interest — no trade-off involved. On the $30,000 example above, adding $3,000 more down (financing $27,000 instead) at the same rate and term brings the payment down to about $528 a month, a saving of roughly $59 a month with less interest paid overall.",
+          "Term length is a genuine trade-off, not a free lunch: shorter terms mean higher payments but far less interest, while longer terms mean lower payments but more interest and a longer stretch where you can owe more than the car is worth. A widely used rule of thumb is the 20/4/10 guideline — aim for at least 20% down, a loan term no longer than 4 years, and total monthly transportation costs (payment, insurance, and fuel combined) under 10% of your gross income.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How much should I put down on a car?",
+        answer:
+          "20% is a common target, especially on a new car, because it helps offset the steep first-year depreciation and keeps you from owing more than the car is worth. Any amount you put down still helps — it reduces the loan principal dollar for dollar, which lowers both your payment and your total interest.",
+      },
+      {
+        question: "Does a longer loan term actually save me money?",
+        answer:
+          "It lowers your monthly payment but not your total cost. In the example above, moving from a 60-month to a 72-month term on a $30,000 loan cuts the payment by about $83 a month but adds roughly $1,090 in extra interest over the life of the loan. Choose the shortest term your budget can comfortably handle.",
+      },
+      {
+        question: "Is a car loan calculated the same way as a mortgage?",
+        answer:
+          "Yes — both use the same fixed-rate amortization formula with principal, rate, and term as the inputs. The difference is what makes up the principal: a car loan's amount financed typically includes sales tax, fees, and trade-in value, while a mortgage's principal is simply the home price minus the down payment.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Auto Loan Calculator", url: "/financial/auto-loan", icon: "🚗" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Total Cost of Ownership Calculator", url: "/automotive/tco-total-cost-ownership", icon: "🚙" },
+      { title: "Trip Fuel Cost Calculator", url: "/automotive/trip-fuel-cost", icon: "⛽" },
+    ],
+    seoTitle: "How to Calculate Your Car Loan Payment (Real Example)",
+    seoDescription:
+      "See how car loan payments are calculated: the formula, a worked $30k example, how sales tax and trade-in affect it, and why term length is a real trade-off.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
