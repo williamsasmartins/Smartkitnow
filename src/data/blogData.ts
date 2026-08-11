@@ -448,6 +448,74 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "See how car loan payments are calculated: the formula, a worked $30k example, how sales tax and trade-in affect it, and why term length is a real trade-off.",
   },
+  {
+    slug: "how-much-house-can-you-afford-28-36-rule",
+    title: "How Much House Can You Afford? The 28/36 Rule Explained",
+    excerpt:
+      "Lenders cap your housing payment at 28% of income and your total debt at 36% — whichever number is lower wins. Here's how to run both and see what actually limits your budget.",
+    category: "Personal Finance",
+    date: "2026-08-11",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "The 28/36 rule caps your monthly house payment at 28% of gross income and your total debt payments at 36% — whichever produces the smaller number is your real budget. On a $95,000 household income with $500 in existing monthly debt, that works out to about $2,217 a month for housing, enough to support roughly a $311,000 home with 10% down. This guide breaks down where those two percentages come from, runs the math on two different debt loads, and shows why the number that limits you isn't always the one you'd expect.",
+    sections: [
+      {
+        heading: "Two ratios, and the lower one wins",
+        paragraphs: [
+          "The 28/36 rule is a mortgage underwriting guideline built from two separate debt-to-income ratios, and it dates back to standards conventional lenders and mortgage insurers have used for decades to judge how much a household can safely borrow. The front-end ratio caps your housing payment — principal, interest, property taxes, homeowners insurance, and any HOA dues — at 28% of your gross monthly income, meaning income before taxes are withheld. The back-end ratio caps all recurring debt payments combined, housing included, at 36% of that same income.",
+          "Lenders check both because the two numbers measure different risks. A person with no car payment or student loan can safely stretch closer to the 28% ceiling, while someone carrying $700 a month in other debt has far less room left before hitting the 36% back-end cap regardless of how much they earn. Underwriters verify the inputs with pay stubs, W-2s or tax returns, and a credit report pulling your actual monthly obligations — so whichever ratio produces the smaller housing budget is the one that actually governs what you can afford, and you always calculate both and take the lower figure.",
+        ],
+      },
+      {
+        heading: "Running the numbers on a $95,000 income",
+        paragraphs: [
+          "Start with gross monthly income: $95,000 a year is $7,916.67 a month. The front-end cap is 28% of that, or $2,217. The back-end cap is 36%, or $2,850 — but that ceiling covers all debt, so subtract $500 in existing monthly payments (a car loan, say) and only $2,350 is left over for housing. Comparing $2,217 to $2,350, the front-end ratio produces the smaller number, so it sets the budget: $2,217 a month for the entire housing payment, taxes and insurance included.",
+          "Set aside roughly 18% of that for property taxes, homeowners insurance, and PMI — about $399 a month — and $1,818 remains for principal and interest. At a 6.75% fixed rate over 30 years, that payment supports a loan of about $280,250. Add a 10% down payment on top of that loan and you land on a home price near $311,400, with roughly $31,100 due at closing for the down payment alone before closing costs.",
+        ],
+      },
+      {
+        heading: "Why more debt hurts more than a lower income",
+        paragraphs: [
+          "Keep the same $95,000 income but raise existing monthly debt from $500 to $850 — say a car payment plus a student loan bill. The front-end cap doesn't move; it's still $2,217, because it only looks at income. But the back-end cap does move: $2,850 minus $850 leaves only $2,000 available for housing. Now the back-end ratio produces the smaller number, so it takes over as the binding constraint, cutting the housing budget from $2,217 down to $2,000 — a $217 drop caused entirely by $350 more in debt.",
+          "Running that $2,000 through the same steps — 18% to taxes and insurance, the remainder to principal and interest at 6.75% over 30 years — supports a loan of about $252,850 and a home price near $280,950 with 10% down. That's roughly $30,400 less house for $350 more in monthly debt, a bigger swing than a comparable change in income would cause. Debt eats housing budget at closer to a dollar-for-dollar rate once it pushes the back-end ratio below the front-end one, while income only affects the budget indirectly, through the 28% and 36% multipliers.",
+        ],
+      },
+      {
+        heading: "How to raise your number",
+        paragraphs: [
+          "If the back-end ratio is what's limiting you, paying down or paying off a car loan or credit card balance frees up back-end room directly — every $100 in monthly debt payments you eliminate adds roughly $100 back to your housing cap, dollar for dollar. A student loan moved onto an income-driven repayment plan can also lower the monthly figure lenders count against you, which is worth modeling with an amortization tool before you start shopping for a rate.",
+          "If the front-end ratio is the constraint instead, a larger down payment shrinks the loan itself, and a better interest rate stretches the same monthly payment further — a full percentage point off the rate can support tens of thousands more in loan amount for an identical payment. Some loan programs allow back-end ratios above 36%, up to roughly 43-50% for certain government-backed loans, but a higher ratio leaves less monthly breathing room if income drops, a rate resets, or an unexpected repair hits — budget an extra 1-2% of the home's value per year for maintenance on top of the mortgage — so treat 28/36 as the comfortable target even when a lender is willing to approve more.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Do all lenders actually use the 28/36 rule?",
+        answer:
+          "It's a widely used guideline rather than a universal requirement. Conventional loans often follow it closely, while FHA, VA, and some other programs allow higher back-end ratios — sometimes up to 45-50% for well-qualified borrowers. Treat 28/36 as a conservative, budget-friendly target even if your specific lender permits more.",
+      },
+      {
+        question: "What counts toward the 36% back-end figure?",
+        answer:
+          "Your projected housing payment plus every recurring debt obligation that shows on your credit report: car loans, student loans, minimum credit card payments, personal loans, and child support or alimony. It doesn't include everyday expenses like groceries, utilities, or subscriptions — those matter for your personal budget but aren't part of the lender's DTI calculation.",
+      },
+      {
+        question: "Does a bigger down payment always increase how much house I can afford?",
+        answer:
+          "It lowers your loan amount and monthly principal and interest, which helps the front-end ratio, but it doesn't change your income or existing debt. If the back-end ratio is already your binding constraint because of other debt payments, a larger down payment helps less than paying down that debt would.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "How Much House Can I Afford? Calculator", url: "/financial/house-affordability", icon: "🏡" },
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Student Loan Repayment Calculator", url: "/financial/student-loan-repayment", icon: "🎓" },
+    ],
+    seoTitle: "How Much House Can You Afford? The 28/36 Rule",
+    seoDescription:
+      "Learn the 28/36 debt-to-income rule for home affordability, run the math on real numbers, and see why existing debt can limit you more than income does.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
