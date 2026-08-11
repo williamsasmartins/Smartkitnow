@@ -105,15 +105,6 @@ export const timeEntries: CalculatorEntry[] = [
       urlStyle: "flat"
     },
   {
-      slug: "world-clock",
-      title: "World Clock (list of cities)",
-      category: "time",
-      subcategory: "time-zones-clocks",
-      description: "Display the current time for a list of major global cities. Quick reference for time differences.",
-      loader: () => import("@/components/calculators/Time/WorldClockCalculator"),
-      urlStyle: "flat"
-    },
-  {
       slug: "meeting-planner-time-zones",
       title: "Meeting Planner (common time across time zones)",
       category: "time",

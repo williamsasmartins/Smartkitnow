@@ -24,15 +24,6 @@ export const everydayEntries: CalculatorEntry[] = [
       urlStyle: "flat"
     },
   {
-      slug: "qr-code-generator",
-      title: "QR Code Generator",
-      category: "everyday",
-      subcategory: "utilities",
-      description: "Gere QR Codes gratuitos para URLs e textos. Baixe em PNG ou SVG com tamanho, margem e correção de erro configuráveis.",
-      loader: () => import("@/components/calculators/EverydayLife/QrCodeGeneratorCalculator"),
-      urlStyle: "flat"
-    },
-  {
       slug: "cleaning-dilution-ratio",
       title: "Cleaning Dilution Ratio Calculator",
       category: "everyday",
@@ -132,15 +123,6 @@ export const everydayEntries: CalculatorEntry[] = [
       urlStyle: "flat"
     },
   {
-      slug: "bmi-calculator",
-      title: "Body Mass Index (BMI) Calculator",
-      category: "everyday",
-      subcategory: "health-wellness-sleep",
-      description: "Calculate Body Mass Index (BMI) quickly. A simple everyday tool to check if your weight falls within a healthy range.",
-      loader: () => import("@/components/calculators/Misc/BmiCalculator"),
-      urlStyle: "flat"
-    },
-  {
       slug: "sleep-debt-ideal-bedtime",
       title: "Sleep Debt & Ideal Bedtime Planner",
       category: "everyday",
@@ -194,15 +176,6 @@ export const everydayEntries: CalculatorEntry[] = [
       subcategory: "health-wellness-sleep",
       description: "Plan balanced meals with MyPlate guidelines. Calculate daily calorie and nutrient portions for a healthy lifestyle.",
       loader: () => import("@/components/calculators/Misc/MyplateDailyCalorieNutrientCalculator"),
-      urlStyle: "flat"
-    },
-  {
-      slug: "bmr-calculator",
-      title: "Basal Metabolic Rate (BMR) Calculator",
-      category: "everyday",
-      subcategory: "health-wellness-sleep",
-      description: "Calculate everyday BMR. Find out the minimum calories your body needs to function before adding any physical activity.",
-      loader: () => import("@/components/calculators/Misc/BmrCalculator"),
       urlStyle: "flat"
     },
   {
