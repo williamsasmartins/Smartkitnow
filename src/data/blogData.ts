@@ -60,7 +60,7 @@ export const blogPosts: BlogPost[] = [
     author: "Smart Kit Now Editorial Team",
     readingMinutes: 7,
     intro:
-      "Buying a home is the biggest purchase most people ever make, yet the math behind the monthly payment stays a mystery for a lot of buyers. Understanding how that number is built — and which levers actually move it — puts you in control at the negotiating table. This guide walks through the formula in plain English, shows worked examples, and points you to a free calculator that does the arithmetic instantly.",
+      "Your monthly mortgage payment comes from four inputs — loan amount, interest rate, loan term, and how much you put down — run through one formula. A $320,000 loan at 6.5% over 30 years works out to about $2,023 a month in principal and interest. This guide shows the formula in plain English, works through real numbers, and points you to a free calculator that does the arithmetic instantly.",
     sections: [
       {
         heading: "What makes up a mortgage payment",
@@ -86,7 +86,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Which levers actually move your payment",
         paragraphs: [
-          "Four inputs control your payment: the home price, your down payment, the interest rate, and the loan term. Increasing your down payment lowers the loan amount directly and can also unlock a better rate and eliminate PMI once you hit 20% down. Shopping for a lower interest rate is the single highest-leverage move — a better credit score is the fastest way to get one.",
+          "Four inputs control your payment: the home price, your down payment, the interest rate, and the loan term. Increasing your down payment lowers the loan amount directly and can also unlock a better rate and eliminate PMI once you hit 20% down. Shopping for a lower interest rate does the most per unit of effort — and a better credit score is the fastest way to earn one.",
           "The loan term is a trade-off, not a free win: a longer term lowers the monthly payment but raises total interest, while a shorter term does the reverse. The right choice depends on your monthly budget and how long you plan to keep the loan.",
         ],
       },
@@ -108,9 +108,9 @@ export const blogPosts: BlogPost[] = [
       { title: "House Affordability Calculator", url: "/financial/house-affordability", icon: "🏡" },
       { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
     ],
-    seoTitle: "How to Calculate Your Mortgage Payment — Formula & Examples",
+    seoTitle: "How to Calculate Your Mortgage Payment (Examples)",
     seoDescription:
-      "Learn how mortgage payments are calculated with a plain-English formula, real examples, and a free calculator. See how rate, term, and down payment change your payment.",
+      "See how mortgage payments are calculated: the plain-English formula, a worked $320k example, and how rate, term, and down payment change what you pay monthly.",
   },
   {
     slug: "how-to-calculate-your-bmi-what-it-means",
@@ -122,7 +122,7 @@ export const blogPosts: BlogPost[] = [
     author: "Smart Kit Now Editorial Team",
     readingMinutes: 7,
     intro:
-      "Body mass index, or BMI, is the first number most doctors and health apps reach for, and it's one of the most misunderstood measurements in health. It's quick to calculate and useful for spotting broad trends across a population, but it was never meant to be a verdict on any single person's health. This guide shows you exactly how BMI is calculated, walks through a worked example, explains what the categories actually mean, and points out where the number falls short so you can read it wisely.",
+      "BMI is your weight in kilograms divided by your height in meters squared (or 703 × pounds ÷ inches²), and it sorts adults into four bands from underweight to obese. It's quick and useful for spotting trends across a population, but it was never meant to be a verdict on one person's health. This guide walks through a worked example, explains what the categories mean, and shows where the number falls short so you can read it wisely.",
     sections: [
       {
         heading: "The formula and how to calculate it",
@@ -189,7 +189,7 @@ export const blogPosts: BlogPost[] = [
     author: "Smart Kit Now Editorial Team",
     readingMinutes: 8,
     intro:
-      "Almost every diet argument comes down to one thing: how many calories your body actually needs. Guess too high and weight creeps on; guess too low and you feel exhausted and give up. The good news is that your calorie needs aren't a mystery — they're built from two calculable numbers, your basal metabolic rate (BMR) and your total daily energy expenditure (TDEE). This guide explains where those numbers come from, walks through a real example, and shows how to turn them into a target for losing, maintaining, or gaining weight.",
+      "Your daily calorie target comes from two numbers: your basal metabolic rate (BMR), the energy you burn at rest, and your total daily energy expenditure (TDEE), that figure scaled up for how active you are. Eat around your TDEE to hold your weight, below it to lose, above it to gain. This guide walks through both numbers with a real example, then shows how to turn them into a target you can actually follow.",
     sections: [
       {
         heading: "BMR: the calories you burn doing nothing",
@@ -242,9 +242,9 @@ export const blogPosts: BlogPost[] = [
       { title: "BMR Calculator", url: "/health/bmr-calculator", icon: "🔥" },
       { title: "TDEE Daily Energy Expenditure Calculator", url: "/health/tdee-daily-energy-expenditure", icon: "💪" },
     ],
-    seoTitle: "Daily Calorie Needs Explained: BMR, TDEE, and How to Use Them",
+    seoTitle: "Daily Calorie Needs Explained: BMR and TDEE",
     seoDescription:
-      "Learn how to calculate your BMR and TDEE with worked examples, then turn them into a calorie target for losing, maintaining, or gaining weight. Free calculators included.",
+      "Calculate your BMR and TDEE with worked examples, then set a calorie target for losing, maintaining, or gaining weight. Free BMR and calorie calculators inside.",
   },
   {
     slug: "how-much-concrete-do-i-need-slab-guide",
@@ -256,7 +256,7 @@ export const blogPosts: BlogPost[] = [
     author: "Smart Kit Now Editorial Team",
     readingMinutes: 7,
     intro:
-      "Ordering concrete is one of the few construction tasks where guessing wrong is expensive in both directions: order too little and you're scrambling for a second delivery that leaves a cold joint in your slab, order too much and you've paid for material that hardens in the truck. The math itself is simple — it's just volume — but the units trip people up, and forgetting to add for waste is the most common way a pour comes up short. This guide walks through the calculation step by step so you order the right amount the first time.",
+      "To estimate concrete for a slab, multiply length × width × thickness to get volume, then divide by 27 to convert cubic feet to the cubic yards suppliers sell — and add 5 to 10 percent for waste. A 10 ft × 12 ft slab at 4 inches thick needs about 1.5 cubic yards before that cushion. Guessing wrong is expensive both ways, so this guide walks through the calculation step by step so you order the right amount the first time.",
     sections: [
       {
         heading: "Concrete is sold by volume, not area",
@@ -311,7 +311,7 @@ export const blogPosts: BlogPost[] = [
     ],
     seoTitle: "How Much Concrete Do I Need? Slab Estimating Guide",
     seoDescription:
-      "Calculate concrete for a slab step by step: the volume formula, cubic-yard conversion, waste allowance, and how to avoid a short pour. Free concrete calculator included.",
+      "Estimate concrete for a slab step by step: the volume formula, cubic-yard conversion, waste allowance, and how to avoid a short pour. Free concrete calculator inside.",
   },
   {
     slug: "electric-vs-gas-car-true-5-year-cost",
@@ -323,7 +323,7 @@ export const blogPosts: BlogPost[] = [
     author: "Smart Kit Now Editorial Team",
     readingMinutes: 8,
     intro:
-      "Electric cars almost always cost more up front, yet many end up cheaper to own — and some don't. The only honest way to settle the question is to add up every dollar over the years you'll actually keep the car, not just compare window stickers. That means fuel, maintenance, incentives, insurance, and depreciation, all rolled into one five-year number. This guide breaks down each piece so you can build a comparison that reflects your driving, your electricity rate, and your local gas prices rather than a generic headline.",
+      "To compare an electric and a gas car fairly, add up six costs over the years you'll keep it: purchase price after incentives, fuel or electricity, maintenance, insurance, fees, and depreciation. EVs usually cost more up front and win back the gap on fuel and upkeep — but not always. This guide breaks down each piece so your comparison reflects your own driving, electricity rate, and local gas prices rather than a generic headline.",
     sections: [
       {
         heading: "Start with purchase price minus incentives",
@@ -378,7 +378,7 @@ export const blogPosts: BlogPost[] = [
     ],
     seoTitle: "Electric vs Gas Car: How to Compare the True 5-Year Cost",
     seoDescription:
-      "Compare an EV and a gas car the right way over five years — purchase price, incentives, fuel, maintenance, insurance, and depreciation. Free cost-of-ownership calculators.",
+      "Compare an EV and a gas car over five years the right way: purchase price, incentives, fuel, maintenance, insurance, and depreciation. Free ownership-cost calculators.",
   },
 ];
 
