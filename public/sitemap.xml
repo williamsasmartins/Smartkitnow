@@ -4705,4 +4705,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/how-to-calculate-your-bmi-what-it-means</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/daily-calorie-needs-bmr-tdee-explained</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/how-much-concrete-do-i-need-slab-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/electric-vs-gas-car-true-5-year-cost</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
