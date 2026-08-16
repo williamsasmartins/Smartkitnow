@@ -516,6 +516,73 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Learn the 28/36 debt-to-income rule for home affordability, run the math on real numbers, and see why existing debt can limit you more than income does.",
   },
+  {
+    slug: "compound-interest-explained-why-time-beats-amount",
+    title: "Compound Interest Explained: Why Ten Extra Years Beats a Bigger Contribution",
+    excerpt:
+      "The real math behind compound interest — how $200 a month grows differently depending on when you start, and why the same force makes debt grow just as fast.",
+    category: "Personal Finance",
+    date: "2026-08-16",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "Investing $200 a month at a 7% average annual return grows to about $244,000 after 30 years — and $72,000 of that is money you actually put in, with the other $172,000 coming from compound interest itself. Start the same $200-a-month habit ten years earlier and let it run for 40 years instead, and the total climbs to roughly $525,000, more than double, from just ten extra years of growth. That gap is the entire idea behind compound interest: it pays interest on interest, and time does more of the work than the size of your monthly deposit. This guide runs the actual math, shows how the same mechanism grows debt just as fast when it works against you, and points to calculators that will run your own numbers instead of these examples.",
+    sections: [
+      {
+        heading: "What compound interest actually means",
+        paragraphs: [
+          "Simple interest pays a percentage of the original amount only. Compound interest pays a percentage of the original amount plus every dollar of interest already earned, so the base it's calculated on keeps growing. The formula is A = P(1 + r/n)^(nt), where P is the starting amount, r is the annual rate, n is how many times per year it compounds, and t is the number of years.",
+          "Take $10,000 invested at a 7% annual return, compounded monthly, for 20 years: A = 10,000 × (1 + 0.07/12)^(12×20), which works out to about $40,390 — the money roughly quadruples without a single additional deposit. A shortcut called the Rule of 72 gets close to the same answer: divide 72 by the interest rate to estimate the years it takes to double. At 7%, that's 72 ÷ 7 ≈ 10.3 years, so two doublings over 20 years lands almost exactly on the $40,390 figure above.",
+        ],
+      },
+      {
+        heading: "Why ten extra years beats a bigger monthly contribution",
+        paragraphs: [
+          "Two savers each put away $200 a month at a 7% average annual return, compounded monthly. Saver A starts at 25 and stops contributing at 65 — 40 years. Saver B waits until 35 to start and also stops at 65 — 30 years. Saver A ends up with about $525,000; Saver B ends up with about $244,000. Saver A only contributed $24,000 more in total ($96,000 versus $72,000), yet ends up with roughly $281,000 more.",
+          "To catch up, Saver B would need to put in about $430 a month for those same 30 years instead of $200 — more than double the monthly amount — just to reach the $525,000 that Saver A got to with a decade's head start. That's the practical lesson: an extra ten years of compounding did more than doubling the monthly contribution could. Waiting is the most expensive decision in a compound interest plan, even when the delay feels small.",
+        ],
+      },
+      {
+        heading: "The same force works against you on debt",
+        paragraphs: [
+          "Compound interest doesn't care whether it's growing your savings or growing what you owe. Many student loans capitalize unpaid interest — interest that accrues while you're in school gets added to the principal, and future interest is then charged on that larger balance. A $30,000 loan at a 6% rate that sits untouched through 4 years of school plus a 6-month grace period (4.5 years total) grows to roughly $39,000 by the time repayment starts, even though you never touched the money — about $9,000 in interest stacked onto the original balance before you make a single payment.",
+          "Credit cards typically compound daily rather than monthly, which is part of why carrying a balance is so costly. A $5,000 balance at a 22% APR, left untouched with only compounding and no payments, grows past $6,200 in a single year. The fix runs on the same principle in reverse: any payment above the minimum reduces the balance the next round of interest gets calculated on, so extra payments made early do more good than the same extra payment made later.",
+        ],
+      },
+      {
+        heading: "How to put compounding to work for your own goals",
+        paragraphs: [
+          "For savings, automate a fixed monthly contribution so compounding runs on a schedule you don't have to remember, and start it as early as your budget allows — the ten-year comparison above shows why waiting is the costliest choice you can make. If you're saving toward a specific goal like a home down payment, run your own monthly amount and expected return through a compound interest calculator to see the projected balance on your actual timeline, rather than someone else's example.",
+          "For debt, target the account with the highest rate first, since that's where compounding costs you the most per dollar of balance, and treat any extra payment as money that stops future interest from building on top of it. If a growing savings balance is meant to become a home down payment, pairing a compound interest projection with an affordability check tells you both when you'll have the money and what price range it gets you into.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does compounding monthly instead of annually make a big difference?",
+        answer:
+          "Some, but less than most people expect. $10,000 at 7% for 20 years compounded annually grows to about $38,700; compounded monthly it grows to about $40,390 — a difference of roughly $1,700, or about 4%. Compounding more frequently always helps, but the interest rate and the length of time matter far more than how often the interest compounds.",
+      },
+      {
+        question: "What's the Rule of 72 and how accurate is it?",
+        answer:
+          "Divide 72 by the interest rate to estimate how many years it takes an amount to double. At 7%, that's 72 ÷ 7 ≈ 10.3 years, and the actual figure from the compound interest formula is about 10.2 years — close enough for quick mental math. It gets less accurate at very high rates (above roughly 20%) or very low ones (below roughly 3%), where the underlying math curves more than the simple division accounts for.",
+      },
+      {
+        question: "Why do extra payments on debt save so much interest?",
+        answer:
+          "Because compound interest is calculated on whatever balance remains. Paying $200 extra early in a loan reduces the principal immediately, so every future round of interest is calculated on a smaller number — the savings compound in your favor for the rest of the loan. The same $200 paid near the end of the loan only avoids interest for the few months left, which is why paying down high-rate debt sooner is far more valuable than waiting.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+      { title: "Student Loan Repayment Calculator", url: "/financial/student-loan-repayment", icon: "🎓" },
+      { title: "How Much House Can I Afford? Calculator", url: "/financial/house-affordability", icon: "🏡" },
+    ],
+    seoTitle: "Compound Interest Explained (Why Time Beats Amount)",
+    seoDescription:
+      "See the real math behind compound interest: worked examples on savings and debt, and why starting ten years earlier beats doubling your monthly contribution.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
