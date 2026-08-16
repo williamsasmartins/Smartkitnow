@@ -583,6 +583,73 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "See the real math behind compound interest: worked examples on savings and debt, and why starting ten years earlier beats doubling your monthly contribution.",
   },
+  {
+    slug: "how-many-sheets-of-drywall-for-a-12x12-room",
+    title: "How Many Sheets of Drywall for a 12x12 Room?",
+    excerpt:
+      "A 12x12 room with 8-ft ceilings needs 12 standard 4x8 sheets for the walls, waste included. Here's the exact math, a size-by-size breakdown, and the ceiling add-on.",
+    category: "Home & Construction",
+    date: "2026-08-16",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "A 12x12 room with standard 8-foot ceilings, one door, and one window needs 12 sheets of standard 4x8 drywall to cover the walls, including a 10% cutting-waste allowance. That comes from 384 square feet of gross wall area, minus about 35 square feet for the door and window openings, divided by 32 square feet per sheet, then rounded up for cuts and mistakes. Add the ceiling and the job jumps to 17 sheets; go to 9-foot walls instead and it's 14. This guide shows the exact math, a size-by-size breakdown, and where the estimate can go wrong.",
+    sections: [
+      {
+        heading: "How many sheets of drywall do you need for a 12x12 room? The math, step by step",
+        paragraphs: [
+          "Start with the wall area. Perimeter is 2 × (12 + 12) = 48 linear feet. Multiply by an 8-foot ceiling height: 48 × 8 = 384 square feet of gross wall area. That's the number before you subtract anything for doors or windows. (Bump the ceiling to 9 feet and gross area rises to 48 × 9 = 432 square feet — worth checking before you order, since plenty of newer builds use 9-foot walls.)",
+          "Next, subtract openings. A standard door rough opening is about 3 ft × 6 ft 8 in, or roughly 20 square feet; a standard window is about 3 ft × 5 ft, or 15 square feet. One of each removes 35 square feet, leaving 384 − 35 = 349 square feet of net wall area to actually cover. A standard sheet is 4 ft × 8 ft = 32 square feet, so 349 ÷ 32 = 10.9 sheets before you account for cutting losses. But theory doesn't survive a real job site.",
+        ],
+      },
+      {
+        heading: "Why do you round up to 12 instead of 11?",
+        paragraphs: [
+          "Drywall crews add 10 to 15% on top of the net area to cover cut waste, damaged sheets, and the fact that sheets don't tile perfectly around corners and odd angles. Applying a 10% margin to 349 square feet gives 383.9 square feet, and 383.9 ÷ 32 = 11.997 sheets — just a hair under 12, so you buy the full 12th sheet. That's why a 12x12 room with a standard door and window lands on 12 sheets for the walls, not the 11 you'd get from the bare net area.",
+          "That result has almost no headroom, though: it's 99.97% of what 12 sheets cover, not a comfortable margin. Skip the window (a windowless laundry room or closet, say) and the deduction drops to 20 square feet, pushing the total to 400.4 square feet — 12.5 sheets, which rounds up to 13. Swap in a narrower 2 ft 8 in interior door instead of a 3 ft slab and you land at 12.07 sheets, also 13. Small, ordinary changes to the assumptions can add a whole sheet, so treat 12 as this exact room's answer, not a rule for every 12x12 room.",
+        ],
+      },
+      {
+        heading: "Common room sizes at a glance",
+        paragraphs: [
+          "The same formula scales directly to any room. Each figure below assumes an 8-foot ceiling, one standard door, one standard window, and a 10% cutting-waste margin — walls only, no ceiling: an 8x10 room needs 288 sq ft of gross wall area (253 sq ft net) and 9 sheets. A 10x10 room needs 320 sq ft gross (285 sq ft net) and 10 sheets. A 10x12 room needs 352 sq ft gross (317 sq ft net) and 11 sheets.",
+          "A 12x12 room needs 384 sq ft gross (349 sq ft net) and 12 sheets. A 12x15 room needs 432 sq ft gross (397 sq ft net) and 14 sheets. A 14x14 room needs 448 sq ft gross (413 sq ft net) and 15 sheets. Sheet counts always round up to a whole number after the waste margin is applied — never before it — which is exactly why the 12x12 room needs a full 12 sheets even though its bare net area alone only calls for 10.9.",
+        ],
+      },
+      {
+        heading: "Should you drywall the ceiling too?",
+        paragraphs: [
+          "A 12x12 ceiling adds another 144 square feet — the full floor area, since a flat ceiling and floor are always the same size. Add that to the 349 square feet of net wall area for 493 square feet total, apply the same 10% margin, and 493 × 1.10 = 542.3 square feet, which is 542.3 ÷ 32 = 16.95, rounding up to 17 sheets for the whole room, walls and ceiling combined.",
+          "Ceilings are also more labor-intensive: sheets are heavier to lift overhead, usually need a drywall lift or two people, and butt joints on a ceiling are more visible than on a wall once the room is painted. If the ceiling is already finished — common in a basement refinish where only the walls are being framed and covered — you only need the 12-sheet wall estimate, not the 17-sheet combined total.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How many square feet does one sheet of drywall cover?",
+        answer:
+          "A standard sheet is 4 ft × 8 ft, which is 32 square feet. Larger 4 ft × 12 ft sheets (48 square feet) are also available and can reduce the number of seams on tall or long walls, but they're heavier and harder to maneuver alone, so most DIY jobs stick with the standard 4x8 size.",
+      },
+      {
+        question: "Do I need to subtract closets, doors, and windows from the total?",
+        answer:
+          "For doors and windows, yes — a standard door removes about 20 square feet and a standard window about 15 square feet from your gross wall area. Closets are the exception: you subtract the closet doorway like any other opening, but the closet's own interior walls add area rather than removing it, so measure and add those separately.",
+      },
+      {
+        question: "Should I use a 10% or 15% waste margin?",
+        answer:
+          "10% is enough for a simple rectangular room with one door and one window, like the 12x12 example here. Move up to 15% once the room has angled walls, a soffit or bulkhead, multiple doors and windows, or any cut that isn't a straight line — more openings and angles mean more offcuts that can't be reused.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Drywall Area & Sheets Calculator", url: "/construction/drywall-area-sheets", icon: "🏗️" },
+      { title: "Concrete Slab Volume Calculator", url: "/construction/concrete-slab-volume", icon: "🧱" },
+      { title: "Brick Calculator", url: "/construction/brick-calculator", icon: "🧱" },
+    ],
+    seoTitle: "How Many Sheets of Drywall for a 12x12 Room?",
+    seoDescription:
+      "A 12x12 room needs 12 sheets of drywall for the walls (10% waste included) — see the exact math, a size-by-size breakdown, and the ceiling add-on.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
