@@ -11,7 +11,7 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-nutrition-weight",
       description: "Calculate your dog's **Resting Energy Requirement (RER)** and **Maintenance Energy Requirement (MER)** to determine daily calorie needs.",
-      seoTitle: "Dog Calorie Calculator — Daily RER & MER by Weight & Activity",
+      seoTitle: "Dog Calorie Calculator — Daily RER & MER by Weight",
       seoDescription: "Calculate your dog's exact daily calorie needs using the RER and MER method. Enter breed, weight, and activity level for accurate feeding recommendations from vets.",
       loader: () => import("@/components/calculators/Pets/DogCalorieNeedsRerMerCalculator"),
       urlStyle: "flat"
@@ -22,6 +22,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-nutrition-weight",
       description: "Plan a safe and effective weight loss program for your dog. Calculates target calories and timeline for goal weight achievement.",
+      aliases: ["dog-weight-loss-calculator", "how-to-calculate-dog-weight-loss", "dog-weight-loss-online", "free-dog-weight-loss-calculator"],
+      seoTitle: "Dog Weight Loss Planner",
+      seoDescription: "Plan a safe and effective weight loss program for your dog. Calculates target calories and timeline for goal weight achievement.",
       loader: () => import("@/components/calculators/Pets/DogWeightLossPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -31,6 +34,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-nutrition-weight",
       description: "Determine your dog's ideal healthy weight and the specific calorie intake needed to maintain it based on breed and size.",
+      aliases: ["dog-ideal-weight-and-target-calories-calculator", "how-to-calculate-dog-ideal-weight-and-target-calories", "dog-ideal-weight-and-target-calories-online", "free-dog-ideal-weight-and-target-calories-calculator"],
+      seoTitle: "Dog Ideal Weight & Target Calories Calculator",
+      seoDescription: "Determine your dog's ideal healthy weight and the specific calorie intake needed to maintain it based on breed and size. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/DogIdealWeightTargetCaloriesCalculator"),
       urlStyle: "flat"
     },
@@ -40,6 +46,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-nutrition-weight",
       description: "Calculate the calorie content of treats and the maximum safe daily treat allowance to prevent weight gain.",
+      aliases: ["dog-treat-calories-and-daily-allowance-calculator", "how-to-calculate-dog-treat-calories-and-daily-allowance", "dog-treat-calories-and-daily-allowance-online", "free-dog-treat-calories-and-daily-allowance-calculator"],
+      seoTitle: "Dog Treat Calories & Daily Allowance Calculator",
+      seoDescription: "Calculate the calorie content of treats and the maximum safe daily treat allowance to prevent weight gain. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogTreatCaloriesDailyAllowanceCalculator"),
       urlStyle: "flat"
     },
@@ -49,6 +58,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-toxicology-hazard",
       description: "Calculate the risk and severity of **chocolate poisoning** in dogs based on weight, type of chocolate consumed, and amount.",
+      aliases: ["dog-chocolate-toxicity-calculator", "how-to-calculate-dog-chocolate-toxicity", "dog-chocolate-toxicity-online", "free-dog-chocolate-toxicity-calculator"],
+      seoTitle: "Dog Chocolate Toxicity Calculator",
+      seoDescription: "Calculate the risk and severity of **chocolate poisoning** in dogs based on weight, type of chocolate consumed, and amount.",
       loader: () => import("@/components/calculators/Pets/DogChocolateToxicityCalculator"),
       urlStyle: "flat"
     },
@@ -58,6 +70,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-toxicology-hazard",
       description: "Assess the toxic risk following accidental ingestion of grapes or raisins. Provides immediate action guidelines.",
+      aliases: ["dog-grape-raisin-exposure-risk-calculator", "how-to-calculate-dog-grape-raisin-exposure-risk", "dog-grape-raisin-exposure-risk-online", "free-dog-grape-raisin-exposure-risk-calculator"],
+      seoTitle: "Dog Grape/Raisin Exposure Risk Calculator",
+      seoDescription: "Assess the toxic risk following accidental ingestion of grapes or raisins. Provides immediate action guidelines. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/DogGrapeRaisinExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -67,6 +82,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-toxicology-hazard",
       description: "Determine the potential toxicity risk from consuming onions, garlic, chives, or leeks (Allium species).",
+      aliases: ["dog-onion-garlic-exposure-risk-calculator", "how-to-calculate-dog-onion-garlic-exposure-risk", "dog-onion-garlic-exposure-risk-online", "free-dog-onion-garlic-exposure-risk-calculator"],
+      seoTitle: "Dog Onion/Garlic (Allium) Exposure Risk Calculator",
+      seoDescription: "Determine the potential toxicity risk from consuming onions, garlic, chives, or leeks (Allium species). Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogOnionGarlicExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -76,6 +94,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-toxicology-hazard",
       description: "Calculate the severe toxic risk posed by the artificial sweetener **Xylitol** based on dog weight and ingested amount.",
+      aliases: ["dog-xylitol-exposure-risk-calculator", "how-to-calculate-dog-xylitol-exposure-risk", "dog-xylitol-exposure-risk-online", "free-dog-xylitol-exposure-risk-calculator"],
+      seoTitle: "Dog Xylitol Exposure Risk Calculator",
+      seoDescription: "Calculate the severe toxic risk posed by the artificial sweetener **Xylitol** based on dog weight and ingested amount. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/DogXylitolExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -85,6 +106,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-toxicology-hazard",
       description: "Estimate the toxic level risk from accidental ingestion of coffee, tea, or caffeine-containing products.",
+      aliases: ["dog-caffeine-toxicity-calculator", "how-to-calculate-dog-caffeine-toxicity", "dog-caffeine-toxicity-online", "free-dog-caffeine-toxicity-calculator"],
+      seoTitle: "Dog Caffeine Toxicity Calculator",
+      seoDescription: "Estimate the toxic level risk from accidental ingestion of coffee, tea, or caffeine-containing products. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogCaffeineToxicityCalculator"),
       urlStyle: "flat"
     },
@@ -94,6 +118,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-toxicology-hazard",
       description: "Assess the risk of macadamia nut poisoning, which causes severe weakness and elevated body temperature.",
+      aliases: ["dog-macadamia-nut-toxicity-calculator", "how-to-calculate-dog-macadamia-nut-toxicity", "dog-macadamia-nut-toxicity-online", "free-dog-macadamia-nut-toxicity-calculator"],
+      seoTitle: "Dog Macadamia Nut Toxicity Calculator",
+      seoDescription: "Assess the risk of macadamia nut poisoning, which causes severe weakness and elevated body temperature. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogMacadamiaNutToxicityCalculator"),
       urlStyle: "flat"
     },
@@ -103,6 +130,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-toxicology-hazard",
       description: "Calculate the toxic risk of ethanol/alcohol exposure based on concentration and dog's body weight.",
+      aliases: ["dog-alcohol-ethanol-exposure-risk-calculator", "how-to-calculate-dog-alcohol-ethanol-exposure-risk", "dog-alcohol-ethanol-exposure-risk-online", "free-dog-alcohol-ethanol-exposure-risk-calculator"],
+      seoTitle: "Dog Alcohol/Ethanol Exposure Risk Calculator",
+      seoDescription: "Calculate the toxic risk of ethanol/alcohol exposure based on concentration and dog's body weight. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogAlcoholEthanolExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -112,6 +142,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-toxicology-hazard",
       description: "Alert tool for accidental exposure to common human pain relievers like **Ibuprofen** or **Acetaminophen (Tylenol)**.",
+      aliases: ["dog-human-medication-exposure-alert-calculator", "how-to-calculate-dog-human-medication-exposure-alert", "dog-human-medication-exposure-alert-online", "free-dog-human-medication-exposure-alert-calculator"],
+      seoTitle: "Dog Human-Medication Exposure Alert",
+      seoDescription: "Alert tool for accidental exposure to common human pain relievers like **Ibuprofen** or **Acetaminophen (Tylenol)**. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/DogHumanMedicationExposureAlertCalculator"),
       urlStyle: "flat"
     },
@@ -121,6 +154,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-medication-dosing",
       description: "Calculate the safe, appropriate dosage of **Benadryl (Diphenhydramine)** for dogs based on body weight.",
+      aliases: ["benadryl-dose-for-dogs-calculator", "how-to-calculate-benadryl-dose-for-dogs", "benadryl-dose-for-dogs-online", "free-benadryl-dose-for-dogs-calculator"],
+      seoTitle: "Benadryl (Diphenhydramine) Dose Calculator for Dogs",
+      seoDescription: "Calculate the safe, appropriate dosage of **Benadryl (Diphenhydramine)** for dogs based on body weight. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogBenadrylDiphenhydramineDoseCalculator"),
       urlStyle: "flat"
     },
@@ -130,6 +166,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-medication-dosing",
       description: "Calculate the veterinarian-recommended dosage for the antibiotic **Cephalexin** in dogs based on body weight.",
+      aliases: ["cephalexin-dose-for-dogs-calculator", "how-to-calculate-cephalexin-dose-for-dogs", "cephalexin-dose-for-dogs-online", "free-cephalexin-dose-for-dogs-calculator"],
+      seoTitle: "Cephalexin Dose Calculator for Dogs",
+      seoDescription: "Calculate the veterinarian-recommended dosage for the antibiotic **Cephalexin** in dogs based on body weight.",
       loader: () => import("@/components/calculators/Pets/DogCephalexinDoseCalculator"),
       urlStyle: "flat"
     },
@@ -139,6 +178,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-medication-dosing",
       description: "Calculate the safe initial and maintenance dosages for the NSAID **Meloxicam (Metacam)** for pain relief in dogs.",
+      aliases: ["meloxicam-metacam-dose-for-dogs-calculator", "how-to-calculate-meloxicam-metacam-dose-for-dogs", "meloxicam-metacam-dose-for-dogs-online", "free-meloxicam-metacam-dose-for-dogs-calculator"],
+      seoTitle: "Meloxicam/Metacam Dose Calculator for Dogs",
+      seoDescription: "Calculate the safe initial and maintenance dosages for the NSAID **Meloxicam (Metacam)** for pain relief in dogs. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/DogMeloxicamMetacamDoseCalculator"),
       urlStyle: "flat"
     },
@@ -148,6 +190,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-medication-dosing",
       description: "Calculate the proper dosage for the nerve pain and anxiety medication **Gabapentin** in dogs by weight.",
+      aliases: ["gabapentin-dose-for-dogs-calculator", "how-to-calculate-gabapentin-dose-for-dogs", "gabapentin-dose-for-dogs-online", "free-gabapentin-dose-for-dogs-calculator"],
+      seoTitle: "Gabapentin Dose Calculator for Dogs",
+      seoDescription: "Calculate the proper dosage for the nerve pain and anxiety medication **Gabapentin** in dogs by weight. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogGabapentinDoseCalculator"),
       urlStyle: "flat"
     },
@@ -157,6 +202,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-medication-dosing",
       description: "Calculate the correct dosage for the anti-inflammatory and immunosuppressant steroid **Prednisone/Prednisolone**.",
+      aliases: ["prednisone-prednisolone-dose-for-dogs-calculator", "how-to-calculate-prednisone-prednisolone-dose-for-dogs", "prednisone-prednisolone-dose-for-dogs-online", "free-prednisone-prednisolone-dose-for-dogs-calculator"],
+      seoTitle: "Prednisone/Prednisolone Dose Calculator for Dogs",
+      seoDescription: "Calculate the correct dosage for the anti-inflammatory and immunosuppressant steroid **Prednisone/Prednisolone**. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/DogPrednisonePrednisoloneDoseCalculator"),
       urlStyle: "flat"
     },
@@ -166,6 +214,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-medication-dosing",
       description: "Calculate the appropriate pain relief dosage for **Tramadol** in dogs, considering weight and pain severity.",
+      aliases: ["tramadol-dose-for-dogs-calculator", "how-to-calculate-tramadol-dose-for-dogs", "tramadol-dose-for-dogs-online", "free-tramadol-dose-for-dogs-calculator"],
+      seoTitle: "Tramadol Dose Calculator for Dogs",
+      seoDescription: "Calculate the appropriate pain relief dosage for **Tramadol** in dogs, considering weight and pain severity. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogTramadolDoseCalculator"),
       urlStyle: "flat"
     },
@@ -175,6 +226,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-medication-dosing",
       description: "Determine the correct daily supplement dosage of **Omega-3 fatty acids (EPA/DHA)** for joint and skin health.",
+      aliases: ["omega-3-supplement-for-dogs-calculator", "how-to-calculate-omega-3-supplement-for-dogs", "omega-3-supplement-for-dogs-online", "free-omega-3-supplement-for-dogs-calculator"],
+      seoTitle: "Omega-3 (EPA/DHA) Supplement Calculator for Dogs",
+      seoDescription: "Determine the correct daily supplement dosage of **Omega-3 fatty acids (EPA/DHA)** for joint and skin health.",
       loader: () => import("@/components/calculators/Pets/DogOmega3EpaDhaSupplementCalculator"),
       urlStyle: "flat"
     },
@@ -184,6 +238,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-growth-body-measures",
       description: "Predict your puppy's final adult weight and size based on current age, weight, and breed growth curves.",
+      aliases: ["puppy-adult-size-predictor-calculator", "how-to-calculate-puppy-adult-size-predictor", "puppy-adult-size-predictor-online", "free-puppy-adult-size-predictor-calculator"],
+      seoTitle: "Puppy Adult Size Predictor (Weight Curve)",
+      seoDescription: "Predict your puppy's final adult weight and size based on current age, weight, and breed growth curves. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/PuppyAdultSizePredictorWeightCurveCalculator"),
       urlStyle: "flat"
     },
@@ -193,6 +250,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-growth-body-measures",
       description: "Use the **Body Condition Score (BCS)** system to assess your dog's fat level and create a target weight plan.",
+      aliases: ["dog-body-condition-score-calculator", "how-to-calculate-dog-body-condition-score", "dog-body-condition-score-online", "free-dog-body-condition-score-calculator"],
+      seoTitle: "Dog Body Condition Score Helper (BCS → Target Plan)",
+      seoDescription: "Use the **Body Condition Score (BCS)** system to assess your dog's fat level and create a target weight plan.",
       loader: () => import("@/components/calculators/Pets/DogBodyConditionScoreBcsTargetCalculator"),
       urlStyle: "flat"
     },
@@ -202,6 +262,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-growth-body-measures",
       description: "Educational tool to understand the concept of a body mass index tailored for canine anatomy and health.",
+      aliases: ["dog-bmi-body-index-calculator", "how-to-calculate-dog-bmi-body-index", "dog-bmi-body-index-online", "free-dog-bmi-body-index-calculator"],
+      seoTitle: "Dog BMI/Body Index (educational)",
+      seoDescription: "Educational tool to understand the concept of a body mass index tailored for canine anatomy and health. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogBmiBodyIndexEducationalCalculator"),
       urlStyle: "flat"
     },
@@ -211,6 +274,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-growth-body-measures",
       description: "Find the correct and comfortable crate size for your dog based on their standing height and length.",
+      aliases: ["dog-crate-size-finder-calculator", "how-to-calculate-dog-crate-size-finder", "dog-crate-size-finder-online", "free-dog-crate-size-finder-calculator"],
+      seoTitle: "Dog Crate Size Finder",
+      seoDescription: "Find the correct and comfortable crate size for your dog based on their standing height and length. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogCrateSizeFinderCalculator"),
       urlStyle: "flat"
     },
@@ -220,6 +286,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-growth-body-measures",
       description: "Guide to measure and select the correct harness size and style for comfort and escape prevention.",
+      aliases: ["dog-harness-size-and-fit-guide-calculator", "how-to-calculate-dog-harness-size-and-fit-guide", "dog-harness-size-and-fit-guide-online", "free-dog-harness-size-and-fit-guide-calculator"],
+      seoTitle: "Dog Harness Size & Fit Guide",
+      seoDescription: "Guide to measure and select the correct harness size and style for comfort and escape prevention.",
       loader: () => import("@/components/calculators/Pets/DogHarnessSizeFitGuideCalculator"),
       urlStyle: "flat"
     },
@@ -229,6 +298,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-activity-fitness",
       description: "Estimate the number of calories your dog burns during walks based on distance, pace, and body weight.",
+      aliases: ["dog-walking-calories-burned-calculator", "how-to-calculate-dog-walking-calories-burned", "dog-walking-calories-burned-online", "free-dog-walking-calories-burned-calculator"],
+      seoTitle: "Dog Walking Calories Burned Calculator",
+      seoDescription: "Estimate the number of calories your dog burns during walks based on distance, pace, and body weight. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogWalkingCaloriesBurnedCalculator"),
       urlStyle: "flat"
     },
@@ -238,6 +310,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-activity-fitness",
       description: "Plan and track daily step goals and active play time to ensure adequate exercise for your dog's needs.",
+      aliases: ["dog-step-goal-and-activity-time-calculator", "how-to-calculate-dog-step-goal-and-activity-time", "dog-step-goal-and-activity-time-online", "free-dog-step-goal-and-activity-time-calculator"],
+      seoTitle: "Dog Step-Goal & Activity Time Planner",
+      seoDescription: "Plan and track daily step goals and active play time to ensure adequate exercise for your dog's needs. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogStepGoalActivityTimePlannerCalculator"),
       urlStyle: "flat"
     },
@@ -247,6 +322,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-activity-fitness",
       description: "Calculates the **Heat Index Risk** based on ambient temperature and humidity to determine safe windows for dog walks.",
+      aliases: ["heat-risk-walk-safety-window-calculator", "how-to-calculate-heat-risk-walk-safety-window", "heat-risk-walk-safety-window-online", "free-heat-risk-walk-safety-window-calculator"],
+      seoTitle: "Heat Risk/Walk Safety Window (Temp & Humidity)",
+      seoDescription: "Calculates the **Heat Index Risk** based on ambient temperature and humidity to determine safe windows for dog walks. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/DogHeatRiskWalkSafetyWindowCalculator"),
       urlStyle: "flat"
     },
@@ -256,6 +334,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-age-longevity",
       description: "Convert your dog's age to human years using a formula that accounts for their specific breed size and longevity.",
+      aliases: ["dog-age-in-human-years-calculator", "how-to-calculate-dog-age-in-human-years", "dog-age-in-human-years-online", "free-dog-age-in-human-years-calculator"],
+      seoTitle: "Dog Age in Human Years (Breed-Aware)",
+      seoDescription: "Convert your dog's age to human years using a formula that accounts for their specific breed size and longevity. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/DogAgeHumanYearsBreedAwareCalculator"),
       urlStyle: "flat"
     },
@@ -265,6 +346,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-age-longevity",
       description: "Estimate a dog's life expectancy based on breed, size, diet, exercise habits, and spay/neuter status.",
+      aliases: ["dog-life-expectancy-calculator", "how-to-calculate-dog-life-expectancy", "dog-life-expectancy-online", "free-dog-life-expectancy-calculator"],
+      seoTitle: "Dog Life Expectancy Estimator (lifestyle factors)",
+      seoDescription: "Estimate a dog's life expectancy based on breed, size, diet, exercise habits, and spay/neuter status. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogLifeExpectancyEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -274,6 +358,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-reproduction",
       description: "Calculate the expected **due date** for a pregnant dog based on the date of first or last breeding.",
+      aliases: ["dog-pregnancy-due-date-calculator", "how-to-calculate-dog-pregnancy-due-date", "dog-pregnancy-due-date-online", "free-dog-pregnancy-due-date-calculator"],
+      seoTitle: "Dog Pregnancy (Gestation) Due-Date Calculator",
+      seoDescription: "Calculate the expected **due date** for a pregnant dog based on the date of first or last breeding. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogPregnancyGestationDueDateCalculator"),
       urlStyle: "flat"
     },
@@ -283,6 +370,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-nutrition-weight",
       description: "Calculate the specific energy needs for puppies based on their current age and predicted adult breed size for optimal growth.",
+      aliases: ["puppy-calorie-needs-by-age-breed-size-calculator", "how-to-calculate-puppy-calorie-needs-by-age-breed-size", "puppy-calorie-needs-by-age-breed-size-online", "free-puppy-calorie-needs-by-age-breed-size-calculator"],
+      seoTitle: "Puppy Calorie Needs by Age/Breed Size Calculator",
+      seoDescription: "Calculate the specific energy needs for puppies based on their current age and predicted adult breed size for optimal growth.",
       loader: () => import("@/components/calculators/Pets/PuppyCalorieNeedsAgeBreedSizeCalculator"),
       urlStyle: "flat"
     },
@@ -292,6 +382,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-nutrition-weight",
       description: "Guide for setting optimal **protein and fat ratios** in your dog's diet, tailored for growth, maintenance, or athletic performance.",
+      aliases: ["dog-protein-fat-intake-guide-calculator", "how-to-calculate-dog-protein-fat-intake-guide", "dog-protein-fat-intake-guide-online", "free-dog-protein-fat-intake-guide-calculator"],
+      seoTitle: "Dog Protein/Fat Intake Guide (by Goal)",
+      seoDescription: "Guide for setting optimal **protein and fat ratios** in your dog's diet, tailored for growth, maintenance, or athletic performance.",
       loader: () => import("@/components/calculators/Pets/DogProteinFatIntakeGuideCalculator"),
       urlStyle: "flat"
     },
@@ -301,6 +394,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-hydration",
       description: "Check if your dog is drinking enough water daily. Calculates the minimum required intake based on weight and diet type.",
+      aliases: ["dog-daily-water-intake-calculator", "how-to-calculate-dog-daily-water-intake", "dog-daily-water-intake-online", "free-dog-daily-water-intake-calculator"],
+      seoTitle: "Dog Daily Water Intake Checker",
+      seoDescription: "Check if your dog is drinking enough water daily. Calculates the minimum required intake based on weight and diet type. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/DogDailyWaterIntakeCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -310,6 +406,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-hydration",
       description: "Estimate the risk of dehydration by inputting weight changes and physical symptoms for veterinary attention.",
+      aliases: ["dehydration-risk-calculator", "how-to-calculate-dehydration-risk", "dehydration-risk-online", "free-dehydration-risk-calculator"],
+      seoTitle: "Dehydration Risk Estimator (Weight & Symptoms Aware)",
+      seoDescription: "Estimate the risk of dehydration by inputting weight changes and physical symptoms for veterinary attention. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/DogDehydrationRiskEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -319,6 +418,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "dogs-reproduction",
       description: "Track the countdown to whelping (birth) and estimate the timeline for each stage of labor.",
+      aliases: ["whelping-countdown-and-stage-timeline-calculator", "how-to-calculate-whelping-countdown-and-stage-timeline", "whelping-countdown-and-stage-timeline-online", "free-whelping-countdown-and-stage-timeline-calculator"],
+      seoTitle: "Whelping Countdown & Stage Timeline",
+      seoDescription: "Track the countdown to whelping (birth) and estimate the timeline for each stage of labor. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/DogWhelpingCountdownStageTimelineCalculator"),
       urlStyle: "flat"
     },
@@ -328,6 +430,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-nutrition-weight",
       description: "Calculate your cat's **Resting Energy Requirement (RER)** and **Maintenance Energy Requirement (MER)** for daily feeding.",
+      aliases: ["cat-calorie-needs-calculator", "how-to-calculate-cat-calorie-needs", "cat-calorie-needs-online", "free-cat-calorie-needs-calculator"],
+      seoTitle: "Cat Calorie Needs (RER/MER) Calculator",
+      seoDescription: "Calculate your cat's **Resting Energy Requirement (RER)** and **Maintenance Energy Requirement (MER)** for daily feeding. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatCalorieNeedsRerMerCalculator"),
       urlStyle: "flat"
     },
@@ -337,6 +442,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-nutrition-weight",
       description: "Plan a tailored weight loss program for your cat, calculating target calories, weight reduction, and duration.",
+      aliases: ["cat-weight-loss-calculator", "how-to-calculate-cat-weight-loss", "cat-weight-loss-online", "free-cat-weight-loss-calculator"],
+      seoTitle: "Cat Weight Loss Planner",
+      seoDescription: "Plan a tailored weight loss program for your cat, calculating target calories, weight reduction, and duration.",
       loader: () => import("@/components/calculators/Pets/CatWeightLossPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -346,6 +454,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-nutrition-weight",
       description: "Determine your cat's optimal weight and the necessary daily calorie intake for maintenance.",
+      aliases: ["ideal-weight-and-target-calories-for-cats-calculator", "how-to-calculate-ideal-weight-and-target-calories-for-cats", "ideal-weight-and-target-calories-for-cats-online", "free-ideal-weight-and-target-calories-for-cats-calculator"],
+      seoTitle: "Ideal Weight & Target Calories for Cats",
+      seoDescription: "Determine your cat's optimal weight and the necessary daily calorie intake for maintenance. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/CatIdealWeightTargetCaloriesCalculator"),
       urlStyle: "flat"
     },
@@ -355,6 +466,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-nutrition-weight",
       description: "Calculate the high energy requirements for growing kittens based on their age and projected adult size.",
+      aliases: ["kitten-calorie-needs-by-age-size-calculator", "how-to-calculate-kitten-calorie-needs-by-age-size", "kitten-calorie-needs-by-age-size-online", "free-kitten-calorie-needs-by-age-size-calculator"],
+      seoTitle: "Kitten Calorie Needs by Age/Size",
+      seoDescription: "Calculate the high energy requirements for growing kittens based on their age and projected adult size. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/KittenCalorieNeedsAgeSizeCalculator"),
       urlStyle: "flat"
     },
@@ -364,6 +478,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-nutrition-weight",
       description: "Adjust feeding plans and calorie targets for older cats, accounting for changes in metabolism and activity.",
+      aliases: ["senior-cat-nutrition-and-calorie-adjuster-calculator", "how-to-calculate-senior-cat-nutrition-and-calorie-adjuster", "senior-cat-nutrition-and-calorie-adjuster-online", "free-senior-cat-nutrition-and-calorie-adjuster-calculator"],
+      seoTitle: "Senior Cat Nutrition & Calorie Adjuster",
+      seoDescription: "Adjust feeding plans and calorie targets for older cats, accounting for changes in metabolism and activity. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/SeniorCatNutritionCalorieAdjusterCalculator"),
       urlStyle: "flat"
     },
@@ -373,6 +490,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-nutrition-weight",
       description: "Calculate the caloric contribution of cat treats and set a safe daily limit to prevent excess weight gain.",
+      aliases: ["cat-treat-calories-and-daily-allowance-calculator", "how-to-calculate-cat-treat-calories-and-daily-allowance", "cat-treat-calories-and-daily-allowance-online", "free-cat-treat-calories-and-daily-allowance-calculator"],
+      seoTitle: "Cat Treat Calories & Daily Allowance",
+      seoDescription: "Calculate the caloric contribution of cat treats and set a safe daily limit to prevent excess weight gain. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatTreatCaloriesDailyAllowanceCalculator"),
       urlStyle: "flat"
     },
@@ -382,6 +502,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-nutrition-weight",
       description: "Guide for ensuring your cat meets its high protein requirements, adjusting fat ratios for health goals.",
+      aliases: ["protein-fat-intake-guide-for-cats-calculator", "how-to-calculate-protein-fat-intake-guide-for-cats", "protein-fat-intake-guide-for-cats-online", "free-protein-fat-intake-guide-for-cats-calculator"],
+      seoTitle: "Protein/Fat Intake Guide for Cats (by Goal)",
+      seoDescription: "Guide for ensuring your cat meets its high protein requirements, adjusting fat ratios for health goals. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatProteinFatIntakeGuideCalculator"),
       urlStyle: "flat"
     },
@@ -391,6 +514,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-hydration",
       description: "Check if your cat is meeting its daily fluid requirement, crucial for kidney health, especially with dry food diets.",
+      aliases: ["daily-water-intake-for-cats-calculator", "how-to-calculate-daily-water-intake-for-cats", "daily-water-intake-for-cats-online", "free-daily-water-intake-for-cats-calculator"],
+      seoTitle: "Daily Water Intake Checker for Cats",
+      seoDescription: "Check if your cat is meeting its daily fluid requirement, crucial for kidney health, especially with dry food diets. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatDailyWaterIntakeCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -400,6 +526,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-hydration",
       description: "Estimate the risk of dehydration using clinical signs and tracking fluid intake, particularly in sick cats.",
+      aliases: ["dehydration-risk-calculator", "how-to-calculate-dehydration-risk", "dehydration-risk-online", "free-dehydration-risk-calculator"],
+      seoTitle: "Dehydration Risk Estimator (Symptoms + Intake)",
+      seoDescription: "Estimate the risk of dehydration using clinical signs and tracking fluid intake, particularly in sick cats. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatDehydrationRiskEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -409,6 +538,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-toxicology-hazard",
       description: "Calculate the toxic dose of chocolate for cats (though less common than in dogs).",
+      aliases: ["cat-chocolate-toxicity-calculator", "how-to-calculate-cat-chocolate-toxicity", "cat-chocolate-toxicity-online", "free-cat-chocolate-toxicity-calculator"],
+      seoTitle: "Cat Chocolate Toxicity Calculator",
+      seoDescription: "Calculate the toxic dose of chocolate for cats (though less common than in dogs). Free pet tool — get instant, accurate results with no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatChocolateToxicityCalculator"),
       urlStyle: "flat"
     },
@@ -418,6 +550,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-toxicology-hazard",
       description: "Determine the potential risk of red blood cell damage from ingesting Allium species (onions, garlic).",
+      aliases: ["cat-onion-garlic-toxicity-calculator", "how-to-calculate-cat-onion-garlic-toxicity", "cat-onion-garlic-toxicity-online", "free-cat-onion-garlic-toxicity-calculator"],
+      seoTitle: "Cat Onion/Garlic Toxicity Calculator",
+      seoDescription: "Determine the potential risk of red blood cell damage from ingesting Allium species (onions, garlic). Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatOnionGarlicToxicityCalculator"),
       urlStyle: "flat"
     },
@@ -427,6 +562,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-toxicology-hazard",
       description: "Educational tool on the potential, though rare, kidney toxicity risk from grapes and raisins in cats.",
+      aliases: ["cat-grape-raisin-exposure-risk-calculator", "how-to-calculate-cat-grape-raisin-exposure-risk", "cat-grape-raisin-exposure-risk-online", "free-cat-grape-raisin-exposure-risk-calculator"],
+      seoTitle: "Cat Grape/Raisin Exposure Risk (educational)",
+      seoDescription: "Educational tool on the potential, though rare, kidney toxicity risk from grapes and raisins in cats. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatGrapeRaisinExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -436,6 +574,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-toxicology-hazard",
       description: "Educational tool detailing the severe risk of Xylitol poisoning, even though cat exposure is less frequent.",
+      aliases: ["xylitol-exposure-risk-for-cats-calculator", "how-to-calculate-xylitol-exposure-risk-for-cats", "xylitol-exposure-risk-for-cats-online", "free-xylitol-exposure-risk-for-cats-calculator"],
+      seoTitle: "Xylitol Exposure Risk for Cats (rare but educational)",
+      seoDescription: "Educational tool detailing the severe risk of Xylitol poisoning, even though cat exposure is less frequent. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatXylitolExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -445,6 +586,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-toxicology-hazard",
       description: "Estimate the toxic exposure risk from caffeine in products like coffee grounds, tea, or energy drinks.",
+      aliases: ["caffeine-toxicity-risk-for-cats-calculator", "how-to-calculate-caffeine-toxicity-risk-for-cats", "caffeine-toxicity-risk-for-cats-online", "free-caffeine-toxicity-risk-for-cats-calculator"],
+      seoTitle: "Caffeine Toxicity Risk for Cats",
+      seoDescription: "Estimate the toxic exposure risk from caffeine in products like coffee grounds, tea, or energy drinks. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatCaffeineToxicityCalculator"),
       urlStyle: "flat"
     },
@@ -454,6 +598,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-toxicology-hazard",
       description: "Assess the toxic risk from exposure to essential oils (e.g., concentrated tea tree oil) via diffusers or skin contact.",
+      aliases: ["essential-oils-exposure-risk-calculator", "how-to-calculate-essential-oils-exposure-risk", "essential-oils-exposure-risk-online", "free-essential-oils-exposure-risk-calculator"],
+      seoTitle: "Essential Oils Exposure Risk (diffuser/dermal)",
+      seoDescription: "Assess the toxic risk from exposure to essential oils (e.g., concentrated tea tree oil) via diffusers or skin contact. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatEssentialOilsExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -463,6 +610,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-toxicology-hazard",
       description: "Guide to the extreme and potentially fatal kidney toxicity risk posed by exposure to various types of lilies.",
+      aliases: ["lilies-poisoning-risk-guide-calculator", "how-to-calculate-lilies-poisoning-risk-guide", "lilies-poisoning-risk-guide-online", "free-lilies-poisoning-risk-guide-calculator"],
+      seoTitle: "Lilies Poisoning Risk Guide (cats)",
+      seoDescription: "Guide to the extreme and potentially fatal kidney toxicity risk posed by exposure to various types of lilies.",
       loader: () => import("@/components/calculators/Pets/CatLiliesPoisoningRiskGuideCalculator"),
       urlStyle: "flat"
     },
@@ -472,6 +622,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-toxicology-hazard",
       description: "Alert tool for accidental exposure to common human pain relievers, particularly dangerous **Acetaminophen (Tylenol)**.",
+      aliases: ["acetaminophen-ibuprofen-exposure-risk-calculator", "how-to-calculate-acetaminophen-ibuprofen-exposure-risk", "acetaminophen-ibuprofen-exposure-risk-online", "free-acetaminophen-ibuprofen-exposure-risk-calculator"],
+      seoTitle: "Acetaminophen/Ibuprofen Exposure Risk (human meds)",
+      seoDescription: "Alert tool for accidental exposure to common human pain relievers, particularly dangerous **Acetaminophen (Tylenol)**. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatAcetaminophenIbuprofenExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -481,6 +634,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-medication-dosing",
       description: "Calculate the safe, appropriate dosage of **Benadryl (Diphenhydramine)** for cats based on body weight.",
+      aliases: ["benadryl-dose-for-cats-calculator", "how-to-calculate-benadryl-dose-for-cats", "benadryl-dose-for-cats-online", "free-benadryl-dose-for-cats-calculator"],
+      seoTitle: "Benadryl (Diphenhydramine) Dose Calculator for Cats",
+      seoDescription: "Calculate the safe, appropriate dosage of **Benadryl (Diphenhydramine)** for cats based on body weight. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatBenadrylDiphenhydramineDoseCalculator"),
       urlStyle: "flat"
     },
@@ -490,6 +646,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-medication-dosing",
       description: "Calculate the veterinarian-recommended dosage for the antibiotic **Cephalexin** in cats based on body weight.",
+      aliases: ["cephalexin-dose-for-cats-calculator", "how-to-calculate-cephalexin-dose-for-cats", "cephalexin-dose-for-cats-online", "free-cephalexin-dose-for-cats-calculator"],
+      seoTitle: "Cephalexin Dose Calculator for Cats",
+      seoDescription: "Calculate the veterinarian-recommended dosage for the antibiotic **Cephalexin** in cats based on body weight.",
       loader: () => import("@/components/calculators/Pets/CatCephalexinDoseCalculator"),
       urlStyle: "flat"
     },
@@ -499,6 +658,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-medication-dosing",
       description: "Calculate the short-term analgesic dose for the NSAID **Meloxicam** in cats.",
+      aliases: ["meloxicam-dose-for-cats-calculator", "how-to-calculate-meloxicam-dose-for-cats", "meloxicam-dose-for-cats-online", "free-meloxicam-dose-for-cats-calculator"],
+      seoTitle: "Meloxicam Dose Calculator for Cats",
+      seoDescription: "Calculate the short-term analgesic dose for the NSAID **Meloxicam** in cats. Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Pets/CatMeloxicamDoseCalculator"),
       urlStyle: "flat"
     },
@@ -508,6 +670,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-medication-dosing",
       description: "Calculate the proper dosage for the nerve pain and sedation medication **Gabapentin** in cats by weight.",
+      aliases: ["gabapentin-dose-for-cats-calculator", "how-to-calculate-gabapentin-dose-for-cats", "gabapentin-dose-for-cats-online", "free-gabapentin-dose-for-cats-calculator"],
+      seoTitle: "Gabapentin Dose Calculator for Cats",
+      seoDescription: "Calculate the proper dosage for the nerve pain and sedation medication **Gabapentin** in cats by weight. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatGabapentinDoseCalculator"),
       urlStyle: "flat"
     },
@@ -517,6 +682,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-medication-dosing",
       description: "Calculate the correct dosage for the anti-inflammatory steroid **Prednisolone** in cats.",
+      aliases: ["prednisolone-dose-for-cats-calculator", "how-to-calculate-prednisolone-dose-for-cats", "prednisolone-dose-for-cats-online", "free-prednisolone-dose-for-cats-calculator"],
+      seoTitle: "Prednisolone Dose Calculator for Cats",
+      seoDescription: "Calculate the correct dosage for the anti-inflammatory steroid **Prednisolone** in cats. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/CatPrednisoloneDoseCalculator"),
       urlStyle: "flat"
     },
@@ -526,6 +694,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-medication-dosing",
       description: "Determine the correct daily supplement dosage of **Omega-3 fatty acids (EPA/DHA)** for joint and skin health in cats.",
+      aliases: ["omega-3-supplement-for-cats-calculator", "how-to-calculate-omega-3-supplement-for-cats", "omega-3-supplement-for-cats-online", "free-omega-3-supplement-for-cats-calculator"],
+      seoTitle: "Omega-3 (EPA/DHA) Supplement Calculator for Cats",
+      seoDescription: "Determine the correct daily supplement dosage of **Omega-3 fatty acids (EPA/DHA)** for joint and skin health in cats. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatOmega3EpaDhaSupplementCalculator"),
       urlStyle: "flat"
     },
@@ -535,6 +706,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-medication-dosing",
       description: "Reference guide for starting and monitoring insulin therapy in diabetic cats (information-only, not a dose calculator).",
+      aliases: ["insulin-starter-reference-calculator", "how-to-calculate-insulin-starter-reference", "insulin-starter-reference-online", "free-insulin-starter-reference-calculator"],
+      seoTitle: "Insulin Starter Reference (info-only)",
+      seoDescription: "Reference guide for starting and monitoring insulin therapy in diabetic cats (information-only, not a dose calculator). Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatInsulinStarterReferenceCalculator"),
       urlStyle: "flat"
     },
@@ -544,6 +718,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-growth-size-measures",
       description: "Predict your kitten's final adult weight and size based on current age, weight, and growth metrics.",
+      aliases: ["kitten-adult-weight-predictor-calculator", "how-to-calculate-kitten-adult-weight-predictor", "kitten-adult-weight-predictor-online", "free-kitten-adult-weight-predictor-calculator"],
+      seoTitle: "Kitten Adult Weight Predictor",
+      seoDescription: "Predict your kitten's final adult weight and size based on current age, weight, and growth metrics. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/KittenAdultWeightPredictorCalculator"),
       urlStyle: "flat"
     },
@@ -553,6 +730,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-growth-size-measures",
       description: "Use the **Body Condition Score (BCS)** system to assess your cat's fat level and formulate a target weight plan.",
+      aliases: ["cat-body-condition-score-calculator", "how-to-calculate-cat-body-condition-score", "cat-body-condition-score-online", "free-cat-body-condition-score-calculator"],
+      seoTitle: "Cat Body Condition Score Helper (BCS → Target Plan)",
+      seoDescription: "Use the **Body Condition Score (BCS)** system to assess your cat's fat level and formulate a target weight plan. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatBodyConditionScoreBcsTargetCalculator"),
       urlStyle: "flat"
     },
@@ -562,6 +742,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-growth-size-measures",
       description: "Educational tool to understand the concept of a feline body mass index for health tracking.",
+      aliases: ["cat-bmi-body-index-calculator", "how-to-calculate-cat-bmi-body-index", "cat-bmi-body-index-online", "free-cat-bmi-body-index-calculator"],
+      seoTitle: "Cat BMI/Body Index (educational)",
+      seoDescription: "Educational tool to understand the concept of a feline body mass index for health tracking. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/CatBmiBodyIndexEducationalCalculator"),
       urlStyle: "flat"
     },
@@ -571,6 +754,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-growth-size-measures",
       description: "Guide to select the proper carrier size for your cat, ensuring comfort and safety during travel.",
+      aliases: ["cat-carrier-size-and-fit-guide-calculator", "how-to-calculate-cat-carrier-size-and-fit-guide", "cat-carrier-size-and-fit-guide-online", "free-cat-carrier-size-and-fit-guide-calculator"],
+      seoTitle: "Cat Carrier Size & Fit Guide",
+      seoDescription: "Guide to select the proper carrier size for your cat, ensuring comfort and safety during travel.",
       loader: () => import("@/components/calculators/Pets/CatCarrierSizeFitGuideCalculator"),
       urlStyle: "flat"
     },
@@ -580,6 +766,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-growth-size-measures",
       description: "Guide to measure and select the correct harness size and fit for walking or outdoor time.",
+      aliases: ["cat-harness-size-and-fit-guide-calculator", "how-to-calculate-cat-harness-size-and-fit-guide", "cat-harness-size-and-fit-guide-online", "free-cat-harness-size-and-fit-guide-calculator"],
+      seoTitle: "Cat Harness Size & Fit Guide",
+      seoDescription: "Guide to measure and select the correct harness size and fit for walking or outdoor time. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/CatHarnessSizeFitGuideCalculator"),
       urlStyle: "flat"
     },
@@ -589,6 +778,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-activity-lifestyle",
       description: "Adjust daily calorie targets based on whether your cat is strictly indoor or has outdoor access.",
+      aliases: ["indoor-outdoor-activity-calorie-adjuster-calculator", "how-to-calculate-indoor-outdoor-activity-calorie-adjuster", "indoor-outdoor-activity-calorie-adjuster-online", "free-indoor-outdoor-activity-calorie-adjuster-calculator"],
+      seoTitle: "Indoor/Outdoor Activity Calorie Adjuster",
+      seoDescription: "Adjust daily calorie targets based on whether your cat is strictly indoor or has outdoor access.",
       loader: () => import("@/components/calculators/Pets/CatActivityCalorieAdjusterCalculator"),
       urlStyle: "flat"
     },
@@ -598,6 +790,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-activity-lifestyle",
       description: "Plan optimal daily playtime sessions (duration and intensity) to meet your cat's exercise and enrichment needs.",
+      aliases: ["play-session-calculator", "how-to-calculate-play-session", "play-session-online", "free-play-session-calculator"],
+      seoTitle: "Play Session Planner (Feather/Chase Time Targets)",
+      seoDescription: "Plan optimal daily playtime sessions (duration and intensity) to meet your cat's exercise and enrichment needs.",
       loader: () => import("@/components/calculators/Pets/CatPlaySessionPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -607,6 +802,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-activity-lifestyle",
       description: "Tool for owners to track and assess the balance between their cat's resting and active hours.",
+      aliases: ["resting-vs-active-hours-balance-tracker-calculator", "how-to-calculate-resting-vs-active-hours-balance-tracker", "resting-vs-active-hours-balance-tracker-online", "free-resting-vs-active-hours-balance-tracker-calculator"],
+      seoTitle: "Resting vs. Active Hours Balance Tracker (owner input)",
+      seoDescription: "Tool for owners to track and assess the balance between their cat's resting and active hours. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/CatRestingActiveHoursBalanceTrackerCalculator"),
       urlStyle: "flat"
     },
@@ -616,6 +814,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-age-longevity",
       description: "Convert your cat's age to human years using a method that accounts for life stage and size.",
+      aliases: ["cat-age-in-human-years-calculator", "how-to-calculate-cat-age-in-human-years", "cat-age-in-human-years-online", "free-cat-age-in-human-years-calculator"],
+      seoTitle: "Cat Age in Human Years (Breed/Size Aware)",
+      seoDescription: "Convert your cat's age to human years using a method that accounts for life stage and size. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/CatAgeHumanYearsBreedSizeAwareCalculator"),
       urlStyle: "flat"
     },
@@ -625,6 +826,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-age-longevity",
       description: "Scored checklist to evaluate readiness for senior cat care, covering diet, environment, and health monitoring.",
+      aliases: ["senior-cat-care-readiness-checklist-calculator", "how-to-calculate-senior-cat-care-readiness-checklist", "senior-cat-care-readiness-checklist-online", "free-senior-cat-care-readiness-checklist-calculator"],
+      seoTitle: "Senior Cat Care Readiness Checklist (scored helper)",
+      seoDescription: "Scored checklist to evaluate readiness for senior cat care, covering diet, environment, and health monitoring.",
       loader: () => import("@/components/calculators/Pets/SeniorCatCareReadinessChecklistCalculator"),
       urlStyle: "flat"
     },
@@ -634,6 +838,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-age-longevity",
       description: "Educational tool to estimate a cat's life expectancy based on diet, activity, and preventative care.",
+      aliases: ["life-expectancy-calculator", "how-to-calculate-life-expectancy", "life-expectancy-online", "free-life-expectancy-calculator"],
+      seoTitle: "Life Expectancy Estimator (lifestyle factors; educational)",
+      seoDescription: "Educational tool to estimate a cat's life expectancy based on diet, activity, and preventative care. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatLifeExpectancyEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -643,6 +850,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-urinary-kidney",
       description: "Tool to track and compare normal litter box output against potentially worrying increases or decreases in volume.",
+      aliases: ["litter-box-output-tracker-calculator", "how-to-calculate-litter-box-output-tracker", "litter-box-output-tracker-online", "free-litter-box-output-tracker-calculator"],
+      seoTitle: "Litter Box Output Tracker (Normal vs. Increased)",
+      seoDescription: "Tool to track and compare normal litter box output against potentially worrying increases or decreases in volume. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatLitterBoxOutputTrackerCalculator"),
       urlStyle: "flat"
     },
@@ -652,6 +862,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-urinary-kidney",
       description: "Check the balance between liquid consumed and liquid expelled, key for monitoring kidney function.",
+      aliases: ["fluid-intake-vs-urine-output-balance-calculator", "how-to-calculate-fluid-intake-vs-urine-output-balance", "fluid-intake-vs-urine-output-balance-online", "free-fluid-intake-vs-urine-output-balance-calculator"],
+      seoTitle: "Fluid Intake vs. Urine Output Balance Checker",
+      seoDescription: "Check the balance between liquid consumed and liquid expelled, key for monitoring kidney function. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatFluidIntakeUrineOutputBalanceCalculator"),
       urlStyle: "flat"
     },
@@ -661,6 +874,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-urinary-kidney",
       description: "Calculate the phosphorus content per meal from food labels, essential for cats with kidney disease.",
+      aliases: ["phosphorus-per-meal-calculator", "how-to-calculate-phosphorus-per-meal", "phosphorus-per-meal-online", "free-phosphorus-per-meal-calculator"],
+      seoTitle: "Phosphorus per Meal Estimator (diet label helper)",
+      seoDescription: "Calculate the phosphorus content per meal from food labels, essential for cats with kidney disease. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatPhosphorusPerMealEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -670,6 +886,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-reproduction",
       description: "Calculate the expected **due date** for a pregnant cat (queen) based on the date of breeding.",
+      aliases: ["cat-pregnancy-due-date-calculator", "how-to-calculate-cat-pregnancy-due-date", "cat-pregnancy-due-date-online", "free-cat-pregnancy-due-date-calculator"],
+      seoTitle: "Cat Pregnancy (Gestation) Due-Date Calculator",
+      seoDescription: "Calculate the expected **due date** for a pregnant cat (queen) based on the date of breeding. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/CatPregnancyGestationDueDateCalculator"),
       urlStyle: "flat"
     },
@@ -679,6 +898,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-reproduction",
       description: "Planner for the transition from mother's milk to solid food, calculating appropriate feeding amounts at each stage.",
+      aliases: ["kitten-weaning-timeline-and-feeding-amounts-calculator", "how-to-calculate-kitten-weaning-timeline-and-feeding-amounts", "kitten-weaning-timeline-and-feeding-amounts-online", "free-kitten-weaning-timeline-and-feeding-amounts-calculator"],
+      seoTitle: "Kitten Weaning Timeline & Feeding Amounts",
+      seoDescription: "Planner for the transition from mother's milk to solid food, calculating appropriate feeding amounts at each stage. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/KittenWeaningTimelineFeedingAmountsCalculator"),
       urlStyle: "flat"
     },
@@ -688,6 +910,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-grooming-care",
       description: "Plan an optimal combing schedule to manage shedding based on coat type and season.",
+      aliases: ["shedding-and-combing-time-calculator", "how-to-calculate-shedding-and-combing-time", "shedding-and-combing-time-online", "free-shedding-and-combing-time-calculator"],
+      seoTitle: "Shedding & Combing Time Planner",
+      seoDescription: "Plan an optimal combing schedule to manage shedding based on coat type and season. Free pet tool — get instant, accurate results with no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatSheddingCombingTimePlannerCalculator"),
       urlStyle: "flat"
     },
@@ -697,6 +922,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-grooming-care",
       description: "Determine the best frequency for nail trims based on the cat's activity level and available scratching surfaces.",
+      aliases: ["nail-trim-interval-calculator", "how-to-calculate-nail-trim-interval", "nail-trim-interval-online", "free-nail-trim-interval-calculator"],
+      seoTitle: "Nail Trim Interval Planner (activity/surface based)",
+      seoDescription: "Determine the best frequency for nail trims based on the cat's activity level and available scratching surfaces. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatNailTrimIntervalPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -706,6 +934,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-behavior-environment",
       description: "Calculate the correct number of litter boxes needed for a multi-cat household to minimize stress and accidents.",
+      aliases: ["how-to-calculate-multi-cat-litter-box-count", "multi-cat-litter-box-count-online", "free-multi-cat-litter-box-count-calculator"],
+      seoTitle: "Multi-Cat Litter Box Count Calculator",
+      seoDescription: "Calculate the correct number of litter boxes needed for a multi-cat household to minimize stress and accidents.",
       loader: () => import("@/components/calculators/Pets/MultiCatLitterBoxCountCalculator"),
       urlStyle: "flat"
     },
@@ -715,6 +946,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-behavior-environment",
       description: "Plan specific enrichment items (scratch posts, perches, toys) for each room to improve feline well-being.",
+      aliases: ["environmental-enrichment-calculator", "how-to-calculate-environmental-enrichment", "environmental-enrichment-online", "free-environmental-enrichment-calculator"],
+      seoTitle: "Environmental Enrichment Planner (per room)",
+      seoDescription: "Plan specific enrichment items (scratch posts, perches, toys) for each room to improve feline well-being. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/CatEnvironmentalEnrichmentPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -724,6 +958,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "cats-behavior-environment",
       description: "Tool to help owners assess their cat's stress levels and plan appropriate corrective playtime or environment changes.",
+      aliases: ["stress-score-and-playtime-offset-calculator", "how-to-calculate-stress-score-and-playtime-offset", "stress-score-and-playtime-offset-online", "free-stress-score-and-playtime-offset-calculator"],
+      seoTitle: "Stress Score & Playtime Offset Planner (owner input)",
+      seoDescription: "Tool to help owners assess their cat's stress levels and plan appropriate corrective playtime or environment changes. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/CatStressScorePlaytimeOffsetPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -733,6 +970,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-nutrition-weight",
       description: "Calculate a horse's daily **Digestible Energy (DE)** and **Total Digestible Nutrients (TDN)** requirements.",
+      aliases: ["horse-calorie-and-energy-requirement-calculator", "how-to-calculate-horse-calorie-and-energy-requirement", "horse-calorie-and-energy-requirement-online", "free-horse-calorie-and-energy-requirement-calculator"],
+      seoTitle: "Horse Calorie & Energy Requirement Calculator (DE / TDN)",
+      seoDescription: "Calculate a horse's daily **Digestible Energy (DE)** and **Total Digestible Nutrients (TDN)** requirements. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorseCalorieEnergyRequirementDeTdnCalculator"),
       urlStyle: "flat"
     },
@@ -742,6 +982,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-nutrition-weight",
       description: "Estimate your horse's body weight accurately using heart girth circumference and body length measurements.",
+      aliases: ["horse-weight-calculator", "how-to-calculate-horse-weight", "horse-weight-online", "free-horse-weight-calculator"],
+      seoTitle: "Horse Weight Estimator (Heart Girth & Length)",
+      seoDescription: "Estimate your horse's body weight accurately using heart girth circumference and body length measurements. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorseWeightEstimatorGirthLengthCalculator"),
       urlStyle: "flat"
     },
@@ -751,6 +994,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-nutrition-weight",
       description: "Calculate the daily calorie and energy requirements for different species of birds based on body weight.",
+      aliases: ["daily-calorie-needs-by-body-weight-calculator", "how-to-calculate-daily-calorie-needs-by-body-weight", "daily-calorie-needs-by-body-weight-online", "free-daily-calorie-needs-by-body-weight-calculator"],
+      seoTitle: "Daily Calorie Needs by Body Weight",
+      seoDescription: "Calculate the daily calorie and energy requirements for different species of birds based on body weight. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/BirdDailyCalorieNeedsBodyWeightCalculator"),
       urlStyle: "flat"
     },
@@ -760,6 +1006,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-nutrition-weight",
       description: "Plan a gradual conversion schedule from a seed-based diet to a healthier, complete pellet diet.",
+      aliases: ["seed-to-pellet-conversion-calculator", "how-to-calculate-seed-to-pellet-conversion", "seed-to-pellet-conversion-online", "free-seed-to-pellet-conversion-calculator"],
+      seoTitle: "Seed-to-Pellet Conversion Planner",
+      seoDescription: "Plan a gradual conversion schedule from a seed-based diet to a healthier, complete pellet diet.",
       loader: () => import("@/components/calculators/Pets/BirdSeedToPelletConversionPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -769,6 +1018,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-nutrition-environment",
       description: "Calculate the correct distance and duration for **UVB lighting** to ensure proper Vitamin D3 synthesis.",
+      aliases: ["uvb-lighting-distance-and-duration-calculator", "how-to-calculate-uvb-lighting-distance-and-duration", "uvb-lighting-distance-and-duration-online", "free-uvb-lighting-distance-and-duration-calculator"],
+      seoTitle: "UVB Lighting Distance & Duration Calculator",
+      seoDescription: "Calculate the correct distance and duration for **UVB lighting** to ensure proper Vitamin D3 synthesis. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/ReptileUvbLightingDistanceDurationCalculator"),
       urlStyle: "flat"
     },
@@ -778,6 +1030,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-nutrition-environment",
       description: "Plan the ideal basking spot temperature and the necessary temperature gradient for a reptile enclosure.",
+      aliases: ["basking-temperature-and-gradient-calculator", "how-to-calculate-basking-temperature-and-gradient", "basking-temperature-and-gradient-online", "free-basking-temperature-and-gradient-calculator"],
+      seoTitle: "Basking Temperature & Gradient Planner",
+      seoDescription: "Plan the ideal basking spot temperature and the necessary temperature gradient for a reptile enclosure. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/ReptileBaskingTemperatureGradientPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -787,6 +1042,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-nutrition-weight",
       description: "Calculate the required daily feeding rate for both forage (hay/grass) and concentrated feeds.",
+      aliases: ["horse-feeding-rate-calculator", "how-to-calculate-horse-feeding-rate", "horse-feeding-rate-online", "free-horse-feeding-rate-calculator"],
+      seoTitle: "Horse Feeding Rate Calculator (Forage + Concentrate)",
+      seoDescription: "Calculate the required daily feeding rate for both forage (hay/grass) and concentrated feeds. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/HorseFeedingRateForageConcentrateCalculator"),
       urlStyle: "flat"
     },
@@ -796,6 +1054,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-nutrition-weight",
       description: "Determine the recommended minimum and maximum hay intake as a percentage of the horse's body weight.",
+      aliases: ["horse-hay-intake-calculator", "how-to-calculate-horse-hay-intake", "horse-hay-intake-online", "free-horse-hay-intake-calculator"],
+      seoTitle: "Horse Hay Intake Calculator (per body weight %)",
+      seoDescription: "Determine the recommended minimum and maximum hay intake as a percentage of the horse's body weight. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorseHayIntakeBodyweightPercentCalculator"),
       urlStyle: "flat"
     },
@@ -805,6 +1066,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-nutrition-weight",
       description: "Calculate the daily requirements for crude protein and the essential amino acid **Lysine** for horses.",
+      aliases: ["horse-protein-and-lysine-requirement-calculator", "how-to-calculate-horse-protein-and-lysine-requirement", "horse-protein-and-lysine-requirement-online", "free-horse-protein-and-lysine-requirement-calculator"],
+      seoTitle: "Horse Protein & Lysine Requirement Calculator",
+      seoDescription: "Calculate the daily requirements for crude protein and the essential amino acid **Lysine** for horses. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorseProteinLysineRequirementCalculator"),
       urlStyle: "flat"
     },
@@ -814,6 +1078,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-nutrition-weight",
       description: "Estimate necessary electrolyte supplementation based on ambient heat and intensity of exercise/sweating.",
+      aliases: ["horse-electrolyte-need-calculator", "how-to-calculate-horse-electrolyte-need", "horse-electrolyte-need-online", "free-horse-electrolyte-need-calculator"],
+      seoTitle: "Horse Electrolyte Need Estimator (Exercise & Heat)",
+      seoDescription: "Estimate necessary electrolyte supplementation based on ambient heat and intensity of exercise/sweating. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorseElectrolyteNeedEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -823,6 +1090,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-nutrition-weight",
       description: "Use the **Henneke 1-9 scale** to assess a horse's fat reserves and plan nutritional adjustments.",
+      aliases: ["horse-body-condition-score-calculator", "how-to-calculate-horse-body-condition-score", "horse-body-condition-score-online", "free-horse-body-condition-score-calculator"],
+      seoTitle: "Horse Body Condition Score Helper (Henneke 1–9)",
+      seoDescription: "Use the **Henneke 1-9 scale** to assess a horse's fat reserves and plan nutritional adjustments.",
       loader: () => import("@/components/calculators/Pets/HorseBodyConditionScoreHennekeCalculator"),
       urlStyle: "flat"
     },
@@ -832,6 +1102,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-hydration",
       description: "Estimate the minimum daily water intake required for a horse based on its weight and ambient air temperature.",
+      aliases: ["horse-water-intake-by-temperature-and-weight-calculator", "horse-water-intake-by-temperature-and-weight-online", "free-horse-water-intake-by-temperature-and-weight-calculator"],
+      seoTitle: "Horse Water Intake by Temperature & Weight",
+      seoDescription: "Estimate the minimum daily water intake required for a horse based on its weight and ambient air temperature.",
       loader: () => import("@/components/calculators/Pets/HorseWaterIntakeTemperatureWeightCalculator"),
       urlStyle: "flat"
     },
@@ -841,6 +1114,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-hydration",
       description: "Assess dehydration risk using the skin pinch (turgor) test and capillary refill time (mucous checks).",
+      aliases: ["dehydration-risk-calculator", "how-to-calculate-dehydration-risk", "dehydration-risk-online", "free-dehydration-risk-calculator"],
+      seoTitle: "Dehydration Risk Estimator (Skin Turgor + Mucous Check)",
+      seoDescription: "Assess dehydration risk using the skin pinch (turgor) test and capillary refill time (mucous checks). Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorseDehydrationRiskEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -850,6 +1126,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-health-toxicology",
       description: "Assess the risk of colic (abdominal pain) based on feeding practices, management, and health history.",
+      aliases: ["horse-colic-risk-assessment-calculator", "how-to-calculate-horse-colic-risk-assessment", "horse-colic-risk-assessment-online", "free-horse-colic-risk-assessment-calculator"],
+      seoTitle: "Horse Colic Risk Assessment (Feeding & Management)",
+      seoDescription: "Assess the risk of colic (abdominal pain) based on feeding practices, management, and health history. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorseColicRiskAssessmentCalculator"),
       urlStyle: "flat"
     },
@@ -859,6 +1138,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-health-toxicology",
       description: "Calculate the risk of **Laminitis (Founder)** based on Body Condition Score and non-structural carbohydrate (NSC) intake.",
+      aliases: ["laminitis-risk-index-calculator", "how-to-calculate-laminitis-risk-index", "laminitis-risk-index-online", "free-laminitis-risk-index-calculator"],
+      seoTitle: "Laminitis Risk Index (BCS + NSC intake)",
+      seoDescription: "Calculate the risk of **Laminitis (Founder)** based on Body Condition Score and non-structural carbohydrate (NSC) intake. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/HorseLaminitisRiskIndexCalculator"),
       urlStyle: "flat"
     },
@@ -868,6 +1150,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-health-toxicology",
       description: "Tool to evaluate the poisoning risk from common toxic pasture plants like **Ragwort** or **Yew**.",
+      aliases: ["horse-toxic-plant-exposure-risk-calculator", "how-to-calculate-horse-toxic-plant-exposure-risk", "horse-toxic-plant-exposure-risk-online", "free-horse-toxic-plant-exposure-risk-calculator"],
+      seoTitle: "Horse Toxic Plant Exposure Risk (Ragwort, Yew, etc.)",
+      seoDescription: "Tool to evaluate the poisoning risk from common toxic pasture plants like **Ragwort** or **Yew**.",
       loader: () => import("@/components/calculators/Pets/HorseToxicPlantExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -877,6 +1162,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-health-toxicology",
       description: "Assess the overdose and toxicity risk associated with common horse anti-inflammatories like **Phenylbutazone (Bute)**.",
+      aliases: ["horse-nsaid-overdose-risk-calculator", "how-to-calculate-horse-nsaid-overdose-risk", "horse-nsaid-overdose-risk-online", "free-horse-nsaid-overdose-risk-calculator"],
+      seoTitle: "Horse NSAID Overdose Risk (Phenylbutazone)",
+      seoDescription: "Assess the overdose and toxicity risk associated with common horse anti-inflammatories like **Phenylbutazone (Bute)**. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/HorseNsaidOverdoseRiskCalculator"),
       urlStyle: "flat"
     },
@@ -886,6 +1174,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-health-toxicology",
       description: "Calculate the safe upper limit and potential toxicity risk of **Selenium** intake in parts per million (ppm).",
+      aliases: ["horse-selenium-toxicity-threshold-calculator", "how-to-calculate-horse-selenium-toxicity-threshold", "horse-selenium-toxicity-threshold-online", "free-horse-selenium-toxicity-threshold-calculator"],
+      seoTitle: "Horse Selenium Toxicity Threshold (ppm)",
+      seoDescription: "Calculate the safe upper limit and potential toxicity risk of **Selenium** intake in parts per million (ppm).",
       loader: () => import("@/components/calculators/Pets/HorseSeleniumToxicityThresholdCalculator"),
       urlStyle: "flat"
     },
@@ -895,6 +1186,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-health-toxicology",
       description: "Check the daily intake of salt and essential macro/micro-minerals against required nutritional levels.",
+      aliases: ["horse-salt-and-mineral-balance-calculator", "how-to-calculate-horse-salt-and-mineral-balance", "horse-salt-and-mineral-balance-online", "free-horse-salt-and-mineral-balance-calculator"],
+      seoTitle: "Horse Salt & Mineral Balance Checker",
+      seoDescription: "Check the daily intake of salt and essential macro/micro-minerals against required nutritional levels. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorseSaltMineralBalanceCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -904,6 +1198,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-medication-supplement",
       description: "Calculate the correct dosage for various types of dewormers (anthelmintics) based on drug class and horse weight.",
+      aliases: ["how-to-calculate-dewormer-dose", "dewormer-dose-online", "free-dewormer-dose-calculator"],
+      seoTitle: "Dewormer Dose Calculator (by Drug Class & Weight)",
+      seoDescription: "Calculate the correct dosage for various types of dewormers (anthelmintics) based on drug class and horse weight. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/HorseDewormerDoseCalculator"),
       urlStyle: "flat"
     },
@@ -913,6 +1210,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-medication-supplement",
       description: "Calculate the safe dose for the NSAIDs **Phenylbutazone** and **Flunixin** for pain and fever management.",
+      aliases: ["phenylbutazone-flunixin-dose-calculator", "how-to-calculate-phenylbutazone-flunixin-dose", "phenylbutazone-flunixin-dose-online", "free-phenylbutazone-flunixin-dose-calculator"],
+      seoTitle: "Phenylbutazone / Flunixin Dose Calculator",
+      seoDescription: "Calculate the safe dose for the NSAIDs **Phenylbutazone** and **Flunixin** for pain and fever management. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorsePhenylbutazoneFlunixinDoseCalculator"),
       urlStyle: "flat"
     },
@@ -922,6 +1222,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-medication-supplement",
       description: "Determine the correct ratio for mixing electrolyte powders into water or feed for performance horses.",
+      aliases: ["electrolyte-powder-mixing-calculator", "how-to-calculate-electrolyte-powder-mixing", "electrolyte-powder-mixing-online", "free-electrolyte-powder-mixing-calculator"],
+      seoTitle: "Electrolyte Powder Mixing Calculator",
+      seoDescription: "Determine the correct ratio for mixing electrolyte powders into water or feed for performance horses. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/HorseElectrolytePowderMixingCalculator"),
       urlStyle: "flat"
     },
@@ -931,6 +1234,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-medication-supplement",
       description: "Determine the required supplement dosage of Omega-3 fatty acids based on the horse's weight (kg).",
+      aliases: ["omega-3-supplement-calculator", "how-to-calculate-omega-3-supplement", "omega-3-supplement-online", "free-omega-3-supplement-calculator"],
+      seoTitle: "Omega-3 Supplement Planner (EPA/DHA per kg)",
+      seoDescription: "Determine the required supplement dosage of Omega-3 fatty acids based on the horse's weight (kg).",
       loader: () => import("@/components/calculators/Pets/HorseOmega3SupplementPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -940,6 +1246,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-reproduction",
       description: "Calculate the expected **foaling (birth) date** for a pregnant mare.",
+      aliases: ["horse-gestation-calculator", "how-to-calculate-horse-gestation", "horse-gestation-online", "free-horse-gestation-calculator"],
+      seoTitle: "Horse Gestation (Due Date) Calculator",
+      seoDescription: "Calculate the expected **foaling (birth) date** for a pregnant mare.",
       loader: () => import("@/components/calculators/Pets/HorseGestationDueDateCalculator"),
       urlStyle: "flat"
     },
@@ -949,6 +1258,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "horses-reproduction",
       description: "Track the final days before foaling and plan the increased feed/calorie requirements during the lactation period.",
+      aliases: ["foaling-countdown-and-lactation-feed-calculator", "how-to-calculate-foaling-countdown-and-lactation-feed", "foaling-countdown-and-lactation-feed-online", "free-foaling-countdown-and-lactation-feed-calculator"],
+      seoTitle: "Foaling Countdown & Lactation Feed Planner",
+      seoDescription: "Track the final days before foaling and plan the increased feed/calorie requirements during the lactation period. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/HorseFoalingCountdownLactationFeedPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -958,6 +1270,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-nutrition-weight",
       description: "Calculate the correct volume and frequency for hand-feeding formula for baby chicks and fledglings.",
+      aliases: ["hand-feeding-formula-amount-calculator", "how-to-calculate-hand-feeding-formula-amount", "hand-feeding-formula-amount-online", "free-hand-feeding-formula-amount-calculator"],
+      seoTitle: "Hand-Feeding Formula Amount (Chicks)",
+      seoDescription: "Calculate the correct volume and frequency for hand-feeding formula for baby chicks and fledglings. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/BirdHandFeedingFormulaAmountChicksCalculator"),
       urlStyle: "flat"
     },
@@ -967,6 +1282,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-nutrition-weight",
       description: "Calculate the required daily intake of Vitamin A, deficiency of which is common in seed-fed birds.",
+      aliases: ["vitamin-a-requirement-calculator", "how-to-calculate-vitamin-a-requirement", "vitamin-a-requirement-online", "free-vitamin-a-requirement-calculator"],
+      seoTitle: "Vitamin A Requirement Calculator",
+      seoDescription: "Calculate the required daily intake of Vitamin A, deficiency of which is common in seed-fed birds. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/BirdVitaminARequirementCalculator"),
       urlStyle: "flat"
     },
@@ -976,6 +1294,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-nutrition-weight",
       description: "Determine the appropriate calcium supplement dose for egg-laying and breeding female birds.",
+      aliases: ["calcium-supplement-dosage-calculator", "how-to-calculate-calcium-supplement-dosage", "calcium-supplement-dosage-online", "free-calcium-supplement-dosage-calculator"],
+      seoTitle: "Calcium Supplement Dosage (Breeding Females)",
+      seoDescription: "Determine the appropriate calcium supplement dose for egg-laying and breeding female birds. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/BirdCalciumSupplementDosageBreedingFemalesCalculator"),
       urlStyle: "flat"
     },
@@ -985,6 +1306,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-nutrition-weight",
       description: "Tool to log and track a bird's weight weekly to catch subtle signs of illness or nutritional imbalance.",
+      aliases: ["weight-trend-tracker-calculator", "how-to-calculate-weight-trend-tracker", "weight-trend-tracker-online", "free-weight-trend-tracker-calculator"],
+      seoTitle: "Weight Trend Tracker (Weekly Log)",
+      seoDescription: "Tool to log and track a bird's weight weekly to catch subtle signs of illness or nutritional imbalance. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/BirdWeightTrendTrackerWeeklyCalculator"),
       urlStyle: "flat"
     },
@@ -994,6 +1318,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-health-toxicology",
       description: "Check the toxicity of common human foods like **Avocado, Chocolate, and fruit seeds** for pet birds.",
+      aliases: ["toxic-foods-exposure-calculator", "how-to-calculate-toxic-foods-exposure", "toxic-foods-exposure-online", "free-toxic-foods-exposure-calculator"],
+      seoTitle: "Toxic Foods Exposure Checker (Avocado, Chocolate, etc.)",
+      seoDescription: "Check the toxicity of common human foods like **Avocado, Chocolate, and fruit seeds** for pet birds. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/BirdToxicFoodsExposureCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -1003,6 +1330,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-health-toxicology",
       description: "Assess the risk of poisoning from exposure to heavy metals like **lead or zinc** (e.g., from cages or toys).",
+      aliases: ["heavy-metal-exposure-risk-calculator", "how-to-calculate-heavy-metal-exposure-risk", "heavy-metal-exposure-risk-online", "free-heavy-metal-exposure-risk-calculator"],
+      seoTitle: "Heavy Metal (Lead/Zinc) Exposure Risk",
+      seoDescription: "Assess the risk of poisoning from exposure to heavy metals like **lead or zinc** (e.g., from cages or toys). Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/BirdHeavyMetalExposureRiskCalculator"),
       urlStyle: "flat"
     },
@@ -1012,6 +1342,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-health-toxicology",
       description: "Index to assess the environmental and behavioral stress factors that may lead to feather plucking behavior.",
+      aliases: ["feather-plucking-and-stress-risk-index-calculator", "how-to-calculate-feather-plucking-and-stress-risk-index", "feather-plucking-and-stress-risk-index-online", "free-feather-plucking-and-stress-risk-index-calculator"],
+      seoTitle: "Feather Plucking & Stress Risk Index",
+      seoDescription: "Index to assess the environmental and behavioral stress factors that may lead to feather plucking behavior. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/BirdFeatherPluckingStressRiskIndexCalculator"),
       urlStyle: "flat"
     },
@@ -1021,6 +1354,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-health-toxicology",
       description: "Estimate the risk of a female bird suffering from **egg binding** based on nutrition and reproductive history.",
+      aliases: ["egg-binding-risk-calculator", "how-to-calculate-egg-binding-risk", "egg-binding-risk-online", "free-egg-binding-risk-calculator"],
+      seoTitle: "Egg Binding Risk Estimator",
+      seoDescription: "Estimate the risk of a female bird suffering from **egg binding** based on nutrition and reproductive history.",
       loader: () => import("@/components/calculators/Pets/BirdEggBindingRiskEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -1030,6 +1366,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-health-toxicology",
       description: "Determine the ideal ambient temperature range for the bird's enclosure to prevent heat stress or chill.",
+      aliases: ["ambient-temperature-safe-zone-calculator", "how-to-calculate-ambient-temperature-safe-zone", "ambient-temperature-safe-zone-online", "free-ambient-temperature-safe-zone-calculator"],
+      seoTitle: "Ambient Temperature Safe Zone Calculator",
+      seoDescription: "Determine the ideal ambient temperature range for the bird's enclosure to prevent heat stress or chill. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/BirdAmbientTemperatureSafeZoneCalculator"),
       urlStyle: "flat"
     },
@@ -1039,6 +1378,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-hydration",
       description: "Calculate the minimum daily water volume needed for a bird based on its weight.",
+      aliases: ["daily-water-requirement-per-weight-calculator", "how-to-calculate-daily-water-requirement-per-weight", "daily-water-requirement-per-weight-online", "free-daily-water-requirement-per-weight-calculator"],
+      seoTitle: "Daily Water Requirement per Weight",
+      seoDescription: "Calculate the minimum daily water volume needed for a bird based on its weight. Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Pets/BirdDailyWaterRequirementPerWeightCalculator"),
       urlStyle: "flat"
     },
@@ -1048,6 +1390,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-hydration",
       description: "Tool to help owners identify early signs of dehydration in birds, which can be subtle.",
+      aliases: ["dehydration-signs-calculator", "how-to-calculate-dehydration-signs", "dehydration-signs-online", "free-dehydration-signs-calculator"],
+      seoTitle: "Dehydration Signs Estimator",
+      seoDescription: "Tool to help owners identify early signs of dehydration in birds, which can be subtle. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/BirdDehydrationSignsEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -1057,6 +1402,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-medication",
       description: "Reference guide for common antibiotic dosages in birds by body weight (mg/kg).",
+      aliases: ["antibiotic-dose-reference-calculator", "how-to-calculate-antibiotic-dose-reference", "antibiotic-dose-reference-online", "free-antibiotic-dose-reference-calculator"],
+      seoTitle: "Antibiotic Dose Reference (mg/kg)",
+      seoDescription: "Reference guide for common antibiotic dosages in birds by body weight (mg/kg). Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Pets/BirdAntibioticDoseReferenceCalculator"),
       urlStyle: "flat"
     },
@@ -1066,6 +1414,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-medication",
       description: "Determine the correct daily supplement dosage of Omega-3s for parrots and other large pet birds.",
+      aliases: ["omega-3-supplement-dose-calculator", "how-to-calculate-omega-3-supplement-dose", "omega-3-supplement-dose-online", "free-omega-3-supplement-dose-calculator"],
+      seoTitle: "Omega-3 Supplement Dose (for parrots)",
+      seoDescription: "Determine the correct daily supplement dosage of Omega-3s for parrots and other large pet birds.",
       loader: () => import("@/components/calculators/Pets/BirdOmega3SupplementDoseParrotsCalculator"),
       urlStyle: "flat"
     },
@@ -1075,6 +1426,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "birds-medication",
       description: "Calculate the safe concentration for mixing electrolytes and Vitamin C into a bird's drinking water.",
+      aliases: ["electrolyte-and-vitamin-c-water-mix-calculator", "how-to-calculate-electrolyte-and-vitamin-c-water-mix", "electrolyte-and-vitamin-c-water-mix-online", "free-electrolyte-and-vitamin-c-water-mix-calculator"],
+      seoTitle: "Electrolyte & Vitamin C Water Mix Calculator",
+      seoDescription: "Calculate the safe concentration for mixing electrolytes and Vitamin C into a bird's drinking water. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/BirdElectrolyteVitaminCWaterMixCalculator"),
       urlStyle: "flat"
     },
@@ -1084,6 +1438,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-nutrition-environment",
       description: "Determine the optimal feeding frequency and ratio of prey/vegetables based on the reptile's species and age.",
+      aliases: ["daily-feeding-ratio-calculator", "how-to-calculate-daily-feeding-ratio", "daily-feeding-ratio-online", "free-daily-feeding-ratio-calculator"],
+      seoTitle: "Daily Feeding Ratio (by Species & Age)",
+      seoDescription: "Determine the optimal feeding frequency and ratio of prey/vegetables based on the reptile's species and age. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/ReptileDailyFeedingRatioSpeciesAgeCalculator"),
       urlStyle: "flat"
     },
@@ -1093,6 +1450,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-nutrition-environment",
       description: "Calculate the vital **Calcium-to-Phosphorus ratio** of a reptile's diet, which should be maintained above 1:1.",
+      aliases: ["calcium-to-phosphorus-ratio-calculator", "how-to-calculate-calcium-to-phosphorus-ratio", "calcium-to-phosphorus-ratio-online", "free-calcium-to-phosphorus-ratio-calculator"],
+      seoTitle: "Calcium-to-Phosphorus Ratio Calculator",
+      seoDescription: "Calculate the vital **Calcium-to-Phosphorus ratio** of a reptile's diet, which should be maintained above 1:1.",
       loader: () => import("@/components/calculators/Pets/ReptileCalciumToPhosphorusRatioCalculator"),
       urlStyle: "flat"
     },
@@ -1102,6 +1462,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-nutrition-environment",
       description: "Determine the supplemental D3 dosage needed if UVB lighting is inadequate or unavailable.",
+      aliases: ["vitamin-d3-requirement-calculator", "how-to-calculate-vitamin-d3-requirement", "vitamin-d3-requirement-online", "free-vitamin-d3-requirement-calculator"],
+      seoTitle: "Vitamin D3 Requirement (Supplemental)",
+      seoDescription: "Determine the supplemental D3 dosage needed if UVB lighting is inadequate or unavailable. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/ReptileVitaminD3RequirementCalculator"),
       urlStyle: "flat"
     },
@@ -1111,6 +1474,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-nutrition-environment",
       description: "Calculate the necessary gut-loading time and nutritional ratio for feeder insects before feeding them to reptiles.",
+      aliases: ["feeder-insect-gut-loading-ratio-calculator", "how-to-calculate-feeder-insect-gut-loading-ratio", "feeder-insect-gut-loading-ratio-online", "free-feeder-insect-gut-loading-ratio-calculator"],
+      seoTitle: "Feeder Insect Gut-Loading Ratio",
+      seoDescription: "Calculate the necessary gut-loading time and nutritional ratio for feeder insects before feeding them to reptiles. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/ReptileFeederInsectGutLoadingRatioCalculator"),
       urlStyle: "flat"
     },
@@ -1120,6 +1486,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-health",
       description: "Assess the risk of dehydration-related issues, such as poor or stuck shedding.",
+      aliases: ["dehydration-and-shedding-risk-index-calculator", "how-to-calculate-dehydration-and-shedding-risk-index", "dehydration-and-shedding-risk-index-online", "free-dehydration-and-shedding-risk-index-calculator"],
+      seoTitle: "Dehydration & Shedding Risk Index",
+      seoDescription: "Assess the risk of dehydration-related issues, such as poor or stuck shedding. Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Pets/ReptileDehydrationSheddingRiskIndexCalculator"),
       urlStyle: "flat"
     },
@@ -1129,6 +1498,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-health",
       description: "Estimate the risk of **Metabolic Bone Disease (MBD)** based on calcium/D3/UVB light availability.",
+      aliases: ["metabolic-bone-disease-risk-calculator", "how-to-calculate-metabolic-bone-disease-risk", "metabolic-bone-disease-risk-online", "free-metabolic-bone-disease-risk-calculator"],
+      seoTitle: "Metabolic Bone Disease Risk Estimator",
+      seoDescription: "Estimate the risk of **Metabolic Bone Disease (MBD)** based on calcium/D3/UVB light availability.",
       loader: () => import("@/components/calculators/Pets/ReptileMetabolicBoneDiseaseRiskCalculator"),
       urlStyle: "flat"
     },
@@ -1138,6 +1510,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-health",
       description: "Calculate and maintain the correct humidity percentage for a specific reptile species to ensure respiratory health.",
+      aliases: ["ideal-humidity-range-calculator", "how-to-calculate-ideal-humidity-range", "ideal-humidity-range-online", "free-ideal-humidity-range-calculator"],
+      seoTitle: "Ideal Humidity Range Calculator",
+      seoDescription: "Calculate and maintain the correct humidity percentage for a specific reptile species to ensure respiratory health. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/ReptileIdealHumidityRangeCalculator"),
       urlStyle: "flat"
     },
@@ -1147,6 +1522,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-health",
       description: "Track and compare the reptile's growth against standard growth curves for species like Pythons, Bearded Dragons, and Geckos.",
+      aliases: ["growth-curve-by-species-calculator", "how-to-calculate-growth-curve-by-species", "growth-curve-by-species-online", "free-growth-curve-by-species-calculator"],
+      seoTitle: "Growth Curve by Species (Python, Bearded Dragon, Gecko)",
+      seoDescription: "Track and compare the reptile's growth against standard growth curves for species like Pythons, Bearded Dragons, and Geckos.",
       loader: () => import("@/components/calculators/Pets/ReptileGrowthCurvePythonBeardedDragonGeckoCalculator"),
       urlStyle: "flat"
     },
@@ -1156,6 +1534,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-health",
       description: "Estimate the wattage (power) needed for heat lamps and heat mats to maintain the required thermal gradient.",
+      aliases: ["thermal-gradient-maintenance-power-calculator", "how-to-calculate-thermal-gradient-maintenance-power", "thermal-gradient-maintenance-power-online", "free-thermal-gradient-maintenance-power-calculator"],
+      seoTitle: "Thermal Gradient Maintenance Power Estimator",
+      seoDescription: "Estimate the wattage (power) needed for heat lamps and heat mats to maintain the required thermal gradient. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/ReptileThermalGradientMaintenancePowerCalculator"),
       urlStyle: "flat"
     },
@@ -1165,6 +1546,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-medication",
       description: "Reference guide for common dewormer and antibiotic dosages in reptiles by body weight.",
+      aliases: ["dewormer-and-antibiotic-dose-reference-calculator", "how-to-calculate-dewormer-and-antibiotic-dose-reference", "dewormer-and-antibiotic-dose-reference-online", "free-dewormer-and-antibiotic-dose-reference-calculator"],
+      seoTitle: "Dewormer & Antibiotic Dose Reference",
+      seoDescription: "Reference guide for common dewormer and antibiotic dosages in reptiles by body weight. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/ReptileDewormerAntibioticDoseReferenceCalculator"),
       urlStyle: "flat"
     },
@@ -1174,6 +1558,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-medication",
       description: "Calculate the required dusting frequency and amount of Calcium and D3 supplement powder for feeders.",
+      aliases: ["calcium-d3-supplement-calculator", "how-to-calculate-calcium-d3-supplement", "calcium-d3-supplement-online", "free-calcium-d3-supplement-calculator"],
+      seoTitle: "Calcium + D3 Supplement Calculator",
+      seoDescription: "Calculate the required dusting frequency and amount of Calcium and D3 supplement powder for feeders. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/ReptileCalciumD3SupplementCalculator"),
       urlStyle: "flat"
     },
@@ -1183,6 +1570,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "reptiles-medication",
       description: "Calculate the necessary volume of subcutaneous fluids for a dehydrated reptile based on its weight and severity.",
+      aliases: ["fluid-replacement-volume-calculator", "how-to-calculate-fluid-replacement-volume", "fluid-replacement-volume-online", "free-fluid-replacement-volume-calculator"],
+      seoTitle: "Fluid Replacement Volume Calculator",
+      seoDescription: "Calculate the necessary volume of subcutaneous fluids for a dehydrated reptile based on its weight and severity. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/ReptileFluidReplacementVolumeCalculator"),
       urlStyle: "flat"
     },
@@ -1192,6 +1582,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-volume-stocking",
       description: "Calculate the accurate volume (in Liters or Gallons) of rectangular, cylindrical, or bowfront aquariums.",
+      aliases: ["aquarium-volume-calculator", "how-to-calculate-aquarium-volume", "aquarium-volume-online", "free-aquarium-volume-calculator"],
+      seoTitle: "Aquarium Volume Calculator",
+      seoDescription: "Calculate the accurate volume (in Liters or Gallons) of rectangular, cylindrical, or bowfront aquariums. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/AquariumVolumeRectangularCylindricalBowfrontCalculator"),
       urlStyle: "flat"
     },
@@ -1201,6 +1594,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-volume-stocking",
       description: "Determine the safe number or length of fish that can be kept in a tank, preventing overstocking and stress.",
+      aliases: ["safe-stocking-density-calculator", "how-to-calculate-safe-stocking-density", "safe-stocking-density-online", "free-safe-stocking-density-calculator"],
+      seoTitle: "Safe Stocking Density (Fish/cm per Litre)",
+      seoDescription: "Determine the safe number or length of fish that can be kept in a tank, preventing overstocking and stress. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/AquariumSafeStockingDensityFishPerLitreCalculator"),
       urlStyle: "flat"
     },
@@ -1210,6 +1606,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-volume-stocking",
       description: "Calculate the minimum required filter flow rate (LPH/GPH) to turn over the tank volume adequately.",
+      aliases: ["filter-flow-rate-calculator", "how-to-calculate-filter-flow-rate", "filter-flow-rate-online", "free-filter-flow-rate-calculator"],
+      seoTitle: "Filter Flow Rate Calculator",
+      seoDescription: "Calculate the minimum required filter flow rate (LPH/GPH) to turn over the tank volume adequately. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/AquariumFilterFlowRateCalculator"),
       urlStyle: "flat"
     },
@@ -1219,6 +1618,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-volume-stocking",
       description: "Plan the exact volume of water to be changed to achieve a target percentage reduction in nitrates or other parameters.",
+      aliases: ["water-change-volume-calculator", "how-to-calculate-water-change-volume", "water-change-volume-online", "free-water-change-volume-calculator"],
+      seoTitle: "Water Change Volume Planner",
+      seoDescription: "Plan the exact volume of water to be changed to achieve a target percentage reduction in nitrates or other parameters. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/AquariumWaterChangeVolumePlannerCalculator"),
       urlStyle: "flat"
     },
@@ -1228,6 +1630,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-volume-stocking",
       description: "Determine the correct wattage heater needed to maintain the desired water temperature based on tank volume and room temperature.",
+      aliases: ["heater-wattage-requirement-calculator", "how-to-calculate-heater-wattage-requirement", "heater-wattage-requirement-online", "free-heater-wattage-requirement-calculator"],
+      seoTitle: "Heater Wattage Requirement",
+      seoDescription: "Determine the correct wattage heater needed to maintain the desired water temperature based on tank volume and room temperature.",
       loader: () => import("@/components/calculators/Pets/AquariumHeaterWattageRequirementCalculator"),
       urlStyle: "flat"
     },
@@ -1237,6 +1642,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-volume-stocking",
       description: "Calculate the target CO₂ bubble rate (BPS) and estimate the resulting CO₂ concentration (ppm) for planted aquariums.",
+      aliases: ["co-injection-rate-calculator", "how-to-calculate-co-injection-rate", "co-injection-rate-online", "free-co-injection-rate-calculator"],
+      seoTitle: "CO₂ Injection Rate Calculator (Planted Tank)",
+      seoDescription: "Calculate the target CO₂ bubble rate (BPS) and estimate the resulting CO₂ concentration (ppm) for planted aquariums. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/AquariumCo2InjectionRatePlantedTankCalculator"),
       urlStyle: "flat"
     },
@@ -1246,6 +1654,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-water-chemistry-nutrition",
       description: "Calculate the required amount of acid or base (buffer) needed to safely adjust the aquarium water's pH level.",
+      aliases: ["ph-adjustment-calculator", "how-to-calculate-ph-adjustment", "ph-adjustment-online", "free-ph-adjustment-calculator"],
+      seoTitle: "pH Adjustment (Acid/Base Buffer) Calculator",
+      seoDescription: "Calculate the required amount of acid or base (buffer) needed to safely adjust the aquarium water's pH level.",
       loader: () => import("@/components/calculators/Pets/AquariumPhAdjustmentBufferCalculator"),
       urlStyle: "flat"
     },
@@ -1255,6 +1666,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-water-chemistry-nutrition",
       description: "Estimate the time needed for a new aquarium to complete its nitrogen cycle (converting ammonia to nitrite to nitrate).",
+      aliases: ["ammonia-to-nitrite-cycle-time-calculator", "how-to-calculate-ammonia-to-nitrite-cycle-time", "ammonia-to-nitrite-cycle-time-online", "free-ammonia-to-nitrite-cycle-time-calculator"],
+      seoTitle: "Ammonia-to-Nitrite Cycle Time Estimator",
+      seoDescription: "Estimate the time needed for a new aquarium to complete its nitrogen cycle (converting ammonia to nitrite to nitrate). Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/AquariumAmmoniaNitriteCycleTimeCalculator"),
       urlStyle: "flat"
     },
@@ -1264,6 +1678,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-water-chemistry-nutrition",
       description: "Calculate the correct, safe dosage of aquarium salt for therapeutic treatment of fish diseases (e.g., Ich).",
+      aliases: ["aquarium-salt-dosage-calculator", "how-to-calculate-aquarium-salt-dosage", "aquarium-salt-dosage-online", "free-aquarium-salt-dosage-calculator"],
+      seoTitle: "Aquarium Salt Dosage Calculator (Therapeutic)",
+      seoDescription: "Calculate the correct, safe dosage of aquarium salt for therapeutic treatment of fish diseases (e.g., Ich). Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/AquariumSaltDosageTherapeuticCalculator"),
       urlStyle: "flat"
     },
@@ -1273,6 +1690,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-water-chemistry-nutrition",
       description: "Determine the necessary water change percentage to reduce nitrate levels from the current reading to a safe target level (ppm).",
+      aliases: ["nitrate-reduction-goal-calculator", "how-to-calculate-nitrate-reduction-goal", "nitrate-reduction-goal-online", "free-nitrate-reduction-goal-calculator"],
+      seoTitle: "Nitrate Reduction Goal Planner (ppm → water change %)",
+      seoDescription: "Determine the necessary water change percentage to reduce nitrate levels from the current reading to a safe target level (ppm).",
       loader: () => import("@/components/calculators/Pets/AquariumNitrateReductionGoalPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -1282,6 +1702,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-water-chemistry-nutrition",
       description: "Calculate the optimal daily feeding amount based on the total biomass of fish in the tank.",
+      aliases: ["fish-food-feeding-rate-calculator", "how-to-calculate-fish-food-feeding-rate", "fish-food-feeding-rate-online", "free-fish-food-feeding-rate-calculator"],
+      seoTitle: "Fish Food Feeding Rate Calculator",
+      seoDescription: "Calculate the optimal daily feeding amount based on the total biomass of fish in the tank. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/FishFoodFeedingRateCalculator"),
       urlStyle: "flat"
     },
@@ -1291,6 +1714,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-water-chemistry-nutrition",
       description: "Reference table showing how the maximum solubility of dissolved oxygen changes with water temperature.",
+      aliases: ["oxygen-solubility-vs-temperature-table-calculator", "how-to-calculate-oxygen-solubility-vs-temperature-table", "oxygen-solubility-vs-temperature-table-online", "free-oxygen-solubility-vs-temperature-table-calculator"],
+      seoTitle: "Oxygen Solubility vs. Temperature Table",
+      seoDescription: "Reference table showing how the maximum solubility of dissolved oxygen changes with water temperature. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/OxygenSolubilityVsTemperatureTableCalculator"),
       urlStyle: "flat"
     },
@@ -1300,6 +1726,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-pond-breeding",
       description: "Calculate the volume of water in a pond and the minimum required liner size based on length, width, and depth.",
+      aliases: ["pond-volume-and-liner-size-calculator", "how-to-calculate-pond-volume-and-liner-size", "pond-volume-and-liner-size-online", "free-pond-volume-and-liner-size-calculator"],
+      seoTitle: "Pond Volume & Liner Size Calculator",
+      seoDescription: "Calculate the volume of water in a pond and the minimum required liner size based on length, width, and depth.",
       loader: () => import("@/components/calculators/Pets/PondVolumeLinerSizeCalculator"),
       urlStyle: "flat"
     },
@@ -1309,6 +1738,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-pond-breeding",
       description: "Plan the optimal feeding rate for Koi fish based on their body weight and the current water temperature.",
+      aliases: ["koi-feed-calculator", "how-to-calculate-koi-feed", "koi-feed-online", "free-koi-feed-calculator"],
+      seoTitle: "Koi Feed Planner (Temp + Weight)",
+      seoDescription: "Plan the optimal feeding rate for Koi fish based on their body weight and the current water temperature. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/KoiFeedPlannerTempWeightCalculator"),
       urlStyle: "flat"
     },
@@ -1318,6 +1750,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "fish-aquatic-pond-breeding",
       description: "Calculate the ideal volume and dimensions for a dedicated fish breeding or fry grow-out tank.",
+      aliases: ["breeding-tank-volume-calculator", "how-to-calculate-breeding-tank-volume", "breeding-tank-volume-online", "free-breeding-tank-volume-calculator"],
+      seoTitle: "Breeding Tank Volume Planner",
+      seoDescription: "Calculate the ideal volume and dimensions for a dedicated fish breeding or fry grow-out tank. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/BreedingTankVolumePlannerCalculator"),
       urlStyle: "flat"
     },
@@ -1327,6 +1762,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-nutrition-weight",
       description: "Calculate the specific daily calorie and energy requirements for species like rabbits, guinea pigs, and hamsters.",
+      aliases: ["daily-calorie-needs-calculator", "how-to-calculate-daily-calorie-needs", "daily-calorie-needs-online", "free-daily-calorie-needs-calculator"],
+      seoTitle: "Daily Calorie Needs (Species Specific)",
+      seoDescription: "Calculate the specific daily calorie and energy requirements for species like rabbits, guinea pigs, and hamsters. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/SmallMammalDailyCalorieNeedsCalculator"),
       urlStyle: "flat"
     },
@@ -1336,6 +1774,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-nutrition-weight",
       description: "Plan calorie targets for weight maintenance, controlled weight gain, or safe weight loss for small mammals.",
+      aliases: ["weight-maintenance-vs-gain-loss-calculator", "how-to-calculate-weight-maintenance-vs-gain-loss", "weight-maintenance-vs-gain-loss-online", "free-weight-maintenance-vs-gain-loss-calculator"],
+      seoTitle: "Weight Maintenance vs. Gain/Loss Planner",
+      seoDescription: "Plan calorie targets for weight maintenance, controlled weight gain, or safe weight loss for small mammals. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/SmallMammalWeightMaintenanceGainLossPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -1345,6 +1786,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-nutrition-weight",
       description: "Calculate the ideal daily ratio and total amount of hay vs. pellets for herbivores like rabbits and guinea pigs.",
+      aliases: ["hay-and-pellet-intake-calculator", "how-to-calculate-hay-and-pellet-intake", "hay-and-pellet-intake-online", "free-hay-and-pellet-intake-calculator"],
+      seoTitle: "Hay & Pellet Intake Calculator",
+      seoDescription: "Calculate the ideal daily ratio and total amount of hay vs. pellets for herbivores like rabbits and guinea pigs. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/SmallMammalHayPelletIntakeCalculator"),
       urlStyle: "flat"
     },
@@ -1354,6 +1798,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-nutrition-weight",
       description: "Determine the appropriate ratio of fiber and protein in the diet, crucial for gut health in species like rabbits.",
+      aliases: ["fiber-and-protein-ratio-calculator", "how-to-calculate-fiber-and-protein-ratio", "fiber-and-protein-ratio-online", "free-fiber-and-protein-ratio-calculator"],
+      seoTitle: "Fiber & Protein Ratio Calculator",
+      seoDescription: "Determine the appropriate ratio of fiber and protein in the diet, crucial for gut health in species like rabbits. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/SmallMammalFiberProteinRatioCalculator"),
       urlStyle: "flat"
     },
@@ -1363,6 +1810,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-nutrition-weight",
       description: "Calculate the daily supplemental Vitamin C requirement, which guinea pigs cannot synthesize themselves.",
+      aliases: ["vitamin-c-requirement-calculator", "how-to-calculate-vitamin-c-requirement", "vitamin-c-requirement-online", "free-vitamin-c-requirement-calculator"],
+      seoTitle: "Vitamin C Requirement (Guinea Pig)",
+      seoDescription: "Calculate the daily supplemental Vitamin C requirement, which guinea pigs cannot synthesize themselves. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/GuineaPigVitaminCRequirementCalculator"),
       urlStyle: "flat"
     },
@@ -1372,6 +1822,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-nutrition-weight",
       description: "Determine the safe daily limit for calcium intake to reduce the risk of bladder stones in susceptible species.",
+      aliases: ["calcium-intake-limit-calculator", "how-to-calculate-calcium-intake-limit", "calcium-intake-limit-online", "free-calcium-intake-limit-calculator"],
+      seoTitle: "Calcium Intake Limit (Bladder Stone Prevention)",
+      seoDescription: "Determine the safe daily limit for calcium intake to reduce the risk of bladder stones in susceptible species.",
       loader: () => import("@/components/calculators/Pets/SmallMammalCalciumIntakeLimitCalculator"),
       urlStyle: "flat"
     },
@@ -1381,6 +1834,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-nutrition-weight",
       description: "Calculate the calorie content of treats and the safe maximum portion size for rabbits.",
+      aliases: ["rabbit-treat-calories-and-safe-portion-calculator", "how-to-calculate-rabbit-treat-calories-and-safe-portion", "rabbit-treat-calories-and-safe-portion-online", "free-rabbit-treat-calories-and-safe-portion-calculator"],
+      seoTitle: "Rabbit Treat Calories & Safe Portion",
+      seoDescription: "Calculate the calorie content of treats and the safe maximum portion size for rabbits. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/RabbitTreatCaloriesSafePortionCalculator"),
       urlStyle: "flat"
     },
@@ -1390,6 +1846,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-nutrition-weight",
       description: "Check the diet to ensure it meets the high protein and fat requirements for obligate carnivores like ferrets.",
+      aliases: ["ferret-protein-fat-ratio-calculator", "how-to-calculate-ferret-protein-fat-ratio", "ferret-protein-fat-ratio-online", "free-ferret-protein-fat-ratio-calculator"],
+      seoTitle: "Ferret Protein/Fat Ratio Checker",
+      seoDescription: "Check the diet to ensure it meets the high protein and fat requirements for obligate carnivores like ferrets.",
       loader: () => import("@/components/calculators/Pets/FerretProteinFatRatioCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -1399,6 +1858,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-health-toxicology",
       description: "Assess the risk of heatstroke in rabbits based on ambient temperature and humidity.",
+      aliases: ["temperature-stress-risk-calculator", "how-to-calculate-temperature-stress-risk", "temperature-stress-risk-online", "free-temperature-stress-risk-calculator"],
+      seoTitle: "Temperature Stress Risk (Rabbit Heatstroke)",
+      seoDescription: "Assess the risk of heatstroke in rabbits based on ambient temperature and humidity. Free pet tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Pets/RabbitTemperatureStressRiskHeatstrokeCalculator"),
       urlStyle: "flat"
     },
@@ -1408,6 +1870,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-health-toxicology",
       description: "Tool to check for subtle signs of dehydration in small mammals, which can quickly become critical.",
+      aliases: ["dehydration-risk-calculator", "how-to-calculate-dehydration-risk", "dehydration-risk-online", "free-dehydration-risk-calculator"],
+      seoTitle: "Dehydration Risk Checker",
+      seoDescription: "Tool to check for subtle signs of dehydration in small mammals, which can quickly become critical. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/SmallMammalDehydrationRiskCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -1417,6 +1882,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-health-toxicology",
       description: "Reference guide for common toxic or dangerous foods for small pets (e.g., certain seeds, nuts, or sugary items).",
+      aliases: ["common-toxic-foods-reference-calculator", "how-to-calculate-common-toxic-foods-reference", "common-toxic-foods-reference-online", "free-common-toxic-foods-reference-calculator"],
+      seoTitle: "Common Toxic Foods Reference",
+      seoDescription: "Reference guide for common toxic or dangerous foods for small pets (e.g., certain seeds, nuts, or sugary items). Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/SmallMammalCommonToxicFoodsReferenceCalculator"),
       urlStyle: "flat"
     },
@@ -1426,6 +1894,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-health-toxicology",
       description: "Calculate the maximum safe daily portion of various vegetables and fruits to prevent digestive upset.",
+      aliases: ["safe-vegetables-and-fruits-portion-calculator", "how-to-calculate-safe-vegetables-and-fruits-portion", "safe-vegetables-and-fruits-portion-online", "free-safe-vegetables-and-fruits-portion-calculator"],
+      seoTitle: "Safe Vegetables & Fruits Portion Calculator",
+      seoDescription: "Calculate the maximum safe daily portion of various vegetables and fruits to prevent digestive upset. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/SmallMammalSafeVegetablesFruitsPortionCalculator"),
       urlStyle: "flat"
     },
@@ -1435,6 +1906,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-health-toxicology",
       description: "Reference guide for common anti-parasitic medication dosages (e.g., for mites, fleas, or intestinal parasites).",
+      aliases: ["parasite-treatment-dose-reference-calculator", "how-to-calculate-parasite-treatment-dose-reference", "parasite-treatment-dose-reference-online", "free-parasite-treatment-dose-reference-calculator"],
+      seoTitle: "Parasite Treatment Dose Reference",
+      seoDescription: "Reference guide for common anti-parasitic medication dosages (e.g., for mites, fleas, or intestinal parasites).",
       loader: () => import("@/components/calculators/Pets/SmallMammalParasiteTreatmentDoseReferenceCalculator"),
       urlStyle: "flat"
     },
@@ -1444,6 +1918,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-behavior-care",
       description: "Calculate the minimum cage or enclosure size required for specific small mammal species (e.g., minimum cubic feet).",
+      aliases: ["cage-size-requirement-calculator", "how-to-calculate-cage-size-requirement", "cage-size-requirement-online", "free-cage-size-requirement-calculator"],
+      seoTitle: "Cage Size Requirement Calculator",
+      seoDescription: "Calculate the minimum cage or enclosure size required for specific small mammal species (e.g., minimum cubic feet). Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Pets/SmallMammalCageSizeRequirementCalculator"),
       urlStyle: "flat"
     },
@@ -1453,6 +1930,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-behavior-care",
       description: "Plan the necessary amount of daily free-roam or wheel/run time to ensure adequate exercise and enrichment.",
+      aliases: ["exercise-time-calculator", "how-to-calculate-exercise-time", "exercise-time-online", "free-exercise-time-calculator"],
+      seoTitle: "Exercise Time Planner (Run Time per Day)",
+      seoDescription: "Plan the necessary amount of daily free-roam or wheel/run time to ensure adequate exercise and enrichment. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/SmallMammalExerciseTimePlannerCalculator"),
       urlStyle: "flat"
     },
@@ -1462,6 +1942,9 @@ export const petsEntries: CalculatorEntry[] = [
       category: "pets",
       subcategory: "small-mammals-behavior-care",
       description: "Estimate how often bedding needs to be fully replaced to maintain hygiene and prevent ammonia buildup.",
+      aliases: ["bedding-replacement-frequency-calculator", "how-to-calculate-bedding-replacement-frequency", "bedding-replacement-frequency-online", "free-bedding-replacement-frequency-calculator"],
+      seoTitle: "Bedding Replacement Frequency Estimator",
+      seoDescription: "Estimate how often bedding needs to be fully replaced to maintain hygiene and prevent ammonia buildup. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Pets/SmallMammalBeddingReplacementFrequencyCalculator"),
       urlStyle: "flat"
     }

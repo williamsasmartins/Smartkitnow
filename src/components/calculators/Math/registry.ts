@@ -11,6 +11,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "percent-ratio-fractions",
       description: "Calculate the percentage of a total value. Quickly determine what part of the whole a specific number represents.",
+      aliases: ["percent-of-total-calculator", "how-to-calculate-percent-of-total", "percent-of-total-online", "free-percent-of-total-calculator"],
+      seoTitle: "Percent of Total Calculator",
+      seoDescription: "Calculate the percentage of a total value. Quickly determine what part of the whole a specific number represents. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/PercentOfTotalCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "grades-gpa",
       description: "Calculate your GPA using course credits and letter grades on a common 4.0 scale.",
+      aliases: ["how-to-calculate-gpa", "gpa-online", "free-gpa-calculator"],
+      seoTitle: "GPA Calculator",
+      seoDescription: "Calculate your GPA using course credits and letter grades on a common 4.0 scale. Free math tool — get instant, accurate results with no signup needed.",
       loader: () => import("@/components/calculators/Math/GpaCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "percent-ratio-fractions",
       description: "Calculate the percentage increase or decrease between two numbers. Essential for tracking growth, discounts, or price changes.",
+      aliases: ["percent-increase-decrease-calculator", "how-to-calculate-percent-increase-decrease", "percent-increase-decrease-online", "free-percent-increase-decrease-calculator"],
+      seoTitle: "Percent Increase/Decrease Calculator",
+      seoDescription: "Calculate the percentage increase or decrease between two numbers. Essential for tracking growth, discounts, or price changes.",
       loader: () => import("@/components/calculators/Math/PercentIncreaseDecreaseCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "percent-ratio-fractions",
       description: "Find the percent change between an old value and a new value. Useful for analyzing financial data, statistics, and performance metrics.",
+      aliases: ["percent-change-calculator", "how-to-calculate-percent-change", "percent-change-online", "free-percent-change-calculator"],
+      seoTitle: "Percent Change Calculator",
+      seoDescription: "Find the percent change between an old value and a new value. Useful for analyzing financial data, statistics, and performance metrics. Free and instant.",
       loader: () => import("@/components/calculators/Math/PercentChangeCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "percent-ratio-fractions",
       description: "Convert fractions to decimals and vice versa. Instantly transform 1/4 to 0.25 or any decimal back into its simplest fraction form.",
+      aliases: ["fraction-decimal-calculator", "how-to-calculate-fraction-decimal", "fraction-decimal-online", "free-fraction-decimal-calculator"],
+      seoTitle: "Fraction ⇄ Decimal Converter",
+      seoDescription: "Convert fractions to decimals and vice versa. Instantly transform 1/4 to 0.25 or any decimal back into its simplest fraction form.",
       loader: () => import("@/components/calculators/Math/FractionDecimalConverterCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "percent-ratio-fractions",
       description: "Simplify fractions instantly. Reduce complex fractions to their lowest terms for easier math and clearer answers.",
+      aliases: ["fraction-reducer-simplifier-calculator", "how-to-calculate-fraction-reducer-simplifier", "fraction-reducer-simplifier-online", "free-fraction-reducer-simplifier-calculator"],
+      seoTitle: "Fraction Reducer / Simplifier",
+      seoDescription: "Simplify fractions instantly. Reduce complex fractions to their lowest terms for easier math and clearer answers. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/FractionReducerSimplifierCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "percent-ratio-fractions",
       description: "Solve ratio problems easily. Find the missing value in a proportion (A:B = C:D) to scale recipes, images, or designs.",
+      aliases: ["how-to-calculate-ratio", "ratio-online", "free-ratio-calculator"],
+      seoTitle: "Ratio Calculator (A:B = C:D)",
+      seoDescription: "Solve ratio problems easily. Find the missing value in a proportion (A:B = C:D) to scale recipes, images, or designs. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/RatioCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "percent-ratio-fractions",
       description: "Calculate percent error in experimental measurements. Compare your observed value to the true theoretical value to check accuracy.",
+      aliases: ["how-to-calculate-percent-error", "percent-error-online", "free-percent-error-calculator"],
+      seoTitle: "Percent Error Calculator",
+      seoDescription: "Calculate percent error in experimental measurements. Compare your observed value to the true theoretical value to check accuracy.",
       loader: () => import("@/components/calculators/Math/PercentErrorCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "percent-ratio-fractions",
       description: "Solve proportions using cross-multiplication. Find the value of X in any proportional equation quickly and accurately.",
+      aliases: ["proportion-solver-calculator", "how-to-calculate-proportion-solver", "proportion-solver-online", "free-proportion-solver-calculator"],
+      seoTitle: "Proportion Solver (Cross-Multiplication)",
+      seoDescription: "Solve proportions using cross-multiplication. Find the value of X in any proportional equation quickly and accurately. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/ProportionSolverCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "algebra-equations",
       description: "Solve quadratic equations instantly. Find the roots (x-intercepts), discriminant, and vertex of any parabola using the quadratic formula.",
+      aliases: ["quadratic-equation-solver-calculator", "how-to-calculate-quadratic-equation-solver", "quadratic-equation-solver-online", "free-quadratic-equation-solver-calculator"],
+      seoTitle: "Quadratic Equation Solver (ax²+bx+c)",
+      seoDescription: "Solve quadratic equations instantly. Find the roots (x-intercepts), discriminant, and vertex of any parabola using the quadratic formula. Free and instant.",
       loader: () => import("@/components/calculators/Math/QuadraticEquationSolverCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "algebra-equations",
       description: "Solve linear equations with one or two variables. Find the value of X (and Y) for simple algebraic problems and systems.",
+      aliases: ["linear-equation-solver-calculator", "how-to-calculate-linear-equation-solver", "linear-equation-solver-online", "free-linear-equation-solver-calculator"],
+      seoTitle: "Linear Equation Solver (1–2 variables)",
+      seoDescription: "Solve linear equations with one or two variables. Find the value of X (and Y) for simple algebraic problems and systems. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/LinearEquationSolver12VariablesCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "algebra-equations",
       description: "Solve systems of linear equations. Use substitution or elimination methods to find the intersection point of two lines.",
+      aliases: ["system-of-equations-solver-calculator", "how-to-calculate-system-of-equations-solver", "system-of-equations-solver-online", "free-system-of-equations-solver-calculator"],
+      seoTitle: "System of Equations Solver (Substitution/Elimination)",
+      seoDescription: "Solve systems of linear equations. Use substitution or elimination methods to find the intersection point of two lines. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/SystemOfEquationsSubstitutionEliminationCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "algebra-equations",
       description: "Calculate exponents and powers. Raise any base number to a positive, negative, or fractional power instantly.",
+      aliases: ["how-to-calculate-exponent-and-power", "exponent-and-power-online", "free-exponent-and-power-calculator"],
+      seoTitle: "Exponent & Power Calculator",
+      seoDescription: "Calculate exponents and powers. Raise any base number to a positive, negative, or fractional power instantly.",
       loader: () => import("@/components/calculators/Math/ExponentPowerCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "algebra-equations",
       description: "Calculate logarithms and antilogarithms. Solve for Log base 10 or Natural Log (ln) base e for advanced math and science.",
+      aliases: ["log-antilog-calculator", "how-to-calculate-log-antilog", "log-antilog-online", "free-log-antilog-calculator"],
+      seoTitle: "Log / Antilog (base 10/e) Calculator",
+      seoDescription: "Calculate logarithms and antilogarithms. Solve for Log base 10 or Natural Log (ln) base e for advanced math and science. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/LogAntilogBase10ECalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "algebra-equations",
       description: "Convert numbers to Scientific Notation. Transform very large or small numbers into standard exponential form (e.g., 1.5 x 10^6).",
+      aliases: ["scientific-notation-standard-form-calculator", "how-to-calculate-scientific-notation-standard-form", "scientific-notation-standard-form-online", "free-scientific-notation-standard-form-calculator"],
+      seoTitle: "Scientific Notation ⇄ Standard Form",
+      seoDescription: "Convert numbers to Scientific Notation. Transform very large or small numbers into standard exponential form (e.g., 1.5 x 10^6).",
       loader: () => import("@/components/calculators/Math/ScientificNotationStandardFormCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "algebra-equations",
       description: "Factor polynomials efficiently. Break down algebraic expressions into their simplest factors to solve complex equations.",
+      aliases: ["polynomial-factorization-calculator", "how-to-calculate-polynomial-factorization", "polynomial-factorization-online", "free-polynomial-factorization-calculator"],
+      seoTitle: "Polynomial Factorization Helper",
+      seoDescription: "Factor polynomials efficiently. Break down algebraic expressions into their simplest factors to solve complex equations. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/PolynomialFactorizationHelperCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "algebra-equations",
       description: "Simplify square roots and radicals. Convert unsimplified radicals into their simplest mixed radical form (e.g., √8 to 2√2).",
+      aliases: ["root-radical-simplifier-calculator", "how-to-calculate-root-radical-simplifier", "root-radical-simplifier-online", "free-root-radical-simplifier-calculator"],
+      seoTitle: "Root/Radical Simplifier",
+      seoDescription: "Simplify square roots and radicals. Convert unsimplified radicals into their simplest mixed radical form (e.g., √8 to 2√2).",
       loader: () => import("@/components/calculators/Math/RootRadicalSimplifierCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "number-theory-discrete",
       description: "Find the Greatest Common Factor (GCF) or Greatest Common Divisor (GCD). Identify the largest number that divides two or more integers.",
+      aliases: ["how-to-calculate-gcf-gcd", "gcf-gcd-online", "free-gcf-gcd-calculator"],
+      seoTitle: "GCF / GCD Calculator",
+      seoDescription: "Find the Greatest Common Factor (GCF) or Greatest Common Divisor (GCD). Identify the largest number that divides two or more integers. Free and instant.",
       loader: () => import("@/components/calculators/Math/GcfGcdCalculator"),
       urlStyle: "flat"
     },
@@ -173,6 +227,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "number-theory-discrete",
       description: "Calculate the Least Common Multiple (LCM). Find the smallest positive integer that is divisible by two or more numbers.",
+      aliases: ["how-to-calculate-lcm", "lcm-online", "free-lcm-calculator"],
+      seoTitle: "LCM Calculator",
+      seoDescription: "Calculate the Least Common Multiple (LCM). Find the smallest positive integer that is divisible by two or more numbers. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/LcmCalculator"),
       urlStyle: "flat"
     },
@@ -182,6 +239,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "number-theory-discrete",
       description: "Find the prime factorization of any number. Break down composite numbers into their prime components (e.g., 12 = 2² × 3).",
+      aliases: ["prime-factorization-calculator", "how-to-calculate-prime-factorization", "prime-factorization-online", "free-prime-factorization-calculator"],
+      seoTitle: "Prime Factorization Tool",
+      seoDescription: "Find the prime factorization of any number. Break down composite numbers into their prime components (e.g., 12 = 2² × 3). Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/PrimeFactorizationToolCalculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "number-theory-discrete",
       description: "Calculate the modulo (remainder). Find the remainder of a division operation, essential for computer science and cryptography.",
+      aliases: ["how-to-calculate-modulo", "modulo-online", "free-modulo-calculator"],
+      seoTitle: "Modulo (Remainder) Calculator",
+      seoDescription: "Calculate the modulo (remainder). Find the remainder of a division operation, essential for computer science and cryptography.",
       loader: () => import("@/components/calculators/Math/ModuloRemainderCalculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "number-theory-discrete",
       description: "Calculate permutations (nPr) and combinations (nCr). Determine the number of ways to arrange or select items from a set.",
+      aliases: ["permutations-and-combinations-calculator", "how-to-calculate-permutations-and-combinations", "permutations-and-combinations-online", "free-permutations-and-combinations-calculator"],
+      seoTitle: "Permutations & Combinations (nPr / nCr)",
+      seoDescription: "Calculate permutations (nPr) and combinations (nCr). Determine the number of ways to arrange or select items from a set. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/PermutationsCombinationsNprNcrCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "number-theory-discrete",
       description: "Generate random numbers within a specific range. Perfect for statistical sampling, games, or picking a random winner.",
+      aliases: ["random-number-generator-calculator", "how-to-calculate-random-number-generator", "random-number-generator-online", "free-random-number-generator-calculator"],
+      seoTitle: "Random Number Generator (ranges)",
+      seoDescription: "Generate random numbers within a specific range. Perfect for statistical sampling, games, or picking a random winner. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/RandomNumberGeneratorRangesCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "geometry-trig",
       description: "Solve triangles using SSS, SAS, or ASA methods. Calculate missing side lengths and angles using the Law of Sines and Cosines.",
+      aliases: ["triangle-solver-calculator", "how-to-calculate-triangle-solver", "triangle-solver-online", "free-triangle-solver-calculator"],
+      seoTitle: "Triangle Solver (SSS/SAS/ASA)",
+      seoDescription: "Solve triangles using SSS, SAS, or ASA methods. Calculate missing side lengths and angles using the Law of Sines and Cosines.",
       loader: () => import("@/components/calculators/Math/TriangleSolverSssSasAsaCalculator"),
       urlStyle: "flat"
     },
@@ -227,6 +299,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "geometry-trig",
       description: "Calculate circle metrics. Find the area, circumference, radius, and diameter of a circle instantly.",
+      aliases: ["circle-area-circumference-calculator", "how-to-calculate-circle-area-circumference", "circle-area-circumference-online", "free-circle-area-circumference-calculator"],
+      seoTitle: "Circle Area / Circumference Calculator",
+      seoDescription: "Calculate circle metrics. Find the area, circumference, radius, and diameter of a circle instantly. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Math/CircleAreaCircumferenceCalculator"),
       urlStyle: "flat"
     },
@@ -236,6 +311,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "geometry-trig",
       description: "Calculate the area of rectangles and parallelograms. Find the surface area and perimeter for construction or homework.",
+      aliases: ["rectangle-and-parallelogram-area-calculator", "how-to-calculate-rectangle-and-parallelogram-area", "rectangle-and-parallelogram-area-online", "free-rectangle-and-parallelogram-area-calculator"],
+      seoTitle: "Rectangle & Parallelogram Area Calculator",
+      seoDescription: "Calculate the area of rectangles and parallelograms. Find the surface area and perimeter for construction or homework. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/RectangleParallelogramAreaCalculator"),
       urlStyle: "flat"
     },
@@ -245,6 +323,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "geometry-trig",
       description: "Solve for the hypotenuse or legs of a right triangle. Use a² + b² = c² to find missing distances easily.",
+      aliases: ["pythagorean-theorem-solver-calculator", "how-to-calculate-pythagorean-theorem-solver", "pythagorean-theorem-solver-online", "free-pythagorean-theorem-solver-calculator"],
+      seoTitle: "Pythagorean Theorem Solver",
+      seoDescription: "Solve for the hypotenuse or legs of a right triangle. Use a² + b² = c² to find missing distances easily. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Math/PythagoreanTheoremSolverCalculator"),
       urlStyle: "flat"
     },
@@ -254,6 +335,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "geometry-trig",
       description: "Calculate Trigonometric functions. Find Sine, Cosine, and Tangent values to determine unknown angles and sides in right triangles.",
+      aliases: ["trig-functions-angle-side-finder-calculator", "how-to-calculate-trig-functions-angle-side-finder", "trig-functions-angle-side-finder-online", "free-trig-functions-angle-side-finder-calculator"],
+      seoTitle: "Trig Functions (sin/cos/tan) Angle/Side Finder",
+      seoDescription: "Calculate Trigonometric functions. Find Sine, Cosine, and Tangent values to determine unknown angles and sides in right triangles.",
       loader: () => import("@/components/calculators/Math/TrigFunctionsAngleSideFinderCalculator"),
       urlStyle: "flat"
     },
@@ -263,6 +347,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "geometry-trig",
       description: "Calculate area and volume for 2D and 3D shapes. Comprehensive tool for cubes, cylinders, spheres, cones, and more.",
+      aliases: ["2d-3d-shapes-area-and-volume-pack-calculator", "how-to-calculate-2d-3d-shapes-area-and-volume-pack", "2d-3d-shapes-area-and-volume-pack-online", "free-2d-3d-shapes-area-and-volume-pack-calculator"],
+      seoTitle: "2D/3D Shapes Area & Volume Pack",
+      seoDescription: "Calculate area and volume for 2D and 3D shapes. Comprehensive tool for cubes, cylinders, spheres, cones, and more. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/ShapesAreaVolumePackCalculator"),
       urlStyle: "flat"
     },
@@ -272,6 +359,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "geometry-trig",
       description: "Convert angles between Degrees and Radians. Essential for calculus and trigonometry calculations.",
+      aliases: ["angle-calculator", "how-to-calculate-angle", "angle-online", "free-angle-calculator"],
+      seoTitle: "Angle Converter (deg ↔ rad)",
+      seoDescription: "Convert angles between Degrees and Radians. Essential for calculus and trigonometry calculations.",
       loader: () => import("@/components/calculators/Math/AngleConverterDegRadCalculator"),
       urlStyle: "flat"
     },
@@ -281,6 +371,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "statistics-probability",
       description: "Calculate Mean, Median, and Mode. Find the average, middle value, and most frequent number in any data set.",
+      aliases: ["mean-median-mode-calculator", "how-to-calculate-mean-median-mode", "mean-median-mode-online", "free-mean-median-mode-calculator"],
+      seoTitle: "Mean, Median, Mode Calculator",
+      seoDescription: "Calculate Mean, Median, and Mode. Find the average, middle value, and most frequent number in any data set. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Math/MeanMedianModeCalculator"),
       urlStyle: "flat"
     },
@@ -290,6 +383,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "statistics-probability",
       description: "Calculate Standard Deviation and Variance. Measure data dispersion and variability for population or sample datasets.",
+      aliases: ["standard-deviation-and-variance-calculator", "how-to-calculate-standard-deviation-and-variance", "standard-deviation-and-variance-online", "free-standard-deviation-and-variance-calculator"],
+      seoTitle: "Standard Deviation & Variance (pop/sample)",
+      seoDescription: "Calculate Standard Deviation and Variance. Measure data dispersion and variability for population or sample datasets. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Math/StandardDeviationVariancePopSampleCalculator"),
       urlStyle: "flat"
     },
@@ -299,6 +395,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "statistics-probability",
       description: "Find Z-Scores and Percentiles. Standardize data points to understand their position relative to the mean in a normal distribution.",
+      aliases: ["z-score-and-percentile-finder-calculator", "how-to-calculate-z-score-and-percentile-finder", "z-score-and-percentile-finder-online", "free-z-score-and-percentile-finder-calculator"],
+      seoTitle: "Z-Score & Percentile Finder",
+      seoDescription: "Find Z-Scores and Percentiles. Standardize data points to understand their position relative to the mean in a normal distribution.",
       loader: () => import("@/components/calculators/Math/ZScorePercentileFinderCalculator"),
       urlStyle: "flat"
     },
@@ -308,6 +407,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "statistics-probability",
       description: "Perform Linear Interpolation. Estimate unknown values that fall between two known data points on a line.",
+      aliases: ["linear-interpolation-extrapolation-calculator", "how-to-calculate-linear-interpolation-extrapolation", "linear-interpolation-extrapolation-online", "free-linear-interpolation-extrapolation-calculator"],
+      seoTitle: "Linear Interpolation / Extrapolation",
+      seoDescription: "Perform Linear Interpolation. Estimate unknown values that fall between two known data points on a line. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Math/LinearInterpolationExtrapolationCalculator"),
       urlStyle: "flat"
     },
@@ -317,6 +419,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "statistics-probability",
       description: "Calculate Binomial Probability. Determine the likelihood of a specific number of successes in a series of independent experiments.",
+      aliases: ["how-to-calculate-binomial-probability", "binomial-probability-online", "free-binomial-probability-calculator"],
+      seoTitle: "Binomial Probability Calculator",
+      seoDescription: "Calculate Binomial Probability. Determine the likelihood of a specific number of successes in a series of independent experiments.",
       loader: () => import("@/components/calculators/Math/BinomialProbabilityCalculator"),
       urlStyle: "flat"
     },
@@ -326,6 +431,9 @@ export const mathEntries: CalculatorEntry[] = [
       category: "math",
       subcategory: "statistics-probability",
       description: "Estimate Normal Distribution values. Calculate Cumulative Distribution Function (CDF) and Probability Density Function (PDF) probabilities.",
+      aliases: ["normal-cdf-pdf-quick-calculator", "how-to-calculate-normal-cdf-pdf-quick", "normal-cdf-pdf-quick-online", "free-normal-cdf-pdf-quick-calculator"],
+      seoTitle: "Normal CDF / PDF Quick Estimator",
+      seoDescription: "Estimate Normal Distribution values. Calculate Cumulative Distribution Function (CDF) and Probability Density Function (PDF) probabilities. Free and instant.",
       loader: () => import("@/components/calculators/Math/NormalCdfPdfEstimatorCalculator"),
       urlStyle: "flat"
     }

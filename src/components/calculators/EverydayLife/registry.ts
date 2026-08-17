@@ -11,6 +11,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "general",
       description: "Generate free QR codes for URLs, text, and contacts (vCard). Download PNG or SVG, choose error‑correction (ECC), margins, size and brand colors.",
+      aliases: ["free-qr-code-generator-calculator", "how-to-calculate-free-qr-code-generator", "free-qr-code-generator-online", "free-free-qr-code-generator-calculator"],
+      seoTitle: "Free QR Code Generator",
+      seoDescription: "Generate free QR codes for URLs, text, and contacts (vCard). Download PNG or SVG, choose error‑correction (ECC), margins, size and brand colors.",
       loader: () => import("@/components/calculators/EverydayLife/QrCodeGeneratorCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "general",
       description: "A fast, minimal, and clean tool to count words, characters, sentences, and paragraphs in real-time. Optimize your content for SEO and readability effortlessly.",
+      aliases: ["word-counter-utility-calculator", "how-to-calculate-word-counter-utility", "word-counter-utility-online", "free-word-counter-utility-calculator"],
+      seoTitle: "Word Counter Utility",
+      seoDescription: "A fast, minimal, and clean tool to count words, characters, sentences, and paragraphs in real-time. Optimize your content for SEO and readability effortlessly.",
       loader: () => import("@/components/calculators/EverydayLife/WordCounterCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Calculate the perfect cleaning dilution ratio. Mix chemicals and water safely and effectively for household cleaning tasks.",
+      aliases: ["cleaning-dilution-ratio-calculator", "how-to-calculate-cleaning-dilution-ratio", "cleaning-dilution-ratio-online", "free-cleaning-dilution-ratio-calculator"],
+      seoTitle: "Cleaning Dilution Ratio Calculator",
+      seoDescription: "Calculate the perfect cleaning dilution ratio. Mix chemicals and water safely and effectively for household cleaning tasks.",
       loader: () => import("@/components/calculators/Misc/CleaningDilutionRatioCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Determine the right laundry detergent dosage. Calculate the exact amount needed per load size to save money and protect clothes.",
+      aliases: ["laundry-detergent-dosage-by-load-size-calculator", "how-to-calculate-laundry-detergent-dosage-by-load-size", "laundry-detergent-dosage-by-load-size-online", "free-laundry-detergent-dosage-by-load-size-calculator"],
+      seoTitle: "Laundry Detergent Dosage by Load Size",
+      seoDescription: "Determine the right laundry detergent dosage. Calculate the exact amount needed per load size to save money and protect clothes.",
       loader: () => import("@/components/calculators/Misc/LaundryDetergentDosageCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Estimate paint needed for touch-ups. Calculate exactly how much paint covers scratches and small repairs on walls and trim.",
+      aliases: ["home-paint-touch-up-calculator", "how-to-calculate-home-paint-touch-up", "home-paint-touch-up-online", "free-home-paint-touch-up-calculator"],
+      seoTitle: "Home Paint Touch-Up Estimator",
+      seoDescription: "Estimate paint needed for touch-ups. Calculate exactly how much paint covers scratches and small repairs on walls and trim.",
       loader: () => import("@/components/calculators/Misc/HomePaintTouchUpCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Calculate Air Changes per Hour (ACH). Measure ventilation efficiency and air quality turnover rates for any room size.",
+      aliases: ["room-air-changes-per-hour-calculator", "how-to-calculate-room-air-changes-per-hour", "room-air-changes-per-hour-online", "free-room-air-changes-per-hour-calculator"],
+      seoTitle: "Room Air Changes per Hour (ACH) Calculator",
+      seoDescription: "Calculate Air Changes per Hour (ACH). Measure ventilation efficiency and air quality turnover rates for any room size. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/RoomAirChangesAchCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Estimate propane tank burn time. Calculate how long your grill, heater, or generator will run based on tank size and BTU usage.",
+      aliases: ["propane-tank-burn-time-calculator", "how-to-calculate-propane-tank-burn-time", "propane-tank-burn-time-online", "free-propane-tank-burn-time-calculator"],
+      seoTitle: "Propane Tank Burn Time Estimator",
+      seoDescription: "Estimate propane tank burn time. Calculate how long your grill, heater, or generator will run based on tank size and BTU usage.",
       loader: () => import("@/components/calculators/Misc/PropaneTankBurnTimeCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Track food safety during power outages. Estimate how long food stays safe in your refrigerator or freezer without power.",
+      aliases: ["refrigerator-freezer-safe-zone-time-window-calculator", "how-to-calculate-refrigerator-freezer-safe-zone-time-window", "refrigerator-freezer-safe-zone-time-window-online", "free-refrigerator-freezer-safe-zone-time-window-calculator"],
+      seoTitle: "Refrigerator/Freezer Safe Zone Time Window",
+      seoDescription: "Track food safety during power outages. Estimate how long food stays safe in your refrigerator or freezer without power. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/RefrigeratorFreezerSafeZoneTimeWindowCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Calculate electricity costs for light bulbs. Compare LED vs. incandescent usage to see how much you save on your energy bill.",
+      aliases: ["light-bulb-cost-per-year-calculator", "how-to-calculate-light-bulb-cost-per-year", "light-bulb-cost-per-year-online", "free-light-bulb-cost-per-year-calculator"],
+      seoTitle: "Light Bulb Cost per Year Calculator",
+      seoDescription: "Calculate electricity costs for light bulbs. Compare LED vs. incandescent usage to see how much you save on your energy bill.",
       loader: () => import("@/components/calculators/Misc/LightBulbCostPerYearCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Estimate water heater recovery time. Calculate how long it takes for your tank to provide hot water again after depletion.",
+      aliases: ["water-heater-recovery-time-calculator", "how-to-calculate-water-heater-recovery-time", "water-heater-recovery-time-online", "free-water-heater-recovery-time-calculator"],
+      seoTitle: "Water Heater Recovery Time Estimator",
+      seoDescription: "Estimate water heater recovery time. Calculate how long it takes for your tank to provide hot water again after depletion. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/WaterHeaterRecoveryTimeCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Estimate home renovation costs. Create a budget for your remodeling project by calculating material and labor expenses.",
+      aliases: ["home-renovation-cost-calculator", "how-to-calculate-home-renovation-cost", "home-renovation-cost-online", "free-home-renovation-cost-calculator"],
+      seoTitle: "Home Renovation Cost Estimator",
+      seoDescription: "Estimate home renovation costs. Create a budget for your remodeling project by calculating material and labor expenses. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/HomeRenovationCostEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "home-maintenance",
       description: "Calculate appliance energy consumption. Track how much electricity your fridge, TV, and washer use to manage your utility bill.",
+      aliases: ["appliance-energy-consumption-calculator", "how-to-calculate-appliance-energy-consumption", "appliance-energy-consumption-online", "free-appliance-energy-consumption-calculator"],
+      seoTitle: "Appliance Energy Consumption Calculator",
+      seoDescription: "Calculate appliance energy consumption. Track how much electricity your fridge, TV, and washer use to manage your utility bill.",
       loader: () => import("@/components/calculators/Misc/ApplianceEnergyConsumptionCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "health-wellness-sleep",
       description: "Estimate your life expectancy. Analyze lifestyle factors like diet and exercise to see statistical projections for longevity.",
+      aliases: ["life-expectancy-calculator", "how-to-calculate-life-expectancy", "life-expectancy-online", "free-life-expectancy-calculator"],
+      seoTitle: "Life Expectancy Calculator",
+      seoDescription: "Estimate your life expectancy. Analyze lifestyle factors like diet and exercise to see statistical projections for longevity.",
       loader: () => import("@/components/calculators/Misc/LifeExpectancyCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "health-wellness-sleep",
       description: "Calculate your sleep debt and recovery plan. Find out how much sleep you owe your body and determine your ideal bedtime.",
+      aliases: ["sleep-debt-and-ideal-bedtime-calculator", "how-to-calculate-sleep-debt-and-ideal-bedtime", "sleep-debt-and-ideal-bedtime-online", "free-sleep-debt-and-ideal-bedtime-calculator"],
+      seoTitle: "Sleep Debt & Ideal Bedtime Planner",
+      seoDescription: "Calculate your sleep debt and recovery plan. Find out how much sleep you owe your body and determine your ideal bedtime. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/SleepDebtIdealBedtimeCalculator"),
       urlStyle: "flat"
     },
@@ -148,6 +190,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "health-wellness-sleep",
       description: "Manage digital wellness with a screen time budget. Plan productive work intervals using the Pomodoro technique.",
+      aliases: ["screen-time-budget-pomodoro-calculator", "how-to-calculate-screen-time-budget-pomodoro", "screen-time-budget-pomodoro-online", "free-screen-time-budget-pomodoro-calculator"],
+      seoTitle: "Screen Time Budget / Pomodoro Planner",
+      seoDescription: "Manage digital wellness with a screen time budget. Plan productive work intervals using the Pomodoro technique.",
       loader: () => import("@/components/calculators/Misc/ScreenTimePomodoroPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -157,6 +202,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "health-wellness-sleep",
       description: "Convert daily steps to distance. See how many miles or kilometers you walked based on your step count and stride length.",
+      aliases: ["steps-distance-calculator", "how-to-calculate-steps-distance", "steps-distance-online", "free-steps-distance-calculator"],
+      seoTitle: "Steps → Distance Converter",
+      seoDescription: "Convert daily steps to distance. See how many miles or kilometers you walked based on your step count and stride length. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/StepsToDistanceConverterCalculator"),
       urlStyle: "flat"
     },
@@ -166,6 +214,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "health-wellness-sleep",
       description: "Set up a hydration schedule. Calculate the best intervals to drink water throughout the day to meet your daily intake goals.",
+      aliases: ["hydration-reminder-interval-calculator", "how-to-calculate-hydration-reminder-interval", "hydration-reminder-interval-online", "free-hydration-reminder-interval-calculator"],
+      seoTitle: "Hydration Reminder Interval Planner",
+      seoDescription: "Set up a hydration schedule. Calculate the best intervals to drink water throughout the day to meet your daily intake goals.",
       loader: () => import("@/components/calculators/Misc/HydrationReminderIntervalCalculator"),
       urlStyle: "flat"
     },
@@ -175,6 +226,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "health-wellness-sleep",
       description: "Plan balanced meals with MyPlate guidelines. Calculate daily calorie and nutrient portions for a healthy lifestyle.",
+      aliases: ["myplate-daily-calorie-nutrient-calculator", "how-to-calculate-myplate-daily-calorie-nutrient", "myplate-daily-calorie-nutrient-online", "free-myplate-daily-calorie-nutrient-calculator"],
+      seoTitle: "MyPlate Daily Calorie/Nutrient Planner",
+      seoDescription: "Plan balanced meals with MyPlate guidelines. Calculate daily calorie and nutrient portions for a healthy lifestyle. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/MyplateDailyCalorieNutrientCalculator"),
       urlStyle: "flat"
     },
@@ -184,6 +238,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "events-party-culinary",
       description: "Plan party food and drink quantities. Calculate exactly how many servings, pizzas, and beverages you need for your guest list.",
+      aliases: ["party-food-and-drinks-calculator", "how-to-calculate-party-food-and-drinks", "party-food-and-drinks-online", "free-party-food-and-drinks-calculator"],
+      seoTitle: "Party Food & Drinks Planner",
+      seoDescription: "Plan party food and drink quantities. Calculate exactly how many servings, pizzas, and beverages you need for your guest list.",
       loader: () => import("@/components/calculators/Misc/PartyFoodDrinksPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -193,6 +250,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "events-party-culinary",
       description: "Calculate ice needed for parties. Estimate bags of ice required for drinks and cooling based on guest count and duration.",
+      aliases: ["ice-quantity-for-beverages-calculator", "how-to-calculate-ice-quantity-for-beverages", "ice-quantity-for-beverages-online", "free-ice-quantity-for-beverages-calculator"],
+      seoTitle: "Ice Quantity for Beverages Calculator",
+      seoDescription: "Calculate ice needed for parties. Estimate bags of ice required for drinks and cooling based on guest count and duration. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/IceQuantityBeveragesCalculator"),
       urlStyle: "flat"
     },
@@ -202,6 +262,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "events-party-culinary",
       description: "Plan buffet quantities. Calculate how much food fits in standard hotel pans to ensure you feed everyone without running out.",
+      aliases: ["buffet-serving-pan-capacity-and-count-calculator", "how-to-calculate-buffet-serving-pan-capacity-and-count", "buffet-serving-pan-capacity-and-count-online", "free-buffet-serving-pan-capacity-and-count-calculator"],
+      seoTitle: "Buffet Serving Pan Capacity & Count",
+      seoDescription: "Plan buffet quantities. Calculate how much food fits in standard hotel pans to ensure you feed everyone without running out.",
       loader: () => import("@/components/calculators/Misc/BuffetPanCapacityCountCalculator"),
       urlStyle: "flat"
     },
@@ -211,6 +274,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "events-party-culinary",
       description: "Estimate the beverage mix for events. Calculate the ratio of wine, beer, and soft drinks needed based on guest preferences.",
+      aliases: ["wine-beer-soft-drink-mix-calculator", "how-to-calculate-wine-beer-soft-drink-mix", "wine-beer-soft-drink-mix-online", "free-wine-beer-soft-drink-mix-calculator"],
+      seoTitle: "Wine/Beer/Soft Drink Mix Estimator",
+      seoDescription: "Estimate the beverage mix for events. Calculate the ratio of wine, beer, and soft drinks needed based on guest preferences.",
       loader: () => import("@/components/calculators/Misc/BeverageMixEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -220,6 +286,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "events-party-culinary",
       description: "Brew coffee for a crowd. Calculate the coffee grounds-to-water ratio for large urns to ensure the perfect strength.",
+      aliases: ["coffee-urn-yield-and-strength-calculator", "how-to-calculate-coffee-urn-yield-and-strength", "coffee-urn-yield-and-strength-online", "free-coffee-urn-yield-and-strength-calculator"],
+      seoTitle: "Coffee Urn Yield & Strength Calculator",
+      seoDescription: "Brew coffee for a crowd. Calculate the coffee grounds-to-water ratio for large urns to ensure the perfect strength. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/CoffeeUrnYieldStrengthCalculator"),
       urlStyle: "flat"
     },
@@ -229,6 +298,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "events-party-culinary",
       description: "Handle leftovers safely. Estimate cooling times and safe reheating duration to prevent food spoilage after big meals.",
+      aliases: ["leftovers-cooling-and-reheat-time-calculator", "how-to-calculate-leftovers-cooling-and-reheat-time", "leftovers-cooling-and-reheat-time-online", "free-leftovers-cooling-and-reheat-time-calculator"],
+      seoTitle: "Leftovers Cooling & Reheat Time",
+      seoDescription: "Handle leftovers safely. Estimate cooling times and safe reheating duration to prevent food spoilage after big meals. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/LeftoversCoolingReheatTimeCalculator"),
       urlStyle: "flat"
     },
@@ -238,6 +310,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "events-party-culinary",
       description: "Create a comprehensive event budget. Track expenses for venue, food, and entertainment to keep your party planning on track.",
+      aliases: ["how-to-calculate-event-budget", "event-budget-online", "free-event-budget-calculator"],
+      seoTitle: "Event Budget Calculator",
+      seoDescription: "Create a comprehensive event budget. Track expenses for venue, food, and entertainment to keep your party planning on track.",
       loader: () => import("@/components/calculators/Misc/EventBudgetCalculator"),
       urlStyle: "flat"
     },
@@ -258,6 +333,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Calculate mulch coverage and bags needed. Determine the cubic yards or bags of mulch required for your garden beds.",
+      aliases: ["mulch-coverage-and-bag-count-calculator", "how-to-calculate-mulch-coverage-and-bag-count", "mulch-coverage-and-bag-count-online", "free-mulch-coverage-and-bag-count-calculator"],
+      seoTitle: "Mulch Coverage & Bag Count Calculator",
+      seoDescription: "Calculate mulch coverage and bags needed. Determine the cubic yards or bags of mulch required for your garden beds. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/MulchCoverageBagCountCalculator"),
       urlStyle: "flat"
     },
@@ -267,6 +345,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Calculate soil volume for raised beds. Find out exactly how much topsoil or compost you need to fill your garden planters.",
+      aliases: ["garden-soil-compost-volume-calculator", "how-to-calculate-garden-soil-compost-volume", "garden-soil-compost-volume-online", "free-garden-soil-compost-volume-calculator"],
+      seoTitle: "Garden Soil/Compost Volume Calculator",
+      seoDescription: "Calculate soil volume for raised beds. Find out exactly how much topsoil or compost you need to fill your garden planters. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/GardenSoilCompostVolumeCalculator"),
       urlStyle: "flat"
     },
@@ -276,6 +357,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Estimate lawn mowing time. Calculate how long it takes to mow your yard and the fuel required based on mower size.",
+      aliases: ["lawn-mowing-time-and-fuel-calculator", "how-to-calculate-lawn-mowing-time-and-fuel", "lawn-mowing-time-and-fuel-online", "free-lawn-mowing-time-and-fuel-calculator"],
+      seoTitle: "Lawn Mowing Time & Fuel Planner",
+      seoDescription: "Estimate lawn mowing time. Calculate how long it takes to mow your yard and the fuel required based on mower size. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/LawnMowingTimeFuelCalculator"),
       urlStyle: "flat"
     },
@@ -285,6 +369,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Calculate hose runtime for watering. Determine how long to run your sprinkler to deliver a specific amount of water.",
+      aliases: ["hose-runtime-vs-flow-rate-calculator", "how-to-calculate-hose-runtime-vs-flow-rate", "hose-runtime-vs-flow-rate-online", "free-hose-runtime-vs-flow-rate-calculator"],
+      seoTitle: "Hose Runtime vs Flow Rate Calculator",
+      seoDescription: "Calculate hose runtime for watering. Determine how long to run your sprinkler to deliver a specific amount of water. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/HoseRuntimeFlowRateCalculator"),
       urlStyle: "flat"
     },
@@ -294,6 +381,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Estimate rainwater supply duration. Calculate how long your rain barrel will last during dry spells based on garden usage.",
+      aliases: ["rainwater-barrel-days-of-supply-calculator", "how-to-calculate-rainwater-barrel-days-of-supply", "rainwater-barrel-days-of-supply-online", "free-rainwater-barrel-days-of-supply-calculator"],
+      seoTitle: "Rainwater Barrel Days of Supply",
+      seoDescription: "Estimate rainwater supply duration. Calculate how long your rain barrel will last during dry spells based on garden usage. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/RainwaterBarrelDaysSupplyCalculator"),
       urlStyle: "flat"
     },
@@ -303,6 +393,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Calculate grass seed needed. Determine the pounds of seed required to overseed or plant a new lawn based on area.",
+      aliases: ["grass-seed-quantity-calculator", "how-to-calculate-grass-seed-quantity", "grass-seed-quantity-online", "free-grass-seed-quantity-calculator"],
+      seoTitle: "Grass Seed Quantity Calculator",
+      seoDescription: "Calculate grass seed needed. Determine the pounds of seed required to overseed or plant a new lawn based on area. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/GrassSeedQuantityCalculator"),
       urlStyle: "flat"
     },
@@ -312,6 +405,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Calculate square footage for lawns and gardens. Measure the total area of your outdoor space for landscaping projects.",
+      aliases: ["how-to-calculate-square-footage", "square-footage-online", "free-square-footage-calculator"],
+      seoTitle: "Square Footage Calculator",
+      seoDescription: "Calculate square footage for lawns and gardens. Measure the total area of your outdoor space for landscaping projects. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/SquareFootageCalculator"),
       urlStyle: "flat"
     },
@@ -321,6 +417,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Find your planting dates. Determine the best time to sow seeds based on local frost dates and your hardiness zone.",
+      aliases: ["planting-calendar-and-frost-date-finder-calculator", "how-to-calculate-planting-calendar-and-frost-date-finder", "planting-calendar-and-frost-date-finder-online", "free-planting-calendar-and-frost-date-finder-calculator"],
+      seoTitle: "Planting Calendar & Frost Date Finder",
+      seoDescription: "Find your planting dates. Determine the best time to sow seeds based on local frost dates and your hardiness zone. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/PlantingCalendarFrostDateCalculator"),
       urlStyle: "flat"
     },
@@ -330,6 +429,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Optimize your garden layout. Calculate the ideal spacing between plants to maximize yield and prevent overcrowding.",
+      aliases: ["how-to-calculate-plant-spacing", "plant-spacing-online", "free-plant-spacing-calculator"],
+      seoTitle: "Plant Spacing Calculator",
+      seoDescription: "Optimize your garden layout. Calculate the ideal spacing between plants to maximize yield and prevent overcrowding. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Misc/PlantSpacingCalculator"),
       urlStyle: "flat"
     },
@@ -339,6 +441,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "garden-exterior",
       description: "Calculate fertilizer application rates. Determine the correct amount of nitrogen, phosphorus, and potassium for your lawn area.",
+      aliases: ["how-to-calculate-fertilizer-application", "fertilizer-application-online", "free-fertilizer-application-calculator"],
+      seoTitle: "Fertilizer Application Calculator",
+      seoDescription: "Calculate fertilizer application rates. Determine the correct amount of nitrogen, phosphorus, and potassium for your lawn area.",
       loader: () => import("@/components/calculators/Misc/FertilizerApplicationCalculator"),
       urlStyle: "flat"
     }

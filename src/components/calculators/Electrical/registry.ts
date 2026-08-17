@@ -11,6 +11,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "basic-electrical-circuit-calculations",
       description: "Calculate Voltage, Current, Resistance, or Power using Ohm's Law.",
+      aliases: ["ohm-s-law-calculator", "how-to-calculate-ohm-s-law", "ohm-s-law-online", "free-ohm-s-law-calculator"],
+      seoTitle: "Ohm's Law Calculator (V, I, R, P)",
+      seoDescription: "Calculate Voltage, Current, Resistance, or Power using Ohm's Law.",
       loader: () => import("@/components/calculators/Electrical/OhmsLawCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "basic-electrical-circuit-calculations",
       description: "Calculate voltage drop based on wire gauge, length, and current.",
+      aliases: ["voltage-drop-calculator", "how-to-calculate-voltage-drop", "voltage-drop-online", "free-voltage-drop-calculator"],
+      seoTitle: "Voltage Drop Calculator (Wire Gauge & Length)",
+      seoDescription: "Calculate voltage drop based on wire gauge, length, and current.",
       loader: () => import("@/components/calculators/Electrical/VoltageDropWireLengthCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "basic-electrical-circuit-calculations",
       description: "Calculate electrical current in a circuit.",
+      aliases: ["current-calculator", "how-to-calculate-current", "current-online", "free-current-calculator"],
+      seoTitle: "Current (Amperage) Calculator",
+      seoDescription: "Calculate electrical current in a circuit.",
       loader: () => import("@/components/calculators/Electrical/CurrentAmperageCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "basic-electrical-circuit-calculations",
       description: "Calculate electrical power in Watts.",
+      aliases: ["power-calculator", "how-to-calculate-power", "power-online", "free-power-calculator"],
+      seoTitle: "Power (Watts) Calculator",
+      seoDescription: "Calculate electrical power in Watts.",
       loader: () => import("@/components/calculators/Electrical/PowerWattsCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "basic-electrical-circuit-calculations",
       description: "Calculate resistance in a circuit.",
+      aliases: ["electrical-resistance-calculator", "how-to-calculate-electrical-resistance", "electrical-resistance-online", "free-electrical-resistance-calculator"],
+      seoTitle: "Electrical Resistance Calculator",
+      seoDescription: "Calculate resistance in a circuit.",
       loader: () => import("@/components/calculators/Electrical/ElectricalResistanceCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "basic-electrical-circuit-calculations",
       description: "Calculate equivalent resistance for parallel and series circuits.",
+      aliases: ["parallel-and-series-circuit-calculator", "how-to-calculate-parallel-and-series-circuit", "parallel-and-series-circuit-online", "free-parallel-and-series-circuit-calculator"],
+      seoTitle: "Parallel & Series Circuit Calculator",
+      seoDescription: "Calculate equivalent resistance for parallel and series circuits.",
       loader: () => import("@/components/calculators/Electrical/ParallelSeriesCircuitCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "basic-electrical-circuit-calculations",
       description: "Decode resistor color bands to find resistance value.",
+      aliases: ["resistor-color-code-decoder-calculator", "how-to-calculate-resistor-color-code-decoder", "resistor-color-code-decoder-online", "free-resistor-color-code-decoder-calculator"],
+      seoTitle: "Resistor Color Code Decoder",
+      seoDescription: "Decode resistor color bands to find resistance value.",
       loader: () => import("@/components/calculators/Electrical/ResistorColorCodeCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "basic-electrical-circuit-calculations",
       description: "Estimate load capacity for breakers and electrical panels.",
+      aliases: ["electrical-load-capacity-calculator", "how-to-calculate-electrical-load-capacity", "electrical-load-capacity-online", "free-electrical-load-capacity-calculator"],
+      seoTitle: "Electrical Load Capacity (Breaker/Panel) Calculator",
+      seoDescription: "Estimate load capacity for breakers and electrical panels.",
       loader: () => import("@/components/calculators/Electrical/ElectricalLoadCapacityCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "wiring-conductors-breakers",
       description: "Determine appropriate wire size (AWG/KCMIL) for a given load.",
+      aliases: ["wire-size-calculator", "how-to-calculate-wire-size", "wire-size-online", "free-wire-size-calculator"],
+      seoTitle: "Wire Size (AWG/KCMIL) Calculator",
+      seoDescription: "Determine appropriate wire size (AWG/KCMIL) for a given load.",
       loader: () => import("@/components/calculators/Electrical/WireSizeAwgKcmilCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "wiring-conductors-breakers",
       description: "Calculate the correct circuit breaker size for a specific load.",
+      aliases: ["breaker-size-calculator", "how-to-calculate-breaker-size", "breaker-size-online", "free-breaker-size-calculator"],
+      seoTitle: "Breaker Size Calculator",
+      seoDescription: "Calculate the correct circuit breaker size for a specific load.",
       loader: () => import("@/components/calculators/Electrical/BreakerSizeCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "wiring-conductors-breakers",
       description: "Calculate the maximum number of wires allowed in a conduit.",
+      aliases: ["conduit-fill-calculator", "how-to-calculate-conduit-fill", "conduit-fill-online", "free-conduit-fill-calculator"],
+      seoTitle: "Conduit Fill Calculator",
+      seoDescription: "Calculate the maximum number of wires allowed in a conduit.",
       loader: () => import("@/components/calculators/Electrical/ConduitFillCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "wiring-conductors-breakers",
       description: "Calculate cable ampacity accounting for distance and voltage drop.",
+      aliases: ["cable-ampacity-by-distance-calculator", "how-to-calculate-cable-ampacity-by-distance", "cable-ampacity-by-distance-online", "free-cable-ampacity-by-distance-calculator"],
+      seoTitle: "Cable Ampacity by Distance Calculator",
+      seoDescription: "Calculate cable ampacity accounting for distance and voltage drop.",
       loader: () => import("@/components/calculators/Electrical/CableAmpacityByDistanceCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "wiring-conductors-breakers",
       description: "Calculate power, voltage, and current in 3-phase systems.",
+      aliases: ["3-phase-power-calculator", "how-to-calculate-3-phase-power", "3-phase-power-online", "free-3-phase-power-calculator"],
+      seoTitle: "3-Phase Power Calculator",
+      seoDescription: "Calculate power, voltage, and current in 3-phase systems.",
       loader: () => import("@/components/calculators/Electrical/ThreePhasePowerCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "wiring-conductors-breakers",
       description: "Calculate Transformer capacity in kVA.",
+      aliases: ["transformer-kva-calculator", "how-to-calculate-transformer-kva", "transformer-kva-online", "free-transformer-kva-calculator"],
+      seoTitle: "Transformer kVA Calculator",
+      seoDescription: "Calculate Transformer capacity in kVA.",
       loader: () => import("@/components/calculators/Electrical/TransformerKvaCalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "wiring-conductors-breakers",
       description: "Calculate Full Load Amps for electric motors.",
+      aliases: ["motor-fla-calculator", "how-to-calculate-motor-fla", "motor-fla-online", "free-motor-fla-calculator"],
+      seoTitle: "Motor FLA (Full Load Amps) Calculator",
+      seoDescription: "Calculate Full Load Amps for electric motors.",
       loader: () => import("@/components/calculators/Electrical/MotorFlaCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "wiring-conductors-breakers",
       description: "Calculate bend deduction and other values for conduit bending.",
+      aliases: ["conduit-bending-calculator", "how-to-calculate-conduit-bending", "conduit-bending-online", "free-conduit-bending-calculator"],
+      seoTitle: "Conduit Bending Calculator",
+      seoDescription: "Calculate bend deduction and other values for conduit bending.",
       loader: () => import("@/components/calculators/Electrical/ConduitBendingCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "lighting-energy-cost-home-electrical",
       description: "Estimate power consumption and savings with LED lighting.",
+      aliases: ["led-lighting-power-consumption-calculator", "how-to-calculate-led-lighting-power-consumption", "led-lighting-power-consumption-online", "free-led-lighting-power-consumption-calculator"],
+      seoTitle: "LED Lighting Power Consumption Calculator",
+      seoDescription: "Estimate power consumption and savings with LED lighting.",
       loader: () => import("@/components/calculators/Electrical/LedPowerConsumptionCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "lighting-energy-cost-home-electrical",
       description: "Convert between Lumens and Watts for different light sources.",
+      aliases: ["lighting-lumens-to-watts-calculator", "how-to-calculate-lighting-lumens-to-watts", "lighting-lumens-to-watts-online", "free-lighting-lumens-to-watts-calculator"],
+      seoTitle: "Lighting Lumens-to-Watts Converter",
+      seoDescription: "Convert between Lumens and Watts for different light sources.",
       loader: () => import("@/components/calculators/Electrical/LumensToWattsCalculator"),
       urlStyle: "flat"
     },
@@ -173,6 +227,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "lighting-energy-cost-home-electrical",
       description: "Calculate electricity cost based on usage and rate.",
+      aliases: ["electricity-cost-per-hour-month-calculator", "how-to-calculate-electricity-cost-per-hour-month", "electricity-cost-per-hour-month-online", "free-electricity-cost-per-hour-month-calculator"],
+      seoTitle: "Electricity Cost per Hour/Month Calculator",
+      seoDescription: "Calculate electricity cost based on usage and rate.",
       loader: () => import("@/components/calculators/Electrical/ElectricityCostPerHourMonthCalculator"),
       urlStyle: "flat"
     },
@@ -182,6 +239,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "lighting-energy-cost-home-electrical",
       description: "Plan electrical load for lighting circuits.",
+      aliases: ["lighting-circuit-load-calculator", "how-to-calculate-lighting-circuit-load", "lighting-circuit-load-online", "free-lighting-circuit-load-calculator"],
+      seoTitle: "Lighting Circuit Load Planner",
+      seoDescription: "Plan electrical load for lighting circuits.",
       loader: () => import("@/components/calculators/Electrical/LightingCircuitLoadPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "lighting-energy-cost-home-electrical",
       description: "Estimate the size of generator needed for your home or equipment.",
+      aliases: ["generator-sizing-calculator", "how-to-calculate-generator-sizing", "generator-sizing-online", "free-generator-sizing-calculator"],
+      seoTitle: "Generator Sizing Calculator",
+      seoDescription: "Estimate the size of generator needed for your home or equipment.",
       loader: () => import("@/components/calculators/Electrical/GeneratorSizingCalculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "lighting-energy-cost-home-electrical",
       description: "Calculate power factor and correction capacitor size.",
+      aliases: ["power-factor-calculator", "how-to-calculate-power-factor", "power-factor-online", "free-power-factor-calculator"],
+      seoTitle: "Power Factor Calculator",
+      seoDescription: "Calculate power factor and correction capacitor size.",
       loader: () => import("@/components/calculators/Electrical/PowerFactorCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "renewable-energy-battery-systems",
       description: "Estimate energy production for solar PV systems.",
+      aliases: ["pv-system-production-calculator", "how-to-calculate-pv-system-production", "pv-system-production-online", "free-pv-system-production-calculator"],
+      seoTitle: "PV System Production Estimator (e.g., PVWatts)",
+      seoDescription: "Estimate energy production for solar PV systems.",
       loader: () => import("@/components/calculators/Electrical/PvSystemProductionEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "renewable-energy-battery-systems",
       description: "Size solar and battery systems for off-grid applications.",
+      aliases: ["off-grid-system-sizing-calculator", "how-to-calculate-off-grid-system-sizing", "off-grid-system-sizing-online", "free-off-grid-system-sizing-calculator"],
+      seoTitle: "Off-Grid System Sizing Calculator",
+      seoDescription: "Size solar and battery systems for off-grid applications.",
       loader: () => import("@/components/calculators/Electrical/OffGridSystemSizingCalculator"),
       urlStyle: "flat"
     },
@@ -227,6 +299,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "renewable-energy-battery-systems",
       description: "Calculate solar panel output and size your array.",
+      aliases: ["solar-panel-output-and-array-sizing-calculator", "how-to-calculate-solar-panel-output-and-array-sizing", "solar-panel-output-and-array-sizing-online", "free-solar-panel-output-and-array-sizing-calculator"],
+      seoTitle: "Solar Panel Output & Array Sizing Calculator",
+      seoDescription: "Calculate solar panel output and size your array.",
       loader: () => import("@/components/calculators/Electrical/SolarPanelOutputArraySizingCalculator"),
       urlStyle: "flat"
     },
@@ -236,6 +311,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "renewable-energy-battery-systems",
       description: "Size battery banks for solar energy storage.",
+      aliases: ["solar-battery-bank-sizing-calculator", "how-to-calculate-solar-battery-bank-sizing", "solar-battery-bank-sizing-online", "free-solar-battery-bank-sizing-calculator"],
+      seoTitle: "Solar Battery Bank Sizing Calculator",
+      seoDescription: "Size battery banks for solar energy storage.",
       loader: () => import("@/components/calculators/Electrical/SolarBatteryBankSizingCalculator"),
       urlStyle: "flat"
     },
@@ -245,6 +323,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "renewable-energy-battery-systems",
       description: "Calculate required inverter size for your loads.",
+      aliases: ["inverter-load-capacity-calculator", "how-to-calculate-inverter-load-capacity", "inverter-load-capacity-online", "free-inverter-load-capacity-calculator"],
+      seoTitle: "Inverter Load Capacity Calculator",
+      seoDescription: "Calculate required inverter size for your loads.",
       loader: () => import("@/components/calculators/Electrical/InverterLoadCapacityCalculator"),
       urlStyle: "flat"
     },
@@ -254,6 +335,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "renewable-energy-battery-systems",
       description: "Estimate time required to charge an electric vehicle.",
+      aliases: ["ev-charging-time-calculator", "how-to-calculate-ev-charging-time", "ev-charging-time-online", "free-ev-charging-time-calculator"],
+      seoTitle: "EV Charging Time Calculator",
+      seoDescription: "Estimate time required to charge an electric vehicle.",
       loader: () => import("@/components/calculators/Electrical/EvChargingTimeCalculator"),
       urlStyle: "flat"
     },
@@ -263,6 +347,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "renewable-energy-battery-systems",
       description: "Estimate how long a battery will last under a specific load.",
+      aliases: ["battery-runtime-calculator", "how-to-calculate-battery-runtime", "battery-runtime-online", "free-battery-runtime-calculator"],
+      seoTitle: "Battery Runtime Estimator",
+      seoDescription: "Estimate how long a battery will last under a specific load.",
       loader: () => import("@/components/calculators/Electrical/BatteryRuntimeEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -272,6 +359,9 @@ export const electricalEntries: CalculatorEntry[] = [
       category: "electrical",
       subcategory: "renewable-energy-battery-systems",
       description: "Calculate ROI and payback period for renewable energy systems.",
+      aliases: ["system-payback-period-calculator", "how-to-calculate-system-payback-period", "system-payback-period-online", "free-system-payback-period-calculator"],
+      seoTitle: "System Payback Period (ROI) Calculator",
+      seoDescription: "Calculate ROI and payback period for renewable energy systems.",
       loader: () => import("@/components/calculators/Electrical/SystemPaybackPeriodRoiCalculator"),
       urlStyle: "flat"
     }

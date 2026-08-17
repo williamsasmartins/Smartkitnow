@@ -11,6 +11,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "training-performance",
       description: "Estimate your VO2max aerobic capacity. Use Cooper or Rockport test results to assess your cardiovascular fitness level.",
+      aliases: ["vo2max-calculator", "how-to-calculate-vo2max", "vo2max-online", "free-vo2max-calculator"],
+      seoTitle: "VO2max Estimator (Cooper/Rockport)",
+      seoDescription: "Estimate your VO2max aerobic capacity. Use Cooper or Rockport test results to assess your cardiovascular fitness level. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/Vo2maxEstimatorCooperRockportCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Calculate your running pace and finish times. Determine the splits needed to achieve your marathon or 5K personal best.",
+      aliases: ["running-pace-split-finish-time-calculator", "how-to-calculate-running-pace-split-finish-time", "running-pace-split-finish-time-online", "free-running-pace-split-finish-time-calculator"],
+      seoTitle: "Running Pace / Split / Finish Time Calculator",
+      seoDescription: "Calculate your running pace and finish times. Determine the splits needed to achieve your marathon or 5K personal best. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/RunningPaceSplitFinishTimeCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Predict your race time for any distance. Use the Riegel formula to estimate performance based on a previous race result.",
+      aliases: ["race-time-predictor-calculator", "how-to-calculate-race-time-predictor", "race-time-predictor-online", "free-race-time-predictor-calculator"],
+      seoTitle: "Race Time Predictor (Riegel Formula)",
+      seoDescription: "Predict your race time for any distance. Use the Riegel formula to estimate performance based on a previous race result. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/RaceTimePredictorRiegelCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Calculate accurate heart rate training zones. Use the Karvonen method to account for resting heart rate and optimize your cardio.",
+      aliases: ["heart-rate-zones-calculator", "how-to-calculate-heart-rate-zones", "heart-rate-zones-online", "free-heart-rate-zones-calculator"],
+      seoTitle: "Heart-Rate Zones Calculator (Karvonen Method)",
+      seoDescription: "Calculate accurate heart rate training zones. Use the Karvonen method to account for resting heart rate and optimize your cardio.",
       loader: () => import("@/components/calculators/Sports/HeartRateZonesKarvonenCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Estimate cycling power vs speed. Calculate how much wattage is required to maintain speed against wind resistance and flat terrain.",
+      aliases: ["cycling-power-speed-calculator", "how-to-calculate-cycling-power-speed", "cycling-power-speed-online", "free-cycling-power-speed-calculator"],
+      seoTitle: "Cycling Power ↔ Speed Estimator (flat/wind)",
+      seoDescription: "Estimate cycling power vs speed. Calculate how much wattage is required to maintain speed against wind resistance and flat terrain.",
       loader: () => import("@/components/calculators/Sports/CyclingPowerSpeedEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Plan your cycling training zones. Calculate power zones based on your Functional Threshold Power (FTP) for structured workouts.",
+      aliases: ["ftp-zones-calculator", "how-to-calculate-ftp-zones", "ftp-zones-online", "free-ftp-zones-calculator"],
+      seoTitle: "FTP (Functional Threshold Power) Zones Planner",
+      seoDescription: "Plan your cycling training zones. Calculate power zones based on your Functional Threshold Power (FTP) for structured workouts.",
       loader: () => import("@/components/calculators/Sports/FtpZonesPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Calculate your Critical Swim Speed (CSS). Determine optimal pacing for swim training and monitor aerobic threshold improvements.",
+      aliases: ["swim-pace-css-and-splits-calculator", "how-to-calculate-swim-pace-css-and-splits", "swim-pace-css-and-splits-online", "free-swim-pace-css-and-splits-calculator"],
+      seoTitle: "Swim Pace: CSS (Critical Swim Speed) & Splits",
+      seoDescription: "Calculate your Critical Swim Speed (CSS). Determine optimal pacing for swim training and monitor aerobic threshold improvements.",
       loader: () => import("@/components/calculators/Sports/SwimPaceCssSplitsCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Analyze triathlon transition times. See how T1 and T2 durations impact your overall race finish time and ranking.",
+      aliases: ["t1-t2-transition-time-impact-calculator", "how-to-calculate-t1-t2-transition-time-impact", "t1-t2-transition-time-impact-online", "free-t1-t2-transition-time-impact-calculator"],
+      seoTitle: "T1/T2 Transition Time Impact (Triathlon)",
+      seoDescription: "Analyze triathlon transition times. See how T1 and T2 durations impact your overall race finish time and ranking. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/T1T2TimeImpactCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Calculate your sweat rate. Determine exactly how much fluid you need to drink to stay hydrated during endurance events.",
+      aliases: ["hydration-sweat-rate-calculator", "how-to-calculate-hydration-sweat-rate", "hydration-sweat-rate-online", "free-hydration-sweat-rate-calculator"],
+      seoTitle: "Hydration / Sweat Rate Calculator",
+      seoDescription: "Calculate your sweat rate. Determine exactly how much fluid you need to drink to stay hydrated during endurance events. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/HydrationSweatRateCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Calculate cycling cadence. Measure your RPM (revolutions per minute) based on gear ratio and speed to improve pedaling efficiency.",
+      aliases: ["cycling-cadence-calculator", "how-to-calculate-cycling-cadence", "cycling-cadence-online", "free-cycling-cadence-calculator"],
+      seoTitle: "Cycling Cadence Calculator",
+      seoDescription: "Calculate cycling cadence. Measure your RPM (revolutions per minute) based on gear ratio and speed to improve pedaling efficiency.",
       loader: () => import("@/components/calculators/Sports/CyclingCadenceCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Plan a negative split strategy. Calculate the pace required for the second half of your race to finish stronger than you started.",
+      aliases: ["negative-split-race-calculator", "how-to-calculate-negative-split-race", "negative-split-race-online", "free-negative-split-race-calculator"],
+      seoTitle: "Negative Split Race Planner",
+      seoDescription: "Plan a negative split strategy. Calculate the pace required for the second half of your race to finish stronger than you started.",
       loader: () => import("@/components/calculators/Sports/NegativeSplitCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Calculate swimming power points. Compare performances across different events and distances using standardized scoring tables.",
+      aliases: ["swimming-power-points-calculator", "how-to-calculate-swimming-power-points", "swimming-power-points-online", "free-swimming-power-points-calculator"],
+      seoTitle: "Swimming Power Points Calculator",
+      seoDescription: "Calculate swimming power points. Compare performances across different events and distances using standardized scoring tables.",
       loader: () => import("@/components/calculators/Sports/SwimmingPowerPointsCalculator"),
       urlStyle: "flat"
     },
@@ -130,6 +166,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Calculate swim interval pacing. Set target times for 100m or 50m repeats to improve speed and endurance in the pool.",
+      aliases: ["swim-interval-pace-calculator", "how-to-calculate-swim-interval-pace", "swim-interval-pace-online", "free-swim-interval-pace-calculator"],
+      seoTitle: "Swim Interval Pace Calculator",
+      seoDescription: "Calculate swim interval pacing. Set target times for 100m or 50m repeats to improve speed and endurance in the pool. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/SwimIntervalPaceCalculator"),
       urlStyle: "flat"
     },
@@ -139,6 +178,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Calculate your One-Rep Max (1RM). safely estimate your maximum lifting potential for bench press, squat, and deadlift.",
+      aliases: ["one-rep-max-calculator", "how-to-calculate-one-rep-max", "one-rep-max-online", "free-one-rep-max-calculator"],
+      seoTitle: "One-Rep Max (1RM) Calculator",
+      seoDescription: "Calculate your One-Rep Max (1RM). safely estimate your maximum lifting potential for bench press, squat, and deadlift. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/OneRepMax1rmCalculator"),
       urlStyle: "flat"
     },
@@ -148,6 +190,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Calculate training weights. Determine specific percentages of your 1RM to plan hypertrophy, strength, or power workouts.",
+      aliases: ["training-weight-percentage-calculator", "how-to-calculate-training-weight-percentage", "training-weight-percentage-online", "free-training-weight-percentage-calculator"],
+      seoTitle: "Training Weight Percentage Calculator",
+      seoDescription: "Calculate training weights. Determine specific percentages of your 1RM to plan hypertrophy, strength, or power workouts. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/TrainingWeightPercentageCalculator"),
       urlStyle: "flat"
     },
@@ -157,6 +202,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Match heart rate to Perceived Exertion (RPE). Align subjective training intensity with objective heart rate data.",
+      aliases: ["target-heart-rate-rpe-zones-calculator", "how-to-calculate-target-heart-rate-rpe-zones", "target-heart-rate-rpe-zones-online", "free-target-heart-rate-rpe-zones-calculator"],
+      seoTitle: "Target Heart Rate / RPE Zones",
+      seoDescription: "Match heart rate to Perceived Exertion (RPE). Align subjective training intensity with objective heart rate data. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/TargetHeartRateRpeZonesCalculator"),
       urlStyle: "flat"
     },
@@ -166,6 +214,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Calculate Total Daily Energy Expenditure for athletes. Estimate calorie needs based on high activity levels and training volume.",
+      aliases: ["how-to-calculate-tdee", "tdee-online", "free-tdee-calculator"],
+      seoTitle: "TDEE Calculator (Sports)",
+      seoDescription: "Calculate Total Daily Energy Expenditure for athletes. Estimate calorie needs based on high activity levels and training volume.",
       loader: () => import("@/components/calculators/Sports/TdeeCalculator"),
       urlStyle: "flat"
     },
@@ -175,6 +226,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Track core strength progression. Log and plan plank hold times to gradually build abdominal endurance and stability.",
+      aliases: ["plank-hold-time-progression-calculator", "how-to-calculate-plank-hold-time-progression", "plank-hold-time-progression-online", "free-plank-hold-time-progression-calculator"],
+      seoTitle: "Plank / Hold Time Progression",
+      seoDescription: "Track core strength progression. Log and plan plank hold times to gradually build abdominal endurance and stability. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/PlankHoldProgressionCalculator"),
       urlStyle: "flat"
     },
@@ -184,6 +238,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Calculate your Wilks Score. Compare powerlifting strength across different body weight categories fairly.",
+      aliases: ["wilks-coefficient-calculator", "how-to-calculate-wilks-coefficient", "wilks-coefficient-online", "free-wilks-coefficient-calculator"],
+      seoTitle: "Wilks Coefficient Calculator",
+      seoDescription: "Calculate your Wilks Score. Compare powerlifting strength across different body weight categories fairly. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/WilksCoefficientCalculator"),
       urlStyle: "flat"
     },
@@ -193,6 +250,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Estimate body fat percentage for athletes. Track body composition changes during cutting or bulking phases.",
+      aliases: ["body-fat-percentage-calculator", "how-to-calculate-body-fat-percentage", "body-fat-percentage-online", "free-body-fat-percentage-calculator"],
+      seoTitle: "Body Fat Percentage Calculator (Athletes)",
+      seoDescription: "Estimate body fat percentage for athletes. Track body composition changes during cutting or bulking phases. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/BodyFatPercentageCalculator"),
       urlStyle: "flat"
     },
@@ -202,6 +262,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Calculate barbell plate loading. Find the exact combination of plates needed to reach a specific target weight on the bar.",
+      aliases: ["plate-loading-calculator", "how-to-calculate-plate-loading", "plate-loading-online", "free-plate-loading-calculator"],
+      seoTitle: "Plate Loading Calculator",
+      seoDescription: "Calculate barbell plate loading. Find the exact combination of plates needed to reach a specific target weight on the bar. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/PlateLoadingCalculator"),
       urlStyle: "flat"
     },
@@ -211,6 +274,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Calculate athlete macronutrient needs. Optimize protein, carb, and fat intake for performance recovery and muscle growth.",
+      aliases: ["how-to-calculate-macronutrient", "macronutrient-online", "free-macronutrient-calculator"],
+      seoTitle: "Macronutrient Calculator (Sports)",
+      seoDescription: "Calculate athlete macronutrient needs. Optimize protein, carb, and fat intake for performance recovery and muscle growth. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/MacronutrientCalculator"),
       urlStyle: "flat"
     },
@@ -220,6 +286,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Plan calorie deficits or surpluses. Adjust energy intake precisely for weight cutting or mass gaining cycles.",
+      aliases: ["calorie-deficit-surplus-calculator", "how-to-calculate-calorie-deficit-surplus", "calorie-deficit-surplus-online", "free-calorie-deficit-surplus-calculator"],
+      seoTitle: "Calorie Deficit / Surplus Calculator",
+      seoDescription: "Plan calorie deficits or surpluses. Adjust energy intake precisely for weight cutting or mass gaining cycles.",
       loader: () => import("@/components/calculators/Sports/CalorieDeficitSurplusCalculator"),
       urlStyle: "flat"
     },
@@ -229,6 +298,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Estimate your fitness age. Compare your cardiovascular health and VO2max against age-related norms.",
+      aliases: ["how-to-calculate-fitness-age", "fitness-age-online", "free-fitness-age-calculator"],
+      seoTitle: "Fitness Age Calculator",
+      seoDescription: "Estimate your fitness age. Compare your cardiovascular health and VO2max against age-related norms. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/FitnessAgeCalculator"),
       urlStyle: "flat"
     },
@@ -238,6 +310,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "strength-lifting-conditioning",
       description: "Estimate calories burned during yoga. Calculate energy expenditure for Hatha, Vinyasa, or Bikram yoga sessions.",
+      aliases: ["yoga-calories-burned-calculator", "how-to-calculate-yoga-calories-burned", "yoga-calories-burned-online", "free-yoga-calories-burned-calculator"],
+      seoTitle: "Yoga Calories Burned Calculator",
+      seoDescription: "Estimate calories burned during yoga. Calculate energy expenditure for Hatha, Vinyasa, or Bikram yoga sessions.",
       loader: () => import("@/components/calculators/Sports/YogaCaloriesBurnedCalculator"),
       urlStyle: "flat"
     },
@@ -247,6 +322,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Project fantasy sports points. Estimate team scores based on player stats for football, basketball, or soccer leagues.",
+      aliases: ["fantasy-team-points-projections-calculator", "how-to-calculate-fantasy-team-points-projections", "fantasy-team-points-projections-online", "free-fantasy-team-points-projections-calculator"],
+      seoTitle: "Fantasy Team Points Projections Calculator",
+      seoDescription: "Project fantasy sports points. Estimate team scores based on player stats for football, basketball, or soccer leagues. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/FantasyTeamPointsProjectionsCalculator"),
       urlStyle: "flat"
     },
@@ -256,6 +334,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate potential betting payouts. Convert between Decimal, Fractional, and Moneyline odds to see your return.",
+      aliases: ["how-to-calculate-betting-odds-and-payout", "betting-odds-and-payout-online", "free-betting-odds-and-payout-calculator"],
+      seoTitle: "Betting Odds & Payout Calculator",
+      seoDescription: "Calculate potential betting payouts. Convert between Decimal, Fractional, and Moneyline odds to see your return. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/BettingOddsPayoutCalculator"),
       urlStyle: "flat"
     },
@@ -265,6 +346,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate soccer league standings. Track points, goal differential, and ranking scenarios for your team.",
+      aliases: ["soccer-league-table-points-and-gd-calculator", "how-to-calculate-soccer-league-table-points-and-gd", "soccer-league-table-points-and-gd-online", "free-soccer-league-table-points-and-gd-calculator"],
+      seoTitle: "Soccer League Table: Points & GD",
+      seoDescription: "Calculate soccer league standings. Track points, goal differential, and ranking scenarios for your team. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/SoccerLeagueTablePointsGdCalculator"),
       urlStyle: "flat"
     },
@@ -274,6 +358,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Understand Expected Goals (xG). Interpret match statistics to analyze team performance beyond the final score.",
+      aliases: ["xg-reading-calculator", "how-to-calculate-xg-reading", "xg-reading-online", "free-xg-reading-calculator"],
+      seoTitle: "xG (Expected Goals) Reading Helper",
+      seoDescription: "Understand Expected Goals (xG). Interpret match statistics to analyze team performance beyond the final score.",
       loader: () => import("@/components/calculators/Sports/ExpectedGoalsXgHelperCalculator"),
       urlStyle: "flat"
     },
@@ -283,6 +370,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate Effective Field Goal and True Shooting percentage. Measure basketball scoring efficiency accurately.",
+      aliases: ["basketball-efg-and-ts-calculator", "how-to-calculate-basketball-efg-and-ts", "basketball-efg-and-ts-online", "free-basketball-efg-and-ts-calculator"],
+      seoTitle: "Basketball eFG% & TS% Calculator",
+      seoDescription: "Calculate Effective Field Goal and True Shooting percentage. Measure basketball scoring efficiency accurately.",
       loader: () => import("@/components/calculators/Sports/BasketballEfgTsCalculator"),
       urlStyle: "flat"
     },
@@ -292,6 +382,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate Basketball Pace and Ratings. Analyze possessions per game and offensive/defensive efficiency metrics.",
+      aliases: ["basketball-pace-and-ortg-drtg-calculator", "how-to-calculate-basketball-pace-and-ortg-drtg", "basketball-pace-and-ortg-drtg-online", "free-basketball-pace-and-ortg-drtg-calculator"],
+      seoTitle: "Basketball Pace & ORtg/DRtg",
+      seoDescription: "Calculate Basketball Pace and Ratings. Analyze possessions per game and offensive/defensive efficiency metrics.",
       loader: () => import("@/components/calculators/Sports/BasketballPaceOrtgDrtgCalculator"),
       urlStyle: "flat"
     },
@@ -301,6 +394,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate baseball sabermetrics. Find On-Base Plus Slugging (OPS), Slugging percentage, and On-Base Percentage instantly.",
+      aliases: ["baseball-ops-slg-obp-calculator", "how-to-calculate-baseball-ops-slg-obp", "baseball-ops-slg-obp-online", "free-baseball-ops-slg-obp-calculator"],
+      seoTitle: "Baseball OPS / SLG / OBP Calculator",
+      seoDescription: "Calculate baseball sabermetrics. Find On-Base Plus Slugging (OPS), Slugging percentage, and On-Base Percentage instantly. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/BaseballOpsSlgObpCalculator"),
       urlStyle: "flat"
     },
@@ -310,6 +406,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate pitcher stats. Determine Earned Run Average (ERA) and Walks Plus Hits Per Inning Pitched (WHIP).",
+      aliases: ["how-to-calculate-era-and-whip", "era-and-whip-online", "free-era-and-whip-calculator"],
+      seoTitle: "ERA & WHIP Calculator",
+      seoDescription: "Calculate pitcher stats. Determine Earned Run Average (ERA) and Walks Plus Hits Per Inning Pitched (WHIP). Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/EraWhipCalculator"),
       urlStyle: "flat"
     },
@@ -319,6 +418,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Estimate Win Probability Shift. Analyze how specific plays impact the likelihood of winning a game in real-time.",
+      aliases: ["win-probability-shift-calculator", "how-to-calculate-win-probability-shift", "win-probability-shift-online", "free-win-probability-shift-calculator"],
+      seoTitle: "Win Probability Shift (WPS) Estimator",
+      seoDescription: "Estimate Win Probability Shift. Analyze how specific plays impact the likelihood of winning a game in real-time. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/WinProbabilityShiftWpsCalculator"),
       urlStyle: "flat"
     },
@@ -328,6 +430,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate Batting Average on Balls in Play (BABIP). Assess whether a pitcher or hitter is lucky or skilled.",
+      aliases: ["how-to-calculate-babip", "babip-online", "free-babip-calculator"],
+      seoTitle: "BABIP Calculator",
+      seoDescription: "Calculate Batting Average on Balls in Play (BABIP). Assess whether a pitcher or hitter is lucky or skilled. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/BabipCalculator"),
       urlStyle: "flat"
     },
@@ -337,6 +442,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate GB/FB ratio. Analyze a pitcher's tendency to induce grounders versus fly balls.",
+      aliases: ["ground-ball-to-fly-ball-ratio-calculator", "how-to-calculate-ground-ball-to-fly-ball-ratio", "ground-ball-to-fly-ball-ratio-online", "free-ground-ball-to-fly-ball-ratio-calculator"],
+      seoTitle: "Ground Ball to Fly Ball Ratio (GB/FB)",
+      seoDescription: "Calculate GB/FB ratio. Analyze a pitcher's tendency to induce grounders versus fly balls. Free sports tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Sports/GroundBallToFlyBallRatioGbFbCalculator"),
       urlStyle: "flat"
     },
@@ -346,6 +454,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Calculate Golf Handicap Differential. Determine your index based on course rating and slope difficulty.",
+      aliases: ["golf-handicap-differential-and-index-calculator", "how-to-calculate-golf-handicap-differential-and-index", "golf-handicap-differential-and-index-online", "free-golf-handicap-differential-and-index-calculator"],
+      seoTitle: "Golf Handicap Differential & Index",
+      seoDescription: "Calculate Golf Handicap Differential. Determine your index based on course rating and slope difficulty. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/GolfHandicapDifferentialIndexCalculator"),
       urlStyle: "flat"
     },
@@ -355,6 +466,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Estimate expected putts per round. Track putting performance against benchmarks to improve your short game.",
+      aliases: ["golf-expected-putts-per-round-calculator", "how-to-calculate-golf-expected-putts-per-round", "golf-expected-putts-per-round-online", "free-golf-expected-putts-per-round-calculator"],
+      seoTitle: "Golf Expected Putts per Round",
+      seoDescription: "Estimate expected putts per round. Track putting performance against benchmarks to improve your short game. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/GolfExpectedPuttsPerRoundCalculator"),
       urlStyle: "flat"
     },
@@ -364,6 +478,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Calculate tennis serve speed the way pro radar guns do: initial speed off the racket, with aerodynamic drag accounted for between impact and bounce.",
+      aliases: ["tennis-serve-speed-calculator", "how-to-calculate-tennis-serve-speed", "tennis-serve-speed-online", "free-tennis-serve-speed-calculator"],
+      seoTitle: "Tennis Serve Speed Calculator",
+      seoDescription: "Calculate tennis serve speed the way pro radar guns do: initial speed off the racket, with aerodynamic drag accounted for between impact and bounce.",
       loader: () => import("@/components/calculators/Sports/TennisServeSpeedCalculator"),
       urlStyle: "flat"
     },
@@ -373,6 +490,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Track Tennis ELO rating progress. Understand how match wins and losses affect your player ranking.",
+      aliases: ["tennis-elo-rating-progress-calculator", "how-to-calculate-tennis-elo-rating-progress", "tennis-elo-rating-progress-online", "free-tennis-elo-rating-progress-calculator"],
+      seoTitle: "Tennis ELO / Rating Progress",
+      seoDescription: "Track Tennis ELO rating progress. Understand how match wins and losses affect your player ranking. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/TennisEloRatingProgressCalculator"),
       urlStyle: "flat"
     },
@@ -382,6 +502,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Convert rowing splits to pace. Calculate 500m split times based on total distance and duration for ergometer training.",
+      aliases: ["rowing-split-pace-calculator", "how-to-calculate-rowing-split-pace", "rowing-split-pace-online", "free-rowing-split-pace-calculator"],
+      seoTitle: "Rowing Split (500m) ↔ Pace",
+      seoDescription: "Convert rowing splits to pace. Calculate 500m split times based on total distance and duration for ergometer training. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/RowingSplit500mPaceCalculator"),
       urlStyle: "flat"
     },
@@ -391,6 +514,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Convert climbing grades. Switch between YDS, French, and European scales to understand route difficulty worldwide.",
+      aliases: ["climbing-grade-calculator", "how-to-calculate-climbing-grade", "climbing-grade-online", "free-climbing-grade-calculator"],
+      seoTitle: "Climbing Grade Converter",
+      seoDescription: "Convert climbing grades. Switch between YDS, French, and European scales to understand route difficulty worldwide. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Sports/ClimbingGradeConverterYdsFrenchEuCalculator"),
       urlStyle: "flat"
     },
@@ -400,6 +526,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Organize tournament brackets. Seed players or teams correctly to ensure fair matchups in knockout rounds.",
+      aliases: ["tournament-bracket-seeding-calculator", "how-to-calculate-tournament-bracket-seeding", "tournament-bracket-seeding-online", "free-tournament-bracket-seeding-calculator"],
+      seoTitle: "Tournament Bracket Seeding Helper",
+      seoDescription: "Organize tournament brackets. Seed players or teams correctly to ensure fair matchups in knockout rounds. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/TournamentBracketSeedingHelperCalculator"),
       urlStyle: "flat"
     },
@@ -409,6 +538,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Calculate your official Golf Handicap. Enter your scores to track improvement and compete fairly with others.",
+      aliases: ["how-to-calculate-golf-handicap", "golf-handicap-online", "free-golf-handicap-calculator"],
+      seoTitle: "Golf Handicap Calculator",
+      seoDescription: "Calculate your official Golf Handicap. Enter your scores to track improvement and compete fairly with others.",
       loader: () => import("@/components/calculators/Sports/GolfHandicapCalculator"),
       urlStyle: "flat"
     },
@@ -418,6 +550,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Calculate bowling scores. Simulate frames, strikes, and spares to predict your final game score.",
+      aliases: ["how-to-calculate-bowling-score", "bowling-score-online", "free-bowling-score-calculator"],
+      seoTitle: "Bowling Score Calculator",
+      seoDescription: "Calculate bowling scores. Simulate frames, strikes, and spares to predict your final game score.",
       loader: () => import("@/components/calculators/Sports/BowlingScoreCalculator"),
       urlStyle: "flat"
     },
@@ -427,6 +562,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Calculate FINA swimming points. Convert race times into official FINA points for ranking comparison.",
+      aliases: ["how-to-calculate-fina-points", "fina-points-online", "free-fina-points-calculator"],
+      seoTitle: "FINA Points Calculator",
+      seoDescription: "Calculate FINA swimming points. Convert race times into official FINA points for ranking comparison. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/FinaPointsCalculator"),
       urlStyle: "flat"
     },
@@ -436,6 +574,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "individual-game-management",
       description: "Assess swim performance level. Compare your times against age-group standards to see where you rank.",
+      aliases: ["how-to-calculate-swim-performance-level", "swim-performance-level-online", "free-swim-performance-level-calculator"],
+      seoTitle: "Swim Performance Level Calculator",
+      seoDescription: "Assess swim performance level. Compare your times against age-group standards to see where you rank. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Sports/SwimPerformanceLevelCalculator"),
       urlStyle: "flat"
     }

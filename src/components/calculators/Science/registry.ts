@@ -11,6 +11,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-mechanics-motion",
       description: "Solve motion problems using SUVAT equations. Calculate displacement, initial/final velocity, acceleration, and time for uniform acceleration.",
+      aliases: ["kinematics-equations-solver-calculator", "how-to-calculate-kinematics-equations-solver", "kinematics-equations-solver-online", "free-kinematics-equations-solver-calculator"],
+      seoTitle: "Kinematics Equations Solver (SUVAT)",
+      seoDescription: "Solve motion problems using SUVAT equations. Calculate displacement, initial/final velocity, acceleration, and time for uniform acceleration. Free and instant.",
       loader: () => import("@/components/calculators/Science/KinematicsSuvatSolverCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-mechanics-motion",
       description: "Analyze projectile motion. Calculate range, maximum height, and time of flight for objects launched at an angle under gravity.",
+      aliases: ["how-to-calculate-projectile-motion", "projectile-motion-online", "free-projectile-motion-calculator"],
+      seoTitle: "Projectile Motion Calculator",
+      seoDescription: "Analyze projectile motion. Calculate range, maximum height, and time of flight for objects launched at an angle under gravity.",
       loader: () => import("@/components/calculators/Science/ProjectileMotionCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-mechanics-motion",
       description: "Calculate Force, Work, and Energy. Solve physics problems involving Newton's laws, kinetic energy, and potential energy.",
+      aliases: ["how-to-calculate-force-work-and-energy", "force-work-and-energy-online", "free-force-work-and-energy-calculator"],
+      seoTitle: "Force, Work & Energy Calculator",
+      seoDescription: "Calculate Force, Work, and Energy. Solve physics problems involving Newton's laws, kinetic energy, and potential energy. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/ForceWorkEnergyCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-mechanics-motion",
       description: "Determine Power and Efficiency. Calculate the rate of work done and the energy efficiency of mechanical systems or engines.",
+      aliases: ["how-to-calculate-power-and-efficiency", "power-and-efficiency-online", "free-power-and-efficiency-calculator"],
+      seoTitle: "Power & Efficiency Calculator",
+      seoDescription: "Determine Power and Efficiency. Calculate the rate of work done and the energy efficiency of mechanical systems or engines.",
       loader: () => import("@/components/calculators/Science/PowerEfficiencyCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-mechanics-motion",
       description: "Calculate Momentum and Impulse. Analyze collisions and the change in motion of objects using mass and velocity.",
+      aliases: ["how-to-calculate-momentum-and-impulse", "momentum-and-impulse-online", "free-momentum-and-impulse-calculator"],
+      seoTitle: "Momentum & Impulse Calculator",
+      seoDescription: "Calculate Momentum and Impulse. Analyze collisions and the change in motion of objects using mass and velocity.",
       loader: () => import("@/components/calculators/Science/MomentumImpulseCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-mechanics-motion",
       description: "Solve for centripetal force and acceleration. Calculate the velocity and period of objects in uniform circular motion.",
+      aliases: ["uniform-circular-motion-calculator", "how-to-calculate-uniform-circular-motion", "uniform-circular-motion-online", "free-uniform-circular-motion-calculator"],
+      seoTitle: "Uniform Circular Motion Calculator",
+      seoDescription: "Solve for centripetal force and acceleration. Calculate the velocity and period of objects in uniform circular motion. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/UniformCircularMotionCentripetalCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-mechanics-motion",
       description: "Estimate free-fall parameters. Calculate how long an object takes to fall and its impact velocity under gravity.",
+      aliases: ["free-fall-time-velocity-calculator", "how-to-calculate-free-fall-time-velocity", "free-fall-time-velocity-online", "free-free-fall-time-velocity-calculator"],
+      seoTitle: "Free-Fall Time/Velocity Estimator",
+      seoDescription: "Estimate free-fall parameters. Calculate how long an object takes to fall and its impact velocity under gravity. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/FreeFallTimeVelocityEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-waves-optics-thermo",
       description: "Calculate wave properties. Find the relationship between wave speed, frequency, and wavelength with the wave equation.",
+      aliases: ["wave-speed-frequency-wavelength-calculator", "how-to-calculate-wave-speed-frequency-wavelength", "wave-speed-frequency-wavelength-online", "free-wave-speed-frequency-wavelength-calculator"],
+      seoTitle: "Wave Speed / Frequency / Wavelength",
+      seoDescription: "Calculate wave properties. Find the relationship between wave speed, frequency, and wavelength with the wave equation. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/WaveSpeedFrequencyWavelengthCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-waves-optics-thermo",
       description: "Solve optics problems using Snell's Law. Calculate the angle of refraction and the critical angle for total internal reflection.",
+      aliases: ["snell-s-law-and-critical-angle-calculator", "how-to-calculate-snell-s-law-and-critical-angle", "snell-s-law-and-critical-angle-online", "free-snell-s-law-and-critical-angle-calculator"],
+      seoTitle: "Snell’s Law & Critical Angle Calculator",
+      seoDescription: "Solve optics problems using Snell's Law. Calculate the angle of refraction and the critical angle for total internal reflection.",
       loader: () => import("@/components/calculators/Science/SnellsLawCriticalAngleCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-waves-optics-thermo",
       description: "Solve Thin Lens equation problems. Calculate focal length, object distance, and image distance for convex and concave lenses.",
+      aliases: ["thin-lens-solver-calculator", "how-to-calculate-thin-lens-solver", "thin-lens-solver-online", "free-thin-lens-solver-calculator"],
+      seoTitle: "Thin Lens Solver",
+      seoDescription: "Solve Thin Lens equation problems. Calculate focal length, object distance, and image distance for convex and concave lenses.",
       loader: () => import("@/components/calculators/Science/ThinLensSolverCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-waves-optics-thermo",
       description: "Calculate heat energy (q=mcΔT). Determine the energy required to change the temperature of a substance based on specific heat capacity.",
+      aliases: ["specific-heat-calculator", "how-to-calculate-specific-heat", "specific-heat-online", "free-specific-heat-calculator"],
+      seoTitle: "Specific Heat Calculator",
+      seoDescription: "Calculate heat energy (q=mcΔT). Determine the energy required to change the temperature of a substance based on specific heat capacity. Free and instant.",
       loader: () => import("@/components/calculators/Science/SpecificHeatQMcDeltaTCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-waves-optics-thermo",
       description: "Calculate rate of heat transfer by conduction. Solve thermal conductivity problems using Fourier's law for engineering and physics.",
+      aliases: ["heat-transfer-calculator", "how-to-calculate-heat-transfer", "heat-transfer-online", "free-heat-transfer-calculator"],
+      seoTitle: "Heat Transfer (Conduction) Calculator",
+      seoDescription: "Calculate rate of heat transfer by conduction. Solve thermal conductivity problems using Fourier's law for engineering and physics.",
       loader: () => import("@/components/calculators/Science/HeatTransferConductionCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-waves-optics-thermo",
       description: "Estimate peak wavelength of blackbody radiation. Use Wien's Displacement Law to find the temperature of stars and hot objects.",
+      aliases: ["blackbody-peak-calculator", "how-to-calculate-blackbody-peak", "blackbody-peak-online", "free-blackbody-peak-calculator"],
+      seoTitle: "Blackbody Peak (Wien's Law) Estimator",
+      seoDescription: "Estimate peak wavelength of blackbody radiation. Use Wien's Displacement Law to find the temperature of stars and hot objects.",
       loader: () => import("@/components/calculators/Science/BlackbodyPeakWienLawEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-electricity-modern",
       description: "Calculate the energy of a photon. Use Planck's constant and frequency (E=hf) to solve quantum physics problems.",
+      aliases: ["photon-energy-calculator", "how-to-calculate-photon-energy", "photon-energy-online", "free-photon-energy-calculator"],
+      seoTitle: "Photon Energy Calculator",
+      seoDescription: "Calculate the energy of a photon. Use Planck's constant and frequency (E=hf) to solve quantum physics problems.",
       loader: () => import("@/components/calculators/Science/PhotonEnergyEHfCalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-electricity-modern",
       description: "Calculate radioactive half-life. Solve exponential decay problems to determine remaining quantity or elapsed time.",
+      aliases: ["half-life-exponential-decay-calculator", "how-to-calculate-half-life-exponential-decay", "half-life-exponential-decay-online", "free-half-life-exponential-decay-calculator"],
+      seoTitle: "Half-Life / Exponential Decay Calculator",
+      seoDescription: "Calculate radioactive half-life. Solve exponential decay problems to determine remaining quantity or elapsed time. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/HalfLifeExponentialDecayCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-electricity-modern",
       description: "Calculate radioactive activity (A = λN). Determine the decay rate of a sample based on its decay constant.",
+      aliases: ["radioactive-activity-calculator", "how-to-calculate-radioactive-activity", "radioactive-activity-online", "free-radioactive-activity-calculator"],
+      seoTitle: "Radioactive Activity Calculator",
+      seoDescription: "Calculate radioactive activity (A = λN). Determine the decay rate of a sample based on its decay constant. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Science/RadioactiveActivityALambdaNCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-electricity-modern",
       description: "Calculate reactance for AC circuits. Determine the opposition to current flow in capacitors and inductors at specific frequencies.",
+      aliases: ["capacitor-inductor-reactance-calculator", "how-to-calculate-capacitor-inductor-reactance", "capacitor-inductor-reactance-online", "free-capacitor-inductor-reactance-calculator"],
+      seoTitle: "Capacitor/Inductor Reactance Calculator",
+      seoDescription: "Calculate reactance for AC circuits. Determine the opposition to current flow in capacitors and inductors at specific frequencies.",
       loader: () => import("@/components/calculators/Science/ReactanceCapacitorInductorEducationalCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "physics-electricity-modern",
       description: "Calculate the RC Time Constant (τ). Determine how fast a capacitor charges or discharges through a resistor in a circuit.",
+      aliases: ["rc-time-constant-calculator", "how-to-calculate-rc-time-constant", "rc-time-constant-online", "free-rc-time-constant-calculator"],
+      seoTitle: "RC Time Constant Calculator",
+      seoDescription: "Calculate the RC Time Constant (τ). Determine how fast a capacitor charges or discharges through a resistor in a circuit. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/RcTimeConstantTauRcCalculator"),
       urlStyle: "flat"
     },
@@ -173,6 +227,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-solutions-stoichiometry",
       description: "Calculate Molarity, Moles, and Volume. The essential tool for preparing chemical solutions and performing lab calculations.",
+      aliases: ["molarity-moles-volume-calculator", "how-to-calculate-molarity-moles-volume", "molarity-moles-volume-online", "free-molarity-moles-volume-calculator"],
+      seoTitle: "Molarity / Moles / Volume Calculator",
+      seoDescription: "Calculate Molarity, Moles, and Volume. The essential tool for preparing chemical solutions and performing lab calculations.",
       loader: () => import("@/components/calculators/Science/MolarityMolesVolumeCalculator"),
       urlStyle: "flat"
     },
@@ -182,6 +239,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-solutions-stoichiometry",
       description: "Solve dilution problems easily. Calculate the volume needed to dilute a stock solution to a desired concentration.",
+      aliases: ["dilution-calculator", "how-to-calculate-dilution", "dilution-online", "free-dilution-calculator"],
+      seoTitle: "Dilution Calculator (C₁V₁ = C₂V₂)",
+      seoDescription: "Solve dilution problems easily. Calculate the volume needed to dilute a stock solution to a desired concentration. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/DilutionC1v1C2v2Calculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-solutions-stoichiometry",
       description: "Convert concentration units. Calculate Molality and Normality for precise chemical solutions and acid-base titrations.",
+      aliases: ["molality-and-normality-calculator", "how-to-calculate-molality-and-normality", "molality-and-normality-online", "free-molality-and-normality-calculator"],
+      seoTitle: "Molality & Normality Converter",
+      seoDescription: "Convert concentration units. Calculate Molality and Normality for precise chemical solutions and acid-base titrations. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/MolalityNormalityConverterCalculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-solutions-stoichiometry",
       description: "Solve Ideal Gas Law problems (PV = nRT). Calculate pressure, volume, temperature, or moles of a gas instantly.",
+      aliases: ["ideal-gas-law-calculator", "how-to-calculate-ideal-gas-law", "ideal-gas-law-online", "free-ideal-gas-law-calculator"],
+      seoTitle: "Ideal Gas Law Calculator",
+      seoDescription: "Solve Ideal Gas Law problems (PV = nRT). Calculate pressure, volume, temperature, or moles of a gas instantly.",
       loader: () => import("@/components/calculators/Science/IdealGasLawPvNrtCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-solutions-stoichiometry",
       description: "Solve stoichiometry problems. Calculate the amounts of reactants and products and identify the limiting reagent in reactions.",
+      aliases: ["stoichiometry-and-limiting-reagent-solver-calculator", "how-to-calculate-stoichiometry-and-limiting-reagent-solver", "stoichiometry-and-limiting-reagent-solver-online", "free-stoichiometry-and-limiting-reagent-solver-calculator"],
+      seoTitle: "Stoichiometry & Limiting Reagent Solver",
+      seoDescription: "Solve stoichiometry problems. Calculate the amounts of reactants and products and identify the limiting reagent in reactions.",
       loader: () => import("@/components/calculators/Science/StoichiometryLimitingReagentCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-solutions-stoichiometry",
       description: "Calculate Percent Yield. Compare actual yield to theoretical yield to measure the efficiency of a chemical reaction.",
+      aliases: ["percent-yield-and-theoretical-yield-calculator", "how-to-calculate-percent-yield-and-theoretical-yield", "percent-yield-and-theoretical-yield-online", "free-percent-yield-and-theoretical-yield-calculator"],
+      seoTitle: "Percent Yield & Theoretical Yield",
+      seoDescription: "Calculate Percent Yield. Compare actual yield to theoretical yield to measure the efficiency of a chemical reaction. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/PercentYieldTheoreticalYieldCalculator"),
       urlStyle: "flat"
     },
@@ -227,6 +299,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-solutions-stoichiometry",
       description: "Calculate pH, pOH, and ion concentration. Convert between acidity metrics easily for chemistry and biology applications.",
+      aliases: ["how-to-calculate-ph-poh-h", "ph-poh-h-online", "free-ph-poh-h-calculator"],
+      seoTitle: "pH / pOH / [H+] Calculator",
+      seoDescription: "Calculate pH, pOH, and ion concentration. Convert between acidity metrics easily for chemistry and biology applications. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/PhPohHOhCalculator"),
       urlStyle: "flat"
     },
@@ -236,6 +311,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-solutions-stoichiometry",
       description: "Design chemical buffers. Use the Henderson-Hasselbalch equation to calculate pH and ratio of conjugate base to acid.",
+      aliases: ["buffer-calculator", "how-to-calculate-buffer", "buffer-online", "free-buffer-calculator"],
+      seoTitle: "Buffer (Henderson–Hasselbalch) Helper",
+      seoDescription: "Design chemical buffers. Use the Henderson-Hasselbalch equation to calculate pH and ratio of conjugate base to acid. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/BufferHendersonHasselbalchHelperCalculator"),
       urlStyle: "flat"
     },
@@ -245,6 +323,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-composition-units",
       description: "Calculate Molar Mass. Find the molecular weight of any chemical compound by summing atomic masses from the periodic table.",
+      aliases: ["how-to-calculate-molar-mass", "molar-mass-online", "free-molar-mass-calculator"],
+      seoTitle: "Molar Mass Calculator",
+      seoDescription: "Calculate Molar Mass. Find the molecular weight of any chemical compound by summing atomic masses from the periodic table. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/MolarMassCalculator"),
       urlStyle: "flat"
     },
@@ -254,6 +335,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-composition-units",
       description: "Calculate Percent Composition by Mass. Determine the percentage of each element within a chemical compound.",
+      aliases: ["percent-composition-by-mass-calculator", "how-to-calculate-percent-composition-by-mass", "percent-composition-by-mass-online", "free-percent-composition-by-mass-calculator"],
+      seoTitle: "Percent Composition by Mass",
+      seoDescription: "Calculate Percent Composition by Mass. Determine the percentage of each element within a chemical compound. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Science/PercentCompositionByMassCalculator"),
       urlStyle: "flat"
     },
@@ -263,6 +347,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-composition-units",
       description: "Convert concentration units. Switch between parts per million (ppm), parts per billion (ppb), and molarity for trace analysis.",
+      aliases: ["ppm-ppb-concentration-calculator", "how-to-calculate-ppm-ppb-concentration", "ppm-ppb-concentration-online", "free-ppm-ppb-concentration-calculator"],
+      seoTitle: "ppm / ppb Concentration Converter",
+      seoDescription: "Convert concentration units. Switch between parts per million (ppm), parts per billion (ppb), and molarity for trace analysis.",
       loader: () => import("@/components/calculators/Science/PpmPpbConcentrationConverterCalculator"),
       urlStyle: "flat"
     },
@@ -272,6 +359,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "chemistry-composition-units",
       description: "Calculate Density and Specific Gravity. Determine the mass-to-volume ratio of solids, liquids, and gases.",
+      aliases: ["how-to-calculate-density-specific-gravity", "density-specific-gravity-online", "free-density-specific-gravity-calculator"],
+      seoTitle: "Density / Specific Gravity Calculator",
+      seoDescription: "Calculate Density and Specific Gravity. Determine the mass-to-volume ratio of solids, liquids, and gases. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Science/DensitySpecificGravityCalculator"),
       urlStyle: "flat"
     },
@@ -281,6 +371,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "astronomy-earth-science",
       description: "Calculate Escape Velocity. Determine the speed needed to break free from the gravitational pull of a planet or moon.",
+      aliases: ["how-to-calculate-escape-velocity", "escape-velocity-online", "free-escape-velocity-calculator"],
+      seoTitle: "Escape Velocity Calculator",
+      seoDescription: "Calculate Escape Velocity. Determine the speed needed to break free from the gravitational pull of a planet or moon. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/EscapeVelocityCalculator"),
       urlStyle: "flat"
     },
@@ -290,6 +383,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "astronomy-earth-science",
       description: "Estimate Orbital Period using Kepler's Laws. Calculate the time it takes for a planet or satellite to orbit a massive body.",
+      aliases: ["orbital-period-calculator", "how-to-calculate-orbital-period", "orbital-period-online", "free-orbital-period-calculator"],
+      seoTitle: "Orbital Period (Kepler) Estimator",
+      seoDescription: "Estimate Orbital Period using Kepler's Laws. Calculate the time it takes for a planet or satellite to orbit a massive body.",
       loader: () => import("@/components/calculators/Science/OrbitalPeriodKeplerEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -299,6 +395,9 @@ export const scienceEntries: CalculatorEntry[] = [
       category: "science",
       subcategory: "astronomy-earth-science",
       description: "Calculate gravity on other planets. See how much you would weigh on Mars, Jupiter, or the Moon compared to Earth.",
+      aliases: ["how-to-calculate-gravity-on-other-planets", "gravity-on-other-planets-online", "free-gravity-on-other-planets-calculator"],
+      seoTitle: "Gravity on Other Planets Calculator",
+      seoDescription: "Calculate gravity on other planets. See how much you would weigh on Mars, Jupiter, or the Moon compared to Earth. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Science/GravityOnOtherPlanetsCalculator"),
       urlStyle: "flat"
     }

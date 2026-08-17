@@ -11,6 +11,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans",
       description: "Calculate your monthly loan payments instantly. Enter principal, interest rate, and term to see your exact payment schedule.",
+      aliases: ["monthly-loan-payment-calculator", "loan-installment-calculator", "how-much-is-my-loan-payment", "loan-payment-estimator"],
+      seoTitle: "Loan Payment Calculator — Monthly Payment by Rate & Term",
+      seoDescription: "Calculate your monthly loan payment from principal, interest rate, and loan term. Instantly see your exact payment amount and total interest paid over time.",
       loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "general",
       description: "Calculate tip amount, total bill, and how much each person owes when splitting the check.",
+      aliases: ["bill-splitter-calculator", "split-the-check-calculator", "tip-calculator-for-groups", "how-much-should-i-tip-calculator"],
+      seoTitle: "Tip & Split Bill Calculator — Restaurant Bill Splitter",
+      seoDescription: "Calculate the tip amount, total bill, and each person's share when splitting a restaurant check. Enter the bill total, tip percentage, and number of people.",
       loader: () => import("@/components/calculators/Financial/TipSplitBillCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Estimate your monthly mortgage payments including interest. View the full amortization schedule to track your home equity growth over time.",
+      aliases: ["mortgage-payment-calculator", "home-loan-amortization-schedule", "mortgage-schedule-calculator", "monthly-mortgage-calculator"],
+      seoTitle: "Mortgage Amortization Calculator — Payment Schedule",
+      seoDescription: "Estimate your monthly mortgage payment and view the full amortization schedule showing principal, interest, and remaining balance for every payment made.",
       loader: () => import("@/components/calculators/Financial/MortgageAmortizationCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "See how extra payments affect your loan payoff date. Save on interest by paying down your debt faster with this simple calculator.",
+      aliases: ["extra-payment-payoff-calculator", "early-loan-payoff-calculator", "biweekly-payment-payoff-calculator", "pay-off-mortgage-early-calculator"],
+      seoTitle: "Extra Payment Calculator — Payoff Time & Interest Saved",
+      seoDescription: "See how extra payments toward your loan principal shorten your payoff date and reduce total interest. Compare timelines with and without extra payments.",
       loader: () => import("@/components/calculators/Financial/ExtraPaymentsPayoffCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Calculate payments for interest-only loans. Compare the interest-only period versus the full amortization phase to plan your budget.",
+      aliases: ["interest-only-mortgage-calculator", "io-loan-payment-calculator", "interest-only-payment-estimator", "interest-only-period-calculator"],
+      seoTitle: "Interest-Only Loan Calculator — Payment & Amortization",
+      seoDescription: "Calculate monthly payments for an interest-only loan and compare the interest-only period against the fully amortizing phase to plan your budget and cash flow.",
       loader: () => import("@/components/calculators/Financial/InterestOnlyLoanCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Determine if refinancing is right for you. Compare current loan terms with new offers to calculate potential monthly and lifetime savings.",
+      aliases: ["should-i-refinance-calculator", "mortgage-refinance-calculator", "refi-savings-calculator", "break-even-refinance-calculator"],
+      seoTitle: "Refinance Calculator — Compare Savings vs Current Loan",
+      seoDescription: "See if refinancing is worth it. Compare your current loan terms with a new offer to estimate monthly and lifetime interest savings, plus your break-even point.",
       loader: () => import("@/components/calculators/Financial/RefinanceSavingsCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Estimate monthly payments for a Home Equity Line of Credit (HELOC). Calculate costs during both the draw period and the repayment period.",
+      aliases: ["home-equity-line-of-credit-calculator", "heloc-calculator", "heloc-monthly-payment-estimator", "home-equity-line-payment-calculator"],
+      seoTitle: "HELOC Payment Calculator — Draw & Repayment Periods",
+      seoDescription: "Estimate monthly payments for a Home Equity Line of Credit during both the draw period and the repayment period, based on your credit limit, rate, and balance.",
       loader: () => import("@/components/calculators/Financial/HelocPaymentEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Find out how much car you can afford. Input your monthly budget and down payment to determine your maximum vehicle price.",
+      aliases: ["how-much-car-can-i-afford-calculator", "car-budget-calculator", "vehicle-affordability-calculator", "what-car-can-i-afford-calculator"],
+      seoTitle: "Car Affordability Calculator — How Much Car You Can Afford",
+      seoDescription: "Find out how much car you can afford based on your monthly budget, down payment, and loan term. Get a realistic maximum vehicle price before you shop.",
       loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Calculate monthly payments and the final balloon payment amount. Essential for loans with a large lump-sum payoff at the end of the term.",
+      aliases: ["balloon-loan-calculator", "balloon-mortgage-calculator", "final-payment-loan-calculator", "balloon-note-calculator"],
+      seoTitle: "Balloon Payment Calculator — Monthly & Final Lump Sum",
+      seoDescription: "Calculate the reduced monthly payments and the final lump-sum balloon payment for a balloon loan, based on principal, rate, term, and the balloon amount due.",
       loader: () => import("@/components/calculators/Financial/BalloonPaymentCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Determine your home buying budget based on income, debt, and down payment using this comprehensive affordability calculator.",
+      aliases: ["home-affordability-calculator", "mortgage-affordability-calculator", "28-36-rule-calculator", "what-house-can-i-afford-calculator"],
+      seoTitle: "How Much House Can I Afford — Home Buying Budget Calculator",
+      seoDescription: "Determine your home buying budget using income, monthly debt, and down payment. This affordability calculator estimates the mortgage size you qualify for.",
       loader: () => import("@/components/calculators/Financial/HouseAffordabilityCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Calculate your auto loan payments accurately. Factor in trade-in value, sales tax, and fees to get a clear picture of your car purchase.",
+      aliases: ["car-loan-payment-calculator", "car-payment-calculator-with-tax", "auto-financing-calculator", "new-car-loan-calculator"],
+      seoTitle: "Auto Loan Calculator — Payment with Trade-In & Tax",
+      seoDescription: "Calculate accurate auto loan payments by factoring in trade-in value, sales tax, and dealer fees, so you know the real monthly cost of your car purchase.",
       loader: () => import("@/components/calculators/Financial/AutoLoanCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Plan your student loan repayment strategy. Estimate monthly payments and total interest costs under different repayment plans.",
+      aliases: ["student-loan-payment-calculator", "federal-student-loan-calculator", "income-driven-repayment-calculator", "student-debt-payoff-calculator"],
+      seoTitle: "Student Loan Calculator — Repayment Plans & Interest",
+      seoDescription: "Plan your student loan repayment strategy by estimating monthly payments and total interest cost under standard, extended, or income-based repayment plans.",
       loader: () => import("@/components/calculators/Financial/StudentLoanRepaymentCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "loans-mortgages-payments",
       description: "Compare the costs of leasing versus buying a car. Analyze monthly payments and long-term value to make the smartest financial decision.",
+      aliases: ["car-lease-vs-buy-calculator", "should-i-lease-or-buy-a-car", "lease-or-finance-calculator", "car-leasing-cost-comparison"],
+      seoTitle: "Lease vs Buy Calculator — Compare Total Car Costs",
+      seoDescription: "Compare the total cost of leasing versus buying a car, including monthly payments, down payment, and long-term value, to decide which option saves more money.",
       loader: () => import("@/components/calculators/Financial/LeaseVsBuyCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Calculate the power of compound interest. See how your investments grow over time with daily, monthly, or yearly compounding.",
+      aliases: ["compounding-interest-calculator", "interest-compounding-calculator", "daily-compound-interest-calculator", "compound-growth-calculator"],
+      seoTitle: "Compound Interest Calculator — Investment Growth",
+      seoDescription: "Calculate how compound interest grows your savings or investment over time. Compare daily, monthly, quarterly, or yearly compounding frequencies and rates.",
       loader: () => import("@/components/calculators/Financial/CompoundInterestCalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Estimate the future value of your investments. Calculate growth based on initial principal, periodic contributions, and expected interest rate.",
+      aliases: ["future-value-of-money-calculator", "fv-calculator", "projected-investment-value-calculator", "investment-growth-projection-calculator"],
+      seoTitle: "Future Value Calculator — Growth with Contributions",
+      seoDescription: "Estimate the future value of an investment based on your initial principal, periodic contributions, expected interest rate, and time horizon to your goal.",
       loader: () => import("@/components/calculators/Financial/FutureValueInvestmentCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Calculate the future value of your investments with compound interest and regular contributions.",
+      aliases: ["future-value-calculator-online", "fv-of-investment-calculator", "future-worth-calculator", "investment-future-value-tool"],
+      seoTitle: "Future Value Calculator — FV with Compounding",
+      seoDescription: "Calculate the future value of your investments using compound interest and regular contributions to project how your portfolio grows over months or years.",
       loader: () => import("@/components/calculators/Financial/FutureValueInvestmentCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Calculate your Return on Investment (ROI) percentage. Measure the profitability of your assets and portfolio performance easily.",
+      aliases: ["return-on-investment-calculator", "investment-roi-percentage-calculator", "investment-profit-calculator", "gain-on-investment-calculator"],
+      seoTitle: "ROI Calculator — Return on Investment Percentage",
+      seoDescription: "Calculate your Return on Investment (ROI) percentage from an initial cost and final value. Measure the profitability of assets, stocks, or a portfolio.",
       loader: () => import("@/components/calculators/Financial/RoiReturnOnInvestmentCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Plan your Systematic Investment Plan (SIP). Calculate the expected returns on your monthly mutual fund or stock market investments.",
+      aliases: ["sip-return-calculator", "monthly-sip-calculator", "mutual-fund-sip-calculator", "systematic-investment-plan-calculator"],
+      seoTitle: "SIP Calculator — Systematic Investment Plan Returns",
+      seoDescription: "Plan your Systematic Investment Plan (SIP) and calculate expected returns on monthly mutual fund or stock market contributions over your chosen investment term.",
       loader: () => import("@/components/calculators/Financial/SipMonthlyInvestmentPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -173,6 +227,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Calculate the real value of money over time. Adjust for inflation to understand your future purchasing power accurately.",
+      aliases: ["inflation-rate-calculator", "purchasing-power-calculator", "cost-of-living-adjustment-calculator", "future-dollar-value-calculator"],
+      seoTitle: "Inflation Calculator — Real Value & Purchasing Power",
+      seoDescription: "Calculate the real value of money over time by adjusting for inflation. See how much purchasing power your savings or salary will have in future years.",
       loader: () => import("@/components/calculators/Financial/InflationAdjustedValueCalculator"),
       urlStyle: "flat"
     },
@@ -182,6 +239,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Determine how much you need to save for retirement. Set clear goals based on your current age, income, and desired lifestyle.",
+      aliases: ["retirement-calculator", "how-much-to-save-for-retirement", "retirement-nest-egg-calculator", "retirement-planning-calculator"],
+      seoTitle: "Retirement Savings Calculator — How Much to Save",
+      seoDescription: "Determine how much you need to save for retirement based on your current age, income, savings rate, and desired retirement lifestyle and target retirement age.",
       loader: () => import("@/components/calculators/Financial/RetirementSavingsGoalCalculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Calculate the ideal size for your emergency fund. Plan for 3 to 6 months of expenses to ensure financial security against the unexpected.",
+      aliases: ["emergency-savings-calculator", "how-much-emergency-fund-do-i-need", "rainy-day-fund-calculator", "3-6-months-expenses-calculator"],
+      seoTitle: "Emergency Fund Calculator — How Much to Save",
+      seoDescription: "Calculate the ideal size for your emergency fund based on monthly expenses. Plan for 3 to 6 months of living costs to build a solid financial safety net.",
       loader: () => import("@/components/calculators/Financial/EmergencyFundGoalCalculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Estimate your 401(k) growth over time. Factor in employer matching and annual contributions to visualize your retirement nest egg.",
+      aliases: ["401k-growth-calculator", "401k-contribution-calculator", "employer-match-calculator", "401k-balance-projection-calculator"],
+      seoTitle: "401(k) Calculator — Growth with Employer Match",
+      seoDescription: "Estimate your 401(k) balance growth over time, factoring in employer matching contributions and your own annual contributions toward your retirement nest egg.",
       loader: () => import("@/components/calculators/Financial/401kRetirementSavingsGrowthCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Estimate your future Social Security benefits. Calculate potential monthly payments based on your earnings history and retirement age.",
+      aliases: ["social-security-estimator", "ss-benefits-calculator", "social-security-payment-calculator", "when-to-claim-social-security-calculator"],
+      seoTitle: "Social Security Calculator — Estimate Monthly Benefits",
+      seoDescription: "Estimate your future Social Security monthly benefit based on your earnings history and the age at which you plan to start claiming, from age 62 to 70.",
       loader: () => import("@/components/calculators/Financial/SocialSecurityBenefitEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Quickly estimate how long it will take to double your investment. Use the Rule of 72 formula for fast mental math on investment growth.",
+      aliases: ["doubling-time-calculator", "years-to-double-investment-calculator", "rule-of-72-formula-calculator", "how-long-to-double-my-money"],
+      seoTitle: "Rule of 72 Calculator — Years to Double Your Money",
+      seoDescription: "Quickly estimate how many years it takes to double your investment using the Rule of 72 formula, a fast mental-math shortcut based on your annual growth rate.",
       loader: () => import("@/components/calculators/Financial/RuleOf72Calculator"),
       urlStyle: "flat"
     },
@@ -227,6 +299,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Calculate current yield and yield to maturity (YTM) for bonds. Assess the true performance of your fixed-income investments.",
+      aliases: ["yield-to-maturity-calculator", "ytm-calculator", "bond-return-calculator", "fixed-income-yield-calculator"],
+      seoTitle: "Bond Yield Calculator — Current Yield & YTM",
+      seoDescription: "Calculate the current yield and yield to maturity (YTM) for a bond based on its market price, coupon rate, face value, and years remaining until it matures.",
       loader: () => import("@/components/calculators/Financial/BondYieldCalculator"),
       urlStyle: "flat"
     },
@@ -236,6 +311,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Analyze the tax implications of converting a traditional IRA to a Roth IRA. Determine if the tax cost now is worth the tax-free growth later.",
+      aliases: ["traditional-to-roth-ira-calculator", "ira-conversion-tax-calculator", "backdoor-roth-calculator", "roth-conversion-tax-estimator"],
+      seoTitle: "Roth IRA Conversion Calculator — Tax Cost vs Benefit",
+      seoDescription: "Analyze the tax cost of converting a traditional IRA to a Roth IRA and compare it against the value of future tax-free growth and qualified withdrawals.",
       loader: () => import("@/components/calculators/Financial/RothIraConversionCalculator"),
       urlStyle: "flat"
     },
@@ -245,6 +323,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Simulate Dollar Cost Averaging strategies. See how regular investing compares to lump-sum investing and beats market timing volatility.",
+      aliases: ["dca-vs-lump-sum-calculator", "dollar-cost-averaging-calculator", "recurring-investment-simulator", "dca-return-simulator"],
+      seoTitle: "Dollar Cost Averaging Calculator — DCA vs Lump Sum",
+      seoDescription: "Simulate a Dollar Cost Averaging (DCA) investment strategy and compare it against lump-sum investing to see how regular buying smooths out volatility.",
       loader: () => import("@/components/calculators/Financial/DcaSimulatorCalculator"),
       urlStyle: "flat"
     },
@@ -254,6 +335,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Calculate potential returns from a Crypto DCA strategy. Analyze historical performance of recurring buys in volatile markets.",
+      aliases: ["bitcoin-dca-calculator", "crypto-dollar-cost-averaging-calculator", "recurring-crypto-buy-calculator", "dca-crypto-returns-estimator"],
+      seoTitle: "Crypto DCA Calculator — Recurring Buy Strategy Returns",
+      seoDescription: "Calculate potential returns from a crypto Dollar Cost Averaging strategy by analyzing historical performance of recurring buys in volatile crypto markets.",
       loader: () => import("@/components/calculators/Financial/CryptoDcaStrategyCalculator"),
       urlStyle: "flat"
     },
@@ -263,6 +347,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "investments-savings",
       description: "Estimate returns for stock market dollar cost averaging. Visualize long-term portfolio growth by investing consistent amounts over time.",
+      aliases: ["stock-dollar-cost-averaging-calculator", "dca-stock-returns-calculator", "monthly-stock-investment-calculator", "index-fund-dca-calculator"],
+      seoTitle: "Stock DCA Calculator — Dollar Cost Averaging Returns",
+      seoDescription: "Estimate returns from dollar cost averaging into stocks by investing a consistent amount on a regular schedule to visualize long-term portfolio growth.",
       loader: () => import("@/components/calculators/Financial/StockDcaReturnEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -272,6 +359,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "income-budget-expenses",
       description: "Manage your finances with this monthly budget planner. Track income and expenses to stay on target and reach your financial goals.",
+      aliases: ["budget-planner-calculator", "household-budget-calculator", "monthly-expense-tracker", "personal-budget-calculator"],
+      seoTitle: "Monthly Budget Calculator — Track Income & Expenses",
+      seoDescription: "Build a monthly budget by tracking your income against fixed and variable expenses. See where your money goes and how much you can save toward your goals.",
       loader: () => import("@/components/calculators/Financial/MonthlyBudgetPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -281,6 +371,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "income-budget-expenses",
       description: "Calculate your net income after taxes. Estimate your actual take-home pay based on your gross salary and location.",
+      aliases: ["after-tax-income-calculator", "gross-to-net-salary-calculator", "net-pay-calculator", "take-home-salary-calculator"],
+      seoTitle: "Net Income Calculator — Take-Home Pay After Tax",
+      seoDescription: "Calculate your net income after taxes and estimate your actual take-home pay based on your gross salary, filing status, deductions, and work location.",
       loader: () => import("@/components/calculators/Financial/NetIncomeAfterTaxCalculator"),
       urlStyle: "flat"
     },
@@ -290,6 +383,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "income-budget-expenses",
       description: "Convert hourly wages to annual salary instantly. Calculate weekly, bi-weekly, monthly, and yearly earnings from your hourly rate.",
+      aliases: ["hourly-wage-to-salary-calculator", "wage-conversion-calculator", "salary-calculator-from-hourly", "annual-income-from-hourly-rate"],
+      seoTitle: "Hourly to Salary Calculator — Convert Wage to Annual Pay",
+      seoDescription: "Convert an hourly wage into annual salary and see the equivalent weekly, bi-weekly, and monthly earnings based on your hours worked per week and pay rate.",
       loader: () => import("@/components/calculators/Financial/HourlyToAnnualSalaryCalculator"),
       urlStyle: "flat"
     },
@@ -299,6 +395,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "income-budget-expenses",
       description: "Calculate your Debt-to-Income (DTI) ratio. Essential for assessing mortgage eligibility and understanding your overall financial health.",
+      aliases: ["dti-calculator", "debt-to-income-calculator-mortgage", "dti-ratio-calculator", "what-is-my-debt-to-income-ratio"],
+      seoTitle: "Debt-to-Income Ratio Calculator — DTI for Mortgages",
+      seoDescription: "Calculate your Debt-to-Income (DTI) ratio by comparing monthly debt payments to gross income — a key figure lenders use to assess mortgage eligibility.",
       loader: () => import("@/components/calculators/Financial/DebtToIncomeRatioCalculator"),
       urlStyle: "flat"
     },
@@ -308,6 +407,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "income-budget-expenses",
       description: "Track your personal savings rate. Determine exactly what percentage of your income you are saving for the future versus spending.",
+      aliases: ["personal-savings-rate-calculator", "how-much-am-i-saving-calculator", "savings-percentage-calculator", "fi-savings-rate-calculator"],
+      seoTitle: "Savings Rate Calculator — Percent of Income Saved",
+      seoDescription: "Track your personal savings rate by calculating exactly what percentage of your income you save each month versus what you spend, a core FIRE planning metric.",
       loader: () => import("@/components/calculators/Financial/SavingsRateTrackerCalculator"),
       urlStyle: "flat"
     },
@@ -317,6 +419,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "income-budget-expenses",
       description: "Split shared bills fairly among roommates or friends. Calculate exactly who owes what for rent, utilities, and groceries.",
+      aliases: ["roommate-bill-splitter", "split-rent-calculator", "shared-expenses-calculator", "split-utilities-calculator"],
+      seoTitle: "Expense Splitter Calculator — Split Shared Bills Fairly",
+      seoDescription: "Split shared bills fairly among roommates or friends and calculate exactly who owes what for rent, utilities, groceries, and other joint household expenses.",
       loader: () => import("@/components/calculators/Financial/ExpenseSplitterSharedBillsCalculator"),
       urlStyle: "flat"
     },
@@ -326,6 +431,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "income-budget-expenses",
       description: "Estimate your paycheck after tax withholdings and deductions. See exactly what amount hits your bank account every payday.",
+      aliases: ["paycheck-after-taxes-calculator", "net-paycheck-calculator", "take-home-salary-estimator", "real-paycheck-calculator"],
+      seoTitle: "Take-Home Pay Calculator — Paycheck After Deductions",
+      seoDescription: "Estimate your paycheck after tax withholdings and deductions to see exactly what amount lands in your bank account on every payday, based on your gross pay.",
       loader: () => import("@/components/calculators/Financial/TakeHomePayCalculator"),
       urlStyle: "flat"
     },
@@ -335,6 +443,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "income-budget-expenses",
       description: "Calculate your paycheck based on hours worked, pay rate, and overtime. Get an accurate salary estimation for your next pay period.",
+      aliases: ["hourly-paycheck-calculator", "overtime-pay-calculator", "gross-pay-calculator", "weekly-paycheck-estimator"],
+      seoTitle: "Paycheck Calculator — Pay by Hours, Rate & Overtime",
+      seoDescription: "Calculate your paycheck based on hours worked, hourly pay rate, and overtime to get an accurate gross pay estimate for your next weekly or biweekly pay period.",
       loader: () => import("@/components/calculators/Financial/PaycheckCalculator"),
       urlStyle: "flat"
     },
@@ -344,6 +455,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "income-budget-expenses",
       description: "Calculate employee absence percentage. Track attendance rates useful for HR metrics and workforce management analysis.",
+      aliases: ["attendance-rate-calculator", "employee-absenteeism-calculator", "absence-rate-calculator", "staff-attendance-percentage-calculator"],
+      seoTitle: "Absence Percentage Calculator — Employee Attendance Rate",
+      seoDescription: "Calculate employee absence percentage from days absent versus total working days. Useful for HR attendance tracking, payroll, and workforce planning metrics.",
       loader: () => import("@/components/calculators/Financial/AbsencePercentageCalculator"),
       urlStyle: "flat"
     },
@@ -353,6 +467,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Create a plan to pay off credit card debt. See how long it takes to become debt-free with different monthly payment amounts.",
+      aliases: ["credit-card-debt-payoff-calculator", "how-long-to-pay-off-credit-card", "credit-card-payment-plan-calculator", "minimum-payment-payoff-calculator"],
+      seoTitle: "Credit Card Payoff Calculator — Time to Become Debt-Free",
+      seoDescription: "Create a payoff plan for credit card debt and see how long it takes to become debt-free at different monthly payment amounts and current interest rates.",
       loader: () => import("@/components/calculators/Financial/CreditCardPayoffCalculator"),
       urlStyle: "flat"
     },
@@ -362,6 +479,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Determine if debt consolidation is right for you. Compare current payments versus a consolidated loan to see potential interest savings.",
+      aliases: ["debt-consolidation-loan-calculator", "consolidate-debt-calculator", "combine-debts-calculator", "debt-consolidation-savings-estimator"],
+      seoTitle: "Debt Consolidation Calculator — Compare Loan Savings",
+      seoDescription: "Determine if debt consolidation makes sense by comparing your current monthly payments against a single consolidated loan and its potential interest savings.",
       loader: () => import("@/components/calculators/Financial/DebtConsolidationCalculator"),
       urlStyle: "flat"
     },
@@ -371,6 +491,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Calculate your total net worth. Subtract liabilities from assets to understand your overall financial position and track wealth.",
+      aliases: ["personal-net-worth-calculator", "assets-vs-liabilities-calculator", "net-worth-tracker", "how-rich-am-i-calculator"],
+      seoTitle: "Net Worth Calculator — Assets Minus Liabilities",
+      seoDescription: "Calculate your total net worth by subtracting liabilities from assets. Track your overall financial position and monitor wealth growth from year to year.",
       loader: () => import("@/components/calculators/Financial/NetWorthCalculator"),
       urlStyle: "flat"
     },
@@ -380,6 +503,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Convert currencies with real-time exchange rates. Essential tool for travel planning and international business transactions.",
+      aliases: ["exchange-rate-calculator", "live-currency-converter", "fx-converter", "money-conversion-calculator"],
+      seoTitle: "Currency Converter — Live Exchange Rates",
+      seoDescription: "Convert between currencies using real-time exchange rates. A quick tool for travel budgeting, online shopping, and international money transfers or invoices.",
       loader: () => import("@/components/calculators/Financial/CurrencyConverterLiveCalculator"),
       urlStyle: "flat"
     },
@@ -389,6 +515,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Calculate sales tax and total purchase price. Add local tax rates to net prices instantly for accurate budgeting.",
+      aliases: ["sales-tax-rate-calculator", "tax-included-price-calculator", "reverse-sales-tax-calculator", "how-much-is-sales-tax"],
+      seoTitle: "Sales Tax Calculator — Add Tax to Purchase Price",
+      seoDescription: "Calculate sales tax and total purchase price by adding a local tax rate to the pre-tax price of an item, instantly, for accurate checkout and budgeting.",
       loader: () => import("@/components/calculators/Financial/SalesTaxCalculator"),
       urlStyle: "flat"
     },
@@ -398,6 +527,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Calculate VAT or GST for goods and services. Add or remove tax from the gross amount easily for international pricing.",
+      aliases: ["vat-calculator", "gst-calculator", "value-added-tax-calculator", "reverse-vat-calculator"],
+      seoTitle: "VAT & GST Calculator — Add or Remove Tax",
+      seoDescription: "Calculate VAT or GST on goods and services. Add tax to a net price or remove it from a gross amount for accurate international pricing, quotes, and invoicing.",
       loader: () => import("@/components/calculators/Financial/VatGstCalculator"),
       urlStyle: "flat"
     },
@@ -407,6 +539,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Use the debt snowball method to pay off debts faster. Organize debts from smallest to largest balance to build momentum.",
+      aliases: ["debt-snowball-method-calculator", "snowball-payoff-calculator", "pay-off-debt-smallest-first", "debt-freedom-calculator"],
+      seoTitle: "Debt Snowball Calculator — Payoff Order & Timeline",
+      seoDescription: "Use the debt snowball method to pay off multiple debts faster by ordering balances from smallest to largest, building momentum as each debt is cleared.",
       loader: () => import("@/components/calculators/Financial/DebtSnowballCalculator"),
       urlStyle: "flat"
     },
@@ -416,6 +551,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Calculate the Annual Percentage Rate (APR) for loans. Understand the true cost of borrowing including fees and interest.",
+      aliases: ["annual-percentage-rate-calculator", "apr-vs-interest-rate-calculator", "loan-apr-estimator", "effective-interest-rate-calculator"],
+      seoTitle: "APR Calculator — True Cost of Borrowing",
+      seoDescription: "Calculate the Annual Percentage Rate (APR) on a loan to understand the true cost of borrowing once origination fees and interest are factored in together.",
       loader: () => import("@/components/calculators/Financial/AprCalculator"),
       urlStyle: "flat"
     },
@@ -425,6 +563,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Estimate how much interest you will pay on your credit card balance over time. See the cost of carrying debt.",
+      aliases: ["credit-card-interest-rate-calculator", "how-much-interest-on-credit-card", "credit-card-apr-calculator", "revolving-credit-interest-calculator"],
+      seoTitle: "Credit Card Interest Calculator — Cost of Your Balance",
+      seoDescription: "Estimate how much interest you will pay on a credit card balance over time based on your APR and payment amount, showing the true cost of carrying debt.",
       loader: () => import("@/components/calculators/Financial/CreditCardInterestCalculator"),
       urlStyle: "flat"
     },
@@ -434,6 +575,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Compare two different loans side-by-side. Analyze interest rates, terms, and total costs to choose the best financing option.",
+      aliases: ["compare-loans-calculator", "loan-offer-comparison-tool", "best-loan-calculator", "side-by-side-loan-comparison"],
+      seoTitle: "Loan Comparison Calculator — Compare Rates & Terms",
+      seoDescription: "Compare two loans side by side, including interest rates, terms, fees, and total cost, to identify which financing option saves you the most money overall.",
       loader: () => import("@/components/calculators/Financial/LoanComparisonCalculator"),
       urlStyle: "flat"
     },
@@ -443,6 +587,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Plan for college expenses. Estimate how much you need to save for tuition and education costs based on projected inflation.",
+      aliases: ["529-plan-calculator", "tuition-savings-calculator", "education-savings-calculator", "college-fund-calculator"],
+      seoTitle: "College Savings Calculator — Plan for Tuition Costs",
+      seoDescription: "Plan for future college expenses by estimating how much you need to save for tuition based on projected inflation, years to go, and current tuition costs.",
       loader: () => import("@/components/calculators/Financial/CollegeSavingsCalculator"),
       urlStyle: "flat"
     },
@@ -452,6 +599,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Calculate Internal Rate of Return (IRR) and Net Present Value (NPV) for financial project analysis and investment decisions.",
+      aliases: ["internal-rate-of-return-calculator", "net-present-value-calculator", "npv-calculator", "discounted-cash-flow-calculator"],
+      seoTitle: "IRR & NPV Calculator — Investment Return Analysis",
+      seoDescription: "Calculate Internal Rate of Return (IRR) and Net Present Value (NPV) from a series of cash flows to evaluate a project, business, or investment decision.",
       loader: () => import("@/components/calculators/Financial/IrrNpvCalculator"),
       urlStyle: "flat"
     },
@@ -461,6 +611,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "debt-management-credit",
       description: "Find your federal tax bracket. Estimate your effective tax rate based on taxable income and filing status to plan ahead.",
+      aliases: ["federal-tax-bracket-calculator", "effective-tax-rate-calculator", "marginal-tax-rate-calculator", "what-tax-bracket-am-i-in"],
+      seoTitle: "Tax Bracket Calculator — Federal Tax Rate Estimator",
+      seoDescription: "Find your federal tax bracket and estimate your effective tax rate based on taxable income and filing status, so you can plan ahead for tax season and refunds.",
       loader: () => import("@/components/calculators/Financial/TaxBracketCalculator"),
       urlStyle: "flat"
     },
@@ -470,6 +623,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Convert cryptocurrency to fiat currency instantly. Get live exchange rates for BTC, ETH, and more to USD, EUR, and other currencies.",
+      aliases: ["btc-to-usd-calculator", "crypto-to-usd-converter", "eth-to-usd-converter", "crypto-price-converter"],
+      seoTitle: "Crypto to USD Converter — Live Exchange Rates",
+      seoDescription: "Convert cryptocurrency to fiat currency instantly using live exchange rates. Check BTC, ETH, and other coins against USD, EUR, and other major currencies.",
       loader: () => import("@/components/calculators/Financial/CryptoToFiatCalculator"),
       urlStyle: "flat"
     },
@@ -479,6 +635,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate exchange rates between different cryptocurrencies. Determine swap ratios for altcoins and tokens quickly.",
+      aliases: ["crypto-swap-calculator", "altcoin-exchange-rate-calculator", "coin-to-coin-converter", "token-swap-ratio-calculator"],
+      seoTitle: "Crypto Exchange Rate Calculator — Coin Swap Ratios",
+      seoDescription: "Calculate exchange rates between two cryptocurrencies to determine swap ratios for altcoins and tokens before trading, converting, or transferring funds.",
       loader: () => import("@/components/calculators/Financial/CryptoToCryptoExchangeRateCalculator"),
       urlStyle: "flat"
     },
@@ -488,6 +647,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Check real-time cryptocurrency prices. Monitor market movements for top coins instantly to stay updated on market trends.",
+      aliases: ["crypto-price-tracker", "live-bitcoin-price-checker", "real-time-crypto-prices", "current-crypto-rates"],
+      seoTitle: "Live Crypto Price Checker — Real-Time Market Rates",
+      seoDescription: "Check real-time cryptocurrency prices and monitor market movements for top coins instantly to stay current on price swings, trends, and market cap changes.",
       loader: () => import("@/components/calculators/Financial/LivePriceCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -497,6 +659,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Track the total value of your crypto portfolio. Monitor gains and losses across all your digital asset holdings in one place.",
+      aliases: ["crypto-portfolio-calculator", "crypto-holdings-value-calculator", "portfolio-gains-tracker", "digital-asset-tracker"],
+      seoTitle: "Crypto Portfolio Tracker — Track Total Holdings Value",
+      seoDescription: "Track the total value of your crypto portfolio and monitor gains and losses across all your digital asset holdings in a single, easy-to-read summary view.",
       loader: () => import("@/components/calculators/Financial/PortfolioValueTrackerCalculator"),
       urlStyle: "flat"
     },
@@ -506,6 +671,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate how much crypto you can buy with a specific amount of fiat currency. Plan your entry points accurately.",
+      aliases: ["usd-to-crypto-calculator", "how-much-crypto-can-i-buy", "fiat-to-bitcoin-calculator", "crypto-purchase-estimator"],
+      seoTitle: "Fiat to Crypto Calculator — How Much You Can Buy",
+      seoDescription: "Calculate how much cryptocurrency you can buy with a specific amount of fiat currency at current prices, helping you plan entry points and order sizes.",
       loader: () => import("@/components/calculators/Financial/FiatToCryptoPurchaseCalculator"),
       urlStyle: "flat"
     },
@@ -515,6 +683,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Convert between multiple cryptocurrencies and fiat currencies simultaneously. A versatile tool for diverse portfolios.",
+      aliases: ["multi-coin-converter", "crypto-currency-converter-tool", "multiple-crypto-conversion-calculator", "all-in-one-crypto-converter"],
+      seoTitle: "Multi-Currency Crypto Converter — Convert Multiple Coins",
+      seoDescription: "Convert between multiple cryptocurrencies and fiat currencies at once, a versatile tool for tracking diverse crypto and cash portfolios in a single place.",
       loader: () => import("@/components/calculators/Financial/MultiCurrencyCryptoConverterCalculator"),
       urlStyle: "flat"
     },
@@ -524,6 +695,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate profit or loss on your crypto trades. Input buy and sell prices to see your exact Return on Investment.",
+      aliases: ["crypto-pnl-calculator", "crypto-gain-loss-calculator", "bitcoin-profit-calculator", "trade-profit-loss-calculator"],
+      seoTitle: "Crypto Profit/Loss Calculator — Trade P&L",
+      seoDescription: "Calculate profit or loss on a crypto trade by entering your buy and sell prices and quantity to see your exact gain, loss, and return on investment after fees.",
       loader: () => import("@/components/calculators/Financial/CryptoProfitLossCalculator"),
       urlStyle: "flat"
     },
@@ -533,6 +707,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate crypto Return on Investment. Measure the performance of your digital asset investments over specific timeframes.",
+      aliases: ["bitcoin-roi-calculator", "crypto-investment-return-calculator", "crypto-percentage-gain-calculator", "altcoin-roi-calculator"],
+      seoTitle: "Crypto ROI Calculator — Return on Investment",
+      seoDescription: "Calculate the Return on Investment (ROI) for your crypto holdings by measuring performance between two dates or price points over any chosen timeframe.",
       loader: () => import("@/components/calculators/Financial/CryptoRoiCalculator"),
       urlStyle: "flat"
     },
@@ -542,6 +719,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Estimate the future value of crypto assets with compound growth. Project long-term holding potential based on APY.",
+      aliases: ["crypto-compound-interest-calculator", "crypto-apy-growth-calculator", "bitcoin-future-value-calculator", "crypto-compounding-projection"],
+      seoTitle: "Crypto Future Value Calculator — Compound Growth by APY",
+      seoDescription: "Estimate the future value of crypto assets under compound growth by projecting long-term holding potential based on a target APY and your time horizon.",
       loader: () => import("@/components/calculators/Financial/CryptoFutureValueCompoundGrowthCalculator"),
       urlStyle: "flat"
     },
@@ -551,6 +731,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate Annual Percentage Yield (APY) for yield farming. Estimate daily and yearly returns on your liquidity provider positions.",
+      aliases: ["defi-yield-calculator", "liquidity-pool-apy-calculator", "yield-farming-returns-calculator", "apy-vs-apr-calculator"],
+      seoTitle: "Yield Farming APY Calculator — DeFi Returns",
+      seoDescription: "Calculate Annual Percentage Yield (APY) for yield farming positions and estimate your daily and yearly returns from providing liquidity in DeFi protocols.",
       loader: () => import("@/components/calculators/Financial/YieldFarmingApyCalculator"),
       urlStyle: "flat"
     },
@@ -560,6 +743,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Estimate staking rewards for Proof-of-Stake coins. Calculate earnings based on staked amount and lock-up duration.",
+      aliases: ["crypto-staking-calculator", "staking-apy-calculator", "pos-staking-rewards-calculator", "how-much-can-i-earn-staking"],
+      seoTitle: "Staking Rewards Calculator — Estimate Crypto Earnings",
+      seoDescription: "Estimate staking rewards for Proof-of-Stake cryptocurrencies by calculating earnings based on your staked amount, expected APY, and chosen lock-up duration.",
       loader: () => import("@/components/calculators/Financial/StakingRewardsEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -569,6 +755,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Find the break-even price for your crypto investments. Know exactly when your trade turns profitable after fees.",
+      aliases: ["crypto-break-even-calculator", "break-even-price-calculator", "cost-basis-break-even-calculator", "when-does-my-trade-profit"],
+      seoTitle: "Break-Even Calculator — Crypto Investment Break-Even Price",
+      seoDescription: "Find the break-even price for a crypto investment after accounting for trading fees, so you know exactly what price your trade needs to turn profitable.",
       loader: () => import("@/components/calculators/Financial/InvestmentBreakEvenPointCalculator"),
       urlStyle: "flat"
     },
@@ -578,6 +767,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Analyze your Crypto Dollar Cost Averaging strategy. Evaluate historical performance and risk reduction of recurring buys.",
+      aliases: ["dca-performance-analyzer", "crypto-dca-backtester", "dca-risk-analysis-calculator", "recurring-buy-analyzer"],
+      seoTitle: "Crypto DCA Analyzer — Strategy Performance & Risk",
+      seoDescription: "Analyze a crypto Dollar Cost Averaging strategy by evaluating historical performance and how recurring buys reduce risk versus a single lump-sum purchase.",
       loader: () => import("@/components/calculators/Financial/DcaStrategyAnalyzerCryptoCalculator"),
       urlStyle: "flat"
     },
@@ -587,6 +779,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate crypto mining profitability. Factor in hashrate, power consumption, and electricity costs to estimate net earnings.",
+      aliases: ["bitcoin-mining-calculator", "mining-profit-calculator", "crypto-mining-roi-calculator", "is-crypto-mining-profitable-calculator"],
+      seoTitle: "Crypto Mining Profitability Calculator — Net Earnings",
+      seoDescription: "Calculate crypto mining profitability by factoring in hashrate, power consumption, and electricity costs to estimate your net daily and monthly earnings.",
       loader: () => import("@/components/calculators/Financial/MiningProfitabilityCalculator"),
       urlStyle: "flat"
     },
@@ -596,6 +791,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Convert mining hashrate to estimated earnings. See how much your hardware can generate per day in current market conditions.",
+      aliases: ["hashrate-earnings-calculator", "mining-hashrate-calculator", "hashrate-to-btc-calculator", "mining-hardware-earnings-estimator"],
+      seoTitle: "Hash Rate to Earnings Calculator — Mining Revenue",
+      seoDescription: "Convert your mining hashrate into estimated earnings to see how much your hardware can generate per day under current market conditions and coin prices.",
       loader: () => import("@/components/calculators/Financial/HashRateToEarningsCalculator"),
       urlStyle: "flat"
     },
@@ -605,6 +803,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Compare electricity costs against mining revenue. Ensure your mining operation remains profitable with this cost analysis tool.",
+      aliases: ["mining-power-cost-calculator", "electricity-vs-mining-profit-calculator", "mining-energy-cost-estimator", "kwh-mining-cost-calculator"],
+      seoTitle: "Mining Electricity Cost Calculator — Power Cost vs Revenue",
+      seoDescription: "Compare electricity costs against mining revenue to ensure your crypto mining operation stays profitable after accounting for kWh rates and power expenses.",
       loader: () => import("@/components/calculators/Financial/ElectricityCostVsMiningRevenueCalculator"),
       urlStyle: "flat"
     },
@@ -614,6 +815,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate ROI for mining hardware. Estimate how long it takes to pay off GPUs or ASICs based on current profitability.",
+      aliases: ["gpu-mining-roi-calculator", "asic-miner-payback-calculator", "mining-rig-roi-calculator", "gpu-mining-payoff-estimator"],
+      seoTitle: "Mining Hardware ROI Calculator — GPU & ASIC Payback",
+      seoDescription: "Calculate ROI for mining hardware and estimate how long it takes to pay off a GPU rig or ASIC miner based on current mining profitability and power costs.",
       loader: () => import("@/components/calculators/Financial/GpuAsicMiningRoiCalculator"),
       urlStyle: "flat"
     },
@@ -623,6 +827,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Estimate the impact of mining pool fees on your earnings. Compare different pools to maximize your mining profit.",
+      aliases: ["mining-pool-comparison-calculator", "pool-fee-calculator", "mining-pool-payout-calculator", "pool-fee-vs-solo-mining"],
+      seoTitle: "Mining Pool Fee Calculator — Impact on Earnings",
+      seoDescription: "Estimate how mining pool fees reduce your earnings and compare different pools side by side to maximize your net crypto mining profit after fees and payouts.",
       loader: () => import("@/components/calculators/Financial/PoolFeeImpactCalculator"),
       urlStyle: "flat"
     },
@@ -632,6 +839,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Estimate your potential crypto tax liability. Prepare for tax season by calculating estimated gains and losses.",
+      aliases: ["crypto-tax-estimator", "bitcoin-tax-calculator", "crypto-gains-tax-calculator", "how-much-tax-do-i-owe-on-crypto"],
+      seoTitle: "Crypto Tax Calculator — Estimate Gains & Liability",
+      seoDescription: "Estimate your potential crypto tax liability by calculating estimated gains and losses ahead of tax season based on your trades and holding periods per asset.",
       loader: () => import("@/components/calculators/Financial/CryptoTaxLiabilityCalculator"),
       urlStyle: "flat"
     },
@@ -641,6 +851,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate capital gains tax on crypto sales. Determine short-term vs long-term tax obligations based on holding period.",
+      aliases: ["crypto-capital-gains-calculator", "short-term-vs-long-term-gains-calculator", "capital-gains-tax-crypto-estimator", "crypto-cgt-calculator"],
+      seoTitle: "Capital Gains Tax Calculator — Crypto Short vs Long Term",
+      seoDescription: "Calculate capital gains tax on crypto sales and determine whether short-term or long-term tax rates apply based on your holding period and income bracket.",
       loader: () => import("@/components/calculators/Financial/CapitalGainsTaxEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -650,6 +863,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate deductible transaction fees. Reduce your taxable gain by accounting for gas and exchange fees accurately.",
+      aliases: ["gas-fee-deduction-calculator", "crypto-exchange-fee-calculator", "taxable-gain-fee-calculator", "crypto-trading-fee-estimator"],
+      seoTitle: "Crypto Fee Deduction Calculator — Reduce Taxable Gains",
+      seoDescription: "Calculate deductible transaction fees to reduce your taxable crypto gain by accurately accounting for gas fees and exchange fees paid on every trade you make.",
       loader: () => import("@/components/calculators/Financial/TransactionFeeDeductionCalculator"),
       urlStyle: "flat"
     },
@@ -659,6 +875,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate cost basis using FIFO or LIFO methods. Essential for accurate crypto tax reporting and portfolio tracking.",
+      aliases: ["fifo-lifo-calculator", "crypto-cost-basis-tool", "tax-lot-calculator", "crypto-accounting-method-calculator"],
+      seoTitle: "Crypto Cost Basis Calculator — FIFO vs LIFO",
+      seoDescription: "Calculate cost basis using FIFO or LIFO accounting methods for accurate crypto tax reporting, and to track the true cost of your portfolio holdings over time.",
       loader: () => import("@/components/calculators/Financial/CostBasisFifoLifoCalculator"),
       urlStyle: "flat"
     },
@@ -668,6 +887,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Calculate potential profits and losses with leverage. Assess risk and potential liquidation points for margin trading.",
+      aliases: ["margin-trading-calculator", "leverage-profit-calculator", "liquidation-price-calculator", "futures-leverage-calculator"],
+      seoTitle: "Leverage Trading Calculator — Margin Profit & Liquidation",
+      seoDescription: "Calculate potential profits and losses when trading with leverage, and assess risk and liquidation points for margin positions before you open a trade.",
       loader: () => import("@/components/calculators/Financial/LeverageMarginProfitCalculator"),
       urlStyle: "flat"
     },
@@ -677,6 +899,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Determine optimal position size. Manage risk by calculating stop-loss levels and appropriate trade amounts for your account.",
+      aliases: ["trade-position-size-calculator", "risk-per-trade-calculator", "stop-loss-position-calculator", "forex-position-size-calculator"],
+      seoTitle: "Position Size Calculator — Trading Risk Management",
+      seoDescription: "Determine optimal position size for a trade by calculating stop-loss levels and the appropriate trade amount based on your account balance and risk tolerance.",
       loader: () => import("@/components/calculators/Financial/PositionSizeRiskManagementCalculator"),
       urlStyle: "flat"
     },
@@ -686,6 +911,9 @@ export const financialEntries: CalculatorEntry[] = [
       category: "financial",
       subcategory: "cryptocurrency-core-tools",
       description: "Assess crypto market volatility. Calculate risk metrics to inform your trading strategy and manage exposure.",
+      aliases: ["crypto-risk-calculator", "price-volatility-calculator", "crypto-standard-deviation-calculator", "market-risk-metrics-calculator"],
+      seoTitle: "Crypto Volatility Calculator — Market Risk Assessment",
+      seoDescription: "Assess crypto market volatility by calculating risk metrics from historical price swings to help inform your trading strategy and manage portfolio exposure.",
       loader: () => import("@/components/calculators/Financial/VolatilityRiskAssessmentCalculator"),
       urlStyle: "flat"
     }

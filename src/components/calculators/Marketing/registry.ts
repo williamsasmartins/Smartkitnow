@@ -11,6 +11,9 @@ export const marketingEntries: CalculatorEntry[] = [
       category: "marketing",
       subcategory: "general",
       description: "Calculate the percentage of visitors who completed a desired action. Benchmark against industry averages to identify optimization opportunities.",
+      aliases: ["conversion-rate-calculator", "cvr-calculator", "conversion-percentage-calculator", "visitor-to-lead-conversion"],
+      seoTitle: "Conversion Rate Calculator — CR % from Visitors",
+      seoDescription: "Calculate your conversion rate (CVR) as a percentage of visitors who completed an action. Benchmark against industry averages to spot optimization wins.",
       loader: () => import("@/components/calculators/Marketing/ConversionRate"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const marketingEntries: CalculatorEntry[] = [
       category: "marketing",
       subcategory: "general",
       description: "Calculate the percentage of customers who stopped using your product during a period. Understand the compounding impact on lifetime value.",
+      aliases: ["churn-rate-calculator", "customer-churn-calculator", "customer-attrition-rate", "monthly-churn-calculator"],
+      seoTitle: "Churn Rate Calculator — Customer Attrition %",
+      seoDescription: "Calculate customer churn rate as the percentage who cancelled during a period. See how monthly attrition compounds and erodes retention and lifetime value.",
       loader: () => import("@/components/calculators/Marketing/ChurnRate"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const marketingEntries: CalculatorEntry[] = [
       category: "marketing",
       subcategory: "general",
       description: "Calculate the engagement rate of your social media posts. Benchmark against platform averages for Instagram, TikTok, LinkedIn, and Facebook.",
+      aliases: ["engagement-rate-calculator", "instagram-engagement-rate", "tiktok-engagement-rate", "engagement-per-follower"],
+      seoTitle: "Engagement Rate Calculator — Social Media %",
+      seoDescription: "Calculate the engagement rate of your social posts from likes, comments, and shares. Benchmark against Instagram, TikTok, LinkedIn, and Facebook averages.",
       loader: () => import("@/components/calculators/Marketing/SocialMediaEngagementRate"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const marketingEntries: CalculatorEntry[] = [
       category: "marketing",
       subcategory: "general",
       description: "Calculate the return on investment for your email campaigns. Benchmark against the industry average of 36–42× ROI.",
+      aliases: ["email-roi-calculator", "email-campaign-roi", "email-marketing-return-on-investment", "newsletter-roi-calculator"],
+      seoTitle: "Email Marketing ROI Calculator — Campaign Return",
+      seoDescription: "Calculate the ROI of your email campaigns from revenue and cost per send. Benchmark your return against the email industry average of 36 to 42 times spend.",
       loader: () => import("@/components/calculators/Marketing/EmailMarketingROI"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const marketingEntries: CalculatorEntry[] = [
       category: "marketing",
       subcategory: "general",
       description: "Calculate how much it costs to acquire each new customer. Benchmark CAC against your CLV and industry averages to evaluate growth sustainability.",
+      aliases: ["cac-calculator", "cost-per-acquisition-calculator", "cost-to-acquire-customer", "cpa-marketing-calculator"],
+      seoTitle: "Customer Acquisition Cost Calculator — CAC",
+      seoDescription: "Calculate customer acquisition cost (CAC) by dividing sales and marketing spend by new customers won. Compare CAC to CLV to gauge whether growth is profitable.",
       loader: () => import("@/components/calculators/Marketing/CustomerAcquisitionCost"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const marketingEntries: CalculatorEntry[] = [
       category: "marketing",
       subcategory: "general",
       description: "Estimate total revenue per customer over their relationship with your business. Use the CLV:CAC ratio to evaluate whether your growth model is sustainable.",
+      aliases: ["clv-calculator", "ltv-calculator", "lifetime-value-calculator", "clv-to-cac-ratio-calculator"],
+      seoTitle: "Customer Lifetime Value Calculator — CLV / LTV",
+      seoDescription: "Estimate customer lifetime value (CLV) from average order value, purchase frequency, and retention. Use the CLV to CAC ratio to check growth sustainability.",
       loader: () => import("@/components/calculators/Marketing/CustomerLifetimeValue"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const marketingEntries: CalculatorEntry[] = [
       category: "marketing",
       subcategory: "general",
       description: "Calculate how much revenue you earn per dollar of ad spend. Find your breakeven ROAS based on gross margin and benchmark your campaigns.",
+      aliases: ["roas-calculator", "ad-spend-roi-calculator", "breakeven-roas-calculator", "return-on-ad-spend-ratio"],
+      seoTitle: "ROAS Calculator — Return on Ad Spend Ratio",
+      seoDescription: "Calculate ROAS as revenue earned per dollar of ad spend. Find your breakeven ROAS from gross margin and benchmark whether each campaign is turning a profit.",
       loader: () => import("@/components/calculators/Marketing/ROAS"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const marketingEntries: CalculatorEntry[] = [
       category: "marketing",
       subcategory: "general",
       description: "Calculate the return on investment for your marketing campaigns and understand how each dollar of spend generates revenue.",
+      aliases: ["marketing-roi-calculator", "campaign-roi-calculator", "marketing-return-on-investment", "roi-percentage-calculator"],
+      seoTitle: "Marketing ROI Calculator — Campaign Return %",
+      seoDescription: "Calculate marketing ROI from campaign revenue and cost to see the return each dollar of spend generates. Get ROI as a percentage to compare campaigns fast.",
       loader: () => import("@/components/calculators/Marketing/MarketingROI"),
       urlStyle: "flat"
     }

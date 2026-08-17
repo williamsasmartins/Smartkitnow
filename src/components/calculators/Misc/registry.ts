@@ -11,6 +11,9 @@ export const generalEntries: CalculatorEntry[] = [
       category: "daily-quotes",
       subcategory: "general",
       description: "Your daily astrological forecast. Love, career, and lucky numbers updated every day.",
+      aliases: ["daily-horoscope-calculator", "how-to-calculate-daily-horoscope", "daily-horoscope-online", "free-daily-horoscope-calculator"],
+      seoTitle: "Daily Horoscope",
+      seoDescription: "Your daily astrological forecast. Love, career, and lucky numbers updated every day. Free online tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/DailyQuotes/DailyHoroscopeCalculator"),
       urlStyle: "flat"
     }

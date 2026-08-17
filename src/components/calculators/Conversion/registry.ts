@@ -201,6 +201,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "core-units",
       description: "Convert length units instantly. Quickly transform meters to feet, inches to centimeters, and handle both metric and imperial measurements with precision.",
+      aliases: ["length-m-ft-in-calculator", "how-to-calculate-length-m-ft-in", "length-m-ft-in-online", "free-length-m-ft-in-calculator"],
+      seoTitle: "Length: m ↔ ft ↔ in",
+      seoDescription: "Convert length units instantly. Quickly transform meters to feet, inches to centimeters, and handle both metric and imperial measurements with precision.",
       loader: () => import("@/components/calculators/Conversion/LengthMFtInCalculator"),
       urlStyle: "flat"
     },
@@ -210,6 +213,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "core-units",
       description: "Calculate area conversions for real estate and land. Convert square meters to square feet (m² to sq ft) and other area units accurately.",
+      aliases: ["area-m-ft-calculator", "how-to-calculate-area-m-ft", "area-m-ft-online", "free-area-m-ft-calculator"],
+      seoTitle: "Area: m² ↔ ft²",
+      seoDescription: "Calculate area conversions for real estate and land. Convert square meters to square feet (m² to sq ft) and other area units accurately. Free and instant.",
       loader: () => import("@/components/calculators/Conversion/AreaM2Ft2Calculator"),
       urlStyle: "flat"
     },
@@ -219,6 +225,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "core-units",
       description: "Convert liquid volume units easily. Switch between liters, milliliters, gallons, and fluid ounces for cooking, science, or industrial needs.",
+      aliases: ["volume-l-ml-gal-oz-calculator", "how-to-calculate-volume-l-ml-gal-oz", "volume-l-ml-gal-oz-online", "free-volume-l-ml-gal-oz-calculator"],
+      seoTitle: "Volume: L ↔ mL ↔ gal ↔ oz",
+      seoDescription: "Convert liquid volume units easily. Switch between liters, milliliters, gallons, and fluid ounces for cooking, science, or industrial needs. Free and instant.",
       loader: () => import("@/components/calculators/Conversion/VolumeLMlGalOzCalculator"),
       urlStyle: "flat"
     },
@@ -228,6 +237,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "core-units",
       description: "Convert weight and mass units. Instantly calculate kilograms to pounds (kg to lbs), ounces to grams, and more for fitness or shipping.",
+      aliases: ["mass-kg-lb-oz-calculator", "how-to-calculate-mass-kg-lb-oz", "mass-kg-lb-oz-online", "free-mass-kg-lb-oz-calculator"],
+      seoTitle: "Mass: kg ↔ lb ↔ oz",
+      seoDescription: "Convert weight and mass units. Instantly calculate kilograms to pounds (kg to lbs), ounces to grams, and more for fitness or shipping. Free and instant.",
       loader: () => import("@/components/calculators/Conversion/MassKgLbOzCalculator"),
       urlStyle: "flat"
     },
@@ -237,6 +249,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "core-units",
       description: "Convert temperature readings. Switch between Celsius (°C), Fahrenheit (°F), and Kelvin (K) for weather, science, and cooking applications.",
+      aliases: ["temperature-c-f-k-calculator", "how-to-calculate-temperature-c-f-k", "temperature-c-f-k-online", "free-temperature-c-f-k-calculator"],
+      seoTitle: "Temperature: °C ↔ °F ↔ K",
+      seoDescription: "Convert temperature readings. Switch between Celsius (°C), Fahrenheit (°F), and Kelvin (K) for weather, science, and cooking applications. Free and instant.",
       loader: () => import("@/components/calculators/Conversion/TemperatureCFKCalculator"),
       urlStyle: "flat"
     },
@@ -246,6 +261,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "core-units",
       description: "Calculate density conversions. Transform grams per milliliter to kilograms per cubic meter for chemistry and physics calculations.",
+      aliases: ["density-g-ml-kg-m-calculator", "how-to-calculate-density-g-ml-kg-m", "density-g-ml-kg-m-online", "free-density-g-ml-kg-m-calculator"],
+      seoTitle: "Density: g/mL ↔ kg/m³",
+      seoDescription: "Calculate density conversions. Transform grams per milliliter to kilograms per cubic meter for chemistry and physics calculations.",
       loader: () => import("@/components/calculators/Conversion/DensityGPerMlKgPerM3Calculator"),
       urlStyle: "flat"
     },
@@ -255,6 +273,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "core-units",
       description: "Convert angles between degrees and radians. Essential tool for trigonometry, geometry, and engineering calculations.",
+      aliases: ["angle-deg-rad-calculator", "how-to-calculate-angle-deg-rad", "angle-deg-rad-online", "free-angle-deg-rad-calculator"],
+      seoTitle: "Angle: deg ↔ rad",
+      seoDescription: "Convert angles between degrees and radians. Essential tool for trigonometry, geometry, and engineering calculations. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/AngleDegRadCalculator"),
       urlStyle: "flat"
     },
@@ -264,6 +285,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "core-units",
       description: "Convert speed and velocity units. Calculate meters per second, kilometers per hour, and miles per hour (mph) for travel and physics.",
+      aliases: ["speed-m-s-km-h-mph-calculator", "how-to-calculate-speed-m-s-km-h-mph", "speed-m-s-km-h-mph-online", "free-speed-m-s-km-h-mph-calculator"],
+      seoTitle: "Speed: m/s ↔ km/h ↔ mph",
+      seoDescription: "Convert speed and velocity units. Calculate meters per second, kilometers per hour, and miles per hour (mph) for travel and physics. Free and instant.",
       loader: () => import("@/components/calculators/Conversion/SpeedMpsKmphMphCalculator"),
       urlStyle: "flat"
     },
@@ -273,6 +297,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "mechanics-pressure",
       description: "Convert force units accurately. Transform Newtons (N) to pound-force (lbf) for engineering and mechanical physics problems.",
+      aliases: ["force-n-lbf-calculator", "how-to-calculate-force-n-lbf", "force-n-lbf-online", "free-force-n-lbf-calculator"],
+      seoTitle: "Force: N ↔ lbf",
+      seoDescription: "Convert force units accurately. Transform Newtons (N) to pound-force (lbf) for engineering and mechanical physics problems.",
       loader: () => import("@/components/calculators/Conversion/ForceNLbfCalculator"),
       urlStyle: "flat"
     },
@@ -282,6 +309,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "mechanics-pressure",
       description: "Convert energy units. Switch between Joules (J), calories (cal), and kilowatt-hours (kWh) for nutrition and electrical calculations.",
+      aliases: ["energy-j-cal-kwh-calculator", "how-to-calculate-energy-j-cal-kwh", "energy-j-cal-kwh-online", "free-energy-j-cal-kwh-calculator"],
+      seoTitle: "Energy: J ↔ cal ↔ kWh",
+      seoDescription: "Convert energy units. Switch between Joules (J), calories (cal), and kilowatt-hours (kWh) for nutrition and electrical calculations. Free and instant.",
       loader: () => import("@/components/calculators/Conversion/EnergyJCalKwhCalculator"),
       urlStyle: "flat"
     },
@@ -291,6 +321,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "mechanics-pressure",
       description: "Convert power units instantly. Calculate Watts (W) to mechanical or metric Horsepower (hp) for engines and motors.",
+      aliases: ["power-w-hp-calculator", "how-to-calculate-power-w-hp", "power-w-hp-online", "free-power-w-hp-calculator"],
+      seoTitle: "Power: W ↔ hp",
+      seoDescription: "Convert power units instantly. Calculate Watts (W) to mechanical or metric Horsepower (hp) for engines and motors. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/PowerWHpCalculator"),
       urlStyle: "flat"
     },
@@ -300,6 +333,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "mechanics-pressure",
       description: "Convert pressure units for tires and hydraulics. Transform Pascals (Pa), Bar, and PSI (pounds per square inch) accurately.",
+      aliases: ["pressure-pa-bar-psi-calculator", "how-to-calculate-pressure-pa-bar-psi", "pressure-pa-bar-psi-online", "free-pressure-pa-bar-psi-calculator"],
+      seoTitle: "Pressure: Pa ↔ bar ↔ psi",
+      seoDescription: "Convert pressure units for tires and hydraulics. Transform Pascals (Pa), Bar, and PSI (pounds per square inch) accurately. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/PressurePaBarPsiCalculator"),
       urlStyle: "flat"
     },
@@ -309,6 +345,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "mechanics-pressure",
       description: "Convert torque settings. Switch between Newton-meters (Nm) and pound-feet (lb-ft) for automotive and machinery mechanics.",
+      aliases: ["torque-n-m-lbf-ft-calculator", "how-to-calculate-torque-n-m-lbf-ft", "torque-n-m-lbf-ft-online", "free-torque-n-m-lbf-ft-calculator"],
+      seoTitle: "Torque: N·m ↔ lbf·ft",
+      seoDescription: "Convert torque settings. Switch between Newton-meters (Nm) and pound-feet (lb-ft) for automotive and machinery mechanics. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/TorqueNmLbfftCalculator"),
       urlStyle: "flat"
     },
@@ -318,6 +357,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "mechanics-pressure",
       description: "Calculate work and gravitational potential energy. Convert between related mechanical units to solve physics equations.",
+      aliases: ["work-and-potential-energy-calculator", "how-to-calculate-work-and-potential-energy", "work-and-potential-energy-online", "free-work-and-potential-energy-calculator"],
+      seoTitle: "Work & Potential Energy",
+      seoDescription: "Calculate work and gravitational potential energy. Convert between related mechanical units to solve physics equations. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/WorkPotentialEnergyCalculator"),
       urlStyle: "flat"
     },
@@ -327,6 +369,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "time-frequency",
       description: "Convert time durations easily. Transform milliseconds, seconds, minutes, and hours for scientific timing or project planning.",
+      aliases: ["time-ms-s-min-hr-calculator", "how-to-calculate-time-ms-s-min-hr", "time-ms-s-min-hr-online", "free-time-ms-s-min-hr-calculator"],
+      seoTitle: "Time: ms ↔ s ↔ min ↔ hr",
+      seoDescription: "Convert time durations easily. Transform milliseconds, seconds, minutes, and hours for scientific timing or project planning.",
       loader: () => import("@/components/calculators/Conversion/TimeMsSMinHrCalculator"),
       urlStyle: "flat"
     },
@@ -336,6 +381,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "time-frequency",
       description: "Convert frequency units. Switch between Hertz (Hz), Kilohertz (kHz), and Megahertz (MHz) for audio and electronics.",
+      aliases: ["frequency-hz-khz-mhz-calculator", "how-to-calculate-frequency-hz-khz-mhz", "frequency-hz-khz-mhz-online", "free-frequency-hz-khz-mhz-calculator"],
+      seoTitle: "Frequency: Hz ↔ kHz ↔ MHz",
+      seoDescription: "Convert frequency units. Switch between Hertz (Hz), Kilohertz (kHz), and Megahertz (MHz) for audio and electronics. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/FrequencyHzKhzMhzCalculator"),
       urlStyle: "flat"
     },
@@ -345,6 +393,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "time-frequency",
       description: "Calculate the relationship between period and frequency. Convert time cycles (T) to frequency (f) and vice-versa instantly.",
+      aliases: ["period-frequency-calculator", "how-to-calculate-period-frequency", "period-frequency-online", "free-period-frequency-calculator"],
+      seoTitle: "Period ↔ Frequency",
+      seoDescription: "Calculate the relationship between period and frequency. Convert time cycles (T) to frequency (f) and vice-versa instantly.",
       loader: () => import("@/components/calculators/Conversion/PeriodFrequencyCalculator"),
       urlStyle: "flat"
     },
@@ -354,6 +405,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "time-frequency",
       description: "Convert video frame rates to refresh rates. Match FPS (Frames Per Second) with monitor Hz for smooth video playback.",
+      aliases: ["frame-rate-fps-hz-calculator", "how-to-calculate-frame-rate-fps-hz", "frame-rate-fps-hz-online", "free-frame-rate-fps-hz-calculator"],
+      seoTitle: "Frame Rate: fps ↔ Hz",
+      seoDescription: "Convert video frame rates to refresh rates. Match FPS (Frames Per Second) with monitor Hz for smooth video playback. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/FrameRateFpsHzCalculator"),
       urlStyle: "flat"
     },
@@ -363,6 +417,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "time-frequency",
       description: "Calculate time differences. Shift clock times across different time zones to plan meetings and travel effectively.",
+      aliases: ["clock-time-and-timezone-shift-calculator", "how-to-calculate-clock-time-and-timezone-shift", "clock-time-and-timezone-shift-online", "free-clock-time-and-timezone-shift-calculator"],
+      seoTitle: "Clock Time & Timezone Shift",
+      seoDescription: "Calculate time differences. Shift clock times across different time zones to plan meetings and travel effectively. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/ClockTimeTimezoneShiftCalculator"),
       urlStyle: "flat"
     },
@@ -372,6 +429,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "computing-data",
       description: "Convert digital storage sizes. Transform Bytes to Kilobytes, Megabytes (MB), Gigabytes (GB), and Terabytes (TB) for data management.",
+      aliases: ["bytes-b-kb-mb-gb-tb-calculator", "how-to-calculate-bytes-b-kb-mb-gb-tb", "bytes-b-kb-mb-gb-tb-online", "free-bytes-b-kb-mb-gb-tb-calculator"],
+      seoTitle: "Bytes: B ↔ kB ↔ MB ↔ GB ↔ TB",
+      seoDescription: "Convert digital storage sizes. Transform Bytes to Kilobytes, Megabytes (MB), Gigabytes (GB), and Terabytes (TB) for data management. Free and instant.",
       loader: () => import("@/components/calculators/Conversion/BytesBKbMbGbTbCalculator"),
       urlStyle: "flat"
     },
@@ -381,6 +441,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "computing-data",
       description: "Convert network data units. Switch between bits, kilobits, megabits (Mb), and gigabits (Gb) to understand network speeds.",
+      aliases: ["bits-b-kb-mb-gb-calculator", "how-to-calculate-bits-b-kb-mb-gb", "bits-b-kb-mb-gb-online", "free-bits-b-kb-mb-gb-calculator"],
+      seoTitle: "Bits: b ↔ kb ↔ Mb ↔ Gb",
+      seoDescription: "Convert network data units. Switch between bits, kilobits, megabits (Mb), and gigabits (Gb) to understand network speeds. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/BitsBKbMbGbCalculator"),
       urlStyle: "flat"
     },
@@ -390,6 +453,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "computing-data",
       description: "Understand storage definitions. Convert between binary prefixes (KiB, MiB - IEC) and decimal prefixes (KB, MB - SI).",
+      aliases: ["binary-decimal-prefixes-calculator", "how-to-calculate-binary-decimal-prefixes", "binary-decimal-prefixes-online", "free-binary-decimal-prefixes-calculator"],
+      seoTitle: "Binary ↔ Decimal prefixes (KiB ↔ KB)",
+      seoDescription: "Understand storage definitions. Convert between binary prefixes (KiB, MiB - IEC) and decimal prefixes (KB, MB - SI). Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/BinaryDecimalPrefixesCalculator"),
       urlStyle: "flat"
     },
@@ -399,6 +465,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "computing-data",
       description: "Convert internet speed to file transfer rate. See how fast a file will download by converting Mbps (Megabits) to MB/s (Megabytes).",
+      aliases: ["transfer-speed-mbps-mb-s-calculator", "how-to-calculate-transfer-speed-mbps-mb-s", "transfer-speed-mbps-mb-s-online", "free-transfer-speed-mbps-mb-s-calculator"],
+      seoTitle: "Transfer Speed: Mbps ↔ MB/s",
+      seoDescription: "Convert internet speed to file transfer rate. See how fast a file will download by converting Mbps (Megabits) to MB/s (Megabytes).",
       loader: () => import("@/components/calculators/Conversion/TransferSpeedMbpsMbsCalculator"),
       urlStyle: "flat"
     },
@@ -408,6 +477,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "computing-data",
       description: "Estimate file size reduction. Calculate the final file size based on original size and compression ratio.",
+      aliases: ["compression-ratio-and-size-calculator", "how-to-calculate-compression-ratio-and-size", "compression-ratio-and-size-online", "free-compression-ratio-and-size-calculator"],
+      seoTitle: "Compression Ratio & Size",
+      seoDescription: "Estimate file size reduction. Calculate the final file size based on original size and compression ratio. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Conversion/CompressionRatioSizeCalculator"),
       urlStyle: "flat"
     },
@@ -417,6 +489,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "computing-data",
       description: "Verify data integrity. Quickly generate or compare checksums and hash values for files to ensure they are not corrupted.",
+      aliases: ["checksum-and-hash-quick-tools-calculator", "how-to-calculate-checksum-and-hash-quick-tools", "checksum-and-hash-quick-tools-online", "free-checksum-and-hash-quick-tools-calculator"],
+      seoTitle: "Checksum & Hash Quick Tools",
+      seoDescription: "Verify data integrity. Quickly generate or compare checksums and hash values for files to ensure they are not corrupted. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/ChecksumHashQuickToolsCalculator"),
       urlStyle: "flat"
     },
@@ -426,6 +501,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "everyday-mixed",
       description: "Convert kitchen measurements. Transform teaspoons, tablespoons, and cups into milliliters (mL) for precise baking and cooking.",
+      aliases: ["cooking-tsp-tbsp-cup-ml-calculator", "how-to-calculate-cooking-tsp-tbsp-cup-ml", "cooking-tsp-tbsp-cup-ml-online", "free-cooking-tsp-tbsp-cup-ml-calculator"],
+      seoTitle: "Cooking: tsp/tbsp/cup ↔ mL",
+      seoDescription: "Convert kitchen measurements. Transform teaspoons, tablespoons, and cups into milliliters (mL) for precise baking and cooking.",
       loader: () => import("@/components/calculators/Conversion/CookingTspTbspCupMlCalculator"),
       urlStyle: "flat"
     },
@@ -435,6 +513,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "everyday-mixed",
       description: "Convert fuel consumption ratings. Switch between Liters per 100km (L/100km) and Miles Per Gallon (MPG) for vehicle efficiency.",
+      aliases: ["fuel-economy-l-100km-mpg-calculator", "how-to-calculate-fuel-economy-l-100km-mpg", "fuel-economy-l-100km-mpg-online", "free-fuel-economy-l-100km-mpg-calculator"],
+      seoTitle: "Fuel Economy: L/100km ↔ mpg",
+      seoDescription: "Convert fuel consumption ratings. Switch between Liters per 100km (L/100km) and Miles Per Gallon (MPG) for vehicle efficiency.",
       loader: () => import("@/components/calculators/Conversion/FuelEconomyLPer100kmMpgCalculator"),
       urlStyle: "flat"
     },
@@ -444,6 +525,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "everyday-mixed",
       description: "Quick currency converter. Estimate values between major currencies for travel budgets and international shopping.",
+      aliases: ["currency-fx-quick-convert-calculator", "how-to-calculate-currency-fx-quick-convert", "currency-fx-quick-convert-online", "free-currency-fx-quick-convert-calculator"],
+      seoTitle: "Currency: FX quick convert",
+      seoDescription: "Quick currency converter. Estimate values between major currencies for travel budgets and international shopping. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/CurrencyFxQuickConvertCalculator"),
       urlStyle: "flat"
     },
@@ -453,6 +537,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "everyday-mixed",
       description: "Quickly estimate Body Mass Index (BMI) and Body Surface Area (BSA) using standard conversion formulas for health checks.",
+      aliases: ["bmi-and-bsa-quick-estimators-calculator", "how-to-calculate-bmi-and-bsa-quick-estimators", "bmi-and-bsa-quick-estimators-online", "free-bmi-and-bsa-quick-estimators-calculator"],
+      seoTitle: "BMI & BSA quick estimators",
+      seoDescription: "Quickly estimate Body Mass Index (BMI) and Body Surface Area (BSA) using standard conversion formulas for health checks. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/BmiBsaQuickEstimatorsCalculator"),
       urlStyle: "flat"
     },
@@ -462,6 +549,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "everyday-mixed",
       description: "Compare international paper sizes. Convert between ISO A-series (A4, A3) and US Letter/Legal sizes for printing.",
+      aliases: ["paper-size-a-series-us-calculator", "how-to-calculate-paper-size-a-series-us", "paper-size-a-series-us-online", "free-paper-size-a-series-us-calculator"],
+      seoTitle: "Paper Size: A-series ↔ US",
+      seoDescription: "Compare international paper sizes. Convert between ISO A-series (A4, A3) and US Letter/Legal sizes for printing. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Conversion/PaperSizeASeriesUsCalculator"),
       urlStyle: "flat"
     },
@@ -471,6 +561,9 @@ export const conversionEntries: CalculatorEntry[] = [
       category: "conversion",
       subcategory: "everyday-mixed",
       description: "Convert international shoe sizes. Find the right fit by converting between European (EU), American (US), and British (UK) sizing charts.",
+      aliases: ["shoe-size-eu-us-uk-calculator", "how-to-calculate-shoe-size-eu-us-uk", "shoe-size-eu-us-uk-online", "free-shoe-size-eu-us-uk-calculator"],
+      seoTitle: "Shoe Size: EU ↔ US ↔ UK",
+      seoDescription: "Convert international shoe sizes. Find the right fit by converting between European (EU), American (US), and British (UK) sizing charts. Free and instant.",
       loader: () => import("@/components/calculators/Conversion/ShoeSizeEuUsUkCalculator"),
       urlStyle: "flat"
     }

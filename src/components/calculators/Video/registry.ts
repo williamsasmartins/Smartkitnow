@@ -11,6 +11,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Calculate video file size from bitrate, duration, and codec or vice versa.",
+      aliases: ["video-bitrate-file-size-calculator", "how-to-calculate-video-bitrate-file-size", "video-bitrate-file-size-online", "free-video-bitrate-file-size-calculator"],
+      seoTitle: "Video Bitrate ↔ File Size Calculator",
+      seoDescription: "Calculate video file size from bitrate, duration, and codec or vice versa. Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Video/VideoBitrateFileSizeCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Estimate maximum recording time based on storage capacity and bitrate.",
+      aliases: ["recording-time-vs-card-ssd-capacity-calculator", "how-to-calculate-recording-time-vs-card-ssd-capacity", "recording-time-vs-card-ssd-capacity-online", "free-recording-time-vs-card-ssd-capacity-calculator"],
+      seoTitle: "Recording Time vs Card/SSD Capacity",
+      seoDescription: "Estimate maximum recording time based on storage capacity and bitrate.",
       loader: () => import("@/components/calculators/Video/RecordingTimeCardSsdCapacityCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Calculate how audio bitrate and number of channels affect total file size.",
+      aliases: ["audio-bitrate-channels-impact-calculator", "how-to-calculate-audio-bitrate-channels-impact", "audio-bitrate-channels-impact-online", "free-audio-bitrate-channels-impact-calculator"],
+      seoTitle: "Audio Bitrate + Channels Impact (File Size)",
+      seoDescription: "Calculate how audio bitrate and number of channels affect total file size. Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Video/AudioBitrateChannelsImpactFileSizeCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Compare file size differences between Variable Bitrate (VBR) and Constant Bitrate (CBR).",
+      aliases: ["vbr-vs-cbr-size-calculator", "how-to-calculate-vbr-vs-cbr-size", "vbr-vs-cbr-size-online", "free-vbr-vs-cbr-size-calculator"],
+      seoTitle: "VBR vs CBR Size Estimator",
+      seoDescription: "Compare file size differences between Variable Bitrate (VBR) and Constant Bitrate (CBR). Free video tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Video/VbrCbrSizeEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Calculate raw uncompressed video file size based on resolution, bit depth, and FPS.",
+      aliases: ["uncompressed-video-size-calculator", "how-to-calculate-uncompressed-video-size", "uncompressed-video-size-online", "free-uncompressed-video-size-calculator"],
+      seoTitle: "Uncompressed Video Size (Resolution × Bit Depth)",
+      seoDescription: "Calculate raw uncompressed video file size based on resolution, bit depth, and FPS. Free video tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Video/UncompressedVideoSizeResolutionBitDepthCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Recommended target bitrates for H.264 and H.265 by resolution and frame rate.",
+      aliases: ["h-264-h-265-target-bitrate-calculator", "how-to-calculate-h-264-h-265-target-bitrate", "h-264-h-265-target-bitrate-online", "free-h-264-h-265-target-bitrate-calculator"],
+      seoTitle: "H.264/H.265 Target Bitrate Helper (by resolution/FPS)",
+      seoDescription: "Recommended target bitrates for H.264 and H.265 by resolution and frame rate. Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Video/H264H265TargetBitrateHelperResolutionFpsCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Check platform-recommended bitrates for streaming and upload quality.",
+      aliases: ["youtube-twitch-recommended-bitrate-calculator", "how-to-calculate-youtube-twitch-recommended-bitrate", "youtube-twitch-recommended-bitrate-online", "free-youtube-twitch-recommended-bitrate-calculator"],
+      seoTitle: "YouTube/Twitch Recommended Bitrate (Upload/Stream) Checker",
+      seoDescription: "Check platform-recommended bitrates for streaming and upload quality.",
       loader: () => import("@/components/calculators/Video/YoutubeTwitchRecommendedBitrateCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Plan storage needs for surveillance systems with multiple cameras.",
+      aliases: ["surveillance-nvr-video-storage-calculator", "how-to-calculate-surveillance-nvr-video-storage", "surveillance-nvr-video-storage-online", "free-surveillance-nvr-video-storage-calculator"],
+      seoTitle: "Surveillance/NVR Video Storage Planner",
+      seoDescription: "Plan storage needs for surveillance systems with multiple cameras.",
       loader: () => import("@/components/calculators/Video/SurveillanceNvrVideoStoragePlannerCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Determine optimal bitrate for live streaming based on resolution and bandwidth.",
+      aliases: ["how-to-calculate-live-streaming-bitrate", "live-streaming-bitrate-online", "free-live-streaming-bitrate-calculator"],
+      seoTitle: "Live Streaming Bitrate Calculator",
+      seoDescription: "Determine optimal bitrate for live streaming based on resolution and bandwidth. Free video tool — get instant, accurate results with no signup needed.",
       loader: () => import("@/components/calculators/Video/LiveStreamingBitrateCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Convert between Mbps (megabits per second) and MB/s (megabytes per second).",
+      aliases: ["how-to-calculate-video-data-rate", "video-data-rate-online", "free-video-data-rate-calculator"],
+      seoTitle: "Video Data Rate Calculator (Mbps ↔ MB/s)",
+      seoDescription: "Convert between Mbps (megabits per second) and MB/s (megabytes per second). Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Video/VideoDataRateCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Estimate compressed file size for different codecs and quality settings.",
+      aliases: ["video-compression-size-calculator", "how-to-calculate-video-compression-size", "video-compression-size-online", "free-video-compression-size-calculator"],
+      seoTitle: "Video Compression Size Estimator (H.264/etc.)",
+      seoDescription: "Estimate compressed file size for different codecs and quality settings.",
       loader: () => import("@/components/calculators/Video/VideoCompressionSizeEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "bitrate-file-size-storage",
       description: "Convert camera bitrate settings to available recording time on storage media.",
+      aliases: ["camera-bitrate-to-record-time-calculator", "how-to-calculate-camera-bitrate-to-record-time", "camera-bitrate-to-record-time-online", "free-camera-bitrate-to-record-time-calculator"],
+      seoTitle: "Camera Bitrate to Record Time Converter",
+      seoDescription: "Convert camera bitrate settings to available recording time on storage media. Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Video/CameraBitrateRecordTimeConverterCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "resolution-aspect-ratio-pixels",
       description: "Calculate letterbox/pillarbox dimensions when changing aspect ratios.",
+      aliases: ["aspect-ratio-calculator", "how-to-calculate-aspect-ratio", "aspect-ratio-online", "free-aspect-ratio-calculator"],
+      seoTitle: "Aspect Ratio Calculator (Letterbox/Pillarbox)",
+      seoDescription: "Calculate letterbox/pillarbox dimensions when changing aspect ratios.",
       loader: () => import("@/components/calculators/Video/AspectRatioLetterboxPillarboxCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "resolution-aspect-ratio-pixels",
       description: "View standard resolution presets and total pixel counts (e.g., 1080p, 4K, 8K).",
+      aliases: ["resolution-presets-and-pixel-count-calculator", "how-to-calculate-resolution-presets-and-pixel-count", "resolution-presets-and-pixel-count-online", "free-resolution-presets-and-pixel-count-calculator"],
+      seoTitle: "Resolution Presets & Pixel Count (720p/1080p/4K/8K)",
+      seoDescription: "View standard resolution presets and total pixel counts (e.g., 1080p, 4K, 8K). Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Video/ResolutionPresetsPixelCount720p1080p4k8kCalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "resolution-aspect-ratio-pixels",
       description: "Calculate physical width and height from diagonal screen size and aspect ratio.",
+      aliases: ["screen-size-from-diagonal-and-ar-calculator", "how-to-calculate-screen-size-from-diagonal-and-ar", "screen-size-from-diagonal-and-ar-online", "free-screen-size-from-diagonal-and-ar-calculator"],
+      seoTitle: "Screen Size from Diagonal & AR",
+      seoDescription: "Calculate physical width and height from diagonal screen size and aspect ratio. Free video tool — get instant, accurate results with no signup needed.",
       loader: () => import("@/components/calculators/Video/ScreenSizeFromDiagonalArCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "resolution-aspect-ratio-pixels",
       description: "Recommend optimal viewing distance based on TV size and resolution.",
+      aliases: ["tv-size-and-viewing-distance-calculator", "how-to-calculate-tv-size-and-viewing-distance", "tv-size-and-viewing-distance-online", "free-tv-size-and-viewing-distance-calculator"],
+      seoTitle: "TV Size & Viewing Distance Planner",
+      seoDescription: "Recommend optimal viewing distance based on TV size and resolution.",
       loader: () => import("@/components/calculators/Video/TvSizeViewingDistancePlannerCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "resolution-aspect-ratio-pixels",
       description: "Handle non-square pixel aspect ratios in video formats.",
+      aliases: ["pixel-aspect-ratio-calculator", "how-to-calculate-pixel-aspect-ratio", "pixel-aspect-ratio-online", "free-pixel-aspect-ratio-calculator"],
+      seoTitle: "Pixel Aspect Ratio (PAR) Converter",
+      seoDescription: "Handle non-square pixel aspect ratios in video formats.",
       loader: () => import("@/components/calculators/Video/PixelAspectRatioParConverterCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "resolution-aspect-ratio-pixels",
       description: "Calculate squeeze factors and final aspect ratio with anamorphic lenses.",
+      aliases: ["how-to-calculate-anamorphic-lens", "anamorphic-lens-online", "free-anamorphic-lens-calculator"],
+      seoTitle: "Anamorphic Lens Calculator",
+      seoDescription: "Calculate squeeze factors and final aspect ratio with anamorphic lenses.",
       loader: () => import("@/components/calculators/Video/AnamorphicLensCalculator"),
       urlStyle: "flat"
     },
@@ -173,6 +227,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "resolution-aspect-ratio-pixels",
       description: "Determine output dimensions after cropping video to specific ratios or sizes.",
+      aliases: ["how-to-calculate-video-crop-dimension", "video-crop-dimension-online", "free-video-crop-dimension-calculator"],
+      seoTitle: "Video Crop Dimension Calculator",
+      seoDescription: "Determine output dimensions after cropping video to specific ratios or sizes. Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Video/VideoCropDimensionCalculator"),
       urlStyle: "flat"
     },
@@ -182,6 +239,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "time-fps-timecode",
       description: "Convert between timecode and total duration in seconds or frames.",
+      aliases: ["timecode-duration-calculator", "how-to-calculate-timecode-duration", "timecode-duration-online", "free-timecode-duration-calculator"],
+      seoTitle: "Timecode ↔ Duration (HH:MM:SS:FF) Converter",
+      seoDescription: "Convert between timecode and total duration in seconds or frames.",
       loader: () => import("@/components/calculators/Video/TimecodeDurationHhMmSsFfConverterCalculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "time-fps-timecode",
       description: "Convert footage between common frame rates with pulldown options.",
+      aliases: ["fps-calculator", "how-to-calculate-fps", "fps-online", "free-fps-calculator"],
+      seoTitle: "FPS Converter (23.976↔24↔25↔29.97↔30↔50↔59.94)",
+      seoDescription: "Convert footage between common frame rates with pulldown options.",
       loader: () => import("@/components/calculators/Video/FpsConverter239762425299730505994Calculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "time-fps-timecode",
       description: "Calculate shutter speed from angle and FPS (180° rule guide).",
+      aliases: ["shutter-angle-speed-calculator", "how-to-calculate-shutter-angle-speed", "shutter-angle-speed-online", "free-shutter-angle-speed-calculator"],
+      seoTitle: "Shutter Angle/Speed Helper (180° Rule)",
+      seoDescription: "Calculate shutter speed from angle and FPS (180° rule guide).",
       loader: () => import("@/components/calculators/Video/ShutterAngleSpeedHelper180DegreeRuleCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "time-fps-timecode",
       description: "Calculate playback duration changes when slowing down or ramping footage.",
+      aliases: ["how-to-calculate-slow-mo-and-speed-ramp-time", "slow-mo-and-speed-ramp-time-online", "free-slow-mo-and-speed-ramp-time-calculator"],
+      seoTitle: "Slow-Mo & Speed-Ramp Time Calculator",
+      seoDescription: "Calculate playback duration changes when slowing down or ramping footage.",
       loader: () => import("@/components/calculators/Video/SlowMoSpeedRampTimeCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "time-fps-timecode",
       description: "Convert total frames to duration at a given FPS and vice versa.",
+      aliases: ["frame-count-duration-calculator", "how-to-calculate-frame-count-duration", "frame-count-duration-online", "free-frame-count-duration-calculator"],
+      seoTitle: "Frame Count ↔ Duration Converter",
+      seoDescription: "Convert total frames to duration at a given FPS and vice versa.",
       loader: () => import("@/components/calculators/Video/FrameCountDurationConverterCalculator"),
       urlStyle: "flat"
     },
@@ -227,6 +299,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "time-fps-timecode",
       description: "Convert frame numbers to SMPTE timecode.",
+      aliases: ["how-to-calculate-frames-to-timecode", "frames-to-timecode-online", "free-frames-to-timecode-calculator"],
+      seoTitle: "Frames to Timecode Calculator",
+      seoDescription: "Convert frame numbers to SMPTE timecode.",
       loader: () => import("@/components/calculators/Video/FramesToTimecodeCalculator"),
       urlStyle: "flat"
     },
@@ -236,6 +311,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "time-fps-timecode",
       description: "Add or subtract timecodes accurately.",
+      aliases: ["how-to-calculate-timecode-addition-subtraction", "timecode-addition-subtraction-online", "free-timecode-addition-subtraction-calculator"],
+      seoTitle: "Timecode Addition/Subtraction Calculator",
+      seoDescription: "Add or subtract timecodes accurately.",
       loader: () => import("@/components/calculators/Video/TimecodeAdditionSubtractionCalculator"),
       urlStyle: "flat"
     },
@@ -245,6 +323,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "time-fps-timecode",
       description: "Handle drop-frame vs non-drop-frame NTSC timecode conversions.",
+      aliases: ["drop-frame-timecode-calculator", "how-to-calculate-drop-frame-timecode", "drop-frame-timecode-online", "free-drop-frame-timecode-calculator"],
+      seoTitle: "Drop Frame Timecode Converter",
+      seoDescription: "Handle drop-frame vs non-drop-frame NTSC timecode conversions.",
       loader: () => import("@/components/calculators/Video/DropFrameTimecodeConverterCalculator"),
       urlStyle: "flat"
     },
@@ -254,6 +335,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "time-fps-timecode",
       description: "Convert timecode back to total frame count.",
+      aliases: ["how-to-calculate-timecode-to-frames", "timecode-to-frames-online", "free-timecode-to-frames-calculator"],
+      seoTitle: "Timecode to Frames Calculator",
+      seoDescription: "Convert timecode back to total frame count.",
       loader: () => import("@/components/calculators/Video/TimecodeToFramesCalculator"),
       urlStyle: "flat"
     },
@@ -263,6 +347,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Calculate estimated render time based on frame count and time per frame.",
+      aliases: ["3d-render-time-calculator", "how-to-calculate-3d-render-time", "3d-render-time-online", "free-3d-render-time-calculator"],
+      seoTitle: "3D Render Time Calculator",
+      seoDescription: "Calculate estimated render time based on frame count and time per frame.",
       loader: () => import("@/components/calculators/Video/ThreeDRenderTimeCalculator"),
       urlStyle: "flat"
     },
@@ -272,6 +359,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Estimate render time when using a render farm with multiple nodes.",
+      aliases: ["3d-render-farm-time-calculator", "how-to-calculate-3d-render-farm-time", "3d-render-farm-time-online", "free-3d-render-farm-time-calculator"],
+      seoTitle: "3D Render Farm Time Calculator",
+      seoDescription: "Estimate render time when using a render farm with multiple nodes.",
       loader: () => import("@/components/calculators/Video/ThreeDRenderFarmTimeCalculator"),
       urlStyle: "flat"
     },
@@ -281,6 +371,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Calculate cost of using cloud render farms.",
+      aliases: ["render-farm-cost-calculator", "how-to-calculate-render-farm-cost", "render-farm-cost-online", "free-render-farm-cost-calculator"],
+      seoTitle: "Render Farm Cost Estimator",
+      seoDescription: "Calculate cost of using cloud render farms.",
       loader: () => import("@/components/calculators/Video/RenderFarmCostEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -290,6 +383,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Predict export duration based on project complexity and hardware.",
+      aliases: ["video-export-time-calculator", "how-to-calculate-video-export-time", "video-export-time-online", "free-video-export-time-calculator"],
+      seoTitle: "Video Export Time Estimator",
+      seoDescription: "Predict export duration based on project complexity and hardware.",
       loader: () => import("@/components/calculators/Video/VideoExportTimeEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -299,6 +395,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Compare render performance across different GPUs.",
+      aliases: ["how-to-calculate-gpu-render-performance", "gpu-render-performance-online", "free-gpu-render-performance-calculator"],
+      seoTitle: "GPU Render Performance Calculator",
+      seoDescription: "Compare render performance across different GPUs.",
       loader: () => import("@/components/calculators/Video/GpuRenderPerformanceCalculator"),
       urlStyle: "flat"
     },
@@ -308,7 +407,7 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Estimate average time per frame based on test renders.",
-      seoTitle: "Render Time Per Frame Calculator — 3D & Animation Job Estimates",
+      seoTitle: "Render Time Per Frame Calculator — 3D & Animation",
       seoDescription: "Estimate total render time from a single test frame. Calculate render job duration for 3D animations, VFX sequences, and video exports by frame count and render speed.",
       loader: () => import("@/components/calculators/Video/RenderTimePerFrameCalculator"),
       urlStyle: "flat"
@@ -319,6 +418,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Plan render queue priorities and estimated completion times.",
+      aliases: ["cloud-render-queue-calculator", "how-to-calculate-cloud-render-queue", "cloud-render-queue-online", "free-cloud-render-queue-calculator"],
+      seoTitle: "Cloud Render Queue Planner",
+      seoDescription: "Plan render queue priorities and estimated completion times.",
       loader: () => import("@/components/calculators/Video/CloudRenderQueuePlannerCalculator"),
       urlStyle: "flat"
     },
@@ -328,6 +430,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Recommend CPU/GPU/RAM specs for target render times.",
+      aliases: ["how-to-calculate-video-rendering-hardware-requirement", "video-rendering-hardware-requirement-online", "free-video-rendering-hardware-requirement-calculator"],
+      seoTitle: "Video Rendering Hardware Requirement Calculator",
+      seoDescription: "Recommend CPU/GPU/RAM specs for target render times.",
       loader: () => import("@/components/calculators/Video/VideoRenderingHardwareRequirementCalculator"),
       urlStyle: "flat"
     },
@@ -337,6 +442,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Estimate full animation render timeline.",
+      aliases: ["animation-render-duration-calculator", "how-to-calculate-animation-render-duration", "animation-render-duration-online", "free-animation-render-duration-calculator"],
+      seoTitle: "Animation Render Duration Estimator",
+      seoDescription: "Estimate full animation render timeline.",
       loader: () => import("@/components/calculators/Video/AnimationRenderDurationEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -346,6 +454,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "video-rendering-export",
       description: "Predict time savings using multiple local workstations.",
+      aliases: ["how-to-calculate-multi-workstation-render-time", "multi-workstation-render-time-online", "free-multi-workstation-render-time-calculator"],
+      seoTitle: "Multi-Workstation Render Time Calculator",
+      seoDescription: "Predict time savings using multiple local workstations.",
       loader: () => import("@/components/calculators/Video/MultiWorkstationRenderTimeCalculator"),
       urlStyle: "flat"
     },
@@ -355,6 +466,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Calculate required amplifier power for desired SPL at distance.",
+      aliases: ["how-to-calculate-amplifier-power-required", "amplifier-power-required-online", "free-amplifier-power-required-calculator"],
+      seoTitle: "Amplifier Power Required Calculator",
+      seoDescription: "Calculate required amplifier power for desired SPL at distance.",
       loader: () => import("@/components/calculators/Video/AmplifierPowerRequiredCalculator"),
       urlStyle: "flat"
     },
@@ -364,6 +478,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Convert between dBu and dBV audio levels.",
+      aliases: ["how-to-calculate-dbu-to-dbv-conversion", "dbu-to-dbv-conversion-online", "free-dbu-to-dbv-conversion-calculator"],
+      seoTitle: "dBu to dBV Conversion Calculator",
+      seoDescription: "Convert between dBu and dBV audio levels.",
       loader: () => import("@/components/calculators/Video/DbuDbvConversionCalculator"),
       urlStyle: "flat"
     },
@@ -373,6 +490,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Calculate SPL at different listening positions.",
+      aliases: ["how-to-calculate-sound-pressure-level", "sound-pressure-level-online", "free-sound-pressure-level-calculator"],
+      seoTitle: "Sound Pressure Level (SPL) Calculator",
+      seoDescription: "Calculate SPL at different listening positions.",
       loader: () => import("@/components/calculators/Video/SoundPressureLevelSplCalculator"),
       urlStyle: "flat"
     },
@@ -382,6 +502,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Optimal speaker positioning for stereo or surround setups.",
+      aliases: ["how-to-calculate-speaker-placement", "speaker-placement-online", "free-speaker-placement-calculator"],
+      seoTitle: "Speaker Placement Calculator",
+      seoDescription: "Optimal speaker positioning for stereo or surround setups.",
       loader: () => import("@/components/calculators/Video/SpeakerPlacementCalculator"),
       urlStyle: "flat"
     },
@@ -391,6 +514,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Estimate signal loss or impedance changes over long cable runs.",
+      aliases: ["how-to-calculate-cable-length-impact", "cable-length-impact-online", "free-cable-length-impact-calculator"],
+      seoTitle: "Cable Length Impact Calculator",
+      seoDescription: "Estimate signal loss or impedance changes over long cable runs.",
       loader: () => import("@/components/calculators/Video/CableLengthImpactCalculator"),
       urlStyle: "flat"
     },
@@ -400,6 +526,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Apply inverse square law to sound intensity over distance.",
+      aliases: ["how-to-calculate-inverse-square-law", "inverse-square-law-online", "free-inverse-square-law-calculator"],
+      seoTitle: "Inverse Square Law Calculator",
+      seoDescription: "Apply inverse square law to sound intensity over distance.",
       loader: () => import("@/components/calculators/Video/InverseSquareLawCalculator"),
       urlStyle: "flat"
     },
@@ -409,6 +538,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Calculate voltage, current, power, or impedance in audio circuits.",
+      aliases: ["how-to-calculate-ohm-s-law-for-audio", "ohm-s-law-for-audio-online", "free-ohm-s-law-for-audio-calculator"],
+      seoTitle: "Ohm's Law for Audio Calculator",
+      seoDescription: "Calculate voltage, current, power, or impedance in audio circuits.",
       loader: () => import("@/components/calculators/Video/OhmsLawForAudioCalculator"),
       urlStyle: "flat"
     },
@@ -418,6 +550,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Design crossover frequencies for multi-driver speaker systems.",
+      aliases: ["how-to-calculate-speaker-crossover", "speaker-crossover-online", "free-speaker-crossover-calculator"],
+      seoTitle: "Speaker Crossover Calculator",
+      seoDescription: "Design crossover frequencies for multi-driver speaker systems.",
       loader: () => import("@/components/calculators/Video/SpeakerCrossoverCalculator"),
       urlStyle: "flat"
     },
@@ -427,6 +562,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Convert between decibels and power ratios.",
+      aliases: ["how-to-calculate-decibel-power-ratio", "decibel-power-ratio-online", "free-decibel-power-ratio-calculator"],
+      seoTitle: "Decibel Power Ratio Calculator",
+      seoDescription: "Convert between decibels and power ratios.",
       loader: () => import("@/components/calculators/Video/DecibelPowerRatioCalculator"),
       urlStyle: "flat"
     },
@@ -436,6 +574,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Calculate audio file size based on sample rate, bit depth, channels, and duration.",
+      aliases: ["audio-file-size-calculator", "how-to-calculate-audio-file-size", "audio-file-size-online", "free-audio-file-size-calculator"],
+      seoTitle: "Audio File Size Estimator",
+      seoDescription: "Calculate audio file size based on sample rate, bit depth, channels, and duration. Free video tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Video/AudioFileSizeEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -445,6 +586,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "audio-processing-engineering",
       description: "Convert between sound frequency and wavelength at different temperatures.",
+      aliases: ["how-to-calculate-wavelength-and-frequency", "wavelength-and-frequency-online", "free-wavelength-and-frequency-calculator"],
+      seoTitle: "Wavelength and Frequency Calculator",
+      seoDescription: "Convert between sound frequency and wavelength at different temperatures.",
       loader: () => import("@/components/calculators/Video/WavelengthFrequencyCalculator"),
       urlStyle: "flat"
   
@@ -455,6 +599,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "resolution-aspect-ratio-pixels",
       description: "Plan crops and safe areas when converting landscape to vertical or square formats.",
+      aliases: ["16-9-9-16-1-1-crop-and-safe-area-calculator", "how-to-calculate-16-9-9-16-1-1-crop-and-safe-area", "16-9-9-16-1-1-crop-and-safe-area-online", "free-16-9-9-16-1-1-crop-and-safe-area-calculator"],
+      seoTitle: "16:9 → 9:16/1:1 Crop & Safe Area Helper",
+      seoDescription: "Plan crops and safe areas when converting landscape to vertical or square formats. Free video tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Video/AspectRatio169To91611CropSafeAreaHelperCalculator"),
       urlStyle: "flat"
     },
@@ -464,6 +611,9 @@ export const videoEntries: CalculatorEntry[] = [
       category: "video",
       subcategory: "resolution-aspect-ratio-pixels",
       description: "Convert between DPI/PPI and pixel dimensions for print and display.",
+      aliases: ["dpi-ppi-pixels-calculator", "how-to-calculate-dpi-ppi-pixels", "dpi-ppi-pixels-online", "free-dpi-ppi-pixels-calculator"],
+      seoTitle: "DPI/PPI ↔ Pixels (Print/Display)",
+      seoDescription: "Convert between DPI/PPI and pixel dimensions for print and display.",
       loader: () => import("@/components/calculators/Video/DpiPpiPixelsPrintDisplayCalculator"),
       urlStyle: "flat"
     }

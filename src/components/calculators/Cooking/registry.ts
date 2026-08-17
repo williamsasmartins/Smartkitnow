@@ -11,6 +11,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "ingredient-conversions-kitchen-math",
       description: "Convert cooking ingredients from volume to weight. Switch between cups, grams, and ounces for flour, sugar, and more with density adjustments.",
+      aliases: ["cups-grams-ounces-calculator", "how-to-calculate-cups-grams-ounces", "cups-grams-ounces-online", "free-cups-grams-ounces-calculator"],
+      seoTitle: "Cups ↔ Grams ↔ Ounces Converter",
+      seoDescription: "Convert cooking ingredients from volume to weight. Switch between cups, grams, and ounces for flour, sugar, and more with density adjustments. Free and instant.",
       loader: () => import("@/components/calculators/Cooking/CupsGramsOuncesByIngredientCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "ingredient-conversions-kitchen-math",
       description: "Calculate food density conversions. Translate volume measurements to weight for precise cooking using common ingredient densities.",
+      aliases: ["volume-weight-calculator", "how-to-calculate-volume-weight", "volume-weight-online", "free-volume-weight-calculator"],
+      seoTitle: "Volume ↔ Weight Converter",
+      seoDescription: "Calculate food density conversions. Translate volume measurements to weight for precise cooking using common ingredient densities.",
       loader: () => import("@/components/calculators/Cooking/VolumeWeightFoodDensityCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "ingredient-conversions-kitchen-math",
       description: "Convert oven temperatures instantly. Switch between Fahrenheit and Celsius for baking recipes and internal meat thermometers.",
+      aliases: ["fahrenheit-celsius-calculator", "how-to-calculate-fahrenheit-celsius", "fahrenheit-celsius-online", "free-fahrenheit-celsius-calculator"],
+      seoTitle: "Fahrenheit ↔ Celsius Converter",
+      seoDescription: "Convert oven temperatures instantly. Switch between Fahrenheit and Celsius for baking recipes and internal meat thermometers.",
       loader: () => import("@/components/calculators/Cooking/FahrenheitCelsiusOvenInternalTempCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "ingredient-conversions-kitchen-math",
       description: "Convert small kitchen measurements. Transform teaspoons, tablespoons, and cups into milliliters (mL) for liquid ingredients.",
+      aliases: ["teaspoon-tablespoon-cup-ml-calculator", "how-to-calculate-teaspoon-tablespoon-cup-ml", "teaspoon-tablespoon-cup-ml-online", "free-teaspoon-tablespoon-cup-ml-calculator"],
+      seoTitle: "Teaspoon/Tablespoon/Cup ↔ mL Converter",
+      seoDescription: "Convert small kitchen measurements. Transform teaspoons, tablespoons, and cups into milliliters (mL) for liquid ingredients.",
       loader: () => import("@/components/calculators/Cooking/TeaspoonTablespoonCupMlConverterCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "ingredient-conversions-kitchen-math",
       description: "Scale your recipes up or down. Multiply or divide ingredient quantities to adjust serving sizes for parties or single meals.",
+      aliases: ["recipe-scaler-calculator", "how-to-calculate-recipe-scaler", "recipe-scaler-online", "free-recipe-scaler-calculator"],
+      seoTitle: "Recipe Scaler (x0.5, x2, x3…)",
+      seoDescription: "Scale your recipes up or down. Multiply or divide ingredient quantities to adjust serving sizes for parties or single meals.",
       loader: () => import("@/components/calculators/Cooking/RecipeScalerCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "ingredient-conversions-kitchen-math",
       description: "Adjust recipes by serving size. Input your desired number of servings to automatically recalculate all ingredient amounts.",
+      aliases: ["serving-size-multiplier-calculator", "how-to-calculate-serving-size-multiplier", "serving-size-multiplier-online", "free-serving-size-multiplier-calculator"],
+      seoTitle: "Serving Size Multiplier",
+      seoDescription: "Adjust recipes by serving size. Input your desired number of servings to automatically recalculate all ingredient amounts. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/ServingSizeMultiplierCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "ingredient-conversions-kitchen-math",
       description: "Calculate the perfect brine ratio. Determine the exact amount of salt needed for wet brining meats to ensure flavor and moisture.",
+      aliases: ["salt-for-brining-calculator", "how-to-calculate-salt-for-brining", "salt-for-brining-online", "free-salt-for-brining-calculator"],
+      seoTitle: "Salt % for Brining Calculator",
+      seoDescription: "Calculate the perfect brine ratio. Determine the exact amount of salt needed for wet brining meats to ensure flavor and moisture.",
       loader: () => import("@/components/calculators/Cooking/SaltPercentBriningCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "ingredient-conversions-kitchen-math",
       description: "Calculate alcohol dilution for cooking. Estimate the remaining Alcohol by Volume (ABV) in your dishes after simmering or baking.",
+      aliases: ["alcohol-by-volume-dilution-calculator", "how-to-calculate-alcohol-by-volume-dilution", "alcohol-by-volume-dilution-online", "free-alcohol-by-volume-dilution-calculator"],
+      seoTitle: "Alcohol by Volume (ABV) Dilution",
+      seoDescription: "Calculate alcohol dilution for cooking. Estimate the remaining Alcohol by Volume (ABV) in your dishes after simmering or baking.",
       loader: () => import("@/components/calculators/Cooking/AlcoholAbvDilutionCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "baking-essentials",
       description: "Convert cake pan sizes. Adjust recipes for different pan shapes and volumes (round vs square) without ruining your bake.",
+      aliases: ["cake-pan-size-and-volume-calculator", "how-to-calculate-cake-pan-size-and-volume", "cake-pan-size-and-volume-online", "free-cake-pan-size-and-volume-calculator"],
+      seoTitle: "Cake Pan Size & Volume Converter",
+      seoDescription: "Convert cake pan sizes. Adjust recipes for different pan shapes and volumes (round vs square) without ruining your bake. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/CakePanSizeVolumeConverterCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "baking-essentials",
       description: "Master Baker's Math. Calculate ingredient ratios based on flour weight to create consistent and scalable bread recipes.",
+      aliases: ["baker-s-percentage-calculator", "how-to-calculate-baker-s-percentage", "baker-s-percentage-online", "free-baker-s-percentage-calculator"],
+      seoTitle: "Baker’s Percentage Calculator",
+      seoDescription: "Master Baker's Math. Calculate ingredient ratios based on flour weight to create consistent and scalable bread recipes. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/BakersPercentageCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "baking-essentials",
       description: "Calculate dough hydration percentage. Essential for sourdough and artisanal bread to achieve the perfect crumb and texture.",
+      aliases: ["dough-hydration-calculator", "how-to-calculate-dough-hydration", "dough-hydration-online", "free-dough-hydration-calculator"],
+      seoTitle: "Dough Hydration % Calculator",
+      seoDescription: "Calculate dough hydration percentage. Essential for sourdough and artisanal bread to achieve the perfect crumb and texture.",
       loader: () => import("@/components/calculators/Cooking/DoughHydrationPercentCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "baking-essentials",
       description: "Plan your sourdough starter feedings. Calculate the perfect ratio of starter, flour, and water to keep your wild yeast active.",
+      aliases: ["sourdough-starter-ratio-and-feed-calculator", "how-to-calculate-sourdough-starter-ratio-and-feed", "sourdough-starter-ratio-and-feed-online", "free-sourdough-starter-ratio-and-feed-calculator"],
+      seoTitle: "Sourdough Starter Ratio & Feed Planner",
+      seoDescription: "Plan your sourdough starter feedings. Calculate the perfect ratio of starter, flour, and water to keep your wild yeast active.",
       loader: () => import("@/components/calculators/Cooking/SourdoughStarterRatioFeedPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "baking-essentials",
       description: "Convert yeast types easily. Switch between instant, active dry, and fresh yeast quantities for any baking recipe.",
+      aliases: ["yeast-conversion-calculator", "how-to-calculate-yeast-conversion", "yeast-conversion-online", "free-yeast-conversion-calculator"],
+      seoTitle: "Yeast Conversion Calculator",
+      seoDescription: "Convert yeast types easily. Switch between instant, active dry, and fresh yeast quantities for any baking recipe. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/YeastConversionInstantActiveFreshCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "baking-essentials",
       description: "Create gluten-free flour blends. Calculate ratios for substituting all-purpose flour with almond, coconut, or rice flour mixes.",
+      aliases: ["flour-blend-substitution-calculator", "how-to-calculate-flour-blend-substitution", "flour-blend-substitution-online", "free-flour-blend-substitution-calculator"],
+      seoTitle: "Flour Blend Substitution Helper",
+      seoDescription: "Create gluten-free flour blends. Calculate ratios for substituting all-purpose flour with almond, coconut, or rice flour mixes.",
       loader: () => import("@/components/calculators/Cooking/FlourBlendSubstitutionCalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "baking-essentials",
       description: "Quickly look up ingredient densities. Convert cups of packed sugar, butter, or sifted flour to grams accurately.",
+      aliases: ["sugar-butter-flour-density-lookup-calculator", "how-to-calculate-sugar-butter-flour-density-lookup", "sugar-butter-flour-density-lookup-online", "free-sugar-butter-flour-density-lookup-calculator"],
+      seoTitle: "Sugar/Butter/Flour Density Lookup",
+      seoDescription: "Quickly look up ingredient densities. Convert cups of packed sugar, butter, or sifted flour to grams accurately. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/SugarButterFlourDensityLookupCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "baking-essentials",
       description: "Guide to chocolate tempering temperatures. Find the precise melting, cooling, and working points for dark, milk, and white chocolate.",
+      aliases: ["chocolate-butter-tempering-temperature-calculator", "how-to-calculate-chocolate-butter-tempering-temperature", "chocolate-butter-tempering-temperature-online", "free-chocolate-butter-tempering-temperature-calculator"],
+      seoTitle: "Chocolate/Butter Tempering Temperature",
+      seoDescription: "Guide to chocolate tempering temperatures. Find the precise melting, cooling, and working points for dark, milk, and white chocolate. Free and instant.",
       loader: () => import("@/components/calculators/Cooking/ChocolateButterTemperingTemperatureCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "meat-poultry-food-safety-times",
       description: "Plan your Thanksgiving turkey. Calculate thawing time and cooking time based on bird weight for a safe and juicy roast.",
+      aliases: ["turkey-size-thaw-and-cook-time-calculator", "how-to-calculate-turkey-size-thaw-and-cook-time", "turkey-size-thaw-and-cook-time-online", "free-turkey-size-thaw-and-cook-time-calculator"],
+      seoTitle: "Turkey Size, Thaw & Cook Time Calculator",
+      seoDescription: "Plan your Thanksgiving turkey. Calculate thawing time and cooking time based on bird weight for a safe and juicy roast. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/TurkeyThawCookTimeCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "meat-poultry-food-safety-times",
       description: "Estimate roasting time for whole chickens. Ensure perfectly cooked poultry by calculating oven time based on weight.",
+      aliases: ["whole-chicken-roast-cook-time-calculator", "how-to-calculate-whole-chicken-roast-cook-time", "whole-chicken-roast-cook-time-online", "free-whole-chicken-roast-cook-time-calculator"],
+      seoTitle: "Whole Chicken/Roast Cook Time Estimator",
+      seoDescription: "Estimate roasting time for whole chickens. Ensure perfectly cooked poultry by calculating oven time based on weight. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/WholeChickenRoastCookTimeCalculator"),
       urlStyle: "flat"
     },
@@ -173,6 +227,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "meat-poultry-food-safety-times",
       description: "Time your steak to perfection. Estimate cooking time for rare, medium, or well-done steaks and calculate the vital resting period.",
+      aliases: ["steak-doneness-time-and-resting-window-calculator", "how-to-calculate-steak-doneness-time-and-resting-window", "steak-doneness-time-and-resting-window-online", "free-steak-doneness-time-and-resting-window-calculator"],
+      seoTitle: "Steak Doneness Time & Resting Window",
+      seoDescription: "Time your steak to perfection. Estimate cooking time for rare, medium, or well-done steaks and calculate the vital resting period.",
       loader: () => import("@/components/calculators/Cooking/SteakDonenessTimeRestingCalculator"),
       urlStyle: "flat"
     },
@@ -182,6 +239,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "meat-poultry-food-safety-times",
       description: "Plan your BBQ smoking session. Calculate cooking time per pound for pork shoulders or beef briskets at low temperatures.",
+      aliases: ["pork-beef-smoking-time-per-lb-calculator", "how-to-calculate-pork-beef-smoking-time-per-lb", "pork-beef-smoking-time-per-lb-online", "free-pork-beef-smoking-time-per-lb-calculator"],
+      seoTitle: "Pork/Beef Smoking Time per lb",
+      seoDescription: "Plan your BBQ smoking session. Calculate cooking time per pound for pork shoulders or beef briskets at low temperatures. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/PorkBeefSmokingTimePerLbCalculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "meat-poultry-food-safety-times",
       description: "Check safe internal food temperatures. Reference USDA guidelines for meat, poultry, and fish to prevent foodborne illness.",
+      aliases: ["safe-internal-temperature-calculator", "how-to-calculate-safe-internal-temperature", "safe-internal-temperature-online", "free-safe-internal-temperature-calculator"],
+      seoTitle: "Safe Internal Temperature Checker",
+      seoDescription: "Check safe internal food temperatures. Reference USDA guidelines for meat, poultry, and fish to prevent foodborne illness. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/SafeInternalTemperatureCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "meat-poultry-food-safety-times",
       description: "Estimate defrosting times. Calculate how long meat needs to thaw in the fridge or cold water based on its weight.",
+      aliases: ["defrost-time-calculator", "how-to-calculate-defrost-time", "defrost-time-online", "free-defrost-time-calculator"],
+      seoTitle: "Defrost Time Estimator",
+      seoDescription: "Estimate defrosting times. Calculate how long meat needs to thaw in the fridge or cold water based on its weight. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/DefrostTimeFridgeColdWaterCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "everyday-kitchen-ratios-yields",
       description: "Get the perfect rice-to-water ratio. Calculate yield and liquid needs for Basmati, Jasmine, Brown, or Sushi rice.",
+      aliases: ["rice-water-ratio-and-yield-calculator", "how-to-calculate-rice-water-ratio-and-yield", "rice-water-ratio-and-yield-online", "free-rice-water-ratio-and-yield-calculator"],
+      seoTitle: "Rice:Water Ratio & Yield Calculator",
+      seoDescription: "Get the perfect rice-to-water ratio. Calculate yield and liquid needs for Basmati, Jasmine, Brown, or Sushi rice. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/RiceWaterRatioYieldCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "everyday-kitchen-ratios-yields",
       description: "Convert dry pasta to cooked weight. Estimate how much pasta to boil to get the exact number of cooked servings you need.",
+      aliases: ["pasta-dry-cooked-yield-and-portions-calculator", "how-to-calculate-pasta-dry-cooked-yield-and-portions", "pasta-dry-cooked-yield-and-portions-online", "free-pasta-dry-cooked-yield-and-portions-calculator"],
+      seoTitle: "Pasta Dry ↔ Cooked Yield & Portions",
+      seoDescription: "Convert dry pasta to cooked weight. Estimate how much pasta to boil to get the exact number of cooked servings you need. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/PastaDryCookedYieldPortionsCalculator"),
       urlStyle: "flat"
     },
@@ -227,6 +299,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "everyday-kitchen-ratios-yields",
       description: "Estimate stock reduction yield. Calculate how much volume remains after reducing broth to a demi-glace or glaze.",
+      aliases: ["stock-broth-reduction-time-and-yield-calculator", "how-to-calculate-stock-broth-reduction-time-and-yield", "stock-broth-reduction-time-and-yield-online", "free-stock-broth-reduction-time-and-yield-calculator"],
+      seoTitle: "Stock/Broth Reduction Time & Yield",
+      seoDescription: "Estimate stock reduction yield. Calculate how much volume remains after reducing broth to a demi-glace or glaze. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/StockBrothReductionTimeYieldCalculator"),
       urlStyle: "flat"
     },
@@ -236,6 +311,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "everyday-kitchen-ratios-yields",
       description: "Calculate oil needed for deep frying. Determine the volume required to fill your pan or fryer to the safe depth level.",
+      aliases: ["oil-for-frying-calculator", "how-to-calculate-oil-for-frying", "oil-for-frying-online", "free-oil-for-frying-calculator"],
+      seoTitle: "Oil for Frying Calculator",
+      seoDescription: "Calculate oil needed for deep frying. Determine the volume required to fill your pan or fryer to the safe depth level. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Cooking/OilForFryingPanDepthVolumeCalculator"),
       urlStyle: "flat"
     },
@@ -245,6 +323,9 @@ export const cookingEntries: CalculatorEntry[] = [
       category: "cooking",
       subcategory: "everyday-kitchen-ratios-yields",
       description: "Calculate icing and frosting amounts. Determine how much frosting you need to cover round or square cakes of various sizes.",
+      aliases: ["icing-frosting-coverage-by-cake-size-calculator", "how-to-calculate-icing-frosting-coverage-by-cake-size", "icing-frosting-coverage-by-cake-size-online", "free-icing-frosting-coverage-by-cake-size-calculator"],
+      seoTitle: "Icing/Frosting Coverage by Cake Size",
+      seoDescription: "Calculate icing and frosting amounts. Determine how much frosting you need to cover round or square cakes of various sizes.",
       loader: () => import("@/components/calculators/Cooking/IcingFrostingCoverageCakeSizeCalculator"),
       urlStyle: "flat"
     }

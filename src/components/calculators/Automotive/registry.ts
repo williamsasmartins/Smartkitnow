@@ -11,6 +11,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "consumption-costs-travel",
       description: "Calculate trip cost based on distance, fuel efficiency, and price.",
+      aliases: ["road-trip-gas-cost-calculator", "how-much-gas-will-a-trip-cost", "gas-cost-calculator", "fuel-cost-per-trip"],
+      seoTitle: "Trip Fuel Cost Calculator — Gas Cost by Distance & MPG",
+      seoDescription: "Calculate exactly how much gas a trip will cost using your distance, vehicle's MPG, and local fuel price per gallon or liter for accurate road trip budgeting.",
       loader: () => import("@/components/calculators/Automotive/TripFuelCostCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "consumption-costs-travel",
       description: "Convert fuel economy between MPG and L/100km.",
+      aliases: ["mpg-to-l-100km-converter", "l-100km-to-mpg", "fuel-economy-unit-converter", "convert-mpg-to-liters-per-100km"],
+      seoTitle: "MPG to L/100km Converter — Fuel Economy Calculator",
+      seoDescription: "Convert fuel economy instantly between MPG, L/100km, and km/L. Compare US and European fuel efficiency ratings side by side for any car, SUV, or truck.",
       loader: () => import("@/components/calculators/Automotive/FuelEconomyConverterCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "consumption-costs-travel",
       description: "Compare annual fuel costs for gas, electric, and E85 vehicles.",
+      aliases: ["annual-fuel-cost-comparison", "gas-vs-electric-vs-e85-cost", "yearly-fuel-cost-calculator", "fuel-type-break-even-calculator"],
+      seoTitle: "Annual Fuel Cost & Break-Even — Gas vs Electric vs E85",
+      seoDescription: "Compare yearly fuel costs across gas, electric, and E85 vehicles based on your annual mileage, and find the break-even point where a cheaper fuel type pays off.",
       loader: () => import("@/components/calculators/Automotive/AnnualFuelCostBreakEvenCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "consumption-costs-travel",
       description: "Convert EV efficiency to cost per mile driven.",
+      aliases: ["ev-kwh-to-cost-per-mile", "electric-car-cost-per-mile-calculator", "ev-efficiency-converter", "kwh-per-100-miles-calculator"],
+      seoTitle: "EV kWh per 100 mi ↔ Cost per Mile Converter",
+      seoDescription: "Convert your EV's kWh-per-100-miles efficiency rating into a real cost per mile using your electricity rate, so you can compare running costs against a gas car.",
       loader: () => import("@/components/calculators/Automotive/EvKwhCostPerMileCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "consumption-costs-travel",
       description: "Estimate time and cost to charge an EV at home or public stations.",
+      aliases: ["how-much-does-it-cost-to-charge-an-ev", "ev-charging-cost-calculator", "how-long-to-charge-electric-car", "electric-car-charging-time-calculator"],
+      seoTitle: "EV Charging Cost & Time Estimator — Home & Public",
+      seoDescription: "Estimate how long it takes and what it costs to charge your EV at home or at a public station, based on battery size, charger power, and electricity rate.",
       loader: () => import("@/components/calculators/Automotive/EvChargingCostTimeCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "consumption-costs-travel",
       description: "Compare total ownership costs of gas vs. electric cars over 5 years.",
+      aliases: ["gas-car-vs-electric-car-cost", "is-an-ev-cheaper-than-gas", "5-year-cost-of-owning-an-ev", "ice-vs-ev-cost-comparison"],
+      seoTitle: "ICE vs EV 5-Year Ownership Cost Calculator",
+      seoDescription: "Compare the full 5-year cost of owning a gas car versus an electric vehicle, including purchase price, fuel or electricity, maintenance, and depreciation.",
       loader: () => import("@/components/calculators/Automotive/IceVsEvOwnershipCostCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "consumption-costs-travel",
       description: "Estimate CO2 emissions for a specific trip.",
+      aliases: ["co2-emissions-per-trip-calculator", "carbon-footprint-of-a-road-trip", "car-trip-co2-calculator", "driving-carbon-footprint-calculator"],
+      seoTitle: "Carbon Emissions per Trip Calculator — CO2 by Distance",
+      seoDescription: "Estimate the CO2 emissions produced by a specific car trip based on distance driven, your vehicle's fuel economy, and fuel type — gasoline, diesel, or hybrid.",
       loader: () => import("@/components/calculators/Automotive/CarbonEmissionsPerTripCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "consumption-costs-travel",
       description: "Calculate the true long-term cost of owning a vehicle.",
+      aliases: ["true-cost-of-owning-a-car", "car-total-cost-of-ownership", "how-much-does-a-car-really-cost", "vehicle-tco-calculator"],
+      seoTitle: "Total Cost of Ownership (TCO) Calculator for Cars",
+      seoDescription: "Calculate the true long-term cost of owning a vehicle, combining loan payments, fuel, insurance, maintenance, and depreciation into one real annual figure.",
       loader: () => import("@/components/calculators/Automotive/TcoCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "consumption-costs-travel",
       description: "Determine the exact cost per mile or km to drive your car.",
+      aliases: ["cost-per-mile-to-drive", "cost-to-drive-calculator", "price-per-mile-calculator", "driving-cost-per-km"],
+      seoTitle: "Cost Per Mile Calculator — What It Costs to Drive",
+      seoDescription: "Determine the exact cost per mile or kilometer to drive your car, combining fuel price, fuel economy, and optional maintenance costs into one clear rate.",
       loader: () => import("@/components/calculators/Automotive/CostPerMileCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "tires-wheels-speedometer",
       description: "Compare dimensions and differences between two tire sizes.",
+      aliases: ["tire-size-difference-calculator", "compare-two-tire-sizes", "tire-diameter-comparison-tool", "plus-sizing-tire-calculator"],
+      seoTitle: "Tire Size Comparison Calculator — Diameter & Speedo Diff",
+      seoDescription: "Compare two tire sizes side by side to see the exact difference in overall diameter, circumference, sidewall height, and speedometer accuracy after a swap.",
       loader: () => import("@/components/calculators/Automotive/TireSizeComparisonCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "tires-wheels-speedometer",
       description: "Calculate speedometer reading error due to tire size changes.",
+      aliases: ["speedometer-error-after-tire-change", "actual-speed-vs-speedometer-calculator", "tire-size-speedometer-accuracy", "speedo-correction-calculator"],
+      seoTitle: "Speedometer Error Calculator — After a Tire Size Change",
+      seoDescription: "Calculate how much your speedometer reading is off after changing tire sizes, and find your true driving speed versus what the dashboard display shows.",
       loader: () => import("@/components/calculators/Automotive/SpeedometerErrorCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "tires-wheels-speedometer",
       description: "Calculate wheel position changes with different offsets.",
+      aliases: ["wheel-backspacing-calculator", "wheel-offset-conversion", "et-offset-calculator", "wheel-fitment-calculator"],
+      seoTitle: "Wheel Offset & Backspacing Calculator",
+      seoDescription: "Calculate how a wheel's position shifts in or out with different offsets, converting between offset (ET) and backspacing so new wheels clear fenders and brakes.",
       loader: () => import("@/components/calculators/Automotive/WheelOffsetBackspacingCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "tires-wheels-speedometer",
       description: "Estimate engine RPM at specific speeds based on tire size.",
+      aliases: ["tire-revs-per-mile-calculator", "rpm-at-speed-calculator", "engine-rpm-from-tire-size", "revolutions-per-mile-tire-calculator"],
+      seoTitle: "Tire Revs per Mile & RPM at Speed Calculator",
+      seoDescription: "Estimate tire revolutions per mile and the resulting engine RPM at any road speed, based on tire diameter, final drive ratio, and current transmission gear.",
       loader: () => import("@/components/calculators/Automotive/TireRevsPerMileRpmCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "tires-wheels-speedometer",
       description: "Calculate vehicle speed based on gear ratios and tire size.",
+      aliases: ["gear-ratio-speed-calculator", "rear-end-gear-ratio-calculator", "final-drive-ratio-mph-calculator", "differential-gear-speed-calculator"],
+      seoTitle: "Final Drive & Gear Ratio Speed Calculator",
+      seoDescription: "Calculate top speed and MPH per 1,000 RPM from final drive ratio, gear ratio, and tire diameter — useful for gear swaps and differential ratio changes.",
       loader: () => import("@/components/calculators/Automotive/FinalDriveGearRatioSpeedCalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "tires-wheels-speedometer",
       description: "Estimate RPM drop when shifting gears.",
+      aliases: ["rpm-drop-between-gears-calculator", "shift-point-calculator", "gear-shift-rpm-drop", "manual-transmission-shift-rpm"],
+      seoTitle: "Shift Point RPM Drop Estimator — Gear-to-Gear",
+      seoDescription: "Estimate how much engine RPM drops when shifting from one gear to the next, based on your gear ratios, so you can plan optimal shift points for performance.",
       loader: () => import("@/components/calculators/Automotive/ShiftPointRpmDropCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "financing-leasing-value",
       description: "See how down payments affect monthly costs and payoff time.",
+      aliases: ["car-down-payment-calculator", "how-much-down-payment-lowers-car-payment", "down-payment-vs-monthly-payment", "loan-payoff-time-calculator-car"],
+      seoTitle: "Down Payment Impact & Loan Payoff Time Calculator",
+      seoDescription: "See exactly how a bigger down payment lowers your monthly car payment and shortens payoff time, comparing scenarios side by side before you sign a loan.",
       loader: () => import("@/components/calculators/Automotive/DownPaymentImpactPayoffCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "financing-leasing-value",
       description: "Estimate vehicle value loss over time by segment.",
+      aliases: ["car-depreciation-calculator", "how-fast-does-a-car-lose-value", "vehicle-value-over-time-calculator", "car-resale-value-estimator"],
+      seoTitle: "Car Depreciation Curve Estimator by Segment",
+      seoDescription: "Estimate how much a vehicle's value drops year by year based on its market segment, showing the depreciation curve so you can plan a resale or trade-in.",
       loader: () => import("@/components/calculators/Automotive/DepreciationCurveEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "financing-leasing-value",
       description: "Estimate annual insurance premiums based on simple factors.",
+      aliases: ["car-insurance-cost-estimator", "how-much-is-car-insurance-per-year", "annual-insurance-premium-calculator", "auto-insurance-estimate-tool"],
+      seoTitle: "Car Insurance Cost per Year Estimator",
+      seoDescription: "Estimate your annual car insurance premium based on vehicle type, driver age, coverage level, and driving record — a quick starting point before you get quotes.",
       loader: () => import("@/components/calculators/Automotive/InsuranceCostPerYearCalculator"),
       urlStyle: "flat"
     },
@@ -171,6 +225,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       slug: "out-the-door-tax-title-fees",
       title: "Sales Tax, Title & Fees Out-the-Door Estimator",
       category: "automotive",
+      aliases: ["out-the-door-price-calculator", "otd-price-calculator", "car-sales-tax-and-fees-calculator", "total-price-with-tax-title-fees"],
+      seoTitle: "Out-the-Door Price Calculator — Tax, Title & Fees",
+      seoDescription: "Estimate the total \"out-the-door\" price of a new or used car, including sales tax, title fees, registration, and dealer fees added to the negotiated price.",
       subcategory: "financing-leasing-value",
       description: "Estimate total \"out-the-door\" price including all fees.",
       loader: () => import("@/components/calculators/Automotive/OutTheDoorEstimatorCalculator"),
@@ -182,6 +239,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "financing-leasing-value",
       description: "Estimate trade-in and private party value of used cars.",
+      aliases: ["trade-in-value-estimator", "what-is-my-car-worth-calculator", "private-party-value-calculator", "used-car-price-estimator"],
+      seoTitle: "Used Car Value Estimator — Trade-In vs Private Sale",
+      seoDescription: "Estimate what your used car is worth for a dealer trade-in versus a private party sale, based on age, mileage, and condition, to negotiate a fair price.",
       loader: () => import("@/components/calculators/Automotive/UsedCarValueEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "financing-leasing-value",
       description: "Decide between low interest rates or cash rebates.",
+      aliases: ["0-percent-apr-vs-rebate-calculator", "dealer-rebate-vs-low-interest-calculator", "cash-back-vs-financing-calculator", "car-incentive-comparison-tool"],
+      seoTitle: "Low APR vs. Cash Back Incentive Calculator",
+      seoDescription: "Decide whether a low or 0% APR financing offer or a cash back rebate saves you more money, by comparing total interest paid against the upfront discount.",
       loader: () => import("@/components/calculators/Automotive/LowAprVsCashBackCalculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "maintenance-capacity",
       description: "Plan optimal oil change schedules based on driving habits.",
+      aliases: ["how-often-should-i-change-my-oil", "oil-change-schedule-calculator", "oil-change-mileage-calculator", "next-oil-change-planner"],
+      seoTitle: "Oil Change Interval Planner — When to Change Oil",
+      seoDescription: "Plan the right oil change schedule for your car based on driving habits, mileage, and oil type, so you always know exactly when your next oil change is due.",
       loader: () => import("@/components/calculators/Automotive/OilChangeIntervalPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "financing-leasing-value",
       description: "Calculate monthly car loan payments and interest.",
+      aliases: ["car-loan-amortization-schedule", "monthly-car-payment-calculator", "car-loan-interest-calculator", "auto-loan-amortization-calculator"],
+      seoTitle: "Car Loan Payment & Amortization Calculator",
+      seoDescription: "Calculate your monthly car loan payment and see the full amortization schedule, showing exactly how much of each payment goes to principal versus interest.",
       loader: () => import("@/components/calculators/Automotive/CarLoanPaymentAmortizationCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "maintenance-capacity",
       description: "Estimate remaining life of brake pads and rotors.",
+      aliases: ["how-much-brake-pad-life-is-left", "brake-pad-wear-calculator", "when-to-replace-brake-pads", "brake-life-remaining-estimator"],
+      seoTitle: "Brake Pad & Rotor Wear Estimator",
+      seoDescription: "Estimate how much life is left on your brake pads and rotors based on current thickness and typical wear rate, so you know exactly when a brake job is due.",
       loader: () => import("@/components/calculators/Automotive/BrakePadWearEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -227,6 +299,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "maintenance-capacity",
       description: "Check if your load is within safe towing limits.",
+      aliases: ["how-much-can-i-tow-calculator", "towing-capacity-checker", "safe-towing-weight-calculator", "trailer-weight-vs-tow-rating"],
+      seoTitle: "Towing Capacity Safety Margin Checker",
+      seoDescription: "Check whether your trailer or load stays within your vehicle's safe towing limits, comparing total towed weight against the manufacturer's tow rating.",
       loader: () => import("@/components/calculators/Automotive/TowingCapacitySafetyMarginCalculator"),
       urlStyle: "flat"
     },
@@ -236,6 +311,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "maintenance-capacity",
       description: "Calculate available payload capacity to avoid overloading.",
+      aliases: ["payload-capacity-calculator", "gvwr-calculator", "how-much-weight-can-my-truck-carry", "curb-weight-vs-gvwr-calculator"],
+      seoTitle: "Payload & GVWR Utilization Calculator",
+      seoDescription: "Calculate how much payload capacity you have left before hitting your vehicle's GVWR, factoring in curb weight, passengers, and cargo to avoid overloading.",
       loader: () => import("@/components/calculators/Automotive/PayloadGvwrUtilizationCalculator"),
       urlStyle: "flat"
     },
@@ -245,6 +323,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Estimate charging time and cost at home (Level 2) versus public stations, including electricity rates and charger power.",
+      aliases: ["level-2-vs-public-charging-cost", "home-ev-charging-vs-supercharger-cost", "ev-charging-cost-comparison", "is-home-charging-cheaper-than-public"],
+      seoTitle: "EV Home vs Public Charging Cost & Time Calculator",
+      seoDescription: "Compare charging time and cost between home Level 2 charging and public fast-charging stations, based on your electricity rate and the charger's power output.",
       loader: () => import("@/components/calculators/Automotive/EvHomePublicChargingCostTimeCalculator"),
       urlStyle: "flat"
     },
@@ -254,6 +335,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Calculate the exact cost per mile or km for an EV based on efficiency (kWh/100mi) and local electricity prices.",
+      aliases: ["electric-car-cost-per-mile", "ev-running-cost-calculator", "cost-to-drive-an-electric-car", "ev-cost-per-kilometer-calculator"],
+      seoTitle: "EV Cost Per Mile Calculator — kWh Efficiency to $/mi",
+      seoDescription: "Calculate the exact cost per mile or kilometer to drive an EV, based on its efficiency in kWh per 100 miles and your local electricity price per kilowatt-hour.",
       loader: () => import("@/components/calculators/Automotive/EvCostPerMileCalculator"),
       urlStyle: "flat"
     },
@@ -263,6 +347,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Adjust official EV range for real-world factors like temperature, speed, AC use, and driving style.",
+      aliases: ["ev-actual-range-calculator", "why-is-my-ev-range-lower-than-advertised", "epa-range-vs-real-world-range", "cold-weather-ev-range-calculator"],
+      seoTitle: "EV Real-World Range Estimator — Beyond EPA Rating",
+      seoDescription: "Adjust an EV's official EPA range estimate for real-world factors like cold temperature, highway speed, AC or heater use, and aggressive driving style.",
       loader: () => import("@/components/calculators/Automotive/EvRealWorldRangeCalculator"),
       urlStyle: "flat"
     },
@@ -272,6 +359,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Compare total cost of ownership over 5-10 years, including purchase price, fuel/electricity, maintenance, incentives, and depreciation.",
+      aliases: ["ev-vs-hybrid-vs-gas-cost-comparison", "which-is-cheaper-ev-hybrid-or-gas", "total-cost-of-ownership-ev-hybrid-gas", "best-value-car-type-calculator"],
+      seoTitle: "EV vs Hybrid vs Gas — Total Cost of Ownership Calculator",
+      seoDescription: "Compare total cost of ownership over 5-10 years across EV, hybrid, and gas vehicles, including purchase price, fuel or electricity, maintenance, and incentives.",
       loader: () => import("@/components/calculators/Automotive/EvHybridGasTcoCalculator"),
       urlStyle: "flat"
     },
@@ -281,6 +371,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Determine how many miles or years needed for an EV to become cheaper than a hybrid or gas car.",
+      aliases: ["ev-payback-period-calculator", "how-many-years-until-an-ev-pays-off", "ev-vs-hybrid-savings-crossover", "when-does-an-ev-become-cheaper"],
+      seoTitle: "EV vs Hybrid Break-Even Point Calculator",
+      seoDescription: "Determine how many miles or years it takes for an EV's higher purchase price to be offset by fuel and maintenance savings compared to a hybrid or gas car.",
       loader: () => import("@/components/calculators/Automotive/EvHybridBreakEvenCalculator"),
       urlStyle: "flat"
     },
@@ -290,6 +383,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Compare yearly operating costs for EV, hybrid, and gas vehicles based on annual mileage and local rates.",
+      aliases: ["annual-ev-vs-hybrid-running-cost", "yearly-fuel-cost-ev-vs-hybrid", "annual-electricity-cost-electric-car", "ev-vs-hybrid-yearly-savings"],
+      seoTitle: "Annual Fuel/Electricity Cost: EV vs Hybrid Calculator",
+      seoDescription: "Compare yearly fuel and electricity costs for EV, hybrid, and gas vehicles based on your annual mileage and local fuel and electricity rates in one view.",
       loader: () => import("@/components/calculators/Automotive/AnnualEvHybridCostCalculator"),
       urlStyle: "flat"
     },
@@ -299,6 +395,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Calculate total cost and required charging stops for a specific road trip in an EV.",
+      aliases: ["ev-road-trip-planner", "electric-car-road-trip-cost", "ev-charging-stops-calculator", "how-many-charging-stops-for-a-trip"],
+      seoTitle: "EV Trip Cost & Charging Stops Planner",
+      seoDescription: "Calculate the total electricity cost and number of charging stops needed for a specific road trip in an EV, based on your car's range and battery size.",
       loader: () => import("@/components/calculators/Automotive/EvTripCostPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -308,6 +407,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Estimate carbon emissions reduction when switching from hybrid/gas to EV, based on mileage and grid cleanliness.",
+      aliases: ["ev-carbon-savings-calculator", "how-much-co2-does-an-ev-save", "switching-to-ev-emissions-reduction", "ev-vs-hybrid-carbon-footprint"],
+      seoTitle: "CO2 Emissions Savings: EV vs Hybrid Calculator",
+      seoDescription: "Estimate the carbon emissions you'd save by switching from a hybrid or gas car to an EV, based on your annual mileage and local electric grid cleanliness.",
       loader: () => import("@/components/calculators/Automotive/EvHybridCo2SavingsCalculator"),
       urlStyle: "flat"
     },
@@ -317,6 +419,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Predict battery capacity loss over years and impact on range, based on usage and charging habits.",
+      aliases: ["ev-battery-health-calculator", "how-much-does-ev-battery-degrade-per-year", "ev-battery-capacity-loss-estimator", "ev-range-loss-over-time"],
+      seoTitle: "EV Battery Degradation & Long-Term Range Estimator",
+      seoDescription: "Predict how much an EV's battery capacity will fade over the years and its effect on driving range, based on annual mileage, climate, and charging habits.",
       loader: () => import("@/components/calculators/Automotive/EvBatteryDegradationCalculator"),
       urlStyle: "flat"
     },
@@ -326,6 +431,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Estimate installation cost for a Level 2 charger and payback period through savings vs public charging.",
+      aliases: ["level-2-charger-installation-cost", "home-ev-charger-payback-calculator", "is-a-home-charger-worth-it", "ev-charger-cost-and-savings"],
+      seoTitle: "Home EV Charger Cost & Payback Calculator",
+      seoDescription: "Estimate the installation cost of a home Level 2 EV charger and how many months of savings versus public charging it takes to pay that investment back.",
       loader: () => import("@/components/calculators/Automotive/EvHomeChargerPaybackCalculator"),
       urlStyle: "flat"
     },
@@ -335,6 +443,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Calculate available federal/state rebates, tax credits, and net purchase price for specific EV models.",
+      aliases: ["federal-ev-tax-credit-calculator", "ev-rebate-calculator", "how-much-is-the-ev-tax-credit", "electric-car-incentives-by-state"],
+      seoTitle: "EV Tax Credit & Incentives Estimator",
+      seoDescription: "Calculate available federal and state rebates, tax credits, and your net purchase price after incentives for a specific electric vehicle make and model.",
       loader: () => import("@/components/calculators/Automotive/EvIncentivesEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -344,6 +455,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Compare long-term maintenance and repair costs between EVs and hybrids, factoring in fewer moving parts, brake regeneration, and no oil changes.",
+      aliases: ["ev-vs-hybrid-maintenance-cost", "do-evs-need-less-maintenance", "ev-repair-cost-savings-calculator", "electric-car-maintenance-savings"],
+      seoTitle: "EV Maintenance Savings vs Hybrid Calculator",
+      seoDescription: "Compare long-term maintenance and repair costs between EVs and hybrids, accounting for fewer moving parts, regenerative braking, and no oil changes needed.",
       loader: () => import("@/components/calculators/Automotive/EvHybridMaintenanceSavingsCalculator"),
       urlStyle: "flat"
     },
@@ -353,6 +467,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Estimate battery degradation acceleration from frequent DC fast charging vs slower AC charging, based on usage patterns and temperature.",
+      aliases: ["does-fast-charging-damage-ev-battery", "dc-fast-charging-battery-wear", "level-3-charging-degradation-calculator", "ev-battery-fast-charge-impact"],
+      seoTitle: "EV Fast Charging Impact on Battery Life Calculator",
+      seoDescription: "Estimate how much frequent DC fast charging accelerates battery degradation compared to slower AC charging, based on your usage pattern and local climate.",
       loader: () => import("@/components/calculators/Automotive/EvFastChargingDegradationCalculator"),
       urlStyle: "flat"
     },
@@ -362,6 +479,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Calculate cost savings and payback when charging an EV with home solar panels, including excess energy credits and reduced grid reliance.",
+      aliases: ["solar-powered-ev-charging-savings", "charge-ev-with-solar-panels-calculator", "solar-ev-payback-calculator", "ev-plus-solar-savings-estimator"],
+      seoTitle: "EV Solar Charging Savings Calculator",
+      seoDescription: "Calculate the cost savings and payback period from charging an EV with home solar panels, including excess energy credits and reduced grid electricity use.",
       loader: () => import("@/components/calculators/Automotive/EvSolarChargingSavingsCalculator"),
       urlStyle: "flat"
     },
@@ -371,6 +491,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "For plug-in hybrids: Compare costs of driving in electric-only mode vs gas mode for daily commutes or trips.",
+      aliases: ["plug-in-hybrid-electric-mode-cost", "phev-cost-calculator", "phev-ev-mode-vs-gas-mode-savings", "plug-in-hybrid-commute-cost"],
+      seoTitle: "PHEV Electric vs Gas Mode Cost Calculator",
+      seoDescription: "For plug-in hybrids, compare the cost of driving in electric-only mode versus gas mode for a daily commute or trip, based on your electricity and gas prices.",
       loader: () => import("@/components/calculators/Automotive/PhevElectricGasModeCostCalculator"),
       urlStyle: "flat"
     },
@@ -380,6 +503,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "electric-vehicles-comparisons",
       description: "Estimate battery energy used and cost for preconditioning (heating/cooling) the cabin while plugged in, vs doing it while driving.",
+      aliases: ["ev-cabin-preheating-cost-calculator", "should-i-precondition-my-ev", "ev-preheat-energy-cost", "ev-defrost-battery-drain-calculator"],
+      seoTitle: "EV Preconditioning Energy & Cost Estimator",
+      seoDescription: "Estimate the battery energy and cost to precondition your EV's cabin, heating or cooling it while plugged in versus doing it on battery while driving.",
       loader: () => import("@/components/calculators/Automotive/EvPreconditioningCostCalculator"),
       urlStyle: "flat"
     },
@@ -389,6 +515,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Estimate engine horsepower based on vehicle weight and quarter-mile elapsed time (ET).",
+      aliases: ["hp-from-et-and-weight-calculator", "quarter-mile-time-to-horsepower", "drag-strip-hp-calculator", "et-to-hp-formula-calculator"],
+      seoTitle: "Horsepower from Quarter Mile ET Calculator",
+      seoDescription: "Estimate engine horsepower from your car's weight and quarter-mile elapsed time using the classic drag racing HP formula favored by racers and tuners.",
       loader: () => import("@/components/calculators/Automotive/HpFromQuarterMileEtCalculator"),
       urlStyle: "flat"
     },
@@ -398,6 +527,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Predict quarter-mile elapsed time (ET) and trap speed (MPH) from horsepower and vehicle weight.",
+      aliases: ["quarter-mile-time-calculator", "hp-to-et-and-trap-speed", "drag-racing-time-predictor", "quarter-mile-mph-calculator"],
+      seoTitle: "Quarter Mile ET & Trap Speed from HP Calculator",
+      seoDescription: "Predict your car's quarter-mile elapsed time and trap speed in MPH from horsepower and vehicle weight, using the same formula drag racers rely on daily.",
       loader: () => import("@/components/calculators/Automotive/QuarterMileEtMphFromHpCalculator"),
       urlStyle: "flat"
     },
@@ -407,6 +539,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Calculate 0-60 mph time based on horsepower, torque, weight, and drivetrain type.",
+      aliases: ["0-to-60-calculator", "zero-to-sixty-time-calculator", "how-fast-is-my-car-0-60", "acceleration-time-from-horsepower"],
+      seoTitle: "0-60 mph Acceleration Time Estimator",
+      seoDescription: "Calculate your car's 0-60 mph acceleration time from horsepower, torque, curb weight, and drivetrain type (FWD, RWD, or AWD) using performance ratios.",
       loader: () => import("@/components/calculators/Automotive/ZeroToSixtyTimeCalculator"),
       urlStyle: "flat"
     },
@@ -416,6 +551,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Convert between horsepower and torque at a given RPM (using the standard formula).",
+      aliases: ["hp-to-torque-calculator", "torque-to-horsepower-converter", "hp-torque-rpm-formula-calculator", "convert-torque-to-hp"],
+      seoTitle: "Horsepower to Torque Converter (by RPM)",
+      seoDescription: "Convert between horsepower and torque at any given RPM using the standard automotive formula, useful for comparing engine specs, dyno results, or builds.",
       loader: () => import("@/components/calculators/Automotive/HpToTorqueConverterCalculator"),
       urlStyle: "flat"
     },
@@ -425,6 +563,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Calculate engine size (cc or cubic inches) from bore, stroke, and number of cylinders.",
+      aliases: ["engine-size-calculator", "bore-and-stroke-to-cc-calculator", "cubic-inches-to-cc-engine", "cylinder-displacement-calculator"],
+      seoTitle: "Engine Displacement Calculator — Bore & Stroke to CC",
+      seoDescription: "Calculate engine size in cubic centimeters or cubic inches from cylinder bore, piston stroke, and number of cylinders, ideal for engine builds and swaps.",
       loader: () => import("@/components/calculators/Automotive/EngineDisplacementCalculator"),
       urlStyle: "flat"
     },
@@ -434,6 +575,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Determine engine compression ratio based on chamber volume, piston dome/dish, and deck height.",
+      aliases: ["static-compression-ratio-calculator", "chamber-volume-compression-calculator", "piston-dome-dish-compression-ratio", "engine-build-compression-calculator"],
+      seoTitle: "Compression Ratio Calculator for Engine Builds",
+      seoDescription: "Determine an engine's static compression ratio from combustion chamber volume, piston dome or dish, head gasket thickness, and deck height for engine builds.",
       loader: () => import("@/components/calculators/Automotive/CompressionRatioCalculator"),
       urlStyle: "flat"
     },
@@ -443,6 +587,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Estimate required carburetor airflow (CFM) for your engine based on RPM and volumetric efficiency.",
+      aliases: ["what-size-carburetor-do-i-need", "carb-sizing-calculator", "engine-cfm-calculator", "carburetor-airflow-calculator"],
+      seoTitle: "Carburetor CFM Sizing Calculator for Engine Builds",
+      seoDescription: "Estimate the ideal carburetor airflow rating in CFM for your engine, based on displacement, maximum RPM, and volumetric efficiency for correct carb sizing.",
       loader: () => import("@/components/calculators/Automotive/CarbCfmSizingCalculator"),
       urlStyle: "flat"
     },
@@ -452,6 +599,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Calculate intake/exhaust duration, overlap, and lobe separation angle for cam selection.",
+      aliases: ["cam-duration-calculator", "lobe-separation-angle-calculator", "valve-overlap-calculator", "camshaft-lsa-calculator"],
+      seoTitle: "Camshaft Duration & Overlap Calculator",
+      seoDescription: "Calculate intake and exhaust duration, valve overlap, and lobe separation angle to compare camshafts and pick the right cam profile for your engine build.",
       loader: () => import("@/components/calculators/Automotive/CamshaftDurationOverlapCalculator"),
       urlStyle: "flat"
     },
@@ -461,6 +611,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Optimize exhaust header dimensions for peak torque RPM and engine specs.",
+      aliases: ["exhaust-header-sizing-calculator", "header-primary-tube-diameter-calculator", "what-size-headers-do-i-need", "header-tube-length-for-torque"],
+      seoTitle: "Header Primary Tube Length & Diameter Calculator",
+      seoDescription: "Optimize exhaust header primary tube length and diameter to target your desired peak torque RPM, based on engine displacement, cylinder count, and specs.",
       loader: () => import("@/components/calculators/Automotive/HeaderTubeLengthDiameterCalculator"),
       urlStyle: "flat"
     },
@@ -470,6 +623,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Estimate horsepower and torque gains from common mods like intake, exhaust, cam, or turbo.",
+      aliases: ["how-much-hp-does-a-cold-air-intake-add", "mod-power-gains-calculator", "turbo-hp-gain-estimator", "exhaust-and-intake-hp-gains"],
+      seoTitle: "Power Gains from Mods Estimator — Intake, Exhaust, Turbo",
+      seoDescription: "Estimate the horsepower and torque gains from common performance mods like a cold air intake, exhaust, camshaft upgrade, or turbo based on your baseline HP.",
       loader: () => import("@/components/calculators/Automotive/ModPowerGainsEstimatorCalculator"),
       urlStyle: "flat"
     },
@@ -479,6 +635,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Calculate 0-60 time and effective torque for electric vehicles based on motor power, battery output, and weight.",
+      aliases: ["electric-motor-0-60-calculator", "ev-torque-calculator", "ev-acceleration-estimator", "instant-torque-ev-calculator"],
+      seoTitle: "EV Acceleration & Torque Delivery Estimator",
+      seoDescription: "Calculate 0-60 mph time and effective torque delivery for an electric vehicle based on motor power, battery output, drivetrain, and total vehicle weight.",
       loader: () => import("@/components/calculators/Automotive/EvAccelerationTorqueCalculator"),
       urlStyle: "flat"
     },
@@ -488,6 +647,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "performance-tuning",
       description: "Adjust dyno-measured horsepower and torque for standard atmospheric conditions (SAE, DIN, etc.).",
+      aliases: ["sae-correction-factor-calculator", "dyno-hp-correction-calculator", "dyno-atmospheric-correction", "din-correction-factor-calculator"],
+      seoTitle: "Dyno Correction Factor Calculator (SAE, DIN)",
+      seoDescription: "Adjust dyno-measured horsepower and torque for standard atmospheric conditions using SAE or DIN correction factors, accounting for temperature and altitude.",
       loader: () => import("@/components/calculators/Automotive/DynoCorrectionFactorCalculator"),
       urlStyle: "flat"
     },
@@ -497,6 +659,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       category: "automotive",
       subcategory: "tires-wheels-speedometer",
       description: "Educational tool to estimate 0-60 times based on power/weight.",
+      aliases: ["0-60-by-gear-and-rpm", "power-to-weight-acceleration-calculator", "gear-rpm-acceleration-estimator", "hp-per-ton-0-60-calculator"],
+      seoTitle: "0-60 Speed vs Gear/RPM Calculator",
+      seoDescription: "Estimate 0-60 mph acceleration times based on power-to-weight ratio and see how gear selection and RPM range affect the result — an educational drag tool.",
       loader: () => import("@/components/calculators/Automotive/060SpeedVsGearRpmCalculator"),
       urlStyle: "flat"
     }

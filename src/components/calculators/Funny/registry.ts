@@ -11,6 +11,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Solve the ultimate dinner dilemma. Calculate price per square inch to see if two medium pizzas are a better deal than one large.",
+      aliases: ["pizza-size-price-comparison-calculator", "how-to-calculate-pizza-size-price-comparison", "pizza-size-price-comparison-online", "free-pizza-size-price-comparison-calculator"],
+      seoTitle: "Pizza Size/Price Comparison Calculator",
+      seoDescription: "Solve the ultimate dinner dilemma. Calculate price per square inch to see if two medium pizzas are a better deal than one large.",
       loader: () => import("@/components/calculators/Funny/PizzaSizePriceComparisonCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Plan your pizza party perfectly. Estimate slices per person and calculate the potential 'regret index' for overeating.",
+      aliases: ["pizza-slices-per-person-and-regret-index-calculator", "how-to-calculate-pizza-slices-per-person-and-regret-index", "pizza-slices-per-person-and-regret-index-online", "free-pizza-slices-per-person-and-regret-index-calculator"],
+      seoTitle: "Pizza Slices per Person & Regret Index",
+      seoDescription: "Plan your pizza party perfectly. Estimate slices per person and calculate the potential 'regret index' for overeating. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/PizzaSlicesPerPersonRegretIndexCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Settle BBQ disputes fairly. A randomizer tool to decide who buys the charcoal, who brings the meat, and who just brings the vibes.",
+      aliases: ["bbq-who-brings-the-charcoal-splitter-calculator", "how-to-calculate-bbq-who-brings-the-charcoal-splitter", "bbq-who-brings-the-charcoal-splitter-online", "free-bbq-who-brings-the-charcoal-splitter-calculator"],
+      seoTitle: "BBQ 'Who Brings the Charcoal?' Splitter",
+      seoDescription: "Settle BBQ disputes fairly. A randomizer tool to decide who buys the charcoal, who brings the meat, and who just brings the vibes.",
       loader: () => import("@/components/calculators/Funny/BbqCharcoalSplitterCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Chart your caffeine intake against work output. Find the sweet spot between 'peak productivity' and 'jittery chaos'.",
+      aliases: ["coffee-strength-vs-productivity-score-calculator", "how-to-calculate-coffee-strength-vs-productivity-score", "coffee-strength-vs-productivity-score-online", "free-coffee-strength-vs-productivity-score-calculator"],
+      seoTitle: "Coffee Strength vs Productivity Score",
+      seoDescription: "Chart your caffeine intake against work output. Find the sweet spot between 'peak productivity' and 'jittery chaos'. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/CoffeeStrengthVsProductivityMemeCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Solve the supermarket conspiracy. Calculate exactly how many packs of hot dogs and buns you need to buy to have zero leftovers.",
+      aliases: ["hot-dog-to-bun-mismatch-solver-calculator", "how-to-calculate-hot-dog-to-bun-mismatch-solver", "hot-dog-to-bun-mismatch-solver-online", "free-hot-dog-to-bun-mismatch-solver-calculator"],
+      seoTitle: "Hot-Dog to Bun Mismatch Solver",
+      seoDescription: "Solve the supermarket conspiracy. Calculate exactly how many packs of hot dogs and buns you need to buy to have zero leftovers.",
       loader: () => import("@/components/calculators/Funny/HotDogBunMismatchSolverCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Visualize your sugar intake. See a dramatic representation of exactly how many sugar cubes you are drinking in your daily tea.",
+      aliases: ["how-much-sugar-is-in-my-tea-calculator", "how-to-calculate-how-much-sugar-is-in-my-tea", "how-much-sugar-is-in-my-tea-online", "free-how-much-sugar-is-in-my-tea-calculator"],
+      seoTitle: "How Much Sugar Is in My Tea? (Dramatic)",
+      seoDescription: "Visualize your sugar intake. See a dramatic representation of exactly how many sugar cubes you are drinking in your daily tea.",
       loader: () => import("@/components/calculators/Funny/SugarInMyTeaDramaticCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Rate your date's potential awkwardness. Input variables like 'talks about ex' or 'forgot wallet' to predict the night's outcome.",
+      aliases: ["first-date-awkwardness-meter-calculator", "how-to-calculate-first-date-awkwardness-meter", "first-date-awkwardness-meter-online", "free-first-date-awkwardness-meter-calculator"],
+      seoTitle: "First-Date Awkwardness Meter",
+      seoDescription: "Rate your date's potential awkwardness. Input variables like 'talks about ex' or 'forgot wallet' to predict the night's outcome.",
       loader: () => import("@/components/calculators/Funny/FirstDateAwkwardnessMeterCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Calculate the optimal number of donuts for the office. Adjust for team size, hunger levels, and the 'it is Friday' factor.",
+      aliases: ["how-to-calculate-donut", "donut-online", "free-donut-calculator"],
+      seoTitle: "Donut Calculator",
+      seoDescription: "Calculate the optimal number of donuts for the office. Adjust for team size, hunger levels, and the 'it is Friday' factor. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/DonutCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Boil the perfect egg every time. Calculate the exact cooking time for soft, medium, or hard-boiled eggs based on altitude and size.",
+      aliases: ["how-to-calculate-ideal-egg-boiling", "ideal-egg-boiling-online", "free-ideal-egg-boiling-calculator"],
+      seoTitle: "Ideal Egg Boiling Calculator",
+      seoDescription: "Boil the perfect egg every time. Calculate the exact cooking time for soft, medium, or hard-boiled eggs based on altitude and size.",
       loader: () => import("@/components/calculators/Funny/IdealEggBoilingCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Assess your coffee dependency level. Answer fun questions to see if you run on caffeine or actual sleep.",
+      aliases: ["coffee-addiction-meter-calculator", "how-to-calculate-coffee-addiction-meter", "coffee-addiction-meter-online", "free-coffee-addiction-meter-calculator"],
+      seoTitle: "Coffee Addiction Meter",
+      seoDescription: "Assess your coffee dependency level. Answer fun questions to see if you run on caffeine or actual sleep. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Funny/CoffeeAddictionMeterCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Estimate your survival odds. Calculate how long you would last in a zombie apocalypse based on cardio, skills, and weapon choice.",
+      aliases: ["how-to-calculate-zombie-survival", "zombie-survival-online", "free-zombie-survival-calculator"],
+      seoTitle: "Zombie Survival Calculator",
+      seoDescription: "Estimate your survival odds. Calculate how long you would last in a zombie apocalypse based on cardio, skills, and weapon choice.",
       loader: () => import("@/components/calculators/Funny/ZombieSurvivalCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "food-social-life",
       description: "Test name compatibility. A classic fun algorithm to see if you and your crush are a 100% match or destined for doom.",
+      aliases: ["love-meter-calculator", "how-to-calculate-love-meter", "love-meter-online", "free-love-meter-calculator"],
+      seoTitle: "Love Meter (Name Compatibility)",
+      seoDescription: "Test name compatibility. A classic fun algorithm to see if you and your crush are a 100% match or destined for doom. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/LoveMeterCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "tech-work-life",
       description: "Calculate the cost of useless meetings. Input attendees and average salary to see how much money is burning while you talk.",
+      aliases: ["meetings-wasted-time-counter-calculator", "how-to-calculate-meetings-wasted-time-counter", "meetings-wasted-time-counter-online", "free-meetings-wasted-time-counter-calculator"],
+      seoTitle: "Meetings Wasted-Time Counter",
+      seoDescription: "Calculate the cost of useless meetings. Input attendees and average salary to see how much money is burning while you talk.",
       loader: () => import("@/components/calculators/Funny/MeetingsWastedTimeCounterCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "tech-work-life",
       description: "Estimate the environmental cost of your emails. Calculate the energy usage and carbon footprint of sending that 'Reply All' message.",
+      aliases: ["cost-to-send-this-email-calculator", "how-to-calculate-cost-to-send-this-email", "cost-to-send-this-email-online", "free-cost-to-send-this-email-calculator"],
+      seoTitle: "Cost to Send This Email (Energy/kWh)",
+      seoDescription: "Estimate the environmental cost of your emails. Calculate the energy usage and carbon footprint of sending that 'Reply All' message. Free and instant.",
       loader: () => import("@/components/calculators/Funny/EmailCostEstimatorEnergyCalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "tech-work-life",
       description: "Measure your browser tab anxiety. Calculate a stress score based on the number of open tabs you are too afraid to close.",
+      aliases: ["tab-overload-anxiety-score-calculator", "how-to-calculate-tab-overload-anxiety-score", "tab-overload-anxiety-score-online", "free-tab-overload-anxiety-score-calculator"],
+      seoTitle: "Tab Overload Anxiety Score",
+      seoDescription: "Measure your browser tab anxiety. Calculate a stress score based on the number of open tabs you are too afraid to close. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/TabOverloadAnxietyScoreCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "tech-work-life",
       description: "Rate your git commit messages. Are you writing useful descriptions or just 'wip' and 'fix'? Get a fun quality score.",
+      aliases: ["commit-message-quality-judge-calculator", "how-to-calculate-commit-message-quality-judge", "commit-message-quality-judge-online", "free-commit-message-quality-judge-calculator"],
+      seoTitle: "Commit Message Quality Judge",
+      seoDescription: "Rate your git commit messages. Are you writing useful descriptions or just 'wip' and 'fix'? Get a fun quality score. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/CommitMessageQualityJudgeCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "tech-work-life",
       description: "Estimate your daily typing volume. Calculate how many millions of times you click your keyboard over a lifetime of work.",
+      aliases: ["keyboard-clicks-per-day-calculator", "how-to-calculate-keyboard-clicks-per-day", "keyboard-clicks-per-day-online", "free-keyboard-clicks-per-day-calculator"],
+      seoTitle: "Keyboard Clicks per Day Estimator",
+      seoDescription: "Estimate your daily typing volume. Calculate how many millions of times you click your keyboard over a lifetime of work. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/KeyboardClicksPerDayCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "tech-work-life",
       description: "Predict meme success. A tongue-in-cheek calculator to estimate the viral potential of your latest internet creation.",
+      aliases: ["how-to-calculate-meme-virality", "meme-virality-online", "free-meme-virality-calculator"],
+      seoTitle: "Meme Virality Calculator",
+      seoDescription: "Predict meme success. A tongue-in-cheek calculator to estimate the viral potential of your latest internet creation. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/MemeViralityCalculator"),
       urlStyle: "flat"
     },
@@ -173,6 +227,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "tech-work-life",
       description: "Write words on a calculator. Generate the numbers needed to spell 'HELLO', 'ZOMBIE', and other classics when turned upside down.",
+      aliases: ["word-generator-calculator", "how-to-calculate-word-generator", "word-generator-online", "free-word-generator-calculator"],
+      seoTitle: "Calculator Word Generator (Upside-Down)",
+      seoDescription: "Write words on a calculator. Generate the numbers needed to spell 'HELLO', 'ZOMBIE', and other classics when turned upside down.",
       loader: () => import("@/components/calculators/Funny/CalculatorWordGeneratorUpsideDownCalculator"),
       urlStyle: "flat"
     },
@@ -182,6 +239,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Solve the laundry mystery. Estimate the probability of losing a sock based on wash frequency and dryer portal theories.",
+      aliases: ["how-to-calculate-lost-socks", "lost-socks-online", "free-lost-socks-calculator"],
+      seoTitle: "Lost Socks Calculator",
+      seoDescription: "Solve the laundry mystery. Estimate the probability of losing a sock based on wash frequency and dryer portal theories. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/LostSocksCalculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Measure dog energy bursts. Calculate the kinetic energy of your dog's 3 AM zoomies based on speed and destruction level.",
+      aliases: ["dog-zoomies-energy-release-meter-calculator", "how-to-calculate-dog-zoomies-energy-release-meter", "dog-zoomies-energy-release-meter-online", "free-dog-zoomies-energy-release-meter-calculator"],
+      seoTitle: "Dog Zoomies Energy Release Meter",
+      seoDescription: "Measure dog energy bursts. Calculate the kinetic energy of your dog's 3 AM zoomies based on speed and destruction level. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/DogZoomiesEnergyMeterCalculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Predict cat acknowledgement. Calculate the extremely low probability that your cat will actually respond when you call its name.",
+      aliases: ["cat-ignore-o-meter-calculator", "how-to-calculate-cat-ignore-o-meter", "cat-ignore-o-meter-online", "free-cat-ignore-o-meter-calculator"],
+      seoTitle: "Cat 'Ignore-o-Meter'",
+      seoDescription: "Predict cat acknowledgement. Calculate the extremely low probability that your cat will actually respond when you call its name.",
       loader: () => import("@/components/calculators/Funny/CatIgnoreOMeterCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Track plant neglect. Calculate how long you can 'procrastinate' watering your plants before they officially give up on you.",
+      aliases: ["plant-watering-procrastination-index-calculator", "how-to-calculate-plant-watering-procrastination-index", "plant-watering-procrastination-index-online", "free-plant-watering-procrastination-index-calculator"],
+      seoTitle: "Plant Watering Procrastination Index",
+      seoDescription: "Track plant neglect. Calculate how long you can 'procrastinate' watering your plants before they officially give up on you.",
       loader: () => import("@/components/calculators/Funny/PlantWateringProcrastinationIndexCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Manage binge-watching risks. Calculate how much of your life will be consumed if you watch 'just one more episode' tonight.",
+      aliases: ["netflix-just-one-more-episode-timer-calculator", "how-to-calculate-netflix-just-one-more-episode-timer", "netflix-just-one-more-episode-timer-online", "free-netflix-just-one-more-episode-timer-calculator"],
+      seoTitle: "Netflix 'Just One More Episode' Timer",
+      seoDescription: "Manage binge-watching risks. Calculate how much of your life will be consumed if you watch 'just one more episode' tonight.",
       loader: () => import("@/components/calculators/Funny/NetflixOneMoreEpisodeTimerCalculator"),
       urlStyle: "flat"
     },
@@ -227,6 +299,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Calculate your caffeine limit. Find out exactly how many cups of coffee would be lethal (so you can stop safely before that).",
+      aliases: ["death-by-caffeine-calculator", "how-to-calculate-death-by-caffeine", "death-by-caffeine-online", "free-death-by-caffeine-calculator"],
+      seoTitle: "Death by Caffeine (Max Safe Intake)",
+      seoDescription: "Calculate your caffeine limit. Find out exactly how many cups of coffee would be lethal (so you can stop safely before that).",
       loader: () => import("@/components/calculators/Funny/DeathByCaffeineCalculator"),
       urlStyle: "flat"
     },
@@ -236,6 +311,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Reclaim your time. See what new skills or hobbies you could have mastered in the time spent scrolling social media this year.",
+      aliases: ["social-media-time-alternatives-calculator", "how-to-calculate-social-media-time-alternatives", "social-media-time-alternatives-online", "free-social-media-time-alternatives-calculator"],
+      seoTitle: "Social Media Time Alternatives",
+      seoDescription: "Reclaim your time. See what new skills or hobbies you could have mastered in the time spent scrolling social media this year.",
       loader: () => import("@/components/calculators/Funny/SocialMediaTimeAlternativesCalculator"),
       urlStyle: "flat"
     },
@@ -245,6 +323,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Gamify your fitness. Estimate how many calories you burn while walking to hatch eggs and catch Pokémon.",
+      aliases: ["pok-mon-go-weight-loss-calculator", "how-to-calculate-pok-mon-go-weight-loss", "pok-mon-go-weight-loss-online", "free-pok-mon-go-weight-loss-calculator"],
+      seoTitle: "Pokémon GO Weight Loss Calculator",
+      seoDescription: "Gamify your fitness. Estimate how many calories you burn while walking to hatch eggs and catch Pokémon. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Funny/PokemonGoWeightLossCalculator"),
       urlStyle: "flat"
     },
@@ -254,6 +335,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Convert your net worth to tacos. See how rich you truly are by measuring your assets in units of delicious tacos.",
+      aliases: ["life-value-calculator", "how-to-calculate-life-value", "life-value-online", "free-life-value-calculator"],
+      seoTitle: "Life Value Estimator (Worth in Tacos)",
+      seoDescription: "Convert your net worth to tacos. See how rich you truly are by measuring your assets in units of delicious tacos. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/LifeValueInTacosCalculator"),
       urlStyle: "flat"
     },
@@ -263,6 +347,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "home-pets-pop-culture",
       description: "Estimate alien life. Use the famous Drake Equation to calculate the number of active, communicative extraterrestrial civilizations.",
+      aliases: ["how-to-calculate-drake-equation", "drake-equation-online", "free-drake-equation-calculator"],
+      seoTitle: "Drake Equation Calculator",
+      seoDescription: "Estimate alien life. Use the famous Drake Equation to calculate the number of active, communicative extraterrestrial civilizations.",
       loader: () => import("@/components/calculators/Funny/DrakeEquationCalculator"),
       urlStyle: "flat"
     },
@@ -272,6 +359,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "absurd-travel-adventure",
       description: "Budget your dream trip vs reality. A fun tool to see how far your actual savings will get you (maybe just to the backyard?).",
+      aliases: ["vacation-budget-reality-check-calculator", "how-to-calculate-vacation-budget-reality-check", "vacation-budget-reality-check-online", "free-vacation-budget-reality-check-calculator"],
+      seoTitle: "Vacation Budget Reality Check",
+      seoDescription: "Budget your dream trip vs reality. A fun tool to see how far your actual savings will get you (maybe just to the backyard?).",
       loader: () => import("@/components/calculators/Funny/VacationBudgetRealityCheckCalculator"),
       urlStyle: "flat"
     },
@@ -281,6 +371,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "absurd-travel-adventure",
       description: "Physics for fun. Calculate the minimum speed a car needs to successfully drive through a vertical loop-the-loop without falling.",
+      aliases: ["how-to-calculate-loop-the-loop-speed", "loop-the-loop-speed-online", "free-loop-the-loop-speed-calculator"],
+      seoTitle: "Loop-the-Loop Speed Calculator",
+      seoDescription: "Physics for fun. Calculate the minimum speed a car needs to successfully drive through a vertical loop-the-loop without falling.",
       loader: () => import("@/components/calculators/Funny/LoopTheLoopSpeedCalculator"),
       urlStyle: "flat"
     },
@@ -290,6 +383,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "absurd-travel-adventure",
       description: "Absurd physics scenario. Calculate how many rocks you would need to throw into the ocean to theoretically flood a specific country.",
+      aliases: ["rocks-to-flood-a-country-calculator", "how-to-calculate-rocks-to-flood-a-country", "rocks-to-flood-a-country-online", "free-rocks-to-flood-a-country-calculator"],
+      seoTitle: "Rocks to Flood a Country Estimator",
+      seoDescription: "Absurd physics scenario. Calculate how many rocks you would need to throw into the ocean to theoretically flood a specific country.",
       loader: () => import("@/components/calculators/Funny/RocksToFloodCountryCalculator"),
       urlStyle: "flat"
     },
@@ -299,6 +395,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "absurd-travel-adventure",
       description: "Calculate slap physics. Estimate the thermodynamic energy converted if you theoretically slapped a penguin (strictly hypothetical).",
+      aliases: ["penguin-slap-power-calculator", "how-to-calculate-penguin-slap-power", "penguin-slap-power-online", "free-penguin-slap-power-calculator"],
+      seoTitle: "Penguin Slap Power Calculator",
+      seoDescription: "Calculate slap physics. Estimate the thermodynamic energy converted if you theoretically slapped a penguin (strictly hypothetical).",
       loader: () => import("@/components/calculators/Funny/PenguinSlapPowerCalculator"),
       urlStyle: "flat"
     },
@@ -308,6 +407,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "absurd-travel-adventure",
       description: "Hydraulic press simulator. Calculate how many nickels stacked on top of an object would be heavy enough to crush it.",
+      aliases: ["how-to-calculate-nickels-to-crush", "nickels-to-crush-online", "free-nickels-to-crush-calculator"],
+      seoTitle: "Nickels to Crush Calculator",
+      seoDescription: "Hydraulic press simulator. Calculate how many nickels stacked on top of an object would be heavy enough to crush it. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/NickelsToCrushCalculator"),
       urlStyle: "flat"
     },
@@ -317,6 +419,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "absurd-travel-adventure",
       description: "Apocalypse calculator. What would happen to Earth's orbit if the sun instantly turned into a black hole of the same mass?",
+      aliases: ["black-hole-sun-impact-calculator", "how-to-calculate-black-hole-sun-impact", "black-hole-sun-impact-online", "free-black-hole-sun-impact-calculator"],
+      seoTitle: "Black Hole Sun Impact Calculator",
+      seoDescription: "Apocalypse calculator. What would happen to Earth's orbit if the sun instantly turned into a black hole of the same mass?. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/BlackHoleSunImpactCalculator"),
       urlStyle: "flat"
     },
@@ -326,6 +431,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "absurd-travel-adventure",
       description: "Sci-fi physics. Estimate the immense energy required to travel back in time based on theoretical warp drive metrics.",
+      aliases: ["time-travel-energy-requirement-calculator", "how-to-calculate-time-travel-energy-requirement", "time-travel-energy-requirement-online", "free-time-travel-energy-requirement-calculator"],
+      seoTitle: "Time Travel Energy Requirement",
+      seoDescription: "Sci-fi physics. Estimate the immense energy required to travel back in time based on theoretical warp drive metrics. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Funny/TimeTravelEnergyRequirementCalculator"),
       urlStyle: "flat"
     },
@@ -335,6 +443,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "absurd-travel-adventure",
       description: "Calculate savings on medical procedures. Compare the cost of surgery abroad versus domestic prices (plus a recovery vacation).",
+      aliases: ["medical-tourism-cost-saver-calculator", "how-to-calculate-medical-tourism-cost-saver", "medical-tourism-cost-saver-online", "free-medical-tourism-cost-saver-calculator"],
+      seoTitle: "Medical Tourism Cost Saver",
+      seoDescription: "Calculate savings on medical procedures. Compare the cost of surgery abroad versus domestic prices (plus a recovery vacation).",
       loader: () => import("@/components/calculators/Funny/MedicalTourismCostSaverCalculator"),
       urlStyle: "flat"
     },
@@ -344,6 +455,9 @@ export const funnyEntries: CalculatorEntry[] = [
       category: "funny",
       subcategory: "absurd-travel-adventure",
       description: "Optimize brick usage. Calculate how many bricks you save by building a wavy 'crinkle crankle' wall instead of a straight one.",
+      aliases: ["crinkle-crankle-wall-brick-saver-calculator", "how-to-calculate-crinkle-crankle-wall-brick-saver", "crinkle-crankle-wall-brick-saver-online", "free-crinkle-crankle-wall-brick-saver-calculator"],
+      seoTitle: "Crinkle Crankle Wall Brick Saver",
+      seoDescription: "Optimize brick usage. Calculate how many bricks you save by building a wavy 'crinkle crankle' wall instead of a straight one.",
       loader: () => import("@/components/calculators/Funny/CrinkleCrankleWallBrickSaverCalculator"),
       urlStyle: "flat"
     }

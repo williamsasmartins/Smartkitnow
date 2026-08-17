@@ -11,6 +11,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "general",
       description: "Determine your daily calorie needs for weight loss, maintenance, or weight gain based on your activity level and goals.",
+      aliases: ["daily-calorie-calculator", "how-many-calories-should-i-eat", "calorie-intake-calculator", "maintenance-calories-calculator"],
+      seoTitle: "Calorie Calculator — Daily Calorie Needs by Goal",
+      seoDescription: "Find how many calories you should eat per day for weight loss, maintenance, or muscle gain based on your age, sex, height, weight, and activity level.",
       loader: () => import("@/components/calculators/Health/DailyCalorieNeedsGoalCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "general",
       description: "Calculate your Body Mass Index (BMI) and find out if you're at a healthy weight.",
+      aliases: ["body-mass-index-calculator", "am-i-overweight-calculator", "bmi-chart-calculator", "healthy-weight-calculator"],
+      seoTitle: "BMI Calculator — Body Mass Index by Height & Weight",
+      seoDescription: "Calculate your Body Mass Index (BMI) from height and weight to see if you fall in the underweight, healthy, overweight, or obese range. Free and instant.",
       loader: () => import("@/components/calculators/Health/BmiBodyMassIndexCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "general",
       description: "Calculate your Basal Metabolic Rate (BMR) to understand how many calories your body burns at rest.",
+      aliases: ["basal-metabolic-rate-calculator", "resting-metabolic-rate-calculator", "how-many-calories-do-i-burn-at-rest", "bmr-formula-calculator"],
+      seoTitle: "BMR Calculator — Basal Metabolic Rate at Rest",
+      seoDescription: "Calculate your Basal Metabolic Rate (BMR) to see how many calories your body burns at rest each day, before activity, using your age, sex, height, and weight.",
       loader: () => import("@/components/calculators/Health/BmrMifflinStJeorCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "general",
       description: "Estimate your body fat percentage using the U.S. Navy Method.",
+      aliases: ["navy-method-body-fat-calculator", "body-fat-percentage-calculator-tape-measure", "what-is-my-body-fat-percentage"],
+      seoTitle: "Body Fat Calculator — U.S. Navy Method",
+      seoDescription: "Estimate your body fat percentage using the U.S. Navy tape-measure method, based on neck, waist, and (for women) hip circumference plus height, in seconds.",
       loader: () => import("@/components/calculators/Health/BodyFatUsNavy3SitesCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "general",
       description: "Find your ideal body weight range based on various scientific formulas.",
+      aliases: ["what-should-i-weigh-calculator", "healthy-body-weight-calculator", "hamwi-devine-formula-calculator"],
+      seoTitle: "Ideal Weight Calculator — Healthy Weight by Height",
+      seoDescription: "Find your ideal body weight range for your height and sex using the Hamwi, Devine, and Miller formulas, three scientific methods commonly used by clinicians.",
       loader: () => import("@/components/calculators/Health/IdealWeightRangeHamwiDevineMillerCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "body-metrics-weight-management",
       description: "Estimate your Total Daily Energy Expenditure (TDEE). Learn how many calories you need daily to maintain, lose, or gain weight.",
+      aliases: ["total-daily-energy-expenditure-calculator", "tdee-formula-calculator", "how-many-calories-to-maintain-weight"],
+      seoTitle: "TDEE Calculator — Total Daily Energy Expenditure",
+      seoDescription: "Estimate your Total Daily Energy Expenditure (TDEE), the total calories you burn each day, to plan intake for weight maintenance, loss, or muscle gain.",
       loader: () => import("@/components/calculators/Health/TdeeDailyEnergyExpenditureCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "body-metrics-weight-management",
       description: "Calculate your Body Mass Index (BMI) instantly. Determine if you are in a healthy weight range based on your height and weight.",
+      aliases: ["bmi-calculator-by-height-weight", "body-mass-index-chart-calculator", "what-is-my-bmi"],
+      seoTitle: "BMI Calculator — Body Mass Index by Height & Weight",
+      seoDescription: "Calculate your Body Mass Index (BMI) instantly from height and weight to see whether you fall into the underweight, healthy, overweight, or obese range.",
       loader: () => import("@/components/calculators/Health/BmiBodyMassIndexCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "body-metrics-weight-management",
       description: "Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor equation. Find out exactly how many calories your body burns at rest.",
+      aliases: ["mifflin-st-jeor-calculator", "bmr-equation-calculator", "resting-calorie-burn-calculator"],
+      seoTitle: "BMR Calculator — Mifflin-St Jeor Equation",
+      seoDescription: "Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor equation, the formula most dietitians trust, to see how many calories you burn at rest.",
       loader: () => import("@/components/calculators/Health/BmrMifflinStJeorCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "body-metrics-weight-management",
       description: "Estimate your body fat percentage using the US Navy method. Track your body composition progress accurately without expensive equipment.",
+      aliases: ["3-site-body-fat-calculator", "circumference-body-fat-calculator", "body-composition-tracker"],
+      seoTitle: "Body Fat % Calculator — US Navy 3-Site Method",
+      seoDescription: "Estimate your body fat percentage with the US Navy 3-site circumference method, so you can track body composition progress without expensive equipment.",
       loader: () => import("@/components/calculators/Health/BodyFatUsNavy3SitesCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "body-metrics-weight-management",
       description: "Discover your ideal weight range. Compare results from Hamwi, Devine, and Miller formulas to set realistic and healthy weight goals.",
+      aliases: ["healthy-weight-range-calculator", "devine-formula-weight-calculator", "compare-ideal-weight-formulas"],
+      seoTitle: "Ideal Weight Range — Hamwi, Devine & Miller Formulas",
+      seoDescription: "Compare your ideal weight range across the Hamwi, Devine, and Miller formulas side by side to set a realistic, evidence-based healthy weight goal today.",
       loader: () => import("@/components/calculators/Health/IdealWeightRangeHamwiDevineMillerCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "body-metrics-weight-management",
       description: "Calculate your Waist-to-Height Ratio (WHtR). Use this simple yet effective metric to assess central obesity and cardiovascular health risks.",
+      aliases: ["whtr-calculator", "waist-height-ratio-chart", "belly-fat-risk-calculator"],
+      seoTitle: "Waist-to-Height Ratio Calculator (WHtR)",
+      seoDescription: "Calculate your Waist-to-Height Ratio (WHtR) from waist circumference and height, a simple metric for screening central obesity and cardiovascular risk.",
       loader: () => import("@/components/calculators/Health/WaistToHeightRatioCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "body-metrics-weight-management",
       description: "Calculate Body Surface Area (BSA) accurately. Essential for determining medical dosages and assessing metabolic parameters.",
+      aliases: ["bsa-calculator-dubois", "body-surface-area-for-drug-dosing", "mosteller-bsa-calculator"],
+      seoTitle: "Body Surface Area Calculator (BSA)",
+      seoDescription: "Calculate Body Surface Area (BSA) from height and weight using standard clinical formulas, commonly used for medication dosing and metabolic assessments.",
       loader: () => import("@/components/calculators/Health/BodySurfaceAreaBsaCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "body-metrics-weight-management",
       description: "Determine daily calorie needs for your specific goal. Create a personalized nutrition plan for weight loss, maintenance, or muscle gain.",
+      aliases: ["personalized-calorie-plan-calculator", "calories-for-weight-loss-or-muscle-gain", "goal-based-nutrition-calculator"],
+      seoTitle: "Daily Calorie Needs Calculator by Goal",
+      seoDescription: "Determine your daily calorie needs for a specific goal and get a personalized target for weight loss, maintenance, or muscle gain based on your stats.",
       loader: () => import("@/components/calculators/Health/DailyCalorieNeedsGoalCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "body-metrics-weight-management",
       description: "Plan your weight loss journey timeline. Calculate the exact date you will reach your target weight based on your daily calorie deficit.",
+      aliases: ["when-will-i-reach-my-goal-weight", "weight-loss-timeline-calculator", "calorie-deficit-date-planner"],
+      seoTitle: "Weight Loss Date Calculator — Deficit Planner",
+      seoDescription: "Plan your weight loss timeline and estimate the calendar date you will reach your target weight based on your current stats and daily calorie deficit.",
       loader: () => import("@/components/calculators/Health/WeightLossDateDeficitPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "nutrition-macros",
       description: "Optimize your diet with a macro split planner. Calculate the perfect ratio of proteins, carbohydrates, and fats for your fitness goals.",
+      aliases: ["macronutrient-ratio-calculator", "protein-carb-fat-split-calculator", "macros-for-cutting-or-bulking"],
+      seoTitle: "Macro Split Calculator — Protein, Carb & Fat Ratio",
+      seoDescription: "Calculate a personalized macro split with daily grams of protein, carbohydrates, and fat based on your calorie target and fitness goal, cutting or bulking.",
       loader: () => import("@/components/calculators/Health/MacroSplitPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "nutrition-macros",
       description: "Calculate your optimal daily protein intake. Find out exactly how many grams you need to build muscle or preserve mass while dieting.",
+      aliases: ["how-much-protein-should-i-eat", "daily-protein-requirement-calculator", "protein-grams-per-day-calculator"],
+      seoTitle: "Protein Intake Calculator — Cut, Bulk & Maintain",
+      seoDescription: "Calculate your optimal daily protein intake in grams to build muscle while bulking or preserve lean mass while cutting, based on your weight and goal.",
       loader: () => import("@/components/calculators/Health/ProteinIntakeByGoalCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "nutrition-macros",
       description: "Set your daily carbohydrate target. Perfect for planning Low-Carb, Keto, or balanced diets to fuel your energy needs effectively.",
+      aliases: ["daily-carb-limit-calculator", "keto-carb-calculator", "how-many-carbs-per-day-to-lose-weight"],
+      seoTitle: "Carb Target Calculator — Keto & Low-Carb Ranges",
+      seoDescription: "Set your daily carbohydrate target in grams for a balanced, low-carb, or keto diet based on your calorie needs, so you can plan meals with confidence.",
       loader: () => import("@/components/calculators/Health/CarbTargetLowCarbKetoCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "nutrition-macros",
       description: "Determine healthy fat intake ranges based on AMDR. Ensure hormonal health and satiety by consuming the right amount of dietary fats.",
+      aliases: ["how-much-fat-should-i-eat-per-day", "daily-fat-intake-calculator", "amdr-fat-range-calculator"],
+      seoTitle: "Fat Intake Calculator — Healthy Daily Range (AMDR)",
+      seoDescription: "Determine your healthy daily fat intake range in grams using the AMDR guidelines, supporting hormonal health and satiety on any calorie budget or diet.",
       loader: () => import("@/components/calculators/Health/FatIntakeRangeAmdrCalculator"),
       urlStyle: "flat"
     },
@@ -173,6 +227,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "nutrition-macros",
       description: "Calculate your recommended daily fiber intake. Improve digestion and gut health by hitting accurate fiber goals based on calorie intake.",
+      aliases: ["how-much-fiber-per-day-calculator", "daily-fiber-goal-calculator", "fiber-intake-by-calories"],
+      seoTitle: "Fiber Intake Calculator — Daily Target by Calories",
+      seoDescription: "Calculate your recommended daily fiber intake in grams based on your calorie intake and sex, to support digestion and gut health with an accurate goal.",
       loader: () => import("@/components/calculators/Health/FiberIntakeTargetCalculator"),
       urlStyle: "flat"
     },
@@ -182,6 +239,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "nutrition-macros",
       description: "Calculate your daily water intake requirements. Stay hydrated by adjusting for body weight, activity level, and climate conditions.",
+      aliases: ["how-much-water-should-i-drink-a-day", "daily-water-intake-calculator", "hydration-calculator-by-weight"],
+      seoTitle: "Water Intake Calculator — Daily Ounces by Weight",
+      seoDescription: "Calculate how much water you should drink per day based on your body weight, activity level, and climate, so you stay properly hydrated all year round.",
       loader: () => import("@/components/calculators/Health/WaterIntakePerDayCalculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "nutrition-macros",
       description: "Split your daily calories across meals efficiently. Plan balanced portions for breakfast, lunch, dinner, and snacks to control hunger.",
+      aliases: ["calories-per-meal-calculator", "meal-planner-calorie-split", "how-to-split-calories-across-meals"],
+      seoTitle: "Meal Calorie Split — Breakfast, Lunch & Dinner",
+      seoDescription: "Split your daily calorie target across breakfast, lunch, dinner, and snacks to plan balanced portion sizes, control hunger, and hit your goal every day.",
       loader: () => import("@/components/calculators/Health/MealCaloriesSplitCalculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "training-performance",
       description: "Calculate running pace, speed, and splits. An essential tool for runners to plan race times and monitor training performance.",
+      aliases: ["pace-per-mile-calculator", "running-speed-calculator", "race-split-time-calculator"],
+      seoTitle: "Running Pace & Speed Calculator — Splits & Race Time",
+      seoDescription: "Calculate your running pace, speed, and mile or kilometer splits from distance and time, an essential tool for planning race times and training paces.",
       loader: () => import("@/components/calculators/Health/RunningPaceSpeedSplitsCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "training-performance",
       description: "Estimate calories burned during exercise. Use MET values to calculate energy expenditure for running, cycling, swimming, and more.",
+      aliases: ["calories-burned-exercise-calculator", "met-calorie-calculator", "how-many-calories-does-exercise-burn"],
+      seoTitle: "Calories Burned Calculator — MET-Based by Activity",
+      seoDescription: "Estimate calories burned during exercise using standard MET values, covering running, cycling, swimming, walking, and dozens of other daily activities.",
       loader: () => import("@/components/calculators/Health/CaloriesBurnedMetCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "training-performance",
       description: "Calculate your training heart rate zones. Use the Karvonen method to find the optimal intensity for fat loss or cardio improvement.",
+      aliases: ["karvonen-formula-calculator", "target-heart-rate-zone-calculator", "fat-burning-heart-rate-calculator"],
+      seoTitle: "Heart Rate Zones Calculator — Karvonen Method",
+      seoDescription: "Calculate your training heart rate zones with the Karvonen method to find the right intensity range for fat loss, cardio, or endurance improvement goals.",
       loader: () => import("@/components/calculators/Health/HeartRateZonesCalculator"),
       urlStyle: "flat"
     },
@@ -227,6 +299,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "training-performance",
       description: "Calculate your One-Rep Max (1RM) safely. Estimate your maximum lifting strength using proven Epley and Brzycki formulas.",
+      aliases: ["1rm-calculator-epley", "max-lift-calculator", "bench-press-max-calculator"],
+      seoTitle: "1RM Calculator — One-Rep Max (Epley & Brzycki)",
+      seoDescription: "Estimate your one-rep max (1RM) safely from a lighter warm-up set using the Epley and Brzycki formulas, without ever attempting a true maximal barbell lift.",
       loader: () => import("@/components/calculators/Health/OneRepMax1rmEpleyBrzyckiCalculator"),
       urlStyle: "flat"
     },
@@ -236,6 +311,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "training-performance",
       description: "Convert steps into distance and calories burned. Track your daily walking activity and visualize its impact on your fitness goals.",
+      aliases: ["how-many-calories-does-10000-steps-burn", "steps-to-miles-calculator", "walking-steps-calorie-converter"],
+      seoTitle: "Steps to Distance & Calories Converter",
+      seoDescription: "Convert your daily step count into distance walked and calories burned, so you can track how your walking activity adds up toward your daily fitness goal.",
       loader: () => import("@/components/calculators/Health/StepsDistanceCaloriesConverterCalculator"),
       urlStyle: "flat"
     },
@@ -245,6 +323,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "women-s-health",
       description: "Predict your ovulation and fertile window accurately. Maximize your chances of conception by tracking your most fertile days.",
+      aliases: ["ovulation-calculator", "most-fertile-days-calculator", "when-am-i-ovulating-calculator"],
+      seoTitle: "Ovulation Calculator — Fertile Window Estimator",
+      seoDescription: "Estimate your ovulation date and fertile window from your last period and average cycle length, to help identify your most fertile days for conception.",
       loader: () => import("@/components/calculators/Health/OvulationFertileWindowCalculator"),
       urlStyle: "flat"
     },
@@ -254,6 +335,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "women-s-health",
       description: "Calculate your pregnancy due date using Naegele's rule. Estimate the arrival of your baby based on your last menstrual period.",
+      aliases: ["due-date-calculator", "when-is-my-baby-due", "estimated-delivery-date-calculator"],
+      seoTitle: "Pregnancy Due Date Calculator (Naegele's Rule)",
+      seoDescription: "Calculate your estimated pregnancy due date using Naegele's rule, based on the first day of your last menstrual period and a typical 280-day pregnancy.",
       loader: () => import("@/components/calculators/Health/PregnancyDueDateNaegeleCalculator"),
       urlStyle: "flat"
     },
@@ -263,6 +347,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "women-s-health",
       description: "Monitor healthy pregnancy weight gain. Get recommended weight ranges based on your pre-pregnancy BMI for a healthy baby and mom.",
+      aliases: ["how-much-weight-should-i-gain-pregnant", "pregnancy-weight-gain-chart-calculator", "healthy-pregnancy-weight-calculator"],
+      seoTitle: "Pregnancy Weight Gain Calculator (BMI-Based)",
+      seoDescription: "See a recommended pregnancy weight gain range based on your pre-pregnancy BMI, using clinical guidelines aimed at supporting a healthy mother and baby.",
       loader: () => import("@/components/calculators/Health/PregnancyWeightGainRangeBmiAwareCalculator"),
       urlStyle: "flat"
     },
@@ -272,6 +359,9 @@ export const healthEntries: CalculatorEntry[] = [
       category: "health",
       subcategory: "women-s-health",
       description: "Estimate energy needs during pregnancy. Calculate adjusted TDEE to ensure adequate nutrition for fetal development and maternal health.",
+      aliases: ["calories-needed-during-pregnancy", "pregnancy-calorie-calculator", "trimester-calorie-adjustment-calculator"],
+      seoTitle: "Pregnancy TDEE Calculator — Gestational Calories",
+      seoDescription: "Estimate your adjusted daily energy needs during pregnancy by trimester, an educational guide to help support fetal development and maternal nutrition.",
       loader: () => import("@/components/calculators/Health/TdeeGestationAdjustedCalculator"),
       urlStyle: "flat"
     }

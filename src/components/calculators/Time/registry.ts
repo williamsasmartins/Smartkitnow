@@ -11,6 +11,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "general",
       description: "A dynamic digital clock displaying time and date worldwide. Choose local, popular cities, or search globally.",
+      aliases: ["real-time-world-clock-calculator", "how-to-calculate-real-time-world-clock", "real-time-world-clock-online", "free-real-time-world-clock-calculator"],
+      seoTitle: "Real-Time World Clock",
+      seoDescription: "A dynamic digital clock displaying time and date worldwide. Choose local, popular cities, or search globally.",
       loader: () => import("@/components/calculators/Time/WorldClockCalculator"),
       urlStyle: "flat"
     },
@@ -20,6 +23,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "dates-durations",
       description: "Calculate the number of days, months, or years between two specific dates. Essential for planning projects, calculating age, or tracking duration.",
+      aliases: ["days-between-dates-calculator", "how-to-calculate-days-between-dates", "days-between-dates-online", "free-days-between-dates-calculator"],
+      seoTitle: "Days Between Dates (date duration)",
+      seoDescription: "Calculate the number of days, months, or years between two specific dates. Essential for planning projects, calculating age, or tracking duration.",
       loader: () => import("@/components/calculators/Time/DaysBetweenDatesCalculator"),
       urlStyle: "flat"
     },
@@ -29,6 +35,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "dates-durations",
       description: "Add or subtract a specific number of days, months, or years from a given starting date. Perfect for deadline tracking.",
+      aliases: ["add-subtract-date-calculator", "how-to-calculate-add-subtract-date", "add-subtract-date-online", "free-add-subtract-date-calculator"],
+      seoTitle: "Add/Subtract Date (days/months/years)",
+      seoDescription: "Add or subtract a specific number of days, months, or years from a given starting date. Perfect for deadline tracking. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Time/AddSubtractDateCalculator"),
       urlStyle: "flat"
     },
@@ -38,6 +47,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "dates-durations",
       description: "Add or subtract hours, minutes, or seconds from a starting time. Useful for scheduling and time management.",
+      aliases: ["add-subtract-time-calculator", "how-to-calculate-add-subtract-time", "add-subtract-time-online", "free-add-subtract-time-calculator"],
+      seoTitle: "Add/Subtract Time (h/min/s)",
+      seoDescription: "Add or subtract hours, minutes, or seconds from a starting time. Useful for scheduling and time management. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Time/AddSubtractTimeCalculator"),
       urlStyle: "flat"
     },
@@ -47,6 +59,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "dates-durations",
       description: "Calculate the number of working days between two dates, automatically excluding weekends and customizable holidays.",
+      aliases: ["business-days-calculator", "how-to-calculate-business-days", "business-days-online", "free-business-days-calculator"],
+      seoTitle: "Business Days Calculator (exclude weekends/holidays)",
+      seoDescription: "Calculate the number of working days between two dates, automatically excluding weekends and customizable holidays. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Time/BusinessDaysCalculator"),
       urlStyle: "flat"
     },
@@ -56,6 +71,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "dates-durations",
       description: "Find the ISO week number for any given date. Standardized for business and international scheduling.",
+      aliases: ["week-number-and-iso-week-finder-calculator", "how-to-calculate-week-number-and-iso-week-finder", "week-number-and-iso-week-finder-online", "free-week-number-and-iso-week-finder-calculator"],
+      seoTitle: "Week Number & ISO Week Finder",
+      seoDescription: "Find the ISO week number for any given date. Standardized for business and international scheduling. Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Time/IsoWeekNumberCalculator"),
       urlStyle: "flat"
     },
@@ -65,6 +83,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "dates-durations",
       description: "Calculate a person's age precisely in years, months, and days.",
+      aliases: ["how-to-calculate-age", "age-online", "free-age-calculator"],
+      seoTitle: "Age Calculator (years/months/days)",
+      seoDescription: "Calculate a person's age precisely in years, months, and days.",
       loader: () => import("@/components/calculators/Time/AgeCalculator"),
       urlStyle: "flat"
     },
@@ -74,6 +95,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "dates-durations",
       description: "Determine the exact difference between two dates in total hours, minutes, and seconds.",
+      aliases: ["date-difference-in-hours-minutes-seconds-calculator", "how-to-calculate-date-difference-in-hours-minutes-seconds", "date-difference-in-hours-minutes-seconds-online", "free-date-difference-in-hours-minutes-seconds-calculator"],
+      seoTitle: "Date Difference in Hours/Minutes/Seconds",
+      seoDescription: "Determine the exact difference between two dates in total hours, minutes, and seconds. Free time tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Time/DateDifferenceHmsCalculator"),
       urlStyle: "flat"
     },
@@ -83,6 +107,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "dates-durations",
       description: "Convert any date into its Julian Date or Day Number (1-366). Used in science, astronomy, and military applications.",
+      aliases: ["julian-date-day-calculator", "how-to-calculate-julian-date-day", "julian-date-day-online", "free-julian-date-day-calculator"],
+      seoTitle: "Julian Date/Day Calculator",
+      seoDescription: "Convert any date into its Julian Date or Day Number (1-366). Used in science, astronomy, and military applications. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Time/JulianDateDayNumberCalculator"),
       urlStyle: "flat"
     },
@@ -92,6 +119,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "dates-durations",
       description: "Check quickly whether a given year is a leap year.",
+      aliases: ["leap-year-calculator", "how-to-calculate-leap-year", "leap-year-online", "free-leap-year-calculator"],
+      seoTitle: "Leap Year Checker",
+      seoDescription: "Check quickly whether a given year is a leap year.",
       loader: () => import("@/components/calculators/Time/LeapYearCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -101,6 +131,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "time-zones-clocks",
       description: "Convert time instantly between different global cities and time zones. Ideal for international communication.",
+      aliases: ["time-zone-calculator", "how-to-calculate-time-zone", "time-zone-online", "free-time-zone-calculator"],
+      seoTitle: "Time Zone Converter (between cities)",
+      seoDescription: "Convert time instantly between different global cities and time zones. Ideal for international communication.",
       loader: () => import("@/components/calculators/Time/TimeZoneConverterCalculator"),
       urlStyle: "flat"
     },
@@ -110,6 +143,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "time-zones-clocks",
       description: "Find the best overlapping time for a meeting across multiple time zones. Maximize attendance for global teams.",
+      aliases: ["meeting-calculator", "how-to-calculate-meeting", "meeting-online", "free-meeting-calculator"],
+      seoTitle: "Meeting Planner (common time across time zones)",
+      seoDescription: "Find the best overlapping time for a meeting across multiple time zones. Maximize attendance for global teams.",
       loader: () => import("@/components/calculators/Time/MeetingPlannerTimeZonesCalculator"),
       urlStyle: "flat"
     },
@@ -119,6 +155,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "time-zones-clocks",
       description: "Convert Coordinated Universal Time (UTC) to your local time zone and vice versa.",
+      aliases: ["utc-local-time-calculator", "how-to-calculate-utc-local-time", "utc-local-time-online", "free-utc-local-time-calculator"],
+      seoTitle: "UTC ↔ Local Time Converter",
+      seoDescription: "Convert Coordinated Universal Time (UTC) to your local time zone and vice versa. Free time tool — get instant, accurate results with no signup needed.",
       loader: () => import("@/components/calculators/Time/UtcLocalTimeConverterCalculator"),
       urlStyle: "flat"
     },
@@ -128,6 +167,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "time-zones-clocks",
       description: "Check upcoming Daylight Saving Time (DST) changes for any location and see the time shift.",
+      aliases: ["dst-change-calculator", "how-to-calculate-dst-change", "dst-change-online", "free-dst-change-calculator"],
+      seoTitle: "DST Change Checker (time changes)",
+      seoDescription: "Check upcoming Daylight Saving Time (DST) changes for any location and see the time shift. Free time tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Time/DstChangeCheckerCalculator"),
       urlStyle: "flat"
     },
@@ -137,6 +179,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "time-zones-clocks",
       description: "Convert between human-readable dates and the Epoch (Unix) timestamp. Essential for programming and data logging.",
+      aliases: ["epoch-unix-time-calculator", "how-to-calculate-epoch-unix-time", "epoch-unix-time-online", "free-epoch-unix-time-calculator"],
+      seoTitle: "Epoch/Unix Time Converter",
+      seoDescription: "Convert between human-readable dates and the Epoch (Unix) timestamp. Essential for programming and data logging. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Time/EpochUnixTimeConverterCalculator"),
       urlStyle: "flat"
     },
@@ -146,6 +191,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "calendar-extras",
       description: "Generate and customize a monthly or yearly calendar, with an option to export as a PDF.",
+      aliases: ["calendar-generator-calculator", "how-to-calculate-calendar-generator", "calendar-generator-online", "free-calendar-generator-calculator"],
+      seoTitle: "Calendar Generator (month/year, export PDF)",
+      seoDescription: "Generate and customize a monthly or yearly calendar, with an option to export as a PDF. Free time tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Time/CalendarGeneratorPdfCalculator"),
       urlStyle: "flat"
     },
@@ -155,6 +203,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "calendar-extras",
       description: "Customize your work schedule (e.g., 4/10s, 9/80s) and plan your workdays/workweeks efficiently.",
+      aliases: ["workday-workweek-calculator", "how-to-calculate-workday-workweek", "workday-workweek-online", "free-workday-workweek-calculator"],
+      seoTitle: "Workday/Workweek Planner (customized)",
+      seoDescription: "Customize your work schedule (e.g., 4/10s, 9/80s) and plan your workdays/workweeks efficiently.",
       loader: () => import("@/components/calculators/Time/WorkdayWorkweekPlannerCalculator"),
       urlStyle: "flat"
     },
@@ -164,6 +215,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "calendar-extras",
       description: "Set a countdown timer to track the exact time remaining until a specific future date or event.",
+      aliases: ["countdown-timer-calculator", "how-to-calculate-countdown-timer", "countdown-timer-online", "free-countdown-timer-calculator"],
+      seoTitle: "Countdown Timer (until a date/time)",
+      seoDescription: "Set a countdown timer to track the exact time remaining until a specific future date or event.",
       loader: () => import("@/components/calculators/Time/CountdownTimerCalculator"),
       urlStyle: "flat"
     },
@@ -173,6 +227,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "calendar-extras",
       description: "Simple web-based stopwatch with functionality to record and manage split times.",
+      aliases: ["stopwatch-and-split-times-calculator", "how-to-calculate-stopwatch-and-split-times", "stopwatch-and-split-times-online", "free-stopwatch-and-split-times-calculator"],
+      seoTitle: "Stopwatch & Split Times (web tool)",
+      seoDescription: "Simple web-based stopwatch with functionality to record and manage split times. Free, fast, and mobile-friendly with instant, accurate results — no signup.",
       loader: () => import("@/components/calculators/Time/StopwatchSplitTimesCalculator"),
       urlStyle: "flat"
     },
@@ -182,6 +239,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "calendar-extras",
       description: "Determine the exact day of the week for any past or future date (and learn the 'Doomsday Rule').",
+      aliases: ["day-of-week-for-any-date-calculator", "how-to-calculate-day-of-week-for-any-date", "day-of-week-for-any-date-online", "free-day-of-week-for-any-date-calculator"],
+      seoTitle: "Day of Week for Any Date (includes Doomsday rule)",
+      seoDescription: "Determine the exact day of the week for any past or future date (and learn the 'Doomsday Rule').",
       loader: () => import("@/components/calculators/Time/DayOfWeekForDateCalculator"),
       urlStyle: "flat"
     },
@@ -191,6 +251,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "calendar-extras",
       description: "Count the total occurrence of a specific weekday (e.g., all Mondays) between two dates.",
+      aliases: ["count-specific-weekdays-between-dates-calculator", "how-to-calculate-count-specific-weekdays-between-dates", "count-specific-weekdays-between-dates-online", "free-count-specific-weekdays-between-dates-calculator"],
+      seoTitle: "Count Specific Weekdays Between Dates (e.g., all Fridays)",
+      seoDescription: "Count the total occurrence of a specific weekday (e.g., all Mondays) between two dates. Free time tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Time/CountSpecificWeekdaysCalculator"),
       urlStyle: "flat"
     },
@@ -200,6 +263,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "sun-moon-astronomy",
       description: "Calculate the exact sunrise and sunset times for any location and date. Essential for photographers and planners.",
+      aliases: ["sunrise-and-sunset-times-calculator", "how-to-calculate-sunrise-and-sunset-times", "sunrise-and-sunset-times-online", "free-sunrise-and-sunset-times-calculator"],
+      seoTitle: "Sunrise and Sunset Times",
+      seoDescription: "Calculate the exact sunrise and sunset times for any location and date. Essential for photographers and planners. Free and instant, no signup required.",
       loader: () => import("@/components/calculators/Time/SunriseSunsetTimesCalculator"),
       urlStyle: "flat"
     },
@@ -209,6 +275,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "sun-moon-astronomy",
       description: "Track the lunar cycle and predict the phase of the moon (New, Full, Quarter) for any date.",
+      aliases: ["moon-phases-calculator", "how-to-calculate-moon-phases", "moon-phases-online", "free-moon-phases-calculator"],
+      seoTitle: "Moon Phases",
+      seoDescription: "Track the lunar cycle and predict the phase of the moon (New, Full, Quarter) for any date. Free time tool with instant, accurate results — no signup required.",
       loader: () => import("@/components/calculators/Time/MoonPhasesCalculator"),
       urlStyle: "flat"
     },
@@ -218,6 +287,9 @@ export const timeEntries: CalculatorEntry[] = [
       category: "time",
       subcategory: "sun-moon-astronomy",
       description: "Calculate the exact date and time for the start of the astronomical seasons (solstices and equinoxes).",
+      aliases: ["seasons-calculator", "how-to-calculate-seasons", "seasons-online", "free-seasons-calculator"],
+      seoTitle: "Seasons Calculator",
+      seoDescription: "Calculate the exact date and time for the start of the astronomical seasons (solstices and equinoxes). Free, fast, and mobile-friendly — no signup needed.",
       loader: () => import("@/components/calculators/Time/AstronomicalSeasonsCalculator"),
       urlStyle: "flat"
     }
