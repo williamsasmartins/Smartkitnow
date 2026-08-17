@@ -650,6 +650,78 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "A 12x12 room needs 12 sheets of drywall for the walls (10% waste included) — see the exact math, a size-by-size breakdown, and the ceiling add-on.",
   },
+  {
+    slug: "is-refinancing-worth-it-for-a-1-percent-lower-rate",
+    title: "Is Refinancing Worth It for a 1% Lower Rate?",
+    excerpt:
+      "A $302,000 balance at 7.25% dropping to 6.25% saves real money — but the term you pick changes whether refinancing wins or quietly costs you more.",
+    category: "Personal Finance",
+    date: "2026-08-17",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "Is refinancing worth it for a 1% lower rate? On a $302,000 balance moving from 7.25% to 6.25%, yes on the break-even math: a new 30-year loan saves about $323 a month and $6,000 in closing costs breaks even in 19 months. But that same 30-year option costs $14,545 more in total interest than just keeping the original loan, because it resets the clock five years earlier than needed. Matching the 25 years actually remaining saves $57,205 instead. The term you pick decides which answer you get.",
+    sections: [
+      {
+        heading: "Is refinancing worth it for a 1% lower rate? Start with break-even",
+        paragraphs: [
+          "The standard way to check whether refinancing is worth it is a break-even calculation: divide your closing costs by your monthly savings to get the number of months before the refinance pays for itself. Take a homeowner five years into a $320,000, 30-year loan at 7.25%. Their current payment is $2,183 in principal and interest (property taxes and insurance don't change when you refinance, so they're left out of every comparison below), and after 60 payments their remaining balance is $302,012 with 25 years left on the original schedule.",
+          "A lender offers 6.25% — exactly one percentage point lower — with $6,000 in closing costs (about 2% of the balance, a typical range is 2-5%). Refinance that $302,012 balance into a new 30-year loan and the payment drops to $1,860, a monthly savings of $323. Divide $6,000 by $323 and the break-even point is 18.6 months, under two years. By the usual rule — worth it if you'll stay past the break-even point — this refinance looks like an easy yes.",
+        ],
+      },
+      {
+        heading: "The trap: a lower rate can still cost you more, in total",
+        paragraphs: [
+          "Break-even math only tracks monthly cash flow, not the total interest you'll pay over the life of the loan — and those two answers can point in opposite directions. Refinancing into a fresh 30-year term doesn't just lower the rate, it also restarts the amortization clock, so the borrower goes from having 25 years left to having 30 years left, adding 5 years of payments back onto the schedule.",
+          "Run the comparison side by side. If this borrower had simply kept the original 7.25% loan for the 25 years actually remaining, they'd pay $352,877 in remaining interest. Refinance into a new 30-year term at 6.25% instead, and total interest over that loan is $367,422 — $14,545 more, despite the lower rate and the $323 monthly savings.",
+          "A 25-year term tells a different story. Matching the time actually left on the original loan, the payment is $1,992 (still $191 a month cheaper), the break-even point is 31.5 months, and total interest drops to $295,672 — a genuine savings of $57,205 versus sticking with the original loan.",
+        ],
+      },
+      {
+        heading: "Same rate drop, three different outcomes",
+        paragraphs: [
+          "All three paths start from the identical $302,012 balance and the identical 1-point rate drop from 7.25% to 6.25%. What changes is only the term, and it swings the result from a loss to a substantial gain:",
+          "1. Keep the original loan (25 years left, 7.25%): payment $2,183, remaining interest $352,877. This is the baseline.",
+          "2. Refinance to a new 30-year term (6.25%): payment $1,860, monthly savings $323, break-even 19 months, total interest $367,422 — $14,545 worse than the baseline.",
+          "3. Refinance to a 25-year term (6.25%, matching the time actually left): payment $1,992, monthly savings $191, break-even 32 months, total interest $295,672 — $57,205 better than the baseline.",
+          "The 30-year refinance has the bigger monthly savings and the faster break-even, yet it is the only one of the three that leaves you paying more interest than doing nothing.",
+        ],
+      },
+      {
+        heading: "How to decide which one to take",
+        paragraphs: [
+          "Ask your lender for a quote at your remaining term, not just their default 30-year offer — most quote 15, 20, and 25-year terms, and some will price a custom term on request. If the payment on that shorter term still fits your budget, it captures nearly all the lifetime savings while keeping your original payoff date, which is the version of refinancing that's worth it in both the short-run and long-run sense.",
+          "If the shorter-term payment genuinely doesn't fit, the 30-year reset isn't automatically wrong — a lower guaranteed payment has real value if it prevents missed payments or lets you invest the difference elsewhere — but go in knowing you're trading total interest for monthly flexibility, not getting a free win. Either way, skip the refinance entirely if you plan to sell or move before your break-even month, and be wary of rolling closing costs into the new balance, since that raises the principal and pushes your break-even point out further than the sticker price on the closing costs suggests.",
+          "One caveat most refinance guides skip: the 30-year loan's disadvantage only holds if you actually pay the minimum. Take the 30-year refinance at $1,860 and voluntarily send $1,992 a month — the 25-year payment — and you land on the same $295,672 in total interest, while keeping the right to drop back to $1,860 in a bad month. As long as the loan has no prepayment penalty, that combination beats locking into the 25-year term outright.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How much does refinancing typically cost in closing costs?",
+        answer:
+          "Commonly cited industry estimates put refinance closing costs at 2-5% of the loan balance; Freddie Mac's own guidance runs higher, at 3-6%. On the $302,012 example here, 2-5% is about $6,000 to $15,000, covering the lender's origination fee, appraisal, title insurance, and recording fees. Ask for the CFPB-mandated Loan Estimate in writing and use the actual total in your break-even math rather than a generic percentage.",
+      },
+      {
+        question: "Does refinancing always reset my loan back to 30 years?",
+        answer:
+          "Only if you choose a new 30-year term, which is the lender's default quote but not your only option. Requesting a term that matches the years you actually have left — 25 in the example above — keeps your original payoff date and captures most of the lifetime interest savings, typically for a payment still lower than your current one.",
+      },
+      {
+        question: "What break-even period counts as a good deal?",
+        answer:
+          "Under 24 months is strong for most homeowners, since you recoup the closing costs quickly even with an average time in the home. A break-even of 24 to 36 months is still worth it if you're confident you'll stay 5 or more years. Beyond about 4 years, run the total-interest comparison carefully — the monthly savings alone can be misleading, as this example shows.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+    ],
+    seoTitle: "Is Refinancing Worth It for a 1% Lower Rate?",
+    seoDescription:
+      "Is refinancing worth it for a 1% lower rate? See the break-even math on a $302,000 balance, plus why resetting the term can cost more despite lower payments.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
