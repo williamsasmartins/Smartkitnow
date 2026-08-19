@@ -722,6 +722,79 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Is refinancing worth it for a 1% lower rate? See the break-even math on a $302,000 balance, plus why resetting the term can cost more despite lower payments.",
   },
+  {
+    slug: "how-much-gas-will-a-500-mile-road-trip-cost",
+    title: "How Much Gas Will a 500-Mile Road Trip Cost?",
+    excerpt:
+      "A 500-mile trip in an average sedan runs about $71.43 in gas at the August 2026 US average price — here's the exact math, cost by mpg, and how an EV compares on the same drive.",
+    category: "Automotive",
+    date: "2026-08-19",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 6,
+    intro:
+      "How much gas will a 500-mile road trip cost? For an average sedan getting 28 mpg at $4.00 a gallon — close to the US national average in August 2026 — the answer is about $71.43, or 17.86 gallons for the whole one-way trip. Drive a 20-mpg SUV instead and the same distance costs $100.00; a 40-mpg hybrid drops it to $50.00. This guide shows the formula, the cost across common mpg and price combinations, and what the same 500 miles would cost in an EV.",
+    sections: [
+      {
+        heading: "How much gas will a 500-mile road trip cost? The formula",
+        paragraphs: [
+          "Fuel cost for any trip comes from two numbers: how many gallons you'll burn, and what you'll pay per gallon. Gallons needed = trip miles ÷ your car's mpg. Total cost = gallons needed × price per gallon. That's the whole calculation — no hidden variables, just your car's real-world fuel economy and the price at the pump.",
+          "Worked example: a 500-mile trip in a car averaging 28 mpg. Gallons needed = 500 ÷ 28 = 17.86 gallons. The US Energy Information Administration's weekly survey put the national average regular-gas price at about $4.00 a gallon in August 2026, so total cost = 17.86 × $4.00 = $71.43. That's the fuel bill for one-way; double it for a round trip to about $142.86. Prices vary by region and change week to week, so check a current fuel-price app before you budget a specific trip.",
+        ],
+      },
+      {
+        heading: "What does a 500-mile trip cost at 20, 30, and 40 mpg?",
+        paragraphs: [
+          "Your mpg and the local gas price both move the total substantially, so it helps to see the range broken out rather than one single number. Here's the same 500-mile trip at three gas prices for six common mpg ratings.",
+          "20 mpg (SUV/truck): $87.50 at $3.50/gal, $100.00 at $4.00/gal, $112.50 at $4.50/gal.",
+          "25 mpg (midsize car): $70.00 at $3.50/gal, $80.00 at $4.00/gal, $90.00 at $4.50/gal.",
+          "28 mpg (average sedan): $62.50 at $3.50/gal, $71.43 at $4.00/gal, $80.36 at $4.50/gal.",
+          "30 mpg (efficient sedan): $58.33 at $3.50/gal, $66.67 at $4.00/gal, $75.00 at $4.50/gal.",
+          "35 mpg (compact/hybrid): $50.00 at $3.50/gal, $57.14 at $4.00/gal, $64.29 at $4.50/gal.",
+          "40 mpg (hybrid): $43.75 at $3.50/gal, $50.00 at $4.00/gal, $56.25 at $4.50/gal.",
+          "The spread from a 20-mpg SUV to a 40-mpg hybrid on the same trip ranges from about $43.75 to $56.25 depending on gas price — the vehicle you drive moves the bill more than a typical week-to-week swing in pump prices does.",
+        ],
+      },
+      {
+        heading: "How an EV compares on the same 500-mile trip",
+        paragraphs: [
+          "A typical EV uses about 0.30 kWh per mile on combined driving, so the same 500-mile trip needs roughly 150 kWh (500 × 0.30). That 0.30 figure is a combined-driving average; sustained 75 mph highway speeds typically push real consumption higher, which nudges the EV's road-trip cost up further. What the trip costs depends entirely on where you charge. The average US residential electricity rate was about $0.18/kWh in August 2026 (EIA), so charging 150 kWh at home costs $27.00 — about 38% of the $71.43 gas figure above. That's the number EV owners usually quote, because most of their charging happens at home.",
+          "A road trip is different: you're relying on public fast chargers along the route, and those run noticeably higher than home rates — DC fast-charging rates on the major networks ran about $0.42 to $0.48/kWh in 2026, with Tesla Supercharger near the bottom of that range and Electrify America's non-member rate near the top. At $0.42/kWh, 150 kWh costs $63.00, about 12% cheaper than the $71.43 gas cost. At $0.45/kWh, the middle of that range, it's $67.50 — only about 5% cheaper. At the top of the range, $0.48/kWh, it's $72.00, slightly more than the gas car. The gap that makes EVs look dramatically cheaper to run is largely a home-charging effect; on a road trip powered by public fast chargers, the fuel-cost advantage over an efficient gas car essentially disappears.",
+        ],
+      },
+      {
+        heading: "Other costs to budget beyond fuel",
+        paragraphs: [
+          "Fuel is usually the single largest variable cost of a road trip, but it isn't the only one. Tolls, parking, and extra wear on tires and oil-change intervals from sustained highway miles all add up, and a longer trip means more meals and possibly a hotel night if you're not driving it in one day. Real-world mpg also drops below the window-sticker figure at sustained 75+ mph highway speeds or with a loaded roof box — both increase wind resistance, which is the dominant drag on fuel economy above 60 mph. None of these change the base calculation, but they belong in the total trip budget alongside it.",
+          "If you're deciding between two vehicles for regular long trips rather than a one-off drive, run the comparison over a longer horizon than a single trip using the Trip Fuel Cost Calculator alongside the ICE vs EV Ownership Cost Calculator below — insurance, maintenance, and depreciation differences between an EV and a gas car compound over years of ownership in ways a single 500-mile fuel bill won't show you.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What if my car's real-world mpg is different from the sticker rating?",
+        answer:
+          "Use your actual mpg, not the window sticker — highway-heavy road trips often beat the combined EPA rating by 10-15%, while stop-and-go city driving or a fully loaded car with a roof box can fall short of it. Check your last few fill-ups (miles driven ÷ gallons used) for a number that reflects how you actually drive.",
+      },
+      {
+        question: "Does gas price change matter much along a long route?",
+        answer:
+          "It can. Gas prices commonly vary by 20-30 cents a gallon between regions and even between towns on the same route. On the 500-mile, 28-mpg example here, that swing is about $3.57 to $5.36 in total cost — worth checking a fuel-price app before a long trip, though it rarely changes the trip's overall affordability.",
+      },
+      {
+        question: "Is it cheaper to drive an EV or a gas car on a long road trip?",
+        answer:
+          "It depends on where you charge. If you can charge at home before leaving and your route has enough range to avoid public fast chargers, an EV is usually notably cheaper (about 38% of the gas cost in the example above). If the trip requires relying on public fast-charging stations along the way, the saving shrinks to roughly 5% at typical fast-charging rates — and disappears entirely on the priciest networks. The EV's biggest fuel-cost advantage is for daily driving charged at home, not for long highway trips.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Trip Fuel Cost Calculator", url: "/automotive/trip-fuel-cost", icon: "⛽" },
+      { title: "ICE vs EV 5-Year Ownership Cost Calculator", url: "/automotive/ice-vs-ev-ownership-cost-5y", icon: "🔌" },
+      { title: "Total Cost of Ownership Calculator", url: "/automotive/tco-total-cost-ownership", icon: "🚙" },
+    ],
+    seoTitle: "How Much Gas Will a 500-Mile Road Trip Cost?",
+    seoDescription:
+      "See how much gas will a 500-mile road trip cost using real mpg and gas-price numbers, a cost breakdown by vehicle, plus a same-trip EV cost comparison.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
