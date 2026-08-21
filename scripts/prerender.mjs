@@ -75,8 +75,10 @@ const PLACEHOLDER = '__CANONICAL__'
 const PORT = 45678
 const HOST = '127.0.0.1'
 
-// Tuning knobs (overridable via env for CI / local debugging)
-const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY || 4)
+// Tuning knobs (overridable via env for CI / local debugging).
+// Serverless build boxes are small (Vercel: 2 cores) and memory-constrained, so
+// default to a lower concurrency there; local dev machines can push higher.
+const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY || (IS_SERVERLESS ? 2 : 4))
 const NAV_TIMEOUT = Number(process.env.PRERENDER_NAV_TIMEOUT || 30000)
 const RENDER_TIMEOUT = Number(process.env.PRERENDER_RENDER_TIMEOUT || 15000)
 // Optional: prerender only the first N routes (smoke test). 0 = all.
@@ -254,25 +256,45 @@ async function run() {
   await new Promise((resolve) => server.listen(PORT, HOST, resolve))
   console.log(`[prerender] static server on http://${HOST}:${PORT}`)
 
-  // Single shared browser, auto-relaunched if it ever disconnects (a crashed
-  // page can otherwise tear down the whole browser mid-run). A mutex around the
-  // relaunch prevents concurrent workers from launching several browsers.
+  // Chromium's memory grows steadily across hundreds of renders; on a small
+  // build box (Vercel: 2 cores / 8 GB) it eventually thrashes, pages start
+  // timing out, and the browser crashes — which on a 949-route run blows past
+  // the build time limit. To keep the footprint flat we PROACTIVELY recycle the
+  // browser every RECYCLE_EVERY successful renders, and also relaunch on demand
+  // if it ever disconnects. A generation counter + mutex ensures exactly one
+  // relaunch happens even when several workers notice at once.
   let browser = await puppeteer.launch(launchOptions)
+  let generation = 0
+  let sinceRecycle = 0
   let relaunching = null
   const isAlive = (b) =>
     b && (typeof b.connected === 'boolean' ? b.connected : b.isConnected?.() ?? false)
-  async function getBrowser() {
-    if (isAlive(browser)) return browser
+
+  // Recycle after roughly this many renders. Kept modest so peak RSS stays low.
+  const RECYCLE_EVERY = Number(process.env.PRERENDER_RECYCLE_EVERY || 120)
+
+  async function relaunch(reason, forGeneration) {
+    // Only the first caller for a given generation performs the relaunch; others
+    // await the same promise and pick up the fresh browser.
+    if (forGeneration !== generation) return browser
     if (!relaunching) {
       relaunching = (async () => {
         try { await browser?.close() } catch { /* already dead */ }
-        console.warn('[prerender] browser disconnected — relaunching')
+        console.warn(`[prerender] recycling browser (${reason})`)
         browser = await puppeteer.launch(launchOptions)
+        generation++
+        sinceRecycle = 0
         relaunching = null
         return browser
       })()
     }
     return relaunching
+  }
+
+  async function getBrowser() {
+    if (isAlive(browser) && !relaunching) return browser
+    if (relaunching) return relaunching
+    return relaunch('disconnected', generation)
   }
 
   const queue = [...routes]
@@ -287,18 +309,26 @@ async function run() {
       let res
       for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
         const b = await getBrowser()
+        const gen = generation
         res = await renderRoute(b, route)
         if (res.ok) break
-        // Browser-level failure -> force a relaunch before the retry.
-        if (/Connection closed|Target closed|Protocol error|detached/i.test(res.error || '')) {
-          try { await browser?.close() } catch { /* noop */ }
+        // Browser-level failure -> force a relaunch (tied to this generation so
+        // concurrent failures collapse into a single relaunch) before retrying.
+        if (/Connection closed|Target closed|Protocol error|detached|Navigation/i.test(res.error || '')) {
+          await relaunch('crash recovery', gen)
         }
         if (attempt < MAX_ATTEMPTS) await new Promise((r) => setTimeout(r, 500))
       }
       done++
+      sinceRecycle++
       if (!res.ok) failures.push(res)
       if (done % 25 === 0 || done === total) {
         console.log(`[prerender] ${done}/${total} (fail=${failures.length})`)
+      }
+      // Proactive recycle once the threshold is reached (skip if a relaunch is
+      // already underway or we're basically done).
+      if (sinceRecycle >= RECYCLE_EVERY && queue.length > 0) {
+        await relaunch('scheduled', generation)
       }
     }
   }
