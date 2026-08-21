@@ -795,6 +795,77 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "See how much gas will a 500-mile road trip cost using real mpg and gas-price numbers, a cost breakdown by vehicle, plus a same-trip EV cost comparison.",
   },
+  {
+    slug: "how-many-bricks-do-i-need-for-a-200-square-foot-wall",
+    title: "How Many Bricks Do I Need for a 200 Sq Ft Wall?",
+    excerpt:
+      "The exact math for how many bricks you need for a 200 square foot wall, by brick size, with waste margins and a full worked cost example.",
+    category: "Home & Construction",
+    date: "2026-08-21",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 5,
+    intro:
+      "If you need to know how many bricks you need for a 200 square foot wall, the short answer for a standard single-wythe veneer wall built with modular brick is 1,350 bricks before waste, or 1,485 bricks once you add the standard 10% waste allowance. Brick size changes that a lot: with the same 10% margin, the same 200 square feet takes 1,441 bricks in standard (non-modular) brick, 1,268 in queen-size, or as few as 1,015 in king-size, a 470-brick, 32% swing between modular and king alone. At typical material pricing of $0.50 to $0.85 per brick, budget $742 to $1,262 for the modular brick itself, before mortar and labor.",
+    sections: [
+      {
+        heading: "How many bricks do I need for a 200 square foot wall?",
+        paragraphs: [
+          "Brick counts come from one relationship: how many brick faces fit into one square foot of wall. Modular brick — the size most common in US residential veneer — is specified at 3⅝ × 2¼ × 7⅝ inches and, once you add a ⅜-inch mortar joint on each side, coordinates to a nominal 4 × 2⅔ × 8 inches. The Brick Industry Association's Technical Note 10 publishes 675 modular brick per 100 square feet of wall face at that joint size, which is 6.75 bricks per square foot.",
+          "For a 200 square foot wall, that's 200 × 6.75 = 1,350 bricks to cover the raw area with no allowance for breakage or cutting. Contractors and suppliers never order that raw number. They add a waste margin on top, which is the step most DIY estimates skip and the reason so many brick orders run short mid-project.",
+        ],
+      },
+      {
+        heading: "Bricks per square foot by brick size",
+        paragraphs: [
+          "Brick count is not one universal number. A bigger brick face means fewer bricks per square foot, and the gap between sizes is bigger than most estimates account for. Here is each common US size at a ⅜-inch mortar joint, with the total for a 200 square foot wall:",
+          "Modular (nominal 4 × 2⅔ × 8 in): 6.75 bricks per sq ft — 1,350 bricks raw, 1,485 with 10% waste.",
+          "Standard / non-modular (specified 3⅝ × 2¼ × 8 in): 6.55 bricks per sq ft — 1,310 bricks raw, 1,441 with 10% waste.",
+          "Queen-size (specified 3⅛ × 2¾ × 7⅝ in — a shallower bed depth than modular, so it is lighter to lay): 5.76 bricks per sq ft — 1,152 bricks raw, 1,268 with 10% waste.",
+          "King-size (specified 3 × 2¾ × 9⅝ in), the largest common US size: 4.61 bricks per sq ft — 922 bricks raw, 1,015 with 10% waste.",
+          "Confirm your brick's specified size with the supplier before ordering, since king- and queen-size dimensions vary between manufacturers (a king with a 2⅝-inch face height works out to 4.80 per sq ft, not 4.61). Run a modular default on a king-size job and you overorder by about 46%; on a queen-size job, by about 17%. On this one 200 square foot wall, modular versus king is a 470-brick, 32% swing.",
+        ],
+      },
+      {
+        heading: "How much waste should I add to a brick order?",
+        paragraphs: [
+          "Waste covers cuts at corners and openings, breakage in handling, and the color-matching problem of running out mid-job and having to reorder from a different batch. Using the modular-brick example, a 5% margin (tight, experienced crew, simple rectangle) puts the 200 square foot order at 1,418 bricks. The standard 10% DIY margin puts it at 1,485. A 15% margin, appropriate for a wall with several openings, angled sections, or reclaimed brick where matching stock later is hard, puts it at 1,553.",
+          "The gap between 5% and 15% on this one wall is 135 bricks, which at $0.65 a brick is about $88. Order the 10%. It costs less than a second delivery and a visibly mismatched batch of brick partway up the wall. Pick 5% only if you trust the crew and the wall is a plain rectangle; default to 10% for everything else.",
+        ],
+      },
+      {
+        heading: "What this actually costs, in materials",
+        paragraphs: [
+          "At the 1,485-brick modular total, material cost alone runs $742.50 at $0.50 per brick and $1,262.25 at $0.85 per brick, a range that covers common face-brick pricing in most US markets. Mortar is the other line item: packaged mortar mix typically lays 30 to 36 modular bricks per 80-lb bag, so 1,485 bricks needs roughly 42 to 50 bags, call it 45 for planning. Modular bricks commonly ship 500 to a pallet, so this order needs 3 full pallets: 1,500 bricks, 15 more than the 1,485 you need, which is a fine buffer to keep on hand for future repairs.",
+          "If your 200 square feet is a gross figure that still includes a window or door, subtract the opening before you order: a 3 ft × 5 ft window removes 15 square feet, or about 101 bricks at the modular rate, before waste is applied. Apply waste only to the net brick count after openings are subtracted. Applying it to the gross count before subtracting openings quietly overorders and overpays.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How many pallets of brick do I need for 200 square feet?",
+        answer:
+          "With modular brick at 1,485 bricks needed (including 10% waste) and 500 bricks per standard pallet, you need 3 full pallets — 1,500 bricks total, 15 more than required. Always round up to full pallets since suppliers rarely split one.",
+      },
+      {
+        question: "Does 200 square feet mean the whole wall or just the visible brick face?",
+        answer:
+          "It's the face area — length times height of the wall as you'd see it from the outside — for a single-wythe (one brick thick) veneer wall, which is how nearly all modern US brick homes are built over a wood or block frame. A true double-wythe structural wall needs close to double the brick count for the same 200 square foot face, since you're building two skins instead of one.",
+      },
+      {
+        question: "How much mortar do I need for 1,485 bricks?",
+        answer:
+          "Using the typical packaged-mortar coverage of 30 to 36 modular bricks per 80-lb bag, 1,485 bricks needs about 42 to 50 bags — plan on roughly 45 for a 200 square foot wall. Buy a few extra bags rather than running out mid-pour, since an interrupted mortar joint is visible in the finished wall.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Brick Calculator", url: "/construction/brick-calculator", icon: "🧱" },
+      { title: "Concrete Slab Volume Calculator", url: "/construction/concrete-slab-volume", icon: "🧱" },
+      { title: "Drywall Area & Sheets Calculator", url: "/construction/drywall-area-sheets", icon: "🏗️" },
+    ],
+    seoTitle: "How Many Bricks Do I Need for a 200 Sq Ft Wall?",
+    seoDescription:
+      "How many bricks do I need for a 200 square foot wall? See the exact bricks-per-size math, a full worked example, waste margins, and total material cost.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
