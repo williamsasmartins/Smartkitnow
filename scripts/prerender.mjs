@@ -18,7 +18,51 @@ import fs from 'node:fs'
 import path from 'node:path'
 import http from 'node:http'
 import { fileURLToPath } from 'node:url'
-import puppeteer from 'puppeteer'
+
+// Chromium launcher — chosen at runtime:
+//   • Serverless build images (Vercel, AWS Lambda) lack Chromium's system libs
+//     (libnspr4/libnss3/…), so full `puppeteer`'s bundled Chrome fails to launch
+//     with `error while loading shared libraries`. There we use `puppeteer-core`
+//     driving `@sparticuz/chromium`, which ships a self-contained Chromium.
+//   • Locally (dev machines / CI with a normal OS) we use full `puppeteer` and
+//     its bundled Chromium — no extra binary needed.
+const IS_SERVERLESS =
+  !!process.env.VERCEL ||
+  !!process.env.AWS_LAMBDA_FUNCTION_NAME ||
+  !!process.env.AWS_EXECUTION_ENV ||
+  process.env.PRERENDER_SERVERLESS === '1'
+
+let puppeteer
+let launchOptions = {
+  args: [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-gpu',
+    '--no-zygote',
+    '--js-flags=--max-old-space-size=512',
+  ],
+  headless: true,
+  protocolTimeout: 60000,
+}
+
+if (IS_SERVERLESS) {
+  const [{ default: pptrCore }, { default: chromium }] = await Promise.all([
+    import('puppeteer-core'),
+    import('@sparticuz/chromium'),
+  ])
+  puppeteer = pptrCore
+  launchOptions = {
+    args: [...chromium.args, '--js-flags=--max-old-space-size=512'],
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+    protocolTimeout: 60000,
+  }
+  console.log('[prerender] launcher: puppeteer-core + @sparticuz/chromium (serverless)')
+} else {
+  puppeteer = (await import('puppeteer')).default
+  console.log('[prerender] launcher: puppeteer bundled Chromium (local)')
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -140,8 +184,14 @@ function writeRoute(route, html) {
 // Render one route in a page. Waits for real content in #root.
 // ---------------------------------------------------------------------------
 async function renderRoute(browser, route) {
-  const page = await browser.newPage()
+  // Page creation is inside the try: if the browser disconnected between
+  // getBrowser() and here (e.g. another worker closed it after a Target/
+  // Protocol error), newPage() throws — we want that surfaced as a
+  // { ok: false } result so the caller's retry+relaunch path handles it,
+  // not an unhandled rejection that aborts the whole run.
+  let page = null
   try {
+    page = await browser.newPage()
     await page.setViewport({ width: 1280, height: 900 })
     // Block third-party network (ads/analytics/fonts) to speed up + avoid hangs.
     await page.setRequestInterception(true)
@@ -193,25 +243,13 @@ async function renderRoute(browser, route) {
   } catch (e) {
     return { route, ok: false, error: e.message }
   } finally {
-    await page.close().catch(() => {})
+    if (page) await page.close().catch(() => {})
   }
 }
 
 // ---------------------------------------------------------------------------
 // Concurrency pool
 // ---------------------------------------------------------------------------
-const LAUNCH_OPTS = {
-  args: [
-    '--no-sandbox',
-    '--disable-setuid-sandbox',
-    '--disable-dev-shm-usage',
-    '--disable-gpu',
-    '--no-zygote',
-    '--js-flags=--max-old-space-size=512',
-  ],
-  protocolTimeout: 60000,
-}
-
 async function run() {
   await new Promise((resolve) => server.listen(PORT, HOST, resolve))
   console.log(`[prerender] static server on http://${HOST}:${PORT}`)
@@ -219,7 +257,7 @@ async function run() {
   // Single shared browser, auto-relaunched if it ever disconnects (a crashed
   // page can otherwise tear down the whole browser mid-run). A mutex around the
   // relaunch prevents concurrent workers from launching several browsers.
-  let browser = await puppeteer.launch(LAUNCH_OPTS)
+  let browser = await puppeteer.launch(launchOptions)
   let relaunching = null
   const isAlive = (b) =>
     b && (typeof b.connected === 'boolean' ? b.connected : b.isConnected?.() ?? false)
@@ -229,7 +267,7 @@ async function run() {
       relaunching = (async () => {
         try { await browser?.close() } catch { /* already dead */ }
         console.warn('[prerender] browser disconnected — relaunching')
-        browser = await puppeteer.launch(LAUNCH_OPTS)
+        browser = await puppeteer.launch(launchOptions)
         relaunching = null
         return browser
       })()
