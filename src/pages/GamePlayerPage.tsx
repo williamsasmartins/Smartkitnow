@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import NotFound from "@/pages/NotFound";
 import { getGameBySlug } from "@/data/gameRegistry";
+import { getGameContent } from "@/data/gameContent";
 import GameLayout from "@/components/templates/GamePageLayout";
 
 const GameLoadingFallback = () => (
@@ -29,6 +30,11 @@ export default function GamePlayerPage() {
         );
     }
 
+    // Category-aware, per-game copy so every game page carries distinctive text
+    // (controls, strategy, tips) instead of shared boilerplate — avoids the
+    // duplicate/thin-content risk across the ~70 indexed game pages.
+    const content = getGameContent(game);
+
     return (
         <GameLayout
             title={game.title}
@@ -42,18 +48,18 @@ export default function GamePlayerPage() {
             }
             instructions={
                 <div className="space-y-4">
+                    <p>{content.intro}</p>
                     <p>
-                        Welcome to <strong>{game.title}</strong>! This game is part of our {game.category} collection.
+                        <strong>How to play {game.title}:</strong> {content.objective}
                     </p>
                     <p>
-                        <strong>Objective:</strong> {game.description}
+                        <strong>Controls:</strong> {content.controls}
                     </p>
                     <p>
-                        <strong>Controls:</strong> Most games can be played with a mouse or touch screen.
-                        For some arcade games, use the Arrow Keys to move and Spacebar to perform actions.
+                        <strong>Strategy:</strong> {content.strategy}
                     </p>
                     <p className="text-sm text-slate-500 italic">
-                        Tip: Use the "Fullscreen" button for the best experience.
+                        Tip: {content.tip} Use the &ldquo;Fullscreen&rdquo; button for the best experience.
                     </p>
                 </div>
             }
