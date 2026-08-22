@@ -132,7 +132,7 @@ export default function BrickCalculator() {
     {
       question: "How many bricks do I need per square meter?",
       answer:
-        "The number of bricks per m² depends on the brick size and laying pattern. With standard UK bricks (215 × 102.5 × 65 mm including a 10 mm mortar joint) in stretcher bond, you need approximately 60 bricks per m² of wall face. English bond uses around 90 bricks/m² because every other course lays bricks across the full wall width. Flemish bond also uses around 80–90 bricks/m². For US modular bricks (203 × 102 × 67 mm nominal) in running bond, expect roughly 67 bricks/m².",
+        "The number of bricks per m² depends on the brick size and laying pattern. With standard UK bricks (215 × 102.5 × 65 mm including a 10 mm mortar joint) in stretcher bond, you need approximately 60 bricks per m² of wall face. English bond uses around 90 bricks/m² because every other course lays bricks across the full wall width. Flemish bond also uses around 80–90 bricks/m². For US modular bricks (203 × 67 mm nominal face with a ⅜-inch mortar joint) in running bond, expect roughly 73 bricks/m² (6.75 per square foot).",
     },
     {
       question: "How do I subtract windows and doors from my brick count?",
@@ -400,7 +400,7 @@ export default function BrickCalculator() {
             <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
               {[
                 { country: "UK (BS EN 771-1)", l: "215 mm", w: "102.5 mm", h: "65 mm", bpm2: "~60" },
-                { country: "US Modular", l: "194 mm", w: "92 mm", h: "57 mm", bpm2: "~67" },
+                { country: "US Modular", l: "194 mm", w: "92 mm", h: "57 mm", bpm2: "~73" },
                 { country: "Australia (AS 4455)", l: "230 mm", w: "110 mm", h: "76 mm", bpm2: "~50" },
                 { country: "Europe / DIN 105", l: "240 mm", w: "115 mm", h: "71 mm", bpm2: "~48" },
                 { country: "South Africa", l: "222 mm", w: "106 mm", h: "73 mm", bpm2: "~52" },

@@ -650,6 +650,222 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "A 12x12 room needs 12 sheets of drywall for the walls (10% waste included) — see the exact math, a size-by-size breakdown, and the ceiling add-on.",
   },
+  {
+    slug: "is-refinancing-worth-it-for-a-1-percent-lower-rate",
+    title: "Is Refinancing Worth It for a 1% Lower Rate?",
+    excerpt:
+      "A $302,000 balance at 7.25% dropping to 6.25% saves real money — but the term you pick changes whether refinancing wins or quietly costs you more.",
+    category: "Personal Finance",
+    date: "2026-08-17",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "Is refinancing worth it for a 1% lower rate? On a $302,000 balance moving from 7.25% to 6.25%, yes on the break-even math: a new 30-year loan saves about $323 a month and $6,000 in closing costs breaks even in 19 months. But that same 30-year option costs $14,545 more in total interest than just keeping the original loan, because it resets the clock five years earlier than needed. Matching the 25 years actually remaining saves $57,205 instead. The term you pick decides which answer you get.",
+    sections: [
+      {
+        heading: "Is refinancing worth it for a 1% lower rate? Start with break-even",
+        paragraphs: [
+          "The standard way to check whether refinancing is worth it is a break-even calculation: divide your closing costs by your monthly savings to get the number of months before the refinance pays for itself. Take a homeowner five years into a $320,000, 30-year loan at 7.25%. Their current payment is $2,183 in principal and interest (property taxes and insurance don't change when you refinance, so they're left out of every comparison below), and after 60 payments their remaining balance is $302,012 with 25 years left on the original schedule.",
+          "A lender offers 6.25% — exactly one percentage point lower — with $6,000 in closing costs (about 2% of the balance, a typical range is 2-5%). Refinance that $302,012 balance into a new 30-year loan and the payment drops to $1,860, a monthly savings of $323. Divide $6,000 by $323 and the break-even point is 18.6 months, under two years. By the usual rule — worth it if you'll stay past the break-even point — this refinance looks like an easy yes.",
+        ],
+      },
+      {
+        heading: "The trap: a lower rate can still cost you more, in total",
+        paragraphs: [
+          "Break-even math only tracks monthly cash flow, not the total interest you'll pay over the life of the loan — and those two answers can point in opposite directions. Refinancing into a fresh 30-year term doesn't just lower the rate, it also restarts the amortization clock, so the borrower goes from having 25 years left to having 30 years left, adding 5 years of payments back onto the schedule.",
+          "Run the comparison side by side. If this borrower had simply kept the original 7.25% loan for the 25 years actually remaining, they'd pay $352,877 in remaining interest. Refinance into a new 30-year term at 6.25% instead, and total interest over that loan is $367,422 — $14,545 more, despite the lower rate and the $323 monthly savings.",
+          "A 25-year term tells a different story. Matching the time actually left on the original loan, the payment is $1,992 (still $191 a month cheaper), the break-even point is 31.5 months, and total interest drops to $295,672 — a genuine savings of $57,205 versus sticking with the original loan.",
+        ],
+      },
+      {
+        heading: "Same rate drop, three different outcomes",
+        paragraphs: [
+          "All three paths start from the identical $302,012 balance and the identical 1-point rate drop from 7.25% to 6.25%. What changes is only the term, and it swings the result from a loss to a substantial gain:",
+          "1. Keep the original loan (25 years left, 7.25%): payment $2,183, remaining interest $352,877. This is the baseline.",
+          "2. Refinance to a new 30-year term (6.25%): payment $1,860, monthly savings $323, break-even 19 months, total interest $367,422 — $14,545 worse than the baseline.",
+          "3. Refinance to a 25-year term (6.25%, matching the time actually left): payment $1,992, monthly savings $191, break-even 32 months, total interest $295,672 — $57,205 better than the baseline.",
+          "The 30-year refinance has the bigger monthly savings and the faster break-even, yet it is the only one of the three that leaves you paying more interest than doing nothing.",
+        ],
+      },
+      {
+        heading: "How to decide which one to take",
+        paragraphs: [
+          "Ask your lender for a quote at your remaining term, not just their default 30-year offer — most quote 15, 20, and 25-year terms, and some will price a custom term on request. If the payment on that shorter term still fits your budget, it captures nearly all the lifetime savings while keeping your original payoff date, which is the version of refinancing that's worth it in both the short-run and long-run sense.",
+          "If the shorter-term payment genuinely doesn't fit, the 30-year reset isn't automatically wrong — a lower guaranteed payment has real value if it prevents missed payments or lets you invest the difference elsewhere — but go in knowing you're trading total interest for monthly flexibility, not getting a free win. Either way, skip the refinance entirely if you plan to sell or move before your break-even month, and be wary of rolling closing costs into the new balance, since that raises the principal and pushes your break-even point out further than the sticker price on the closing costs suggests.",
+          "One caveat most refinance guides skip: the 30-year loan's disadvantage only holds if you actually pay the minimum. Take the 30-year refinance at $1,860 and voluntarily send $1,992 a month — the 25-year payment — and you land on the same $295,672 in total interest, while keeping the right to drop back to $1,860 in a bad month. As long as the loan has no prepayment penalty, that combination beats locking into the 25-year term outright.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How much does refinancing typically cost in closing costs?",
+        answer:
+          "Commonly cited industry estimates put refinance closing costs at 2-5% of the loan balance; Freddie Mac's own guidance runs higher, at 3-6%. On the $302,012 example here, 2-5% is about $6,000 to $15,000, covering the lender's origination fee, appraisal, title insurance, and recording fees. Ask for the CFPB-mandated Loan Estimate in writing and use the actual total in your break-even math rather than a generic percentage.",
+      },
+      {
+        question: "Does refinancing always reset my loan back to 30 years?",
+        answer:
+          "Only if you choose a new 30-year term, which is the lender's default quote but not your only option. Requesting a term that matches the years you actually have left — 25 in the example above — keeps your original payoff date and captures most of the lifetime interest savings, typically for a payment still lower than your current one.",
+      },
+      {
+        question: "What break-even period counts as a good deal?",
+        answer:
+          "Under 24 months is strong for most homeowners, since you recoup the closing costs quickly even with an average time in the home. A break-even of 24 to 36 months is still worth it if you're confident you'll stay 5 or more years. Beyond about 4 years, run the total-interest comparison carefully — the monthly savings alone can be misleading, as this example shows.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+    ],
+    seoTitle: "Is Refinancing Worth It for a 1% Lower Rate?",
+    seoDescription:
+      "Is refinancing worth it for a 1% lower rate? See the break-even math on a $302,000 balance, plus why resetting the term can cost more despite lower payments.",
+  },
+  {
+    slug: "how-much-gas-will-a-500-mile-road-trip-cost",
+    title: "How Much Gas Will a 500-Mile Road Trip Cost?",
+    excerpt:
+      "A 500-mile trip in an average sedan runs about $71.43 in gas at the August 2026 US average price — here's the exact math, cost by mpg, and how an EV compares on the same drive.",
+    category: "Automotive",
+    date: "2026-08-19",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 6,
+    intro:
+      "How much gas will a 500-mile road trip cost? For an average sedan getting 28 mpg at $4.00 a gallon — close to the US national average in August 2026 — the answer is about $71.43, or 17.86 gallons for the whole one-way trip. Drive a 20-mpg SUV instead and the same distance costs $100.00; a 40-mpg hybrid drops it to $50.00. This guide shows the formula, the cost across common mpg and price combinations, and what the same 500 miles would cost in an EV.",
+    sections: [
+      {
+        heading: "How much gas will a 500-mile road trip cost? The formula",
+        paragraphs: [
+          "Fuel cost for any trip comes from two numbers: how many gallons you'll burn, and what you'll pay per gallon. Gallons needed = trip miles ÷ your car's mpg. Total cost = gallons needed × price per gallon. That's the whole calculation — no hidden variables, just your car's real-world fuel economy and the price at the pump.",
+          "Worked example: a 500-mile trip in a car averaging 28 mpg. Gallons needed = 500 ÷ 28 = 17.86 gallons. The US Energy Information Administration's weekly survey put the national average regular-gas price at about $4.00 a gallon in August 2026, so total cost = 17.86 × $4.00 = $71.43. That's the fuel bill for one-way; double it for a round trip to about $142.86. Prices vary by region and change week to week, so check a current fuel-price app before you budget a specific trip.",
+        ],
+      },
+      {
+        heading: "What does a 500-mile trip cost at 20, 30, and 40 mpg?",
+        paragraphs: [
+          "Your mpg and the local gas price both move the total substantially, so it helps to see the range broken out rather than one single number. Here's the same 500-mile trip at three gas prices for six common mpg ratings.",
+          "20 mpg (SUV/truck): $87.50 at $3.50/gal, $100.00 at $4.00/gal, $112.50 at $4.50/gal.",
+          "25 mpg (midsize car): $70.00 at $3.50/gal, $80.00 at $4.00/gal, $90.00 at $4.50/gal.",
+          "28 mpg (average sedan): $62.50 at $3.50/gal, $71.43 at $4.00/gal, $80.36 at $4.50/gal.",
+          "30 mpg (efficient sedan): $58.33 at $3.50/gal, $66.67 at $4.00/gal, $75.00 at $4.50/gal.",
+          "35 mpg (compact/hybrid): $50.00 at $3.50/gal, $57.14 at $4.00/gal, $64.29 at $4.50/gal.",
+          "40 mpg (hybrid): $43.75 at $3.50/gal, $50.00 at $4.00/gal, $56.25 at $4.50/gal.",
+          "The spread from a 20-mpg SUV to a 40-mpg hybrid on the same trip ranges from about $43.75 to $56.25 depending on gas price — the vehicle you drive moves the bill more than a typical week-to-week swing in pump prices does.",
+        ],
+      },
+      {
+        heading: "How an EV compares on the same 500-mile trip",
+        paragraphs: [
+          "A typical EV uses about 0.30 kWh per mile on combined driving, so the same 500-mile trip needs roughly 150 kWh (500 × 0.30). That 0.30 figure is a combined-driving average; sustained 75 mph highway speeds typically push real consumption higher, which nudges the EV's road-trip cost up further. What the trip costs depends entirely on where you charge. The average US residential electricity rate was about $0.18/kWh in August 2026 (EIA), so charging 150 kWh at home costs $27.00 — about 38% of the $71.43 gas figure above. That's the number EV owners usually quote, because most of their charging happens at home.",
+          "A road trip is different: you're relying on public fast chargers along the route, and those run noticeably higher than home rates — DC fast-charging rates on the major networks ran about $0.42 to $0.48/kWh in 2026, with Tesla Supercharger near the bottom of that range and Electrify America's non-member rate near the top. At $0.42/kWh, 150 kWh costs $63.00, about 12% cheaper than the $71.43 gas cost. At $0.45/kWh, the middle of that range, it's $67.50 — only about 5% cheaper. At the top of the range, $0.48/kWh, it's $72.00, slightly more than the gas car. The gap that makes EVs look dramatically cheaper to run is largely a home-charging effect; on a road trip powered by public fast chargers, the fuel-cost advantage over an efficient gas car essentially disappears.",
+        ],
+      },
+      {
+        heading: "Other costs to budget beyond fuel",
+        paragraphs: [
+          "Fuel is usually the single largest variable cost of a road trip, but it isn't the only one. Tolls, parking, and extra wear on tires and oil-change intervals from sustained highway miles all add up, and a longer trip means more meals and possibly a hotel night if you're not driving it in one day. Real-world mpg also drops below the window-sticker figure at sustained 75+ mph highway speeds or with a loaded roof box — both increase wind resistance, which is the dominant drag on fuel economy above 60 mph. None of these change the base calculation, but they belong in the total trip budget alongside it.",
+          "If you're deciding between two vehicles for regular long trips rather than a one-off drive, run the comparison over a longer horizon than a single trip using the Trip Fuel Cost Calculator alongside the ICE vs EV Ownership Cost Calculator below — insurance, maintenance, and depreciation differences between an EV and a gas car compound over years of ownership in ways a single 500-mile fuel bill won't show you.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What if my car's real-world mpg is different from the sticker rating?",
+        answer:
+          "Use your actual mpg, not the window sticker — highway-heavy road trips often beat the combined EPA rating by 10-15%, while stop-and-go city driving or a fully loaded car with a roof box can fall short of it. Check your last few fill-ups (miles driven ÷ gallons used) for a number that reflects how you actually drive.",
+      },
+      {
+        question: "Does gas price change matter much along a long route?",
+        answer:
+          "It can. Gas prices commonly vary by 20-30 cents a gallon between regions and even between towns on the same route. On the 500-mile, 28-mpg example here, that swing is about $3.57 to $5.36 in total cost — worth checking a fuel-price app before a long trip, though it rarely changes the trip's overall affordability.",
+      },
+      {
+        question: "Is it cheaper to drive an EV or a gas car on a long road trip?",
+        answer:
+          "It depends on where you charge. If you can charge at home before leaving and your route has enough range to avoid public fast chargers, an EV is usually notably cheaper (about 38% of the gas cost in the example above). If the trip requires relying on public fast-charging stations along the way, the saving shrinks to roughly 5% at typical fast-charging rates — and disappears entirely on the priciest networks. The EV's biggest fuel-cost advantage is for daily driving charged at home, not for long highway trips.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Trip Fuel Cost Calculator", url: "/automotive/trip-fuel-cost", icon: "⛽" },
+      { title: "ICE vs EV 5-Year Ownership Cost Calculator", url: "/automotive/ice-vs-ev-ownership-cost-5y", icon: "🔌" },
+      { title: "Total Cost of Ownership Calculator", url: "/automotive/tco-total-cost-ownership", icon: "🚙" },
+    ],
+    seoTitle: "How Much Gas Will a 500-Mile Road Trip Cost?",
+    seoDescription:
+      "See how much gas will a 500-mile road trip cost using real mpg and gas-price numbers, a cost breakdown by vehicle, plus a same-trip EV cost comparison.",
+  },
+  {
+    slug: "how-many-bricks-do-i-need-for-a-200-square-foot-wall",
+    title: "How Many Bricks Do I Need for a 200 Sq Ft Wall?",
+    excerpt:
+      "The exact math for how many bricks you need for a 200 square foot wall, by brick size, with waste margins and a full worked cost example.",
+    category: "Home & Construction",
+    date: "2026-08-21",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 5,
+    intro:
+      "If you need to know how many bricks you need for a 200 square foot wall, the short answer for a standard single-wythe veneer wall built with modular brick is 1,350 bricks before waste, or 1,485 bricks once you add the standard 10% waste allowance. Brick size changes that a lot: with the same 10% margin, the same 200 square feet takes 1,441 bricks in standard (non-modular) brick, 1,268 in queen-size, or as few as 1,015 in king-size, a 470-brick, 32% swing between modular and king alone. At typical material pricing of $0.50 to $0.85 per brick, budget $742 to $1,262 for the modular brick itself, before mortar and labor.",
+    sections: [
+      {
+        heading: "How many bricks do I need for a 200 square foot wall?",
+        paragraphs: [
+          "Brick counts come from one relationship: how many brick faces fit into one square foot of wall. Modular brick — the size most common in US residential veneer — is specified at 3⅝ × 2¼ × 7⅝ inches and, once you add a ⅜-inch mortar joint on each side, coordinates to a nominal 4 × 2⅔ × 8 inches. The Brick Industry Association's Technical Note 10 publishes 675 modular brick per 100 square feet of wall face at that joint size, which is 6.75 bricks per square foot.",
+          "For a 200 square foot wall, that's 200 × 6.75 = 1,350 bricks to cover the raw area with no allowance for breakage or cutting. Contractors and suppliers never order that raw number. They add a waste margin on top, which is the step most DIY estimates skip and the reason so many brick orders run short mid-project.",
+        ],
+      },
+      {
+        heading: "Bricks per square foot by brick size",
+        paragraphs: [
+          "Brick count is not one universal number. A bigger brick face means fewer bricks per square foot, and the gap between sizes is bigger than most estimates account for. Here is each common US size at a ⅜-inch mortar joint, with the total for a 200 square foot wall:",
+          "Modular (nominal 4 × 2⅔ × 8 in): 6.75 bricks per sq ft — 1,350 bricks raw, 1,485 with 10% waste.",
+          "Standard / non-modular (specified 3⅝ × 2¼ × 8 in): 6.55 bricks per sq ft — 1,310 bricks raw, 1,441 with 10% waste.",
+          "Queen-size (specified 3⅛ × 2¾ × 7⅝ in — a shallower bed depth than modular, so it is lighter to lay): 5.76 bricks per sq ft — 1,152 bricks raw, 1,268 with 10% waste.",
+          "King-size (specified 3 × 2¾ × 9⅝ in), the largest common US size: 4.61 bricks per sq ft — 922 bricks raw, 1,015 with 10% waste.",
+          "Confirm your brick's specified size with the supplier before ordering, since king- and queen-size dimensions vary between manufacturers (a king with a 2⅝-inch face height works out to 4.80 per sq ft, not 4.61). Run a modular default on a king-size job and you overorder by about 46%; on a queen-size job, by about 17%. On this one 200 square foot wall, modular versus king is a 470-brick, 32% swing.",
+        ],
+      },
+      {
+        heading: "How much waste should I add to a brick order?",
+        paragraphs: [
+          "Waste covers cuts at corners and openings, breakage in handling, and the color-matching problem of running out mid-job and having to reorder from a different batch. Using the modular-brick example, a 5% margin (tight, experienced crew, simple rectangle) puts the 200 square foot order at 1,418 bricks. The standard 10% DIY margin puts it at 1,485. A 15% margin, appropriate for a wall with several openings, angled sections, or reclaimed brick where matching stock later is hard, puts it at 1,553.",
+          "The gap between 5% and 15% on this one wall is 135 bricks, which at $0.65 a brick is about $88. Order the 10%. It costs less than a second delivery and a visibly mismatched batch of brick partway up the wall. Pick 5% only if you trust the crew and the wall is a plain rectangle; default to 10% for everything else.",
+        ],
+      },
+      {
+        heading: "What this actually costs, in materials",
+        paragraphs: [
+          "At the 1,485-brick modular total, material cost alone runs $742.50 at $0.50 per brick and $1,262.25 at $0.85 per brick, a range that covers common face-brick pricing in most US markets. Mortar is the other line item: packaged mortar mix typically lays 30 to 36 modular bricks per 80-lb bag, so 1,485 bricks needs roughly 42 to 50 bags, call it 45 for planning. Modular bricks commonly ship 500 to a pallet, so this order needs 3 full pallets: 1,500 bricks, 15 more than the 1,485 you need, which is a fine buffer to keep on hand for future repairs.",
+          "If your 200 square feet is a gross figure that still includes a window or door, subtract the opening before you order: a 3 ft × 5 ft window removes 15 square feet, or about 101 bricks at the modular rate, before waste is applied. Apply waste only to the net brick count after openings are subtracted. Applying it to the gross count before subtracting openings quietly overorders and overpays.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How many pallets of brick do I need for 200 square feet?",
+        answer:
+          "With modular brick at 1,485 bricks needed (including 10% waste) and 500 bricks per standard pallet, you need 3 full pallets — 1,500 bricks total, 15 more than required. Always round up to full pallets since suppliers rarely split one.",
+      },
+      {
+        question: "Does 200 square feet mean the whole wall or just the visible brick face?",
+        answer:
+          "It's the face area — length times height of the wall as you'd see it from the outside — for a single-wythe (one brick thick) veneer wall, which is how nearly all modern US brick homes are built over a wood or block frame. A true double-wythe structural wall needs close to double the brick count for the same 200 square foot face, since you're building two skins instead of one.",
+      },
+      {
+        question: "How much mortar do I need for 1,485 bricks?",
+        answer:
+          "Using the typical packaged-mortar coverage of 30 to 36 modular bricks per 80-lb bag, 1,485 bricks needs about 42 to 50 bags — plan on roughly 45 for a 200 square foot wall. Buy a few extra bags rather than running out mid-pour, since an interrupted mortar joint is visible in the finished wall.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Brick Calculator", url: "/construction/brick-calculator", icon: "🧱" },
+      { title: "Concrete Slab Volume Calculator", url: "/construction/concrete-slab-volume", icon: "🧱" },
+      { title: "Drywall Area & Sheets Calculator", url: "/construction/drywall-area-sheets", icon: "🏗️" },
+    ],
+    seoTitle: "How Many Bricks Do I Need for a 200 Sq Ft Wall?",
+    seoDescription:
+      "How many bricks do I need for a 200 square foot wall? See the exact bricks-per-size math, a full worked example, waste margins, and total material cost.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
