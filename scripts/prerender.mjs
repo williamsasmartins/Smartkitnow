@@ -53,7 +53,15 @@ if (IS_SERVERLESS) {
   ])
   puppeteer = pptrCore
   launchOptions = {
-    args: [...chromium.args, '--js-flags=--max-old-space-size=512'],
+    // --single-process keeps all of Chromium in one process, which drastically
+    // lowers peak RSS on the memory-capped build box (each renderer subprocess
+    // otherwise adds its own footprint). Combined with browser recycling and
+    // per-route retry this is stable enough for a build-time prerender.
+    args: [
+      ...chromium.args,
+      '--single-process',
+      '--js-flags=--max-old-space-size=384',
+    ],
     executablePath: await chromium.executablePath(),
     headless: chromium.headless,
     protocolTimeout: 60000,
@@ -78,7 +86,7 @@ const HOST = '127.0.0.1'
 // Tuning knobs (overridable via env for CI / local debugging).
 // Serverless build boxes are small (Vercel: 2 cores) and memory-constrained, so
 // default to a lower concurrency there; local dev machines can push higher.
-const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY || (IS_SERVERLESS ? 2 : 4))
+const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY || (IS_SERVERLESS ? 1 : 4))
 const NAV_TIMEOUT = Number(process.env.PRERENDER_NAV_TIMEOUT || 30000)
 const RENDER_TIMEOUT = Number(process.env.PRERENDER_RENDER_TIMEOUT || 15000)
 // Optional: prerender only the first N routes (smoke test). 0 = all.
@@ -103,7 +111,7 @@ if (!template.includes(PLACEHOLDER)) {
 // Routes from sitemap
 // ---------------------------------------------------------------------------
 const sitemapXml = fs.readFileSync(SITEMAP, 'utf-8')
-let routes = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+let allRoutes = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
   .map((m) => {
     const url = m[1].trim()
     return url.startsWith(BASE_URL) ? url.slice(BASE_URL.length) || '/' : null
@@ -111,10 +119,50 @@ let routes = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
   .filter(Boolean)
 
 // Deduplicate + ensure "/" is present
-routes = [...new Set(['/', ...routes])]
-if (LIMIT > 0) routes = routes.slice(0, LIMIT)
+allRoutes = [...new Set(['/', ...allRoutes])]
 
-console.log(`[prerender] ${routes.length} routes, concurrency=${CONCURRENCY}`)
+// ---------------------------------------------------------------------------
+// Prioritisation + cap.
+//
+// Rendering all ~950 routes through headless Chromium inside one Vercel build
+// exceeds the 45-minute build limit. It is also unnecessary for the goal
+// (AdSense approval + SEO): AdSense reviews a SAMPLE of pages, and Googlebot
+// renders JS for the long tail over time. So we prerender the highest-value
+// pages up to a cap, in priority order:
+//   1. "/"  (homepage)
+//   2. single-segment routes: category hubs + static pages (/health, /about…)
+//   3. everything else (individual calculators), sitemap order
+// Routes beyond the cap still receive a valid canonical'd SPA shell (below), so
+// they work as normal client-rendered pages — they are just not pre-rendered.
+//
+// PRERENDER_MAX_ROUTES=0 (or a value >= route count) prerenders everything.
+// 500 sits comfortably inside the range that ran flat and crash-free on the
+// Vercel box (0–750 rendered at a steady ~0.85s/route before throughput
+// degraded), covers the homepage + every category hub + ~475 calculators, and
+// leaves generous headroom under the 45-minute build limit (~10 min prerender).
+const DEFAULT_MAX = IS_SERVERLESS ? 500 : 0
+const MAX_ROUTES = Number(
+  process.env.PRERENDER_MAX_ROUTES != null ? process.env.PRERENDER_MAX_ROUTES : DEFAULT_MAX
+)
+
+const segCount = (r) => (r === '/' ? 0 : r.split('/').filter(Boolean).length)
+const priority = (r) => (r === '/' ? 0 : segCount(r) === 1 ? 1 : 2)
+allRoutes.sort((a, b) => priority(a) - priority(b)) // stable within same tier
+
+let routes = allRoutes
+let deferred = []
+if (LIMIT > 0) {
+  routes = allRoutes.slice(0, LIMIT)
+} else if (MAX_ROUTES > 0 && allRoutes.length > MAX_ROUTES) {
+  routes = allRoutes.slice(0, MAX_ROUTES)
+  deferred = allRoutes.slice(MAX_ROUTES)
+}
+
+console.log(
+  `[prerender] prerendering ${routes.length} priority routes` +
+    (deferred.length ? `, ${deferred.length} deferred to SPA shell` : '') +
+    `, concurrency=${CONCURRENCY}`
+)
 
 // ---------------------------------------------------------------------------
 // Minimal static file server with SPA fallback to the template.
@@ -271,7 +319,7 @@ async function run() {
     b && (typeof b.connected === 'boolean' ? b.connected : b.isConnected?.() ?? false)
 
   // Recycle after roughly this many renders. Kept modest so peak RSS stays low.
-  const RECYCLE_EVERY = Number(process.env.PRERENDER_RECYCLE_EVERY || 120)
+  const RECYCLE_EVERY = Number(process.env.PRERENDER_RECYCLE_EVERY || (IS_SERVERLESS ? 80 : 120))
 
   async function relaunch(reason, forGeneration) {
     // Only the first caller for a given generation performs the relaunch; others
@@ -348,6 +396,16 @@ async function run() {
     // Fallback: any failed route still needs a valid canonical'd shell so it is
     // not left with the raw __CANONICAL__ placeholder in production.
     for (const f of failures) writeRoute(f.route, template)
+  }
+
+  // Deferred (over-the-cap) routes: write a canonical'd SPA shell so they have
+  // the correct <link rel="canonical">, contain no raw __CANONICAL__ placeholder,
+  // and still work as normal client-rendered pages. They are simply not
+  // prerendered — acceptable for the long tail (Googlebot renders JS over time;
+  // AdSense reviews the prerendered priority pages).
+  for (const route of deferred) writeRoute(route, template)
+  if (deferred.length) {
+    console.log(`[prerender] wrote ${deferred.length} deferred SPA shells (canonical only).`)
   }
 
   console.log(`[prerender] done. ${total - failures.length}/${total} prerendered.`)
