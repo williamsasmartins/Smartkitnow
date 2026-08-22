@@ -69,8 +69,18 @@ jobs:
       - name: Install Vercel CLI
         run: npm i -g vercel@latest
 
-      - name: Pull Vercel project settings
-        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+      # Link the project deterministically by writing .vercel/project.json from
+      # the secrets, instead of `vercel pull` (which can fail with "Could not
+      # retrieve Project Settings" when it tries to resolve the project itself).
+      # This way only VERCEL_TOKEN must be valid; the org/project ids come
+      # straight from the secrets.
+      - name: Link Vercel project
+        run: |
+          mkdir -p .vercel
+          cat > .vercel/project.json <<JSON
+          { "orgId": "${{ secrets.VERCEL_ORG_ID }}", "projectId": "${{ secrets.VERCEL_PROJECT_ID }}" }
+          JSON
+          vercel pull --yes --environment=production --scope="$VERCEL_ORG_ID" --token="$VERCEL_TOKEN"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -82,7 +92,7 @@ jobs:
       # prerender covers EVERY route (no cap) using the serverless Chromium.
       # There is no 45-minute limit on GitHub Actions.
       - name: Build and prerender all routes
-        run: vercel build --prod --token="$VERCEL_TOKEN"
+        run: vercel build --prod --scope="$VERCEL_ORG_ID" --token="$VERCEL_TOKEN"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -90,7 +100,7 @@ jobs:
 
       - name: Deploy prebuilt artifact to Vercel (production)
         run: |
-          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" > deploy-url.txt
+          vercel deploy --prebuilt --prod --scope="$VERCEL_ORG_ID" --token="$VERCEL_TOKEN" > deploy-url.txt
           echo "Deployed: $(cat deploy-url.txt)"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
