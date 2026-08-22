@@ -27,6 +27,10 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 1000,
     sourcemap: true,
+    // Skip the per-asset gzip-size report: with ~900 lazy chunks it prints
+    // hundreds of lines that overflow the CI build-log buffer and hide the
+    // postbuild (prerender) output. Also speeds the build slightly.
+    reportCompressedSize: false,
     rollupOptions: {
       output: {
         manualChunks: {
