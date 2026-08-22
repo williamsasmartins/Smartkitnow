@@ -4,8 +4,8 @@ import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { calculatorRegistry } from "@/data/calculatorRegistry";
 import { GAME_REGISTRY } from "@/data/gameRegistry";
 import { getCategoryMeta, getDisplaySubcategory } from "@/data/categoryMeta";
-import AdBannerTop from "@/components/ads/AdBannerTop";
-import AdSidebarRight from "@/components/ads/AdSidebarRight";
+// No ads on the search-results page: AdSense policy prohibits Google-served
+// ads on internal search-results screens. AdBannerTop / AdSidebarRight removed.
 import CalculatorCard from "@/components/cards/CalculatorCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -88,8 +88,6 @@ export default function Search() {
         canonical="https://www.smartkitnow.com/search"
         robots="noindex, follow"
       />
-      <AdBannerTop />
-
       <main className="mx-auto max-w-7xl px-4 pb-16 lg:pr-[65px]">
         {/* Search header */}
         {/* Search header - OMIT if query exists (Clean UI) */}
@@ -114,8 +112,8 @@ export default function Search() {
         )}
 
         <div className="grid gap-8 lg:grid-cols-12">
-          {/* Results column */}
-          <section className="lg:col-span-9 pr-[15px]">
+          {/* Results column — full width now that the ad sidebar is removed */}
+          <section className="lg:col-span-12 pr-[15px]">
             {!q && (
               <p className="opacity-70">Type a query to search across all tools.</p>
             )}
@@ -166,12 +164,7 @@ export default function Search() {
             )}
           </section>
 
-          {/* Sidebar ads */}
-          <aside className="hidden lg:block lg:col-span-3">
-            <div className="sticky pr-[65px]" style={{ top: "var(--skn-rail-top)" }}>
-              <AdSidebarRight topOffset={0} />
-            </div>
-          </aside>
+          {/* Sidebar ads removed — no AdSense on internal search results. */}
         </div>
       </main>
     </div>
