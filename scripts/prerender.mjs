@@ -287,7 +287,53 @@ async function renderRoute(browser, route) {
       { timeout: RENDER_TIMEOUT, polling: 150 }
     )
 
-    const html = await page.evaluate(() => '<!doctype html>\n' + document.documentElement.outerHTML)
+    // De-duplicate <head> tags. index.html ships static <title>, description,
+    // canonical, robots and OG/Twitter tags (needed by the non-prerendered SPA
+    // shells). react-helmet ALSO injects its own per-page versions (marked with
+    // data-rh="true"). On a prerendered page both would appear, giving Google
+    // two canonicals / two titles / duplicate OG tags. Since helmet's versions
+    // are authoritative here, remove the STATIC duplicates (those NOT managed by
+    // helmet) for the tag types helmet controls, keeping helmet's.
+    // De-duplicate <head> tags. index.html ships static <title>, description,
+    // canonical, robots and OG/Twitter tags (needed by the non-prerendered SPA
+    // shells). react-helmet-async ALSO injects its own per-page versions at
+    // runtime — and this version does NOT stamp a data-rh marker, so we can't
+    // tell them apart by attribute. But helmet always injects AFTER the static
+    // tags, so for the tag types it manages we keep the LAST occurrence
+    // (helmet's, authoritative) and drop the earlier static duplicate(s). This
+    // removes the double canonical / double description / double OG that Google
+    // would otherwise see. (<title> is already single — helmet replaces it.)
+    const html = await page.evaluate(() => {
+      const head = document.head
+      if (head) {
+        const dedupeKeepLast = (selector) => {
+          const els = Array.from(head.querySelectorAll(selector))
+          // Remove all but the last matching element.
+          for (let i = 0; i < els.length - 1; i++) els[i].remove()
+        }
+        dedupeKeepLast('link[rel="canonical"]')
+        dedupeKeepLast('meta[name="description"]')
+        dedupeKeepLast('meta[name="robots"]')
+        // OG/Twitter: dedupe per-property so each property keeps its last value.
+        const dedupeAttrGroup = (attr, prefix) => {
+          const seen = new Map() // value -> keep-last handled below
+          const byKey = {}
+          for (const el of Array.from(head.querySelectorAll(`meta[${attr}]`))) {
+            const key = el.getAttribute(attr) || ''
+            if (!key.startsWith(prefix)) continue
+            if (!byKey[key]) byKey[key] = []
+            byKey[key].push(el)
+          }
+          for (const key of Object.keys(byKey)) {
+            const els = byKey[key]
+            for (let i = 0; i < els.length - 1; i++) els[i].remove()
+          }
+        }
+        dedupeAttrGroup('property', 'og:')
+        dedupeAttrGroup('name', 'twitter:')
+      }
+      return '<!doctype html>\n' + document.documentElement.outerHTML
+    })
     writeRoute(route, html)
     return { route, ok: true }
   } catch (e) {

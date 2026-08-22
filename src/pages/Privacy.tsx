@@ -86,11 +86,82 @@ export default function Privacy() {
 
           <Card className="bg-card border-border/50">
             <CardHeader>
-              <CardTitle>Third-Party Services</CardTitle>
+              <CardTitle>Advertising &amp; Third-Party Cookies</CardTitle>
             </CardHeader>
-            <CardContent className="text-foreground/90">
+            <CardContent className="text-foreground/90 space-y-4">
               <p>
-                We may use trusted providers like Google Analytics and Google AdSense. These have their own privacy policies.
+                We use Google AdSense to serve advertisements on this site. Third-party
+                vendors, including Google, use cookies to serve ads based on your prior
+                visits to this and other websites.
+              </p>
+              <p>
+                Google&rsquo;s use of advertising cookies (including the{" "}
+                <strong>DoubleClick</strong> cookie) enables it and its partners to serve
+                ads to you based on your visit to this site and/or other sites on the
+                Internet. These cookies may be used for ad personalization, frequency
+                capping, and measuring ad performance.
+              </p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>
+                  You may opt out of personalized advertising by visiting Google&rsquo;s{" "}
+                  <a
+                    className="underline"
+                    href="https://www.google.com/settings/ads"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ads Settings
+                  </a>
+                  .
+                </li>
+                <li>
+                  You can opt out of a third-party vendor&rsquo;s use of cookies for
+                  personalized advertising by visiting{" "}
+                  <a
+                    className="underline"
+                    href="https://www.aboutads.info/choices/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    www.aboutads.info
+                  </a>
+                  .
+                </li>
+                <li>
+                  For more information on how Google uses data when you use our site, see{" "}
+                  <a
+                    className="underline"
+                    href="https://policies.google.com/technologies/partner-sites"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    How Google uses information from sites or apps that use its services
+                  </a>
+                  .
+                </li>
+              </ul>
+              <p>
+                On first visit we ask for your consent before non-essential (analytics and
+                advertising) cookies are used. Until you consent, advertising and analytics
+                storage are set to <em>denied</em> via Google Consent Mode. You can change
+                your choice at any time on our{" "}
+                <a className="underline" href="/cookie-settings">
+                  Cookie Settings
+                </a>{" "}
+                page.
+              </p>
+              <p>
+                We also use Google Analytics to understand how visitors use the site. It
+                sets its own cookies and is governed by{" "}
+                <a
+                  className="underline"
+                  href="https://policies.google.com/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google&rsquo;s Privacy Policy
+                </a>
+                .
               </p>
             </CardContent>
           </Card>
