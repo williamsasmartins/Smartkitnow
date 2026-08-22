@@ -54,7 +54,17 @@ export default function CategoryIndex() {
         canonical={canonicalUrl}
       />
       <main className="pt-48 sm:pt-20">
+        {/*
+          No ads on this generic category-index page. It is a navigation/link
+          directory with minimal prose, and Google-served ads on screens without
+          substantial publisher content violate AdSense policy ("ads on thin
+          content"). Disable the top/bottom banners and both rails; the layout
+          (title + link grid) is unchanged.
+        */}
         <AdRailLayout
+          topCenterAd={false}
+          bottomCenterAd={false}
+          showRails={false}
           titleBlock={
             <div className="text-left">
               <div className="mb-6 text-left">

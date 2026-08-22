@@ -1,12 +1,15 @@
 import React from "react";
-import AdBannerTop from "@/components/ads/AdBannerTop";
 import ContactSuggestionForm from "@/components/forms/ContactSuggestionForm";
 
 export default function ContactSuggestionPage() {
   return (
     <div className="min-h-screen">
+      {/*
+        No ad on this page: its only content is a heading and a suggestion form.
+        AdSense policy prohibits Google-served ads on screens without publisher
+        content, so the top banner was removed.
+      */}
       <div className="h-16 md:h-20" aria-hidden />
-      <AdBannerTop />
 
       <main className="mx-auto max-w-3xl px-4 py-10">
         <header className="mb-6">
