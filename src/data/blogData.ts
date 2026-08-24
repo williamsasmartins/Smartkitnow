@@ -866,6 +866,76 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How many bricks do I need for a 200 square foot wall? See the exact bricks-per-size math, a full worked example, waste margins, and total material cost.",
   },
+  {
+    slug: "student-loan-payment-on-a-45000-salary",
+    title: "Student Loan Payment on a $45,000 Salary: What to Expect",
+    excerpt:
+      "On a $45,000 salary with $35,000 in federal loans, Standard repayment runs about $388.57 a month — IBR drops that to $175.50 and RAP to $150, though RAP alone actually pays down principal.",
+    category: "Personal Finance",
+    date: "2026-08-24",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "A student loan payment on a $45,000 salary runs anywhere from $150 to $388.57 a month in 2026, depending entirely on the repayment plan. With $35,000 in federal student loans, the 10-year Standard plan comes to about $388.57 a month. The two income-driven plans open to borrowers already repaying, IBR and the Repayment Assistance Plan (RAP), cut that to $175.50 and $150.00 a month — 55% and 61% lower. RAP has the smallest payment of the three, yet it's the only one that meaningfully shrinks the loan: the government waives whatever interest the payment doesn't cover and guarantees $50 a month toward principal regardless, so the balance falls by about $600 in the first year. IBR's $175.50 barely clears the $175.00 in monthly interest, leaving only about $6 a year of real progress. This guide runs the numbers for a $45,000 salary across every plan borrowers can currently enroll in.",
+    sections: [
+      {
+        heading: "What determines your student loan payment on a $45,000 salary",
+        paragraphs: [
+          "Two completely different formulas can set your payment, and which one applies is your choice, not your lender's. The Standard plan spreads your balance over 10 years (120 payments) at your loan's interest rate, the same fixed amortization math as a mortgage or car loan — your income doesn't enter the formula at all. Income-driven repayment (IDR) plans work the opposite way: your income sets the payment, and the loan balance and interest rate mostly determine how long it takes, or how much is left to forgive at the end.",
+          "IDR payments are based on discretionary income, not gross salary. For IBR, that's your adjusted gross income minus 150% of the federal poverty guideline for your household size. The HHS guideline for a one-person household took effect in January 2026 at $15,960, so 150% of that is $23,940. Subtract that from a $45,000 salary and discretionary income is $21,060 a year, or $1,755 a month. Borrowers whose first federal loan was disbursed on or after July 1, 2014 pay 10% of that under IBR ($175.50 a month); borrowers with an older first loan pay 15% ($263.25 a month).",
+          "The plan menu itself changed in 2026. Under the One Big Beautiful Bill Act (signed July 2025), PAYE and ICR stopped accepting new enrollees on July 1, 2026 and wind down completely by July 1, 2028. RAP, a new plan built around income brackets rather than a flat percentage, launched the same day as the replacement. For a borrower whose loans were all disbursed before July 1, 2026 — which covers anyone already repaying a balance — IBR and RAP are the two income-driven options actually on the table, which is why they're the two compared here. Anyone whose first federal loan is disbursed on or after July 1, 2026 can't use IBR at all: their only choices are RAP or the new tiered standard plan.",
+        ],
+      },
+      {
+        heading: "The numbers, side by side, on $35,000 in loans",
+        paragraphs: [
+          "Take a borrower earning a $45,000 AGI with a $35,000 federal loan balance at an assumed 6% average interest rate — a realistic combined rate for a mix of subsidized and unsubsidized undergraduate loans. Standard (10 years): $388.57 a month, $46,628.61 paid in total, $11,628.61 of which is interest. IBR, new-borrower rate (10% of discretionary income): $175.50 a month. IBR, pre-2014-loan rate (15%): $263.25 a month.",
+          "RAP works differently: instead of a flat percentage of discretionary income, it charges a percentage of gross AGI set by income bracket, with $50 subtracted per dependent and a $10 minimum. A $45,000 AGI falls in the $40,001–$50,000 bracket, taxed at 4% of AGI: $45,000 × 0.04 ÷ 12 = $150.00 a month. That's the smallest of the three payments — 61% lower than Standard and $25.50 a month lower than IBR.",
+          "The gap between Standard and either IDR option is large: IBR saves about $213 a month ($2,557 a year) versus Standard, and RAP saves about $239 a month ($2,863 a year). That's real money in a tight budget — but as the next section shows, the plan with the smallest payment is not the one making the least progress on the loan.",
+        ],
+      },
+      {
+        heading: "Why RAP's lower payment pays down more principal than IBR's",
+        paragraphs: [
+          "Here's the number IDR comparisons rarely put front and center: at 6% interest, a $35,000 balance generates $175.00 in interest every month before a single dollar touches principal. IBR's $175.50 payment clears that with only $0.50 left over for principal — about $6 a year. Run that forward at a flat income and the loan barely moves: after 10 years of on-time payments the balance is still about $34,918, and after 20 years — when a new-formula IBR balance is forgiven — it's about $34,769, or 99.3% of the original $35,000. Almost the entire loan gets forgiven, not paid off.",
+          "RAP inverts that outcome despite the smaller check. When an on-time RAP payment doesn't cover a month's interest, the Department of Education waives the shortfall rather than letting it compound — so the balance never grows — and separately guarantees at least $50 a month applied to principal, no matter how little the borrower's own payment covers. Both benefits hinge on the payment arriving on time; a late payment forfeits the waiver and the match for that month. On this $45,000-salary example, that $50 match shrinks the balance every month even though the $150 payment covers none of the $175 in interest. At a flat income the balance falls to about $34,400 after one year, about $29,000 after 10 years, and about $23,000 after 20. That is roughly 100 times more principal retired than IBR in year one ($600 versus $6.17) and about 52 times more across 20 years ($12,000 versus $231) — on a payment that's $25.50 a month lower. RAP's trade-off is a longer clock: any remaining balance isn't forgiven until 30 years, versus 20 for new-formula IBR.",
+          "Whatever balance is eventually forgiven under either plan is not automatically tax-free. The temporary federal exclusion for IDR forgiveness expired December 31, 2025, so balances forgiven in 2026 or later are taxable income again at the federal level, added to the borrower's income in the year of discharge. Public Service Loan Forgiveness, Teacher Loan Forgiveness, and death or total-and-permanent-disability discharges remain tax-free by separate law — but a routine 20- or 30-year IDR forgiveness, like the ones in this example, currently is not.",
+        ],
+      },
+      {
+        heading: "How to choose between Standard, IBR, and RAP at your income",
+        paragraphs: [
+          "If $388.57 fits a $45,000 salary once rent, a car payment, and everyday costs are accounted for, Standard is worth keeping: it's the only one of the three that guarantees the loan is gone in 10 years, with no forgiveness gamble and no risk that legislation changes the rules on you again before payoff. Falling behind on any plan costs far more in fees, credit damage, and default risk than a fixed payment does.",
+          "If the budget can't absorb $388.57, RAP is usually the stronger of the two income-driven options at this specific income: it has the lowest payment, and its guaranteed principal match means it's also making the most real progress toward payoff, not just the least monthly progress toward a bill. IBR can still make sense for a borrower already enrolled in it who doesn't want to restart a forgiveness clock, or one who expects income to climb fast: for a single filer the two plans cost exactly the same at $79,800 of AGI — 7% of $79,800 is $5,586 a year, and so is 10% of ($79,800 − $23,940) — and above that line IBR becomes the cheaper monthly payment. Either way, recheck the numbers yearly — both plans recalculate at recertification, and RAP's bracket can jump a full percentage point with a modest raise.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does a lower monthly payment always mean faster progress on the loan?",
+        answer:
+          "No — RAP proves the opposite here. RAP's $150 payment is $25.50 lower than IBR's $175.50, yet RAP cuts the $35,000 balance to about $23,000 after 20 years thanks to its guaranteed $50-a-month principal match, while IBR's balance barely moves, sitting at about $34,769. The smallest bill and the fastest payoff aren't the same plan.",
+      },
+      {
+        question: "How is the RAP payment calculated?",
+        answer:
+          "RAP charges a percentage of gross AGI set by 11 income brackets, from $10 a month at $10,000 or less up to 10% of AGI above $100,000, minus $50 per dependent, with a $10 monthly floor. A $45,000 AGI falls in the $40,001–$50,000 bracket at 4%: $45,000 × 0.04 ÷ 12 = $150.00 a month. Any month a RAP payment doesn't cover accrued interest, the shortfall is waived rather than added to the balance.",
+      },
+      {
+        question: "Is forgiven student loan debt taxable in 2026?",
+        answer:
+          "Generally yes. The temporary federal tax exclusion for income-driven repayment forgiveness expired December 31, 2025, so a balance forgiven under IBR or RAP in 2026 or later is added to the borrower's taxable income for that year. Public Service Loan Forgiveness, Teacher Loan Forgiveness, and death or disability discharges are the main exceptions that stay tax-free by separate law.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Student Loan Repayment Calculator", url: "/financial/student-loan-repayment", icon: "🎓" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+    ],
+    seoTitle: "Student Loan Payment on a $45,000 Salary",
+    seoDescription:
+      "Student loan payment on a $45,000 salary: Standard runs $388.57, IBR $175.50, and RAP $150 in 2026 — see the full worked math and which pays down fastest.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
