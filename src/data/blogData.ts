@@ -936,6 +936,73 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Student loan payment on a $45,000 salary: Standard runs $388.57, IBR $175.50, and RAP $150 in 2026 — see the full worked math and which pays down fastest.",
   },
+  {
+    slug: "how-to-calculate-body-fat-percentage-with-a-tape-measure",
+    title: "How to Calculate Body Fat Percentage With a Tape Measure",
+    excerpt:
+      "The U.S. Navy method turns three or four tape-measure readings into a body fat percentage — no calipers or scan needed, validated to within about 3.5 to 3.7 points of hydrostatic (underwater) weighing.",
+    category: "Health & Fitness",
+    date: "2026-08-26",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 6,
+    intro:
+      "You can calculate body fat percentage with a tape measure using the U.S. Navy method, which needs only your height, neck, and waist — plus hips if you're a woman — no calipers, scale, or scan required. A 5'10\" man with a 15-inch neck and a 38-inch waist works out to 24.6% body fat; a 5'4\" woman with a 12-inch neck, 28-inch waist, and 38-inch hips works out to 27.9%. The formula comes from a 1984 Naval Health Research Center study by Hodgdon and Beckett, and it's accurate to within about 3.5 to 3.7 percentage points of hydrostatic (underwater) weighing — the method it was validated against — which is precise enough to track real change over weeks. This guide walks through the exact formula, two full worked examples, and how much a sloppy measurement can move your number.",
+    sections: [
+      {
+        heading: "Where to put the tape",
+        paragraphs: [
+          "The Navy method needs three measurements for men and four for women, all taken with a flexible cloth tape pulled snug but not compressing the skin. Neck: measure just below the larynx (Adam's apple), with the tape sloping slightly downward toward the front. Waist: for men, measure at the navel while exhaling normally rather than sucking in; for women, measure at the narrowest point of the torso, usually an inch or two above the navel. Hips (women only): measure around the widest part of the buttocks. Height: measure barefoot, standing straight against a wall.",
+          "Take each measurement twice and use the average — a tape that's twisted, held too loosely, or pulled a half-inch too tight will move your result more than you'd expect (more on that below). Measure at the same time of day, ideally in the morning before eating, since bloating and hydration can shift waist and neck readings by a quarter-inch or more. Skip form-fitting compression garments; they can flatten the waist reading and make you look leaner than you are.",
+        ],
+      },
+      {
+        heading: "The formula behind the body fat percentage",
+        paragraphs: [
+          "For men: %BF = 86.010 × log₁₀(waist − neck) − 70.041 × log₁₀(height) + 36.76, with all measurements in inches. For women: %BF = 163.205 × log₁₀(waist + hip − neck) − 97.684 × log₁₀(height) − 78.387. Both formulas come from Hodgdon and Beckett's 1984 Naval Health Research Center report, which regressed circumference measurements against hydrostatic (underwater) weighing on several hundred service members, and the same circumference-based approach still underpins the body-composition standards the U.S. military has used for decades.",
+          "You don't need to run this by hand — our body fat calculator applies the same regression instantly and reports your category — but seeing the math shows why the method is so sensitive to the waist-minus-neck difference, and for women, the waist-plus-hip-minus-neck total. A half-inch error on the neck moves your result exactly as much as a half-inch error on the waist, because they sit inside the same term — sloppy tape placement on either one costs you the same accuracy.",
+        ],
+      },
+      {
+        heading: "How to calculate body fat percentage with a tape measure, step by step",
+        paragraphs: [
+          "Take a man who's 5'10\" (70 inches) tall with a 15-inch neck and a 38-inch waist. Waist minus neck is 23 inches, and log₁₀(23) = 1.3617; log₁₀(70) = 1.8451. That gives 86.010 × 1.3617 = 117.12, and 70.041 × 1.8451 = 129.23. Put it together: 117.12 − 129.23 + 36.76 = 24.65% — rounds to 24.6% body fat.",
+          "Now a woman who's 5'4\" (64 inches) tall with a 12-inch neck, 28-inch waist, and 38-inch hips. Waist plus hip minus neck is 28 + 38 − 12 = 54 inches, and log₁₀(54) = 1.7324; log₁₀(64) = 1.8062. That gives 163.205 × 1.7324 = 282.74, and 97.684 × 1.8062 = 176.43. Put it together: 282.74 − 176.43 − 78.387 = 27.91% — rounds to 27.9% body fat.",
+        ],
+      },
+      {
+        heading: "What the number means, and why a half-inch matters",
+        paragraphs: [
+          "The American Council on Exercise (ACE) sorts body fat into five bands. For men: essential fat is 2-5%, athletes 6-13%, fitness 14-17%, acceptable/average 18-24%, and obese is 25% and up. For women: essential fat is 10-13%, athletes 14-20%, fitness 21-24%, acceptable/average 25-31%, and obese is 32% and up. Our male example's 24.6% sits at the very top of the acceptable/average band, less than half a point under the 25% obese threshold; our female example's 27.9% lands comfortably mid-band in that same acceptable/average category.",
+          "A half-inch of tape is the difference between two of those bands. Re-measure that same man's waist as 38.5 inches instead of 38 — a rounding error most people would call close enough — and the formula returns 25.5%, tipping him into the 'obese' category by this method. Measure it a half-inch smaller, at 37.5 inches, and he reads 23.8%, still inside 'acceptable' — but only just. The female formula moves a little less dramatically at this waist size — a half-inch either side of 28 inches shifts her result between 27.3% and 28.6%, about 0.65 points each way — but the lesson holds regardless: measure twice, use the same tape and technique every time, and treat any single reading as an estimate within a couple of points, not a lab result.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is the tape-measure method as accurate as calipers or a DEXA scan?",
+        answer:
+          "It depends which test you're comparing it to. Hodgdon and Beckett's original 1984 validation measured the tape method against hydrostatic (underwater) weighing and found it accurate to within about 3.5 percentage points for men and 3.7 for women — that's the benchmark the formula was built and tested against. Against a DEXA scan, a different and generally more precise technology, the tape method tends to run further off, especially at the very lean or very heavy ends of the range. It's accurate enough to track whether your body composition is trending up or down over weeks, which is what most people actually need; for a clinical-grade number, DEXA is still the gold standard.",
+      },
+      {
+        question: "Where exactly do I measure my waist for the Navy method?",
+        answer:
+          "Men measure at the navel; women measure at the narrowest point of the torso, usually an inch or two above the navel. Keep the tape parallel to the floor and snug against the skin without compressing it, and measure after a normal exhale — not sucked in.",
+      },
+      {
+        question: "How often should I re-measure to track progress?",
+        answer:
+          "Every 2 to 4 weeks, at the same time of day and under the same conditions — ideally first thing in the morning, before eating. Day-to-day water retention and food volume can shift waist and neck readings enough to swing the result by a point or two, so single readings are noisy; trends over weeks are what matter.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Body Fat Percentage Calculator", url: "/health/body-fat-calculator", icon: "📊" },
+      { title: "BMI Calculator", url: "/health/bmi-calculator", icon: "⚖️" },
+      { title: "TDEE Calculator", url: "/health/tdee-daily-energy-expenditure", icon: "💪" },
+    ],
+    seoTitle: "How to Calculate Body Fat Percentage With a Tape Measure",
+    seoDescription:
+      "Learn how to calculate body fat percentage with a tape measure using the U.S. Navy method — two full worked examples, accuracy limits, and a free calculator.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
