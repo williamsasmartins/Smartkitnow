@@ -1003,6 +1003,80 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Learn how to calculate body fat percentage with a tape measure using the U.S. Navy method — two full worked examples, accuracy limits, and a free calculator.",
   },
+  {
+    slug: "total-cost-of-owning-a-30000-car-for-5-years",
+    title: "Total Cost of Owning a $30,000 Car for 5 Years",
+    excerpt:
+      "The true 5-year cost of a $30,000 car is about $52,083 after resale value — a full line-by-line breakdown of financing, depreciation, insurance, fuel, and fees.",
+    category: "Automotive",
+    date: "2026-08-28",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "What's the total cost of owning a $30,000 car for 5 years? Finance it with a $6,000 down payment at 6.5% APR, drive 12,000 miles a year, and the honest answer is about $52,083 after resale value — roughly $868.05 a month, or $0.87 per mile. That figure comes from six line items: financing, depreciation, insurance, fuel, maintenance, and taxes and fees, and depreciation alone accounts for $17,472 of it, more than fuel and maintenance combined. This guide breaks down every line with real numbers so you can see exactly where the money goes.",
+    sections: [
+      {
+        heading: "What goes into the total cost of owning a car?",
+        paragraphs: [
+          "The sticker price and even the loan payment are only two pieces of what a car actually costs. A full ownership-cost calculation adds six categories: the down payment and loan interest (financing), the value the car loses while you own it (depreciation), premiums (insurance), gas or electricity (fuel), scheduled service and repairs (maintenance), and the one-time sales tax plus yearly registration (taxes and fees). Most car buyers budget for the first and the fifth of those and forget the rest.",
+          "That's a costly blind spot, because the two categories buyers think about least — depreciation and financing — are usually the two largest. A shopper who agonizes over a 2-mpg difference between two trims is often ignoring a depreciation gap between those same two trims worth ten times as much over five years. The worked example below shows why.",
+        ],
+      },
+      {
+        heading: "The total cost of owning a $30,000 car for 5 years, line by line",
+        paragraphs: [
+          "Assume a $30,000 car bought with 20% down ($6,000), the remaining $24,000 financed at 6.5% APR for 60 months, and driven a typical 12,000 miles a year. The standard loan formula gives a monthly payment of $469.59 and total interest of $4,175.26, for $28,175.26 paid over the full 60 months.",
+          "Financing: $6,000 down payment plus $28,175.26 in loan payments = $34,175.26 in cash paid toward the vehicle over five years.",
+          "Depreciation (not cash out of pocket, but value lost): using a widely cited rule of thumb — about 20% lost in year one and 15% of the remaining value each year after — the car is worth $12,528.15 after five years, a loss of $17,471.85, or 58.2% of the original price. Real depreciation varies a lot by make and model, so treat this as a reasonable planning estimate, not a guarantee for any specific car.",
+          "Insurance: $2,500 a year for full coverage, held flat here for simplicity (in practice, premiums usually drift down as the car ages and its value drops). That's $12,500 over five years. Published 2026 national full-coverage averages range from about $2,240 (Insurify) to nearly $2,930 (Experian), and your own rate can swing further based on state, age, and driving record alone — Vermont averages under $1,600 a year, Maryland over $4,000.",
+          "Fuel: 12,000 miles a year at 28 mpg burns 428.6 gallons. At $4.10 a gallon — roughly the US national average in August 2026 per AAA and the Energy Information Administration — that's $1,757.14 a year, or $8,785.71 over five years.",
+          "Maintenance and repairs: about $0.11 a mile across routine service, tires, and repairs — AAA's Your Driving Costs study puts the combined maintenance, repair, and tire figure at roughly 11 cents per mile — or $6,600 over 60,000 miles.",
+          "Taxes and fees: a one-time 6% sales tax on the $30,000 purchase ($1,800) plus $150 a year in registration ($750 over five years), for $2,550 total.",
+          "Add financing, insurance, fuel, maintenance, and taxes and fees together and you've paid out $64,610.97 in cash over five years. Subtract the $12,528.15 the car is still worth when you sell or trade it in, and the net cost of ownership is $52,082.82 — about $868.05 a month, or $0.87 per mile driven. That monthly figure is $398.46 higher than the $469.59 loan payment alone, which is the number most buyers mistake for their real car expense.",
+        ],
+      },
+      {
+        heading: "Why depreciation is the line everyone underestimates",
+        paragraphs: [
+          "In this example, depreciation costs $17,471.85 — the single largest line item, at 33.5% of the entire $52,082.82 net cost. It's also the only cost with no monthly bill attached, which is exactly why it's the easiest one to ignore: nobody writes a check labeled 'depreciation,' so it never enters the mental math the way a $469.59 auto payment does.",
+          "Resale value also varies a lot by make and model, and that variance dwarfs most other buying decisions. iSeeCars' 2026 depreciation study, built on more than 950,000 five-year-old used cars sold between March 2025 and February 2026, put average 5-year depreciation at 41.8% — but the spread by vehicle type is wide. Trucks lost 34.2% of their value over five years and hybrids 35.4%, while electric vehicles lost 57.2%. On a $30,000 car, that 23-point gap works out to about $6,900 in resale value, decided by nothing more than which kind of vehicle you bought. Before buying, check a model's typical 5-year resale percentage (published annually by iSeeCars and Kelley Blue Book) the same way you'd check its mpg — it moves your total cost more than either one.",
+        ],
+      },
+      {
+        heading: "How do you lower your true cost per mile?",
+        paragraphs: [
+          "On the financing side, a larger down payment and a shorter loan term cut the $4,175.26 in interest directly. Financing the same $24,000 over 48 months instead of 60 lowers total interest to roughly $3,320, a savings of about $855, for a payment that's about $100 a month higher ($569.16 versus $469.59).",
+          "Buying certified pre-owned instead of new is the single biggest lever on depreciation, because it lets the previous owner absorb the steep 20%-in-year-one loss. Buy this same car at its one-year-old value of $24,000 instead of new, apply the same 15%-a-year rule for the next five years, and it's worth about $10,648.93 at the end — a depreciation loss of $13,351.07, which is $4,120.78 less than the $17,471.85 a new buyer eats over the same stretch.",
+          "On the running-cost side, keeping up with scheduled maintenance avoids the larger repair bills that come from deferred service, and shopping insurance rates annually often surfaces a materially cheaper quote even with no change in driving record. Realistic mpg expectations, based on your actual driving rather than the window sticker, keep the fuel line accurate too. Because every one of these inputs — down payment, rate, term, insurance, mileage, and resale assumptions — is specific to you, run your own numbers through a total cost of ownership calculator rather than relying on this example's figures.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is depreciation really the biggest cost of owning a car?",
+        answer:
+          "In this $30,000 example, yes: depreciation is $17,471.85 over five years, which is 33.5% of the entire $52,082.82 net cost of ownership — more than a third of everything you spend on the car, gone before you ever get to fuel or insurance. It's the largest single line item precisely because it never shows up as a monthly bill, which is why most budgets miss it entirely.",
+      },
+      {
+        question: "How much does a $30,000 car really cost per month to own?",
+        answer:
+          "About $868.05 a month over five years, once financing, insurance, fuel, maintenance, and taxes and fees are added up and resale value is subtracted back out. On a household budgeting 15% of take-home pay for a car, that $868.05 figure implies needing roughly $5,787 a month in take-home pay just to cover this one vehicle — well above what the $469.59 loan payment alone would suggest.",
+      },
+      {
+        question: "Does buying used instead of new lower the total cost of ownership?",
+        answer:
+          "Usually, yes, and by a specific amount here: buying this car new means eating $17,471.85 in five-year depreciation, but buying it one year old at its $24,000 depreciated value and keeping it the same five years costs only $13,351.07 in depreciation — a savings of $4,120.78, because the original owner already absorbed the steepest year-one loss.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Total Cost of Ownership Calculator", url: "/automotive/tco-total-cost-ownership", icon: "🚙" },
+      { title: "Auto Loan Calculator", url: "/financial/auto-loan", icon: "🚗" },
+      { title: "Trip Fuel Cost Calculator", url: "/automotive/trip-fuel-cost", icon: "⛽" },
+    ],
+    seoTitle: "Total Cost of Owning a $30,000 Car for 5 Years",
+    seoDescription:
+      "The total cost of owning a $30,000 car for 5 years is about $52,083 after resale. See the full line-by-line breakdown: financing, depreciation, fuel, and more.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
