@@ -160,8 +160,8 @@ allRoutes = [...new Set(['/', ...allRoutes])]
 //
 // Instead we prerender EVERYTHING and bound the work by WALL-CLOCK TIME (see
 // TIME_BUDGET_MS below). That way the build can never blow the 45-minute limit,
-// but on a normal run (~0.85-1.2s/route) all routes finish comfortably inside
-// the budget and every indexed URL ships real HTML.
+// but on a normal run all routes finish inside the budget and every indexed URL
+// ships real HTML.
 //
 // PRERENDER_MAX_ROUTES>0 still forces a hard count cap if ever needed.
 const DEFAULT_MAX = 0
@@ -169,15 +169,29 @@ const MAX_ROUTES = Number(
   process.env.PRERENDER_MAX_ROUTES != null ? process.env.PRERENDER_MAX_ROUTES : DEFAULT_MAX
 )
 
-// Wall-clock ceiling for the render phase. Vercel's build limit is 45 minutes
-// and `npm install` + `vite build` take roughly 3-6 of those, so 24 minutes of
-// prerendering leaves a wide margin. If the budget is ever exhausted the
-// remaining routes fall back to canonical'd SPA shells instead of the build
-// dying — degraded, but never a failed deploy. 0 disables the budget.
+// Wall-clock ceiling for the render phase, sized from a real production run
+// rather than a guess.
+//
+// Measured on the Vercel box (2 cores / 8 GB, concurrency 1):
+//   933 routes in 1410s -> ~1.51s/route, and 24m for the whole build.
+//
+// The first version of this budget was 24 minutes and that run cleared it by
+// 30 seconds — far too tight. A handful of new blog posts or calculators would
+// silently push routes past the budget and back into empty-shell territory,
+// quietly reintroducing the exact bug this script exists to prevent.
+//
+// 35 minutes is sized off the measured rate: it covers ~1390 routes (a ~50%
+// increase over today's 933) while still leaving ~9 minutes under Vercel's
+// 45-minute build limit for install, vite build and output upload — which
+// together took about 1.5 minutes on that same run.
+//
+// Exhausting the budget degrades to canonical'd SPA shells for the remainder
+// rather than failing the build, so the worst case is a partial deploy and a
+// warning in the log, never a broken one. 0 disables the budget.
 const TIME_BUDGET_MS = Number(
   process.env.PRERENDER_TIME_BUDGET_MS != null
     ? process.env.PRERENDER_TIME_BUDGET_MS
-    : IS_SERVERLESS ? 24 * 60 * 1000 : 0
+    : IS_SERVERLESS ? 35 * 60 * 1000 : 0
 )
 
 const segCount = (r) => (r === '/' ? 0 : r.split('/').filter(Boolean).length)
@@ -504,12 +518,26 @@ async function run() {
   }
 
   const rendered = done - failures.length
+  const elapsedMs = Date.now() - startedAt
   console.log(
     `[prerender] done. ${rendered}/${allRoutes.length} routes prerendered ` +
-      `in ${Math.round((Date.now() - startedAt) / 1000)}s` +
+      `in ${Math.round(elapsedMs / 1000)}s` +
       (deferred.length ? `, ${deferred.length} shell-only` : '') +
       `.`
   )
+
+  // Early warning. Running out of budget degrades pages to empty shells, which
+  // is silent in the HTML and is precisely what triggered the AdSense "Low
+  // value content" rejection. Shout while there is still headroom to fix it,
+  // rather than after the next few pages have quietly stopped being rendered.
+  if (TIME_BUDGET_MS > 0 && elapsedMs > TIME_BUDGET_MS * 0.8) {
+    const pct = Math.round((elapsedMs / TIME_BUDGET_MS) * 100)
+    console.warn(
+      `[prerender] WARNING: used ${pct}% of the ${Math.round(TIME_BUDGET_MS / 60000)}min budget ` +
+        `(${(elapsedMs / allRoutes.length / 1000).toFixed(2)}s/route). ` +
+        `Raise PRERENDER_TIME_BUDGET_MS, or routes will start shipping as empty shells.`
+    )
+  }
   // Non-zero exit if a large fraction failed (build should surface the problem).
   if (failures.length > total * 0.1) {
     console.error('[prerender] >10% of routes failed — failing the build.')
