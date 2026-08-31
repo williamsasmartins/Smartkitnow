@@ -288,8 +288,9 @@ export const videoEntries: CalculatorEntry[] = [
       subcategory: "time-fps-timecode",
       description: "Convert total frames to duration at a given FPS and vice versa.",
       aliases: ["frame-count-duration-calculator", "how-to-calculate-frame-count-duration", "frame-count-duration-online", "free-frame-count-duration-calculator"],
-      seoTitle: "Frame Count ↔ Duration Converter",
-      seoDescription: "Convert total frames to duration at a given FPS and vice versa.",
+      seoTitle: "Frame Count to Duration Calculator (Any FPS)",
+      seoDescription:
+        "Convert a frame count to video duration at any frame rate, or duration back to frames. Supports 23.976, 24, 25, 29.97, 30 and 60 fps.",
       loader: () => import("@/components/calculators/Video/FrameCountDurationConverterCalculator"),
       urlStyle: "flat"
     },
@@ -300,8 +301,9 @@ export const videoEntries: CalculatorEntry[] = [
       subcategory: "time-fps-timecode",
       description: "Convert frame numbers to SMPTE timecode.",
       aliases: ["how-to-calculate-frames-to-timecode", "frames-to-timecode-online", "free-frames-to-timecode-calculator"],
-      seoTitle: "Frames to Timecode Calculator",
-      seoDescription: "Convert frame numbers to SMPTE timecode.",
+      seoTitle: "Frames to Timecode Calculator — SMPTE Converter",
+      seoDescription:
+        "Convert a frame number to SMPTE timecode at any frame rate. Handles 23.976, 24, 25, 29.97 and 30 fps, drop-frame and non-drop-frame.",
       loader: () => import("@/components/calculators/Video/FramesToTimecodeCalculator"),
       urlStyle: "flat"
     },
@@ -336,8 +338,9 @@ export const videoEntries: CalculatorEntry[] = [
       subcategory: "time-fps-timecode",
       description: "Convert timecode back to total frame count.",
       aliases: ["how-to-calculate-timecode-to-frames", "timecode-to-frames-online", "free-timecode-to-frames-calculator"],
-      seoTitle: "Timecode to Frames Calculator",
-      seoDescription: "Convert timecode back to total frame count.",
+      seoTitle: "Timecode to Frames Calculator — SMPTE, Any FPS",
+      seoDescription:
+        "Convert SMPTE timecode to a total frame count at any frame rate. Supports 23.976, 24, 25, 29.97 and 30 fps, drop-frame and non-drop-frame.",
       loader: () => import("@/components/calculators/Video/TimecodeToFramesCalculator"),
       urlStyle: "flat"
     },

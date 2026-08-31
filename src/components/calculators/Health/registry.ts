@@ -72,8 +72,9 @@ export const healthEntries: CalculatorEntry[] = [
       subcategory: "body-metrics-weight-management",
       description: "Estimate your Total Daily Energy Expenditure (TDEE). Learn how many calories you need daily to maintain, lose, or gain weight.",
       aliases: ["total-daily-energy-expenditure-calculator", "tdee-formula-calculator", "how-many-calories-to-maintain-weight"],
-      seoTitle: "TDEE Calculator — Total Daily Energy Expenditure",
-      seoDescription: "Estimate your Total Daily Energy Expenditure (TDEE), the total calories you burn each day, to plan intake for weight maintenance, loss, or muscle gain.",
+      seoTitle: "TDEE Calculator — Daily Calories You Burn",
+      seoDescription:
+        "Calculate your total daily energy expenditure from BMR and activity level, then set a calorie target for losing, maintaining or gaining weight.",
       loader: () => import("@/components/calculators/Health/TdeeDailyEnergyExpenditureCalculator"),
       urlStyle: "flat"
     },
@@ -96,8 +97,9 @@ export const healthEntries: CalculatorEntry[] = [
       subcategory: "body-metrics-weight-management",
       description: "Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor equation. Find out exactly how many calories your body burns at rest.",
       aliases: ["mifflin-st-jeor-calculator", "bmr-equation-calculator", "resting-calorie-burn-calculator"],
-      seoTitle: "BMR Calculator — Mifflin-St Jeor Equation",
-      seoDescription: "Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor equation, the formula most dietitians trust, to see how many calories you burn at rest.",
+      seoTitle: "Mifflin-St Jeor BMR Calculator — Formula and Example",
+      seoDescription:
+        "Calculate BMR with the Mifflin-St Jeor equation. Shows the separate formula for men and women, your result, and a worked example to follow.",
       loader: () => import("@/components/calculators/Health/BmrMifflinStJeorCalculator"),
       urlStyle: "flat"
     },

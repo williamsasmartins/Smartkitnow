@@ -312,8 +312,9 @@ export const cookingEntries: CalculatorEntry[] = [
       subcategory: "everyday-kitchen-ratios-yields",
       description: "Calculate oil needed for deep frying. Determine the volume required to fill your pan or fryer to the safe depth level.",
       aliases: ["oil-for-frying-calculator", "how-to-calculate-oil-for-frying", "oil-for-frying-online", "free-oil-for-frying-calculator"],
-      seoTitle: "Oil for Frying Calculator",
-      seoDescription: "Calculate oil needed for deep frying. Determine the volume required to fill your pan or fryer to the safe depth level. Free and instant, no signup required.",
+      seoTitle: "Deep Frying Oil Calculator — How Much Oil for a Pan",
+      seoDescription:
+        "Work out how much oil your pan or fryer needs to reach a safe frying depth, in litres, quarts or cups, without overfilling it.",
       loader: () => import("@/components/calculators/Cooking/OilForFryingPanDepthVolumeCalculator"),
       urlStyle: "flat"
     },

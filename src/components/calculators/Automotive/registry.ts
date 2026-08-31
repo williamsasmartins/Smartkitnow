@@ -372,8 +372,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       subcategory: "electric-vehicles-comparisons",
       description: "Determine how many miles or years needed for an EV to become cheaper than a hybrid or gas car.",
       aliases: ["ev-payback-period-calculator", "how-many-years-until-an-ev-pays-off", "ev-vs-hybrid-savings-crossover", "when-does-an-ev-become-cheaper"],
-      seoTitle: "EV vs Hybrid Break-Even Point Calculator",
-      seoDescription: "Determine how many miles or years it takes for an EV's higher purchase price to be offset by fuel and maintenance savings compared to a hybrid or gas car.",
+      seoTitle: "EV vs Hybrid Break-Even Calculator — Miles to Pay Off",
+      seoDescription:
+        "See how many miles or years it takes for an EV's higher purchase price to be repaid by fuel and maintenance savings versus a hybrid.",
       loader: () => import("@/components/calculators/Automotive/EvHybridBreakEvenCalculator"),
       urlStyle: "flat"
     },
@@ -516,8 +517,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       subcategory: "performance-tuning",
       description: "Estimate engine horsepower based on vehicle weight and quarter-mile elapsed time (ET).",
       aliases: ["hp-from-et-and-weight-calculator", "quarter-mile-time-to-horsepower", "drag-strip-hp-calculator", "et-to-hp-formula-calculator"],
-      seoTitle: "Horsepower from Quarter Mile ET Calculator",
-      seoDescription: "Estimate engine horsepower from your car's weight and quarter-mile elapsed time using the classic drag racing HP formula favored by racers and tuners.",
+      seoTitle: "Quarter Mile Horsepower Calculator — HP from ET",
+      seoDescription:
+        "Estimate engine horsepower from quarter-mile elapsed time and vehicle weight using the classic drag racing formula, with the trap speed method too.",
       loader: () => import("@/components/calculators/Automotive/HpFromQuarterMileEtCalculator"),
       urlStyle: "flat"
     },
@@ -528,8 +530,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       subcategory: "performance-tuning",
       description: "Predict quarter-mile elapsed time (ET) and trap speed (MPH) from horsepower and vehicle weight.",
       aliases: ["quarter-mile-time-calculator", "hp-to-et-and-trap-speed", "drag-racing-time-predictor", "quarter-mile-mph-calculator"],
-      seoTitle: "Quarter Mile ET & Trap Speed from HP Calculator",
-      seoDescription: "Predict your car's quarter-mile elapsed time and trap speed in MPH from horsepower and vehicle weight, using the same formula drag racers rely on daily.",
+      seoTitle: "Quarter Mile Calculator — ET and Trap Speed from HP",
+      seoDescription:
+        "Predict quarter-mile elapsed time and trap speed from horsepower and vehicle weight, using the same formulas drag racers use at the strip.",
       loader: () => import("@/components/calculators/Automotive/QuarterMileEtMphFromHpCalculator"),
       urlStyle: "flat"
     },
@@ -600,8 +603,9 @@ export const automotiveEntries: CalculatorEntry[] = [
       subcategory: "performance-tuning",
       description: "Calculate intake/exhaust duration, overlap, and lobe separation angle for cam selection.",
       aliases: ["cam-duration-calculator", "lobe-separation-angle-calculator", "valve-overlap-calculator", "camshaft-lsa-calculator"],
-      seoTitle: "Camshaft Duration & Overlap Calculator",
-      seoDescription: "Calculate intake and exhaust duration, valve overlap, and lobe separation angle to compare camshafts and pick the right cam profile for your engine build.",
+      seoTitle: "Camshaft Overlap Calculator — Duration and LSA",
+      seoDescription:
+        "Calculate valve overlap, intake and exhaust duration and lobe separation angle, so you can compare cam profiles before choosing a camshaft.",
       loader: () => import("@/components/calculators/Automotive/CamshaftDurationOverlapCalculator"),
       urlStyle: "flat"
     },

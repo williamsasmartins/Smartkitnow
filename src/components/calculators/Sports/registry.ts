@@ -155,8 +155,9 @@ export const sportsEntries: CalculatorEntry[] = [
       category: "sports",
       subcategory: "running-cycling-triathlon-performance",
       description: "Convert swim times between pool lengths. Switch between Short Course Yards, Short Course Meters, and Long Course Meters accurately.",
-      seoTitle: "Swim Time Converter — SCY, SCM & LCM Pool Lengths",
-      seoDescription: "Convert swim times between Short Course Yards (SCY), Short Course Meters (SCM), and Long Course Meters (LCM). Essential for competitive swimmers comparing performance across pool sizes.",
+      seoTitle: "Swim Time Converter — SCY, SCM and LCM Pool Lengths",
+      seoDescription:
+        "Convert swim times between short course yards, short course meters and long course meters using the standard conversion factors for each event.",
       loader: () => import("@/components/calculators/Sports/PoolLengthTimeConverterCalculator"),
       urlStyle: "flat"
     },
@@ -323,8 +324,9 @@ export const sportsEntries: CalculatorEntry[] = [
       subcategory: "ball-sports-advanced-metrics",
       description: "Project fantasy sports points. Estimate team scores based on player stats for football, basketball, or soccer leagues.",
       aliases: ["fantasy-team-points-projections-calculator", "how-to-calculate-fantasy-team-points-projections", "fantasy-team-points-projections-online", "free-fantasy-team-points-projections-calculator"],
-      seoTitle: "Fantasy Team Points Projections Calculator",
-      seoDescription: "Project fantasy sports points. Estimate team scores based on player stats for football, basketball, or soccer leagues. Free and instant, no signup required.",
+      seoTitle: "Fantasy Football Points Calculator — PPR and Standard",
+      seoDescription:
+        "Calculate fantasy football points from passing, rushing and receiving stats in PPR, half-PPR or standard scoring, and project a full team total.",
       loader: () => import("@/components/calculators/Sports/FantasyTeamPointsProjectionsCalculator"),
       urlStyle: "flat"
     },
@@ -366,13 +368,14 @@ export const sportsEntries: CalculatorEntry[] = [
     },
   {
       slug: "basketball-efg-ts",
-      title: "Basketball eFG% & TS% Calculator",
+      title: "True Shooting % (TS%) & eFG% Calculator",
       category: "sports",
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate Effective Field Goal and True Shooting percentage. Measure basketball scoring efficiency accurately.",
       aliases: ["basketball-efg-and-ts-calculator", "how-to-calculate-basketball-efg-and-ts", "basketball-efg-and-ts-online", "free-basketball-efg-and-ts-calculator"],
-      seoTitle: "Basketball eFG% & TS% Calculator",
-      seoDescription: "Calculate Effective Field Goal and True Shooting percentage. Measure basketball scoring efficiency accurately.",
+      seoTitle: "True Shooting Percentage (TS%) and eFG% Calculator",
+      seoDescription:
+        "Calculate true shooting percentage (TS%) and effective field goal percentage (eFG%) from points, field goal attempts and free throw attempts.",
       loader: () => import("@/components/calculators/Sports/BasketballEfgTsCalculator"),
       urlStyle: "flat"
     },
@@ -443,8 +446,9 @@ export const sportsEntries: CalculatorEntry[] = [
       subcategory: "ball-sports-advanced-metrics",
       description: "Calculate GB/FB ratio. Analyze a pitcher's tendency to induce grounders versus fly balls.",
       aliases: ["ground-ball-to-fly-ball-ratio-calculator", "how-to-calculate-ground-ball-to-fly-ball-ratio", "ground-ball-to-fly-ball-ratio-online", "free-ground-ball-to-fly-ball-ratio-calculator"],
-      seoTitle: "Ground Ball to Fly Ball Ratio (GB/FB)",
-      seoDescription: "Calculate GB/FB ratio. Analyze a pitcher's tendency to induce grounders versus fly balls. Free sports tool with instant, accurate results — no signup required.",
+      seoTitle: "GB/FB Ratio Calculator — Ground Ball to Fly Ball",
+      seoDescription:
+        "Calculate a pitcher's ground ball to fly ball ratio (GB/FB) from batted ball totals and see how it compares with the league average.",
       loader: () => import("@/components/calculators/Sports/GroundBallToFlyBallRatioGbFbCalculator"),
       urlStyle: "flat"
     },

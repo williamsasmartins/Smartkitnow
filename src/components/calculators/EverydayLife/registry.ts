@@ -179,8 +179,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "health-wellness-sleep",
       description: "Monitor your caffeine intake. Calculate your daily limit based on body weight to enjoy coffee safely without the jitters.",
-      seoTitle: "Daily Caffeine Limit Calculator — Safe Dose by Body Weight",
-      seoDescription: "Find your safe daily caffeine limit based on body weight. Track coffee, tea, energy drinks, and supplements to avoid jitters, anxiety, and sleep disruption.",
+      seoTitle: "Caffeine Calculator by Weight and Age — Daily Limit",
+      seoDescription:
+        "Find your safe daily caffeine limit by body weight and age. See how many coffees, teas or energy drinks fit under the 400 mg adult guideline.",
       loader: () => import("@/components/calculators/Misc/CaffeineMaxPerDayCalculator"),
       urlStyle: "flat"
     },
@@ -203,8 +204,9 @@ export const everydayEntries: CalculatorEntry[] = [
       subcategory: "health-wellness-sleep",
       description: "Convert daily steps to distance. See how many miles or kilometers you walked based on your step count and stride length.",
       aliases: ["steps-distance-calculator", "how-to-calculate-steps-distance", "steps-distance-online", "free-steps-distance-calculator"],
-      seoTitle: "Steps → Distance Converter",
-      seoDescription: "Convert daily steps to distance. See how many miles or kilometers you walked based on your step count and stride length. Free and instant, no signup required.",
+      seoTitle: "Steps to Miles Calculator — Convert Your Step Count",
+      seoDescription:
+        "Convert steps to miles or kilometres from your height and stride length. See how far 5,000, 10,000 or 20,000 steps actually takes you.",
       loader: () => import("@/components/calculators/Misc/StepsToDistanceConverterCalculator"),
       urlStyle: "flat"
     },
@@ -251,8 +253,9 @@ export const everydayEntries: CalculatorEntry[] = [
       subcategory: "events-party-culinary",
       description: "Calculate ice needed for parties. Estimate bags of ice required for drinks and cooling based on guest count and duration.",
       aliases: ["ice-quantity-for-beverages-calculator", "how-to-calculate-ice-quantity-for-beverages", "ice-quantity-for-beverages-online", "free-ice-quantity-for-beverages-calculator"],
-      seoTitle: "Ice Quantity for Beverages Calculator",
-      seoDescription: "Calculate ice needed for parties. Estimate bags of ice required for drinks and cooling based on guest count and duration. Free and instant, no signup required.",
+      seoTitle: "How Much Ice for a Party — Bags by Guest Count",
+      seoDescription:
+        "Calculate how many bags of ice you need for drinks and coolers, based on guest count, event length and the weather on the day.",
       loader: () => import("@/components/calculators/Misc/IceQuantityBeveragesCalculator"),
       urlStyle: "flat"
     },
@@ -263,8 +266,9 @@ export const everydayEntries: CalculatorEntry[] = [
       subcategory: "events-party-culinary",
       description: "Plan buffet quantities. Calculate how much food fits in standard hotel pans to ensure you feed everyone without running out.",
       aliases: ["buffet-serving-pan-capacity-and-count-calculator", "how-to-calculate-buffet-serving-pan-capacity-and-count", "buffet-serving-pan-capacity-and-count-online", "free-buffet-serving-pan-capacity-and-count-calculator"],
-      seoTitle: "Buffet Serving Pan Capacity & Count",
-      seoDescription: "Plan buffet quantities. Calculate how much food fits in standard hotel pans to ensure you feed everyone without running out.",
+      seoTitle: "Buffet Pan Calculator — How Many Hotel Pans You Need",
+      seoDescription:
+        "Work out how many full, half and third hotel pans you need to feed a given number of guests, with serving sizes and portions per pan.",
       loader: () => import("@/components/calculators/Misc/BuffetPanCapacityCountCalculator"),
       urlStyle: "flat"
     },
@@ -322,8 +326,9 @@ export const everydayEntries: CalculatorEntry[] = [
       category: "everyday",
       subcategory: "events-party-culinary",
       description: "Calculate venue capacity. Determine how many guests can safely fit in a room based on square footage and seating layout.",
-      seoTitle: "Event Capacity Calculator — Max Guests by Room Size & Layout",
-      seoDescription: "Calculate safe event capacity from room square footage. Get instant guest counts for standing, seated, cocktail, banquet, and classroom layouts. Fire code and ADA guidance included.",
+      seoTitle: "Event Capacity Calculator — Guests by Room Size",
+      seoDescription:
+        "Work out how many guests a room holds from its square footage and layout. Covers standing, seated, banquet, theater and classroom setups.",
       loader: () => import("@/components/calculators/Misc/EventCapacityCalculator"),
       urlStyle: "flat"
     },
