@@ -12,6 +12,8 @@ export interface BlogSection {
   heading: string;
   /** Paragraphs of body copy. Each string is rendered as its own <p>. */
   paragraphs: string[];
+  /** Optional bulleted values rendered after the paragraphs, e.g. a data breakdown. */
+  bullets?: string[];
 }
 
 export interface BlogRelatedCalculator {
@@ -1076,6 +1078,81 @@ export const blogPosts: BlogPost[] = [
     seoTitle: "Total Cost of Owning a $30,000 Car for 5 Years",
     seoDescription:
       "The total cost of owning a $30,000 car for 5 years is about $52,083 after resale. See the full line-by-line breakdown: financing, depreciation, fuel, and more.",
+  },
+  {
+    slug: "how-many-calories-to-lose-10-pounds-in-a-month",
+    title: "How Many Calories to Lose 10 Pounds in a Month?",
+    excerpt:
+      "Losing 10 pounds in a month needs a 35,000-calorie deficit — about 1,167 a day. For most people that means eating below the safe calorie floor, so here's the math and a safer alternative.",
+    category: "Health & Fitness",
+    date: "2026-08-31",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 6,
+    intro:
+      "How many calories to lose 10 pounds in a month? At the standard estimate of 3,500 calories per pound, 10 pounds is a 35,000-calorie deficit, or about 1,167 calories a day below your maintenance level (TDEE). For most adults that's not actually achievable through diet alone — hitting it would mean eating below the daily minimum Mayo Clinic cites, about 1,200 calories a day for women and 1,500 for men, which risks nutrient deficiency and muscle loss rather than fat loss. This guide runs the exact numbers for two example people, shows the TDEE threshold where 10 pounds a month stops being reckless, and lays out a combined diet-and-exercise plan that gets close without going below the floor.",
+    sections: [
+      {
+        heading: "How many calories do you need to cut to lose 10 pounds in a month?",
+        paragraphs: [
+          "The standard estimate is that one pound of body fat holds about 3,500 calories. Losing 10 pounds means clearing 10 × 3,500 = 35,000 calories over the month. Spread evenly across 30 days, that's 35,000 ÷ 30 = 1,166.67 calories a day — call it 1,167 — that you need to burn beyond what you eat, every single day, for the whole month. That figure is a simplification: NIH researcher Kevin Hall and others have shown the 3,500-calorie rule overestimates real-world loss over longer periods, because metabolism adapts downward as you lose weight. Over a single month the gap is small, so it still works for planning, but treat every timeline in this article as a slightly optimistic estimate rather than a promise.",
+          "That daily number, called your deficit, is the gap between your total daily energy expenditure (TDEE) — the calories your body burns in a day at your current weight and activity level — and what you actually eat. Deficit = TDEE − intake. You can only judge whether 1,167 calories a day is realistic once you know your own TDEE, which is why the two worked examples below start there rather than guessing. (For the mechanics of calculating BMR and TDEE step by step, see our companion guide, Daily Calorie Needs Explained.)",
+        ],
+      },
+      {
+        heading: "Two worked examples: why 10 pounds a month rarely pencils out",
+        paragraphs: [
+          "Consider a 30-year-old woman, 5'5\" and 160 lb, with a sedentary desk job. Her Mifflin-St Jeor BMR is about 1,446 calories, and at a 1.2 sedentary activity multiplier her TDEE is about 1,735 calories a day. To hit the 1,167-calorie deficit needed for 10 pounds in a month, she'd have to eat 1,735 − 1,167 = about 568 calories a day — less than half the 1,200-calorie daily minimum Mayo Clinic sets for women without medical supervision, a level associated with nutrient shortfalls and muscle loss rather than healthy fat loss.",
+          "Now take a larger example: a 40-year-old man, 5'10\" and 250 lb, also sedentary. His BMR is about 2,050 and his TDEE is about 2,460 calories a day — noticeably higher because of his larger body size. Hitting the same 1,167-calorie deficit would mean eating 2,460 − 1,167 = about 1,293 calories a day — above 1,200, but well under the 1,500-calorie daily minimum Mayo Clinic recommends for men outside medical supervision. Even at a TDEE 725 calories higher than the woman's, a sedentary man's diet-only path to 10 pounds a month still crosses that line.",
+        ],
+      },
+      {
+        heading: "What TDEE do you need for 10 pounds a month to be safe?",
+        paragraphs: [
+          "There's a specific rule buried in that math: the most you can safely lose through diet alone in a month is (TDEE − floor) ÷ 3,500 × 30 pounds. Using a 1,200-calorie floor for women, that maximum climbs with TDEE, and ten pounds only clears the floor once TDEE reaches roughly 2,367 calories a day. Using a 1,500-calorie floor for men, the equivalent crossover is roughly 2,667 calories a day.",
+          "That threshold is the real answer to whether 10 pounds a month is a reasonable goal for diet cuts alone: it depends on how high your starting TDEE already is, not on willpower. A TDEE north of about 2,400-2,700 usually belongs to someone larger-bodied, more muscular, or considerably more active than a typical sedentary adult — for most people with an average TDEE in the 1,700-2,200 range, the math simply doesn't leave room for a 10-pound month without dropping under the floor. Here's how that ceiling scales with TDEE, using the 1,200-calorie floor for women:",
+        ],
+        bullets: [
+          "TDEE 1,600 → max 3.4 lb/month on diet alone (1,200-calorie floor)",
+          "TDEE 1,800 → max 5.1 lb/month",
+          "TDEE 2,000 → max 6.9 lb/month",
+          "TDEE 2,200 → max 8.6 lb/month",
+          "TDEE 2,400 → max 10.3 lb/month",
+        ],
+      },
+      {
+        heading: "How do you lose 10 pounds without eating below the calorie floor?",
+        paragraphs: [
+          "The floor caps how much deficit diet alone can safely provide, but exercise can supply the rest. The 160-lb woman from earlier illustrates how: cutting her intake down to the 1,200-calorie floor creates a deficit of 1,735 − 1,200 = 535 calories a day from diet. Add roughly 300 calories a day of exercise — about an hour of brisk walking at 3.5 mph, or about 25 minutes of running at 6 mph, for a body of her size — and her combined deficit reaches 835 a day. At that rate, clearing the full 35,000-calorie total takes 35,000 ÷ 835 ≈ 42 days, about 6 weeks, instead of the 30 she was hoping for; diet cuts alone, capped at the floor, would take 35,000 ÷ 535 ≈ 65 days, over 9 weeks.",
+          "That's the honest trade-off: reaching 10 pounds safely usually means extending the timeline by several weeks rather than compressing the deficit into 30 days. It also lines up with the pace Mayo Clinic and the CDC both recommend — 1 to 2 pounds a week, or roughly 4.3 to 8.6 pounds in a 30-day month. By that yardstick, a flat 10 pounds in 30 days — about 2.3 pounds a week — sits above the recommended pace for anyone. What separates the two examples is how far under the floor each would have to eat to get there: 632 calories under it for the woman, 207 for the man. Run your own weight, height, age, and activity level through a TDEE calculator first, then use a calorie calculator to set a target that stays above the floor for your sex — that combination shows your real number rather than a generic estimate.",
+          "One more thing worth knowing before you start: a big first-month number on the scale, for anyone starting this kind of cut, is often partly water and glycogen rather than pure fat, which is a separate reason the early pace tends to slow down in month two.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is it safe to lose 10 pounds in a month?",
+        answer:
+          "It depends on your TDEE. For a typical sedentary TDEE in the 1,700-2,300 range, hitting the 1,167-calorie daily deficit that 10 pounds a month requires means eating below the daily minimums Mayo Clinic cites — about 1,200 calories for women and 1,500 for men — which isn't recommended without medical supervision. People with a TDEE above roughly 2,367 (women) or 2,667 (men), usually larger-bodied or more active individuals, can reach 10 pounds a month through diet alone while staying above that floor.",
+      },
+      {
+        question: "What is the calorie floor, and why does it matter?",
+        answer:
+          "The calorie floor — about 1,200 calories a day for women and 1,500 for men in Mayo Clinic's weight-loss guidance — is the minimum intake generally recommended without medical supervision. (NHLBI's low-calorie-diet ranges of 1,000-1,200 for women and 1,200-1,600 for men are reserved for medically supervised programs.) Eating below the floor risks nutrient deficiencies, muscle loss (which lowers your metabolism further), fatigue, and a plan that's hard to sustain, even if the scale moves faster in the short term.",
+      },
+      {
+        question: "How can I lose 10 pounds faster without dropping below the floor?",
+        answer:
+          "Add exercise-based calories burned on top of a diet cut that stops at the floor. In the worked example, cutting to the 1,200-calorie floor plus about 300 calories a day of exercise closes most of the gap, bringing a 65-day diet-only timeline down to about 42 days. Closing the rest of the gap safely usually means accepting a timeline closer to 6-9 weeks than a flat 30 days.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Calorie Calculator", url: "/health/calorie-calculator", icon: "🍽️" },
+      { title: "TDEE Daily Energy Expenditure Calculator", url: "/health/tdee-daily-energy-expenditure", icon: "💪" },
+      { title: "BMR Calculator", url: "/health/bmr-calculator", icon: "🔥" },
+    ],
+    seoTitle: "Calories to Lose 10 Pounds in a Month: 1,167/Day",
+    seoDescription:
+      "How many calories to lose 10 pounds in a month? You need about 1,167 a day — see two worked TDEE examples and the calorie-floor rule that decides if it is safe.",
   },
 ];
 

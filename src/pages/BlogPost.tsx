@@ -114,6 +114,13 @@ export default function BlogPost() {
                     {para}
                   </p>
                 ))}
+                {section.bullets && section.bullets.length > 0 && (
+                  <ul className="list-disc pl-6 space-y-1.5 text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+                    {section.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx}>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
               </section>
             ))}
 
