@@ -1,6 +1,10 @@
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { ArrowLeft, Lightbulb, CheckCircle2, Share2, Compass, Award } from "lucide-react";
-import AdRailLayout from "@/components/layouts/AdRailLayout";
+// No ads on this page: a smart-tip detail is a short-form page (~80 words of
+// publisher content), and Google-served ads on screens without substantial
+// publisher content violate AdSense policy. The former AdRailLayout (top +
+// bottom banners and both side rails) was replaced by a plain container that
+// reproduces the same visual structure without any ad slots.
 import SEOHead from "@/components/SEOHead";
 import { Card } from "@/components/ui/card";
 import { getSmartTipBySlug, smartTipsCategories } from "@/data/smartTipsData";
@@ -28,8 +32,8 @@ export default function SmartTipDetail() {
         canonical={`https://www.smartkitnow.com/smart-tip/${tip.slug}`}
       />
       <main className="pt-48 sm:pt-20">
-        <AdRailLayout
-          titleBlock={
+        <section className="container mx-auto px-4 py-8">
+          <div className="mb-6">
             <div className="text-left">
               <div className="mb-6 text-left">
                 <button
@@ -48,8 +52,8 @@ export default function SmartTipDetail() {
                 {tip.description}
               </p>
             </div>
-          }
-        >
+          </div>
+
           <div className="space-y-8 mb-16">
             
             {/* Why This Works */}
@@ -102,7 +106,7 @@ export default function SmartTipDetail() {
               </div>
             )}
           </div>
-        </AdRailLayout>
+        </section>
       </main>
     </div>
   );

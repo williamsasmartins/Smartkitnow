@@ -13,7 +13,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://formspree.io; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://va.vercel-scripts.com https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://adservice.google.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https: https://cdnjs.cloudflare.com https://fonts.gstatic.com; connect-src 'self' https://va.vercel-scripts.com https://raw.githubusercontent.com https://n8n.sweetslove.ca https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://formspree.io https://stats.g.doubleclick.net https://analytics.google.com https://adservice.google.com; frame-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; worker-src 'self' blob:"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://formspree.io; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://va.vercel-scripts.com https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://adservice.google.com https://fundingchoicesmessages.google.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https: https://cdnjs.cloudflare.com https://fonts.gstatic.com; connect-src 'self' https://va.vercel-scripts.com https://raw.githubusercontent.com https://n8n.sweetslove.ca https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://formspree.io https://stats.g.doubleclick.net https://analytics.google.com https://adservice.google.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://fundingchoicesmessages.google.com; frame-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://fundingchoicesmessages.google.com; worker-src 'self' blob:"
         },
         {
           "key": "Strict-Transport-Security",
@@ -40,6 +40,15 @@
           "value": "geolocation=(), microphone=(), camera=(), payment=(), accelerometer=(), gyroscope=(), magnetometer=(), usb=(), xr-spatial-tracking=()"
         }
       ]
+    },
+    {
+      "//": "Thin surfaces, kept for users but out of the index. Smart-tip detail pages average ~80 words and individual game pages carry ~40 unique words (their controls/strategy copy is shared across sibling games), so both read as thin content to a crawler. Sent as an HTTP header rather than a <meta> tag so the directive is honoured even on routes that are not prerendered. Remove these once the pages carry real depth, and re-add them to the sitemap generator at the same time.",
+      "source": "/smart-tip/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
+    },
+    {
+      "source": "/games/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
     }
   ],
   "rewrites": [
@@ -304,8 +313,9 @@
     { "source": "/marketing/~partytown",          "destination": "/api/gone" },
     { "source": "/marketing/~partytown/:path*",   "destination": "/api/gone" },
     {
+      "//": "Catch-all. Previously pointed at '/', which served the fully-rendered homepage at HTTP 200 for every unknown URL — an unbounded soft-404 farm of duplicate content. Every real route is prerendered to its own file and served from the filesystem before reaching this rule, so anything that gets here does not exist and must say so with a real 404.",
       "source": "/:path*",
-      "destination": "/"
+      "destination": "/api/not-found"
     }
   ],
   "redirects": [

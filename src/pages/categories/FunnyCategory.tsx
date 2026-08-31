@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import AdBannerTop from "../../components/ads/AdBannerTop";
-import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import RegistryCategorySection from "@/components/RegistryCategorySection";
@@ -72,6 +70,9 @@ const TOTAL =
   homePetsPopCulture.length +
   absurdTravelAdventure.length; // 38
 
+// No ads on this category index page: it is a navigation/link directory with
+// minimal publisher content, and Google-served ads on such screens violate
+// AdSense policy. AdBannerTop / AdSidebarRight intentionally removed.
 export default function FunnyCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
@@ -87,7 +88,6 @@ export default function FunnyCategory() {
       />
       {/* offset below fixed header */}
       <div className="h-16 md:h-20" aria-hidden />
-      <AdBannerTop />
 
       <main className="mx-auto pb-16" style={{ maxWidth: 1200 }}>
         <div className="relative xl:flex xl:justify-center xl:gap-12">
@@ -186,7 +186,6 @@ export default function FunnyCategory() {
           </div>
 
           {/* Coluna do right rail */}
-          <AdSidebarRight topOffset={0} />
         </div>
       </main>
     </div>

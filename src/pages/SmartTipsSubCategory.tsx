@@ -29,7 +29,12 @@ export default function SmartTipsSubCategory() {
         canonical={`https://www.smartkitnow.com/smart-tips/${category.slug}`}
       />
       <main className="pt-48 sm:pt-20">
+        {/* Ads off: this is a link directory with little prose of its own, and
+            AdSense forbids ads on screens without substantive publisher content. */}
         <AdRailLayout
+          topCenterAd={false}
+          bottomCenterAd={false}
+          showRails={false}
           titleBlock={
             <div className="text-left">
               <div className="mb-6 text-left">

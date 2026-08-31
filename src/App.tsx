@@ -42,6 +42,7 @@ const About = lazy(() => import("@/pages/About"));
 const ContactSuggestionPage = lazy(() => import("@/pages/ContactSuggestionPage"));
 const Cookies = lazy(() => import("@/pages/Cookies"));
 const CookieSettings = lazy(() => import("@/pages/CookieSettings"));
+const EditorialPolicy = lazy(() => import("@/pages/EditorialPolicy"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
 const Terms = lazy(() => import("@/pages/Terms"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
@@ -84,6 +85,7 @@ export default function App() {
               <Route path="/contact" element={<ContactSuggestionPage />} />
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/cookie-settings" element={<CookieSettings />} />
+              <Route path="/editorial-policy" element={<EditorialPolicy />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/search" element={<Search />} />

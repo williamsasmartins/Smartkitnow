@@ -33,3 +33,6 @@ bun.lockb
 .vercel
 
 .obsidian/
+
+# Build artifact: route manifest emitted by scripts/generate-sitemap.ts for scripts/prerender.mjs
+.prerender-routes.json

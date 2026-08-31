@@ -108,15 +108,32 @@ if (!template.includes(PLACEHOLDER)) {
 }
 
 // ---------------------------------------------------------------------------
-// Routes from sitemap
+// Routes.
+//
+// Preferred source is .prerender-routes.json, emitted by generate-sitemap.ts.
+// It is a SUPERSET of the sitemap: it also carries the routes we deliberately
+// keep out of the index (noindexed thin pages) plus utility routes like
+// /search. Those are still real pages people open, so they must ship rendered
+// HTML — otherwise the catch-all rewrite hands them the homepage instead.
+//
+// Falls back to parsing the sitemap if the manifest is missing, so the script
+// still works standalone.
 // ---------------------------------------------------------------------------
-const sitemapXml = fs.readFileSync(SITEMAP, 'utf-8')
-let allRoutes = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
-  .map((m) => {
-    const url = m[1].trim()
-    return url.startsWith(BASE_URL) ? url.slice(BASE_URL.length) || '/' : null
-  })
-  .filter(Boolean)
+const ROUTE_MANIFEST = path.join(process.cwd(), '.prerender-routes.json')
+let allRoutes
+if (fs.existsSync(ROUTE_MANIFEST)) {
+  allRoutes = JSON.parse(fs.readFileSync(ROUTE_MANIFEST, 'utf-8'))
+  console.log(`[prerender] ${allRoutes.length} routes from .prerender-routes.json`)
+} else {
+  const sitemapXml = fs.readFileSync(SITEMAP, 'utf-8')
+  allRoutes = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+    .map((m) => {
+      const url = m[1].trim()
+      return url.startsWith(BASE_URL) ? url.slice(BASE_URL.length) || '/' : null
+    })
+    .filter(Boolean)
+  console.warn(`[prerender] manifest missing — fell back to sitemap (${allRoutes.length} routes)`)
+}
 
 // Deduplicate + ensure "/" is present
 allRoutes = [...new Set(['/', ...allRoutes])]
@@ -135,14 +152,32 @@ allRoutes = [...new Set(['/', ...allRoutes])]
 // Routes beyond the cap still receive a valid canonical'd SPA shell (below), so
 // they work as normal client-rendered pages — they are just not pre-rendered.
 //
-// PRERENDER_MAX_ROUTES=0 (or a value >= route count) prerenders everything.
-// 500 sits comfortably inside the range that ran flat and crash-free on the
-// Vercel box (0–750 rendered at a steady ~0.85s/route before throughput
-// degraded), covers the homepage + every category hub + ~475 calculators, and
-// leaves generous headroom under the 45-minute build limit (~10 min prerender).
-const DEFAULT_MAX = IS_SERVERLESS ? 500 : 0
+// A FIXED COUNT CAP IS THE WRONG TOOL HERE. It used to be 500, which left 448
+// of 948 routes shipping as byte-identical empty shells — same <title>, same
+// meta description, `<div id="root"></div>` — which is exactly the fingerprint
+// AdSense reads as "Low value content". Whole high-quality sections (all 44
+// construction calculators, every blog post) were invisible to the reviewer.
+//
+// Instead we prerender EVERYTHING and bound the work by WALL-CLOCK TIME (see
+// TIME_BUDGET_MS below). That way the build can never blow the 45-minute limit,
+// but on a normal run (~0.85-1.2s/route) all routes finish comfortably inside
+// the budget and every indexed URL ships real HTML.
+//
+// PRERENDER_MAX_ROUTES>0 still forces a hard count cap if ever needed.
+const DEFAULT_MAX = 0
 const MAX_ROUTES = Number(
   process.env.PRERENDER_MAX_ROUTES != null ? process.env.PRERENDER_MAX_ROUTES : DEFAULT_MAX
+)
+
+// Wall-clock ceiling for the render phase. Vercel's build limit is 45 minutes
+// and `npm install` + `vite build` take roughly 3-6 of those, so 24 minutes of
+// prerendering leaves a wide margin. If the budget is ever exhausted the
+// remaining routes fall back to canonical'd SPA shells instead of the build
+// dying — degraded, but never a failed deploy. 0 disables the budget.
+const TIME_BUDGET_MS = Number(
+  process.env.PRERENDER_TIME_BUDGET_MS != null
+    ? process.env.PRERENDER_TIME_BUDGET_MS
+    : IS_SERVERLESS ? 24 * 60 * 1000 : 0
 )
 
 const segCount = (r) => (r === '/' ? 0 : r.split('/').filter(Boolean).length)
@@ -347,6 +382,7 @@ async function renderRoute(browser, route) {
 // Concurrency pool
 // ---------------------------------------------------------------------------
 async function run() {
+  const startedAt = Date.now()
   await new Promise((resolve) => server.listen(PORT, HOST, resolve))
   console.log(`[prerender] static server on http://${HOST}:${PORT}`)
 
@@ -399,6 +435,19 @@ async function run() {
 
   async function worker() {
     while (queue.length) {
+      // Wall-clock guard: if we are out of budget, hand every remaining route
+      // back as a canonical'd SPA shell rather than risk the build timing out.
+      if (TIME_BUDGET_MS > 0 && Date.now() - startedAt > TIME_BUDGET_MS) {
+        const dropped = queue.splice(0)
+        if (dropped.length) {
+          deferred.push(...dropped)
+          console.warn(
+            `[prerender] time budget (${Math.round(TIME_BUDGET_MS / 60000)}min) exhausted — ` +
+              `${dropped.length} route(s) deferred to SPA shell.`
+          )
+        }
+        break
+      }
       const route = queue.shift()
       let res
       for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
@@ -454,7 +503,13 @@ async function run() {
     console.log(`[prerender] wrote ${deferred.length} deferred SPA shells (canonical only).`)
   }
 
-  console.log(`[prerender] done. ${total - failures.length}/${total} prerendered.`)
+  const rendered = done - failures.length
+  console.log(
+    `[prerender] done. ${rendered}/${allRoutes.length} routes prerendered ` +
+      `in ${Math.round((Date.now() - startedAt) / 1000)}s` +
+      (deferred.length ? `, ${deferred.length} shell-only` : '') +
+      `.`
+  )
   // Non-zero exit if a large fraction failed (build should surface the problem).
   if (failures.length > total * 0.1) {
     console.error('[prerender] >10% of routes failed — failing the build.')

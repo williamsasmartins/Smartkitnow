@@ -31,6 +31,11 @@
     <priority>0.55</priority>
   </url>
   <url>
+    <loc>https://www.smartkitnow.com/editorial-policy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
     <loc>https://www.smartkitnow.com/financial</loc>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
@@ -507,11 +512,6 @@
   </url>
   <url>
     <loc>https://www.smartkitnow.com/financial/volatility-risk-assessment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.82</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/health/calorie-calculator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.82</priority>
   </url>
@@ -1121,11 +1121,6 @@
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/math/lcm-calculator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/math/prime-factorization-tool</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -1167,11 +1162,6 @@
   </url>
   <url>
     <loc>https://www.smartkitnow.com/math/trig-functions-angle-side-finder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/math/shapes-area-volume-pack</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -1437,16 +1427,6 @@
   </url>
   <url>
     <loc>https://www.smartkitnow.com/time/utc-local-time-converter</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/time/dst-change-checker</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/time/epoch-unix-time-converter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
@@ -1772,11 +1752,6 @@
   </url>
   <url>
     <loc>https://www.smartkitnow.com/pets/cat-gabapentin-dose</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/pets/cat-prednisolone-dose</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -3136,11 +3111,6 @@
     <priority>0.68</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/sports/vo2max-estimator-cooper-rockport</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.68</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/sports/running-pace-split-finish-time</loc>
     <changefreq>monthly</changefreq>
     <priority>0.68</priority>
@@ -3381,52 +3351,7 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/video/recording-time-card-ssd-capacity</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/audio-bitrate-channels-impact-file-size</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/vbr-cbr-size-estimator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/video/uncompressed-video-size-resolution-bit-depth</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/h264-h265-target-bitrate-helper-resolution-fps</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/youtube-twitch-recommended-bitrate-checker</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/surveillance-nvr-video-storage-planner</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/live-streaming-bitrate-calculator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/video-data-rate-calculator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/video-compression-size-estimator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
@@ -3436,17 +3361,7 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/video/aspect-ratio-letterbox-pillarbox</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/video/resolution-presets-pixel-count-720p-1080p-4k-8k</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/screen-size-from-diagonal-ar</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
@@ -3457,11 +3372,6 @@
   </url>
   <url>
     <loc>https://www.smartkitnow.com/video/pixel-aspect-ratio-par-converter</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/anamorphic-lens-calculator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
@@ -3482,11 +3392,6 @@
   </url>
   <url>
     <loc>https://www.smartkitnow.com/video/shutter-angle-speed-helper-180-degree-rule</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/slow-mo-speed-ramp-time-calculator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
@@ -3531,21 +3436,6 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/video/video-export-time-estimator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/gpu-render-performance-calculator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/render-time-per-frame-calculator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/video/cloud-render-queue-planner</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
@@ -3556,17 +3446,7 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/video/animation-render-duration-estimator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/video/multi-workstation-render-time-calculator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/amplifier-power-required-calculator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
@@ -3607,11 +3487,6 @@
   </url>
   <url>
     <loc>https://www.smartkitnow.com/video/decibel-power-ratio-calculator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/video/audio-file-size-estimator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
@@ -3676,424 +3551,9 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/games/neon-snake</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/galaxy-invaders</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/brick-breaker-pro</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/pong-masters</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/meteor-blast</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/cyber-pinball</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/tank-battle-arena</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/pac-runner</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/dino-run-3d</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/subway-surfer-lite</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/cosmic-dash</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/temple-escape</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/ninja-roof-runner</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/brick-dash</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/sudoku-zen</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/jigsaw-explorer</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/2048-classic</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/minesweeper-pro</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/tangram-master</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/pipe-connect</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/block-puzzle-jewel</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/differences-finder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/water-sort</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/hexa-puzzle</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/rubiks-cube-3x3</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/speed-cuber-timer</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/cube-solver-ai</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/wordle-unlimited</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/crossword-daily</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/word-search-pro</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/hangman-extreme</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/scrabble-solo</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/typing-racer</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/math-blaster</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/24-game</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/mental-math-gym</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/fraction-pizza</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/geometry-dash-lite</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/tic-tac-toe-prime</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/chess-master-ai</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/checkers-online</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/connect-4-pro</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/backgammon-live</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/ludo-party</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/solitaire-klondike</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/baccarat-royale</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/spider-solitaire</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/uno-friends</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/memory-match-cards</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/candy-crush-clone</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/jewel-hunter</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/bubble-shooter-pop</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/zuma-tumble</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/fruit-splash</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/piano-tiles-speed</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/drum-kit-pro</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/music-racer</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/beat-saber-web</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/maze-runner-3d</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/pac-maze</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/ball-roll-maze</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/scary-maze</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/basketball-hoops</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/penalty-shootout</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/8-ball-pool-lite</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/table-tennis-pro</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/archery-master</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/tetris-blocks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/snake-classic</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/minesweeper-xp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/pinball-classic</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/simon-says</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/games/breakout-retro</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/smart-tips/home-organization-cleaning</loc>
     <changefreq>weekly</changefreq>
     <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/one-touch-rule-mail-paperwork</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/15-minute-daily-declutter</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/create-landing-zone-entrance</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/clear-storage-containers-labels</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/one-in-one-out-rule</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/clean-as-you-go-cooking</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/establish-homes-frequent-items</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/two-minute-rule-cleaning</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/rotate-seasonal-items-storage</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/weekly-cleaning-schedule-daily-focus</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/smart-tips/travel-planning</loc>
@@ -4101,109 +3561,9 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/smart-tip/book-flights-tuesday-afternoon-deals</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/pack-complete-outfit-carry-on</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/travel-reward-credit-cards-strategy</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/download-offline-maps-translation-apps</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/book-accommodations-free-cancellation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/research-local-customs-etiquette</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/create-digital-copies-important-documents</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/pack-portable-power-bank-universal-adapter</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/book-airport-transfers-research-transport</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/pack-essential-medications-prescriptions</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/smart-tips/personal-finance</loc>
     <changefreq>weekly</changefreq>
     <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/50-30-20-budget-rule</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/build-emergency-fund-3-6-months</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/automate-savings-investments</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/debt-avalanche-method-high-interest</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/track-net-worth-monthly</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/maximize-employer-401k-matching</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/envelope-method-discretionary-spending</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/review-negotiate-bills-annually</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/invest-low-cost-index-funds</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/automatic-bill-pay-avoid-late-fees</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/smart-tips/health-wellness</loc>
@@ -4211,109 +3571,9 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/smart-tip/drink-water-immediately-upon-waking</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/20-20-20-rule-eye-health</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/10-minute-walk-after-meals</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/practice-deep-breathing-5-minutes-daily</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/sleep-7-9-hours-consistently</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/eat-5-7-servings-fruits-vegetables-daily</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/stand-stretch-every-hour-desk-work</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/practice-gratitude-writing-3-things-daily</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/limit-processed-foods-eat-whole-foods-80-percent</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/strength-training-2-3-times-per-week</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/smart-tips/eco-friendly-sustainability</loc>
     <changefreq>weekly</changefreq>
     <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/switch-led-light-bulbs-home</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/start-composting-food-scraps-yard-waste</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/use-reusable-bags-bottles-containers</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/reduce-meat-consumption-plant-based-days</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/fix-water-leaks-install-low-flow-fixtures</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/buy-local-seasonal-produce</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/unplug-electronics-reduce-phantom-energy</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/choose-eco-friendly-cleaning-products</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/walk-bike-public-transport-short-trips</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/plant-native-species-garden-yard</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/smart-tips/remote-work-productivity</loc>
@@ -4321,109 +3581,9 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/smart-tip/create-dedicated-workspace-separate-areas</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/use-pomodoro-technique-focused-sessions</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/establish-morning-evening-routines-workday</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/communicate-proactively-team-managers</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/take-regular-breaks-away-screens</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/minimize-distractions-notifications-environment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/use-project-management-tools-track-tasks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/dress-professionally-important-meetings-calls</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/maintain-social-connections-virtual-interactions</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/set-clear-boundaries-work-personal-time</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/smart-tips/digital-productivity-tools</loc>
     <changefreq>weekly</changefreq>
     <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/use-keyboard-shortcuts-speed-common-tasks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/implement-digital-filing-system-naming-conventions</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/use-automation-tools-repetitive-tasks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/regularly-update-backup-digital-devices</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/use-password-managers-secure-simplify-logins</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/organize-digital-photos-tags-albums</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/use-cloud-storage-seamless-file-access</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/learn-advanced-search-techniques-faster-retrieval</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/use-digital-note-taking-apps-sync-search</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/setup-email-filters-labels-organize-inbox</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/smart-tips/parenting-child-education</loc>
@@ -4431,109 +3591,9 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/smart-tip/read-children-20-minutes-daily</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/use-positive-reinforcement-over-punishment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/limit-screen-time-encourage-active-play</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/teach-children-identify-express-emotions</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/establish-consistent-bedtime-routines</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/involve-children-age-appropriate-household-tasks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/practice-active-listening-children-speak</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/set-clear-consistent-boundaries-expectations</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/encourage-curiosity-open-ended-questions</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/model-behavior-values-you-want-see</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/smart-tips/career-development-networking</loc>
     <changefreq>weekly</changefreq>
     <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/schedule-regular-one-on-one-meetings-manager</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/build-professional-network-inside-outside-company</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/continuously-update-skills-learning-training</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/document-achievements-maintain-updated-resume</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/seek-feedback-regularly-colleagues-supervisors</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/volunteer-challenging-projects-stretch-assignments</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/develop-strong-communication-presentation-skills</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/find-mentors-consider-mentoring-others</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/maintain-professional-online-presence</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/set-clear-career-goals-create-action-plans</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/smart-tips/mental-health-self-care</loc>
@@ -4541,164 +3601,14 @@
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/smart-tip/practice-mindfulness-meditation-10-15-minutes-daily</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/maintain-social-connections-communicate-feelings</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/establish-boundaries-work-personal-life</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/engage-regular-physical-exercise-mental-health</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/keep-daily-gratitude-journal</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/limit-social-media-news-consumption</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/develop-healthy-coping-strategies-stress-emotions</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/prioritize-quality-sleep-mental-health-foundation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/practice-self-compassion-instead-self-criticism</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/schedule-regular-mental-health-check-ins</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/smart-tips/home-safety-prevention</loc>
     <changefreq>weekly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/smart-tip/test-smoke-carbon-monoxide-detectors-monthly</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/create-practice-family-emergency-evacuation-plan</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/install-maintain-proper-exterior-lighting</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/secure-windows-doors-proper-locks-reinforcements</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/keep-emergency-supplies-stocked-accessible</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/regularly-inspect-maintain-electrical-systems</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/install-grab-bars-improve-bathroom-lighting</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/maintain-clear-pathways-remove-tripping-hazards</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/store-hazardous-materials-safely-according-labels</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/conduct-regular-safety-drills-educate-family</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://www.smartkitnow.com/smart-tips/diy-maintenance</loc>
     <changefreq>weekly</changefreq>
     <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/create-seasonal-home-maintenance-checklist</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/learn-basic-plumbing-skills-drains-leaks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/maintain-hvac-system-filter-changes-cleanings</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/know-use-basic-tools-safely-effectively</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/inspect-clean-gutters-twice-yearly</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/caulk-windows-doors-annually-energy-efficiency</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/test-reset-gfci-outlets-monthly</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/keep-organized-toolbox-quality-basic-tools</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/learn-patch-small-holes-drywall</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.smartkitnow.com/smart-tip/document-repairs-maintenance-photos-dates</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/blog/how-to-calculate-your-mortgage-payment</loc>
@@ -4737,6 +3647,46 @@
   </url>
   <url>
     <loc>https://www.smartkitnow.com/blog/compound-interest-explained-why-time-beats-amount</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/how-many-sheets-of-drywall-for-a-12x12-room</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/is-refinancing-worth-it-for-a-1-percent-lower-rate</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/how-much-gas-will-a-500-mile-road-trip-cost</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/how-many-bricks-do-i-need-for-a-200-square-foot-wall</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/student-loan-payment-on-a-45000-salary</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/how-to-calculate-body-fat-percentage-with-a-tape-measure</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/total-cost-of-owning-a-30000-car-for-5-years</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/blog/how-many-calories-to-lose-10-pounds-in-a-month</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

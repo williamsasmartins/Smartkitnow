@@ -56,9 +56,11 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
     title: "Company",
     links: [
       { label: "About Us", to: "/about" },
+      { label: "Editorial Policy", to: "/editorial-policy" },
       { label: "Contact", to: "/contact" },
       { label: "Privacy Policy", to: "/privacy" },
       { label: "Terms of Use", to: "/terms" },
+      { label: "Cookie Policy", to: "/cookies" },
       { label: "Cookie Settings", to: "/cookie-settings" },
     ],
   },
