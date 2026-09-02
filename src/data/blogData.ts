@@ -1162,43 +1162,43 @@ export const blogPosts: BlogPost[] = [
     category: "Health & Fitness",
     date: "2026-09-02",
     author: "Smart Kit Now Editorial Team",
-    readingMinutes: 8,
+    readingMinutes: 7,
     intro:
       "To gain 10 pounds in 3 months, eat roughly 389 calories a day above your maintenance level (TDEE) — about 35,000 total surplus calories spread across 90 days, using the standard rule that a pound of body weight equals about 3,500 calories. For a 28-year-old, 165-lb man with a TDEE of about 2,675 calories, that means eating around 3,064 calories a day. The pace you choose matters just as much as the total: a bigger surplus hits 10 pounds faster, but a larger share of that weight ends up as fat rather than muscle. This guide runs the full math, works through one person's numbers step by step, and shows how different surplus sizes change both the timeline and what the extra weight is made of.",
     sections: [
       {
-        heading: "The math behind a weight-gain surplus",
+        heading: "How many calories do you need to gain 10 pounds in 3 months?",
         paragraphs: [
           "Your calorie target for gaining weight starts from the same two numbers used for losing it: basal metabolic rate (BMR), the energy you burn at complete rest, and total daily energy expenditure (TDEE), your BMR scaled up by an activity multiplier to reflect how much you move. TDEE is your maintenance number — eat exactly that and your weight holds steady. Eat above it and the surplus becomes stored energy, most of it as fat and some of it as muscle if you're lifting and eating enough protein.",
-          "Body weight converts to calories at roughly 3,500 calories per pound, so gaining 10 pounds requires a total surplus of about 35,000 calories. Spread evenly across 90 days (a simple three-month approximation), that's 35,000 ÷ 90 = 388.9, or about 389 calories a day above maintenance. Your daily target is then TDEE + 389 — a number you can only get right once you know your actual TDEE, which is where the worked example below comes in.",
+          "Body weight converts to calories at roughly 3,500 calories per pound, so gaining 10 pounds requires a total surplus of about 35,000 calories. Spread evenly across 90 days (a simple three-month approximation), that's 35,000 ÷ 90 = 388.9, or about 389 calories a day above maintenance. Your daily target is then TDEE + 389 — a number you can only get right once you know your actual TDEE, which is where the worked example below comes in. That 3,500-calorie figure comes from body fat specifically; NIH researcher Kevin Hall's more detailed metabolic models show mixed weight gain (muscle plus fat) often costs somewhat less than 3,500 calories per pound, since muscle tissue is mostly water. Treat 35,000 as a solid planning estimate rather than an exact price tag.",
         ],
       },
       {
         heading: "A worked example: reaching 3,064 calories a day",
         paragraphs: [
           "Take a 28-year-old man who is 5'10\" (178 cm) and weighs 165 lb (about 74.8 kg), lifting weights four days a week — a moderate activity level. His BMR by the Mifflin-St Jeor equation is 10 × weight (kg) + 6.25 × height (cm) − 5 × age + 5, which works out to 10 × 74.8 + 6.25 × 178 − 5 × 28 + 5 = 748 + 1,112.5 − 140 + 5, or about 1,726 calories a day at complete rest.",
-          "Multiplying by a moderate-activity factor of 1.55 gives his TDEE: 1,726 × 1.55 ≈ 2,675 calories a day. That's his maintenance number — eating 2,675 calories a day would hold his weight steady. Add the 389-calorie surplus from the goal above and his daily target becomes 2,675 + 389 = 3,064 calories a day. Hold that intake steady for 90 days, adjusting only if the scale isn't moving as expected, and the math predicts a 10-pound gain.",
+          "Multiplying by a moderate-activity factor of 1.55 gives his TDEE: 1,726 × 1.55 ≈ 2,675 calories a day. That's his maintenance number — eating 2,675 calories a day would hold his weight steady. Add the 389-calorie surplus from the goal above and his daily target becomes 2,675 + 389 = 3,064 calories a day. Hold that intake steady for 90 days, adjusting only if the scale isn't moving as expected, and the math predicts a 10-pound gain. (For the BMR and TDEE mechanics themselves, see our companion guide, Daily Calorie Needs Explained; the mirror-image question, cutting rather than adding calories, is covered in How Many Calories to Lose 10 Pounds in a Month.)",
         ],
       },
       {
-        heading: "How your surplus pace changes the timeline",
+        heading: "How fast can you gain 10 pounds on a bigger surplus?",
         paragraphs: [
           "The 389-calorie figure assumes a flat 90-day window, but you can reach the same 10-pound goal faster or slower by changing the size of the daily surplus — the total is always 35,000 calories, so a bigger daily number just divides into fewer days. Here's how five common surplus sizes play out against the same 10-pound target:",
           "A slower, smaller surplus stretches the timeline well past three months, while an aggressive one can hit the number in under two months. Neither speed is automatically better — the right choice depends on how much of that 10 pounds you want to be muscle versus fat, which the next section covers.",
         ],
         bullets: [
-          "250 cal/day surplus → 140 days (20 weeks, ~4.6 months) to gain 10 lb",
-          "300 cal/day surplus → 117 days (16.7 weeks, ~3.9 months) to gain 10 lb",
-          "389 cal/day surplus → 90 days (12.9 weeks, 3 months) to gain 10 lb",
-          "500 cal/day surplus → 70 days (10 weeks, ~2.3 months) to gain 10 lb",
-          "700 cal/day surplus → 50 days (7.1 weeks, ~1.6 months) to gain 10 lb",
+          "250 cal/day → 140 days (20 weeks, ~4.6 months)",
+          "300 cal/day → 117 days (16.7 weeks, ~3.9 months)",
+          "389 cal/day → 90 days (12.9 weeks, 3 months)",
+          "500 cal/day → 70 days (10 weeks, ~2.3 months)",
+          "700 cal/day → 50 days (7.1 weeks, ~1.6 months)",
         ],
       },
       {
         heading: "Protein and training decide what the extra weight is",
         paragraphs: [
-          "A calorie surplus only tells your body to store energy — it doesn't decide whether that energy becomes muscle or fat. Two inputs make the difference: resistance training that gives your muscles a reason to grow, and enough protein to supply the material for that growth, generally cited around 0.7 to 1 gram per pound of body weight per day (roughly 115 to 165 grams for the 165-lb man in the example above). Skip either one and a surplus mostly just adds fat.",
-          "The size of the surplus matters here too. A smaller, steadier surplus like 250 to 400 calories a day (a 'lean bulk') gives your body time to direct more of the extra energy into muscle when training and protein are in place, while a large surplus like 700 to 1,000 calories a day floods in more energy than muscle-building can use, so a bigger share gets stored as fat. If the scale is climbing faster than about 1 to 2 pounds a month with no strength gains to show for it, that's usually a sign the surplus is larger than it needs to be.",
+          "A calorie surplus only tells your body to store energy — it doesn't decide whether that energy becomes muscle or fat. Two inputs make the difference: resistance training that gives your muscles a reason to grow, and enough protein to supply the material for that growth. Sports-nutrition guidance from the International Society of Sports Nutrition puts that at roughly 0.7 to 1 gram per pound of body weight per day (roughly 115 to 165 grams for the 165-lb man in the example above). Skip either input and a surplus mostly just adds fat.",
+          "The size of the surplus matters here too. A 2013 study by Garthe and colleagues, published in the International Journal of Sport Nutrition and Exercise Metabolism, tracked athletes on a slower, more moderate surplus against a faster one and found the moderate group gained a higher share of lean mass relative to fat over the same weight gain. For a 165-lb lifter, a commonly cited lean-bulk pace is 0.25 to 0.5 percent of body weight a week — roughly 0.4 to 0.8 lb a week, or about 1.8 to 3.6 lb a month. The 389-calorie plan above lands at 0.78 lb a week, the fast end of that range. If the scale climbs faster than about 1 lb a week with no strength gains to show for it, the surplus is bigger than muscle growth can use, and more of it is likely landing as fat.",
         ],
       },
     ],
