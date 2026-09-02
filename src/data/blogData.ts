@@ -1154,6 +1154,80 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How many calories to lose 10 pounds in a month? You need about 1,167 a day — see two worked TDEE examples and the calorie-floor rule that decides if it is safe.",
   },
+  {
+    slug: "how-many-calories-to-gain-10-pounds-in-3-months",
+    title: "How Many Calories to Gain 10 Pounds in 3 Months",
+    excerpt:
+      "The daily calorie surplus that adds up to 10 pounds over 90 days, a full worked TDEE example, and how your surplus pace decides how much of that weight is muscle.",
+    category: "Health & Fitness",
+    date: "2026-09-02",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "To gain 10 pounds in 3 months, eat roughly 389 calories a day above your maintenance level (TDEE) — about 35,000 total surplus calories spread across 90 days, using the standard rule that a pound of body weight equals about 3,500 calories. For a 28-year-old, 165-lb man with a TDEE of about 2,675 calories, that means eating around 3,064 calories a day. The pace you choose matters just as much as the total: a bigger surplus hits 10 pounds faster, but a larger share of that weight ends up as fat rather than muscle. This guide runs the full math, works through one person's numbers step by step, and shows how different surplus sizes change both the timeline and what the extra weight is made of.",
+    sections: [
+      {
+        heading: "The math behind a weight-gain surplus",
+        paragraphs: [
+          "Your calorie target for gaining weight starts from the same two numbers used for losing it: basal metabolic rate (BMR), the energy you burn at complete rest, and total daily energy expenditure (TDEE), your BMR scaled up by an activity multiplier to reflect how much you move. TDEE is your maintenance number — eat exactly that and your weight holds steady. Eat above it and the surplus becomes stored energy, most of it as fat and some of it as muscle if you're lifting and eating enough protein.",
+          "Body weight converts to calories at roughly 3,500 calories per pound, so gaining 10 pounds requires a total surplus of about 35,000 calories. Spread evenly across 90 days (a simple three-month approximation), that's 35,000 ÷ 90 = 388.9, or about 389 calories a day above maintenance. Your daily target is then TDEE + 389 — a number you can only get right once you know your actual TDEE, which is where the worked example below comes in.",
+        ],
+      },
+      {
+        heading: "A worked example: reaching 3,064 calories a day",
+        paragraphs: [
+          "Take a 28-year-old man who is 5'10\" (178 cm) and weighs 165 lb (about 74.8 kg), lifting weights four days a week — a moderate activity level. His BMR by the Mifflin-St Jeor equation is 10 × weight (kg) + 6.25 × height (cm) − 5 × age + 5, which works out to 10 × 74.8 + 6.25 × 178 − 5 × 28 + 5 = 748 + 1,112.5 − 140 + 5, or about 1,726 calories a day at complete rest.",
+          "Multiplying by a moderate-activity factor of 1.55 gives his TDEE: 1,726 × 1.55 ≈ 2,675 calories a day. That's his maintenance number — eating 2,675 calories a day would hold his weight steady. Add the 389-calorie surplus from the goal above and his daily target becomes 2,675 + 389 = 3,064 calories a day. Hold that intake steady for 90 days, adjusting only if the scale isn't moving as expected, and the math predicts a 10-pound gain.",
+        ],
+      },
+      {
+        heading: "How your surplus pace changes the timeline",
+        paragraphs: [
+          "The 389-calorie figure assumes a flat 90-day window, but you can reach the same 10-pound goal faster or slower by changing the size of the daily surplus — the total is always 35,000 calories, so a bigger daily number just divides into fewer days. Here's how five common surplus sizes play out against the same 10-pound target:",
+          "A slower, smaller surplus stretches the timeline well past three months, while an aggressive one can hit the number in under two months. Neither speed is automatically better — the right choice depends on how much of that 10 pounds you want to be muscle versus fat, which the next section covers.",
+        ],
+        bullets: [
+          "250 cal/day surplus → 140 days (20 weeks, ~4.6 months) to gain 10 lb",
+          "300 cal/day surplus → 117 days (16.7 weeks, ~3.9 months) to gain 10 lb",
+          "389 cal/day surplus → 90 days (12.9 weeks, 3 months) to gain 10 lb",
+          "500 cal/day surplus → 70 days (10 weeks, ~2.3 months) to gain 10 lb",
+          "700 cal/day surplus → 50 days (7.1 weeks, ~1.6 months) to gain 10 lb",
+        ],
+      },
+      {
+        heading: "Protein and training decide what the extra weight is",
+        paragraphs: [
+          "A calorie surplus only tells your body to store energy — it doesn't decide whether that energy becomes muscle or fat. Two inputs make the difference: resistance training that gives your muscles a reason to grow, and enough protein to supply the material for that growth, generally cited around 0.7 to 1 gram per pound of body weight per day (roughly 115 to 165 grams for the 165-lb man in the example above). Skip either one and a surplus mostly just adds fat.",
+          "The size of the surplus matters here too. A smaller, steadier surplus like 250 to 400 calories a day (a 'lean bulk') gives your body time to direct more of the extra energy into muscle when training and protein are in place, while a large surplus like 700 to 1,000 calories a day floods in more energy than muscle-building can use, so a bigger share gets stored as fat. If the scale is climbing faster than about 1 to 2 pounds a month with no strength gains to show for it, that's usually a sign the surplus is larger than it needs to be.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How many calories over maintenance do I need to gain 10 pounds in 3 months?",
+        answer:
+          "About 389 calories a day above your TDEE (maintenance level), based on the standard estimate that a pound of body weight equals roughly 3,500 calories: 10 pounds × 3,500 ÷ 90 days ≈ 389 calories a day. Your exact target depends on your own TDEE, which changes with your age, weight, height, and activity level.",
+      },
+      {
+        question: "Will a bigger calorie surplus build muscle faster?",
+        answer:
+          "No — muscle growth is capped by how much training and protein your body can use to build tissue, not by how many spare calories are available. A larger surplus just adds weight faster, and most of that extra speed shows up as fat rather than muscle. A moderate surplus of roughly 250 to 400 calories a day, paired with resistance training, is the pace most commonly recommended for gaining primarily muscle.",
+      },
+      {
+        question: "What if I'm not gaining weight on 3,064 calories a day?",
+        answer:
+          "TDEE formulas are population estimates, so your real maintenance level can run higher or lower than the calculated number. Hold your intake steady for two to three weeks and track your average weight — if it isn't trending up by roughly 0.8 pounds a week (10 pounds ÷ 12.9 weeks), add 100 to 200 calories a day and reassess rather than jumping straight to a much larger increase.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Calorie Calculator", url: "/health/calorie-calculator", icon: "🍽️" },
+      { title: "TDEE Daily Energy Expenditure Calculator", url: "/health/tdee-daily-energy-expenditure", icon: "💪" },
+      { title: "BMR Calculator", url: "/health/bmr-calculator", icon: "🔥" },
+    ],
+    seoTitle: "Calories to Gain 10 Pounds in 3 Months: 389/Day",
+    seoDescription:
+      "How many calories to gain 10 pounds in 3 months? About 389 a day above maintenance — see a full worked TDEE example and how surplus size affects muscle vs fat.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
