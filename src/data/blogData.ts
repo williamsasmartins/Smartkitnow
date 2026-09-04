@@ -1228,6 +1228,87 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How many calories to gain 10 pounds in 3 months? About 389 a day above maintenance — see a full worked TDEE example and how surplus size affects muscle vs fat.",
   },
+  {
+    slug: "monthly-payment-on-a-20000-loan-for-5-years",
+    title: "Monthly Payment on a $20,000 Loan for 5 Years",
+    excerpt:
+      "At a representative 11.5% APR, a $20,000 loan over 5 years runs about $439.85 a month and $6,391 in total interest — see how rate tier and term length change that number.",
+    category: "Personal Finance",
+    date: "2026-09-04",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "The monthly payment on a $20,000 loan for 5 years is about $439.85 at 11.5% APR — roughly the average rate on a 24-month personal loan from a commercial bank, per the Federal Reserve's G.19 report. Over the full 60-month term you'd pay about $6,391 in total interest, for $26,391 paid back on the $20,000 borrowed. That payment swings a lot with your credit tier: the same $20,000 over 5 years costs about $423.56 a month for excellent credit (9.86% APR) and about $632.65 a month for fair credit (28.82% APR). This guide runs the exact formula, breaks down what credit tier and loan term do to the number, and shows how much an extra $100 a month actually saves.",
+    sections: [
+      {
+        heading: "Calculating the monthly payment on a $20,000 loan for 5 years",
+        paragraphs: [
+          "Installment loans — personal loans, auto loans, and mortgages alike — use the same fixed-rate amortization formula: M = P[r(1+r)^n] / [(1+r)^n − 1]. M is the monthly payment, P is the principal ($20,000 here), r is the monthly interest rate (annual APR divided by 12), and n is the number of monthly payments (5 years × 12 = 60).",
+          "At 11.5% APR, the monthly rate is 11.5% ÷ 12 = 0.9583%. Running that through the formula with n = 60 gives M ≈ $439.85. Multiply that by 60 payments and you get $26,391 paid back in total — $20,000 of principal plus $6,391 of interest. One caveat specific to personal loans: this formula uses the note rate, but an origination fee — commonly 1% to 10%, deducted from the money you receive — pushes your APR above the rate the payment is built from. On a $20,000 loan with a 5% origination fee, you'd still amortize the full $20,000 but only receive $19,000 up front.",
+        ],
+      },
+      {
+        heading: "How does your credit tier change the payment?",
+        paragraphs: [
+          "Personal loan APRs vary widely by credit profile — lenders price an identical loan amount very differently depending on your credit score, income, and existing debt. The breakdown below holds the loan amount and term fixed at $20,000 over 5 years and only changes the rate, using average APRs by credit tier from Credible's marketplace data on 67,550 loans closed between August 2025 and July 2026, so you can see exactly what a better or worse credit tier is worth in dollars. Note that the 11.5% figure above is a commercial-bank benchmark for a 24-month loan; five-year loans usually price somewhat higher, so treat it as a midpoint rather than a quote.",
+          "The gap between the best and worst tier here is about $220 a month and roughly $13,219 in total interest — nearly two-thirds of the original loan amount, for the exact same $20,000 borrowed. That's the single biggest reason to shop your rate or improve your credit score before signing. On a loan this size, the rate tier matters more than almost anything else you can control.",
+        ],
+        bullets: [
+          "9.86% APR (excellent, 800-850): $423.56/mo → $5,413.87 total interest",
+          "12.44% APR (very good, 740-799): $449.35/mo → $6,960.92 total interest",
+          "19.23% APR (good, 670-739): $521.35/mo → $11,280.72 total interest",
+          "28.82% APR (fair, 580-669): $632.65/mo → $17,958.85 total interest",
+          "29.74% APR (poor, below 580): $643.88/mo → $18,632.65 total interest",
+        ],
+      },
+      {
+        heading: "How does loan term change the payment and total cost?",
+        paragraphs: [
+          "Term length is the other lever. A shorter term means a bigger bite out of your monthly budget, but far less interest paid overall. A longer term frees up monthly cash flow, but you pay more for that principal by the time it's paid off.",
+          "Compare 2 years to 7 years on the same principal at 11.5%. The monthly payment more than doubles going from the 7-year term to the 2-year term — $347.73 versus $936.81. Total interest, in exchange, drops by about $6,726. There's no universally 'right' term; it depends on what monthly payment your budget can absorb versus how much extra you're willing to pay for the breathing room.",
+        ],
+        bullets: [
+          "2 years: $936.81/mo → $2,483.35 total interest",
+          "3 years: $659.52/mo → $3,742.72 total interest",
+          "5 years: $439.85/mo → $6,391.13 total interest",
+          "7 years: $347.73/mo → $9,209.25 total interest",
+        ],
+      },
+      {
+        heading: "What does an extra $100 a month actually save?",
+        paragraphs: [
+          "Once you've picked a term, you're not locked into the interest total that comes with it. Most personal loans let you pay extra toward principal with no penalty, and the effect compounds because every dollar of extra principal stops accruing interest for the rest of the loan. On the 5-year, 11.5% loan above, paying $439.85 plus an extra $100 (so $539.85 a month) pays the loan off in 46 months instead of 60 — 14 months, over a year, sooner.",
+          "The interest savings are even more striking than the time savings: total interest drops from $6,391.13 to $4,823.37, a saving of $1,567.76. You pay $100 more each month, but you make only 46 payments instead of 60 — so you hand the lender about $24,823 in total instead of $26,391. That's the practical takeaway: if your budget can flex, directing extra cash at a personal loan's principal is one of the highest-certainty returns available, since you're guaranteed to avoid paying 11.5% on every dollar you pay down early.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What credit score gets you the best rate on a $20,000 personal loan?",
+        answer:
+          "Lenders weigh more than a single score, but the strongest personal loan rates — averaging near 9.9% APR for scores of 800 and above — go to borrowers with excellent credit, low existing debt, and stable income. Borrowers with fair credit (580-669) saw average rates closer to 28.8% APR in 2026, which on $20,000 over 5 years works out to over $200 more per month than a top-tier rate.",
+      },
+      {
+        question: "Is a 5-year term too long for a $20,000 loan?",
+        answer:
+          "It depends on your budget. A 5-year term at 11.5% keeps the payment around $440 a month, which is manageable for many borrowers, but it also means paying about $6,391 in interest. If you can comfortably afford a 3-year payment of about $660 a month instead, you'd cut total interest to roughly $3,743 — a savings of over $2,600 on the same loan amount.",
+      },
+      {
+        question: "Does paying extra each month always save money on a personal loan?",
+        answer:
+          "Yes, as long as the loan has no prepayment penalty, which most personal loans don't. Every extra dollar applied to principal stops accruing interest for the remaining life of the loan, so on the example above, an extra $100 a month saved $1,567.76 in interest and shortened the loan by 14 months. Confirm your specific loan doesn't charge a prepayment fee before adding extra payments.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Auto Loan Calculator", url: "/financial/auto-loan", icon: "🚗" },
+      { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+    ],
+    seoTitle: "Monthly Payment on a $20,000 Loan for 5 Years",
+    seoDescription:
+      "The monthly payment on a $20,000 loan for 5 years is about $439.85 at 11.5% APR. See how credit tier, term length, and extra payments change the total cost.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
