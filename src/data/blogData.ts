@@ -1309,6 +1309,105 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "The monthly payment on a $20,000 loan for 5 years is about $439.85 at 11.5% APR. See how credit tier, term length, and extra payments change the total cost.",
   },
+  {
+    slug: "how-much-does-a-50-mile-commute-cost-per-year",
+    title: "How Much Does a 50-Mile Commute Cost Per Year?",
+    excerpt:
+      "A 50-mile round-trip commute costs about $3,228 a year in gas and maintenance for an average sedan — an EV charged at home cuts that to roughly $1,675. Here's the full math.",
+    category: "Automotive",
+    date: "2026-09-07",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 6,
+    intro:
+      "How much does a 50-mile commute cost per year? For a 50-mile round trip (25 miles each way), 5 days a week, 50 weeks a year, that's 12,500 miles annually. At 28 mpg and $4.15 a gallon — the AAA national average in early September 2026 — fuel alone runs about $1,853 a year, and adding AAA's 11-cents-a-mile maintenance-and-repair estimate brings the true cost to about $3,228. Charge an EV at home instead and the same 12,500 miles costs about $1,675 total, roughly half. This guide runs every number, breaks the cost down by distance and by vehicle, and shows exactly what moving 10 miles closer to work is worth in dollars and hours.",
+    sections: [
+      {
+        heading: "How much does a 50-mile commute cost per year? The base math",
+        paragraphs: [
+          "Start with the miles. A 50-mile round trip driven 5 days a week for 50 working weeks a year (accounting for roughly 2 weeks of holidays, PTO, and remote days) comes to 250 commuting days, so annual miles = 50 × 250 = 12,500. That figure is the input every other number in this guide builds from — if your actual commute runs 4 days a week or 48 weeks a year, scale the miles proportionally before using any of the dollar figures below.",
+          "For an average sedan at 28 mpg, gallons burned = 12,500 ÷ 28 = 446.4 gallons a year. At $4.15 a gallon — AAA's reported national average for regular unleaded in early September 2026 — that's 446.4 × $4.15 = $1,852.68 a year in fuel, or about $154.39 a month. That's the number most commuters mentally track. It isn't the whole cost.",
+        ],
+      },
+      {
+        heading: "The cost nobody tracks: maintenance from commuting miles",
+        paragraphs: [
+          "AAA's Your Driving Costs study puts combined maintenance, repair, and tire wear at roughly 11 cents per mile, averaged across vehicle types for a new car over 5 years and 75,000 miles — the same figure used in our companion guide on the true cost of owning a $30,000 car for 5 years. An older, already-paid-off commuter car tends to skew the other way — less warranty coverage but sometimes higher realized repair bills — so treat 11 cents as a reasonable planning average rather than a number specific to your exact car.",
+          "Applied to 12,500 commuting miles a year, that's 12,500 × $0.11 = $1,375 in wear and tear that exists specifically because you drive to work, on top of the $1,852.68 in fuel. Add them together and the true annual cost of a 50-mile round-trip commute is $1,852.68 + $1,375.00 = $3,227.68 — 74% higher than the fuel-only figure most people budget for. That works out to $0.258 per mile, or about $269 a month, or $12.91 per commuting day — none of it counting insurance, parking, tolls, or the car loan itself, since this is purely the marginal cost of the 12,500 commuting miles that would disappear if you worked from home or moved next door to the office.",
+        ],
+      },
+      {
+        heading: "How commute distance changes the annual cost",
+        paragraphs: [
+          "Commute cost scales directly with round-trip distance. Here's the same 28 mpg, $4.15/gal, 250-day math applied to seven common commute lengths, fuel only and fuel-plus-maintenance:",
+        ],
+        bullets: [
+          "10 miles round trip (2,500 mi/yr): $370.54 in fuel, $645.54 total with maintenance.",
+          "20 miles round trip (5,000 mi/yr): $741.07 in fuel, $1,291.07 total.",
+          "30 miles round trip (7,500 mi/yr): $1,111.61 in fuel, $1,936.61 total.",
+          "40 miles round trip (10,000 mi/yr): $1,482.14 in fuel, $2,582.14 total.",
+          "50 miles round trip (12,500 mi/yr): $1,852.68 in fuel, $3,227.68 total.",
+          "80 miles round trip (20,000 mi/yr): $2,964.29 in fuel, $5,164.29 total.",
+          "100 miles round trip (25,000 mi/yr): $3,705.36 in fuel, $6,455.36 total.",
+        ],
+      },
+      {
+        heading: "How vehicle efficiency changes the annual cost",
+        paragraphs: [
+          "Vehicle efficiency matters almost as much as distance. Holding the 50-mile round trip and $4.15 gas price fixed, here's annual fuel cost alone by mpg rating:",
+        ],
+        bullets: [
+          "18 mpg (older SUV or truck): $2,881.94/yr.",
+          "20 mpg: $2,593.75/yr.",
+          "25 mpg: $2,075.00/yr.",
+          "28 mpg (average sedan): $1,852.68/yr.",
+          "30 mpg: $1,729.17/yr.",
+          "35 mpg: $1,482.14/yr.",
+          "40 mpg (efficient hybrid): $1,296.88/yr — a $1,585.06 spread from the 18-mpg figure above, more than the total cost of many people's shorter commutes altogether.",
+        ],
+      },
+      {
+        heading: "What an EV commute costs, and what 10 fewer miles a day is worth",
+        paragraphs: [
+          "A typical EV uses about 0.30 kWh per mile on combined driving, so the same 12,500-mile commute needs 12,500 × 0.30 = 3,750 kWh a year. At an EIA-reported September 2026 U.S. residential average of about $0.18/kWh (18.3 cents), that's 3,750 × $0.18 = $675.00 a year charged at home — 64% less than the $1,852.68 gas figure. That gap is largely a home-charging effect: relying on public fast chargers instead, which run well above home rates, shrinks or erases the EV's fuel-cost advantage.",
+          "EVs also run cheaper to maintain per mile. Using a conservative 8 cents a mile for tires, brakes (extended by regenerative braking), and a far shorter service list, that's another $1,000 a year, for a total commuting cost of $675.00 + $1,000.00 = $1,675.00. Against the gas car's $3,227.68 fuel-plus-maintenance total, that's a saving of $1,552.68 a year for a commuter who charges mostly at home — the companion guide Electric vs Gas Car: How to Compare the True 5-Year Cost adds purchase price, incentives, and depreciation to this same fuel-and-maintenance base if you're weighing which car to buy rather than just what the commute costs.",
+          "Distance is the lever most commuters can actually influence, and it's worth pricing precisely. Ten fewer round-trip miles a day (say, a 40-mile commute instead of 50) removes 10 × 250 = 2,500 miles a year, saving 2,500 ÷ 28 × $4.15 = $370.54 in fuel and, including the 11-cents-a-mile maintenance line, $645.54 total — about $53.79 a month.",
+          "At an average 35 mph commuting speed (realistic for mixed city and highway driving with some congestion), those same 10 miles also take 10 ÷ 35 = 0.286 hours a day off your drive, or 71.4 hours a year — nearly 9 full 8-hour workdays. A move that shortens the commute by 10 miles round trip is worth both figures at once: about $54 a month in vehicle costs, plus roughly 9 workdays of your time back annually.",
+        ],
+      },
+      {
+        heading: "Is it worth paying more to live closer to work?",
+        paragraphs: [
+          "The $53.79-a-month figure above is a useful benchmark for a specific question: how much more rent or mortgage payment does a shorter commute justify, on vehicle costs alone? If moving from a 50-mile round trip to a 40-mile one costs $75 a month more in housing, the vehicle-cost savings alone don't cover it: $75 − $53.79 leaves a $21.21 monthly gap, or $254.52 a year. Spread across the 71.4 hours of driving you get back, you'd need to value that reclaimed time at more than about $3.56 an hour to come out ahead — which for almost anyone with a job clears easily. Run the comparison the other way and a $40-a-month rent premium for the shorter commute pays for itself on vehicle costs alone, before time is worth anything at all.",
+          "The honest version of this calculation needs your own numbers, not the ones here: your actual mpg or EV efficiency, your local gas or electricity price, your real commuting days per year, and — most subjectively — what an hour of your time is worth to you. Run your specific round-trip distance through the trip fuel cost calculator below to get your own annual figure, and if you're weighing a gas car against an EV for the daily commute specifically, the 5-year ownership cost calculator adds insurance, depreciation, and financing to this same fuel-and-maintenance base so you can compare the full picture, not just the pump price.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How much does a 50-mile round-trip commute cost in gas alone?",
+        answer:
+          "About $1,852.68 a year for an average sedan at 28 mpg and $4.15 a gallon, assuming 12,500 commuting miles (50 miles round trip, 5 days a week, 50 weeks a year). That's fuel only — add AAA's 11-cents-a-mile maintenance estimate and the true annual cost rises to about $3,227.68.",
+      },
+      {
+        question: "Is an EV cheaper than a gas car for a daily commute?",
+        answer:
+          "Usually, yes, if you charge at home. On the same 12,500-mile commute, an EV at 0.30 kWh/mile and a $0.18/kWh home electricity rate costs about $675 a year in electricity versus $1,852.68 in gas — and roughly $1,675 versus $3,227.68 once maintenance is included. Relying on public fast chargers instead of home charging shrinks or erases that advantage, since fast-charging rates run well above home rates.",
+      },
+      {
+        question: "How much would a shorter commute save me?",
+        answer:
+          "Roughly $64.55 a year in fuel-plus-maintenance costs for every mile you cut from your daily round trip, based on 250 commuting days a year at 28 mpg and $4.15/gal (11 cents a mile in maintenance included). Cutting 10 miles a day saves about $645.54 a year and, at a 35 mph average commuting speed, about 71 hours of driving time as well.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Trip Fuel Cost Calculator", url: "/automotive/trip-fuel-cost", icon: "⛽" },
+      { title: "ICE vs EV 5-Year Ownership Cost Calculator", url: "/automotive/ice-vs-ev-ownership-cost-5y", icon: "🔌" },
+      { title: "Total Cost of Ownership Calculator", url: "/automotive/tco-total-cost-ownership", icon: "🚙" },
+    ],
+    seoTitle: "How Much Does a 50-Mile Commute Cost Per Year?",
+    seoDescription:
+      "How much does a 50-mile commute cost per year? About $3,228 in fuel and maintenance for a gas car, or $1,675 for an EV charged at home. Full worked math inside.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
