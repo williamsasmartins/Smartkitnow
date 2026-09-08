@@ -147,6 +147,19 @@ export interface CalculatorEntry {
 
 ---
 
+## ⚠️ Large Files — Never Read In Full
+
+These files are huge and reading them completely burns a large amount of tokens for no reason. Treat full reads of these as forbidden unless explicitly requested:
+
+| File | Size | Rule |
+|---|---|---|
+| `src/data/calculatorRegistry.ts` | ~313KB / 7030 lines | Never `Read` the whole file. First `Grep` for the specific `slug`, category, or a similar existing entry to find the line number, then `Read` with `offset`/`limit` around just that range (~30-50 lines of context is enough). Same approach for edits — `Edit` with a narrow, unique `old_string`, not a full-file rewrite. |
+| `src/data/smartTipsData.ts` | ~156KB | Same rule: `Grep` first for the relevant slug/section, then targeted `Read`/`Edit`. |
+
+If a task genuinely requires understanding the whole registry structure (e.g., auditing all entries, bulk find-and-replace across all categories), it's fine to say so explicitly and read it in chunks — but this should be the exception, not the default first move.
+
+---
+
 ## Development Rules
 
 ### Code Style
