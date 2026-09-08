@@ -1,6 +1,5 @@
 import { ReactNode, useRef, useState } from "react";
-import SEOHead from "@/components/SEOHead";
-import { safeJsonLd } from "@/lib/utils";
+import GameSeo from "@/components/games/GameSeo";
 import { Maximize2, Minimize2, Share2, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -39,31 +38,9 @@ export default function GameLayout({
     }
   };
 
-  // Canonical URL limpa (Resolve o erro do Google Search Console)
-  const canonicalUrl = `https://www.smartkitnow.com/games/${slug}`;
-
   return (
     <>
-      <SEOHead
-        title={`${title} - Play Free Online | Smart Kit Now`}
-        description={description}
-        canonical={canonicalUrl}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: safeJsonLd({
-            "@context": "https://schema.org",
-            "@type": "VideoGame",
-            name: title,
-            description: description,
-            genre: category,
-            playMode: "SinglePlayer",
-            url: canonicalUrl,
-            inLanguage: "en",
-          }),
-        }}
-      />
+      <GameSeo title={title} description={description} slug={slug} category={category} />
 
       <div className="container mx-auto px-4 py-6 max-w-7xl">
         {/* --- AD SPACE (TOP BANNER) --- */}

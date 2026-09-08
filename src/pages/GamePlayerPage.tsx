@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import NotFound from "@/pages/NotFound";
 import { getGameBySlug } from "@/data/gameRegistry";
 import { getGameContent } from "@/data/gameContent";
+import GameSeo from "@/components/games/GameSeo";
 import GameLayout from "@/components/templates/GamePageLayout";
 
 const GameLoadingFallback = () => (
@@ -21,12 +22,23 @@ export default function GamePlayerPage() {
 
     const GameComponent = game.component;
 
-    // Direct render for games that handle their own layout (page components, not just board components)
+    // Direct render for games that handle their own layout (page components, not just board components).
+    // These components render their own page chrome but do NOT set any <head> tags,
+    // so GameSeo supplies the per-game title/description/canonical/JSON-LD here —
+    // without it these ~70 pages all inherited the generic index.html title.
     if (game.useCustomLayout) {
         return (
-            <Suspense fallback={<GameLoadingFallback />}>
-                <GameComponent />
-            </Suspense>
+            <>
+                <GameSeo
+                    title={game.title}
+                    description={game.description}
+                    slug={game.slug}
+                    category={game.category}
+                />
+                <Suspense fallback={<GameLoadingFallback />}>
+                    <GameComponent />
+                </Suspense>
+            </>
         );
     }
 
