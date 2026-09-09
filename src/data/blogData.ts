@@ -1408,6 +1408,79 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How much does a 50-mile commute cost per year? About $3,228 in fuel and maintenance for a gas car, or $1,675 for an EV charged at home. Full worked math inside.",
   },
+  {
+    slug: "how-much-house-can-i-afford-on-70k-salary",
+    title: "How Much House Can I Afford on a $70K Salary?",
+    excerpt:
+      "On a $70,000 salary the 28/36 rule caps your housing payment near $1,633 a month — enough for roughly $201,500 to $255,300 depending on your down payment. Here's the full breakdown.",
+    category: "Personal Finance",
+    date: "2026-09-09",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 6,
+    intro:
+      "How much house can I afford on a 70k salary? Using the standard 28/36 debt-to-income rule, $70,000 a year caps your housing payment at about $1,633 a month. With a modest $350 monthly car payment, a 6.75% mortgage rate, and typical taxes and insurance, that budget supports a home price of roughly $201,500 at 3% down to $214,700 at 10% down — and, counterintuitively, jumping to 20% down can push that ceiling past $255,000 because it eliminates PMI. This guide runs every number and shows exactly why down payment size changes your max price by more than the down payment itself.",
+    sections: [
+      {
+        heading: "How much house can I afford on a $70K salary? The 28/36 math",
+        paragraphs: [
+          "A $70,000 salary is $5,833.33 a month before taxes. The 28/36 rule sets two ceilings: your housing payment (principal, interest, taxes, insurance, and PMI) can't exceed 28% of that — $1,633.33 — and your total debt payments, housing included, can't exceed 36% — $2,100.00. Whichever ceiling produces the smaller housing number is the one that actually governs your budget.",
+          "Say you carry a $350 monthly car payment and nothing else. Subtract that from the 36% ceiling: $2,100.00 − $350 = $1,750.00 available for housing under the back-end rule. Compared with the $1,633.33 front-end cap, the front-end number is smaller, so it wins — your real housing budget is $1,633.33 a month. Notice that any debt under about $466.67 a month doesn't change this outcome at all, because the back-end cap only starts binding once it drops below $1,633.33.",
+        ],
+      },
+      {
+        heading: "What that $1,633 a month actually buys: down payment comparison",
+        paragraphs: [
+          "The same $1,633.33 monthly budget buys a different home price depending on your down payment, because a bigger down payment shrinks the loan and — once you cross 20% down — removes private mortgage insurance (PMI) entirely. The breakdown below assumes a 6.75% fixed 30-year rate, 1.1% annual property tax, 0.35% annual homeowners insurance, and 0.75% annual PMI on the loan balance whenever the down payment is under 20% — illustrative assumptions for September 2026, not a specific lender quote, all applied to the same $1,633.33 ceiling. It also assumes no HOA dues; a $250 monthly HOA fee would eat directly into that same budget and cut the 10%-down max price by roughly $33,000. None of these figures include closing costs, which typically run another 2-5% of the purchase price — roughly $4,000 at the 3%-down price tier to about $12,800 at the 20%-down tier — and are due in cash at the table on top of the down payment.",
+          "Read down the list and the pattern is clear: the home price you can afford doesn't grow smoothly with your down payment. It jumps once PMI disappears, because the dollars that used to buy a PMI premium get freed up — most of them into loan capacity, the rest into the taxes and insurance on a pricier home.",
+        ],
+        bullets: [
+          "3% down (~$6,045 down payment, before closing costs): max home price ≈ $201,500 — $1,268 P&I + $185 taxes + $59 insurance + $122 PMI ≈ $1,633/month.",
+          "5% down (~$10,255): max home price ≈ $205,100 — $1,264 P&I + $188 taxes + $60 insurance + $122 PMI ≈ $1,633/month.",
+          "10% down (~$21,470): max home price ≈ $214,700 — $1,253 P&I + $197 taxes + $63 insurance + $121 PMI ≈ $1,633/month.",
+          "20% down (~$51,065): max home price ≈ $255,300 — $1,325 P&I + $234 taxes + $74 insurance + $0 PMI (none required) ≈ $1,633/month.",
+        ],
+      },
+      {
+        heading: "Why 20% down buys more house than a proportional jump",
+        paragraphs: [
+          "Going from 10% down to 20% down roughly doubles the cash you put down — from about $21,470 to about $51,065, a $29,597 increase. A simple guess would say that should raise the affordable home price by a similar, modest amount. Instead it rises from $214,700 to $255,300, a $40,643 jump — about $1.37 in extra purchasing power for every $1 of extra down payment. Below 20% down, the relationship is weaker: going from 5% to 10% down buys only about $0.86 in extra home price for every extra $1 of down payment.",
+          "The reason for the jump is PMI. Below 20% down, part of every monthly dollar you have goes to a PMI premium that buys you nothing toward the house — at 10% down, $121 of the $1,633 budget is PMI, dead weight that doesn't reduce principal or build equity. Cross the 20% line and that $121 is redistributed: about $72 flows into principal and interest, which supports roughly $11,000 more loan, while the remaining $49 covers the higher property taxes and insurance that come with a pricier home. If you're close to 20% down, stretching to reach it is one of the few moves that increases your affordable price for reasons beyond the extra cash itself.",
+        ],
+      },
+      {
+        heading: "How to raise your $70K affordability number",
+        paragraphs: [
+          "On a $70K salary specifically, remember that debt only starts costing you housing budget once it crosses $466.67 a month — below that line, paying down a car loan or credit card does nothing for your number, because the front-end cap is already the binding one. Above that line, every dollar of debt you eliminate adds a dollar back to your housing budget under the 36% cap. A lower interest rate works regardless of which ratio binds: dropping from 6.75% to 6.0% on the same $1,633.33 budget raises the affordable home price at 10% down from $214,700 to about $227,900, a gain of roughly $13,200 from a rate change alone.",
+          "Income growth helps directly too — every extra $1,000 in annual salary adds $23.33 to the 28% housing ceiling ($1,000 ÷ 12 × 28%), which translates to roughly $2,900 to $3,650 of extra home-buying power depending on your down payment tier. If debt above $466.67 is your binding constraint, FHA loans offer more room: per HUD Handbook 4000.1, FHA uses a 31/43 guideline rather than 28/36, and permits ratios up to 40/50 for manually underwritten loans with a 580-or-higher decision credit score and two or more documented compensating factors, such as verified cash reserves. A higher ratio leaves less monthly cushion if income drops or a rate resets, so treat 28/36 as the comfortable target even where a lender would approve more.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does having zero monthly debt raise my $70K affordability number?",
+        answer:
+          "No, not on its own. With a $70,000 salary, the front-end cap of $1,633.33 a month is already lower than the back-end cap even with no debt at all — so your housing budget stays at $1,633.33 whether your other debt is $0 or anything under about $466.67 a month. Debt only starts cutting your housing budget once it pushes past that threshold.",
+      },
+      {
+        question: "What if I have $700 a month in other debt instead of $350?",
+        answer:
+          "Then the back-end ratio takes over as your binding constraint. The 36% cap of $2,100 minus $700 in debt leaves only $1,400 for housing, below the $1,633.33 front-end cap. At 10% down and the same 6.75% rate, that drops your max home price from about $214,700 to about $184,000 — a roughly $30,700 swing caused by $350 more in monthly debt.",
+      },
+      {
+        question: "Is a bigger down payment always worth it on a $70K salary?",
+        answer:
+          "Reaching 20% down is disproportionately valuable because it eliminates PMI, which is why the jump from 10% to 20% down in our example added $1.37 in home price for every extra $1 of down payment. Below 20% down, extra down payment buys about $0.86 in home price for every extra $1 you put down — still a positive return, but well short of the $1.37 rate once PMI disappears.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "How Much House Can I Afford? Calculator", url: "/financial/house-affordability", icon: "🏡" },
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+    ],
+    seoTitle: "How Much House Can I Afford on a $70K Salary?",
+    seoDescription:
+      "How much house can I afford on a 70k salary? See the 28/36-rule math, a full down-payment breakdown, and why crossing 20% down changes your real max home price.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -1416,16 +1489,39 @@ export const blogPosts: BlogPost[] = [
 
 /** All posts, newest first. */
 export function getAllPosts(): BlogPost[] {
-  return [...blogPosts].sort((a, b) => (a.date < b.date ? 1 : -1));
+  return [...blogPosts].sort((a, b) => (a.date === b.date ? 0 : a.date < b.date ? 1 : -1));
 }
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
 }
 
-/** Up to `limit` other posts, newest first, excluding `slug`. */
+const RELATED_POSTS_STOPWORDS = new Set([
+  "a", "an", "and", "are", "as", "at", "be", "by", "can", "do", "does", "for", "from", "how",
+  "in", "is", "it", "many", "much", "my", "of", "on", "or", "the", "to", "what", "when", "why",
+  "will", "with", "you", "your",
+]);
+
+function titleTokens(post: BlogPost): Set<string> {
+  return new Set(
+    post.title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, " ")
+      .split(/\s+/)
+      .filter((w) => w.length > 2 && !RELATED_POSTS_STOPWORDS.has(w)),
+  );
+}
+
+/** Up to `limit` other posts, ranked by same category then shared title words, newest first as tiebreaker. */
 export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
-  return getAllPosts()
-    .filter((p) => p.slug !== slug)
-    .slice(0, limit);
+  const current = getPostBySlug(slug);
+  const others = getAllPosts().filter((p) => p.slug !== slug);
+  if (!current) return others.slice(0, limit);
+
+  const currentTokens = titleTokens(current);
+  const score = (p: BlogPost) =>
+    (p.category === current.category ? 100 : 0) +
+    [...titleTokens(p)].filter((t) => currentTokens.has(t)).length;
+
+  return [...others].sort((a, b) => score(b) - score(a)).slice(0, limit);
 }
