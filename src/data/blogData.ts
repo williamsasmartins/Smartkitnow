@@ -1481,6 +1481,88 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How much house can I afford on a 70k salary? See the 28/36-rule math, a full down-payment breakdown, and why crossing 20% down changes your real max home price.",
   },
+  {
+    slug: "how-much-car-can-i-afford-on-a-50000-salary",
+    title: "How Much Car Can I Afford on a $50,000 Salary?",
+    excerpt:
+      "The 20/4/10 rule caps car costs at 10% of gross income — and once real 2026 insurance rates are subtracted, a $50,000 salary supports about $11,310, not the $20,000+ most quick explainers imply.",
+    category: "Automotive",
+    date: "2026-09-11",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 6,
+    intro:
+      "On a $50,000 salary, the widely used 20/4/10 rule caps your car budget at about $11,310 — with 20% down, a 4-year loan at 7% APR, and a realistic $200-a-month insurance estimate subtracted before solving for the loan. The rule limits total monthly vehicle costs, payment plus insurance, to 10% of gross income; on a $50,000 salary that's $416.67 split between the two, not $416.67 available for the payment alone. Skip that subtraction, as most quick explainers do, and the same rule appears to allow a $21,750 car instead — 92% more than the correct number. This guide runs the corrected math step by step, scales it across five incomes, and shows exactly where the rule stops being useful.",
+    sections: [
+      {
+        heading: "How much car can I afford on a $50,000 salary? The 20/4/10 rule, applied correctly",
+        paragraphs: [
+          "The 20/4/10 rule is a car-buying guideline: put at least 20% down, finance for no more than 4 years, and keep total monthly vehicle costs — the loan payment plus insurance — at or below 10% of gross monthly income. On a $50,000 salary, gross monthly income is $50,000 / 12 = $4,166.67, so the ceiling is $416.67 for payment and insurance combined.",
+          "Full-coverage car insurance ranges from about $187 to $216 a month across the major 2026 rate surveys (Insurify, ValuePenguin, MoneyGeek), with Experian's broader sample running as high as $243. It also varies enormously by state — from around $130 in Vermont or Maine to about $335 a month in Nevada, with Louisiana, Florida, Connecticut, and Delaware all above $300. This guide uses $200 as a working estimate; substitute your own quote for a precise answer. Subtracting $200 from the $416.67 ceiling leaves $216.67 a month for the loan payment itself — barely half the ceiling, and the number most people never actually calculate.",
+        ],
+      },
+      {
+        heading: "The worked example, step by step",
+        paragraphs: [
+          "With $216.67 available for a monthly payment, a 4-year (48-month) term, and a 7% APR, the loan amount that produces exactly that payment is about $9,048. Since the rule calls for 20% down, that loan represents 80% of the car's price, so the maximum price is $9,048 / 0.80 ≈ $11,310 — with a required down payment of about $2,262 (20% of $11,310).",
+          "That 7% assumes a well-qualified borrower. Experian put the average used-car loan rate at 11.19% in Q2 2026 — and an $11,310 car bought with 20% down is necessarily a used car — which shrinks the same $216.67 payment to an $8,353 loan and a max price near $10,440, about $870 less car for an identical budget.",
+          "Run the full amortization on that $9,048 loan (at the 7% rate) and total payments over 48 months come to about $10,400, meaning roughly $1,352 is interest and $9,048 is principal. That's the complete, self-consistent picture: an $11,310 car, $2,262 down, a $9,048 loan, $216.67 a month for 48 months, and $200 a month for insurance — a total monthly vehicle cost of $416.67, exactly 10% of gross pay.",
+        ],
+      },
+      {
+        heading: "Why skipping insurance overstates your budget by 92%",
+        paragraphs: [
+          "Many explanations of the 20/4/10 rule treat the full 10% ($416.67 on a $50,000 salary) as available for the loan payment alone, ignoring insurance entirely. Solve for a loan at that full payment, same 4-year term and 7% APR, and the result is a loan of about $17,400 — a car price near $21,750 with 20% down.",
+          "Insurance isn't optional, and it doesn't shrink just because you financed less car.",
+          "That $21,750 figure is 92% higher than the correctly solved $11,310 — nearly double the car the rule actually supports. Sources also disagree on what belongs inside the 10%: the narrower version used by Edmunds and several lender guides covers principal, interest, and insurance, while other guides fold in fuel and maintenance too. This guide uses the narrower reading and budgets fuel separately, so treat $416.67 as covering payment and insurance only, with gas and upkeep as real costs on top.",
+        ],
+      },
+      {
+        heading: "How much car can I afford on a $60,000 or $70,000 salary? Scaling by income",
+        paragraphs: [
+          "The same insurance-adjusted math run across five salaries — $200/month insurance, a 4-year loan, 7% APR, and 20% down — scales in a straight line: every extra $10,000 of salary adds exactly $4,350 to the maximum car price, no more and no less:",
+        ],
+        bullets: [
+          "$40,000 salary → $133.33/mo for payment → max loan $5,568 → max car price ≈ $6,960",
+          "$50,000 salary → $216.67/mo for payment → max loan $9,048 → max car price ≈ $11,310",
+          "$60,000 salary → $300.00/mo for payment → max loan $12,528 → max car price ≈ $15,660",
+          "$70,000 salary → $383.33/mo for payment → max loan $16,008 → max car price ≈ $20,010",
+          "$80,000 salary → $466.67/mo for payment → max loan $19,488 → max car price ≈ $24,360",
+        ],
+      },
+      {
+        heading: "When the 20/4/10 rule stops working",
+        paragraphs: [
+          "At $40,000 in income, the correctly solved ceiling is just $6,960 — a price that buys very little reliable transportation in the 2026 market. Insurance is a fixed cost that doesn't scale down with a cheaper car, so it takes a disproportionate bite out of a smaller budget: at $40,000 salary, $200 of insurance eats 60% of the whole $333.33 ceiling, versus 48% at $50,000 and just 30% at $80,000. The lower the income, the harder insurance squeezes the payment room the rule leaves you.",
+          "Three practical adjustments help when the strict math is too tight. A down payment above 20% shrinks the loan directly and doesn't touch the insurance side of the equation. Shopping within a cheaper-to-insure vehicle class — a compact sedan instead of a truck or performance model — can lower the $200 estimate by real money before you even negotiate a price. And deliberately choosing a longer term, with full knowledge of the extra interest it costs (see the first FAQ below), is a legitimate trade-off as long as it's a choice rather than a surprise.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What if I stretch the loan to 6 years instead of 4 to afford a pricier car?",
+        answer:
+          "You can carry a bigger loan on the same $216.67 payment — about $12,708 instead of $9,048, for a roughly $15,886 car — but total interest over 72 months comes to about $2,892, versus $1,352 over 48 months. That's more than double the interest for about 40% more car, and it's exactly why the 20/4/10 rule caps the term at 4 years: a longer term hides a car you can't really afford behind a payment that looks affordable.",
+      },
+      {
+        question: "Does the 10% figure include gas and maintenance too?",
+        answer:
+          "It depends which version of the rule you're reading. The narrower version, used by Edmunds and several lender guides, covers only principal, interest, and insurance — the version used in this guide. Other guides, including some broader car-buying explainers, fold fuel and maintenance into the same 10%. Whichever version you follow, budget fuel and maintenance separately if it isn't explicitly included — together they typically run another $150 to $300 a month depending on the vehicle and your mileage.",
+      },
+      {
+        question: "What if I can't put 20% down?",
+        answer:
+          "A smaller down payment means more of the price has to fit inside the same fixed $216.67 monthly payment, so the loan stays capped at $9,048 but now represents 90% of the price instead of 80%. On the $50,000-salary example, putting down 10% instead of 20% drops the max car price to about $10,053, with roughly $1,005 due at signing instead of $2,262.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Auto Loan Calculator", url: "/financial/auto-loan", icon: "🚗" },
+      { title: "Total Cost of Ownership Calculator", url: "/automotive/tco-total-cost-ownership", icon: "🚙" },
+      { title: "Trip Fuel Cost Calculator", url: "/automotive/trip-fuel-cost", icon: "⛽" },
+    ],
+    seoTitle: "How Much Car Can I Afford on a $50,000 Salary?",
+    seoDescription:
+      "How much car can I afford on a 50000 salary? The 20/4/10 rule caps it near $11,310 once real insurance costs are subtracted, plus the scaling table by income.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
