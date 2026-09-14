@@ -1563,6 +1563,79 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How much car can I afford on a 50000 salary? The 20/4/10 rule caps it near $11,310 once real insurance costs are subtracted, plus the scaling table by income.",
   },
+  {
+    slug: "biweekly-vs-monthly-mortgage-payments-on-a-300000-loan",
+    title: "Biweekly vs Monthly Mortgage Payments on a $300K Loan",
+    excerpt:
+      "A $300,000 mortgage at 6.5% paid true biweekly instead of monthly pays off in about 24 years, not 30, saving roughly $88,122 in interest — but one popular 'biweekly' plan saves nothing at all.",
+    category: "Personal Finance",
+    date: "2026-09-14",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 5,
+    intro:
+      "Biweekly vs monthly mortgage payments on a $300,000 loan: switching a $300,000, 6.5% mortgage from monthly to true biweekly payments pays it off in about 24 years and 1 month instead of 30, saving roughly $88,122 in interest — without refinancing or changing your rate. The mechanic is arithmetic: paying half your monthly payment every two weeks adds up to 26 half-payments a year, or 13 full monthly payments instead of 12. That one extra payment, applied straight to principal, erases nearly six years from a 30-year loan. But a popular 'biweekly' plan many banks sell actually pays only 24 times a year and saves nothing — this guide shows exactly why, and the free way to get the real result yourself.",
+    sections: [
+      {
+        heading: "Biweekly vs monthly mortgage payments: how the acceleration actually works",
+        paragraphs: [
+          "A year has 52 weeks, not 48, so paying every two weeks produces 52 ÷ 2 = 26 payments a year. If each of those payments is half your normal monthly payment, 26 half-payments add up to the dollar equivalent of 13 full monthly payments — one more than the 12 a standard monthly schedule requires. You never have to remember to make an extra payment; the calendar does it automatically, because two-week periods and calendar months don't divide evenly.",
+          "The 13th payment's full amount reduces principal directly, because the 12 monthly-equivalent payments already satisfy the contract's required payments for the year. Reducing principal faster means every subsequent month accrues interest on a smaller balance, which compounds into real time and money saved over the decades. Nothing about your loan contract changes — the rate and the original 30-year term stay exactly what you signed — you're simply prepaying ahead of schedule, which is different from refinancing into a new loan.",
+        ],
+      },
+      {
+        heading: "The worked example: $300,000 at 6.5%",
+        paragraphs: [
+          "Take a $300,000, 30-year fixed mortgage at 6.5%. The standard monthly payment (principal and interest) is $1,896.20, and paying that for the full 360 months totals $682,633 — $382,633 of which is interest on top of the $300,000 borrowed.",
+          "Switch to true biweekly payments of $948.10 (half the monthly payment) every two weeks, and the loan is paid off in 628 biweekly periods — 628 × 14 days is about 24 years and 1 month, roughly 5 years and 11 months sooner. Total interest drops to about $294,512, a savings of $88,122 compared with the standard monthly schedule, for the same interest rate and the same amount borrowed. That figure assumes interest accrues at 6.5% ÷ 26 per two-week period with each payment credited on receipt; a servicer that accrues daily instead will land within a few hundred dollars of this number, not a different order of magnitude.",
+        ],
+      },
+      {
+        heading: "Is a bank's 'biweekly program' actually biweekly?",
+        paragraphs: [
+          "Many mortgage servicers and third-party companies sell a 'biweekly payment program' that actually debits your account twice a month — on the 1st and 15th, say — rather than every two weeks. Twice a month is 24 payments a year, not 26. Do the math: 24 half-payments equal exactly 12 full payments, the identical amount a standard monthly schedule already requires on a standard monthly-accrual mortgage. There is no extra payment and no acceleration whatsoever, even though it's marketed with the same 'biweekly' label.",
+          "Worse, some of these third-party programs charge a setup fee commonly reported in the $200–$400 range (with outliers reported near $995), plus a per-transfer fee of roughly $2 to $5 per debit — $52 to $130 a year at 26 debits — for a service that, run this way, saves you nothing beyond what free monthly payments already do. Before enrolling in any servicer's biweekly program, ask directly how many payments are debited per year — the answer needs to be 26, not 24. Also ask what happens to a partial payment: many US servicers won't accept less than a full monthly payment at all, and instead hold each half-payment in a non-interest-bearing suspense account until a second half arrives to complete one full payment. That's a practical reason the true-biweekly schedule described above often isn't available directly through your existing servicer, even when a third party offers to run it for a fee.",
+        ],
+      },
+      {
+        heading: "A free alternative that gets nearly the same result",
+        paragraphs: [
+          "You don't need to enroll in any program to capture almost the same savings. Instead of splitting payments biweekly, simply add one-twelfth of your payment to every monthly payment you already make, directly with your existing servicer, at no cost. On the $300,000 example, that's $1,896.20 ÷ 12 = $158.02 extra each month, for a total payment of $2,054.22.",
+          "Prepaying at 6.5% is effectively a guaranteed, risk-free 6.5% return on every extra dollar, which beats most savings accounts and CDs outright. But principal paid into a mortgage is illiquid — you can't pull it back out without selling the home, refinancing, or opening a home equity line of credit, and none of those are instant or free. Most financial guidance prioritizes building a 3-to-6-month emergency fund and capturing a full employer 401(k) match before directing extra dollars here, since an unmatched employer contribution is money left on the table that a 6.5% mortgage payoff can't replace. With that trade-off in mind, here's how all three paths compare on the identical $300,000, 6.5% loan:",
+        ],
+        bullets: [
+          "Standard monthly ($1,896.20/mo) → 30 years 0 months → $382,633 total interest → $0 saved",
+          "True biweekly ($948.10 every 2 weeks) → 24 years 1 month → $294,512 total interest → $88,122 saved",
+          "Extra 1/12th added monthly ($2,054.22/mo) → 24 years 2 months → $295,377 total interest → $87,256 saved",
+          "True biweekly finishes about one month sooner and beats the DIY monthly version by just $865 — a rounding error next to $88,122 in total savings — because biweekly delivers its extra principal in smaller, slightly earlier increments across the year rather than one larger chunk each month",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does paying biweekly change my mortgage's rate or term on paper?",
+        answer:
+          "No. Your rate and original 30-year term stay exactly what you signed; you're simply prepaying principal ahead of the required schedule. The loan still shows a 30-year term on paper — it just gets paid off in about 24 years and 1 month in practice, on the $300,000, 6.5% example here, because the extra annual payment shrinks the balance faster than the contract requires.",
+      },
+      {
+        question: "Is a bank's biweekly payment program worth the enrollment fee?",
+        answer:
+          "Only if it genuinely debits 26 times a year. If it processes payments twice a month (24 times a year), it makes zero extra payments and any setup or per-transfer fee is a pure loss — 24 half-payments equal exactly 12 full ones, the same as paying monthly for free. Ask your servicer how many debits occur per year before enrolling, and compare against simply adding 1/12th to your monthly payment yourself.",
+      },
+      {
+        question: "Should I check for a prepayment penalty before doing this?",
+        answer:
+          "Yes. Most conventional mortgages originated after January 2014 are qualified mortgages, which CFPB rules generally bar from carrying prepayment penalties, but some older loans, non-QM loans, and certain investor or jumbo products can still include one. A short call to your servicer confirming there's no penalty and that extra payments post to principal, not to next month's due date, takes a few minutes and protects the entire strategy.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+    ],
+    seoTitle: "Biweekly vs Monthly Mortgage Payments on a $300K Loan",
+    seoDescription:
+      "Biweekly vs monthly mortgage payments on a $300,000 loan: true biweekly cuts payoff to 24 years and saves $88,122 in total interest. See the full math.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
