@@ -1636,6 +1636,86 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Biweekly vs monthly mortgage payments on a $300,000 loan: true biweekly cuts payoff to 24 years and saves $88,122 in total interest. See the full math.",
   },
+  {
+    slug: "how-much-interest-in-the-first-5-years-of-a-mortgage",
+    title: "How Much Interest in the First 5 Years of a Mortgage?",
+    excerpt:
+      "On a $350,000, 6.75% 30-year mortgage, 84% of every dollar paid in the first 5 years is interest — $114,771 of $136,206 paid, and the balance has only fallen to $328,565.",
+    category: "Personal Finance",
+    date: "2026-09-16",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "How much interest do you pay in the first 5 years of a mortgage? On a $350,000, 30-year loan at 6.75%, you pay $136,206 total over those 60 payments — and $114,771 of it, about 84%, is interest. Only $21,435 goes to principal, so after 5 years of a $2,270.09 monthly payment, the balance has barely moved, from $350,000 down to $328,565. That's not a bad loan or a bad lender; it's how every fixed-rate amortization schedule works. This guide runs the year-by-year math, shows why the split is so lopsided early on, and compares it against a 15-year term on the same loan.",
+    sections: [
+      {
+        heading: "How much interest in the first 5 years of a mortgage: the year-by-year math",
+        paragraphs: [
+          "Take a $350,000 mortgage at 6.75% over 30 years. The fixed monthly payment (principal and interest) is $2,270.09, and every payment splits between interest on the remaining balance and principal that reduces it. Here's the cumulative split at the end of each of the first 5 years:",
+        ],
+        bullets: [
+          "Year 1: $23,511 interest, $3,730 principal — balance $346,270",
+          "Year 2: $46,762 interest, $7,720 principal — balance $342,280",
+          "Year 3: $69,736 interest, $11,988 principal — balance $338,012",
+          "Year 4: $92,412 interest, $16,552 principal — balance $333,448",
+          "Year 5: $114,771 interest, $21,435 principal — balance $328,565",
+        ],
+      },
+      {
+        heading: "Why interest eats so much of every early payment",
+        paragraphs: [
+          "A fixed-rate mortgage charges interest only on the balance still outstanding, calculated fresh each month: interest = balance × (annual rate ÷ 12). Early on, the balance is close to the full $350,000, so the interest charge is close to its maximum for the life of the loan — the very first payment is $1,968.75 interest and just $301.34 principal, an 87/13 split. Because the total payment is fixed by the amortization formula, whatever interest doesn't consume is all that's left for principal, so a big interest charge early on necessarily means a small principal payment. (6.75% is close to the going rate: Freddie Mac's Primary Mortgage Market Survey put the average 30-year fixed rate at 6.76% in September 2026.)",
+          "That split shifts every single month, just slowly. By payment 60, the same $2,270.09 payment breaks down to $1,850.54 interest and $419.56 principal — still interest-heavy, but noticeably less than payment 1's 87/13 split. Principal doesn't overtake interest in a single payment until month 238, almost 20 years in.",
+          "Over the full 30-year term this loan costs $467,234 in total interest on the $350,000 borrowed — more than the amount borrowed itself. The first 5 years alone carry $114,771 of that, nearly a quarter (24.6%) of all the interest the loan will ever charge, even though those 5 years are only 16.7% of the 30-year term.",
+        ],
+      },
+      {
+        heading: "Does a higher rate make this worse? And how a 15-year term compares",
+        paragraphs: [
+          "Rate moves the split more than most borrowers expect. Dropping the rate to 5.5% on the same $350,000 loan lowers the interest share of the first year's payments to 80.2% (from 86.3% at 6.75%), while raising it to 7.5% pushes that first-year share to 89.0%. A higher rate doesn't just mean a bigger payment — it means an even larger fraction of every early payment is interest rather than equity.",
+          "Term length changes the picture more dramatically than rate does. Financing $350,000 at the same 6.75% over 15 years instead of 30 raises the payment to $3,097.18 a month, but the principal share of every payment is far higher from day one: after year 1, the 15-year loan has already paid down $13,968 in principal against $23,198 in interest — a 62/38 interest-to-principal ratio, versus the 30-year loan's 86/14 ratio in the same year. By year 5, the 15-year loan has retired $80,267 in principal versus the 30-year loan's $21,435 — nearly quadruple the equity for a payment that's about 36% higher.",
+          "In practice, 15-year mortgages usually carry a lower rate than 30-year ones, which would widen this gap even further in the 15-year loan's favor.",
+        ],
+        bullets: [
+          "30-year @ 6.75% ($2,270.09/mo): Year 1 = $3,730 principal, $23,511 interest. Year 5 = $21,435 principal, $114,771 interest.",
+          "15-year @ 6.75% ($3,097.18/mo): Year 1 = $13,968 principal, $23,198 interest. Year 5 = $80,267 principal, $105,564 interest.",
+        ],
+      },
+      {
+        heading: "What this means for extra payments, refinancing, and moving early",
+        paragraphs: [
+          "Because so little of an early payment builds equity, an extra principal payment made in year 1 or 2 does far more good than the identical extra payment made in year 20 — it's erasing balance while the interest charge on that balance still has decades left to compound, not just a few years. Biweekly payment plans work on this same mechanic, front-loading extra principal while it has the most years left to save interest. The mortgage interest deduction runs on it too, but only if you itemize on Schedule A. Most filers now take the standard deduction and get nothing from it. The deduction also caps out at $750,000 of acquisition debt for loans taken out after December 15, 2017 — a limit federal tax law made permanent in 2025. Loans from before that date keep the older $1 million cap (see IRS Publication 936 for the full rules).",
+          "It also explains why selling or refinancing in the first 5 years feels like you've built almost no equity from payments alone — only $21,435 of principal is retired in 5 years on this $350,000 loan, versus $114,771 handed to the lender in interest. Any equity gain in that window is coming mostly from home-price appreciation and the down payment, not from the mortgage payments themselves.",
+          "None of this is a reason to avoid a 30-year loan — the lower required payment is real flexibility — but it's the reason a shorter term or extra principal payments matter more the earlier you make them. Run your own loan amount, rate, and term through a mortgage amortization calculator to see your specific year-by-year split rather than this example's numbers.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is it normal that my mortgage payments are almost all interest at first?",
+        answer:
+          "Yes — this is how every fixed-rate amortizing loan works, not a sign of a bad rate or a bad lender. Interest is charged on the outstanding balance, which is largest at the start of the loan, so the interest portion of each payment is largest then too. On the $350,000, 6.75% example here, even payment 60 (end of year 5) is still 82% interest.",
+      },
+      {
+        question: "When does more of my mortgage payment start going to principal than interest?",
+        answer:
+          "On the $350,000, 6.75%, 30-year example in this guide, the crossover happens at payment 238 — just under 20 years in. A lower rate or a shorter term moves that crossover much earlier: the equivalent 15-year loan at the same rate crosses over at payment 58, about 4 years and 10 months in, since its higher required payment forces a much larger principal share from the start.",
+      },
+      {
+        question: "Does a higher interest rate make the first-5-years interest total worse?",
+        answer:
+          "Yes, on both an absolute and a percentage basis. On the same $350,000 loan, raising the rate from 5.5% to 7.5% raises the interest share of the first year's payments from 80.2% to 89.0%. A higher rate means a bigger payment and a larger fraction of that bigger payment goes to interest rather than principal.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+    ],
+    seoTitle: "How Much Interest in the First 5 Years of a Mortgage?",
+    seoDescription:
+      "How much interest in the first 5 years of a mortgage? On a $350K, 6.75% loan it is $114,771 of $136,206 paid — 84%. Year-by-year math and a 15-year comparison.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
