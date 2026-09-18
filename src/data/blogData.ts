@@ -1716,6 +1716,82 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How much interest in the first 5 years of a mortgage? On a $350K, 6.75% loan it is $114,771 of $136,206 paid — 84%. Year-by-year math and a 15-year comparison.",
   },
+  {
+    slug: "how-much-to-invest-monthly-to-retire-with-1-million",
+    title: "How Much to Invest Monthly to Retire With $1 Million",
+    excerpt:
+      "The compound interest formula solved backward: exactly how much to invest each month to reach $1 million, broken down by the age you start and the return rate you assume.",
+    category: "Personal Finance",
+    date: "2026-09-18",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 6,
+    intro:
+      "How much do you need to invest monthly to retire with $1 million? You would need to invest about $820 a month for 30 years, starting from a $0 balance at age 35, assuming a 7% average annual nominal return and retirement at 65. Start at 25 instead and it drops to roughly $381 a month; wait until 45 and it climbs to about $1,920 a month for the same $1 million target. This is the compound interest formula run in reverse — solved for the monthly payment instead of the ending balance — and the starting age changes the required contribution far more than most people expect.",
+    sections: [
+      {
+        heading: "How much to invest monthly to retire with $1 million",
+        paragraphs: [
+          "Three numbers drive the answer: how many years you have until retirement, the average annual return you expect, and the $1 million target itself. Everything else — the specific dollar figure you need to set aside each month — falls out of those three once you run them through the annuity formula. Change any one of the three and the required monthly amount moves with it, sometimes by a lot.",
+          "Take the age-35 example in full. Investing $819.69 a month for 30 years (360 monthly deposits) at a 7% average annual return, compounded monthly, reaches $1,000,000 at 65. Of that total, only $295,089 is money actually contributed — the remaining $704,911, about 70% of the final balance, comes from compounding growth, not from your own deposits. That split is the entire case for starting early: the earlier you start, the more of the $1 million the market builds for you instead of your paycheck. Unlike a straightforward growth projection that starts from an existing balance and asks what it becomes, this guide solves the opposite question — starting from $0, what monthly deposit gets you to a specific target.",
+        ],
+      },
+      {
+        heading: "The formula: solving compound interest for the monthly payment",
+        paragraphs: [
+          "The standard future-value-of-an-annuity formula is FV = PMT × [((1+r)^n − 1) / r], where FV is the target balance, PMT is the monthly deposit, r is the monthly return (annual rate ÷ 12), and n is the number of monthly deposits. To find the monthly deposit instead of the ending balance, you rearrange it to PMT = FV × r / ((1+r)^n − 1).",
+          "Plugging in the age-35 numbers: r = 0.07 / 12 = 0.005833, and n = 30 × 12 = 360 months. Raising (1 + 0.005833) to the 360th power and running it through the formula gives a required monthly deposit of $819.69 to reach $1,000,000. This is the identical math behind every long-term savings projection — a mortgage payment formula and a retirement-contribution formula are mirror images of the same annuity equation, just solving for different variables.",
+        ],
+      },
+      {
+        heading: "The real cost of waiting: monthly investment by starting age",
+        paragraphs: [
+          "The list below holds the target ($1 million), the return (7% average annual), and the retirement age (65) constant, and changes only the age you start. The required monthly deposit more than doubles for every decade you wait, because a shorter runway leaves compounding far less time to do the work:",
+          "Waiting even five years costs more than it looks like on paper. Someone who starts at 35 needs $819.69 a month; delay to 40 and the same $1 million target needs $1,234.46 a month — a $414.77 jump in the monthly payment caused by giving up just five years of compounding. The fix isn't a bigger paycheck later; it's fewer years of delay now.",
+        ],
+        bullets: [
+          "Start at 25 (40 years to invest): $380.98/month — $182,870 contributed, $817,130 from growth",
+          "Start at 35 (30 years to invest): $819.69/month — $295,089 contributed, $704,911 from growth",
+          "Start at 45 (20 years to invest): $1,919.66/month — $460,717 contributed, $539,283 from growth",
+          "Start at 55 (10 years to invest): $5,777.51/month — $693,302 contributed, $306,698 from growth",
+        ],
+      },
+      {
+        heading: "Does a higher return rate really lower the monthly number that much?",
+        paragraphs: [
+          "The rate you assume matters almost as much as your starting age. Holding the age-35, 30-year timeline constant and varying only the average annual nominal return produces the figures below. A two-point swing in assumed return changes what you set aside by hundreds of dollars a month, which is why it's worth using a conservative rate rather than the best year the market ever had.",
+          "The formula also scales linearly with the target, so it's easy to reprice for a different goal. Doubling the target to $2 million at the same 7% return and 30-year timeline doubles the contribution to $1,639.38 a month — useful if $1 million feels light against future inflation, since $1 million thirty years from now will not buy what it buys today at a 7% nominal return. Run your own starting age, balance, and return assumption through the Compound Interest Calculator below rather than reusing someone else's example.",
+        ],
+        bullets: [
+          "5% average annual return: $1,201.55/month — $432,558 contributed, $567,442 from growth",
+          "7% average annual return: $819.69/month — $295,089 contributed, $704,911 from growth",
+          "9% average annual return: $546.23/month — $196,641 contributed, $803,359 from growth",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How much would I need to invest monthly to retire with $2 million instead of $1 million?",
+        answer:
+          "About $1,639.38 a month, starting at 35 with a 30-year timeline and a 7% average annual return. The annuity formula scales linearly with the target for a fixed rate and term, so doubling the goal from $1 million to $2 million exactly doubles the required monthly deposit.",
+      },
+      {
+        question: "What return rate should I use for a retirement projection?",
+        answer:
+          "7% is a common planning assumption for a diversified stock-heavy portfolio. For context, long-run historical data on the S&P 500 (the Ibbotson SBBI series, tracking back to 1926) shows an average of roughly 10% a year in nominal terms and about 7% a year after inflation. This post deliberately uses 7% as a nominal figure — below the historical nominal average — as a conservative planning number that leaves room for fees and weaker decades, so the $1 million target here is a future dollar amount, not today's purchasing power. Running the math at a more conservative 5% ($1,201.55/month for the age-35 example) alongside 7% gives you a realistic range instead of a single optimistic number.",
+      },
+      {
+        question: "Does having some money already saved lower the monthly amount I need?",
+        answer:
+          "Yes. The monthly figures here assume starting from $0. Existing savings grow on their own through the same compounding, so any current balance reduces how much of the $1 million your future monthly deposits need to cover — recalculate with your current balance as a starting point rather than zero.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+    ],
+    seoTitle: "How Much to Invest Monthly to Retire With $1 Million",
+    seoDescription:
+      "How much to invest monthly to retire with $1 million? About $820/month from age 35 at 7%. Required amounts by starting age 25, 35, 45, and 55, plus the formula.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
