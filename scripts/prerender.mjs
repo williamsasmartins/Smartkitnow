@@ -89,6 +89,28 @@ const HOST = '127.0.0.1'
 const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY || (IS_SERVERLESS ? 1 : 4))
 const NAV_TIMEOUT = Number(process.env.PRERENDER_NAV_TIMEOUT || 30000)
 const RENDER_TIMEOUT = Number(process.env.PRERENDER_RENDER_TIMEOUT || 15000)
+// Hard wall-clock ceiling for a single render attempt, enforced OUTSIDE
+// Puppeteer. NAV_TIMEOUT/RENDER_TIMEOUT and `protocolTimeout` only bound
+// operations the CDP layer is still servicing; if Chromium itself wedges
+// (or a browser-level call like newPage()/evaluate()/close() never settles)
+// none of them fire and the attempt hangs forever. That is not theoretical:
+// a production build stalled at route 375/937 with a flat, healthy ~1.5s/route
+// rate and then sat silent for 35 minutes until Vercel killed it at the
+// 45-minute limit. The wall-clock budget below cannot rescue that either,
+// because it is only checked BETWEEN routes. This is the backstop that makes
+// the budget reachable again.
+const ATTEMPT_TIMEOUT = Number(
+  process.env.PRERENDER_ATTEMPT_TIMEOUT || NAV_TIMEOUT + RENDER_TIMEOUT + 15000
+)
+
+/** Reject if `promise` has not settled within `ms`. Never leaves a dangling timer. */
+function withDeadline(promise, ms, label) {
+  let timer
+  const deadline = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label} exceeded ${ms}ms (hard deadline)`)), ms)
+  })
+  return Promise.race([promise, deadline]).finally(() => clearTimeout(timer))
+}
 // Optional: prerender only the first N routes (smoke test). 0 = all.
 const LIMIT = Number(process.env.PRERENDER_LIMIT || 0)
 
@@ -188,6 +210,11 @@ const MAX_ROUTES = Number(
 // Exhausting the budget degrades to canonical'd SPA shells for the remainder
 // rather than failing the build, so the worst case is a partial deploy and a
 // warning in the log, never a broken one. 0 disables the budget.
+//
+// NOTE: this budget is only checked BETWEEN routes, so it protects against the
+// run being slow — not against a single route hanging. ATTEMPT_TIMEOUT is what
+// bounds an individual attempt; without it the budget is unreachable and the
+// build runs until Vercel kills it.
 const TIME_BUDGET_MS = Number(
   process.env.PRERENDER_TIME_BUDGET_MS != null
     ? process.env.PRERENDER_TIME_BUDGET_MS
@@ -423,7 +450,15 @@ async function run() {
     if (forGeneration !== generation) return browser
     if (!relaunching) {
       relaunching = (async () => {
-        try { await browser?.close() } catch { /* already dead */ }
+        // close() on a wedged browser can hang indefinitely. If it does, kill the
+        // process directly — otherwise `relaunching` never resolves and every
+        // worker awaiting it deadlocks for the rest of the build.
+        const dying = browser
+        try {
+          await withDeadline(dying?.close() ?? Promise.resolve(), 10000, 'browser.close()')
+        } catch {
+          try { dying?.process()?.kill('SIGKILL') } catch { /* already gone */ }
+        }
         console.warn(`[prerender] recycling browser (${reason})`)
         browser = await puppeteer.launch(launchOptions)
         generation++
@@ -465,13 +500,20 @@ async function run() {
       const route = queue.shift()
       let res
       for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-        const b = await getBrowser()
         const gen = generation
-        res = await renderRoute(b, route)
+        // Both calls are wrapped: a wedged Chromium can hang the launch just as
+        // easily as the render, and either one stalls the whole single-worker
+        // queue with no timeout of its own.
+        try {
+          const b = await withDeadline(getBrowser(), ATTEMPT_TIMEOUT, `getBrowser(${route})`)
+          res = await withDeadline(renderRoute(b, route), ATTEMPT_TIMEOUT, `render ${route}`)
+        } catch (e) {
+          res = { route, ok: false, error: e.message }
+        }
         if (res.ok) break
         // Browser-level failure -> force a relaunch (tied to this generation so
         // concurrent failures collapse into a single relaunch) before retrying.
-        if (/Connection closed|Target closed|Protocol error|detached|Navigation/i.test(res.error || '')) {
+        if (/Connection closed|Target closed|Protocol error|detached|Navigation|hard deadline/i.test(res.error || '')) {
           await relaunch('crash recovery', gen)
         }
         if (attempt < MAX_ATTEMPTS) await new Promise((r) => setTimeout(r, 500))
@@ -494,7 +536,13 @@ async function run() {
     Array.from({ length: Math.min(CONCURRENCY, queue.length) }, () => worker())
   )
 
-  try { await browser?.close() } catch { /* noop */ }
+  // Same hazard as in relaunch(): a wedged browser makes close() hang, which
+  // would stall the build after every page has already been written.
+  try {
+    await withDeadline(browser?.close() ?? Promise.resolve(), 10000, 'browser.close()')
+  } catch {
+    try { browser?.process()?.kill('SIGKILL') } catch { /* already gone */ }
+  }
   await new Promise((resolve) => server.close(resolve))
 
   if (failures.length) {
@@ -545,7 +593,15 @@ async function run() {
   }
 }
 
-run().catch((e) => {
-  console.error('[prerender] fatal:', e)
-  process.exit(1)
-})
+run()
+  .then(() => {
+    // Explicit success exit. Chromium can leave a handle attached to the event
+    // loop even after close(), so Node would otherwise linger and then exit with
+    // a non-zero code of its own (observed locally: every page written correctly,
+    // then `exit code 4`). Every route has been written to disk by this point.
+    process.exit(0)
+  })
+  .catch((e) => {
+    console.error('[prerender] fatal:', e)
+    process.exit(1)
+  })
