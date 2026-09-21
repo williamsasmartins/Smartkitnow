@@ -1792,6 +1792,86 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How much to invest monthly to retire with $1 million? About $820/month from age 35 at 7%. Required amounts by starting age 25, 35, 45, and 55, plus the formula.",
   },
+  {
+    slug: "how-many-bags-of-concrete-for-a-10x10-patio",
+    title: "How Many Bags of Concrete for a 10x10 Patio?",
+    excerpt:
+      "For a 10x10 patio poured 4 inches thick, you need 62 bags of 80-lb concrete, 82 bags of 60-lb, or 123 bags of 40-lb — here's the math and when ready-mix wins instead.",
+    category: "Home & Construction",
+    date: "2026-09-21",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 5,
+    intro:
+      "For a standard 10x10 patio slab poured 4 inches thick, you need about 62 bags of 80-lb concrete mix, 82 bags of 60-lb mix, or 123 bags of 40-lb mix, once you add the standard 10% waste allowance. That comes from 33.3 cubic feet of raw volume — length times width times thickness — divided by how much finished concrete one bag actually yields. This guide shows that math step by step, compares all three bag sizes side by side, and explains when bags stop making sense and ready-mix delivery becomes the smarter call.",
+    sections: [
+      {
+        heading: "Why bag size changes the count so much",
+        paragraphs: [
+          "A bag of dry concrete mix doesn't turn into an equal volume of finished concrete — water and mixing shrink it. Quikrete and Sakrete's published technical data sheets agree on the yields most brands use: a 40-lb bag yields about 0.30 cubic feet of concrete, a 60-lb bag yields about 0.45 cubic feet, and an 80-lb bag yields about 0.60 cubic feet. Notice the pattern — yield scales almost exactly with bag weight, because you're buying the same dry mix in different-sized packages.",
+          "That's why the math is simple once you know your slab's total volume: divide cubic feet needed by the bag's yield. One 80-lb bag replaces exactly two 40-lb bags (0.60 ÷ 0.30 = 2), so choosing 80-lb bags isn't about getting more concrete for your money — the total mix is identical — it's about carrying fewer, heavier bags instead of more, lighter ones.",
+        ],
+      },
+      {
+        heading: "How many bags of concrete for a 10x10 patio? The math, step by step",
+        paragraphs: [
+          "Start with volume: length × width × thickness, all in the same unit. A 10 ft × 10 ft patio at 4 inches (4 ÷ 12 = 0.333 ft) thick is 10 × 10 × 0.333 = 33.33 cubic feet. Add the standard 10% waste allowance that covers uneven sub-grade, spillage, and form loss: 33.33 × 1.10 = 36.67 cubic feet is what you actually need to buy.",
+          "Divide that by each bag's yield and round up, since suppliers only sell whole bags. A quick shortcut for next time: multiply your raw cubic feet by 1.83 for 80-lb bags, 2.44 for 60-lb bags, or 3.67 for 40-lb bags — each multiplier already bakes in the 10% waste allowance.",
+        ],
+        bullets: [
+          "80-lb bags: 36.67 ÷ 0.60 = 61.1 → 62 bags",
+          "60-lb bags: 36.67 ÷ 0.45 = 81.5 → 82 bags",
+          "40-lb bags: 36.67 ÷ 0.30 = 122.2 → 123 bags",
+        ],
+      },
+      {
+        heading: "Bags vs. ready-mix: which is actually cheaper for 1.36 cubic yards?",
+        paragraphs: [
+          "Bag size affects how many trips to the truck you make, but not the total weight you're moving — that's fixed by the volume of concrete the slab needs. Our 10x10 patio needs about 4,960 lbs of dry mix in 80-lb bags, 4,920 lbs in 60-lb bags, and 4,920 lbs in 40-lb bags — all three land within 40 lbs of each other, just under 2.5 tons no matter which size you buy.",
+          "At this size the two options are close to a wash on price. Using illustrative 2026 national ranges, 62 bags of 80-lb mix at roughly $5–6 each runs about $310–370. Ready-mix delivery needs about 1.36 cubic yards, which you would order as 1.5 because suppliers sell in quarter-yard increments; at a typical $140–175 per yard plus a $50–150 short-load fee for an order below most suppliers' 3-to-5-yard (some as high as 8-yard) delivery minimum, that lands around $260–410. The real deciding factor isn't the dollar total — it's that hand-mixing 62 bags is a full weekend of physical labor, while a truck is in and out in about 20 minutes.",
+        ],
+      },
+      {
+        heading: "How thick should a patio slab be, and how does that change the bag count?",
+        paragraphs: [
+          "Thickness has an outsized effect because it's the dimension people most often get wrong. Bump the same 10x10 footprint from a 4-inch patio slab to a 6-inch driveway-rated pad and volume jumps to 50 cubic feet before waste — that pushes you to 92 bags of 80-lb mix instead of 62, a 48% increase for 50% more thickness. Always confirm your local building code or project type before assuming 4 inches: a pathway can go as thin as 3.5 inches, while anything vehicles will drive on typically needs 5 to 6 inches plus reinforcing mesh.",
+          "Other patio footprints scale the same way. At 4 inches thick with the same 10% waste allowance and 80-lb bags: an 8x8 patio needs about 40 bags, a 10x12 needs about 74, a 12x12 needs about 88, a 12x16 needs about 118, and a 16x16 needs about 157.",
+        ],
+      },
+      {
+        heading: "Small pours use the same formula, just a different shape",
+        paragraphs: [
+          "Fence-post footings and other non-slab pours follow the identical rule, only the shape changes. A single fence-post footing — a 12-inch-diameter hole poured 24 inches deep — is a cylinder: π × radius² × depth = 3.14 × 0.5² × 2 ≈ 1.57 cubic feet, which rounds up to 3 bags of 80-lb mix with waste included (the post itself displaces a little of that volume, so 3 bags leaves comfortable room).",
+          "Multiply that by however many posts your project needs, and you'll usually land in bag territory rather than ready-mix, since footings for a typical fence or deck rarely add up to a full cubic yard combined.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How many 80-lb bags of concrete do I need per cubic foot?",
+        answer:
+          "About 1.67 bags of 80-lb mix per cubic foot before waste, or 1.83 bags once you add the standard 10% waste allowance. For 60-lb bags it's 2.22 per cubic foot (2.44 with waste), and for 40-lb bags it's 3.33 per cubic foot (3.67 with waste).",
+      },
+      {
+        question: "Should I use bags or order ready-mix for a 10x10 patio?",
+        answer:
+          "For a standard 4-inch-thick 10x10 patio (about 1.36 cubic yards with waste), bags and ready-mix land close to the same total cost. Bags avoid a delivery minimum and short-load fee, but mixing 62 bags by hand is a full weekend of labor a truck delivery skips in about 20 minutes — factor your own time before deciding.",
+      },
+      {
+        question: "Can I pour a 10x10 patio in sections over two weekends?",
+        answer:
+          "Yes, but plan the split at a control joint and finish each section before the previous pour sets — concrete poured against already-hardened concrete forms a cold joint, a visible seam where the two pours never fully bond. Splitting by control joint (for example, two 10x5 halves) keeps each weekend's pour structurally sound instead of leaving a weak seam mid-slab.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Concrete Slab Volume Calculator", url: "/construction/concrete-slab-volume", icon: "🧱" },
+      { title: "Concrete Weight & Yield Calculator", url: "/construction/concrete-weight-yield", icon: "🧱" },
+      { title: "Concrete Footing & Foundation Calculator", url: "/construction/concrete-footing-foundation", icon: "🧱" },
+      { title: "Brick Calculator", url: "/construction/brick-calculator", icon: "🧱" },
+    ],
+    seoTitle: "How Many Bags of Concrete for a 10x10 Patio?",
+    seoDescription:
+      "Find out exactly how many bags of concrete you need for a 10x10 patio slab: 62 bags of 80-lb mix, 82 of 60-lb, or 123 of 40-lb, plus when ready-mix wins.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
