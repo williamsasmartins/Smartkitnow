@@ -1872,6 +1872,81 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Find out exactly how many bags of concrete you need for a 10x10 patio slab: 62 bags of 80-lb mix, 82 of 60-lb, or 123 of 40-lb, plus when ready-mix wins.",
   },
+  {
+    slug: "cost-to-drywall-a-400-square-foot-basement",
+    title: "Cost to Drywall a 400 Square Foot Basement",
+    excerpt:
+      "Materials to drywall a 400 sq ft basement run about $340–$466 for walls only, or $609–$735 with the ceiling — installed by a pro, about $882–$2,058 walls only, or $1,482–$3,458 with the ceiling.",
+    category: "Home & Construction",
+    date: "2026-09-23",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "The cost to drywall a 400 square foot basement runs about $340 to $466 in materials if you finish the walls only, or $609 to $735 if you also drywall a flat ceiling — moisture-resistant board is what pushes the estimate to the high end. Hire it out and a professionally installed basement typically runs $882 to $2,058 for walls only, or $1,482 to $3,458 with the ceiling, based on national installed-pricing data. For a 20 ft × 20 ft basement with 8-foot walls, two doors, and two small windows, that's 21 sheets of drywall for the walls after a 10% waste allowance, plus 14 more sheets for the ceiling. Here's the exact math and a full cost breakdown for every combination.",
+    sections: [
+      {
+        heading: "The cost to drywall a 400 square foot basement: the math first",
+        paragraphs: [
+          "Start with the walls. A 400 sq ft basement footprint is commonly close to a 20 ft × 20 ft square, so the perimeter is 2 × (20 + 20) = 80 linear feet. Multiply by an 8-foot ceiling height and the gross wall area is 80 × 8 = 640 square feet. Basements typically have two doors (a main entry and a utility-room door, about 20 sq ft each) and a couple of small basement windows for light (roughly 3 ft × 2 ft, or 6 sq ft, each) — call it two of each for this example. That's 40 + 12 = 52 sq ft of openings, leaving 640 − 52 = 588 square feet of net wall area to actually cover. (If a basement room is used as a bedroom, codes like IRC R310 require a true egress window with at least 5.7 sq ft of net clear opening — reduced to 5.0 sq ft for grade-floor or below-grade openings, which covers most basement egress windows — at least 24 in. high and 20 in. wide, usually a 3×4-ft unit or larger, so swap in that bigger size and subtract its real rough opening before you order.)",
+          "Add the standard 10% cutting-waste allowance: 588 × 1.10 = 646.8 square feet. A standard 4 ft × 8 ft sheet covers 32 square feet, so 646.8 ÷ 32 = 20.2, which rounds up to 21 sheets for the walls — you always round up to the next whole sheet, never down. If you also drywall the ceiling, that adds the full 400 sq ft floor footprint: 400 × 1.10 = 440 square feet, and 440 ÷ 32 = 13.75, rounding up to 14 more sheets. Finish both walls and ceiling and the total is 21 + 14 = 35 sheets.",
+        ],
+      },
+      {
+        heading: "Why basement walls usually need moisture-resistant board",
+        paragraphs: [
+          "Basement walls sit below grade against a foundation that can wick moisture through the concrete, and standard paper-faced drywall is exactly the kind of material mold grows on when it stays damp. That's why contractors typically spec moisture-resistant (MR, sometimes called \"green board\") or paperless, fiberglass-faced board for any wall built directly against an exterior foundation wall — interior partition walls that don't touch the foundation can still use standard board.",
+          "That protection costs more per sheet. Using representative national price ranges — standard 1/2-inch board around $13 a sheet and moisture-resistant board around $19 a sheet — the 21 sheets needed for our basement's walls come to $273 in standard board versus $399 in moisture-resistant board, a $126 premium for the whole room, or about $6 extra per sheet. That's a small increase next to the cost of tearing out and replacing moldy board a few years later, which is the real reason to pay it even though the finished wall looks identical either way.",
+        ],
+      },
+      {
+        heading: "Materials cost breakdown: four basement scenarios",
+        paragraphs: [
+          "Sheet cost isn't the whole materials bill. Joint compound, tape, and screws scale with how much board you actually hang — a standard rule of thumb is about 1 gallon of mud per 100 sq ft, about 12 feet of tape per 4×8 sheet (USG's published figure is roughly 370 ft per 1,000 sq ft), and roughly one screw per square foot, which rounds up to about $0.10 per square foot of installed board. That's about $67 in extras for the 672 sq ft of drywall installed on the walls alone, or $112 once the 448 sq ft ceiling is added. A basement ceiling is often finished in 5/8-inch board (around $16 a sheet) rather than 1/2-inch, mainly for sag resistance where joists are 24 in. on center; a sag-resistant 1/2-inch ceiling board is a lighter alternative at that spacing, and standard 1/2-inch board is usually fine on 16 in. centers. Building code (IRC R302.13) generally only requires a 1/2-inch gypsum membrane under unprotected floor framing such as engineered I-joists, so confirm what your local inspector actually expects before assuming you need the thicker board.",
+          "Putting the sheet cost and the extras together gives four realistic materials totals for this basement, plus what a professional installer typically charges for the same job:",
+        ],
+        bullets: [
+          "Walls only, standard 1/2-inch board: 21 × $13 = $273 + $67 extras = $340",
+          "Walls only, moisture-resistant board: 21 × $19 = $399 + $67 extras = $466",
+          "Walls (standard) + ceiling (5/8-inch): $273 + (14 × $16 = $224) + $112 extras = $609",
+          "Walls (moisture-resistant) + ceiling (5/8-inch): $399 + $224 + $112 extras = $735",
+          "Installed by a pro, walls only: about $882–$2,058 (588 sq ft × $1.50–$3.50/sq ft, HomeGuide 2026)",
+          "Installed by a pro, walls + ceiling: about $1,482–$3,458 (988 sq ft × $1.50–$3.50/sq ft, HomeGuide 2026) — overhead ceiling work often lands toward the upper end of that range",
+        ],
+      },
+      {
+        heading: "Where the estimate can move, and how to keep it accurate",
+        paragraphs: [
+          "The single biggest swing factor is whether you finish the ceiling at all. Many basement remodels skip drywalling the ceiling entirely and install a drop (suspended) ceiling instead, specifically because it leaves the ductwork, plumbing cleanouts, and electrical junctions above it accessible for future repairs — a drywalled ceiling has to be cut open and patched every time a pipe needs attention. If that's your plan, the realistic number for this basement is the $340–$466 walls-only range, not the $609–$735 combined figure.",
+          "The second-biggest swing is openings and layout. Every extra interior wall, closet, or bathroom rough-in adds board on both faces of new framing — a partition wall needs drywall on each side, while an exterior wall only needs one — so subdividing a basement increases the sheet count faster than a simple perimeter calculation suggests. Irregular shapes (an L-shaped footprint around a staircase, for example) need to be broken into rectangles and summed rather than treated as one 20×20 box. Before ordering, plug your basement's actual room-by-room dimensions and opening counts into a drywall calculator rather than scaling this example, since a narrower or more subdivided basement can need noticeably more sheets per square foot of floor than an open one.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How many sheets of drywall does a 400 sq ft basement need?",
+        answer:
+          "For a 20×20 basement with 8-foot walls, two doors, and two small windows, plan on 21 sheets of standard 4×8 drywall for the walls alone, with a 10% waste allowance included. Add a flat ceiling and the total rises to 35 sheets — 21 for the walls plus 14 more for the 400 sq ft ceiling.",
+      },
+      {
+        question: "Should I drywall a basement ceiling or leave it open?",
+        answer:
+          "Many basement finishes skip a drywalled ceiling in favor of a drop (suspended) ceiling, mainly so ductwork, pipes, and wiring stay accessible for future repairs without cutting into finished drywall. If access isn't a concern, drywalling the ceiling adds a clean, higher look for a consistent $269 more in materials on a 400 sq ft basement, or roughly $600–$1,400 more if you hire the job out, per the breakdown above.",
+      },
+      {
+        question: "Is moisture-resistant drywall required by code in a basement?",
+        answer:
+          "It isn't universally mandated the way it is in some wet areas, but it's widely recommended industry practice for any basement wall built against an exterior foundation, since below-grade concrete can transmit moisture that standard paper-faced board is prone to. Check your local building code — many basements do better with rigid foam insulation glued directly to the foundation wall than with plastic sheeting behind the studs, since basement walls are commonly exempt from interior vapor-retarder requirements (IRC R702.7) and trapped moisture behind plastic can do more harm than good.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Drywall Area & Sheets Calculator", url: "/construction/drywall-area-sheets", icon: "🏗️" },
+      { title: "Concrete Slab Volume Calculator", url: "/construction/concrete-slab-volume", icon: "🧱" },
+      { title: "Brick Calculator", url: "/construction/brick-calculator", icon: "🧱" },
+    ],
+    seoTitle: "Cost to Drywall a 400 Square Foot Basement",
+    seoDescription:
+      "Cost to drywall a 400 square foot basement: about $340–$466 in materials for walls only, $609–$735 with a ceiling, plus installed pricing and sheet counts.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
