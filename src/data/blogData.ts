@@ -1947,6 +1947,78 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Cost to drywall a 400 square foot basement: about $340–$466 in materials for walls only, $609–$735 with a ceiling, plus installed pricing and sheet counts.",
   },
+  {
+    slug: "how-many-fewer-calories-do-you-need-after-50",
+    title: "How Many Fewer Calories Do You Need After 50?",
+    excerpt:
+      "The Mifflin-St Jeor formula shows BMR drops 5 calories for every year of age — about 100 fewer a day by 50, 200 by 70 — and why the popular 3,500-calorie rule overstates what unchanged eating habits actually cost you.",
+    category: "Health & Fitness",
+    date: "2026-09-25",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "How many fewer calories do you need after 50? Under the Mifflin-St Jeor equation used by most BMR calculators, the answer is about 100 fewer calories a day than you needed at 30, growing to roughly 150 fewer by 60 and 200 fewer by 70 — a flat 5-calorie drop for every year of age. Scaled up to total daily energy expenditure (TDEE) for a sedentary adult, that's closer to 120 fewer calories a day by 50. This guide runs the exact numbers on a real example, then separates the part of that decline that's genuine physiology from the part that's simply lost muscle you can train to keep.",
+    sections: [
+      {
+        heading: "The formula: BMR falls 5 calories per year of age",
+        paragraphs: [
+          "The Mifflin-St Jeor equation, the formula behind most modern BMR calculators, is BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age + s, where s is +5 for men and −161 for women. Age is the only variable that moves every single year, and its coefficient is exactly 5 — so, holding weight and height constant, the formula predicts BMR falling by 5 calories for every year of age, identically for men and women, since the age term is the same in both versions.",
+          "Take a woman who is 165 cm (5'5\") tall and weighs 70 kg (154 lb). Her BMR works out to 1,420 calories at age 30, 1,370 at 40, 1,320 at 50, 1,270 at 60, and 1,220 at 70 — a flat 50-calorie drop each decade, a 7.0% fall from 30 to 50 and 14.1% by 70. A man at 178 cm (5'10\") and 84 kg (185 lb) follows the identical slope: 1,808 calories at 30, 1,708 at 50, and 1,608 at 70 — the same 50-calorie-per-decade drop, because the −5 × age term doesn't distinguish by sex.",
+        ],
+      },
+      {
+        heading: "How many fewer calories do you need after 50, by age?",
+        paragraphs: [
+          "BMR alone isn't what you eat around day to day — TDEE is, and it multiplies BMR by an activity factor (1.2 for sedentary, 1.375 for lightly active). That multiplication stretches the age-related drop too. For the sedentary woman above, TDEE falls from 1,704 calories at 30 to 1,644 at 40, 1,584 at 50, 1,524 at 60, and 1,464 at 70 — a 120-calorie gap by 50 and a 240-calorie gap by 70. At light activity (1.375×) the numbers run higher and the gap widens to 138 calories: 1,953 at 30 down to 1,815 at 50.",
+          "The list below lines up both examples side by side, age by age, at sedentary activity, so the flat 5-calorie-per-year rate is easy to see regardless of body size or sex — only the starting number changes.",
+        ],
+        bullets: [
+          "Female, 165 cm / 70 kg, sedentary TDEE: 30 = 1,704 cal · 40 = 1,644 cal · 50 = 1,584 cal · 60 = 1,524 cal · 70 = 1,464 cal",
+          "Male, 178 cm / 84 kg, sedentary TDEE: 30 = 2,169 cal · 40 = 2,109 cal · 50 = 2,049 cal · 60 = 1,989 cal · 70 = 1,929 cal",
+          "Both sexes: BMR itself declines 50 calories per decade — 60 calories of sedentary TDEE per decade — driven entirely by the formula's −5 × age term",
+        ],
+      },
+      {
+        heading: "What the gap costs you — and why it isn't endless",
+        paragraphs: [
+          "A 120-calorie daily gap sounds small, but the old rule of thumb — that 3,500 extra calories always equals a pound of fat, indefinitely — overstates what actually happens, because it ignores that a bigger body burns more. By the Mifflin-St Jeor formula's own math, every extra kilogram of body weight raises sedentary TDEE by about 12 calories a day (10 for BMR, times the 1.2 activity multiplier), so the gap would close after roughly 10 kg (22 lb). A more realistic estimate comes from Hall et al.'s dynamic weight-change model (The Lancet, 2011), which also counts the extra energy a heavier body spends simply moving itself around: it puts sustained weight change closer to 1 kg for every 24 daily calories, so a 120-calorie gap settles nearer 5 kg (11 lb) — with about half of that change arriving within the first year and the rest over the next two or three.",
+          "That's still a real, believable cost — roughly 11 to 22 pounds gained gradually over the two decades from 30 to 50, from unchanged habits meeting a shrinking calorie budget — and it matches how weight tends to creep up through the 40s and 50s in practice. The fix is proportionally small: trimming 100 to 150 calories a day by your early 50s, roughly a smaller side dish or one fewer sugary drink, is enough to hold weight steady against the formula's predicted decline for a sedentary-to-lightly-active adult.",
+        ],
+      },
+      {
+        heading: "What actually causes it — and what you can control",
+        paragraphs: [
+          "The −5 × age term isn't a measured law of physiology; it's a regression average from the original study (Mifflin et al., American Journal of Clinical Nutrition, 1990), standing in mostly for lost muscle mass, since muscle burns more at rest than fat and older adults carry less of it on average. A large 2021 study in the journal Science, which measured real-world energy expenditure in over 6,000 people using doubly labeled water, found that size-adjusted metabolism is fairly stable from age 20 to 60, with a measurable slowdown of only about 0.7% a year showing up after 60 (Pontzer et al., Science, 2021). The formula's steady, straight-line drop is a convenient population average — for any one person who keeps their muscle mass, especially before 60, the real decline can run well below what the equation predicts.",
+          "That's also the lever you control. Resistance training that preserves or builds muscle mass keeps your real BMR closer to your 30-year-old number than the formula assumes, since skeletal muscle burns roughly 13 calories per kilogram per day at rest — meaning keeping or rebuilding about 4 extra kilograms (9 lb) of muscle is enough to offset an entire decade's worth of the formula's predicted decline. That's a realistic target over a year or more of consistent training, not an overnight fix. Recalculate your BMR and TDEE every 5 to 10 years, or after a real change in weight or training, rather than eating off a number from your 30s — the BMR and TDEE calculators below take under a minute and use your current numbers instead of a stale one.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does metabolism slow down at a constant rate, or speed up after 50?",
+        answer:
+          "The Mifflin-St Jeor formula models it as a straight, constant line — 5 calories a year, no acceleration. Real-world research tells a more forgiving story: a 2021 study in Science found expenditure holds fairly steady from 20 to 60 once body size is accounted for, with a roughly 0.7%-a-year decline only showing up after 60. An inactive person can still lose muscle faster than average across this stretch, which pushes their real decline closer to — or past — the formula's estimate; someone who keeps training tends to track the more stable, research-backed pattern instead.",
+      },
+      {
+        question: "Do men and women lose the same number of calories per year after 50?",
+        answer:
+          "Mechanically, yes. Both the male and female versions of the Mifflin-St Jeor formula share the identical −5 × age term, so BMR declines by 5 calories for every year of age for both sexes, holding weight and height constant. What differs is the starting baseline: a 165 cm/70 kg woman's 100-calorie drop from 30 to 50 is about 7.0% of her age-30 BMR, while a 178 cm/84 kg man's identical 100-calorie drop is a smaller 5.5% of his larger starting number — the same absolute loss lands harder on a smaller body.",
+      },
+      {
+        question: "Can exercise reverse the age-related drop in BMR?",
+        answer:
+          "It can't stop the calendar, but it can offset most of the practical effect. Skeletal muscle burns roughly 13 calories per kilogram per day at rest, well above fat tissue, so keeping or rebuilding about 4 extra kilograms (9 lb) of muscle through a year or more of resistance training is enough to cancel out an entire decade's worth of the formula's projected BMR decline. Because the age-related drop is driven largely by lost muscle rather than age itself, training against that loss is the most direct lever available.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "BMR Calculator", url: "/health/bmr-calculator", icon: "🔥" },
+      { title: "TDEE Daily Energy Expenditure Calculator", url: "/health/tdee-daily-energy-expenditure", icon: "💪" },
+      { title: "Body Fat Percentage Calculator", url: "/health/body-fat-calculator", icon: "📊" },
+    ],
+    seoTitle: "How Many Fewer Calories Do You Need After 50?",
+    seoDescription:
+      "How many fewer calories do you need after 50? About 100 a day less at rest than at 30, then 50 less per decade, per Mifflin-St Jeor, with worked examples.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
