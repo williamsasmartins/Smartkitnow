@@ -2106,6 +2106,86 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Daily vs monthly compounding interest on $25,000 at 4.5% for 5 years: daily earns just $12.74 more. See why the gap grows over time and when it matters.",
   },
+  {
+    slug: "extra-payment-to-pay-off-a-30-year-mortgage-in-20-years",
+    title: "How Much Extra to Pay Off a 30-Year Mortgage in 20 Years",
+    excerpt:
+      "On a $300,000 loan at 6.5%, one extra $341 payment a month turns a 30-year mortgage into a 20-year one and saves about $145,822 in interest. Here's the math and a table of smaller amounts.",
+    category: "Personal Finance",
+    date: "2026-09-30",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "The extra payment to pay off a 30-year mortgage in 20 years is about $341 a month on a $300,000 loan at 6.5%, applied straight to principal on top of the normal payment. That single change cuts the term by a decade and drops total interest paid from about $382,633 down to $236,811, a savings of roughly $145,822. This guide shows exactly how that $341 figure is calculated, what smaller extra payments buy you instead, how the number changes if you're already years into the loan, and how to set it up correctly with your lender.",
+    sections: [
+      {
+        heading: "How the extra payment amount is calculated",
+        paragraphs: [
+          "A fixed-rate mortgage payment comes from the amortization formula M = P[r(1+r)^n] / [(1+r)^n − 1], where P is the loan balance, r is the monthly interest rate, and n is the number of remaining payments. When you designate an extra payment as an additional principal payment, rather than an early payment of next month's bill, it reduces the balance immediately, so next month's interest charge (balance × r) is calculated on a smaller number. A lower balance means less interest, which means more of every future payment goes toward principal instead, and the effect compounds every month after that.",
+          "To find the extra amount for a specific target, calculate two payments on the current remaining balance: the payment for the months left on the original schedule, and the payment for a fresh amortization at the shorter number of months you want. The difference is the extra payment to add, starting now. That only lines up with n = 360 and n = 240 for a brand-new loan, though. Someone already 5 years into this same $300,000 loan has a remaining balance of about $280,833; to finish 15 years from now instead of the 25 years left on the original schedule, the payment needed is about $2,446 a month versus their current $1,896 — an extra $550, not $341, because less of the original term remains to spread the payoff over.",
+        ],
+      },
+      {
+        heading: "Extra payment to pay off a 30-year mortgage in 20 years: the $300,000 example",
+        paragraphs: [
+          "Take a $300,000 mortgage at a 6.5% fixed annual rate, starting today. The standard 30-year payment (principal and interest only) works out to about $1,896.20 a month. Over 360 payments that totals $682,633, of which $382,633 is interest — more than the amount borrowed.",
+          "Solving the same formula for 240 months instead of 360 gives a payment of about $2,236.72 to retire that same $300,000 balance in 20 years. The gap between the two payments is $340.52, which rounds to $341 extra a month. Paying $2,236.72 for 240 months costs about $536,811 total, of which $236,811 is interest, versus $382,633 in interest over the full 30 years. That's a savings of $145,822 in interest for $81,725 in additional payments over the shorter life of the loan. These figures cover principal and interest only; escrowed property taxes and insurance don't change just because you're paying extra toward principal.",
+        ],
+      },
+      {
+        heading: "What smaller extra payments buy you",
+        paragraphs: [
+          "You don't have to hit the full $341 to see a real result — every dollar of extra principal still compounds in your favor, just over a longer runway. Running the same $300,000-at-6.5% loan through an amortization simulation at several extra-payment levels shows how the payoff date and interest bill move together:",
+        ],
+        bullets: [
+          "$0 extra → 30.0 years, $382,633 total interest (baseline)",
+          "$100 extra/mo → 26.0 years, $321,639 total interest (saves $60,994)",
+          "$200 extra/mo → about 23 years, $279,185 total interest (saves $103,448)",
+          "$341 extra/mo → 20.0 years, $236,811 total interest (saves $145,822)",
+          "$500 extra/mo → 17.5 years, $202,874 total interest (saves $179,759)",
+        ],
+      },
+      {
+        heading: "What percentage extra do you need at your rate?",
+        paragraphs: [
+          "The pattern above is not linear: the first $100 of extra payment buys back 4 years and about $61,000 in interest, while the next $100 (going from $100 to $200 extra) buys back roughly 3 more years and another $42,000. The biggest relative gain comes from the first extra payment you commit to, which is why even a modest, sustainable amount is worth starting today rather than waiting until you can afford the full $341.",
+          "The $341 figure works out to about 18.0% of the 30-year payment, and that ratio isn't specific to $300,000 — because the amortization formula scales with the loan balance, the extra payment needed to go from 30 to 20 years is always close to the same percentage of the original payment, whatever the loan size. At 5% it's about 22.9%; at 6% about 19.5%; at 6.5% about 18.0%; at 7% about 16.5%; and at 7.5% about 15.2% — lower rates need a bigger percentage bump because more of a low-rate payment is already principal. Multiplying your own 30-year payment by the percentage for your rate gives a quick estimate for any loan amount.",
+        ],
+      },
+      {
+        heading: "How to actually make it work with your lender",
+        paragraphs: [
+          "A common and costly mistake is sending extra money without telling your servicer what to do with it. Some servicers apply an unlabeled overpayment as an early payment of next month's bill instead of reducing principal, which does almost nothing to the amortization schedule. If Fannie Mae owns your loan, its Servicing Guide (section C-1.2-01) requires the servicer to apply a payment you identify as additional principal right away, and most other servicers follow the same practice — so mark it explicitly as \"additional principal\" on the online portal, in the check memo, or by phone, and confirm the next statement shows the lower balance.",
+          "Also confirm your loan has no prepayment penalty. Since January 2014, federal rules allow one on a consumer mortgage only if it's a fixed-rate qualified mortgage that isn't higher-priced, and even then only in the first 3 years, capped at 2%, 2%, and 1% of the amount prepaid. Business-purpose investor loans aren't covered by that rule and older loans may predate it, so check your note before committing to a plan. If a steady monthly amount doesn't fit your budget, a $2,000 lump sum at the end of each year (a tax refund or bonus, applied as extra principal) lands close to adding $167 a month, but produces a slightly later payoff, around 24 years instead of roughly 23 years and 11 months for the same total extra cash, because the money arrives in one block at the end of the year rather than steadily reducing the balance all year long. And before committing extra cash to any mortgage, make sure you have an emergency fund and are capturing any employer 401(k) match first — a guaranteed 6.5% return from prepaying isn't worth it if it comes at the cost of high-interest debt or a lost employer match elsewhere.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Do I have to refinance to pay off my mortgage faster?",
+        answer:
+          "No. Extra principal payments work on your existing loan at your existing rate — you're simply paying down the balance faster than the amortization schedule requires. Refinancing to a shorter term is a separate option that resets your rate and comes with closing costs, but it isn't necessary just to shorten your effective payoff timeline.",
+      },
+      {
+        question: "What happens if I have to stop the extra payments?",
+        answer:
+          "Your required monthly payment stays the same unless you request a recast, but because the balance is already lower than the original schedule assumed, the loan still pays off earlier than the full 30 years even after you stop adding extra. Whatever interest you've already avoided by paying down principal early stays saved — you simply stop accumulating more of it.",
+      },
+      {
+        question: "Is $100 a month extra even worth doing?",
+        answer:
+          "Yes. On the $300,000-at-6.5% example, just $100 extra a month cuts 4 years off a 30-year loan and saves about $60,994 in interest — roughly 42% of the total savings from the full $341 payment, for less than a third of the extra cash. Extra payments don't need to be large to produce a meaningful return.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+    ],
+    seoTitle: "Extra Payment to Pay Off a 30-Year Mortgage in 20 Years",
+    seoDescription:
+      "Find out how much extra to pay off a 30-year mortgage in 20 years, with a real $300,000 example at 6.5%, a full payment table, and total interest saved.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
