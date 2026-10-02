@@ -5,7 +5,10 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", "playwright-mcp"] },
+  // One-off root maintenance scripts (May 2026 redirect/SEO migrations). Not
+  // referenced by the build, npm scripts or CI; several contain legacy regex
+  // literals that fail to parse. Kept for history, excluded from linting.
+  { ignores: ["dist", "playwright-mcp", "*.cjs"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
