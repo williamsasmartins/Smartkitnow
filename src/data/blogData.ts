@@ -2261,6 +2261,84 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Find out what body fat percentage you need to see abs for men and women, with a full visibility chart and two worked weight-loss timeline examples inside.",
   },
+  {
+    slug: "how-much-interest-will-you-pay-on-a-50000-student-loan",
+    title: "How Much Interest Will You Pay on a $50,000 Student Loan?",
+    excerpt:
+      "A $50,000 student loan disbursed on or after July 1, 2026 now defaults to a 20-year term, not 10 — at 6.52% that is $39,610 in interest. See the tier table, the $1 cliff, and how to pay less.",
+    category: "Personal Finance",
+    date: "2026-10-05",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "How much interest will you pay on a $50,000 student loan? At the 6.52% federal rate for loans first disbursed between July 1, 2026 and June 30, 2027, a new $50,000 balance now defaults to a 20-year repayment term, not 10, under the Tiered Standard Repayment Plan that replaced the old flat 10-year default this year. Paying only the minimum over 20 years costs $373.38 a month and $39,610.13 in interest. Pay it off on the old 10-year schedule instead, which federal loans still allow with no prepayment penalty, and interest drops to $18,189.86 — less than half. This guide breaks down the new tier rules, shows a $1 cliff that can add over $11,000 in interest, and runs the math on paying it off faster.",
+    sections: [
+      {
+        heading: "Your Default Repayment Term Just Changed",
+        paragraphs: [
+          "Congress overhauled federal student loan repayment through the One Big Beautiful Bill Act (Pub. L. 119-21), effective July 1, 2026. The flat 10-year Standard Repayment Plan that was the default for every new federal loan for decades is gone for anyone borrowing on or after that date. In its place sits the Tiered Standard Repayment Plan, per studentaid.gov's rate and repayment pages, which sets your minimum repayment term by your total outstanding Direct Loan principal when you enter repayment rather than letting you pick a term. New borrowers choose between this plan and the income-driven Repayment Assistance Plan (RAP); the numbers below model the Tiered Standard path.",
+          "If every federal loan you hold was disbursed before July 1, 2026, you keep the old flat 10-year Standard Plan. But take even one new loan on or after that date and the Tiered Standard Plan becomes your only standard option — for your older loans too — with the term set by your combined outstanding balance. For the 2026-27 cycle, the rate on new undergraduate Direct Subsidized and Unsubsidized loans is 6.52%, fixed for the life of the loan; graduate Direct Unsubsidized loans carry 8.07% and Grad PLUS loans carry 9.07% (Grad PLUS is also closed to most new borrowers starting this year, with limited exceptions for students already enrolled).",
+        ],
+        bullets: [
+          "Under $25,000 owed when repayment starts: 10-year repayment term (unchanged from the old default)",
+          "$25,000-$49,999 owed when repayment starts: 15-year repayment term",
+          "$50,000-$99,999 owed when repayment starts: 20-year repayment term — where a fresh $50,000 loan lands",
+          "$100,000 or more owed when repayment starts: 25-year repayment term",
+        ],
+      },
+      {
+        heading: "A Worked Example: $50,000 on the New 20-Year Default",
+        paragraphs: [
+          "Run $50,000 at 6.52% through the new 20-year default and the minimum payment is $373.38 a month. Over 240 payments that's $89,610.13 paid in total, of which $39,610.13 is interest — 79.2% of the $50,000 you borrowed. Nothing requires you to stop there: federal loans carry no prepayment penalty, so you can pay more than the minimum at any time, including enough to finish on the old 10-year pace.",
+          "Do that and the numbers change sharply. The same $50,000 at 6.52% paid on a voluntary 10-year schedule runs $568.25 a month and $18,189.86 in total interest — $21,420.27 less interest than letting the 20-year minimum ride, for $194.87 more a month. The tiered plan sets a floor on how slowly you're allowed to pay; it doesn't set a ceiling on how fast you can.",
+        ],
+      },
+      {
+        heading: "How Much Interest Will You Pay on a $50,000 Student Loan by Term? (The $1 Cliff)",
+        paragraphs: [
+          "The tier boundaries create a cliff that has nothing to do with your interest rate. Owe $49,999 when repayment starts and your required repayment term is 15 years: $436.09 a month, $28,498.08 in total interest. Owe exactly $50,000 — one more dollar — and the required term jumps to 20 years: $373.38 a month, $39,610.13 in total interest.",
+          "That $11,112.05 gap comes entirely from the five extra years the minimum payment is allowed to stretch across, not from paying a higher rate. The 20-year tier isn't pure downside, either — it lowers the required payment by $62.71 a month ($373.38 instead of $436.09), which is real flexibility if your budget needs it. But if you only ever pay the minimum, crossing a tier boundary by even a dollar locks you into a longer required term. That's exactly why anyone near a $25,000, $50,000, or $100,000 balance benefits from checking which side of the line they land on. Paying above the minimum from day one matters more under the new tiers than it did under the old flat 10-year plan. If your balance is just over $50,000, paying down a small amount of principal during your grace period, before repayment officially starts, can be enough to land in the cheaper 15-year tier instead.",
+        ],
+        bullets: [
+          "$49,999 owed at repayment start → 15-year required term: $436.09/month, $28,498.08 total interest",
+          "$50,000 owed at repayment start → 20-year required term: $373.38/month, $39,610.13 total interest",
+          "Cost of the extra $1: $11,112.05 more in interest, from a required term 5 years longer",
+        ],
+      },
+      {
+        heading: "Three Ways to Pay Less Interest on a $50,000 Loan",
+        paragraphs: [
+          "Paying more than the minimum attacks the balance directly. On the same $50,000 loan now defaulting to 20 years, paying a fixed $700 a month instead of the $373.38 minimum pays the loan off in 91 months — 7.6 years instead of 20 — and brings total interest down to $13,452.87. That's $26,157.26 less interest and 149 fewer months of payments, for $326.62 more a month than the required minimum.",
+          "Two smaller levers help too. Federal loan servicers cut the rate by 0.25 percentage points for enrolling in automatic debit payments, which takes this loan from 6.52% to 6.27% and saves $1,758.80 in interest over the 20-year default term for doing nothing but setting up autopay. And before pausing payments, check the type of pause: in deferment, the government covers interest on subsidized loans, but unsubsidized interest keeps accruing and is added to principal once the deferment ends; in forbearance, interest accrues on every loan type regardless of subsidy status, so a pause quietly grows what you owe even though it isn't added to principal the way unsubsidized deferment interest is.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How much interest would I pay on a $30,000 student loan?",
+        answer:
+          "If $30,000 is your total federal balance and it includes a loan disbursed on or after July 1, 2026, the new Tiered Standard Plan sets a 15-year repayment term: $261.66 a month and $17,099.19 in total interest at 6.52%. Paying it instead on a voluntary 10-year schedule costs $340.95 a month but only $10,913.92 in interest — $6,185.27 less, for $79.29 more a month.",
+      },
+      {
+        question: "Does paying extra each month actually lower the interest, or just the payoff date?",
+        answer:
+          "Both. Extra principal payments shrink the balance interest is calculated on every month going forward, so the savings compound. On the $50,000 example, paying $700 instead of the $373.38 minimum cuts total interest by $26,157.26 and finishes the loan 149 months early — real savings, not just a faster finish line.",
+      },
+      {
+        question: "What is the current federal student loan interest rate, and does my term depend on how much I borrowed?",
+        answer:
+          "For loans first disbursed between July 1, 2026 and June 30, 2027, undergraduate Direct Subsidized and Unsubsidized loans carry a 6.52% fixed rate, graduate Direct Unsubsidized loans carry 8.07%, and Grad PLUS loans carry 9.07%. For borrowers with any federal loan disbursed on or after July 1, 2026, the Tiered Standard Repayment Plan also ties the required term to your total outstanding principal when repayment begins: under $25,000 gets 10 years, $25,000-$49,999 gets 15 years, $50,000-$99,999 gets 20 years, and $100,000 or more gets 25 years. Borrowers whose loans are entirely pre-July-2026 keep the old flat 10-year Standard Plan.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Student Loan Repayment Calculator", url: "/financial/student-loan-repayment", icon: "🎓" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+    ],
+    seoTitle: "How Much Interest on a $50,000 Student Loan?",
+    seoDescription:
+      "See how much interest you will pay on a $50,000 student loan at the 2026-27 6.52% federal rate, under the new 10/15/20/25-year tiered repayment terms.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
