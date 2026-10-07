@@ -2339,6 +2339,79 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "See how much interest you will pay on a $50,000 student loan at the 2026-27 6.52% federal rate, under the new 10/15/20/25-year tiered repayment terms.",
   },
+  {
+    slug: "how-much-does-pmi-add-to-a-300000-mortgage-payment",
+    title: "How Much Does PMI Add to a $300K Mortgage Payment?",
+    excerpt:
+      "PMI on a $300,000 home runs $159 to $178 a month at a representative 0.75% rate, depending on your down payment, and disappears automatically once your balance hits 78% of the price. Here's the math by down payment size.",
+    category: "Personal Finance",
+    date: "2026-10-07",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 6,
+    intro:
+      "How much does PMI add to a $300,000 mortgage payment? Using a representative 0.75% annual PMI rate, it adds about $178 a month with 5% down, $169 a month with 10% down, or $159 a month with 15% down, on top of the principal-and-interest payment. Put 20% down ($60,000 on this example) and PMI disappears entirely. (If $300,000 is your loan amount rather than your home price, PMI at that same 0.75% rate runs $187.50 a month.) The cost isn't permanent either way: the Homeowners Protection Act requires your loan servicer to cancel PMI automatically once your balance drops to 78% of the home's original price — as long as you're current on payments — which happens in 6 to 11 years depending on how much you put down at closing.",
+    sections: [
+      {
+        heading: "Why Lenders Require PMI in the First Place",
+        paragraphs: [
+          "Private mortgage insurance protects the lender, not you, if you default on a conventional loan with less than 20% down. Put down less than that 20% threshold and the loan-to-value (LTV) ratio on day one is above 80%, which lenders treat as higher risk — so they require PMI to offset it. It's calculated as a percentage of your loan amount per year, then split into equal monthly installments and added to your regular mortgage payment, right alongside principal, interest, taxes, and insurance.",
+          "The rate itself isn't fixed across the industry. Lenders and mortgage insurers commonly quote 0.46% to 1.5% of the loan amount annually, and where you land in that range depends on your credit score, your down payment size, and the loan type — a 760+ credit score can land well under half of what a 620-679 score pays at the same LTV. Rates also rise as your LTV rises, so a 5%-down loan is typically priced above a 15%-down loan at the same credit score, not just charged on a bigger balance. The $300,000 examples below use a single flat 0.75% rate at every down payment to isolate the effect of loan size alone; that makes the 5%-down figure a floor, not a typical real-world quote — always get your lender's actual quoted rate before budgeting.",
+        ],
+      },
+      {
+        heading: "How Much PMI Adds to a $300,000 Mortgage Payment, by Down Payment",
+        paragraphs: [
+          "Finance a $300,000 home at a 6.5% fixed rate over 30 years and the principal-and-interest payment alone depends only on your loan amount. PMI stacks on top of that whenever you're under 20% down, shrinking as your loan amount shrinks. Here's the full breakdown at four common down payment sizes, using the flat 0.75% representative annual PMI rate on the original loan amount:",
+          "Holding the rate flat at 0.75%, every extra 5% you put down cuts roughly $9 to $10 off the monthly PMI charge, on top of the savings from financing less principal — but that's an artifact of using one flat rate, not a real-world guarantee, since actual PMI pricing also rises at higher LTVs. Between 5% down and 20% down, the gap in total monthly payment is $462.56 — $178.13 of that is PMI you wouldn't pay with the bigger down payment, and the rest is the smaller loan's lower principal and interest.",
+        ],
+        bullets: [
+          "5% down ($15,000): $285,000 loan — $1,801.39 P&I + $178.13 PMI = $1,979.52/month",
+          "10% down ($30,000): $270,000 loan — $1,706.58 P&I + $168.75 PMI = $1,875.33/month",
+          "15% down ($45,000): $255,000 loan — $1,611.77 P&I + $159.38 PMI = $1,771.15/month",
+          "20% down ($60,000): $240,000 loan — $1,516.96 P&I + $0 PMI = $1,516.96/month",
+        ],
+      },
+      {
+        heading: "When PMI Automatically Goes Away",
+        paragraphs: [
+          "PMI isn't a lifetime cost. Under the Homeowners Protection Act of 1998, your loan servicer must automatically cancel borrower-paid PMI once your loan balance — on the normal amortization schedule, with no extra payments — falls to 78% of the home's original value, or when you reach the midpoint of your loan term, whichever comes first. You can also request cancellation earlier, once you've paid down to 80% of the original value, as long as you're current on payments.",
+          "On the $300,000 example at 6.5% over 30 years, that automatic cutoff arrives well before the 15-year midpoint in every scenario: 5% down reaches the 78% mark around month 135 (about 11.2 years), after paying roughly $24,047 in total PMI; 10% down reaches it around month 109 (about 9.1 years), after about $18,394 in total PMI; and 15% down reaches it around month 75 (about 6.2 years), after about $11,953 in total PMI. A rising home value can get you there faster too, but check your servicer's rules first — Fannie Mae and Freddie Mac servicers typically require the balance to hit 75% of a new appraised value for loans 2 to 5 years old, and 80% once the loan is more than 5 years old, before an appraisal-based request qualifies.",
+        ],
+      },
+      {
+        heading: "Is It Worth Waiting to Save a Bigger Down Payment Instead?",
+        paragraphs: [
+          "It's tempting to compare the total PMI you'd pay against the extra cash needed to reach 20% down — but that's the wrong comparison, because the extra down payment isn't spent, it becomes home equity and also shrinks your loan. The number that actually matters is the effective interest rate on the extra amount you'd otherwise borrow: your mortgage rate plus the annual PMI divided by that extra loan amount. On this example, at 15% down you borrow $15,000 more than at 20% down and pay $1,912.50 a year in PMI for it — 12.75% on top of the 6.5% rate, for roughly 19.25% effective on that last $15,000. At 10% down you borrow $30,000 more for $2,025 a year — 6.75% on top of 6.5%, or about 13.25% effective. At 5% down you borrow $45,000 more for $2,137.50 a year — 4.75% on top of 6.5%, or about 11.25% effective.",
+          "Under this flat-rate model, the closer you are to 20% down, the more each extra borrowed dollar costs: 19.25% effective at 15% down, 13.25% at 10% down, and 11.25% at 5% down. (With real LTV-tiered pricing rather than one flat rate, that 5%-down figure would run higher.) The practical rule: if you're within a few thousand dollars of the 20% threshold, closing that last gap before you buy usually pays off, since the effective rate on that sliver of borrowing is steep. Further out, at 5% or 10% down, the effective rate is lower, so the case for waiting depends more on what you'd pay in rent and how fast prices are moving where you live — not on a blanket rule either way.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I avoid PMI with less than 20% down?",
+        answer:
+          "A few ways: lender-paid PMI folds the cost into a slightly higher interest rate instead of a separate line item (often cheaper if you won't keep the loan long enough to hit 78% LTV); a piggyback second mortgage (commonly 80-10-10) splits the financing so the primary loan stays at 80% LTV; and VA loans for eligible veterans and active-duty borrowers require no monthly mortgage insurance regardless of down payment, though most VA borrowers still pay a one-time upfront funding fee unless they're exempt (such as for a service-connected disability).",
+      },
+      {
+        question: "Do I have to request PMI removal, or does it happen automatically?",
+        answer:
+          "Both paths exist. Your lender must automatically cancel it once your balance reaches 78% of the home's original value (or the loan's midpoint, if earlier), as long as you're current on payments — no request needed. You can also proactively request cancellation once you reach 80% of original value, which gets you there sooner than waiting for the automatic cutoff on the examples above.",
+      },
+      {
+        question: "Does my credit score really change my PMI rate that much?",
+        answer:
+          "Yes — PMI rates are commonly quoted in the 0.46% to 1.5% of loan amount per year range for the same down payment, and credit score is one of the biggest drivers of where you land in it, alongside LTV. A borrower with a 760+ score can often pay well under half what a borrower with a 620-679 score pays at an identical LTV, so the flat 0.75% used in these examples is a representative estimate, not a guarantee — ask your lender for your actual quoted rate.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "House Affordability Calculator", url: "/financial/house-affordability", icon: "🏡" },
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+    ],
+    seoTitle: "How Much Does PMI Add to a $300K Mortgage?",
+    seoDescription:
+      "See how much PMI adds to a $300,000 mortgage payment at every down payment size, when it drops off automatically, and how much it really costs you in total.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
