@@ -2412,6 +2412,86 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "See how much PMI adds to a $300,000 mortgage payment at every down payment size, when it drops off automatically, and how much it really costs you in total.",
   },
+  {
+    slug: "how-long-to-double-your-money-at-7-percent-interest",
+    title: "How Long to Double Your Money at 7 Percent Interest?",
+    excerpt:
+      "The Rule of 72 says 10.29 years. The exact math says 10.245 years. Here's the formula, a $10,000 worked example, and an accuracy table by interest rate.",
+    category: "Personal Finance",
+    date: "2026-10-09",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "How long does it take to double your money at 7 percent interest? About 10 years and 3 months — precisely 10.245 years by the exact compound interest formula, which is only 15 days faster than the quick \"Rule of 72\" estimate of 10.29 years. The Rule of 72 says years-to-double equal 72 divided by the interest rate, so 72 divided by 7 is about 10.29. A $10,000 investment compounding annually at 7% grows to $19,671.51 after 10 full years, would reach $20,000 at 10.245 years on the smooth growth curve the formula describes, and actually reaches $21,048.52 once year 11's interest posts.",
+    sections: [
+      {
+        heading: "The Rule of 72: a 60-second mental-math estimate",
+        paragraphs: [
+          "The Rule of 72 is the fastest way to estimate how long an investment takes to double: divide 72 by the annual interest rate, written as a whole number rather than a decimal. At 7% interest, that's 72 divided by 7, which equals 10.29 years. At 6% it's 72 divided by 6, or 12 years. At 10% it's 72 divided by 10, or 7.2 years. No calculator, logarithm, or spreadsheet required — just one division.",
+          "The number 72 isn't arbitrary. It sits close to 69.3, the exact constant for continuously compounded growth, which comes from the natural logarithm of 2 (ln 2 is about 0.6931, so 69.3 divided by the rate gives years under continuous compounding). But 72 divides evenly by 1, 2, 3, 4, 6, 8, 9, and 12, which covers nearly every interest rate people actually use in practice. That convenience costs a small amount of accuracy, and how much depends heavily on which rate you plug in.",
+        ],
+      },
+      {
+        heading: "The exact formula behind compounding",
+        paragraphs: [
+          "The real answer comes from solving the compound interest formula for time. If a balance grows by a fixed rate r each year, it doubles when (1 + r) raised to the power t equals 2. Solving for t gives t equals ln(2) divided by ln(1 + r), where ln is the natural logarithm. For 7% (r = 0.07), that works out to 0.693147 divided by 0.067659, or 10.245 years — 10 years and roughly 3 months.",
+          "This exact formula is also what a compound interest calculator runs behind the scenes whenever it projects a future balance. The Rule of 72 is a linear shortcut standing in for a curve that isn't actually linear, which is why it tracks the exact answer closely only in a specific band of interest rates — and drifts further away the more you move outside that band.",
+        ],
+      },
+      {
+        heading: "How long to double your money at 7 percent interest: a $10,000 example",
+        paragraphs: [
+          "Start with $10,000 compounding annually at 7%. The Rule of 72 predicts doubling at 10.29 years. The exact formula says 10.245 years — about 15 days sooner. Tracking the actual balance: after 9 years it's $18,384.59, and after 10 full years it's $19,671.51 (not yet doubled). On the smooth growth curve the exact formula describes, the balance would hit $20,000 at that 10.245-year mark. But an account that only credits interest once a year doesn't grow smoothly — it jumps straight from $19,671.51 at year 10 to $21,048.52 at year 11. If that 7% is the account's APY and interest is credited monthly or daily, the real balance crosses $20,000 within days of the 10.245-year mark; if 7% is a nominal rate compounded monthly, doubling comes even sooner, at about 9.93 years (see the FAQ below).",
+          "That 15-day gap is trivial for retirement planning, but it isn't fixed — it depends entirely on the rate. Run the same question at 2% interest, closer to a low-yield savings account, and the Rule of 72 overestimates the wait by almost a full year. Run it at 15% — well below what many credit cards charge, and those typically compound daily, not annually — and it underestimates by about two months. The next section shows exactly how much the shortcut drifts at each rate.",
+        ],
+      },
+      {
+        heading: "How accurate is the Rule of 72 at different interest rates?",
+        paragraphs: [
+          "The Rule of 72 is most accurate near the 8% mark, which also happens to be a common long-run assumption for stock market returns, and it gets progressively less accurate the further the rate moves from there in either direction. Below about 7.8% it overestimates how long doubling takes; above about 7.8% it underestimates it. Here is the Rule of 72 estimate against the exact math at interest rates from 2% to 15%:",
+          "The practical takeaway: for any rate between roughly 6% and 10%, the Rule of 72 is accurate to within about five weeks, which is perfectly fine for back-of-envelope planning. Outside that band — a 2% savings account or a credit card north of 15% — the gap grows to months or even close to a year, so run the real numbers through a compound interest calculator instead of trusting the shortcut.",
+        ],
+        bullets: [
+          "2% rate — Rule of 72: 36.0 years vs. exact: 35.0 years (rule overstates by about 1 year)",
+          "3% rate — Rule of 72: 24.0 years vs. exact: 23.45 years (rule overstates by about 6.5 months)",
+          "4% rate — Rule of 72: 18.0 years vs. exact: 17.67 years (rule overstates by about 4 months)",
+          "5% rate — Rule of 72: 14.4 years vs. exact: 14.21 years (rule overstates by about 2.3 months)",
+          "6% rate — Rule of 72: 12.0 years vs. exact: 11.9 years (rule overstates by about 5 weeks)",
+          "7% rate — Rule of 72: 10.29 years vs. exact: 10.245 years (rule overstates by about 2 weeks)",
+          "8% rate — Rule of 72: 9.0 years vs. exact: 9.006 years (rule understates by about 2.4 days)",
+          "9% rate — Rule of 72: 8.0 years vs. exact: 8.04 years (rule understates by about 2 weeks)",
+          "10% rate — Rule of 72: 7.2 years vs. exact: 7.27 years (rule understates by about 4 weeks)",
+          "12% rate — Rule of 72: 6.0 years vs. exact: 6.12 years (rule understates by about 6 weeks)",
+          "15% rate — Rule of 72: 4.8 years vs. exact: 4.96 years (rule understates by about 8 weeks)",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does the Rule of 72 change if interest compounds monthly instead of annually?",
+        answer:
+          "Yes — more frequent compounding raises the effective annual rate, which shortens the real doubling time compared with a simple annual-rate calculation. A 7% nominal rate compounded monthly has an effective annual rate of about 7.229%, so the exact doubling time drops to roughly 9.93 years, about 115 days faster than the 10.245-year answer for annual compounding at the same 7% nominal rate. The Rule of 72 doesn't account for this on its own — feed it the effective rate, not the nominal one, to get an accurate estimate.",
+      },
+      {
+        question: "Is there a more accurate version of the Rule of 72 for low or high rates?",
+        answer:
+          "For rates under about 6%, some sources use the Rule of 70 or even 69.3, the exact constant for continuous compounding, which tracks the exact math more closely at low rates. For rates above about 10%, a Rule of 73 or 74 tends to fit better. None of these variants beat solving t equals ln(2) divided by ln(1 + r) directly, which is exact at every single rate.",
+      },
+      {
+        question: "Does the Rule of 72 work if I'm adding money every month, not just investing a lump sum?",
+        answer:
+          "No — the Rule of 72 and the exact ln(2) divided by ln(1 + r) formula both assume a single lump sum left alone to compound, with no additional contributions. If you're adding a fixed amount every month on top of a starting balance, the real doubling time depends on your contribution schedule too, and the lump-sum formula will overstate how long it actually takes. Use a compound interest calculator that supports recurring contributions to get an accurate timeline for that case.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+      { title: "House Affordability Calculator", url: "/financial/house-affordability", icon: "🏡" },
+      { title: "Student Loan Repayment Calculator", url: "/financial/student-loan-repayment", icon: "🎓" },
+    ],
+    seoTitle: "How Long to Double Your Money at 7 Percent Interest?",
+    seoDescription:
+      "How long to double your money at 7 percent interest? Exact math vs. the Rule of 72, a $10,000 worked example, and an accuracy table for rates 2% to 15%.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
