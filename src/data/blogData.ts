@@ -2567,6 +2567,84 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "See how much extra to pay off a car loan in 3 years: on a $25,000 loan at 7% APR, adding $276.90 a month cuts 2 years off and saves $1,912 in total interest.",
   },
+  {
+    slug: "bmi-for-5-4-and-150-pounds",
+    title: "BMI for 5'4\" and 150 Pounds: What It Means",
+    excerpt:
+      "At 5'4\" and 150 pounds, BMI comes out to 25.7 — just 0.7 points into the overweight range — and the first weight at that height that actually reads \"Overweight\" is 145.4 pounds, not a round number.",
+    category: "Health & Fitness",
+    date: "2026-10-14",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "BMI for 5'4\" and 150 pounds is 25.7, using the standard formula (weight in pounds ÷ height in inches² × 703): 150 ÷ 4,096 × 703 = 25.74, rounded to 25.7. That lands 0.7 points inside the \"overweight\" category (BMI 25.0–29.9). Most BMI calculators, including this site's, round to one decimal place before assigning a category — so the first weight at 5'4\" that actually reads \"Overweight\" is 145.4 pounds, not a round number like 145 or 150; at 150 lb you're 4.6 lb past that line. This guide breaks down the full BMI chart by weight for 5'4\", the exact rounding-aware cutoffs for every category, and a realistic worked example for closing that gap.",
+    sections: [
+      {
+        heading: "How BMI for 5'4\" and 150 Pounds Is Calculated",
+        paragraphs: [
+          "The BMI formula used by the CDC, NIH, and virtually every BMI calculator is the same regardless of sex: weight in pounds divided by height in inches squared, multiplied by 703 (or, in metric, weight in kilograms divided by height in meters squared). At 5'4\", height in inches is 64, and 64² = 4,096. Plugging in 150 pounds: 150 ÷ 4,096 = 0.03662, then × 703 = 25.74, which rounds to 25.7. Running the same person through the metric version confirms it: 5'4\" is 162.56 cm (1.6256 m), 150 lb is 68.04 kg, and 68.04 ÷ 1.6256² = 68.04 ÷ 2.6426 = 25.75 — the 0.01-point gap is just rounding in the unit conversion, not a different number.",
+          "BMI only ever uses two inputs — height and weight — which is exactly why it's a screening tool and not a diagnosis. It can't tell the difference between 150 lb of mostly muscle and 150 lb of mostly fat, so a strength-trained person at 5'4\" and 150 lb can land in the same 25.7 \"overweight\" bracket as someone with a much higher body-fat percentage. The CDC and NIH still use it as the first-pass screen for population health risk because it's free, fast, and correlates reasonably well with health risk on average — but for an individual reading, it's the starting question, not the final answer. The body fat percentage calculator below is the natural next step when a BMI result sits close to a category line, like 25.7 does.",
+        ],
+      },
+      {
+        heading: "The Full BMI Chart by Weight for 5'4\"",
+        paragraphs: [
+          "The category boundaries land at specific weights, not round numbers — and because most calculators (including ours) round BMI to one decimal place before assigning a category, the practical cutoff weight is slightly different from the raw unrounded math. For someone 5'4\", 145.3 lb still reads \"Normal\" (BMI rounds to 24.9), while 145.4 lb is the first weight that reads \"Overweight\" (BMI rounds to 25.0). The same pattern holds at the other two boundaries: 107.5 lb is the first weight to read \"Normal\" instead of \"Underweight,\" and 174.6 lb is the first to read \"Obese\" instead of \"Overweight.\"",
+          "Because BMI at a fixed height moves in a straight line with weight, it's easy to lay out the whole range in one table. At 5'4\" (64 inches), here's how BMI and category shift every 10 pounds from 120 lb to 200 lb:",
+        ],
+        bullets: [
+          "120 lb → BMI 20.6 (Normal)",
+          "130 lb → BMI 22.3 (Normal)",
+          "140 lb → BMI 24.0 (Normal)",
+          "150 lb → BMI 25.7 (Overweight)",
+          "160 lb → BMI 27.5 (Overweight)",
+          "170 lb → BMI 29.2 (Overweight)",
+          "180 lb → BMI 30.9 (Obese)",
+          "190 lb → BMI 32.6 (Obese)",
+          "200 lb → BMI 34.3 (Obese)",
+        ],
+      },
+      {
+        heading: "Why 150 Pounds at 5'4\" Isn't a Crisis — and What It Does Mean",
+        paragraphs: [
+          "A BMI of 25.7 sits 0.7 points into the overweight range out of a 5-point-wide bracket (25.0 to 29.9) — closer to the normal-range boundary than to the obese-range one. The WHO and CDC classify overweight (25–29.9) and obesity (30+) as carrying progressively higher average risk for conditions like type 2 diabetes and cardiovascular disease, but that's a population-level statistical association, not an individual verdict; a 25.7 is a meaningfully different risk picture than a 29.9, even though both fall in the same labeled bracket.",
+          "What the number is genuinely useful for: a consistent, free way to track the same metric over time against the same published thresholds everyone else uses. What it can't do at the individual level: distinguish fat from muscle, account for where fat is carried on the body (abdominal fat carries more cardiovascular risk than the same amount carried elsewhere), or adjust for frame size. If 25.7 is a surprise, the next useful number isn't a stricter diet — it's a body fat percentage reading, which tells you whether that 150 lb is mostly lean mass or mostly fat.",
+        ],
+      },
+      {
+        heading: "Closing the Gap: A Worked Example",
+        paragraphs: [
+          "Take the gap literally and run the numbers. To actually read as \"Normal\" on a calculator that rounds to one decimal, a 5'4\" person at 150 lb needs to reach 145.3 lb — a 4.7 lb loss. Using the standard estimate that a pound of body weight corresponds to roughly a 3,500-calorie deficit, that's about 16,450 calories (4.7 × 3,500) removed from intake over time. At a moderate 500-calorie-a-day deficit — cutting a 20-oz soda (about 240 calories) plus one 250-calorie snack — that's about 33 days, roughly a month, to cross the line.",
+          "A single month at the boundary isn't much of a buffer, though, since normal day-to-day weight fluctuation from water and food volume alone is commonly a few pounds. A more comfortable target is 140 lb (BMI 24.0), which sits well inside the normal range with room to spare: that's a 10 lb loss, or 35,000 calories, which at the same 500-calorie-a-day deficit takes 70 days — exactly 10 weeks. Treat both timelines as minimums, not guarantees: the 3,500-calorie rule tends to overstate loss over longer stretches, since calorie needs fall as body weight drops. Either target is small enough to be realistic without crash dieting; the calorie calculator below turns this same math into a specific daily number based on your own height, weight, age, and activity level instead of the generic 500-calorie estimate used here.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is a BMI of 25.7 at 5'4\" and 150 pounds something to worry about?",
+        answer:
+          "Not urgently. A BMI of 25.7 sits only 0.7 points inside the \"overweight\" bracket (25.0–29.9), far closer to the \"normal\" boundary around 145.3–145.4 lb than to the \"obese\" boundary around 174.5–174.6 lb. The CDC and WHO treat these categories as population-level risk bands, not individual diagnoses — BMI can't distinguish 150 lb of muscle from 150 lb of fat. If the number surprises you, a body fat percentage reading is a more informative next step than reacting to the BMI label alone.",
+      },
+      {
+        question: "How many pounds would someone 5'4\" need to lose to get back to a 'normal' BMI?",
+        answer:
+          "About 4.7 lb, down to 145.3 lb. The raw, unrounded math crossover is 145.66 lb (BMI exactly 25.0, the start of overweight, not normal), but most calculators — including ours — round BMI to one decimal before labeling it, so 145.4 lb already reads \"Overweight\" and 145.3 lb is the first weight that reads \"Normal.\" Because day-to-day weight fluctuation from water and food can easily be a few pounds, a more comfortable target is 140 lb (BMI 24.0), a 10 lb loss that leaves real room inside the normal range rather than sitting right on its edge.",
+      },
+      {
+        question: "Does BMI give a different result for a man versus a woman at 5'4\" and 150 pounds?",
+        answer:
+          "No. The standard BMI formula — weight in pounds ÷ height in inches squared × 703 — uses only height and weight and does not adjust for sex, so a man and a woman of identical height and weight get an identical BMI of 25.7. Health risk at a given BMI can differ somewhat by sex because men and women carry fat differently on average, which is exactly the kind of nuance a body fat percentage reading captures and a bare BMI number doesn't.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "BMI Calculator", url: "/health/bmi-calculator", icon: "⚖️" },
+      { title: "Body Fat Percentage Calculator", url: "/health/body-fat-calculator", icon: "📊" },
+      { title: "Calorie Calculator", url: "/health/calorie-calculator", icon: "🍽️" },
+    ],
+    seoTitle: "BMI for 5'4\" and 150 Pounds: What It Means",
+    seoDescription:
+      "BMI for 5'4 and 150 pounds is 25.7 (Overweight). See the full BMI chart by weight for 5'4, the exact rounding-aware cutoffs, and a worked weight-loss example.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
