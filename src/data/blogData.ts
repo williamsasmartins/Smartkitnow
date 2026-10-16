@@ -2645,6 +2645,91 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "BMI for 5'4 and 150 pounds is 25.7 (Overweight). See the full BMI chart by weight for 5'4, the exact rounding-aware cutoffs, and a worked weight-loss example.",
   },
+  {
+    slug: "how-many-miles-until-an-electric-car-pays-for-itself",
+    title: "How Many Miles Until an Electric Car Pays for Itself?",
+    excerpt:
+      "With no discount, a $9,000 EV price premium takes about 125,600 miles to break even on fuel savings alone. A $7,500 price cut brings that down to about 20,900 miles.",
+    category: "Automotive",
+    date: "2026-10-16",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "How many miles until an electric car pays for itself? In a typical case, about 125,600 miles — roughly 10.5 years of driving — with no discount on the purchase price. Driving 12,000 miles a year, a gas car at 30 mpg burns $1,400 a year in fuel at $3.50/gallon, while a comparable EV at 0.30 kWh/mile costs $540 a year to charge at home — an $860 annual saving. Divide that into a $9,000 EV price premium and the breakeven point lands at 125,600 miles. Knock $7,500 off that premium with a state rebate or dealer discount and the same math drops to about 20,900 miles. The size of the discount moves the answer more than gas prices do, and almost always more than your electricity rate.",
+    sections: [
+      {
+        heading: "The breakeven formula, and why it's just division",
+        paragraphs: [
+          "An EV almost always costs more to buy than a similarly sized gas car — call that gap the price premium. It then almost always costs less to run, because home electricity is cheaper per mile than gasoline. The breakeven point is simply the mileage at which the running-cost savings have added up to enough money to cancel out that upfront premium: breakeven years = price premium ÷ annual savings, and breakeven miles = breakeven years × annual miles driven.",
+          "Annual savings itself is a smaller calculation: (gas cost per mile − electricity cost per mile) × miles driven per year. Gas cost per mile is price per gallon ÷ mpg; electricity cost per mile is kWh used per mile × price per kWh. Once you have those four numbers — price premium, mpg, kWh/mile, and local fuel prices — the breakeven mileage falls out in two lines of arithmetic, no spreadsheet required.",
+        ],
+      },
+      {
+        heading: "How many miles for an EV to pay for itself: a worked example",
+        paragraphs: [
+          "Take a $42,000 EV against a $33,000 gas car in the same class — a $9,000 premium. The gas car gets 30 mpg; at $3.50 a gallon, 12,000 miles a year burns $1,400 in fuel. The EV uses 0.30 kWh per mile; charged at home for $0.15 per kWh, the same 12,000 miles costs 12,000 × 0.30 × 0.15 = $540 a year. The annual saving is $1,400 − $540 = $860.",
+          "Divide the $9,000 premium by that $860 annual saving: 9,000 ÷ 860 = 10.47 years. At 12,000 miles a year, that's 10.47 × 12,000 = 125,581 miles — call it about 125,600 miles before the EV's cheaper running costs have paid back its higher sticker price. Keep the car 11 years or more and breakeven arrives; trade it in at 60,000 miles, as many owners do, and it never does.",
+        ],
+      },
+      {
+        heading: "What a $7,500 price cut does to breakeven",
+        paragraphs: [
+          "Run the identical $9,000-premium example with the premium cut by $7,500 — the size of the former federal clean-vehicle credit for new EVs (used EVs qualified for up to $4,000 under a separate credit), which ended for vehicles acquired after September 30, 2025 under the One Big Beautiful Bill Act. That exact figure can still show up today as a state rebate, a utility incentive, or a manufacturer or dealer discount, depending on where you live and what you buy.",
+          "Apply $7,500 to the premium and the net premium drops to $1,500: 1,500 ÷ 860 = 1.74 years — about 20,900 miles. Same car, same driving, same electricity rate: the breakeven mileage falls by 83%, purely because of that $7,500 reduction in the premium, whatever the source.",
+          "No single row in either table below cuts breakeven by more than about 32% (gas at $4.50/gallon) or 17% (electricity at $0.10/kWh); a $7,500 discount cuts it by 83%. Before trusting any breakeven number — yours or one you read online — confirm whether it assumes a rebate or discount and how large, because that single input can matter more than gas and electricity prices combined. Rebate and incentive rules change often and carry income, vehicle-price, and sourcing eligibility limits — check current programs at fueleconomy.gov or your state energy office before counting on one.",
+        ],
+      },
+      {
+        heading: "Breakeven mileage at different gas prices",
+        paragraphs: [
+          "Holding the $9,000 premium and 12,000 annual miles fixed, here's how breakeven mileage moves with gas price alone, electricity held at $0.15/kWh:",
+        ],
+        bullets: [
+          "Gas at $3.00/gal → $660/yr saved → breakeven ≈ 163,600 miles (13.6 years)",
+          "Gas at $3.50/gal → $860/yr saved → breakeven ≈ 125,600 miles (10.5 years)",
+          "Gas at $4.00/gal → $1,060/yr saved → breakeven ≈ 101,900 miles (8.5 years)",
+          "Gas at $4.50/gal → $1,260/yr saved → breakeven ≈ 85,700 miles (7.1 years)",
+        ],
+      },
+      {
+        heading: "Breakeven mileage at different electricity rates",
+        paragraphs: [
+          "And here's how it moves with the home electricity rate alone, gas held at $3.50/gallon. The U.S. Energy Information Administration's 2026 residential forecast puts the national average near 18 cents per kWh — closer to the $0.20 row than the $0.15 used in the baseline above — so check the row closest to your own utility rate, and note that public fast-charging commonly costs even more than any rate shown here:",
+        ],
+        bullets: [
+          "Electricity at $0.10/kWh → $1,040/yr saved → breakeven ≈ 103,800 miles (8.7 years)",
+          "Electricity at $0.15/kWh → $860/yr saved → breakeven ≈ 125,600 miles (10.5 years)",
+          "Electricity at $0.20/kWh → $680/yr saved → breakeven ≈ 158,800 miles (13.2 years)",
+          "Electricity at $0.25/kWh → $500/yr saved → breakeven ≈ 216,000 miles (18.0 years)",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What mileage does an EV need to break even with no rebate or discount?",
+        answer:
+          "In the example above — a $9,000 price premium, 12,000 miles a year, a gas car at 30 mpg against an EV at 0.30 kWh/mile — breakeven lands at roughly 125,600 miles, about 10.5 years of typical driving. A smaller premium or higher annual mileage reaches breakeven sooner; a bigger premium or low mileage may never reach it within a normal ownership period.",
+      },
+      {
+        question: "Does maintenance change the breakeven mileage?",
+        answer:
+          "It can shorten it: EVs skip oil changes, spark plugs, and exhaust repairs, and tend to wear brake pads more slowly thanks to regenerative braking. But this guide's figures isolate fuel savings only, and other real costs push the other way — EVs often carry higher insurance premiums, faster tire wear, home charger installation (commonly $1,000-$2,000), and in some states a special EV registration fee. Whether the net effect raises or lowers 125,600 miles depends on your specific vehicle and state.",
+      },
+      {
+        question: "Why does a $7,500 price cut lower breakeven mileage by 83% instead of a smaller amount?",
+        answer:
+          "Because breakeven mileage is proportional to the price premium, not to the dollar amount of the cut by itself. A $7,500 reduction against a $9,000 premium removes 83% of the premium itself (7,500 ÷ 9,000), and breakeven mileage drops by that same percentage — from about 125,600 miles to about 20,900 miles. A smaller starting premium makes any fixed-dollar rebate remove a bigger share of it, which is why the premium you start with matters as much as the discount you get.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "ICE vs EV 5-Year Ownership Cost Calculator", url: "/automotive/ice-vs-ev-ownership-cost-5y", icon: "🔌" },
+      { title: "Total Cost of Ownership Calculator", url: "/automotive/tco-total-cost-ownership", icon: "🚙" },
+      { title: "Trip Fuel Cost Calculator", url: "/automotive/trip-fuel-cost", icon: "⛽" },
+    ],
+    seoTitle: "How Many Miles Until an Electric Car Pays for Itself?",
+    seoDescription:
+      "How many miles until an electric car pays for itself? About 125,600 miles with no discount, or 20,900 miles with a $7,500 price cut. Full worked example.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
