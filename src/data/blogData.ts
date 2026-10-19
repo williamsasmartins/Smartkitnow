@@ -2730,6 +2730,85 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How many miles until an electric car pays for itself? About 125,600 miles with no discount, or 20,900 miles with a $7,500 price cut. Full worked example.",
   },
+  {
+    slug: "car-loan-payment-on-35000-for-72-months",
+    title: "Car Loan Payment on $35,000 for 72 Months",
+    excerpt:
+      "At 7% APR, the car loan payment on $35,000 for 72 months is $596.72 a month, with $7,963.50 in total interest. The same loan over 60 months costs $96.32 more a month but saves $1,380.98 in interest.",
+    category: "Personal Finance",
+    date: "2026-10-19",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "The car loan payment on $35,000 for 72 months is $596.72 a month, assuming a 7% APR — slightly above the 6.35% average new-car rate Experian reported for Q2 2026, and a realistic rate for a borrower with good (prime-tier) but not top-tier credit. Over the full 72 months, that adds up to $42,963.50 paid back on a $35,000 loan, meaning $7,963.50 goes to interest alone. Shorten the same loan to 60 months and the payment rises to $693.04 a month, but total interest drops to $6,582.52 — a savings of $1,380.98 for $96.32 more a month. The rate you qualify for moves total interest even more than the term does.",
+    sections: [
+      {
+        heading: "The car loan payment formula, and the two numbers that drive it",
+        paragraphs: [
+          "A car loan payment is calculated with the standard amortization formula: M = P × r(1+r)^n ÷ ((1+r)^n − 1), where P is the loan amount, r is the monthly interest rate (annual APR ÷ 12), and n is the number of monthly payments. Change either r or n and the payment changes with it — but they pull in opposite directions on total cost. A longer n lowers the monthly payment by spreading the same balance over more installments; it also raises total interest, because the balance sits unpaid for longer and keeps accruing interest the whole time.",
+          "That tradeoff is exactly what a 72-month term does to a $35,000 loan. It's a popular choice because new-vehicle loans have been stretching longer — Experian's 2026 state-of-the-market data put the average new-car loan term at roughly 69.5 months — but \"affordable monthly payment\" and \"cheap loan\" are not the same claim, and the gap between them is the point of this guide.",
+        ],
+      },
+      {
+        heading: "Car loan payment on $35,000 for 72 months: the full worked example",
+        paragraphs: [
+          "Start with the inputs: P = $35,000, APR = 7%, n = 72 months. The monthly rate is r = 0.07 ÷ 12 = 0.0058333. Plug those into the formula: M = 35,000 × 0.0058333 × (1.0058333)^72 ÷ ((1.0058333)^72 − 1). (1.0058333)^72 works out to about 1.52011, so the numerator is 35,000 × 0.0058333 × 1.52011 ≈ 310.35, and the denominator is 1.52011 − 1 = 0.52011. Dividing gives a monthly payment of $596.72.",
+          "Multiply that payment by 72 months: $596.72 × 72 ≈ $42,963.50 paid back in total (using the unrounded monthly payment of $596.7153 before the last-cent rounding). Subtract the original $35,000 borrowed and the total interest cost is $7,963.50 — meaning about 18.5 cents of every dollar you pay over the life of the loan is interest, not principal. Put another way, you pay almost 23% on top of the $35,000 you borrowed. That's the real price of a 72-month term at 7%, and it's the number a payment-only comparison hides.",
+        ],
+      },
+      {
+        heading: "72 months vs 60 months: what the extra year really costs",
+        paragraphs: [
+          "Holding the $35,000 principal and 7% APR fixed and changing only the term shows the tradeoff directly. A shorter term always means a higher monthly payment and lower total interest, because the balance gets paid down faster and has less time to accrue interest:",
+        ],
+        bullets: [
+          "48 months → payment $838.12/mo → total interest $5,229.69",
+          "60 months → payment $693.04/mo → total interest $6,582.52",
+          "72 months → payment $596.72/mo → total interest $7,963.50",
+          "84 months → payment $528.24/mo → total interest $9,372.48",
+        ],
+      },
+      {
+        heading: "How your APR changes the payment on a $35,000, 72-month loan",
+        paragraphs: [
+          "The term isn't the only lever — the rate you qualify for, which depends on your credit score, moves total interest on the same 72-month loan even more than switching between a 60- and 72-month term does. Here's the same $35,000 over 72 months at different APRs:",
+        ],
+        bullets: [
+          "5% APR → payment $563.67/mo → total interest $5,584.43",
+          "6% APR → payment $580.05/mo → total interest $6,763.68",
+          "7% APR → payment $596.72/mo → total interest $7,963.50",
+          "8% APR → payment $613.66/mo → total interest $9,183.77",
+          "9% APR → payment $630.89/mo → total interest $10,424.35",
+          "10% APR → payment $648.40/mo → total interest $11,685.11",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What's the car loan payment on $35,000 for 72 months at a 9% APR instead of 7%?",
+        answer:
+          "At 9% APR, the payment on the same $35,000, 72-month loan is $630.89 a month, and total interest climbs to $10,424.35 — $2,460.85 more interest than the 7% example above, even though nothing about the loan amount or term changed. A 2-point rate difference costs more here than stretching the term from 60 to 72 months.",
+      },
+      {
+        question: "Does a down payment lower the monthly payment on a $35,000, 72-month loan?",
+        answer:
+          "Yes, directly, because it shrinks the amount you're financing. Put 10% down ($3,500) and the financed balance drops to $31,500, cutting the 72-month, 7% APR payment to $537.04 a month and total interest to $7,167.15. Put 20% down ($7,000) and the financed $28,000 brings the payment to $477.37 a month with $6,370.80 in total interest — nearly $1,600 less interest than financing the full $35,000.",
+      },
+      {
+        question: "Why does a 72-month term cost more in total interest than a 60-month term at the same rate?",
+        answer:
+          "Because interest accrues monthly on whatever balance is still outstanding, and a 72-month schedule pays down that balance more slowly than a 60-month one. The extra 12 months of carrying a larger remaining balance adds $1,380.98 in interest on this $35,000, 7% APR loan ($7,963.50 vs. $6,582.52), even though the rate itself never changes.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Auto Loan Calculator", url: "/financial/auto-loan", icon: "🚗" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Total Cost of Ownership Calculator", url: "/automotive/tco-total-cost-ownership", icon: "🚙" },
+    ],
+    seoTitle: "Car Loan Payment on $35,000 for 72 Months",
+    seoDescription:
+      "The car loan payment on $35,000 for 72 months is $596.72 a month at 7% APR, with $7,963.50 in total interest. See the full breakdown and rate comparison.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
