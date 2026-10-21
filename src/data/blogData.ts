@@ -2809,6 +2809,78 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "The car loan payment on $35,000 for 72 months is $596.72 a month at 7% APR, with $7,963.50 in total interest. See the full breakdown and rate comparison.",
   },
+  {
+    slug: "when-can-i-remove-pmi-from-my-mortgage",
+    title: "When Can I Remove PMI From My Mortgage?",
+    excerpt:
+      "On a $332,500 loan with 5% down, standard payments reach the 80% loan-to-value mark in 10.6 years — an extra $150 a month gets there in 7.8 years and saves about $7,065 in PMI.",
+    category: "Personal Finance",
+    date: "2026-10-21",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "When can I remove PMI from my mortgage? You can request removal once your balance falls to 80% of your home's original value, and your lender must cancel it automatically when your original payment schedule reaches 78%, as long as you're current — no request needed. On a $350,000 home bought with 5% down — a $332,500 loan at 6.75% over 30 years — the standard payment schedule hits 80% loan-to-value in month 127 (10.6 years) and the automatic 78% cutoff in month 139 (11.6 years). Add $150 a month toward principal and the 80% mark arrives in month 93 (7.8 years), cutting roughly $7,065 off your total PMI bill.",
+    sections: [
+      {
+        heading: "When Can I Remove PMI From My Mortgage? The Two Legal Thresholds",
+        paragraphs: [
+          "The Homeowners Protection Act of 1998 (12 U.S.C. § 4901 et seq.) sets two distinct dates, and most homeowners only know about one of them. You can submit a written request for PMI cancellation once your loan balance reaches 80% of your home's original value — the lower of your purchase price or the appraised value at closing — as long as you're current on payments, with no payment 30+ days late in the past 12 months or 60+ days late in the past 24 months. Your lender doesn't have to act on a request before that point — but they're legally required to cancel PMI automatically once your balance hits 78% of that same original value on your initial amortization schedule, or at the loan's midpoint, whichever comes first, even if you never ask, as long as you're current on payments.",
+          "Run the numbers on a typical low-down-payment purchase: a $350,000 home bought with 5% down ($17,500) leaves a $332,500 loan at 6.75% for 30 years, with a monthly principal-and-interest payment of $2,156.59. Eighty percent of $350,000 is $280,000 — the amortization schedule crosses below that balance in month 127, or 10.6 years in. The automatic 78% threshold is $273,000, reached in month 139, or 11.6 years. Waiting for that automatic cutoff means paying PMI for all 139 months, about $28,886 at a representative rate — while requesting cancellation at month 127 already saves roughly $2,494 of that, and extra principal payments can move the 80% request date years earlier still.",
+        ],
+      },
+      {
+        heading: "How Extra Payments Speed Up Your Request Date",
+        paragraphs: [
+          "Every dollar of extra principal comes straight off the balance used to calculate loan-to-value, so it pulls your 80% request date forward. The automatic 78% cancellation stays tied to your original amortization schedule (month 139 here) no matter how much extra you pay — so if you're paying ahead, you have to request cancellation yourself rather than wait for it. On the same $332,500 loan, adding a fixed $150 a month to the payment moves the 80% milestone from month 127 to month 93 — 34 months, or just under 3 years, sooner. Push the extra payment to $300 a month and the milestone arrives at month 73, 6.1 years in, 54 months ahead of the minimum-payment schedule.",
+          "PMI on this loan at an illustrative 0.75% rate (real quotes commonly run 0.46% to 1.5% depending on credit score and loan-to-value) comes to about $207.81 a month. Paying it for 93 months instead of 127 months saves 34 payments, or roughly $7,065 in premiums you never pay. That's on top of the equity you'd build anyway — the extra $150 a month isn't free ($150 × 93 = $13,950 paid in), but the PMI savings alone recover about half of it.",
+        ],
+        bullets: [
+          "Minimum payment only: 80% LTV request-eligible at month 127 (10.6 yrs); PMI paid through then ≈ $26,392",
+          "+$150/month extra: 80% LTV request-eligible at month 93 (7.8 yrs); PMI paid through then ≈ $19,327 — saves ≈ $7,065",
+          "+$300/month extra: 80% LTV request-eligible at month 73 (6.1 yrs); PMI paid through then ≈ $15,170 — saves ≈ $11,222",
+        ],
+      },
+      {
+        heading: "A Bigger Down Payment Avoids PMI Entirely — But Compare the Real Trade-Off",
+        paragraphs: [
+          "Putting 20% down on the same $350,000 home means a $70,000 down payment and a $280,000 loan, with a principal-and-interest payment of $1,816.07 — no PMI, ever. Compare that to the 5%-down path, where the $2,156.59 payment plus $207.81 in PMI totals $2,364.40 a month. The 20%-down buyer pays $548.33 less every month than the 5%-down buyer carrying PMI, but they also tied up $52,500 more cash upfront to get there.",
+          "Whether that trade is worth it comes down to the effective interest rate on the extra $52,500 you'd otherwise borrow: the $332,500 loan carries $2,493.75 a year in PMI on top of its 6.75% rate — 4.75% extra, or about 11.5% effective, on that last $52,500 of borrowing. If that $52,500 would otherwise sit in a low-yield account, putting it toward the down payment to erase an 11.5% effective rate is usually the stronger move. If it would go toward an investment or debt payoff you're confident clears 11.5% a year, carrying PMI for the roughly 6 to 12 years this example takes to clear it can still come out ahead — but that's a high bar, not a given.",
+        ],
+      },
+      {
+        heading: "The Actual Steps to Get PMI Removed",
+        paragraphs: [
+          "First, check your current balance against 80% of the original value using your amortization schedule. If you believe your home has appreciated enough to get there faster, you can also ask your servicer about an appraisal-based request — but that's investor policy, not law: most conventional loans backed by Fannie Mae or Freddie Mac require your balance to fall to 75% of the new appraised value for a loan 2 to 5 years old, or 80% once the loan passes 5 years, before they'll act on it. Second, submit your cancellation request in writing once you qualify. Under the HPA, the servicer can require evidence that your home's value hasn't dropped below its original value (often a broker price opinion or appraisal) and confirmation that no subordinate lien, like a HELOC, is attached to the property.",
+          "Third, if you never request it, don't assume nothing happens — the servicer is required to cancel automatically at 78% (or the loan's midpoint, if earlier), and must send written notice within 30 days after it's cancelled along with a refund of any unearned premium within 45 days. Either way, get it in writing: ask for a cancellation confirmation once it's processed, and check your next statement to confirm the PMI line item is actually gone — servicers have been cited by the CFPB for missing automatic PMI terminations, so the one extra check is worth it.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I use a recent appraisal to remove PMI earlier than the amortization schedule predicts?",
+        answer:
+          "Sometimes — but it's a servicer policy, not a legal right. If your home has appreciated faster than your loan has amortized, you can ask about a new appraisal (usually at your own cost, often $400-$600). Most Fannie Mae and Freddie Mac-backed loans require your balance to fall to 75% of the new appraised value if the loan is 2 to 5 years old, or 80% once it's more than 5 years old, before they'll approve the request — stricter than the 80% threshold that applies to the standard, non-appraisal request.",
+      },
+      {
+        question: "What happens if I'm late on a payment right when I hit 80% loan-to-value?",
+        answer:
+          "Borrower-requested cancellation at 80% requires a clean recent payment history: no payment 30 or more days late in the preceding 12 months, and none 60 or more days late in the preceding 24 months. Automatic termination at 78% is looser: it only requires that you be current on the scheduled date. If you're behind then, PMI ends on the first day of the month after you catch up. A late payment can delay a borrower-requested cancellation until your record is clean again, so it pays to stay current in the months leading up to your projected 80% date.",
+      },
+      {
+        question: "Does this apply to FHA loans the same way?",
+        answer:
+          "No — FHA loans charge mortgage insurance premium (MIP), not conventional PMI, and it follows different rules. On FHA loans with case numbers assigned on or after June 3, 2013 and less than 10% down, MIP stays for the life of the loan, and the only way to remove it is refinancing into a conventional loan once you have enough equity. With 10% or more down, MIP cancels after 11 years. The 80%/78% PMI rules in this article apply to conventional loans only.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "House Affordability Calculator", url: "/financial/house-affordability", icon: "🏡" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+    ],
+    seoTitle: "When Can I Remove PMI From My Mortgage?",
+    seoDescription:
+      "When can I remove PMI from my mortgage? See the 80% and 78% loan-to-value milestones on a real schedule, and how extra payments move up your request date.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
