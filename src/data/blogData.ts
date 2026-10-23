@@ -2881,6 +2881,82 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "When can I remove PMI from my mortgage? See the 80% and 78% loan-to-value milestones on a real schedule, and how extra payments move up your request date.",
   },
+  {
+    slug: "0-percent-financing-vs-rebate-on-a-30000-car",
+    title: "0% Financing vs. Rebate on a $30,000 Car: Which Wins?",
+    excerpt:
+      "On a $30,000 car over 60 months, 0% financing costs $30,000 total — $1,697.16 less than taking a $3,000 rebate and financing the rest at 6.5% APR, which totals $31,697.16.",
+    category: "Personal Finance",
+    date: "2026-10-23",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "0% financing vs rebate on a $30,000 car comes down to one question: what APR would you actually pay on the rebate-reduced balance? Over a 60-month loan, 0% APR financing costs $30,000 in total with a $500/month payment. Taking a $3,000 rebate instead and financing the remaining $27,000 at a realistic 6.5% APR costs $31,697.16 in total — a $528.29 monthly payment plus $4,697.16 in interest. That makes 0% financing the cheaper choice here by $1,697.16, even though the rebate feels like \"free money\" up front. The breakeven is exactly 4.226% APR: below that rate on the rebate option, the rebate wins; above it, 0% financing wins.",
+    sections: [
+      {
+        heading: "0% financing vs rebate on a $30,000 car: the two offers, side by side",
+        paragraphs: [
+          "Dealers typically present these as a single either/or choice baked into the price, not two separate numbers you compare yourself: take the manufacturer's 0% APR promotional financing, or take a cash rebate (often $2,000–$5,000 on a $30,000 vehicle) and finance the discounted price at whatever rate your bank or the dealer's lender offers — usually a market rate, since 0% promotions are reserved for buyers who skip the rebate. Both options start from the same $30,000 sticker price and the same 60-month term, so the only variables that differ are the amount financed and the APR applied to it.",
+          "Run both through the standard loan formula M = P × r(1+r)^n ÷ ((1+r)^n − 1): Option A finances the full $30,000 at 0% APR for 60 months, which reduces to simple division — $30,000 ÷ 60 = $500.00 a month, $30,000 total, $0 interest. Option B finances $27,000 (the $30,000 price minus a $3,000 rebate) at 6.5% APR for 60 months: r = 0.065 ÷ 12 = 0.0054167, and M = 27,000 × 0.0054167 × (1.0054167)^60 ÷ ((1.0054167)^60 − 1) = $528.29 a month. Multiply by 60 months and Option B totals $31,697.16 — $4,697.16 of that is interest on the smaller, rebate-reduced balance.",
+        ],
+      },
+      {
+        heading: "At what APR does a $3,000 rebate beat 0% financing?",
+        paragraphs: [
+          "The rebate shrinks the amount financed by $3,000, but a 6.5% APR on a 5-year loan adds back $4,697.16 in interest — more than erasing that discount. The breakeven point, solved from the same formula, is 4.226% APR: below that rate on the rebate option, take the rebate; above it, take the 0% financing.",
+          "That breakeven matters because it's close to what a lot of buyers actually pay. Experian's 2026 data put the overall average new-car rate near 6.4%, and prime borrowers (good but not top-tier credit) average around 6.2%–6.5% — both comfortably above the 4.226% breakeven. Even super-prime borrowers (roughly 781+ FICO) average about 4.5%–4.9% on new-car loans, still above breakeven, so only buyers who land a below-average rate — often a credit-union promotion under 4.2% — come out ahead taking this rebate over 0% financing.",
+        ],
+      },
+      {
+        heading: "How much does the rebate option cost at each APR?",
+        paragraphs: [
+          "Two inputs decide which offer wins: the rebate amount and the APR you'd actually pay on the financed, rebate-reduced balance. Holding the $30,000 price and 60-month term fixed, here's the total cost of the rebate option at different APRs with a $3,000 rebate ($27,000 financed), compared to the $30,000 flat total for 0% financing:",
+        ],
+        bullets: [
+          "2% APR → $473.25/mo → $28,394.97 total → rebate wins by $1,605.03",
+          "3% APR → $485.15/mo → $29,109.28 total → rebate wins by $890.72",
+          "4% APR → $497.25/mo → $29,834.77 total → rebate wins by $165.23",
+          "4.226% APR → $500.00/mo → $30,000.00 total → breakeven",
+          "5% APR → $509.52/mo → $30,571.40 total → 0% financing wins by $571.40",
+          "6.5% APR → $528.29/mo → $31,697.16 total → 0% financing wins by $1,697.16",
+          "8% APR → $547.46/mo → $32,847.76 total → 0% financing wins by $2,847.76",
+          "10% APR → $573.67/mo → $34,420.21 total → 0% financing wins by $4,420.21",
+        ],
+      },
+      {
+        heading: "How big a rebate would it take to beat 0% financing at 6.5%?",
+        paragraphs: [
+          "Flip the question around: if your financed rate is fixed at 6.5% APR, how large would the rebate need to be to match or beat the $30,000 total cost of 0% financing? Solving the same formula for the rebate amount shows you'd need at least $4,445.66 off the price — not the $3,000 in the main example — before the rebate option becomes cheaper than 0% financing at 6.5% over 60 months.",
+          "Smaller rebates fall short by more than you'd expect: a $1,500 rebate at 6.5% APR totals $33,458.11 ($3,458.11 worse than 0% financing), a $2,000 rebate totals $32,871.13 ($2,871.13 worse), and a $4,000 rebate gets close but still totals $30,523.19 ($523.19 worse). Any rebate above $4,445.66 pulls ahead: a $5,000 rebate on a $25,000 financed balance totals $29,349.22, about $650.78 cheaper than 0% financing. The practical rule: at a 6.5% financed APR, a rebate under roughly $4,450 on a $30,000 car is not worth taking over 0% financing, no matter how good it looks at the dealership.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is 0% financing always better than a cash rebate?",
+        answer:
+          "No — it depends entirely on the APR you'd pay on the rebate-financed balance and the rebate size. On a $30,000 car over 60 months, the breakeven APR against a $3,000 rebate is 4.226%: below that rate, the rebate option is cheaper; above it, 0% financing is cheaper. Buyers with excellent credit who can get 3%–3.5% financing from their own bank come out clearly ahead taking the rebate; buyers quoted 6% or more almost always do better with 0% financing. It's also worth checking eligibility first: 0% offers are usually restricted to top-tier (often 720+ FICO) buyers and sometimes to shorter terms or specific trims, so you may not actually get to choose between the two.",
+      },
+      {
+        question: "Does the loan term change which offer wins?",
+        answer:
+          "Yes, enough to flip the answer. At 6.5% APR with a $3,000 rebate, a 36-month loan makes the rebate the winner: $29,790.83 total vs. $30,000 for 0% financing, a $209.17 saving. Stretch the same rebate option to 72 months and 0% financing wins instead, by $2,678.50. A shorter term gives the balance less time to accrue interest on an amortizing loan (interest is charged on the falling balance each month, not compounded), so the longer you finance, the more that interest adds up and the better 0% financing looks.",
+      },
+      {
+        question: "Can I negotiate the price down and still get 0% financing?",
+        answer:
+          "Sometimes, but manufacturers often restrict 0% APR offers to specific trims, model years, or require no other incentives be stacked on top — check the fine print before assuming you can combine a negotiated discount with promotional financing. If 0% financing is only available at full MSRP while the rebate path allows price negotiation, run the numbers on your actual negotiated price in each scenario rather than comparing the sticker price alone.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Auto Loan Calculator", url: "/financial/auto-loan", icon: "🚗" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Total Cost of Ownership Calculator", url: "/automotive/tco-total-cost-ownership", icon: "🚙" },
+    ],
+    seoTitle: "0% Financing vs Rebate on a $30,000 Car: Which Wins?",
+    seoDescription:
+      "0% financing vs rebate on a $30,000 car: 0% APR saves $1,697 over 60 months versus a $3,000 rebate at 6.5% APR. See the exact breakeven rate and cost table.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
