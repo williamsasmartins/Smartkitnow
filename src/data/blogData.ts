@@ -2957,6 +2957,85 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "0% financing vs rebate on a $30,000 car: 0% APR saves $1,697 over 60 months versus a $3,000 rebate at 6.5% APR. See the exact breakeven rate and cost table.",
   },
+  {
+    slug: "mifflin-st-jeor-vs-harris-benedict-bmr-calculator",
+    title: "Mifflin-St Jeor vs Harris-Benedict: Which BMR Wins?",
+    excerpt:
+      "For a 154 lb, 5'5\" woman, Mifflin-St Jeor gives a BMR of 1,394.4 calories; Harris-Benedict gives 1,453.5 — 59 calories higher. Here's why, with four real profiles.",
+    category: "Health & Fitness",
+    date: "2026-10-26",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "Mifflin-St Jeor vs Harris-Benedict: for a 35-year-old woman at 5'5\" and 154 lb, Mifflin-St Jeor calculates a BMR of 1,394.4 calories a day, while the revised Harris-Benedict formula gives 1,453.5 — 59.0 calories, or 4.2%, higher. For a 40-year-old man at 5'10\" and 185 lb, Harris-Benedict runs 83.4 calories (4.7%) higher than Mifflin-St Jeor. Mifflin-St Jeor is the newer, more broadly validated equation and the one Smart Kit Now's BMR calculator uses by default. Harris-Benedict dates to 1919 (revised in 1984), still shows up in some older tools, and for most adults it returns the higher number.",
+    sections: [
+      {
+        heading: "Mifflin-St Jeor vs Harris-Benedict: the two formulas, side by side",
+        paragraphs: [
+          "Both formulas estimate your basal metabolic rate (BMR) — the calories your body burns at total rest just to keep your heart, lungs, and organs running — from the same inputs: weight, height, age, and sex. Where they differ is how much each input counts.",
+          "The original Harris-Benedict equation was published in 1919 from a study of just 136 men and 103 women, almost all lean by today's standards; the version still in use is the 1984 revision by Roza and Shizgal. Mifflin-St Jeor followed in 1990 with a larger, more modern sample. A 2005 evidence review for the American Dietetic Association (now the Academy of Nutrition and Dietetics) by Frankenfield and colleagues found Mifflin-St Jeor predicted resting metabolic rate within 10% of measured values in more people than Harris-Benedict or any other equation tested, which is why most registered dietitians default to it. Here are all four equations (weight in kg, height in cm, age in years):",
+        ],
+        bullets: [
+          "Mifflin-St Jeor, men: 10 × weight + 6.25 × height − 5 × age + 5",
+          "Mifflin-St Jeor, women: 10 × weight + 6.25 × height − 5 × age − 161",
+          "Harris-Benedict (1984), men: 88.362 + 13.397 × weight + 4.799 × height − 5.677 × age",
+          "Harris-Benedict (1984), women: 447.593 + 9.247 × weight + 3.098 × height − 4.330 × age",
+        ],
+      },
+      {
+        heading: "A worked example: the same person, two different BMR numbers",
+        paragraphs: [
+          "Plug a 35-year-old woman at 5'5\" (165.1 cm) and 154 lb (69.85 kg) into both formulas. Mifflin-St Jeor: 10 × 69.85 + 6.25 × 165.1 − 5 × 35 − 161 = 1,394.4 calories a day. Harris-Benedict: 447.593 + 9.247 × 69.85 + 3.098 × 165.1 − 4.330 × 35 = 1,453.5 calories a day — a 59.0-calorie gap, with Harris-Benedict reading 4.2% higher for identical inputs.",
+          "Run the same two formulas across four real body profiles and the gap moves around more than you'd expect — it isn't a flat percentage you can just memorize:",
+        ],
+        bullets: [
+          "Woman, 35, 5'5\", 154 lb → Mifflin-St Jeor 1,394.4 cal | Harris-Benedict 1,453.5 cal → +59.0 cal (+4.2%)",
+          "Man, 40, 5'10\", 185 lb → Mifflin-St Jeor 1,755.4 cal | Harris-Benedict 1,838.7 cal → +83.4 cal (+4.7%)",
+          "Woman, 35, 5'5\", 220 lb → Mifflin-St Jeor 1,693.8 cal | Harris-Benedict 1,730.3 cal → +36.5 cal (+2.2%)",
+          "Man, 40, 5'10\", 260 lb → Mifflin-St Jeor 2,095.6 cal | Harris-Benedict 2,294.5 cal → +198.9 cal (+9.5%)",
+        ],
+      },
+      {
+        heading: "Why the formulas disagree — and it's not just about body weight",
+        paragraphs: [
+          "Height, age, and the fixed constants set where the gap starts. Weight decides which way it moves, and that comes down to one coefficient. Mifflin-St Jeor adds 10 calories per kilogram for everyone. Harris-Benedict adds 13.397 per kilogram for men but only 9.247 for women. So every extra kilogram widens a man's gap by 3.397 calories (about 1.54 per pound) and narrows a woman's gap by 0.753 calories (about 0.34 per pound).",
+          "You can see it in the list above. Going from 154 lb to 220 lb at the same height and age, the woman's gap shrinks from 59.0 calories (4.2%) to 36.5 calories (2.2%). Going from 185 lb to 260 lb, the man's gap more than doubles, from 83.4 calories (4.7%) to 198.9 calories (9.5%). The coefficients predict both shifts: 66 lb × 0.34 is about 22 calories, and 75 lb × 1.54 is about 116. If Harris-Benedict is the one overshooting, a 198.9-calorie daily gap adds up to about 1,392 calories a week, roughly 0.4 lb of fat. That's enough to stall a diet built on the wrong formula's number.",
+        ],
+      },
+      {
+        heading: "Mifflin-St Jeor or Harris-Benedict: which BMR formula should you use?",
+        paragraphs: [
+          "For most healthy adults, use Mifflin-St Jeor — it's the formula dietitians default to today, and it's what Smart Kit Now's BMR calculator computes. If you've plugged the same weight, height, age, and sex into two different calculators and gotten two different BMR numbers, the formula is almost always the reason, not a math error — check which equation each tool states before comparing results. Harris-Benedict still turns up in some legacy hospital nutrition software and older spreadsheets, which is worth knowing if a clinician's number doesn't match a calculator's.",
+          "Once you have your BMR, it's only step one. Multiply it by an activity factor on the TDEE calculator to get your total daily calorie burn, then use the calorie calculator to set a deficit for weight loss or a surplus for weight gain. Getting the BMR formula right matters most here — a calorie target built on an inflated BMR number will understate the deficit you're actually running, which is exactly the kind of quiet math error that stalls results without an obvious cause.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Which BMR formula is more accurate, Mifflin-St Jeor or Harris-Benedict?",
+        answer:
+          "Mifflin-St Jeor is generally considered the more accurate, better-validated formula for most healthy adults today — it was built in 1990 from a larger, more representative sample than the 1919 Harris-Benedict study, and a 2005 evidence review for the American Dietetic Association found it landed within 10% of measured resting metabolic rate for more people than any other common equation. For typical adults, Harris-Benedict returns a higher number than Mifflin-St Jeor for the same inputs — by 2.2% to 9.5% across the four profiles above — so if you're dieting off a BMR number, Mifflin-St Jeor is the safer default.",
+      },
+      {
+        question: "Why do two BMR calculators give me different numbers for the same height, weight, and age?",
+        answer:
+          "Almost always because they're using different formulas, not because one made an error. The two most common are Mifflin-St Jeor and Harris-Benedict, which can differ by 2% to nearly 10% for the same person depending on their weight and sex, as shown above. A third formula, Katch-McArdle, adds body-fat percentage into the calculation instead of relying only on total weight, which can produce yet another number for the same person. Check which formula a calculator states it uses before comparing results across tools.",
+      },
+      {
+        question: "Does the gap between the two formulas always get bigger the more you weigh?",
+        answer:
+          "No — it depends on sex as well as weight. In the examples above, increasing a woman's weight from 154 lb to 220 lb at the same height actually shrank the gap between the formulas, from 4.2% down to 2.2%. Increasing a man's weight from 185 lb to 260 lb more than doubled it, from 4.7% up to 9.5%. The formulas use different coefficients for men and women, so the size and even the direction of the trend isn't the same for both sexes — there's no single rule of thumb that covers everyone.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "BMR Calculator", url: "/health/bmr-calculator", icon: "🔥" },
+      { title: "TDEE Daily Energy Expenditure Calculator", url: "/health/tdee-daily-energy-expenditure", icon: "💪" },
+      { title: "Calorie Calculator", url: "/health/calorie-calculator", icon: "🍽️" },
+    ],
+    seoTitle: "Mifflin-St Jeor vs Harris-Benedict BMR: 4 Real Examples",
+    seoDescription:
+      "Mifflin-St Jeor vs Harris-Benedict: Harris-Benedict reads 2.2% to 9.5% higher across 4 real profiles. See the exact BMR gap and which formula to trust.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
