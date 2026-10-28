@@ -3036,6 +3036,101 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Mifflin-St Jeor vs Harris-Benedict: Harris-Benedict reads 2.2% to 9.5% higher across 4 real profiles. See the exact BMR gap and which formula to trust.",
   },
+  {
+    slug: "how-many-calories-does-walking-10000-steps-burn",
+    title: "How Many Calories Does Walking 10,000 Steps Burn?",
+    excerpt:
+      "Walking 10,000 steps burns about 445 calories for a 160-lb person at 3 mph, but only about 318 of those are extra. Here's the formula, a worked example, and totals by weight and pace.",
+    category: "Health & Fitness",
+    date: "2026-10-28",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "How many calories does walking 10,000 steps burn? For most adults, about 360 to 610 calories, depending mainly on body weight. A 160-pound person walking at a moderate 3 mph pace burns roughly 445 calories over the 100 minutes it takes. About 127 of those calories would have been burned anyway just by being alive, so the extra burn from the walk is closer to 318. Weight matters far more than speed: a 220-pound walker burns about 69% more than a 130-pound walker covering the same 10,000 steps. Below is the formula, a worked example, and the numbers by weight and pace.",
+    sections: [
+      {
+        heading: "How many calories does walking 10,000 steps burn?",
+        paragraphs: [
+          "Researchers measure the energy cost of walking in METs (metabolic equivalents). One MET is the energy you burn sitting quietly. The 2011 Compendium of Physical Activities (Ainsworth et al.), the reference table exercise scientists use, lists level walking at 2.8 to 3.2 mph at 3.5 METs. The standard conversion is: calories per minute = MET × 3.5 × body weight in kg ÷ 200.",
+          "To apply that to steps, convert steps to time. The common rule of thumb is about 2,000 steps per mile, based on an average stride of roughly 2.5 feet. That puts 10,000 steps at about 5 miles, which takes 100 minutes at 3 mph. That works out to 100 steps per minute, the cadence research by Tudor-Locke and colleagues links to moderate-intensity walking. Multiply 100 minutes by the per-minute formula and the result scales almost entirely with your weight.",
+          "For a 160-pound (72.6 kg) walker: 3.5 × 3.5 × 72.6 ÷ 200 = 4.45 calories per minute, × 100 minutes = about 445 calories.",
+        ],
+      },
+      {
+        heading: "Gross vs. net: the 127 calories most calculators double-count",
+        paragraphs: [
+          "The 445 figure is a gross number. It includes the roughly 1 MET your body burns just keeping you alive, which you would have spent during those 100 minutes even sitting on the couch. For a 160-pound person that resting share is 1 × 3.5 × 72.6 ÷ 200 × 100 = about 127 calories.",
+          "This matters when you add the walk to a TDEE number. Your sedentary TDEE already counts every minute of the day at resting-plus-sitting energy. Adding the full gross 445 on top counts those 127 calories twice. The honest add-on for the walk is the net burn: (3.5 − 1) METs × 1.27 calories per MET-minute × 100 minutes = about 318 calories. Most step-counter apps and generic charts report the gross figure, which is why the deficit they promise rarely shows up on the scale.",
+        ],
+      },
+      {
+        heading: "A worked example: a 160-pound walker's full day",
+        paragraphs: [
+          "Take a 35-year-old woman, 5'5\" and 160 pounds, who does no structured exercise. Her basal metabolic rate (BMR) by the Mifflin-St Jeor formula is 1,422 calories a day. At the sedentary activity multiplier of 1.2, her total daily energy expenditure (TDEE) is 1,706 calories. That is her maintenance level if nothing changes.",
+          "Now she adds a 10,000-step walk at 3 mph and changes nothing else. The walk burns about 445 calories gross, but only about 318 net. If she keeps eating 1,706 calories a day, her real deficit is about 318 calories a day, or 2,226 a week. Using the rough 3,500-calories-per-pound rule, that is about 0.64 pounds a week, or 2.7 pounds over 30 days. Using the gross figure instead would have promised 0.89 pounds a week, an overestimate of about 40%.",
+          "Her new daily burn is about 2,024 calories. Divide by her BMR and the implied activity multiplier is 1.42, just past the 1.375 \"lightly active\" multiplier. One daily 10,000-step walk is enough to move a desk worker up one TDEE tier, but not into \"moderately active\" (1.55).",
+        ],
+      },
+      {
+        heading: "Calories burned walking 10,000 steps by body weight",
+        paragraphs: [
+          "Body weight is the biggest driver, because the MET formula scales directly with the mass you move. Here is the same 10,000-step walk at 3 mph (3.5 METs, 100 minutes) for six body weights, shown as gross calories with the net (extra) burn in parentheses:",
+          "At 220 pounds the walk burns about 69% more than at 130 pounds, even though both people took the same 10,000 steps in the same time. For your own number, get your maintenance level from the TDEE calculator below, then add the net figure closest to your weight from the list above.",
+        ],
+        bullets: [
+          "130 lb → about 361 calories (258 net)",
+          "150 lb → about 417 calories (298 net)",
+          "160 lb → about 445 calories (318 net)",
+          "180 lb → about 500 calories (357 net)",
+          "200 lb → about 556 calories (397 net)",
+          "220 lb → about 611 calories (437 net)",
+        ],
+      },
+      {
+        heading: "Does walking faster burn more calories for the same 10,000 steps?",
+        paragraphs: [
+          "Yes, but only modestly, and gross charts can make it look like slow walking wins. Using 2011 Compendium values for the same 160-pound walker, a slow 2.5 mph walk (3.0 METs, 120 minutes) shows about 457 gross calories, more than the 445 at 3 mph. That is an artifact: the slow walk takes 20 minutes longer, and those extra minutes are mostly resting calories she would burn anyway.",
+          "Strip out the resting share and the net burn rises steadily with speed, as the list below shows. Going from a 3 mph stroll to a 4 mph power walk adds about 63 net calories for the same 10,000 steps and saves 25 minutes. One more caveat: stride lengthens as you speed up, so 10,000 brisk steps usually cover more than 5 miles, and 10,000 slow steps cover less. The fixed 2,000-steps-per-mile assumption slightly understates fast walking and overstates slow walking.",
+        ],
+        bullets: [
+          "2.5 mph (3.0 METs, 120 min) → 457 gross / 305 net",
+          "3.0 mph (3.5 METs, 100 min) → 445 gross / 318 net",
+          "3.5 mph (4.3 METs, 86 min) → 468 gross / 359 net",
+          "4.0 mph (5.0 METs, 75 min) → 476 gross / 381 net",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Where did the 10,000-steps-a-day goal come from?",
+        answer:
+          "It isn't based on a clinical trial. The figure traces back to a 1965 Japanese pedometer called the manpo-kei, literally \"10,000-step meter,\" marketed by the Yamasa Corporation as a round, memorable number. Later research has tested it: a 2022 meta-analysis of 15 cohorts in The Lancet Public Health (Paluch et al.) found the mortality benefit leveled off at roughly 6,000 to 8,000 steps a day for adults 60 and older and 8,000 to 10,000 for younger adults. So 10,000 is a sensible upper target, not a magic threshold.",
+      },
+      {
+        question: "Will walking 10,000 steps a day actually deliver the weight loss the math predicts?",
+        answer:
+          "Usually less than the raw math suggests, even after you use the net figure instead of the gross one. The worked example assumes nothing else changes: same food intake, same amount of sitting the rest of the day. In practice, people who add a new daily walk often eat a little more or move less elsewhere without noticing, a well-documented pattern researchers call activity compensation. Treat the calculated deficit as a ceiling, not a guarantee, and track your actual weight over a few weeks to see what you're really getting.",
+      },
+      {
+        question: "Do fitness trackers and phone apps use this same formula?",
+        answer:
+          "Most start from a similar MET-based approach, then refine it with your measured cadence, stride length (from GPS or the accelerometer), and on some devices your heart rate, instead of the flat 2,000-steps-per-mile assumption used here. Many also report gross rather than net calories. That's why two devices on the same walk can show noticeably different totals: same physiology, different inputs and conventions.",
+      },
+      {
+        question: "Does walking 10,000 steps burn more than running the same distance?",
+        answer:
+          "No. Running about 5 miles burns more, because running at 6 mph is rated around 9.8 METs in the Compendium. For a 160-pound walker that is roughly 620 gross calories in 50 minutes, versus about 445 for walking the same distance at 3 mph. Walking's advantage is that most people can do it daily without needing recovery days.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "TDEE Daily Energy Expenditure Calculator", url: "/health/tdee-daily-energy-expenditure", icon: "💪" },
+      { title: "BMR Calculator", url: "/health/bmr-calculator", icon: "🔥" },
+      { title: "Calorie Calculator", url: "/health/calorie-calculator", icon: "🍽️" },
+    ],
+    seoTitle: "How Many Calories Does Walking 10,000 Steps Burn?",
+    seoDescription:
+      "How many calories does walking 10,000 steps burn? About 360-610 for most adults. See the MET math, a worked 160-lb example, and totals by weight and pace.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
