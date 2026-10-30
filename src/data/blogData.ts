@@ -3131,6 +3131,79 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How many calories does walking 10,000 steps burn? About 360-610 for most adults. See the MET math, a worked 160-lb example, and totals by weight and pace.",
   },
+  {
+    slug: "15-year-vs-30-year-mortgage-payment-on-a-350k-loan",
+    title: "15-Year vs 30-Year Mortgage Payment on a $350K Loan",
+    excerpt:
+      "A 15-year loan at 6.00% costs $683 more a month than a 30-year loan at 6.75% on the same $350,000 balance, but saves $285,604 in total interest. Here's the exact breakdown, plus what paying extra on the 30-year loan can and can't make up.",
+    category: "Personal Finance",
+    date: "2026-10-30",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "On a $350,000 mortgage, a 30-year fixed loan at 6.75% costs $2,270.09 a month and $467,233.60 in total interest over the full term. The same loan as a 15-year fixed at 6.00% costs $2,953.50 a month, $683.41 more every month, but total interest drops to $181,629.80, a savings of $285,603.80. That is the core 15 year vs 30 year mortgage payment tradeoff: roughly $8,201 a year in extra payment buys back nearly $286,000 in interest over the life of the loan.",
+    sections: [
+      {
+        heading: "What is the 15 year vs 30 year mortgage payment on $350,000?",
+        paragraphs: [
+          "A mortgage payment comes from one formula: M = P x [r(1+r)^n] / [(1+r)^n - 1], where P is the loan amount, r is the monthly interest rate, and n is the number of monthly payments. Plug in $350,000 at 6.75% over 30 years (r = 0.005625, n = 360) and the formula returns $2,270.09 a month. Carried over 360 payments using the unrounded payment, the loan costs $817,233.60 in total, meaning $467,233.60 of it is interest on top of the $350,000 borrowed. Lender schedules may differ by a dollar or two because of rounding in the final payment.",
+          "Run the same formula on a 15-year term at 6.00% (r = 0.005, n = 180) and the payment jumps to $2,953.50 a month. Over 180 payments that totals $531,629.80, of which $181,629.80 is interest. The loan amount did not change; only the term and rate did, and together they cut the interest bill by more than 60%.",
+        ],
+      },
+      {
+        heading: "Side-by-side: payment vs. total cost",
+        paragraphs: [
+          "Lenders typically price 15-year fixed loans below 30-year fixed loans because the shorter term carries less long-run risk for the lender, so the 0.75-point spread used here, 6.75% on the 30-year and 6.00% on the 15-year, reflects a realistic gap rather than a cherry-picked one. These two rates are illustrative; Freddie Mac's weekly Primary Mortgage Market Survey (PMMS) publishes the current national average for both terms, so quote both from the same lender on the same day before comparing, since the spread moves with the broader rate environment and can run tighter or wider than 0.75 points.",
+          "Here is the full comparison on the same $350,000 loan amount:",
+        ],
+        bullets: [
+          "30-year fixed at 6.75%: $2,270.09/month, $467,233.60 total interest, $817,233.60 total cost",
+          "15-year fixed at 6.00%: $2,953.50/month, $181,629.80 total interest, $531,629.80 total cost",
+          "Monthly payment difference: $683.41 more for the 15-year loan",
+          "Lifetime interest difference: $285,603.80 less for the 15-year loan",
+        ],
+      },
+      {
+        heading: "The self-acceleration trap: why extra payments don't fully close the gap",
+        paragraphs: [
+          "A common workaround is to take the 30-year loan and voluntarily pay it like a 15-year loan by adding extra principal every month. On this $350,000 loan at the 30-year rate of 6.75%, paying it off in exactly 15 years (180 months) requires a payment of $3,097.18. That is $827.09 more than the standard 30-year payment of $2,270.09, and doing it drops total interest to $207,492.96, a savings of $259,740.64 versus never paying extra, about 91% of the full $285,603.80 savings a true 15-year loan would have delivered. Notice the monthly cost, though: $3,097.18 is $143.68 more than the true 15-year payment of $2,953.50, so self-accelerating means writing a bigger check every month and still paying $25,863.16 more in total, $557,492.96 versus $531,629.80.",
+          "The missing 9%, exactly $25,863.16 on this loan, is the cost of never getting the lower 15-year rate in the first place. Self-accelerating a 30-year loan gets you almost all the way to 15-year-loan savings using discipline alone, but it cannot erase the rate difference, since every dollar of that higher-rate loan accrues interest at 6.75% instead of 6.00% until it is paid off. If you can genuinely commit to the higher payment for the full term, a true 15-year loan is worth roughly $25,863 more than self-accelerating the 30-year version.",
+        ],
+      },
+      {
+        heading: "How to choose between the two",
+        paragraphs: [
+          "The 30-year loan is the safer default for most buyers. The lower required payment, $2,270.09 versus $2,953.50 here, leaves more monthly cushion for job loss or repairs. Nothing stops you from voluntarily prepaying toward a 15-year-equivalent payoff when cash flow allows, then dialing it back in a lean month. A 15-year loan removes that flexibility: the $2,953.50 payment is mandatory every month regardless of circumstances, so it only makes sense if that payment comfortably fits the budget with room to spare, not just on paper.",
+          "A better test than the payment gap is income. Using the common 28% guideline for housing costs as a share of gross income, the 15-year principal-and-interest payment of $2,953.50 alone requires a gross household income of at least about $126,579 a year, versus at least about $97,290 for the 30-year payment of $2,270.09, before property taxes and insurance push both thresholds higher. If your income clears the 15-year threshold with taxes and insurance included, and you hold 3-6 months of expenses in reserve, the true 15-year loan is the cheaper path by $25,863 over self-accelerating. If it does not, take the 30-year loan and prepay what you can in good months; matching a 15-year payoff would take $3,097.18 a month, so a smaller or inconsistent prepayment captures a smaller share of the savings, but every extra dollar of principal still stops interest from accruing at 6.75%.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is the $683 higher monthly payment on a 15-year loan worth it?",
+        answer:
+          "On this $350,000 example, yes in pure cost terms. The 15-year borrower pays $683.41 more a month for 180 months, $123,013.80 extra over 15 years, then makes no payments at all in years 16 through 30, while the 30-year borrower keeps paying $2,270.09 a month for another 180 months. Net of everything, total cost is $285,603.80 lower on the 15-year loan, and more of every payment goes to principal instead of interest, building equity faster rather than disappearing. The catch is liquidity, not math: that higher payment is mandatory every month for 15 straight years, so it only makes sense if the household budget can absorb it through a job change, a new baby, or a bad year without strain.",
+      },
+      {
+        question: "Can I get most of the 15-year savings without the mandatory higher payment?",
+        answer:
+          "Yes, by taking the 30-year loan and voluntarily paying an extra $827.09 a month toward principal (a $3,097.18 total payment, $143.68 more than the true 15-year loan's $2,953.50). That pays the loan off in 15 years and captures about 91% of the interest savings, $259,740.64 of the possible $285,603.80. The remaining 9%, roughly $25,863, is the cost of the higher 30-year interest rate itself, which extra payments cannot remove, but this approach keeps the option to drop back to the lower required $2,270.09 payment in a tight month.",
+      },
+      {
+        question: "Do 15-year mortgage rates always run lower than 30-year rates?",
+        answer:
+          "Almost always, typically by roughly 0.5 to 1 percentage point, because the shorter term is lower risk for the lender. Freddie Mac's weekly Primary Mortgage Market Survey (PMMS) tracks both national averages side by side, and the exact spread moves with the market, so always compare quoted rates for both terms from the same lender on the same day rather than assuming a fixed gap, then run both numbers through an amortization calculator before deciding.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "How Much House Can I Afford? Calculator", url: "/financial/house-affordability", icon: "🏡" },
+    ],
+    seoTitle: "15-Year vs 30-Year Mortgage Payment on a $350K Loan",
+    seoDescription:
+      "15 year vs 30 year mortgage payment on $350,000: $2,954 vs $2,270 a month. The 15-year costs $683 more but saves $285,604 in interest. Plus the prepay math.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
