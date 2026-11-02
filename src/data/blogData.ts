@@ -3204,6 +3204,80 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "15 year vs 30 year mortgage payment on $350,000: $2,954 vs $2,270 a month. The 15-year costs $683 more but saves $285,604 in interest. Plus the prepay math.",
   },
+  {
+    slug: "calories-burned-desk-job-vs-physical-job",
+    title: "Calories Burned: Desk Job vs. Physical Job",
+    excerpt:
+      "A hard physical job burns about 58% more calories than a desk job — for a 34-year-old, 178 cm, 82 kg man that's roughly 1,237 extra calories a day. Here's the full TDEE math behind it.",
+    category: "Health & Fitness",
+    date: "2026-11-02",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "How many more calories does a physical job burn than a desk job? The calories burned at a desk job vs a physical job come down to one ratio under the standard TDEE activity-multiplier model: a physical job (×1.9) burns about 58% more than a desk job (×1.2) — a fixed ratio that applies at any body size, though your real burn will differ from any formula estimate, since the BMR equation alone is typically within about 10% for most adults and the activity multiplier adds more uncertainty on top. For a 34-year-old, 178 cm, 82 kg man, that's about 2,121 calories a day at a desk job versus about 3,358 calories a day at a physical job, a gap of 1,237 calories. Below is the full math, a tier-by-tier breakdown, and what that gap means for your own calorie target.",
+    sections: [
+      {
+        heading: "Why desk jobs and physical jobs burn such different amounts of calories",
+        paragraphs: [
+          "Your total daily energy expenditure (TDEE) is your basal metabolic rate (BMR) — the energy you'd burn doing nothing for 24 hours — multiplied by an activity factor that accounts for how you actually move through your day. BMR is the same whether you sit at a desk or swing a hammer; the activity multiplier is where job type does all the work.",
+          "The standard scale used by most TDEE calculators, including ours, runs from 1.2 for sedentary (little or no exercise) up to 1.9 for super active (a physical job, or training twice a day). Divide 1.9 by 1.2 and you get 1.5833 — meaning the top of the scale burns 58.3% more than the bottom, for any body, at any size. The Mifflin-St Jeor formula behind the BMR half of that equation comes from Mifflin et al., American Journal of Clinical Nutrition, 1990, and a 2005 validation in the Journal of the American Dietetic Association found it predicts resting energy expenditure within about 10% for most non-obese adults — and picking the activity multiplier adds further error on top of that, so treat every figure here as a starting estimate.",
+        ],
+      },
+      {
+        heading: "Calories burned desk job vs physical job: the full breakdown",
+        paragraphs: [
+          "Take a 34-year-old man who is 178 cm tall and weighs 82 kg. Using the Mifflin-St Jeor equation — BMR = 10 × weight(kg) + 6.25 × height(cm) − 5 × age + 5 — his BMR is 10 × 82 + 6.25 × 178 − 5 × 34 + 5 = 1,767.5, or about 1,768 calories at complete rest.",
+          "Multiply that single BMR by each tier on our TDEE calculator's own activity scale, and the daily totals spread out fast — the only thing changing between rows is how physically demanding the day is:",
+        ],
+        bullets: [
+          "Sedentary — little or no exercise (×1.2): 1,767.5 × 1.2 = 2,121 calories/day",
+          "Lightly Active — exercise 1-3 days/week (×1.375): 1,767.5 × 1.375 = 2,430 calories/day",
+          "Moderately Active — exercise 3-5 days/week (×1.55): 1,767.5 × 1.55 = 2,740 calories/day",
+          "Very Active — hard exercise 6-7 days/week (×1.725): 1,767.5 × 1.725 = 3,049 calories/day",
+          "Super Active — physical job, or training twice a day (×1.9): 1,767.5 × 1.9 = 3,358 calories/day",
+        ],
+      },
+      {
+        heading: "What a 1,237-calorie gap means for your weight",
+        paragraphs: [
+          "A 1,237-calorie daily gap isn't a rounding error — compounded over a week it's 8,661 extra calories, and over a year it's about 451,600 extra calories, which at 3,500 calories per pound works out to roughly 129 lbs of body fat if nothing else about the diet changed. Nobody actually swings 129 lbs in a year: the NIH Body Weight Planner, built on research by Hall et al. in The Lancet (2011), shows the body's response isn't linear, since appetite and metabolism adjust as weight changes. Still, the math explains why someone who moves from years of physical labor into a desk job — or the reverse — so often sees dramatic, unintended weight change within a few months on the exact same eating habits.",
+          "The percentage holds across body sizes even though the raw numbers don't. A 30-year-old woman who is 165 cm tall and weighs 65 kg has a BMR of 1,370.25, giving a desk-job TDEE of about 1,644 calories and a physical-job TDEE of about 2,603 calories — a 959-calorie gap, smaller in absolute terms than the 1,237-calorie gap above, but still exactly 58.3% more, since 1.9 ÷ 1.2 is constant regardless of whose BMR it's multiplying.",
+        ],
+      },
+      {
+        heading: "Which activity multiplier actually fits your job?",
+        paragraphs: [
+          "It's easy to round to the nearest extreme and get it wrong in either direction. A desk job isn't automatically ×1.2 — a long commute on foot, a standing desk, or three gym sessions a week can realistically push a desk worker to ×1.375 or ×1.55 instead. On the other side, our own TDEE calculator labels ×1.9 as 'Super Active (Physical job or training 2x/day)' — a genuinely physical job like construction, warehouse work, or farming already qualifies on its own, without needing extra training stacked on top.",
+          "The tier that's easiest to misjudge is ×1.55 (Moderately Active): a retail or service job where you're on your feet all day but not doing sustained heavy labor fits here, not in the ×1.9 tier — a 619-calorie-a-day difference in our example, not the full 1,237. Whenever your job changes, or your weight shifts by 10-15 lbs, recalculate your BMR and TDEE rather than reusing an old number, since both move as your body and routine change.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is a desk job always exactly 1.2× my BMR?",
+        answer:
+          "No — 1.2 (sedentary) assumes almost no movement beyond daily life. A standing desk, a walking commute, or regular workouts on top of a desk job push you into the 1.375 to 1.55 range instead, which is a few hundred extra calories a day compared with true sedentary.",
+      },
+      {
+        question: "What if my job keeps me on my feet all day but isn't heavy labor?",
+        answer:
+          "Use the 1.55 Moderately Active multiplier instead of 1.9. For our 1,767.5 BMR example that's 2,740 calories a day versus 2,121 for a desk job — a 619-calorie gap (29% more), well short of the 1,237-calorie (58%) gap for a genuinely physical job like construction or warehouse work.",
+      },
+      {
+        question: "I just switched from a desk job to a physical job — do I need to eat differently?",
+        answer:
+          "Yes, right away. A swing from ×1.2 to ×1.9 adds roughly 1,237 calories a day for our 82 kg example man (959 for the 65 kg example woman), enough surplus or deficit — about 2.5 lbs a week at 3,500 calories per pound, in the first few weeks before your body adapts — to cause fast, noticeable weight change if intake doesn't move with it. Recalculate your TDEE with your new activity level and adjust your target immediately rather than waiting to see the scale move.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "TDEE Daily Energy Expenditure Calculator", url: "/health/tdee-daily-energy-expenditure", icon: "💪" },
+      { title: "BMR Calculator", url: "/health/bmr-calculator", icon: "🔥" },
+      { title: "Calorie Calculator", url: "/health/calorie-calculator", icon: "🍽️" },
+    ],
+    seoTitle: "Calories Burned: Desk Job vs. Physical Job",
+    seoDescription:
+      "Calories burned desk job vs physical job: about 2,121 vs 3,358 calories a day for an 82 kg man. A physical job burns 58% more. Full tier breakdown inside.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
