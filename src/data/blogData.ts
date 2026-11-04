@@ -3282,33 +3282,33 @@ export const blogPosts: BlogPost[] = [
     slug: "how-many-sheets-of-drywall-for-a-24x24-garage-ceiling",
     title: "How Many Sheets of Drywall for a 24x24 Garage Ceiling?",
     excerpt:
-      "A 24x24 garage ceiling needs 20 standard 4x8 sheets of drywall, or 14 of the larger 4x12 size — plus a fire-code rule that can force 5/8-inch Type X even on a one-story garage.",
+      "A 24x24 garage ceiling needs 20 standard 4x8 sheets of drywall, or 14 of the larger 4x12 size — plus the two rules (a room overhead, or 24-inch framing) that decide whether you need 5/8-inch board.",
     category: "Home & Construction",
     date: "2026-11-04",
     author: "Smart Kit Now Editorial Team",
-    readingMinutes: 8,
+    readingMinutes: 7,
     intro:
-      "How many sheets of drywall do you need for a 24x24 garage ceiling? A 24-by-24-foot garage ceiling covers 576 square feet. Run that through a standard 10% cutting-waste margin and the answer is 20 full 4x8 sheets of drywall, or 14 of the larger 4x12 sheets. The bare math without any waste allowance lands on a suspiciously clean 18.0 sheets — tempting to stop there, but that number leaves zero room for cuts, damaged boards, or an attic hatch. Whether that drywall also needs to be fire-rated 5/8-inch Type X instead of standard 1/2-inch depends on exactly one thing: what sits above the ceiling.",
+      "How many sheets of drywall do you need for a 24x24 garage ceiling? A 24-by-24-foot garage ceiling covers 576 square feet. Run that through a standard 10% cutting-waste margin and the answer is 20 full 4x8 sheets of drywall, or 14 of the larger 4x12 sheets. The bare math without any waste allowance lands on a suspiciously clean 18.0 sheets — tempting to stop there, but that number leaves zero room for cuts, damaged boards, or an attic hatch. Whether that drywall also needs to be fire-rated 5/8-inch Type X instead of standard 1/2-inch depends on two things: what sits above the ceiling, and how far apart the ceiling framing is spaced.",
     sections: [
       {
         heading: "How many sheets of drywall for a 24x24 garage ceiling? The math",
         paragraphs: [
           "Start with the ceiling area, not the walls. A 24-foot by 24-foot garage ceiling is 24 × 24 = 576 square feet — the full footprint of the garage, since a flat ceiling always matches the floor below it. A standard sheet of drywall is 4 ft × 8 ft = 32 square feet, so 576 ÷ 32 = 18.0 sheets exactly, with nothing left over.",
-          "That clean number is deceptive. Drywall crews add 10 to 15% on top of the bare area to cover cut waste, boards damaged in handling, and the fact that a 24-foot run doesn't divide evenly into 4-foot-wide sheets without offcuts at the ends. Apply a 10% margin: 576 × 1.10 = 633.6 square feet, and 633.6 ÷ 32 = 19.8 sheets, which rounds up to 20. That's the number to put on the order — not 18.",
+          "That clean number is deceptive. Drywall crews add 10 to 15% on top of the bare area to cover real job-site losses: staggering butt joints row to row so they don't line up, walls and corners that aren't perfectly square, cutouts for light fixtures or an attic hatch, and the occasional board damaged in handling. Apply a 10% margin: 576 × 1.10 = 633.6 square feet, and 633.6 ÷ 32 = 19.8 sheets, which rounds up to 20. That's the number to put on the order — not 18.",
         ],
         bullets: [
-          "20x20 garage (400 sq ft): 14 sheets",
-          "22x22 garage (484 sq ft): 17 sheets",
-          "24x24 garage (576 sq ft): 20 sheets — the size in this guide",
-          "24x26 garage (624 sq ft): 22 sheets",
-          "26x26 garage (676 sq ft): 24 sheets",
+          "20x20 garage (400 sq ft): 14 sheets of 4x8, or 10 sheets of 4x12",
+          "22x22 garage (484 sq ft): 17 sheets of 4x8, or 12 sheets of 4x12",
+          "24x24 garage (576 sq ft): 20 sheets of 4x8, or 14 sheets of 4x12 — the size in this guide",
+          "24x26 garage (624 sq ft): 22 sheets of 4x8, or 15 sheets of 4x12",
+          "26x26 garage (676 sq ft): 24 sheets of 4x8, or 16 sheets of 4x12",
         ],
       },
       {
         heading: "The 4x12 alternative, and why bigger sheets aren't always better",
         paragraphs: [
-          "Larger 4 ft × 12 ft sheets cover 48 square feet each — half again as much as a 4x8. At 576 square feet, that's 576 ÷ 48 = 12.0 sheets bare, or 633.6 ÷ 48 = 13.2 sheets with the same 10% margin, rounding up to 14. Fourteen 4x12 sheets versus twenty 4x8 sheets covers the identical 576 square feet; going from 20 sheets to 14 is a 30% drop in sheet count, which for a continuous ceiling layout translates directly into roughly 30% fewer seams to tape and mud.",
-          "Fewer seams means less tape, less mud, and fewer butt joints that show as faint lines once the ceiling is painted — a real advantage overhead, where raking light exposes every imperfection. The trade-off is weight: a 4x12 sheet is 50% larger in area than a 4x8 of the same thickness, so it's correspondingly heavier for the same material. Hanging either size solo overhead is a bad idea; budget for a rented drywall lift or a second set of hands regardless, and treat the lift as mandatory rather than optional once you move up to 4x12s.",
+          "Larger 4 ft × 12 ft sheets cover 48 square feet each — half again as much as a 4x8. At 576 square feet, that's 576 ÷ 48 = 12.0 sheets bare, or 633.6 ÷ 48 = 13.2 sheets with the same 10% margin, rounding up to 14. Fourteen 4x12 sheets versus twenty 4x8 sheets covers the identical 576 square feet, but the sheets land on the ceiling in a different grid: laying 4x8 sheets across a 24-ft run gives six rows of three sheets each, for 12 butt joints (the hardest kind to hide, since they have no tapered factory edge) plus 5 long tapered seams running the full 24 ft — 168 linear feet of joints total. Swap in 4x12 sheets and each row only needs two sheets instead of three, cutting the butt joints from 12 to 6 while the 5 long seams stay the same, for 144 linear feet total — about 14% less joint to tape and mud.",
+          "That 14% reduction is real, but it's smaller than it sounds, because the long tapered seams — the majority of the joint length either way — don't change at all between the two layouts; only the butt joints shrink. The trade-off is weight: a 4x12 sheet is 50% larger in area than a 4x8 of the same thickness, so it's correspondingly heavier for the same material. Hanging either size solo overhead is a bad idea; budget for a rented drywall lift or a second set of hands regardless, and treat the lift as mandatory rather than optional once you move up to 4x12s.",
         ],
       },
       {
@@ -3321,8 +3321,8 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Framing spacing can force 5/8-inch even without a room overhead",
         paragraphs: [
-          "Fire rating isn't the only thing that decides drywall thickness on a ceiling — framing spacing does too. Gypsum Association and ASTM C840 installation span tables, which the IRC references for drywall application, cap standard 1/2-inch gypsum board at 16 inches on-center framing for ceiling installation. Space the joists or truss bottom chords at 24 inches on-center instead — common with engineered roof trusses over a garage — and the span tables call for 5/8-inch board, because 1/2-inch board sags visibly between fasteners at that wider spacing over time.",
-          "That means you can clear the fire-code question entirely — no habitable room above, unfinished attic only — and still need 5/8-inch drywall if your garage's ceiling framing lands at 24 inches on-center rather than 16. Measure your actual joist or truss spacing before ordering material; it's a five-minute check that prevents a sagging ceiling a year or two after the drywall goes up. Run your own ceiling dimensions, sheet size, and waste margin through the calculator below rather than relying on the 24x24 example here.",
+          "Fire rating isn't the only thing that decides drywall thickness on a ceiling — framing spacing does too. The IRC's own gypsum board table (R702.3.5, drawing on ASTM C840/GA-216 installation standards) rates plain 1/2-inch regular board for ceiling framing spaced up to 16 inches on-center. Space the joists or truss bottom chords at 24 inches on-center instead — common with engineered roof trusses over a garage — and the table calls for either 5/8-inch board or a 1/2-inch sag-resistant ceiling board specifically rated for that wider spacing, because plain 1/2-inch board sags visibly between fasteners once the framing opens up that far.",
+          "That means you can clear the fire-code question entirely — no habitable room above, unfinished attic only — and still need 5/8-inch (or sag-resistant 1/2-inch) drywall if your garage's ceiling framing lands at 24 inches on-center rather than 16. Some code editions tighten that further, requiring 5/8-inch specifically once the ceiling will carry blown-in insulation or a water-based spray texture, so check the edition your local department has adopted. Measure your actual joist or truss spacing before ordering material; it's a five-minute check that prevents a sagging ceiling a year or two after the drywall goes up. Run your own ceiling dimensions, sheet size, and waste margin through the calculator below rather than relying on the 24x24 example here.",
         ],
       },
     ],
@@ -3335,12 +3335,12 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Should I use 4x8 or 4x12 drywall sheets for a 24x24 garage ceiling?",
         answer:
-          "4x8 sheets (20 sheets for this ceiling, with 10% waste) are easier for a two-person crew or a rented drywall lift to maneuver alone. 4x12 sheets (14 sheets for the same ceiling) cut the seam count by roughly 30%, meaning fewer visible joint lines once painted, but each sheet is 50% larger in area than a 4x8 of the same thickness — plan on a lift, not just an extra pair of hands.",
+          "4x8 sheets (20 sheets for this ceiling, with 10% waste) are light enough for two people to lift overhead by hand. 4x12 sheets (14 sheets for the same ceiling) halve the butt joints — the hardest kind to hide, since they have no tapered edge — from 12 to 6, cutting total joint length from about 168 to 144 linear feet, roughly 14% less to tape and mud. But each 4x12 sheet is 50% larger in area than a 4x8 of the same thickness, so plan on a drywall lift, not just an extra pair of hands.",
       },
       {
         question: "Does an attic access hatch change the sheet count?",
         answer:
-          "Yes — treat a pull-down attic ladder opening the same way you'd treat a door in a wall: subtract its rough opening (typically around 10 to 12 square feet for a standard scuttle) from the gross ceiling area before applying the waste margin, and bump the waste allowance to 15% instead of 10%. Cutting a clean rectangular hole for a hatch frame produces more unusable offcuts than a plain, uninterrupted ceiling does.",
+          "Yes — treat a pull-down attic ladder opening the same way you'd treat a door in a wall: subtract its rough opening (typically about 8 to 11 square feet, versus roughly 4.6 square feet for a simple non-ladder attic scuttle) from the gross ceiling area, and use a 15% waste margin instead of 10%, since the cutout produces more unusable offcuts than a plain, uninterrupted ceiling. For the 24x24 example, a 10-square-foot ladder opening gives (576 − 10) × 1.15 = 650.9 square feet, or 650.9 ÷ 32 = 20.3 sheets — round up to 21.",
       },
     ],
     relatedCalculators: [
