@@ -3282,13 +3282,13 @@ export const blogPosts: BlogPost[] = [
     slug: "how-many-sheets-of-drywall-for-a-24x24-garage-ceiling",
     title: "How Many Sheets of Drywall for a 24x24 Garage Ceiling?",
     excerpt:
-      "A 24x24 garage ceiling needs 20 standard 4x8 sheets of drywall, or 14 of the larger 4x12 size — plus the two rules (a room overhead, or 24-inch framing) that decide whether you need 5/8-inch board.",
+      "A 24x24 garage ceiling needs 20 standard 4x8 sheets of drywall, or 14 of the larger 4x12 size — plus the code rule that decides when you need 5/8-inch Type X, and when 24-inch trusses change the answer.",
     category: "Home & Construction",
     date: "2026-11-04",
     author: "Smart Kit Now Editorial Team",
     readingMinutes: 7,
     intro:
-      "How many sheets of drywall do you need for a 24x24 garage ceiling? A 24-by-24-foot garage ceiling covers 576 square feet. Run that through a standard 10% cutting-waste margin and the answer is 20 full 4x8 sheets of drywall, or 14 of the larger 4x12 sheets. The bare math without any waste allowance lands on a suspiciously clean 18.0 sheets — tempting to stop there, but that number leaves zero room for cuts, damaged boards, or an attic hatch. Whether that drywall also needs to be fire-rated 5/8-inch Type X instead of standard 1/2-inch depends on two things: what sits above the ceiling, and how far apart the ceiling framing is spaced.",
+      "How many sheets of drywall do you need for a 24x24 garage ceiling? A 24-by-24-foot garage ceiling covers 576 square feet. Run that through a standard 10% cutting-waste margin and the answer is 20 full 4x8 sheets of drywall, or 14 of the larger 4x12 sheets. The bare math without any waste allowance lands on a suspiciously clean 18.0 sheets — tempting to stop there, but that number leaves zero room for cuts, damaged boards, or an attic hatch. Whether that drywall must be fire-rated 5/8-inch Type X instead of standard 1/2-inch depends on what sits above the ceiling; the spacing of your ceiling framing and any planned texture can make thicker or sag-resistant board the smarter buy even when code doesn't strictly require it.",
     sections: [
       {
         heading: "How many sheets of drywall for a 24x24 garage ceiling? The math",
@@ -3314,15 +3314,15 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Does a garage ceiling need fire-rated 5/8-inch drywall?",
         paragraphs: [
-          "Under the International Residential Code's dwelling-garage separation rule (IRC Section R302.6), the required drywall thickness for a garage ceiling depends on what's directly above it. If there's a habitable room over the garage — a bonus room, bedroom, or home office — the ceiling must be covered with at least 5/8-inch Type X gypsum board, the fire-resistant kind. If the space above is unfinished attic or simple storage, not a room people live in, standard 1/2-inch gypsum board satisfies the code's fire-separation requirement for that ceiling.",
+          "For an attached garage, the International Residential Code's dwelling-garage separation rule (IRC Section R302.6) sets the required drywall thickness for the ceiling based on what's directly above it. If there's a habitable room over the garage — a bonus room, bedroom, or home office — the ceiling must be covered with at least 5/8-inch Type X gypsum board, the fire-resistant kind. If the space above is unfinished attic or simple storage, not a room people live in, standard 1/2-inch gypsum board satisfies the code's fire-separation requirement for that ceiling.",
           "That distinction changes the order for the exact same 24x24 footprint: 20 sheets of 1/2-inch board if nothing habitable sits above, or 20 sheets of 5/8-inch Type X if there is. Local jurisdictions can and do amend these minimums, and plenty of builders install 5/8-inch Type X on every garage ceiling regardless, since the fire resistance improves for a modest material-cost difference. Confirm with your local building department before you buy — this is one of the few places in a garage build where guessing wrong means tearing the ceiling back down.",
         ],
       },
       {
-        heading: "Framing spacing can force 5/8-inch even without a room overhead",
+        heading: "Do 24-inch trusses mean you need 5/8-inch drywall?",
         paragraphs: [
-          "Fire rating isn't the only thing that decides drywall thickness on a ceiling — framing spacing does too. The IRC's own gypsum board table (R702.3.5, drawing on ASTM C840/GA-216 installation standards) rates plain 1/2-inch regular board for ceiling framing spaced up to 16 inches on-center. Space the joists or truss bottom chords at 24 inches on-center instead — common with engineered roof trusses over a garage — and the table calls for either 5/8-inch board or a 1/2-inch sag-resistant ceiling board specifically rated for that wider spacing, because plain 1/2-inch board sags visibly between fasteners once the framing opens up that far.",
-          "That means you can clear the fire-code question entirely — no habitable room above, unfinished attic only — and still need 5/8-inch (or sag-resistant 1/2-inch) drywall if your garage's ceiling framing lands at 24 inches on-center rather than 16. Some code editions tighten that further, requiring 5/8-inch specifically once the ceiling will carry blown-in insulation or a water-based spray texture, so check the edition your local department has adopted. Measure your actual joist or truss spacing before ordering material; it's a five-minute check that prevents a sagging ceiling a year or two after the drywall goes up. Run your own ceiling dimensions, sheet size, and waste margin through the calculator below rather than relying on the 24x24 example here.",
+          "Not necessarily. The IRC's gypsum board table (R702.3.5, drawing on ASTM C840/GA-216 installation standards) allows plain 1/2-inch board on ceiling framing spaced up to 24 inches on-center — the common spacing for engineered roof trusses over a garage — as long as the sheets run perpendicular to the joists or truss chords, which is the normal way ceilings are hung anyway. The catch is texture: a footnote to that same table says that if the ceiling will get a water-based spray or hand-applied texture, 24-inch framing calls for 5/8-inch board or a 1/2-inch sag-resistant ceiling board instead of plain 1/2-inch.",
+          "So with no habitable room above and 24-inch trusses, plain 1/2-inch hung perpendicular is code-legal in an untextured garage — but switch to a sprayed or hand-applied texture finish and the same table now calls for 5/8-inch or sag-resistant 1/2-inch. Many drywall manufacturers also recommend 5/8-inch or sag-resistant 1/2-inch at 24-inch spacing whenever heavy blown-in insulation will sit on top, since plain 1/2-inch can sag between framing over time — that's a durability recommendation rather than a code mandate, and it costs little extra. Measure your actual joist or truss spacing and confirm your finish plan before ordering material. Run your own ceiling dimensions, sheet size, and waste margin through the calculator below rather than relying on the 24x24 example here.",
         ],
       },
     ],
@@ -3330,7 +3330,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Do you actually need to drywall a detached garage ceiling?",
         answer:
-          "Code typically doesn't require it for a detached garage with no living space attached or above — exposed rafters or no ceiling finish at all is common and compliant. For an attached garage, IRC R302.6 requires at least 1/2-inch gypsum board on the garage side of any ceiling or wall shared with the house, specifically for fire separation, so the requirement comes from proximity to living space, not from the garage ceiling in isolation.",
+          "Code typically doesn't require it for a detached garage with no living space attached or above — exposed rafters or no ceiling finish at all is common and compliant. For an attached garage, IRC R302.6 requires at least 1/2-inch gypsum board on the garage side of any ceiling or wall shared with the house or its attic above, specifically for fire separation, so the requirement comes from proximity to living space, not from the garage ceiling in isolation.",
       },
       {
         question: "Should I use 4x8 or 4x12 drywall sheets for a 24x24 garage ceiling?",
