@@ -3278,6 +3278,80 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Calories burned desk job vs physical job: about 2,121 vs 3,358 calories a day for an 82 kg man. A physical job burns 58% more. Full tier breakdown inside.",
   },
+  {
+    slug: "how-many-sheets-of-drywall-for-a-24x24-garage-ceiling",
+    title: "How Many Sheets of Drywall for a 24x24 Garage Ceiling?",
+    excerpt:
+      "A 24x24 garage ceiling needs 20 standard 4x8 sheets of drywall, or 14 of the larger 4x12 size — plus a fire-code rule that can force 5/8-inch Type X even on a one-story garage.",
+    category: "Home & Construction",
+    date: "2026-11-04",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "How many sheets of drywall do you need for a 24x24 garage ceiling? A 24-by-24-foot garage ceiling covers 576 square feet. Run that through a standard 10% cutting-waste margin and the answer is 20 full 4x8 sheets of drywall, or 14 of the larger 4x12 sheets. The bare math without any waste allowance lands on a suspiciously clean 18.0 sheets — tempting to stop there, but that number leaves zero room for cuts, damaged boards, or an attic hatch. Whether that drywall also needs to be fire-rated 5/8-inch Type X instead of standard 1/2-inch depends on exactly one thing: what sits above the ceiling.",
+    sections: [
+      {
+        heading: "How many sheets of drywall for a 24x24 garage ceiling? The math",
+        paragraphs: [
+          "Start with the ceiling area, not the walls. A 24-foot by 24-foot garage ceiling is 24 × 24 = 576 square feet — the full footprint of the garage, since a flat ceiling always matches the floor below it. A standard sheet of drywall is 4 ft × 8 ft = 32 square feet, so 576 ÷ 32 = 18.0 sheets exactly, with nothing left over.",
+          "That clean number is deceptive. Drywall crews add 10 to 15% on top of the bare area to cover cut waste, boards damaged in handling, and the fact that a 24-foot run doesn't divide evenly into 4-foot-wide sheets without offcuts at the ends. Apply a 10% margin: 576 × 1.10 = 633.6 square feet, and 633.6 ÷ 32 = 19.8 sheets, which rounds up to 20. That's the number to put on the order — not 18.",
+        ],
+        bullets: [
+          "20x20 garage (400 sq ft): 14 sheets",
+          "22x22 garage (484 sq ft): 17 sheets",
+          "24x24 garage (576 sq ft): 20 sheets — the size in this guide",
+          "24x26 garage (624 sq ft): 22 sheets",
+          "26x26 garage (676 sq ft): 24 sheets",
+        ],
+      },
+      {
+        heading: "The 4x12 alternative, and why bigger sheets aren't always better",
+        paragraphs: [
+          "Larger 4 ft × 12 ft sheets cover 48 square feet each — half again as much as a 4x8. At 576 square feet, that's 576 ÷ 48 = 12.0 sheets bare, or 633.6 ÷ 48 = 13.2 sheets with the same 10% margin, rounding up to 14. Fourteen 4x12 sheets versus twenty 4x8 sheets covers the identical 576 square feet; going from 20 sheets to 14 is a 30% drop in sheet count, which for a continuous ceiling layout translates directly into roughly 30% fewer seams to tape and mud.",
+          "Fewer seams means less tape, less mud, and fewer butt joints that show as faint lines once the ceiling is painted — a real advantage overhead, where raking light exposes every imperfection. The trade-off is weight: a 4x12 sheet is 50% larger in area than a 4x8 of the same thickness, so it's correspondingly heavier for the same material. Hanging either size solo overhead is a bad idea; budget for a rented drywall lift or a second set of hands regardless, and treat the lift as mandatory rather than optional once you move up to 4x12s.",
+        ],
+      },
+      {
+        heading: "Does a garage ceiling need fire-rated 5/8-inch drywall?",
+        paragraphs: [
+          "Under the International Residential Code's dwelling-garage separation rule (IRC Section R302.6), the required drywall thickness for a garage ceiling depends on what's directly above it. If there's a habitable room over the garage — a bonus room, bedroom, or home office — the ceiling must be covered with at least 5/8-inch Type X gypsum board, the fire-resistant kind. If the space above is unfinished attic or simple storage, not a room people live in, standard 1/2-inch gypsum board satisfies the code's fire-separation requirement for that ceiling.",
+          "That distinction changes the order for the exact same 24x24 footprint: 20 sheets of 1/2-inch board if nothing habitable sits above, or 20 sheets of 5/8-inch Type X if there is. Local jurisdictions can and do amend these minimums, and plenty of builders install 5/8-inch Type X on every garage ceiling regardless, since the fire resistance improves for a modest material-cost difference. Confirm with your local building department before you buy — this is one of the few places in a garage build where guessing wrong means tearing the ceiling back down.",
+        ],
+      },
+      {
+        heading: "Framing spacing can force 5/8-inch even without a room overhead",
+        paragraphs: [
+          "Fire rating isn't the only thing that decides drywall thickness on a ceiling — framing spacing does too. Gypsum Association and ASTM C840 installation span tables, which the IRC references for drywall application, cap standard 1/2-inch gypsum board at 16 inches on-center framing for ceiling installation. Space the joists or truss bottom chords at 24 inches on-center instead — common with engineered roof trusses over a garage — and the span tables call for 5/8-inch board, because 1/2-inch board sags visibly between fasteners at that wider spacing over time.",
+          "That means you can clear the fire-code question entirely — no habitable room above, unfinished attic only — and still need 5/8-inch drywall if your garage's ceiling framing lands at 24 inches on-center rather than 16. Measure your actual joist or truss spacing before ordering material; it's a five-minute check that prevents a sagging ceiling a year or two after the drywall goes up. Run your own ceiling dimensions, sheet size, and waste margin through the calculator below rather than relying on the 24x24 example here.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you actually need to drywall a detached garage ceiling?",
+        answer:
+          "Code typically doesn't require it for a detached garage with no living space attached or above — exposed rafters or no ceiling finish at all is common and compliant. For an attached garage, IRC R302.6 requires at least 1/2-inch gypsum board on the garage side of any ceiling or wall shared with the house, specifically for fire separation, so the requirement comes from proximity to living space, not from the garage ceiling in isolation.",
+      },
+      {
+        question: "Should I use 4x8 or 4x12 drywall sheets for a 24x24 garage ceiling?",
+        answer:
+          "4x8 sheets (20 sheets for this ceiling, with 10% waste) are easier for a two-person crew or a rented drywall lift to maneuver alone. 4x12 sheets (14 sheets for the same ceiling) cut the seam count by roughly 30%, meaning fewer visible joint lines once painted, but each sheet is 50% larger in area than a 4x8 of the same thickness — plan on a lift, not just an extra pair of hands.",
+      },
+      {
+        question: "Does an attic access hatch change the sheet count?",
+        answer:
+          "Yes — treat a pull-down attic ladder opening the same way you'd treat a door in a wall: subtract its rough opening (typically around 10 to 12 square feet for a standard scuttle) from the gross ceiling area before applying the waste margin, and bump the waste allowance to 15% instead of 10%. Cutting a clean rectangular hole for a hatch frame produces more unusable offcuts than a plain, uninterrupted ceiling does.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Drywall Area & Sheets Calculator", url: "/construction/drywall-area-sheets", icon: "🏗️" },
+      { title: "Concrete Slab Volume Calculator", url: "/construction/concrete-slab-volume", icon: "🧱" },
+      { title: "Brick Calculator", url: "/construction/brick-calculator", icon: "🧱" },
+    ],
+    seoTitle: "How Many Sheets of Drywall for a 24x24 Garage Ceiling?",
+    seoDescription:
+      "How many sheets of drywall for a 24x24 garage ceiling: 20 standard 4x8 sheets, or 14 of the larger 4x12, plus the fire-code rule and a size-by-size table.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
