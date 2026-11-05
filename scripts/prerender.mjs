@@ -84,9 +84,15 @@ const PORT = 45678
 const HOST = '127.0.0.1'
 
 // Tuning knobs (overridable via env for CI / local debugging).
-// Serverless build boxes are small (Vercel: 2 cores) and memory-constrained, so
-// default to a lower concurrency there; local dev machines can push higher.
-const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY || (IS_SERVERLESS ? 1 : 4))
+// Vercel's build box is 2 cores / 8 GB. Serial rendering (concurrency 1) left
+// both cores idle most of the time, since each route is dominated by network
+// and render waits rather than CPU: 936 routes at ~1.56s each is ~24 min of
+// prerender on top of ~3 min of build, which leaves no headroom under Vercel's
+// 45-minute ceiling and made every deploy painfully slow. One worker per core
+// roughly halves wall-clock time while staying well inside the memory budget
+// (each Chromium page is tens of MB against 8 GB, and the browser is still
+// recycled every RECYCLE_EVERY routes to keep RSS flat).
+const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY || (IS_SERVERLESS ? 2 : 4))
 const NAV_TIMEOUT = Number(process.env.PRERENDER_NAV_TIMEOUT || 30000)
 const RENDER_TIMEOUT = Number(process.env.PRERENDER_RENDER_TIMEOUT || 15000)
 // Hard wall-clock ceiling for a single render attempt, enforced OUTSIDE
