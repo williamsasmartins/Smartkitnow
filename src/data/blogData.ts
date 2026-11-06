@@ -3352,6 +3352,84 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How many sheets of drywall for a 24x24 garage ceiling: 20 standard 4x8 sheets, or 14 of the larger 4x12, plus the fire-code rule and a size-by-size table.",
   },
+  {
+    slug: "is-refinancing-a-60000-student-loan-from-7-to-5-worth-it",
+    title: "Is Refinancing a $60,000 Student Loan 7% to 5% Worth It?",
+    excerpt:
+      "The full math on refinancing a $60,000 student loan from 7% to 5%: the day-one savings, what changes if you refinance years in, and the federal protections you'd give up.",
+    category: "Personal Finance",
+    date: "2026-11-06",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "Is refinancing a $60,000 student loan from 7% to 5% worth it? In almost every case, yes: on a 10-year term, the rate drop alone cuts total interest from $23,598.11 to $16,367.17 — a savings of $7,230.94 — and lowers the monthly payment by $60.26, from $696.65 to $636.39. Most refinance lenders charge no origination fee, so that full $7,230.94 is usually yours; even in a worst case where a lender charged a 2% fee ($1,200), you'd still keep $6,030.94 and recover the fee in about 20 months. The real question isn't the math; it's whether the loan is federal and whether you'd be giving up protections worth more than the savings.",
+    sections: [
+      {
+        heading: "Is Refinancing a $60,000 Student Loan From 7% to 5% Worth It? The Math",
+        paragraphs: [
+          "Run $60,000 through the standard loan-payment formula at 7% APR over a 10-year (120-month) term and the payment comes out to $696.65. Over the full term you pay $83,598.11 in total, of which $23,598.11 is interest — nearly 40% of the loan amount on top of what you borrowed. Drop the rate to 5% on the same $60,000 balance and the same 120-month term, and the payment falls to $636.39, with total interest of $16,367.17.",
+          "That's a swing of $7,230.94 in interest for a 2-point rate cut, with no change to the loan amount or the term — just a cheaper price on the money.",
+        ],
+        bullets: [
+          "7% APR, 120 months: $696.65/mo · $83,598.11 total paid · $23,598.11 interest",
+          "5% APR, 120 months: $636.39/mo · $76,367.17 total paid · $16,367.17 interest",
+          "Difference: $60.26 lower monthly payment · $7,230.94 less interest over the life of the loan",
+        ],
+      },
+      {
+        heading: "What Changes If You Refinance Three Years In",
+        paragraphs: [
+          "Most borrowers don't refinance on day one — they refinance after making payments for a while. After 36 monthly payments on the 7% loan above, the balance is down to $46,158.20. Stick with the original 7% loan for the remaining 84 months and you'd keep paying $696.65/mo, for a remaining total of $58,518.67 — $12,360.48 of which is still interest.",
+          "Refinance that same $46,158.20 balance to 5% for the remaining 84 months instead, and the payment drops to $652.40 — a smaller monthly drop than the day-one scenario, because less balance is left to save interest on. Remaining interest falls to $8,643.05, which is $3,717.43 less than staying put. If a lender charged a 2% fee on the new balance ($923.16) — most charge none — the net savings would still be $2,794.27. Refinancing still wins years into the loan — it just wins by less, because less interest is left to cut.",
+        ],
+        bullets: [
+          "Balance after 36 payments at 7%: $46,158.20",
+          "Stay at 7% for remaining 84 months: $696.65/mo · $58,518.67 total · $12,360.48 interest left",
+          "Refinance to 5% for remaining 84 months: $652.40/mo · $54,801.24 total · $8,643.05 interest left",
+          "Net savings even with a worst-case 2% ($923.16) fee: $2,794.27 — most lenders charge no fee at all",
+        ],
+      },
+      {
+        heading: "The Break-Even Rule: How Fast the Fee Pays for Itself",
+        paragraphs: [
+          "Most student loan refinance lenders charge no origination fee, so most of the time there's nothing to break even on — the savings start with your very first payment. But the fee math is worth knowing as a worst case: months to break even = origination fee ÷ monthly payment reduction. For the day-one refinance, that's $1,200 ÷ $60.26 ≈ 19.9 months. For the three-years-in refinance, it's $923.16 ÷ $44.25 ≈ 20.9 months. Both land around 20 months — if you plan to keep the loan at least that long, even a worst-case fee is a rounding error against the years of lower payments that follow. (The same break-even logic applies to mortgage refinancing — see our guide on refinancing for a 1% lower rate.)",
+          "The same formula flags a bad deal just as fast. If a lender charges a $1,500 fee for a rate cut that only lowers your payment by $30 a month, that's $1,500 ÷ $30 = 50 months — over four years — before the fee is recovered, even though the rate technically dropped. Run this one division before signing anything; it's the single number that separates a genuine refinance win from a weak one.",
+        ],
+      },
+      {
+        heading: "The Catch: What You Give Up When You Refinance a Federal Loan",
+        paragraphs: [
+          "If the $60,000 is a federal loan (Direct or Stafford) and you refinance it through a private lender to get 5%, the loan becomes private — permanently. Per the Department of Education's studentaid.gov, you lose access to federal income-driven repayment plans, Public Service Loan Forgiveness, federal deferment and forbearance, and any future federal relief programs tied to that loan. None of that shows up in the interest-savings math above, but it's real value for anyone whose income could drop. There's a middle path worth knowing, too: federal loans carry no prepayment penalty, so you can capture part of the savings by simply paying extra on the 7% loan each month while keeping every federal protection intact — slower than refinancing, but reversible if your income dips.",
+          "The decision splits cleanly. If the loan is already private, or your income and job are stable and you're not pursuing forgiveness, refinancing from 7% to 5% is close to a free $7,230.94 over a $60,000, 10-year loan (or $6,030.94 even in the worst case where a lender charges a 2% fee), with that fee covered in under two years. If the loan is federal and you might ever need income-driven repayment, forbearance, or forgiveness, keep it federal — a 2-point rate cut isn't worth forfeiting a safety net that could end up worth far more than $7,230.94.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does refinancing a student loan always save money?",
+        answer:
+          "No — only when the new rate is genuinely lower than your current one and, if the lender charges an origination fee, that fee breaks even before you'd pay off the loan. Most refinance lenders charge no fee, so on a $60,000 balance dropping from 7% to 5% the savings start immediately; even a worst-case 2% fee breaks even in about 20 months. The bigger risk is refinancing a federal loan and later needing income-driven repayment, forbearance, or forgiveness.",
+      },
+      {
+        question: "What credit score do I need to refinance a student loan near 5%?",
+        answer:
+          "A rate near 5% sits close to the lowest advertised fixed rates on the market, which usually go to borrowers with excellent credit (typically mid-700s or higher), strong income, and a low debt-to-income ratio — lenders price almost entirely on those factors rather than the type of degree. Most lenders let you prequalify with a soft credit check to see your actual rate before applying, and adding a cosigner with strong credit can push the rate lower on the same loan amount.",
+      },
+      {
+        question: "Can I refinance only part of a student loan balance?",
+        answer:
+          "Most lenders refinance the entire balance of each loan you select, not a partial amount — but if you hold several separate federal loans, you can choose to refinance some (for example, a high-rate PLUS loan) while leaving others, like one you're counting toward Public Service Loan Forgiveness, untouched on the federal side.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Student Loan Repayment Calculator", url: "/financial/student-loan-repayment", icon: "🎓" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+    ],
+    seoTitle: "Is Refinancing a $60,000 Student Loan 7% to 5% Worth It?",
+    seoDescription:
+      "Is refinancing a $60,000 student loan from 7% to 5% worth it? See the exact monthly payment, total interest, and savings after fees in a full worked example.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
