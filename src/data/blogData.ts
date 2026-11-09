@@ -3430,6 +3430,83 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Is refinancing a $60,000 student loan from 7% to 5% worth it? See the exact monthly payment, total interest, and savings after fees in a full worked example.",
   },
+  {
+    slug: "pay-off-car-loan-early-or-invest-the-extra-money",
+    title: "Pay Off Car Loan Early or Invest the Extra Money?",
+    excerpt:
+      "A $25,000, 6% car loan with $150 extra a month, run both ways: paid off early versus invested at 7%. The winner flips once the loan's rate crosses the return you expect from investing.",
+    category: "Personal Finance",
+    date: "2026-11-09",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "Pay off a car loan early if its rate is higher than the return you realistically expect from investing; invest the extra money instead if the rate is lower. On a $25,000, 6% APR, 60-month car loan with $150 extra a month, investing that money at a 7% average return beats paying the loan off early — but only by $207.52 over five years before taxes, and by roughly $14 after capital-gains tax (assuming a 15% long-term rate) in an ordinary brokerage account. Raise the loan's rate to 10% and paying it off early wins instead, by $657.95. Raise it to 20%, common on subprime or buy-here-pay-here loans, and paying it off early wins by $3,271.01. The loan's rate versus your real, after-tax investment return decides which path wins.",
+    sections: [
+      {
+        heading: "The Baseline: A $25,000 Car Loan at 6% With an Extra $150 a Month",
+        paragraphs: [
+          "A $25,000 balance at 6% APR amortized over 60 months, run through the standard loan-payment formula, comes out to a $483.32 payment. Pay only that minimum for the full term and you'll hand over $3,999.20 in interest by the time the loan is paid off in month 60.",
+          "Add $150 extra every month and apply all of it to principal, and the loan is gone by month 45 — 15 months early — with total interest cut to $2,918.62. That's a guaranteed $1,080.58 saved, which is really just the loan's own 6% rate paid back to you in the form of interest you never owed.",
+        ],
+        bullets: [
+          "6% APR, 60 months, minimum payment only: $483.32/mo · $3,999.20 total interest",
+          "Add $150/mo toward principal: loan paid off in month 45, 15 months early",
+          "Interest paid with the extra payment: $2,918.62 — a guaranteed $1,080.58 saved",
+        ],
+      },
+      {
+        heading: "Pay Off the Car Loan Early or Invest the Extra Money? The Side-by-Side Numbers",
+        paragraphs: [
+          "To compare fairly, both paths must commit the same total cash each month — the loan's minimum payment plus the $150 extra. At 6%, that's $633.32 a month: Path A puts all of it toward the loan until it's gone in month 45, then invests the freed-up $633.32 a month for the remaining 15 months at a 7% average annual return. Path B pays only the $483.32 minimum for the full 60 months and invests the $150 extra every month at 7% starting in month 1.",
+          "Path B's ending balance never changes with the loan's rate, since it always invests exactly $150 a month at 7% regardless of what the loan costs. Path A's balance rises every time the loan's rate goes up, because paying extra toward a pricier loan saves more interest. At 6% that makes Path B the winner; at 10% and 20% it flips to Path A, as the full breakdown below shows.",
+        ],
+        bullets: [
+          "6% APR: $483.32/mo minimum, $633.32/mo total committed, payoff in month 45 — invest-from-day-one ends at $10,738.94 vs. $10,531.42 payoff-first (+$207.52 before tax, roughly +$14 after capital-gains tax)",
+          "10% APR: $531.18/mo minimum, $681.18/mo total committed, payoff in month 44 — payoff-first ends at $11,396.89 vs. $10,738.94 invest-from-day-one (+$657.95)",
+          "20% APR: $662.35/mo minimum, $812.35/mo total committed, payoff in month 44 — payoff-first ends at $14,009.95 vs. $10,738.94 invest-from-day-one (+$3,271.01)",
+        ],
+      },
+      {
+        heading: "The Rule: Compare Your Loan Rate to Your Realistic Investment Return",
+        paragraphs: [
+          "Paying extra toward a loan earns a guaranteed return exactly equal to that loan's rate — but only on a standard simple-interest loan, where extra payments go straight to principal. Investing instead earns whatever the market actually delivers. The S&P 500 has averaged roughly 10% a year since 1928 before inflation (about 7% after), so this example uses 7% as a deliberately conservative planning assumption rather than the historical best case. Whichever is bigger after tax, the loan's rate or your expected return, wins, and the crossover sits close to that 7% benchmark.",
+          "That's why the 6% loan barely favors investing, and only before tax — in a taxable brokerage account, roughly $14 of the $207.52 edge survives capital-gains tax, and at an ordinary-income rate on short-term gains the edge can flip to payoff instead. The 10% loan already clears a 7% return outright, so payoff wins by $657.95. The 20% loan, in the range of subprime and buy-here-pay-here financing, isn't close — payoff wins by $3,271.01. Those loans are also where precomputed interest and prepayment penalties are most common, so before sending extra money to any high-rate loan, confirm in writing that extra payments apply to principal and check the contract for a prepayment penalty; our guide on paying off a car loan in three years walks through exactly that check.",
+        ],
+      },
+      {
+        heading: "What the Spreadsheet Leaves Out: Risk, Credit, and Peace of Mind",
+        paragraphs: [
+          "A 7% return is a long-run average, not a promise — any single five-year stretch can land well above or below it, including negative. The loan's guaranteed return never moves, which is why the thin 6% edge is the one most worth questioning: a saver uncomfortable with market risk for roughly $14 after tax loses almost nothing by paying the loan off early instead. Before weighing this decision at all, grab any employer 401(k) match first — it's an instant 50-100% return no loan rate beats — and keep an emergency fund intact, since money paid into a car loan isn't easy to pull back out.",
+          "Paying off an auto loan early can dip a credit score by a few points for a short time, because it removes an active installment account from your file. The account stays on your report in good standing, though, and the effect is smaller and shorter-lived than the utilization hit from closing a credit card. Clearing the payment also lowers your debt-to-income ratio, which lenders weigh heavily on a future mortgage application. The practical rule: within a couple of points of your expected after-tax return, either path is close enough that comfort with risk should decide; once the rate is clearly higher, as in the 10% and 20% examples, pay it off first.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does paying off a car loan early hurt your credit score?",
+        answer:
+          "Usually only slightly and briefly. Closing an installment loan like a car loan can nudge a credit score down a few points short-term by removing an active account from your file, but the account stays on your report in good standing, and clearing the debt also lowers your debt-to-income ratio, which matters more for a future mortgage or loan approval. The effect is far smaller and shorter-lived than closing a credit card.",
+      },
+      {
+        question: "What interest rate is the cutoff for paying off a car loan vs. investing?",
+        answer:
+          "There's no universal number, but a practical cutoff is your realistic long-term investment return after tax — commonly estimated around 7% pre-tax for a diversified stock portfolio held long enough to qualify for capital-gains rates. Below that rate, investing can out-earn payoff, though the edge shrinks fast once taxed: the 6% example above is $207.52 ahead before tax but only about $14 ahead in a taxable brokerage account. Above that rate, paying off the loan guarantees a better return than investing can reliably promise, as in the 10% and 20% examples ($657.95 and $3,271.01 ahead). One more factor can shift the cutoff: if your loan financed a new, U.S.-assembled vehicle and was taken out after 2024, the federal car-loan interest deduction for tax years 2025-2028 (up to $10,000 a year, phasing out above $100,000 of income for single filers or $200,000 for joint filers) lowers your effective rate and tilts the math further toward investing.",
+      },
+      {
+        question: "Is it smart to invest extra money while still carrying car loan debt?",
+        answer:
+          "Yes, as long as the loan's rate is reasonably low — roughly at or below your expected after-tax investment return — and you're not missing payments or skipping an emergency fund to do it. If the loan carries a high rate, such as the double-digit rates common on subprime or buy-here-pay-here loans, paying it down first is close to risk-free money — just confirm the loan has no prepayment penalty or precomputed interest first, since either can shrink the savings.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Auto Loan Calculator", url: "/financial/auto-loan", icon: "🚗" },
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+    ],
+    seoTitle: "Pay Off Car Loan Early or Invest the Extra Money?",
+    seoDescription:
+      "Should you pay off a car loan early or invest the extra money? See a worked $25,000 example at 6%, 10%, and 20% APR with the exact dollar winner for each rate.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
