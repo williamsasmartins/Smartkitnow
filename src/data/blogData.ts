@@ -3507,6 +3507,88 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Should you pay off a car loan early or invest the extra money? See a worked $25,000 example at 6%, 10%, and 20% APR with the exact dollar winner for each rate.",
   },
+  {
+    slug: "daily-calories-to-lose-1-pound-a-week",
+    title: "How Many Daily Calories to Lose 1 Pound a Week",
+    excerpt:
+      "A 500-calorie daily deficit is the standard target to lose 1 pound a week — but the actual number of calories you eat depends on your TDEE. Two full worked examples, by activity level.",
+    category: "Health & Fitness",
+    date: "2026-11-11",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "To lose 1 pound a week, eat about 500 fewer calories a day than your body burns — a 3,500-calorie weekly deficit, since one pound of body fat stores roughly 3,500 calories. The actual number of calories that works out to is personal: for a moderately active 35-year-old woman (5'6\", 160 lb) it's about 1,728 calories a day; for a moderately active 40-year-old man (5'10\", 200 lb) it's about 2,326 calories a day. The difference comes entirely from TDEE — total daily energy expenditure — which depends on your weight, height, age, sex, and activity level, not a flat number that applies to everyone.",
+    sections: [
+      {
+        heading: "The 500-Calorie Rule: Where '1 Pound a Week' Comes From",
+        paragraphs: [
+          "A pound of human body fat stores approximately 3,500 calories. Divide that across 7 days and you get 500 calories a day — eat or burn that much less than your body uses, and in theory you lose about a pound of fat a week. This is why the standard advice for a 1-pound-a-week pace is a 500-calorie daily deficit, and for a 2-pound-a-week pace (the upper end most health agencies consider safe) it's a 1,000-calorie daily deficit.",
+          "The 3,500-calorie figure is a convention, not a law of biology — it comes from the energy density of fat tissue and assumes the deficit is sustained steadily with no other changes. In practice, as you lose weight your TDEE drops too, because a smaller body burns less at rest and at the same activity level. That's a real effect, not a reason to abandon the math — it just means your target calories need to be recalculated every 10-15 pounds, which the last section below shows with real numbers.",
+        ],
+      },
+      {
+        heading: "How Many Daily Calories to Lose 1 Pound a Week? Find Your TDEE First",
+        paragraphs: [
+          "The 500-calorie deficit is only useful once you know the number you're subtracting it from: your TDEE, the total calories your body burns in a day including activity. TDEE starts with your BMR (basal metabolic rate — calories burned at complete rest) calculated from the Mifflin-St Jeor equation, then multiplies that by an activity factor. For women: BMR = 10 × weight(kg) + 6.25 × height(cm) − 5 × age − 161. For men: BMR = 10 × weight(kg) + 6.25 × height(cm) − 5 × age + 5.",
+          "The activity multiplier matters as much as the BMR itself, because across the full range it can shift the final number by over 1,000 calories. Sedentary uses ×1.2, lightly active (exercise 1-3 days/week) uses ×1.375, moderately active (3-5 days/week) uses ×1.55, very active (hard exercise 6-7 days/week) uses ×1.725, and super active (a physical job or training twice a day) uses ×1.9 — these are the same five tiers and labels used in the site's TDEE calculator, so pick the one that matches what you actually selected there.",
+          "Overestimating activity by a single tier is a common reason a calorie target doesn't match real-world results. In the examples below, moving up just one tier is worth 250-320 calories a day — enough to erase more than half of a 500-calorie deficit without you noticing.",
+        ],
+      },
+      {
+        heading: "Two Full Examples: A 160-lb Woman and a 200-lb Man, Every Activity Level",
+        paragraphs: [
+          "Example 1: a 35-year-old woman, 5'6\" (167.6 cm), 160 lb (72.6 kg). Her BMR works out to 1,438 calories/day. Multiplying by each activity factor gives her TDEE, and subtracting 500 gives her daily calorie target to lose 1 pound a week at that activity level.",
+          "Example 2: a 40-year-old man, 5'10\" (177.8 cm), 200 lb (90.7 kg). His BMR works out to 1,823 calories/day. The same activity multipliers and 500-calorie subtraction apply.",
+        ],
+        bullets: [
+          "Woman, sedentary: TDEE 1,725 → eat 1,225 cal/day to lose 1 lb/week",
+          "Woman, lightly active: TDEE 1,977 → eat 1,477 cal/day",
+          "Woman, moderately active: TDEE 2,228 → eat 1,728 cal/day",
+          "Woman, very active: TDEE 2,480 → eat 1,980 cal/day",
+          "Woman, super active: TDEE 2,731 → eat 2,231 cal/day",
+          "Man, sedentary: TDEE 2,188 → eat 1,688 cal/day",
+          "Man, lightly active: TDEE 2,507 → eat 2,007 cal/day",
+          "Man, moderately active: TDEE 2,826 → eat 2,326 cal/day",
+          "Man, very active: TDEE 3,145 → eat 2,645 cal/day",
+          "Man, super active: TDEE 3,465 → eat 2,965 cal/day (all targets = TDEE − 500)",
+        ],
+      },
+      {
+        heading: "How Fast Is Too Fast, and When to Adjust Your Target",
+        paragraphs: [
+          "A 500-calorie deficit for 1 pound a week sits in the range most health agencies call sustainable; doubling it to 1,000 calories a day pushes to roughly 2 pounds a week, generally treated as the upper safe limit for most adults without medical supervision. Beyond that, deficits larger than 1,000 calories a day accelerate muscle loss along with fat loss and are harder to sustain, which is why crash diets tend to rebound.",
+          "There's also a floor: commonly cited minimums are around 1,200 calories/day for women and 1,500 calories/day for men, below which it gets difficult to meet basic nutrient needs without supervision. Notice that the sedentary woman's target above (1,225 cal/day) sits right at that floor. For her, a 500-calorie deficit is already close to the limit, and a smaller deficit of 300-400 calories, for a slower but more sustainable pace, is the more realistic choice.",
+          "Recalculate your TDEE every 10-15 pounds lost, since a lighter body needs fewer calories to maintain the same deficit pace. For example, after the moderately active woman above loses 10 pounds (160 lb → 150 lb), her TDEE falls from 2,228 to about 2,158, so her target to keep losing 1 lb/week drops from 1,728 to about 1,658. The moderately active man, after losing 10 pounds (200 lb → 190 lb), sees his TDEE fall from 2,826 to about 2,756, a new target of about 2,256. Both lose roughly 70 calories of daily burn per 10 pounds — small on its own, but it adds up over a 30-40 pound goal.",
+          "Sources: the BMR equation is from Mifflin MD, St Jeor ST, et al., American Journal of Clinical Nutrition (1990). The 1-2 pounds per week pace follows CDC weight-loss guidance. Research behind the NIH Body Weight Planner (Hall KD, et al., The Lancet, 2011) shows the 3,500-calorie rule overstates long-term loss as TDEE falls, which is exactly why the targets above should be recalculated as you lose weight.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does a 500-calorie deficit always equal exactly 1 pound a week?",
+        answer:
+          "Only approximately. The 3,500-calories-per-pound figure is a useful planning convention, not an exact biological constant — it assumes a steady deficit with no change in TDEE. In reality, TDEE drops slightly as you lose weight (a lighter body burns less), so a fixed 500-calorie deficit tends to produce slightly less than a pound a week after the first few weeks. Recalculating your TDEE every 10-15 pounds keeps the target accurate.",
+      },
+      {
+        question: "What's the lowest safe calorie intake to lose weight?",
+        answer:
+          "Commonly cited minimums are about 1,200 calories/day for women and 1,500 calories/day for men, below which it's hard to get adequate nutrition without medical supervision. If your calculated 500-calorie-deficit target lands below that floor — which happens for smaller or less active people — reduce the deficit to 300-400 calories a day instead of eating below the floor; you'll lose slightly slower but sustainably.",
+      },
+      {
+        question: "Why am I not losing 1 pound a week on a 500-calorie deficit?",
+        answer:
+          "The two most common reasons are an overestimated activity multiplier (being one tier less active than you think overstates TDEE by about 250 calories for the 160-lb woman above and about 320 for the 200-lb man — most of a 500-calorie deficit) and not re-weighing/re-measuring portions accurately, which quietly shrinks the real deficit. A third factor is water-weight fluctuation masking fat loss week to week — judge progress over a 3-4 week average, not single weigh-ins.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "TDEE (Daily Energy Expenditure) Calculator", url: "/health/tdee-daily-energy-expenditure", icon: "💪" },
+      { title: "Calorie Calculator", url: "/health/calorie-calculator", icon: "🍽️" },
+      { title: "BMR Calculator", url: "/health/bmr-calculator", icon: "🔥" },
+    ],
+    seoTitle: "Daily Calories to Lose 1 Pound a Week (By TDEE)",
+    seoDescription:
+      "Find the exact daily calories to lose 1 pound a week based on your TDEE, with worked examples for a 160-lb woman and a 200-lb man at every activity level.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
