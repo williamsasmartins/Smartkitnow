@@ -3589,6 +3589,81 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Find the exact daily calories to lose 1 pound a week based on your TDEE, with worked examples for a 160-lb woman and a 200-lb man at every activity level.",
   },
+  {
+    slug: "is-it-worth-refinancing-a-car-loan-to-a-lower-rate",
+    title: "Is It Worth Refinancing a Car Loan to a Lower Rate?",
+    excerpt:
+      "Refinancing a $20,000 car loan from 9.5% to 6.5% cuts the payment by $28.16 a month and saves $1,351.86 in interest ($1,051.86 net of a $300 fee), paid back in about 11 months.",
+    category: "Personal Finance",
+    date: "2026-11-13",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "Is it worth refinancing a car loan to a lower rate? Usually yes, if you can cut the rate by at least 1.5 percentage points and keep your current remaining term. Car loan refinancing fees are small (often $0-$300), so the break-even point typically comes in under two years, and under one year for a 3-point drop. On a $20,000 balance with 48 months left, dropping from 9.5% to 6.5% cuts the payment from $502.46 to $474.30 a month, saving $1,351.86 in interest over the remaining term — $1,051.86 net of a $300 fee — and paying that fee back in about 11 months. The one way to give back a chunk of that gain: stretching the term back out, which hands back more than half the savings.",
+    sections: [
+      {
+        heading: "Is It Worth Refinancing a Car Loan to a Lower Rate? The Break-Even Test",
+        paragraphs: [
+          "Refinancing a car loan means replacing your current loan with a new one on the same remaining balance, ideally at a lower interest rate. The math is a straight swap: calculate your current monthly payment on the remaining balance and term, calculate what the payment would be on that same balance and term at the new rate, and the difference is your monthly savings. Multiply that by the number of months left and you get the total interest saved — assuming you keep the same term, which matters more than it sounds (more on that below).",
+          "Auto refinancing is far cheaper to set up than a mortgage refinance because there's no appraisal, title insurance, or recording stack involved — you typically pay only a state title/lien fee and sometimes a lender fee, often $0 to $300 total, versus closing costs of roughly 2-5% of the balance on a mortgage. That small fee is what makes auto refinancing worth checking almost any time rates drop by 1.5 percentage points or more, since the break-even point (fee divided by monthly savings) is usually well under two years.",
+        ],
+      },
+      {
+        heading: "Worked Example: $20,000 Balance, 48 Months Left, 9.5% to 6.5%",
+        paragraphs: [
+          "Say you have $20,000 left on a car loan at 9.5% APR with 48 months remaining. Your current payment is $502.46 a month, and you'll pay $4,118.21 in interest if you ride the loan to term. A credit union offers to refinance that same $20,000 balance over the same 48 months at 6.5% APR — your new payment drops to $474.30 a month, and total interest over the same 48 months falls to $2,766.35.",
+          "That's a monthly savings of $28.16 and a total interest savings of $1,351.86 — or $1,051.86 net after the $300 refinance fee. You recover that fee in $300 ÷ $28.16 = 10.65 months, call it 11 months. Since you have 48 months left on the loan, you clear the break-even point with more than three years to spare.",
+        ],
+      },
+      {
+        heading: "Break-Even at Six Different Rates ($20,000, 48 Months, $300 Fee)",
+        paragraphs: [
+          "The size of the rate drop changes how fast refinancing pays for itself and how much it nets you. Here's the same $20,000 balance, 48-month term, and $300 fee, recalculated at six new rates below the original 9.5%:",
+          "Every scenario on this list breaks even inside 22 months on a loan with 48 months left — even the smallest rate drop tested (1.5 percentage points) still pays for itself with more than two years to spare. That's the key difference from mortgage refinancing: because the fee is a few hundred dollars instead of several thousand, even a modest rate improvement on a car loan is usually worth doing, as long as there's at least two years left on the loan, or one year for a 3-point-or-bigger drop.",
+        ],
+        bullets: [
+          "9.5% → 8.0%: payment $488.26, saves $14.20/mo, $681.81 total interest saved ($381.81 net), breaks even in 21.1 months",
+          "9.5% → 7.5%: payment $483.58, saves $18.88/mo, $906.47 total interest saved ($606.47 net), breaks even in 15.9 months",
+          "9.5% → 7.0%: payment $478.92, saves $23.54/mo, $1,129.82 total interest saved ($829.82 net), breaks even in 12.7 months",
+          "9.5% → 6.5%: payment $474.30, saves $28.16/mo, $1,351.86 total interest saved ($1,051.86 net), breaks even in 10.7 months",
+          "9.5% → 6.0%: payment $469.70, saves $32.76/mo, $1,572.58 total interest saved ($1,272.58 net), breaks even in 9.2 months",
+          "9.5% → 5.5%: payment $465.13, saves $37.33/mo, $1,791.99 total interest saved ($1,491.99 net), breaks even in 8.0 months",
+        ],
+      },
+      {
+        heading: "The Mistake That Gives Back Half Your Savings: Stretching the Term",
+        paragraphs: [
+          "The easiest way to turn a good refinance into a partial loss is resetting the clock. Take that same $20,000 balance at 6.5%, but write it over a fresh 60-month term instead of the 48 months actually remaining: the payment looks great at $391.32 a month — $111.14 less than the original $502.46 — but total interest climbs to $3,479.38, which is $713.02 more than the $2,766.35 you'd pay keeping the term at 48 months. You'd still pay $638.83 less interest than never refinancing at all, but you hand back 53% of the $1,351.86 the same-term refinance would have saved, and you make 12 extra payments to do it — after the $300 fee, your net gain shrinks from $1,051.86 to $338.83.",
+          "Cars lose value every month, so a longer term keeps you owing more than the car is worth for longer. Two years after refinancing, you'd still owe about $12,767.89 on the 60-month loan versus about $10,647.34 on the 48-month loan — roughly $2,120 more debt against a car that's two years older and worth less. If the monthly payment genuinely doesn't fit your budget, refinance for the lower rate on the same remaining term, and address the budget problem separately rather than resetting the loan clock.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How much does it cost to refinance a car loan?",
+        answer:
+          "Auto loan refinancing typically costs far less than mortgage refinancing. Most banks and credit unions charge $0 to $300 for a lien release, new title, and DMV re-registration fee, and some waive it entirely as a promotion. Two things can erase that advantage, though: a loan origination fee some lenders charge (roughly 1-3% of the balance) and a prepayment penalty on your current loan — uncommon on auto loans but worth checking, typically 1-2% of the balance where state law and the lender allow one. Check your current loan agreement for a prepayment penalty and ask the new lender for its full fee schedule before counting on the $0-$300 range, then plug the real total into the break-even math above.",
+      },
+      {
+        question: "What credit score do I need to refinance a car loan?",
+        answer:
+          "Lenders generally want to see a credit score in the mid-600s or higher to offer a meaningfully lower rate than a typical original auto loan, and the best rates go to borrowers above that. If your score has improved since you took out the original loan — a common reason people refinance in the first place — you may qualify for a rate several points lower than what you started with. A refinance application involves a hard credit inquiry, which can cause a small, temporary dip in your score; shopping multiple lenders within a short window is usually counted as a single inquiry.",
+      },
+      {
+        question: "Is refinancing worth it if I only have a year left on the loan?",
+        answer:
+          "It depends on the balance, not just the time left — a $300 fee needs real dollars of monthly savings to clear within 12 months. Say you owe $6,000 with 12 months left at 9.5%. Refinancing to 6.5% drops the payment from $526.10 to $517.78, saving just $8.32 a month and about $99.87 in total interest. A $300 fee would take over 36 months to recover — three times longer than the loan has left, so it's not worth it here. Near the end of a loan, most of each payment is already principal, so a lower rate has little interest left to cut; as a rule of thumb, look for a break-even point that's less than half your remaining term before refinancing a loan that's close to paid off.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+      { title: "Auto Loan Calculator", url: "/financial/auto-loan", icon: "🚗" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+    ],
+    seoTitle: "Is It Worth Refinancing a Car Loan to a Lower Rate?",
+    seoDescription:
+      "Is it worth refinancing a car loan to a lower rate? A $20,000, 9.5%-to-6.5% example shows $28.16/mo saved, an 11-month break-even, and $1,051.86 net savings.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
