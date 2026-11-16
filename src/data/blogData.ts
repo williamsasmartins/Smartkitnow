@@ -3664,6 +3664,83 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Is it worth refinancing a car loan to a lower rate? A $20,000, 9.5%-to-6.5% example shows $28.16/mo saved, an 11-month break-even, and $1,051.86 net savings.",
   },
+  {
+    slug: "does-paying-student-loans-biweekly-save-money",
+    title: "Does Paying Student Loans Biweekly Save Money?",
+    excerpt:
+      "A $35,000 student loan at 6% paid biweekly instead of monthly pays off a full year early and saves $1,334 in interest — as long as your servicer doesn't just push your due date forward and you keep paying on schedule.",
+    category: "Personal Finance",
+    date: "2026-11-16",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "Does paying student loans biweekly save money? Yes — on a $35,000 loan at 6% over a standard 10-year term, switching from one $388.57 monthly payment to a $194.29 payment every two weeks pays the loan off in 9 years instead of 10 and cuts total interest from $11,628.40 to $10,294.31, a savings of $1,334.09. The mechanism is calendar arithmetic: 26 biweekly half-payments a year equal 13 full monthly payments, one more than a standard 12-payment year, and that extra payment goes straight to principal.",
+    sections: [
+      {
+        heading: "How biweekly student loan payments create a free 13th payment",
+        paragraphs: [
+          "A year has 52 weeks, which splits into 26 two-week periods — not 24, the number you'd get from paying twice a month on fixed dates like the 1st and 15th. Paying half your monthly payment every two weeks produces 26 half-payments a year, the dollar equivalent of 13 full monthly payments instead of the 12 your loan contract requires. The extra payment doesn't come from cutting other spending; it comes from the mismatch between a 7-day week and a 30-day month, which quietly stacks one bonus payment onto the calendar every year.",
+          "That 13th payment matters because the first 12 monthly-equivalent payments already satisfy what your servicer requires for the year — so the 13th lands as pure extra principal, not a payment that was due anyway. A smaller principal balance means every future period accrues less interest, which compounds into real savings the earlier it happens.",
+          "Nothing about the loan's contract changes: the rate and original term stay exactly what you signed. Federal student loans can be prepaid at any time without penalty under 34 CFR 685.211(a)(2), while private lenders are barred from charging prepayment fees by the Truth in Lending Act (15 U.S.C. § 1650(e)) — so there's no fee for paying ahead of schedule, only the catch covered below.",
+        ],
+      },
+      {
+        heading: "Does paying student loans biweekly save money? The $35,000, 6% example",
+        paragraphs: [
+          "Start with a $35,000 student loan at a 6% fixed rate on a standard 10-year (120-payment) term. The monthly principal-and-interest payment is $388.57, and paying that for all 120 months totals $46,628.40 — $11,628.40 of which is interest on top of the $35,000 borrowed. This example uses the classic 10-year standard plan that still applies to loans disbursed before July 1, 2026; newer federal loans fall under a tiered standard plan with terms from 10 to 25 years depending on balance, or the Repayment Assistance Plan, but the same 13th-payment math applies regardless of term length — run your actual balance and term through the calculator below.",
+          "Switch to true biweekly payments of $194.29 (half the monthly payment) every two weeks, modeled at 6% ÷ 26 interest per period, and the loan is paid off in 234 biweekly periods — exactly 9 years, 12 months sooner than the standard schedule. Total interest drops to $10,294.31, a savings of $1,334.09 for the same rate and the same amount borrowed. A servicer that accrues interest daily instead of per two-week period will land within roughly $30 of this figure, not a different order of magnitude. Here's how that compares to the alternative of just adding extra to your existing monthly payment instead of switching schedules:",
+        ],
+        bullets: [
+          "Standard monthly ($388.57/mo, 120 payments) → 10 years → $11,628.40 total interest → $0 saved",
+          "True biweekly ($194.29 every 2 weeks) → 9 years → $10,294.31 total interest → $1,334.09 saved",
+          "DIY extra 1/12th added monthly ($420.95/mo) → 9 years → $10,355.72 total interest → $1,272.68 saved",
+          "True biweekly finishes on the same 9-year timeline as the DIY version but beats it by $61.41 in interest, because half of every biweekly payment lands about two weeks earlier than the equivalent monthly dollar, so the balance accrues interest at a slightly lower level for part of each month",
+        ],
+      },
+      {
+        heading: "The servicer catch almost every biweekly guide skips",
+        paragraphs: [
+          "Mortgage borrowers can usually mark extra money as 'additional principal' on the payment screen, and once that's set it stays extra principal going forward. Federal student loan servicers work differently, and the difference is the catch that determines whether this strategy actually pays off.",
+          "Department of Education rules (34 CFR 685.211) do apply any extra payment to interest and then principal right away — so the money itself isn't lost. But when the extra you've sent adds up to at least a full monthly payment, those same rules also advance your next due date unless you request otherwise. Once your account shows 'paid ahead,' your bill can read $0 due, and some autopay setups simply skip the next debit.",
+          "If you stop paying during that gap, the extra principal you already sent just replaces payments you would have made anyway, and the $1,334.09 in savings calculated above never fully shows up. Many private lenders handle overpayments the same way.",
+          "To actually get the result in this article, log into your servicer's account after setting up biweekly payments and look for a setting like 'apply extra payment to principal' or 'do not advance due date,' or call and ask them to confirm it in writing. Checking this takes five minutes and determines whether the acceleration in this article plays out for your specific loan.",
+        ],
+      },
+      {
+        heading: "When biweekly extra payments are the wrong move",
+        paragraphs: [
+          "If you're enrolled in an income-driven repayment (IDR) plan and pursuing Public Service Loan Forgiveness (forgiven after 120 qualifying payments, about 10 years) or IDR forgiveness (20–25 years on older plans like IBR, or 30 years under the Repayment Assistance Plan that launched July 1, 2026), extra payments are usually counterproductive. Your required monthly payment is based on income, not balance, so paying extra just shrinks the balance that would otherwise be forgiven — effectively donating money to your loan servicer instead of keeping it.",
+          "Biweekly acceleration only makes sense for a standard fixed-term loan (federal or private) that you intend to pay off in full rather than have forgiven. Even on a standard-term loan, extra payments compete with other uses of the same dollars: a full employer 401(k) match and a 3-to-6-month emergency fund are both worth funding first, since an unmatched employer contribution is money you can't get back later and an emergency fund keeps a cash crunch from forcing a missed payment.",
+          "Once those are covered, prepaying a 6% student loan is a guaranteed 6% return with no market risk, which beats most savings accounts outright — run your own balance, rate, and term through a student loan calculator before committing to a biweekly schedule, since the payoff acceleration shrinks fast on smaller balances or shorter remaining terms.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Will paying biweekly change my loan's term or rate on paper?",
+        answer:
+          "No. Your rate and original term stay exactly what you signed — on the $35,000, 6% example here, the loan still shows a 10-year term on paper, it just gets retired in 9 years in practice because the extra annual payment shrinks the principal faster than the contract requires.",
+      },
+      {
+        question: "What if my servicer won't let me set up true biweekly autopay?",
+        answer:
+          "Many servicers only support monthly autopay, in which case you can get nearly the same result by manually adding one-twelfth of your payment to every monthly payment — $32.38 extra per month on this example, for a $420.95 total payment. It lands within $61.41 of true biweekly's interest savings over the full payoff, as the bullet comparison above shows. One thing to check first: federal Direct Loans carry a 0.25% interest-rate discount for enrolling in standard monthly autopay, and switching to a manual or biweekly schedule can forfeit that discount, which eats into part of the gain — confirm with your servicer before switching.",
+      },
+      {
+        question: "Should I do this if I'm on an income-driven repayment plan?",
+        answer:
+          "Generally no. On IDR plans tied to Public Service Loan Forgiveness (120 qualifying payments, about 10 years) or IDR forgiveness (20–25 years on older plans, or 30 years under the Repayment Assistance Plan launched July 1, 2026), your required payment is based on income rather than balance, so extra payments just reduce the amount that would eventually be forgiven. Biweekly acceleration is for standard fixed-term loans you plan to pay off completely, not loans on a forgiveness track.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Student Loan Repayment Calculator", url: "/financial/student-loan-repayment", icon: "🎓" },
+      { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "💵" },
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+    ],
+    seoTitle: "Does Paying Student Loans Biweekly Save Money?",
+    seoDescription:
+      "Does paying student loans biweekly save money? Yes: a $35,000, 6% loan pays off in 9 years instead of 10, saving $1,334 in interest when applied correctly.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
