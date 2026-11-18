@@ -3741,6 +3741,86 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "Does paying student loans biweekly save money? Yes: a $35,000, 6% loan pays off in 9 years instead of 10, saving $1,334 in interest when applied correctly.",
   },
+  {
+    slug: "how-much-equity-will-you-have-after-5-years-of-a-mortgage",
+    title: "How Much Equity Will You Have After 5 Years of a Mortgage?",
+    excerpt:
+      "On a $340,000 home with 10% down, a $306,000 loan at 6.75% builds $52,740 in equity after 5 years from the down payment plus principal paydown — or $106,894 with an assumed 3% annual appreciation.",
+    category: "Personal Finance",
+    date: "2026-11-18",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "How much equity will you have after 5 years of a mortgage? On a $340,000 home bought with 10% down ($34,000) and a $306,000 loan at 6.75% over 30 years, you'll have about $52,740 in equity after 5 years — 15.5% of the home's value — from your down payment plus principal paydown alone, assuming zero price appreciation. Add a typical 3% annual appreciation rate and that number roughly doubles to $106,894, or 27.1% of the home's new value. The two forces behind the number are separate: how fast you pay down principal, which is guaranteed, and whether the home gains value, which isn't.",
+    sections: [
+      {
+        heading: "How much equity will you have after 5 years? The two-part formula",
+        paragraphs: [
+          "Equity is simply what the home is worth minus what you still owe on it: home value minus loan balance. Two separate things move that number. The first is principal paydown — every payment you make splits between interest (the lender's fee) and principal (what actually reduces your balance), and that paydown happens on a fixed, predictable schedule no matter what the housing market does. The second is appreciation — whether the home's market value rises, which depends on your local market and isn't guaranteed in any given year.",
+          "Principal paydown starts slow and accelerates, because amortized loans charge interest on the current balance. Early in the loan, almost all of your payment is interest; as the balance shrinks, a growing share goes to principal. On the $306,000 loan in this example, the first year's $1,984.71 monthly payment ($23,816.52 for the year) sends only $3,261.19 to principal — the other $20,555.33 is interest. By year five, the annual principal share has grown to $4,268.81, even though the payment amount never changes.",
+        ],
+      },
+      {
+        heading: "A worked example: $306,000 loan, year by year",
+        paragraphs: [
+          "Start with a $340,000 home, a 10% down payment ($34,000), and a $306,000 loan at 6.75% over 30 years. The principal-and-interest payment is $1,984.71 a month. Over 60 payments (5 years), the balance drops from $306,000 to $287,259.67 — $18,740.33 of principal paid down. Add that to the $34,000 down payment and you get $52,740.33 in equity after 5 years, or 15.5% of the original $340,000 home value, with the home's market value held flat.",
+          "Here's how that principal paydown breaks out year by year, showing the acceleration described above and the running equity total (down payment plus paydown) at each point:",
+        ],
+        bullets: [
+          "Year 1: balance $302,738.81 → $3,261.19 principal paid → equity $37,261.19 (11.0% of home value)",
+          "Year 2: balance $299,250.55 → $3,488.26 principal paid → equity $40,749.45 (12.0%)",
+          "Year 3: balance $295,519.41 → $3,731.14 principal paid → equity $44,480.59 (13.1%)",
+          "Year 4: balance $291,528.48 → $3,990.93 principal paid → equity $48,471.52 (14.3%)",
+          "Year 5: balance $287,259.67 → $4,268.81 principal paid → equity $52,740.33 (15.5%)",
+          "5-year total: $119,082.61 paid in, of which $100,342.28 (84.3%) was interest and $18,740.33 (15.7%) was principal",
+        ],
+      },
+      {
+        heading: "How your down payment size changes your 5-year equity",
+        paragraphs: [
+          "The gap between down-payment levels comes almost entirely from the down payment itself, not from how the loan amortizes. At the same rate and term, every loan sends the same percentage of each payment to principal — so the smaller loan from a bigger down payment actually pays down slightly fewer principal dollars over 5 years ($19,781.46 at 5% down vs. $16,658.07 at 20% down), not more. That difference isn't enough to close the gap the extra cash creates on day one: going from 5% down to 20% down more than doubles (2.3x) the share of the home's value you own after 5 years.",
+          "Here's the same $340,000 home, same 6.75% rate and 30-year term, compared at three down-payment levels after exactly 5 years:",
+        ],
+        bullets: [
+          "5% down ($17,000): $323,000 loan → $2,094.97/mo → $36,781 equity after 5 years (10.8% of home value)",
+          "10% down ($34,000): $306,000 loan → $1,984.71/mo → $52,740 equity after 5 years (15.5% of home value)",
+          "20% down ($68,000): $272,000 loan → $1,764.19/mo → $84,658 equity after 5 years (24.9% of home value)",
+        ],
+      },
+      {
+        heading: "Appreciation is the wildcard — here's how much it actually adds",
+        paragraphs: [
+          "Everything above assumes the home's value never changes, which isolates the part of equity you fully control. In practice, home prices usually move — U.S. home prices have historically averaged low-single-digit annual gains over long stretches, though any single market can run hotter, flatter, or negative in a given five-year window, as 2007–2011 showed in many cities. Appreciation is a reasonable assumption to model, never a guarantee to plan around.",
+          "Modeling a steady 3% annual appreciation on the $340,000 home, its value grows to $394,153.19 after 5 years — a $54,153.19 gain that, added to the $52,740.33 from the down payment and paydown, brings total equity to $106,893.51, or 27.1% of the home's new value. Notice that in this scenario appreciation ($54,153.19) contributes more to 5-year equity than principal paydown ($18,740.33) does — which is exactly why a downturn erases paper gains first, and a deep enough one cuts into the equity you actually paid for, not just the appreciation on top of it.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does paying extra toward principal change this number?",
+        answer:
+          "Yes, directly. Adding just $200 a month in extra principal to the same $306,000, 6.75% loan drops the 5-year balance to $273,033.36 instead of $287,259.67 — $32,966.64 paid down instead of $18,740.33 — which raises total equity (with the 10% down payment) to $66,966.64 instead of $52,740.33. That's $14,226.31 more equity from $12,000 in extra payments over 5 years: $12,000 of that is simply your own cash moved into the house, and the remaining $2,226.31 is interest you avoided paying. Run your own numbers through the amortization calculator below to see the effect of any extra-payment amount.",
+      },
+      {
+        question: "What if home values fall instead of rising?",
+        answer:
+          "Then your equity shrinks dollar for dollar, because equity is always home value minus loan balance — principal paydown makes your loan balance predictable, not your equity. On this example, with the home's value held flat, a 10% price drop (to $306,000, the original loan amount) wipes out the entire $34,000 down payment and leaves only the $18,740.33 of principal you've paid down. A drop of about 15.5%, to roughly $287,260 (the remaining loan balance), takes equity to zero.",
+      },
+      {
+        question: "Is equity the same as what I'd walk away with if I sold?",
+        answer:
+          "No — equity is home value minus loan balance, but a sale also costs roughly 6-10% of the sale price in agent commissions, closing costs, and transfer taxes. On a $394,153.19 sale price, 8% in selling costs is about $31,532 — so a seller with $106,893.51 in paper equity would net closer to $75,000 after those costs.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+      { title: "House Affordability Calculator", url: "/financial/house-affordability", icon: "🏡" },
+      { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+    ],
+    seoTitle: "How Much Equity Will You Have After 5 Years of a Mortgage?",
+    seoDescription:
+      "How much equity will you have after 5 years of a mortgage? A $340,000 home with 10% down builds $52,740 in equity by year five — see the full breakdown.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
