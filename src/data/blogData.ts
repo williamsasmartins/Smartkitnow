@@ -3821,6 +3821,80 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "How much equity will you have after 5 years of a mortgage? A $340,000 home with 10% down builds $52,740 in equity by year five — see the full breakdown.",
   },
+  {
+    slug: "how-much-to-save-monthly-for-a-30000-down-payment-in-3-years",
+    title: "How Much to Save Monthly for a $30K Down Payment in 3 Years",
+    excerpt:
+      "Saving $30,000 for a down payment in 3 years takes $833.33/month in cash — or $779.91/month at 4.5% interest compounded monthly, where interest covers $1,923.32 of the goal.",
+    category: "Personal Finance",
+    date: "2026-11-20",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 7,
+    intro:
+      "How much should you save monthly for a $30,000 down payment in 3 years? Saving in cash with no interest, you need exactly $833.33 a month for 36 months. Move that same plan into a savings account earning 4.5% interest compounded monthly (about 4.59% APY), and the required contribution drops to $779.91 a month — interest does $1,923.32 of the work for you, not your paycheck. The three numbers that decide the answer are always the target amount, the number of months, and the rate your cash earns while it sits there.",
+    sections: [
+      {
+        heading: "How much to save monthly for a $30,000 down payment in 3 years: the formula",
+        paragraphs: [
+          "With 0% interest, the math is just division: target ÷ months. $30,000 ÷ 36 = $833.33 a month, no formula needed, because every dollar you put in is still worth exactly a dollar when you take it out. That's the number for cash under a mattress or a checking account that pays nothing.",
+          "Once the money earns interest, each deposit grows for a different length of time — the first deposit compounds for 35 months, the last one for zero — so you need the future-value-of-an-annuity formula: PMT = FV × i ÷ [(1+i)^n − 1], where FV is $30,000, i is the monthly rate (annual rate ÷ 12), and n is 36. At 4.5% compounded monthly, i = 0.00375, and (1.00375)^36 ≈ 1.14425. Plugging in: PMT = 30,000 × 0.00375 ÷ 0.14425 ≈ $779.91 a month. Over 36 payments that's $28,076.68 out of your own pocket and $1,923.32 earned in interest — interest covers 6.4% of the goal. Note that banks advertise APY, not the nominal rate: a true 4.5% APY account compounds very slightly differently and works out to about $780.95/mo — within a dollar of the number here.",
+        ],
+      },
+      {
+        heading: "Savings rate vs. monthly contribution: 4 rates compared",
+        paragraphs: [
+          "The rate on your savings account changes the monthly number more than most people expect, even over just 3 years. Here's the same $30,000 target over the same 36 months compared across a no-interest checking account, the FDIC national average savings rate, a competitive high-yield savings account as of November 2026, and a best-case illustrative rate:",
+          "Rule of thumb for a goal this size: each added point of interest rate cuts the required monthly deposit by roughly $12 on a $30,000, 3-year target. The relationship is close to linear across these tiers — about $12.13 per point between 0% and 0.38%, and $11.50 per point between 4.5% and 6% — so you can estimate the effect of any rate you're quoted without redoing the full formula.",
+        ],
+        bullets: [
+          "0% (no-interest checking): $833.33/mo → $30,000.00 contributed → $0.00 interest earned",
+          "0.38% (FDIC national average savings rate, late 2026): $828.72/mo → $29,834.07 contributed → $165.93 interest earned",
+          "4.5% compounded monthly / ~4.59% APY (competitive high-yield savings, Nov. 2026): $779.91/mo → $28,076.68 contributed → $1,923.32 interest earned",
+          "6% (best-case / illustrative rate): $762.66/mo → $27,455.69 contributed → $2,544.31 interest earned",
+        ],
+      },
+      {
+        heading: "Already have some cash saved? Here's how a head start changes the math",
+        paragraphs: [
+          "If you're not starting from zero, solve it in two steps instead of one. First, find out what your existing cash grows to on its own — this is exactly what the compound interest calculator below does, with your lump sum as the principal, your rate, monthly compounding, and your remaining timeframe. Second, subtract that future value from your target and run the monthly-contribution formula on what's left.",
+          "Say you already have $5,000 saved and can put it into the same account today, earning 4.5% compounded monthly. Left alone for 36 months, that $5,000 grows to $5,721.24 — the calculator shows you this directly. Subtract it from $30,000 and you need $24,278.76 more, which takes $631.17 a month instead of $779.91, or about $149 less each month. Of the $5,721.24 your head start contributes, $721.24 is interest you never had to deposit.",
+        ],
+      },
+      {
+        heading: "How your timeline and down-payment size change the target",
+        paragraphs: [
+          "Stretching the timeline lowers the monthly number fast, since you're dividing by more months: at 0% interest, $30,000 needs $1,250.00/mo over 2 years, $833.33/mo over 3 years, $625.00/mo over 4 years, or $500.00/mo over 5 years. What's less obvious is that the dollar amount interest saves you each month barely moves across those timelines — at 4.5% compounded monthly it's $53.07/mo saved on the 2-year plan, $53.43 on 3 years, $53.40 on 4 years, and $53.21 on 5 years. For this size of goal, a longer runway shrinks your required contribution dramatically, but it doesn't make interest proportionally more valuable — it stays worth almost exactly the same ~$53 a month no matter how far out you push the date.",
+          "The target itself usually isn't fixed either — it's a percentage of a home price. $30,000 is a 10% down payment on a $300,000 house; the same house at 20% down needs $60,000, which simply doubles every number above to $1,559.82/mo at 4.5% compounded monthly over 3 years. Before locking in a savings target, run the home price and down payment percentage you're actually considering through the house affordability calculator below, then bring that dollar figure back into the monthly-savings math here.",
+          "Three things this math leaves out. Interest is taxed as ordinary income — in a 22% federal bracket, roughly $423 of the $1,923.32 earned at 4.5% goes to taxes, not your down payment. High-yield savings rates are variable and can fall during a 3-year window, which is why some savers split the goal between a savings account and a short-term CD to lock in part of the rate. And closing costs, typically 2-5% of the home price, are a separate savings target on top of the down payment itself.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does the interest rate on my savings account really matter for a 3-year goal?",
+        answer:
+          "Yes, more than it might seem for a short timeline. Moving $30,000-in-3-years savings from a 0% checking account to an account earning 4.5% compounded monthly (about 4.59% APY) lowers your required monthly contribution from $833.33 to $779.91 and earns $1,923.32 in interest you never had to save yourself — about 6.4% of the entire goal, for zero extra risk and no extra effort beyond opening the account.",
+      },
+      {
+        question: "What if $779.91 a month doesn't fit my budget?",
+        answer:
+          "Extend the timeline. The same $30,000 goal at 4.5% compounded monthly drops to $571.60/mo over 4 years or $446.79/mo over 5 years. Run your own numbers through the compound interest calculator below with different time horizons until you find a monthly amount that actually fits your budget, rather than forcing a 3-year deadline that doesn't.",
+      },
+      {
+        question: "How does my down payment amount affect how much house I can afford?",
+        answer:
+          "A bigger down payment lowers your loan amount directly, which can unlock a better rate. On a conventional loan it also eliminates private mortgage insurance (PMI) once you reach 20% down — FHA loans charge mortgage insurance regardless of down payment size. On a $300,000 home, 10% down ($30,000) leaves a $270,000 loan, while 20% down ($60,000) leaves $240,000. Use the house affordability calculator below to see how your savings target and your monthly mortgage payment connect.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Compound Interest Calculator", url: "/financial/compound-interest", icon: "📈" },
+      { title: "House Affordability Calculator", url: "/financial/house-affordability", icon: "🏡" },
+      { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+    ],
+    seoTitle: "How Much to Save Monthly for a $30K Down Payment",
+    seoDescription:
+      "How much to save monthly for a $30,000 down payment in 3 years? $833.33 in cash or $779.91 at 4.5% interest, with a 4-rate comparison and head-start math.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
