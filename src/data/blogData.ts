@@ -3967,6 +3967,84 @@ export const blogPosts: BlogPost[] = [
     seoDescription:
       "The car loan payment with a $5,000 trade-in on a $40,000 car is about $732.75/month at 6.5% APR — see how the sales-tax credit and negative equity change it.",
   },
+  {
+    slug: "how-many-bricks-for-a-4-foot-fire-pit",
+    title: "How Many Bricks for a 4-Foot Fire Pit? (Full Breakdown)",
+    excerpt:
+      "A 4-foot fire pit built one brick thick, 6 courses high, takes 134 modular bricks with a 10% waste margin — the circumference math, a size table, and fire-safety basics.",
+    category: "Home & Construction",
+    date: "2026-11-27",
+    author: "Smart Kit Now Editorial Team",
+    readingMinutes: 8,
+    intro:
+      "How many bricks for a 4-foot fire pit? Built one standard modular brick thick, 6 courses high (16 inches tall), a 4-foot-interior-diameter fire pit ring takes 134 bricks once a 10% waste margin is included — about 122 bricks for the ring itself before rounding up for waste. That count comes from unrolling the circular wall into its centerline circumference, about 13.5 feet, multiplying by the course height to get a face area, then applying the modular-brick rate of 6.75 bricks per square foot published by the Brick Industry Association. Size the same ring up to a 5-foot interior diameter and the count climbs to 165 bricks; drop to 3 feet and it falls to 103. This guide covers the exact math, a size-by-height comparison table, the whole-brick rounding that nudges real orders off a round number, and what a fire pit needs that an ordinary wall doesn't.",
+    sections: [
+      {
+        heading: "The Math: How Many Bricks for a 4-Foot Fire Pit",
+        paragraphs: [
+          "A 4-foot fire pit means a 4-foot interior diameter — the open circle where the fire sits. Standard US modular brick is specified at 3⅝ × 2¼ × 7⅝ inches; add a ⅜-inch mortar joint and it coordinates to a nominal 4 × 2⅔ × 8 inches, per the Brick Industry Association's Technical Note 10. Laying the ring one brick thick, the wall's centerline — halfway through the brick's 3⅝-inch bed depth — sits at a diameter of 4 feet plus 3⅝ inches, or about 4.3 feet. Multiply by pi and the centerline circumference comes out to roughly 13.52 feet. That's the number to treat as the wall's face length, because unrolling a ring into a straight line is exactly what the math underneath a curved wall actually is.",
+          "From there it's the same face-area method used for any single-wythe veneer wall: circumference times height gives the square footage of wall face, and square footage times bricks-per-square-foot gives the brick count. Six courses of modular brick, at 2⅔ inches nominal per course, comes to 16 inches — a comfortable seat-height ring. Face area is 13.52 ft × 1.33 ft, or about 18.0 square feet. At the Brick Industry Association's 6.75 bricks per square foot for modular brick (the same figure behind our 200-square-foot wall guide), that's about 121.6 bricks before waste. Add the standard 10% DIY waste margin and round up, and the real order is 134 bricks.",
+        ],
+      },
+      {
+        heading: "Fire Pit Size vs. Height: How the Brick Count Changes",
+        paragraphs: [
+          "Both the interior diameter and the number of courses move the total, and neither moves it by a small amount. Diameter scales the circumference directly: each extra foot of interior diameter adds about pi feet (3.14 ft) of circumference, which works out to roughly 31 extra bricks at the 6-course height used above. The table below holds the single-brick-thick, 10%-waste assumptions fixed and runs the three most common interior diameters against four common heights.",
+          "A short 4-course ring (about 10.7 inches tall) works as a low decorative border or a liner inside an existing metal fire ring. A 6- to 7-course ring (16 to 18.7 inches) is closer to a seat-height feature you can lean against. Going from the shortest to the tallest option below adds about 75% more bricks at every diameter — not double, but still the bigger lever compared with changing diameter alone.",
+        ],
+        bullets: [
+          "3-ft interior diameter: 69 bricks at 4 courses (10.7 in), 86 at 5 courses (13.3 in), 103 at 6 courses (16 in), 120 at 7 courses (18.7 in)",
+          "4-ft interior diameter: 90 bricks at 4 courses, 112 at 5 courses, 134 at 6 courses, 157 at 7 courses",
+          "5-ft interior diameter: 110 bricks at 4 courses, 138 at 5 courses, 165 at 6 courses, 193 at 7 courses",
+        ],
+      },
+      {
+        heading: "Why Real Orders Land Off a Round Number",
+        paragraphs: [
+          "The face-area formula treats the ring as a continuous sheet of material, but a real course is built from whole bricks, and a whole number of bricks almost never divides evenly into a circumference. For the 4-foot example, the centerline circumference of about 162.2 inches divided by one brick's nominal 8-inch face length comes out to 20.27 bricks per course — a number you can't actually lay. Round down to 20 bricks and the course settles at a slightly smaller interior diameter, about 3 feet 11 inches; round up to 21 bricks and it settles at about 4 feet 2 inches, with each mortar joint stretched a touch past the standard ⅜ inch to close the ring evenly.",
+          "Neither rounding direction changes the total bricks needed by more than one or two per course, and the 10% waste margin already built into the 134-brick order easily covers the difference — so the face-area total above is still the right number to buy. What it does change is the finished diameter: expect the real ring to land an inch or two off your target size once the courses close evenly, which is normal and not a sign the math was wrong. If an exact outer size matters, such as fitting inside an existing patio cutout, dry-lay one full course without mortar first and adjust the diameter to whichever whole-brick count comes closest before mixing anything.",
+        ],
+      },
+      {
+        heading: "Mortar, Base Pad, and the Rest of the Material List",
+        paragraphs: [
+          "Mortar is the next line item. Packaged mortar mix typically lays 30 to 36 modular bricks per 80 lb bag — the same coverage used in our 200-square-foot wall guide — so 134 bricks need roughly 4 to 5 bags. Buy 5 if you're using the slightly wider joints described above to close the ring evenly.",
+          "The ring itself sits on a concrete base pad, and that's a separate calculation from the brick count. Outer diameter — interior diameter plus the brick's 3⅝-inch bed depth on each side — comes to about 4 feet 7¼ inches for this example. A 5-foot-square pad at 4 inches thick contains it with only about 2 inches of clearance per side (8.33 cubic feet, or just under a third of a cubic yard — about 14 bags of 80 lb ready-mix, or 19 bags of 60 lb). Step up to a 6-foot-square pad for more comfortable margin: 12 cubic feet, or about 20 bags of 80 lb ready-mix, or 27 bags of 60 lb. For a non-square or custom-sized pad, run the exact footprint through a concrete slab volume calculator rather than estimating by eye.",
+        ],
+      },
+      {
+        heading: "Fire Safety Basics for a Brick Fire Pit",
+        paragraphs: [
+          "Ordinary clay brick and mortar can crack or spall under direct, sustained flame contact, especially if they're ever damp when a fire is lit. Line the inside face with firebrick rated for high heat, laid with refractory mortar rather than standard Type N or S, or drop in a steel fire-ring insert, and let the outer brick ring stay a structural and decorative shell rather than the surface the fire actually touches. A firebrick liner sits inside the 134-brick ring and takes up its own bed depth on each side, so a lined pit built on this 4-foot interior ring ends up with roughly a 3-foot-3-inch open fire area; to keep closer to a true 4-foot fire area with a liner, size the outer ring to about a 4-foot-9-inch interior instead — about 158 bricks at 6 courses with 10% waste, on a 6-foot-square base pad rather than the 5-foot pad sized for the 4-foot example, plus the firebrick for the liner itself. Never build the fire-facing surface itself out of concrete pavers, cinder block, or river rock — moisture trapped inside those materials can turn to steam fast enough to crack or shatter them.",
+          "Spread 3 to 4 inches of gravel inside the ring on top of the concrete pad, and leave one or two head joints in the bottom course unmortared as weep gaps, so rainwater drains out from inside the ring instead of pooling against hot brick. Before building anything, check local fire codes: many cities and HOAs set minimum setback distances from structures, fences, and property lines, and some restrict or prohibit open wood fires in favor of gas inserts.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How many bricks for a 3-foot or 5-foot fire pit instead of 4 feet?",
+        answer:
+          "At the same single-brick thickness, 10% waste, and 6 courses (16 inches tall), a 3-foot interior diameter needs 103 bricks and a 5-foot interior diameter needs 165 bricks, compared with 134 for a 4-foot pit. Each extra foot of interior diameter adds about 31 bricks at that height, since the circumference grows by about pi feet (3.14 ft) per foot of diameter added.",
+      },
+      {
+        question: "How tall should a brick fire pit ring be?",
+        answer:
+          "Four to five courses (about 10.7 to 13.3 inches) makes a low, decorative border, often used to line an existing metal fire ring. Six to seven courses (about 16 to 18.7 inches) is closer to seat height and the more common choice for a standalone brick fire pit people lean against or rest a foot on. Going taller than 7 courses with a single-brick-thick wall starts to raise stability concerns without a cap course or reinforced footing.",
+      },
+      {
+        question: "How much do bricks, mortar, and a base pad cost for a 4-foot fire pit?",
+        answer:
+          "For the 134-brick, 6-course example: bricks run roughly $67 to $114 at a typical retail range of $0.50 to $0.85 each (the same range used across our brick guides), mortar adds about $40 to $50 for 4 to 5 bags, and a 5-foot-square, 4-inch concrete base pad runs roughly $63 to $86 in bagged ready-mix. Total materials land around $170 to $250, before a firebrick liner or steel insert, tools, or capstones.",
+      },
+    ],
+    relatedCalculators: [
+      { title: "Brick Calculator", url: "/construction/brick-calculator", icon: "🧱" },
+      { title: "Concrete Slab Volume Calculator", url: "/construction/concrete-slab-volume", icon: "🧱" },
+    ],
+    seoTitle: "How Many Bricks for a 4-Foot Fire Pit?",
+    seoDescription:
+      "How many bricks for a 4-foot fire pit? A single-brick ring, 6 courses high, takes 134 bricks with 10% waste — see the full math, size table, and safety tips.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
